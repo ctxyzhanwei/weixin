@@ -1,0 +1,49 @@
+<div class="footnav">
+ <!-- <div class="footnav_l"><img src="smarty/templates/tpls/{$site.template}/footnav_l.png" tppabs="http://900040.3g/images/footnav_l.png" /></div>-->
+  <ul>
+    {if $navChannels}
+{foreach from=$navChannels item=n key=m}
+	{if $m<5}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.shortname}</a></li>
+	{/if}
+	{/foreach}
+	{/if}
+  </ul>
+</div>
+
+<div class="footerview">
+  <ul>
+    <li class="foottel" style="border-left:0;"><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话"><img src="smarty/templates/tpls/{$site.template}/tel.png"  /><br/>电话</a></li>
+    <li class="footmess"><a href="sms:{$company.mp}" title="短信"><img src="smarty/templates/tpls/{$site.template}/mess.png"  /><br/>短信</a></li>
+    <li class="footmap"><a href="?token={$token}&m=site&c=home&a=map"  title="地图"><img src="smarty/templates/tpls/{$site.template}/map.png"  /><br/>地图</a></li>
+    <li class="footshare">
+    <!--分享(-->
+		    <a href="?token={$token}&m=site&c=home&a=share" ><img src="smarty/templates/tpls/{$site.template}/share.png" ><br/>分享</a>
+        <!--)分享-->
+    </li>
+    <li class="footindex" style="border-right:0;"><a href="{$homeurl}"  title="首页" style="color:#f5e65b"><img src="smarty/templates/tpls/{$site.template}/home.png"  /><br/>首页</a></li>
+  </ul>
+</div>
+
+</div>
+<!--menu start-->
+{if $showPlugMenu}
+<link rel="stylesheet" href="/tpl/Wap/default/common/css/flash/css/plugmenu.css">
+<div class="plug-div">
+        <div class="plug-phone">
+            <div class="plug-menu themeStyle" style="background:{$site.plugmenucolor}"><span class="close"></span></div> 
+               {foreach from=$plugmenus item=vo key=k}
+                        <div class="themeStyle plug-btn plug-btn{$k+1} close" style="background:{$site.plugmenucolor}">
+							<a  href="{$vo.url}">
+								<span style="background-image: url(/tpl/Wap/default/common/css/flash/images/img/{$vo.name}.png);" ></span>
+							</a>
+						</div>
+                     {/foreach}
+<div class="plug-btn plug-btn5 close"></div>
+                    </div>
+</div>
+<script src="/tpl/Wap/default/common/css/flash/js/zepto.min.js" type="text/javascript"></script>
+<script src="/tpl/Wap/default/common/css/flash/js/plugmenu.js" type="text/javascript"></script>
+{/if}
+<!--menu end-->
+</body></html>

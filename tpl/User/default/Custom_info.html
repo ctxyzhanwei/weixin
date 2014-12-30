@@ -1,0 +1,90 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content">
+<div class="cLineB">
+<h4>用户提交信息列表 </h4>
+<div class="clr"></div>
+</div>
+
+<style>
+	#tags .btnGreen{background-image:none;background-color: #5BA607;color:#ffffff;height:30px;line-height: 30px;}
+	#tags .btnGreen:hover{background-color: #2F8BC9}
+</style>
+<div class="msgWrap form">
+		<ul id="tags" style="width:100%">
+        <li <pigcmsif where="ACTION_NAME eq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/record')}">表单数据统计</a> 
+            </li>
+            <li <pigcmsif where="ACTION_NAME neq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/index')}">表单设置项</a> 
+            </li>
+            <li style="float:right;"><a href="{pigcms::U('Custom/index',array('token'=>$token))}" class="btnGreen">返回</a></li>
+            <div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+        </ul>
+</div>
+
+
+<div class="cLine">
+<div class="left">
+<a href="{pigcms::U('Custom/exportForms',array('token'=>$token,'set_id'=>$set_id))}" class="btnGrayS vm" style="height:25px;">
+导出用户表单
+</a>
+</div>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="name" value="" style="height:22px;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索" style="height:30px;">
+</form>
+</div>	
+
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="40">用户名称</th>
+<th width="30">提交时间</th>
+<volist name="field" id="field">
+<th width="30">{pigcms:$field.field_name}</th>
+</volist>
+<th width="40" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<volist name="list" id="item">
+<tr>
+<td>{pigcms:$item.user_name}</td>
+<td>{pigcms:$item.add_time|date="Y-m-d",###}</td>
+	<volist name="item['ex_info']" id="ex_info" offset="0" length="6">
+		<td>{pigcms:$ex_info.value}</td>
+	</volist>
+<td class="norightborder">
+	<a href="javascript:void(0);" onclick="showIntroDetail({pigcms:$item.info_id})">查看详情</a>
+	|
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Custom/infoDel',array('info_id'=>$item['info_id'],'token'=>$token))}');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+function showIntroDetail(id){
+	art.dialog.open('{pigcms::U('Custom/detail',array('token'=>$token))}&info_id='+id,{lock:false,title:'信息详情',width:400,height:300,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<include file="Public:footer"/>

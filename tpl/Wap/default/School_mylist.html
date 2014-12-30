@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class=" clickberry-extension clickberry-extension-standalone">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/online_booking.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/pig-ui.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/common.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<title>我的预约</title>
+<meta content="clickberry-extension-here">
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            //oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+
+   $('#plug-wrap').removeClass();
+   //document.body.removeChild(document.getElementById('plug-wrap'));
+</script>
+<style>
+    #plug-wrap{z-index: 0}
+</style>
+<link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+<link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+</head>
+    <body onselectstart="return true;" ondragstart="return false;" id="onlinebooking-list">
+    <include file="School:headermenu"/>
+    <div class="cardexplain">
+<ul class="round">
+<if condition="$books eq ''">
+<a href="javascript:;">
+        <li class="title">
+        <span>订单详情 <if condition="$vo['remate'] eq 0"><em class="no"></em></if></span>
+        </li>
+</a>
+<li><a href="javascript:;">
+            </a><div class="text"><a href="javascript:;">
+            <span style="font-size: 24px">您还没有预约。</span>
+          </div>
+
+</li>
+</if>
+
+<volist name="books" id="vo">
+<a href="javascript:;">
+        <li class="title">
+        <span>开课时间: {pigcms:$vo['dateline']} <if condition="$vo['remate'] eq 0"><em class="no">等待确认</em><elseif condition="$vo['remate'] eq 1"/><em class="no"><font color="green">客服已确认</font></em><elseif condition="$vo['remate'] eq 2"/><em class="no"><font color="red">已拒绝</font></em></if></span>
+        </li>
+</a>
+<li><a href="javascript:;">
+            </a><div class="text"><a href="javascript:;">
+                <p>姓名：{pigcms:$vo['truename']}</p>
+                <p>联系电话：{pigcms:$vo['tel']}</p>
+                <p>课程名称：{pigcms:$vo['housetype']}</p>
+                <p>授课老师：{pigcms:$vo['choose']}</p>
+                <p>开课时间：{pigcms:$vo['dateline']}</p>
+                <p>上课地址：{pigcms:$vo['address']}</p>
+                <p>我的备注 ：{pigcms:$vo['info']} </p>
+                <p>提交时间：{pigcms:$vo['booktime']|date='Y年m月d日 H时i分',###}</p>
+                </a><div class="footReturn"><a href="javascript:;"></a>
+<if condition="$vo['remate'] eq 0">
+<a id="" style="color:#fff;" class="submit" href="{pigcms::U('School/del',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id'],'type'=>$vo['type']))}" onclick="return(confirm('您确定要删除吗?删除表示您放弃本次预约.'));return false;">删除订单 </a></if>
+<if condition="$vo['remate'] neq 0">
+<p>客服回复：<font color="#2c2a24">{pigcms:$vo['kfinfo']}</font></p>
+</if>
+
+                </div>
+        </div>
+</li>
+</volist>
+<if condition="$count gt 5">
+<p style="text-align: center;
+padding: 10px;">{pigcms:$page}</p>
+</if>
+</ul>
+
+<!--页码-->
+    </div>
+<div mark="stat_code" style="width:0px; height:0px; display:none;"></div>
+
+    <div class="copyright">
+      <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span>
+
+    </div>
+
+<style>
+.top_bar{top: 93%; }
+</style>
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+<script>
+   $('#plug-wrap').removeClass();
+   document.body.removeChild(document.getElementById('plug-wrap'));
+
+function onBridgeReady(){
+     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady()  {
+ WeixinJSBridge.call('hideOptionMenu');
+ });
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+</script>
+<style>
+    #plug-wrap{z-index: 0}
+</style>
+</body></html>

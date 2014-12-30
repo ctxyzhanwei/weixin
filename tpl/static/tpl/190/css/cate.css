@@ -1,0 +1,47 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#fff;}
+.copyright a{color:#fff;}
+
+body {  background:url(../images/12_line.gif) repeat; font-size:16px; }
+
+body  .mainmenu { width:96%; margin:0px auto 10px; overflow:hidden }
+body  .mainmenu li { margin-top:2%; width:100%;    overflow:hidden }
+body  .mainmenu li a:active{ background-color:rgba(0,0,0,0.3);}
+body  .mainmenu li a { display:block;    padding:7px 25px 7px 15px; position:relative;  }
+body  .mainmenu li a p{  padding:0; color:#858585;color:#FFF}
+body  .mainmenu li a span {  line-height:30px; font-size:18px; letter-spacing:2px; }
+body  .mainmenu li a i{ display:block; line-height:24px; font-size:12px;  text-overflow:ellipsis; overflow:hidden; white-space:nowrap }
+body  .mainmenu li a b{ display:block;  width:17px; height:35px; position:absolute; top:50%; margin-top:-17.5px; right:10px;  background:url(../images/jt2.png) no-repeat}
+
+body  .mainmenu li:nth-child(4n+1){ background-color:rgba(2,208,72,0.5)} 
+body  .mainmenu li:nth-child(4n+2){ background-color:rgba(211,103,0,0.5)}
+body  .mainmenu li:nth-child(4n+3){ background-color:rgba(243,111,223,0.5)}
+body  .mainmenu li:nth-child(4n+4){ background-color:rgba(246,187,46,0.5)}

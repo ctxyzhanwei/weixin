@@ -1,0 +1,75 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+/*cate42*/
+body{background-color: #F0EFEF;overflow-x: hidden; margin:0 auto;}
+body .banner img{
+	width:100%;
+}
+body .mainmenu {
+	padding:5px 0;
+}
+body .mainmenu ul{
+width: 100%;
+display: -webkit-box;
+display: -moz-box;
+display: box;
+margin: 5% 0 0 0;
+}
+body .mainmenu li {
+
+-webkit-box-flex: 1;
+-moz-box-flex: 1;
+box-flex: 1;
+}
+body .mainmenu li a { display:block; color:#FFF; text-align:center; padding:0; width:80px; height:80px; margin: 0 auto; overflow:hidden;border-radius:300px; }
+body .mainmenu li a b { display:block; }
+body .mainmenu li a b img { width: 50%; height: auto; margin-top: 8px; }
+body .mainmenu li a span { display:block; color: #fff; font-size:14px;text-overflow: ellipsis;
+white-space: normal;
+overflow: hidden;height: 18px; }
+
+
+body .mainmenu ul:nth-of-type(3n+1) li:nth-of-type(1) a{background-color:#36A1DB;}
+body .mainmenu ul:nth-of-type(3n+1) li:nth-of-type(2) a{background-color:#678ce1;}
+body .mainmenu ul:nth-of-type(3n+1) li:nth-of-type(3) a{background-color:#8c67df;}
+
+body .mainmenu ul:nth-of-type(3n+2) li:nth-of-type(1) a{background-color:#84d018;}
+body .mainmenu ul:nth-of-type(3n+2) li:nth-of-type(2) a{background-color:#14c760;}
+body .mainmenu ul:nth-of-type(3n+2) li:nth-of-type(3) a{background-color:#f3b613;}
+
+body .mainmenu ul:nth-of-type(3n) li:nth-of-type(1) a{background-color:#ff8a4a;}
+body .mainmenu ul:nth-of-type(3n) li:nth-of-type(2) a{background-color:#fc5366;}
+body .mainmenu ul:nth-of-type(3n) li:nth-of-type(3) a{background-color:#3F6DE4;}
+
+
+
+body {background-color: #222;}

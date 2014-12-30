@@ -1,0 +1,72 @@
+
+<include file="Public:head"/>
+<!-- top ↑ -->
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+
+    
+<div class="content">
+
+<div class="cLineB">
+  <h4>直达号对接配置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+         
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top">开启/关闭</th>
+				  <td>
+					<input type="radio" name="status" value="1" id="turnon" <if condition="$info['status'] eq 1">checked</if> /> <label for="turnon">开启</label>
+					<input type="radio" name="status" value="0" id="turnoff" <if condition="$info['status'] eq 0">checked</if> /> <label for="turnoff">关闭</label>
+				</td>
+				</tr>
+				<tr>
+					<th width="120">移动站点验证地址</th>
+
+					<td>{pigcms::C('site_url')}{pigcms::U('Wap/Index/index',array('token'=>$token))}</td>
+				</tr>
+				<tr>
+					<th width="120">验证代码</th>
+					<td><textarea style="width:560px;height:75px" name="code" id="code" class="px">{pigcms:$info.code}</textarea></td>
+				</tr>
+				<tr>
+					<th width="120">SiteMap建议更新周期</th>
+					<td>
+						<b style="font-szie:18px;margin-left:50px;">每天</b>
+					</td>
+				</tr>
+				<tr>
+					<th width="120">SiteMap地址</th>
+					<td><span id="sitemapurl">{pigcms::C('site_url')}{pigcms::U('Sitemap/index',array('token'=>$token,'c'=>'daily'))}</span></td>
+				</tr>
+
+
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+
+
+	<include file="Public:footer"/>
+	

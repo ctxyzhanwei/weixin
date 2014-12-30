@@ -1,0 +1,22 @@
+html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin:0; padding:0; }
+img { border:0; }
+ol, ul { list-style: none outside none; margin:0; padding: 0; }
+a { color:#000000; text-decoration: none; }
+.clr { display:block; clear:both; height:0; overflow:hidden; }
+.copyright { padding:8px; text-align:center; font-size:14px; color:#333; }
+.copyright a { color:#333; }
+h2 { font-size:16px; }
+
+body { background:url(../images/bg.jpg); font-size:14px; }
+body .mainmenu:after { clear: both; content: " "; display: block; }
+body .tt{  margin-top: -30px; left:0; z-index:1; width:100%; height:auto; position:relative}
+
+body .mainmenu { width:90%; margin:-20px auto 0px; padding-bottom:1%;overflow:hidden }
+body .mainmenu li {  margin-top:12px;}
+body .mainmenu li a { display:block;  color:#FFF;  height:40px; border-radius:40px; background-color:rgba(0,0,0,0.5); position:relative;box-shadow:0 1px 3px rgba(0, 0, 0, 0.5) inset,0 1px 1px rgba(255, 255, 255, 0.39);
+}
+
+body .mainmenu li a img { width:30px; height:30px; position:absolute; right:8px; top:5px; border-radius:30px;}
+body .mainmenu li a span { float:left; padding-left:15px;   line-height:40px; color:#fff}
+

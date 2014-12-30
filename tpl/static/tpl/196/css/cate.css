@@ -1,0 +1,60 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background-color:#38383a; font-size:14px; }
+
+body  .mainmenu {overflow:hidden;margin: 0px 0px 8px 8px; }
+body  .mainmenu li {  width:50%; float:left;      }
+body  .mainmenu li a { display:block; margin:8px 8px 0px 0px; position:relative; height:116px;overflow:hidden;}
+body  .mainmenu li a img{ width:25%; position:absolute; bottom:10px; right:10px; }
+
+body  .mainmenu li a p{   height:46px; color:#FFF;}
+body  .mainmenu li a p b{ display:block; padding:0px 10px; font-size:16px;  font-weight:normal; margin-top:10px; line-height:26px; text-align:left; text-overflow:ellipsis; white-space: nowrap; overflow:hidden}
+body  .mainmenu li a p span {display: block;
+padding: 0px 10px;
+text-align: left;
+line-height: 16px;
+font-size: 12px;
+overflow: hidden;
+height: 32px;}
+
+
+body  .mainmenu li:nth-child(5n+1) a{ background:#d47314}
+body  .mainmenu li:nth-child(5n+2) a{ background:#50ad38}
+body  .mainmenu li:nth-child(5n+4) a{ background:#1f75ae}
+body  .mainmenu li:nth-child(5n+5) a{ background:#543da5}
+body  .mainmenu li:nth-child(5n+3){ width:100%;}
+body  .mainmenu li:nth-child(5n+3)  a{ margin:8px 8px 0px 0px; height:auto;background-color:#dd399a;}
+body  .mainmenu li:nth-child(5n+3) a p{  height:100%; width:32%; padding-top:17px; float: right;}
+body  .mainmenu li:nth-child(5n+3) a img{  float:left; width:68%; position: static; }
+
+

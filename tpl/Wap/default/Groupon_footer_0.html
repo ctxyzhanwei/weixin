@@ -1,0 +1,26 @@
+<nav class="pageinator clearfix">
+    <div id="nav-page" class="pg-next">
+    </div>
+    <pigcmsif where="$hideTopButton neq 1">
+    <div id="nav-top" class="pg-top">
+        <span class="btn btn-top"><span class="icon icon-top"><a href="#top" style="color:#666">回到顶部</a></span></span>
+    </div>
+    </pigcmsif>
+</nav>
+<footer>
+<div class="ft-copyright"><span class="ft-copyright-text"> &copy;<?php echo date('Y',time());?> </span></div>
+</footer>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Groupon",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Groupon/grouponIndex',array('token'=>$token))}",
+            "tTitle": "团购",
+            "tContent": ""
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,120 @@
+ <include file="Public:head" /> 
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>商家设置 </h4> 
+    <a href="{pigcms::U('Diyform/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <input type="hidden" name="id" value="{pigcms:$set.id}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th width="120"><span class="red">*</span>关键词：</th> 
+        <td><input type="text" name="keyword" value="{pigcms:$set.keyword}" class="px" style="width:400px;" /> <span class="red">只能写一个关键词</span></td> 
+       </tr> 
+       <tr> 
+			<th><span class="red">*</span>表单名称：</th> 
+			<td><input type="text" name="formtitle" value="{pigcms:$set.formtitle}" class="px" style="width:400px;" /><span class="red"> 例：在线报名 ，在线预订等</span></td> 
+       </tr> 
+	   <tr> 
+			<th><span class="red">*</span>商家名称：</th> 
+			<td><input type="text" name="title" value="{pigcms:$set.title}" class="px" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>商家地址：</th> 
+        <td><input type="text" name="address" value="{pigcms:$set.address}" class="px" style="width:400px;" /></td> 
+       </tr> 
+        <th><span class="red">*</span>表单页头部图片：</th> 
+        <td><input type="text" name="picurl" value="<if condition="$set.headpic neq false">{pigcms:$set.picurl}<else/>{pigcms::RES}/images/cart_info/online.jpg</if>" class="px" style="width:400px;" /> 不会自定义请留空:填写图片外链地址，推荐大小为720x125，高度可根据自身需求调整。<br />不填默认本图片: <a target="ss" href="{pigcms:$f_siteUrl}/tpl/User/default/common/images/cart_info/online.jpg">点击查看</a> </td> 
+       </tr>    
+  <tr> 
+        <th valign="top"><span class="red">*</span>商家介绍：</th> 
+        <td valign="top"><textarea class="px" id="info" name="info" style="width: 410px; height: 180px;">{pigcms:$set.info}</textarea></td> 
+       </tr> 	   
+<div class="msgWrap form">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<tbody>
+              
+<tr>
+<td>单行文字：</td>
+<td><input name="" type="text" disabled="disabled" class="px" style="width:120px;" value="联系人" readonly="readonly"></td>
+<td><input name="" type="text" disabled="disabled" class="px" style="width:320px;" value="请输入您的名字" readonly="readonly"></td>
+  <td><input type="checkbox" value="name" checked="checked" name="check[]" disabled="disabled"></td>
+<td>默认项</td>
+                               
+</tr>
+<tr>
+<td>单行文字：</td>
+<td><input name="" type="text" disabled="disabled" class="px" style="width:120px;" value="联系电话" readonly="readonly"></td>
+<td><input type="text" disabled="disabled" class="px" style="width:320px;" value="请输入您的电话" readonly="readonly"></td>
+   <td><input type="checkbox" value="1" checked="checked" name="tel" disabled="disabled"></td>
+<td>默认项</td>
+</tr>
+<tr>
+<td>单行文字：</td>
+<td><input type="text" disabled="disabled" class="px" style="width:120px;" value="QQ号码"></td>
+<td><input  type="text" disabled="disabled" id="odid" class="px" style="width:320px;" value="请输入QQ号码"></td>
+   <td><input type="checkbox" value="1" name="qq"></td>
+<td>默认项</td>
+</tr>
+<tr>
+<td>选择框：</td>
+<td><input type="text" disabled="disabled" class="px" style="width:120px;" value="性别"></td>
+<td><select disabled="disabled"><option>请选择性别</option><option>男</option><option>女</option></select></td>
+   <td><input type="checkbox" value="1" name="sex"></td>
+<td>默认项</td>
+</tr>
+                            <tr>
+<td>单行文字：</td>
+<td><input type="text" class="px" style="width:120px;" value="年龄" disabled="disabled"></td>
+<td><input type="text" disabled="disabled" id="odid" class="px" style="width:320px;" value="请输入年龄"></td>
+   <td><input type="checkbox" value="1" name="age"></td>
+<td>默认项</td>
+</tr>
+<tr>
+	<td>单行文字：</td>
+	<td><input type="text" class="px" style="width:120px;" value="生日" disabled="disabled"></td>
+	<td><input  type="text" disabled="disabled" id="odid" class="px" style="width:320px;" value="请输入生日"></td>
+	   <td><input type="checkbox" value="1" name="birth"></td>
+	<td>默认项</td>
+</tr>
+<tr>
+	<td>单行文字：</td>
+	<td><input type="text" class="px" style="width:120px;" value="地址" disabled="disabled"></td>
+	<td><input type="text" disabled="disabled" id="odid" class="px" style="width:320px;" value="请输入地址"></td>
+	   <td><input type="checkbox" value="1" name="add"></td>
+	<td>默认项</td>
+</tr>
+<tr>
+	<td>多行文字：</td>
+	<td><input  type="text" disabled="disabled" class="px" style="width:120px;" value="备注" readonly="readonly"></td>
+	<td><input  type="text" class="px" disabled="disabled" style="width:320px;" value="请留言" readonly="readonly"></td>
+	   <td><input type="checkbox" value="1" name="info"></td>
+	<td>默认项</td>
+</tr>
+
+</tbody>
+</table>
+   <div class="msgWrap"> 
+       <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+       <tbody>
+       <tr>         
+        <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td>  <td><button type="submit" name="button" class="btnGreen">保存</button> <a href="{pigcms::U('Diyform/index',array('token'=>$token))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+  </div>	   
+
+     
+      </tbody> 
+     </table> 
+    </div>
+     
+    
+   </form> 
+  </div> 
+  <include file="Public:footer" />

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/public-them/generated/jquery.mobile.flatui.css" />
+  <script src="{pigcms::STATICS}/public-them/generated/js/jquery.js"></script>
+  <script src="{pigcms::STATICS}/public-them/generated/js/jquery.mobile-1.4.0-rc.1.js"></script>
+  <!-- bxSlider Javascript file -->
+<script src="{pigcms::STATICS}/bxslider-4/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="{pigcms::STATICS}/bxslider-4/jquery.bxslider.css" rel="stylesheet" />
+<style>
+.ui-mobile [data-role=page],
+.ui-mobile [data-role=dialog],
+.ui-page {
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 0;
+}
+</style>
+</head>
+<body>
+  <div data-role="page">
+
+    <!-- <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div> -->
+      <include file="Medical:menu"/>
+    <div data-role="content" role="main">
+<!--      <div class="banner" > -->
+  <ul class="bxslider" style="padding-left: 0px;">
+    <volist name="bxslider" id="vo">
+      <li><img src="{pigcms:$vo['picurl']}" style="height: 250px;border: 0px;padding: 0px;margin: 0px;" title="{pigcms:$vo['title']} {pigcms:$vo['info']}" /></li>
+    </volist>
+</ul>
+<!-- </div> -->
+
+<script>
+  $(document).ready(function(){
+  var slider_banner = $('.bxslider').bxSlider({
+      mode: 'fade',
+      captions: true,
+      pause: 2000,
+      pager:false,
+
+  });
+  slider_banner.startAuto();
+});
+</script>
+
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a"><a href="{pigcms::U('Medical/Introduction',array('token'=>$token,'wecha_id'=>$wecha_id))}"><button data-icon="home" data-theme="b">{pigcms:$setIndex['menu1']}</button></a></div>
+        <div class="ui-block-b"><a href="{pigcms::U('Medical/publicListTmp',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'hotfocus'))}"><button data-icon="flat-video" data-theme="b">{pigcms:$setIndex['menu2']}</button></a></div>
+      </fieldset>
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a"><a href="{pigcms::U('Medical/publicListTmp',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'experts'))}"><button data-icon="flat-man" data-theme="b">{pigcms:$setIndex['menu3']}</button></a></div>
+        <div class="ui-block-b"><a href="{pigcms::U('Medical/publicListTmp',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'equipment'))}"><button data-icon="flat-mail" data-theme="b">{pigcms:$setIndex['menu4']}</button></a></div>
+      </fieldset>
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a"><a href="{pigcms::U('Medical/publicListTmp',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'rcase'))}"><button data-icon="flat-heart" data-theme="b">{pigcms:$setIndex['menu5']}</button></a></div>
+        <div class="ui-block-b"><a href="{pigcms::U('Medical/publicListTmp',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'technology'))}"><button data-icon="flat-menu" data-theme="b">{pigcms:$setIndex['menu6']}</button></a></div>
+      </fieldset>
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a"><a href="{pigcms::U('Medical/publicListTmp',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'drug'))}"><button data-icon="flat-lock" data-theme="b">{pigcms:$setIndex['menu7']}</button></a></div>
+
+        <div class="ui-block-b"><a href="{pigcms::U('Medical/registered',array('token'=>$token,'wecha_id'=>$wecha_id))}"><button data-icon="flat-new" data-theme="b" data-ajax="false">{pigcms:$setIndex['menu8']}</button></a></div>
+      </fieldset>
+      <fieldset class="ui-grid">
+        <div class="ui-block"><a href="tel:{pigcms:$tel}"><button data-icon="flat-volume" data-theme="d">{pigcms:$tel}</button></a></div>
+      </fieldset>
+
+      <ul data-role="listview" data-inset="true"<if condition="$setIndex['video'] eq ''"> style="display: none;"</if>>
+        <li data-role="list-divider" data-theme="a"></li>
+        <li>
+<div class="video-box tpl-video"   id="content" style="display:block;">{pigcms:$setIndex['video']}</div>
+<script src="tpl/Wap/default/common/wedding/js/play.js" type="text/javascript"></script>
+                    </li>
+      </ul>
+
+
+      <div data-role="collapsible-set" data-theme="b" data-content-theme="b">
+        <div data-role="collapsible" data-collapsed-icon="flat-time" data-expanded-icon="flat-cross" data-collapsed="false">
+          <h3>{pigcms:$setIndex['menu9']}</h3>
+          <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider" data-theme="a">{pigcms:$classify2['name']}</li>
+            <li>{pigcms:$classify2['info']}</li>
+
+             <volist name="imgtxt2" id="vo">
+                <li><a style="text" href="{pigcms::U('Medical/newread',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id']))}">
+                <span color="#2c2c2c">{pigcms:$vo['title']} </span>
+                </a></li>
+           </volist>
+
+          </ul>
+        </div>
+        <div data-role="collapsible" data-collapsed-icon="flat-calendar" data-expanded-icon="flat-cross">
+          <h3>{pigcms:$setIndex['menu10']}</h3>
+           <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider" data-theme="a">{pigcms:$classify['name']}</li>
+            <li>{pigcms:$classify['info']}</li>
+
+             <volist name="imgtxt" id="vo">
+                <li><a style="text" href="{pigcms::U('Medical/newread',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id']))}">
+                <span color="#2c2c2c">{pigcms:$vo['title']} </span>
+                </a></li>
+           </volist>
+
+          </ul>
+        </div>
+      </div>
+
+   <include file="Medical:footer"/>
+
+    </div>
+  </div>
+
+  <div id="highlight"> </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+</script>
+
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加户型 </h4>
+    <a href="{pigcms::U('Estate/housetype',array('token'=>$token,'pid'=>$pid))}"  class="right  btnGreen" style="margin-top:-30px;">
+        返回
+    </a>
+ </div>
+ <!--tab start-->
+
+<!--tab end-->
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" id="formID" target="_top" enctype="multipart/form-data">
+
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th width="120">户型名称：</th>
+					<td> <input type="text" id="name" name="name" value="{pigcms:$housetype['name']}" class="input-large px" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项目!">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">尽量简单，不要超过20字</span></td>
+				</tr>
+			   <tr>
+					<th>请选择子楼盘：</th>
+					<td><select id="son_id" name="son_id" class="input-medium" schoolSet>
+
+                                            <option value="0">请选择子楼盘</option>
+
+                                            <volist name="son_data" id="vo">
+                                            <option value="{pigcms:$vo['sid']}" <if condition="$vo['sid'] eq $housetype['son_id']">selected="selected"</if>>{pigcms:$vo['title']}</option>
+                                            </volist>
+                                        </select></td>
+				</tr>
+
+                  <tr>
+                    <th>选择全景相册：</th>
+                    <td>
+                        <select id="panorama_id" name="panorama_id" class="input-medium" schoolSet>
+                                          <option value="0">请选择360全景相册</option>
+                                            <volist name="panorama" id="vo">
+                                               <option value="{pigcms:$vo['pid']}" <if condition="$vo['pid'] eq $housetype['panorama_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有请留空，或者到 <a href="{pigcms::U('Panorama/add',array('token'=>$token))}" class="btn"><strong><font color='red'>360°全景</strong></font></a>添加</span>
+                    </td>
+                </tr>
+
+				<tr>
+					<th width="120">楼层：</th>
+					<td> <input type="text" id="floor_num" name="floor_num" value="{pigcms:$housetype['floor_num']}" class="input-large px" data-validation-engine="validate[required]"
+                    data-errormessage-value-missing="必填项!">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如：1-10</span></td>
+				</tr>
+				<tr>
+					<th width="120">建筑面积：</th>
+					<td> <input type="text" id="area" name="area" value="{pigcms:$housetype['area']}" class="input-large px" data-validation-engine="validate[required]"
+                    data-errormessage-value-missing="必填项!">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如：约120平方米</span></td>
+				</tr>
+				<tr>
+					<th>房屋户型：</th>
+					<td>
+							 <select id="fang" name="fang" class="input-mini" schoolSet>
+                                            <option value="1" <if condition="$housetype['fang'] eq 1">selected="selected"</if>>1</option>
+                                            <option value="2" <if condition="$housetype['fang'] eq 2">selected="selected"</if>>2</option>
+                                            <option value="3" <if condition="$housetype['fang'] eq 3">selected="selected"</if>>3</option>
+                                            <option value="4" <if condition="$housetype['fang'] eq 4">selected="selected"</if>>4</option>
+                                            <option value="5" <if condition="$housetype['fang'] eq 5">selected="selected"</if>>5</option>
+                                            <option value="6" <if condition="$housetype['fang'] eq 6">selected="selected"</if>>6</option>
+                                            <option value="7" <if condition="$housetype['fang'] eq 7">selected="selected"</if>>7</option>
+                                        </select>
+                                        房
+                                        <select id="ting" name="ting" class="input-mini" schoolSet>
+                                            <option value="1" <if condition="$housetype['ting'] eq 1">selected="selected"</if>>1</option>
+                                            <option value="2" <if condition="$housetype['ting'] eq 2">selected="selected"</if>>2</option>
+                                            <option value="3" <if condition="$housetype['ting'] eq 3">selected="selected"</if>>3</option>
+                                            <option value="4" <if condition="$housetype['ting'] eq 4">selected="selected"</if>>4</option>
+                                            <option value="5" <if condition="$housetype['ting'] eq 5">selected="selected"</if>>5</option>
+                                            <option value="6" <if condition="$housetype['ting'] eq 6">selected="selected"</if>>6</option>
+                                        </select>
+                                        厅
+					</td>
+				</tr>
+				<tr>
+					<th width="120">显示顺序：</th>
+					<td>  <input type="text" id="sort" name="sort" value="{pigcms:$housetype['sort']|default=1}" class="input-mini px" schoolSet data-rule-number="true">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">数值越大越靠前</span></td>
+				</tr>
+				<tr>
+					<th width="120">户型介绍：</th>
+					<td>  <textarea id="description" name="description" class='input-xxlarge'  placeholder="户型介绍简单明了就好" style="width:400px;;height:125px;border: 1px solid #9B9A9A;" >{pigcms:$housetype['description']}</textarea>[可以留空]</td>
+				</tr>
+				<tr>
+					<th width="120">户型图片:</th>
+					<td> <div id="upimg_main">
+                                        <p>
+   <if condition="$housetype['type1'] neq ''">
+     <img class="thumb_img" id="type1_src" src="{pigcms:$housetype['type1']}" style="max-height:100px;">
+     </if>
+                                            <input type="input" class="px" id="type1" value="{pigcms:$housetype['type1']}" name="type1" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+
+                                            <span class="help-inline">
+                                                 <script src="{pigcms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('type1',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('type1')">预览</a>
+                                                <span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+                                            </span>
+                                        </p>
+                                            <br />
+                                        <p>
+                                           <if condition="$housetype['type2'] neq ''">
+<img class="thumb_img" id="type2_src" src="{pigcms:$housetype['type2']}" style="max-height:100px;">
+</if>
+                                            <input type="input" class="px" id="type2" value="{pigcms:$housetype['type2']}" name="type2" data-validation-engine="validate[custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+
+                                            <span class="help-inline">
+                                                 <a href="###" onclick="upyunPicUpload('type2',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('type2')">预览</a>
+                                                <span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+                                            </span>
+                                        </p>
+                                            <br />
+                                        <p>
+                                        <if condition="$housetype['type3'] neq ''">
+                                            <img class="thumb_img" id="type3_src" src="{pigcms:$housetype['type3']}" style="max-height:100px;">
+                                            </if>
+                                            <input type="input" class="px" id="type3" value="{pigcms:$housetype['type3']}" name="type3" data-validation-engine="validate[custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+
+                                            <span class="help-inline">
+                                                 <a href="###" onclick="upyunPicUpload('type3',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('type3')">预览</a>
+                                                <span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+                                            </span>
+                                        </p>
+                                                <br />
+                                        <p>
+                                         <if condition="$housetype['type4'] neq ''">
+                                            <img class="thumb_img" id="type4_src" src="{pigcms:$housetype['type4']}" style="max-height:100px;">
+                                            </if>
+                                            <input type="input" class="px"  id="type4" value="{pigcms:$housetype['type4']}" name="type4" data-validation-engine="validate[custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+
+                                            <span class="help-inline">
+                                                 <a href="###" onclick="upyunPicUpload('type4',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('type4')">预览</a>
+                                                <span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+                                            </span>
+                                        </p>
+
+                                        </div></td>
+				</tr>
+			                                <if condition="$housetype['id'] neq ''">
+                                    <input type="hidden" name="id" value="{pigcms:$housetype['id']}" />
+                                    </if>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+
+
+        </div>
+<include file="Public:footer"/>

@@ -1,0 +1,76 @@
+<include file="Public:head"/>
+
+    <script>
+        $(function(){
+            $('.ckit > li').first().removeClass();
+        });
+    </script>
+
+<div class="content">
+    <ul>
+        <li class="guanzhu">
+            <a title="公众号">
+                {pigcms:$data.mp}
+                <p>公众号</p>
+            </a>
+        </li>
+        <li class="huiyuanka">
+            <a title="会员卡">
+                {pigcms:$data.card}
+                <p>会员卡</p>
+            </a>
+        </li>
+        <li class="liulan">
+            <a title="图文消息">
+                {pigcms:$data.img}
+                <p>图文消息</p>
+            </a>
+        </li>
+        <li class="fangke">
+            <a title="微活动">
+                {pigcms:$data.active}
+                <p>微活动</p>
+            </a>
+        </li>
+        <div class="clr"></div>
+    </ul>
+    <div class="clr" style="height:30px;"></div>
+    <div class="changyong">
+        <h2 style="font-size:20px;margin-bottom:10px;">常用功能</h2>
+        <ol>
+            <li><a href="{pigcms::U('Img/index')}" title="图文回复"><img src="{pigcms:$staticPath}/tpl/static/newskin/images/pic_03.gif" /></a></li>
+            <li><a href="{pigcms::U('Tmpls/index')}" title="微网站"><img src="{pigcms:$staticPath}/tpl/static/newskin/images/pic_05.gif" /></a></li>
+            <li><a href="{pigcms::U('Member_card/index')}" title="会员卡"><img src="{pigcms:$staticPath}/tpl/static/newskin/images/pic_07.gif" /></a></li>
+            <li><a href="{pigcms::U('Groupon/index')}" title="团购"><img src="{pigcms:$staticPath}/tpl/static/newskin/images/pic_09.gif" /></a></li>
+            <li><a href="{pigcms::U('Store/index')}" title="商城"><img src="{pigcms:$staticPath}/tpl/static/newskin/images/pic_11.gif" /></a></li>
+            <li><a href="{pigcms::U('Wechat_behavior/statistics')}" title="数据分析"><img src="{pigcms:$staticPath}/tpl/static/newskin/images/pic_13.gif" /></a></li>
+            <div class="clr"></div>
+        </ol>
+    </div>
+    <div class="clr" style="height:30px;"></div>
+    <div class="shuju">
+        <h2 style="font-size:20px;margin-bottom:10px;">数据统计</h2>
+
+
+
+ <div class="clr"></div>
+
+<div id="main" style="height:400px;width:960px;"></div>
+
+<div class="clr" style="height:100px"></div>
+
+<div id="pieMain" style="height:400px;width:480px;float:left;"></div> 
+<div id="pieMain2" style="height:400px;width:470px;float:right;"></div>
+
+
+
+
+    </div>
+</div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+    </div>
+<include file="Public:footer"/> 

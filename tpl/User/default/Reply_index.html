@@ -1,0 +1,200 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<!--弹出层样式-->
+<style type="text/css">
+body,h2{margin:0;padding:0;}
+#faqbg{background-color:#666666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:1000px;opacity:0.5;filter:alpha(opacity=50);-moz-opacity:0.5;}
+#faqdiv{position:absolute;width:600px;left:50%;top:50%;margin-left:-300px;height:auto;z-index:100;background-color:#fff;border:1px #8FA4F5 solid;padding:1px;}
+#faqdiv h2{height:25px;font-size:14px;background-color:#BABABA;position:relative;padding-left:10px;line-height:25px;}
+#faqdiv h2 a{position:absolute;right:5px;font-size:12px;color:#FF0000;}
+#faqdiv .form{padding:10px;}
+</style>
+<script src="{pigcms::RES}/js/jquery.min.js"></script>
+<script>
+//弹出层js start
+$(function(){
+	$(".but").click(function(){
+            var messageid = $(this).attr("messageid");
+		//var str = "这里是信息内容，这里是信息内容！";
+		$(".form").html(messageid);
+		$("#faqbg").css({display:"block",height:$(document).height()});
+		var yscroll =document.documentElement.scrollTop;
+		$("#faqdiv").css("top","100px");
+		$("#faqdiv").css("display","block");
+		document.documentElement.scrollTop=0;
+	});
+	$(".close").click(function(){
+		$("#faqbg").css("display","none");
+		$("#faqdiv").css("display","none");
+	});
+})
+//弹出层end
+$(document).ready(function(){
+    $("#selected").click(function () {//反选  
+        $("input[name='items']").each(function(){
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    }); 
+    
+    $("#checked").click(function(){
+        var chk_value =[]; 
+        var token = $("#tokened").val();
+        $('input[name="items"]:checked').each(function(){    
+            chk_value.push($(this).val());    
+        }); 
+        if(chk_value.length==0){
+            alert("你还未选择要操作的项！");
+            return;
+        } 
+        $.ajax({
+            type:"get",
+            url:"index.php?g=User&m=Reply&a=checkMany&token="+token+"&chk_value="+chk_value,
+            success:function(result){
+                $("input[name='items']").each(function(){
+	            if (this.checked) {
+	                this.checked = false;
+	            }
+	        });
+                alert(result);
+                window.location.reload();
+            }
+        });
+    });
+     $("#replyed").click(function(){
+     
+        var chk_value =[]; 
+        var wecha_id =$("#wecha_id").val();
+        //alert(wecha_id);exit;
+        var checked =$("#needCheck").val();
+        var token = $("#tokened").val();
+        $('input[name="items"]:checked').each(function(){    
+            chk_value.push($(this).val());    
+        }); 
+        if(chk_value.length==0){
+            alert("你还未选择要操作的项！");
+            return;
+        }else{
+            //location.href="{pigcms::U('User/Reply/add',array('wecha_id'=>wecha_id,'checked'=>checked,'chk_value'=>chk_value))}";
+            location.href="index.php?g=User&m=Reply&a=add&chk_value="+chk_value+"&token="+token+"&wecha_id="+wecha_id+"&checked="+checked;
+            return;
+        } 
+       
+    });
+//    $(".replyeded").click(function(){
+//        var chk_value = $(this).attr("messageid");
+//        var wecha_id =$("#wecha_id").val();
+//        //alert(wecha_id);exit;
+//        var checked =$("#needCheck").val();
+//        var token = $("#tokened").val();
+//        location.href="index.php?g=User&m=Reply&a=add&chk_value="+chk_value+"&wecha_id="+wecha_id+"&checked="+checked+"&token="+token; 
+//    });
+    
+
+})
+$(document).on("click","#del",function(){  
+    var chk_value =[]; 
+    var token = $("#tokened").val();
+    $('input[name="items"]:checked').each(function(){    
+        chk_value.push($(this).val());    
+    }); 
+    if(chk_value.length==0){
+        alert("你还未选择要操作的项！");
+        return;
+    } 
+    $.ajax({
+        type:"get",
+        url:"index.php?g=User&m=Reply&a=del&token="+token+"&chk_value="+chk_value,
+        success:function(result){
+             $("input[name='items']").each(function(){
+	            if (this.checked) {
+	                this.checked = false;
+	            }
+	        });
+            alert(result);
+            window.location.reload(); 
+        }
+    });
+});
+
+</script>
+
+        <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB">   
+<h4 class="left">留言表单  <input type="text" name="tokened" id="tokened" value="{pigcms:$token}" style="display:none;"></h4>
+<div class="searchbar right">
+</div>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left">
+    <div class="pageNavigator left">  
+    <span> <a href="#" title="选中审核" class="btnGrayS vm smallbtn" id="checked">选中审核</a></span>
+    <span> <a href="#" title="选中回复" class="btnGrayS vm smallbtn" id="replyed">选中回复</a></span>
+    <span> <a href="#" title="选中删除" class="btnGrayS vm smallbtn" id="del">选中删除</a></span>
+    <span> <a href="?g=User&m=Reply&a=config" title="留言板配置" class="btnGrayS vm smallbtn">留言板配置</a></span>    
+    
+</div>
+
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="wecha_id" type="hidden" id="wecha_id" value="{pigcms:$wecha_id}">
+<input name="checked" type="hidden" id="needCheck" value="{pigcms:$needCheck}">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select"><input type="button" value="反选" name="button" id="selected"  style="color:#94D38A;"></th>
+<th width="130">昵称</th>
+<th width="130">留言内容</th>
+<th width="170">查看回复</th>
+<th width="130">留言时间</th>
+ 
+<th width="130" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="res" id="item"> 
+    
+    <tr >
+<td id="playlist"><input type="checkbox" name="items" value="{pigcms:$item.id}"  class="checkitem"></td>
+<td>{pigcms:$item.name}</td>
+<td><a href="###" onclick="art.dialog({content: '{pigcms:$item.message}',width:300,height:200,yesText:'关闭',background: '#000',opacity: 0.45});">查看留言 <if condition="$item['checked'] neq 1"> <font style="color:red;font-size:12px;">(未审核)</font><else/>
+            <font ></font>  </if>
+        </a></td>
+<td><a href="{pigcms::U('User/Reply/reply',array('msgid'=>$item['id'],'token'=>$token,'wecha_id'=>$wecha_id))}">查看回复<font color="#04AA00">(共<font color="red">{pigcms:$item.count}</font>条回复/<font style="color:red">{pigcms:$item.chkcount}</font>条新回复)</font></a></td>
+<td>{pigcms:$item.time|date="Y-m-d H:i:s",###}</td> 
+
+<td class="norightborder">
+    <if condition="$item['checked'] neq '1'"><a href="{pigcms::U('User/Reply/checkOne',array('chk_value'=>$item['id'],'token'=>$token))}">审核</a></if>
+<!--    &nbsp;&nbsp;<a href="#" messageid="{pigcms:$item.id}" class="replyeded">回复</a>-->
+    &nbsp;&nbsp;<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('User/Reply/deled',array('chk_value'=>$item['id'],'token'=>$token))}');">删除</a></td>
+</tr>
+
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

@@ -1,0 +1,59 @@
+<include file="Scene:header"/>
+<link rel="stylesheet" href="/tpl/static/wall/css/screen_vote_free.css">
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<body class="sameRound" rotate_id="58">
+<div class="Panel Top" style="top: 0px;">
+    <img class="activity_logo" src="<if condition="$info.logo eq ''">tpl/static/wall/images/activity_default_logo.png<else />{pigcms:$info.logo}</if>">
+    <div class="top_title" style="font-size: 30px">
+        <div>欢迎您参加-{pigcms:$info.title}</div>    </div>
+    <if condition="$info.qrcode neq ''">
+        <img class="mp_account_codeimage" src="{pigcms:$info.qrcode}">
+    </if>
+</div>
+
+<div class="Panel VoteList" style="display: block; opacity: 1;">
+    <div class="listTit">
+        <span>项目列表</span>
+        <span class="restart" onclick="javascript:window.location.reload();">刷新列表</span>
+    </div>
+    <ul>
+        <volist id="vote_list" name="vote_list">
+            <li class="vl" lid="{pigcms:$vote_list.id}">
+                <p>{pigcms:$vote_list.title}</p>
+                <span class="record" onclick="showIntroDetail({pigcms:$vote_list.id})">投票结果</span>
+                <span class="begin <if condition="$vote_list['is_end'] eq 1">disable</if>">进入投票</span>
+            </li>
+        </volist>
+    </ul>
+</div>
+
+<div class="Panel Vote" style="opacity: 1; display: none;">
+    <div class="title">
+        <h2>{pigcms:$vote_info.title}</h2> 
+        <div class="inf">
+            <span class="numbers"><em class="fz">0</em>/<em class="fm">0</em></span>
+            <span class="inf-btn">开始投票</span>
+        </div>  
+    </div>
+    <div class="panelBox more">
+        <ul class="clearfix"></ul>
+    </div>
+</div>
+
+<script>
+ var vote_id    = '';
+ var scene_id   = {pigcms:$info.id};
+ var vcount     = '';
+</script>
+<script src="/tpl/static/wall/js/scene_vote.js"></script>
+<script>
+function showIntroDetail(id){
+    art.dialog.open('{pigcms::U('Scene/show_vote',array('token'=>$token))}&id='+id,{lock:false,title:'信息详情',width:1200,height:600,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+    <div class="lottery-right"></div>
+</div>
+
+<include file="Scene:footer"/>

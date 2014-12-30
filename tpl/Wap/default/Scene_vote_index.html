@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>现场投票</title>
+        <base href="." />
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no" />
+        <script src="./tpl/static/wall/js/iscroll.js" type="text/javascript"></script>
+        <script src="./tpl/static/jquery.min.js" type="text/javascript"></script>
+        <link href="./tpl/static/wall/css/cate4_0.css" rel="stylesheet" type="text/css" />
+        <link href="./tpl/static/wall/css/iscroll.css" rel="stylesheet" type="text/css" />
+        
+        <script type="text/javascript">
+            var myScroll;
+            function loaded() {
+                myScroll = new iScroll('wrapper', {
+                    snap: true,
+                    momentum: false,
+                    hScrollbar: false,
+                    onScrollEnd: function () {
+                        document.querySelector('#indicator > li.active').className = '';
+                        document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+                    }
+                });
+ 
+            }
+            document.addEventListener('DOMContentLoaded', loaded, false);
+        </script>
+<style>
+    .deploy_ctype_tip{z-index:1001;width:100%;text-align:center;position:fixed;top:50%;margin-top:-23px;left:0;}.deploy_ctype_tip p{display:inline-block;padding:13px 24px;border:solid #d6d482 1px;background:#f5f4c5;font-size:16px;color:#8f772f;line-height:18px;border-radius:3px;}
+</style>
+    </head>
+    <body id="cate4">
+    <!--背景音乐-->
+    <if condition="$homeInfo['musicurl'] neq false">
+<include file="Index:music"/>
+</if>
+
+<div class="banner">
+    <div id="wrapper">
+      <div id="scroller">
+        <ul id="thelist"> 
+        <volist name="flash" id="so">
+            <li><p>{pigcms:$so.info}</p><a href="{pigcms:$so.url}"><img src="{pigcms:$so.img}" /></a></li>
+          </volist>
+        </ul>
+      </div>
+    </div>
+    <div id="nav">
+      <div id="prev" onclick="myScroll.scrollToPage('prev', 0,400,3);return false">&larr; prev</div>
+      <ul id="indicator">
+      <volist name="flash" id="so">
+      <li   <if condition="$i eq 1">class="active"</if>  >{pigcms:$i}</li>
+      </volist>
+       
+      </ul>
+      <div id="next" onclick="myScroll.scrollToPage('next', 0);return false">next &rarr;</div>
+    </div>
+    <div class="clr"></div>
+    </div>
+        <div id="insert1"></div>
+        <div id="todayList">
+            <ul class="todayList">
+                <volist name="info" id="vo">
+                    <li class="only4" id="vt{pigcms:$vo.id}">
+                        <a href="<if condition="$vo['status'] eq 0">javascript:showTip('投票还没开启');<else/>{pigcms:$f_siteUrl}{pigcms::U('Vote/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id']))}</if>">
+                            <div class="img"><img src="{pigcms:$vo.img}"></div>
+                            <h2>{pigcms:$vo.name}</h2>
+                            <p class="onlyheight">{pigcms:$vo.info}</p>
+                            <span class="icon">&nbsp;</span>
+                            <span class="status <if condition="$vo['status'] eq 0">is_close<else/>is_open</if>">&nbsp;</span>
+                            <div class="clr"></div>
+                        </a>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+        <script>
+        $(function(){
+            showTip('关注现场，开启的投票才能加入');
+            setInterval('loadStatus()',1000);
+        });
+        function loadStatus(){
+            $.getJSON("{pigcms:$f_siteUrl}{pigcms::U('Scene_vote/loadStatus',array('token'=>$token))}",{wecha_id:'{pigcms:$wecha_id}',vote_id:'{pigcms:$vid}'},function(res){
+                for (var i = res.length - 1; i >= 0; i--) {
+                    
+                    if(res[i].status == 1){
+                        $('#vt'+res[i].id).find('.status').removeClass('is_close').addClass("is_open");
+                        $('#vt'+res[i].id).find('a').attr('href',"{pigcms:$f_siteUrl}{pigcms::U('Vote/index',array('token'=>$token,'wecha_id'=>$wecha_id))}&id="+res[i].id);
+                    } else{
+                        $('#vt'+res[i].id).find('.status').removeClass('is_open').addClass("is_close");
+                        $('#vt'+res[i].id).find('a').attr('href',"javascript:showTip('投票还没开启');");
+                    }
+                };
+            });
+        }
+        function showTip(tipTxt) {
+                var div = document.createElement('div');
+                div.innerHTML = '<div class="deploy_ctype_tip"><p>' + tipTxt + '</p></div>';
+                var tipNode = div.firstChild;
+                $("#cate4").after(tipNode);
+                setTimeout(function () {
+                   $(tipNode).remove();
+                }, 3000);
+        }
+
+        /*
+            var count = document.getElementById("thelist").getElementsByTagName("img").length;  
+            for(i=0;i<count;i++){
+                document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+
+            }
+
+            document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+
+
+            window.onresize = function(){ 
+                for(i=0;i<count;i++){
+                    document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+
+                }
+                document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+            } 
+*/
+        </script>
+        <div id="insert2"></div>
+        <div style="display:none"> </div>
+        <div style="display:none"></div>
+
+<div class="copyright">
+<if condition="$iscopyright eq 1">
+{pigcms:$homeInfo.copyright}
+<else/>
+{pigcms:$siteCopyright}
+</if>
+</div> 
+
+    </body>
+</html>

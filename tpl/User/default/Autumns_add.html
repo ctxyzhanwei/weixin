@@ -1,0 +1,277 @@
+<include file="Public:head"/>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>编辑{pigcms:$activityTypeName}活动开始内容</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%"><TBODY>
+<TR>
+  <th valign="top"><span class="red">*</span>关键词：</th>
+  <TD>
+	<input type="hidden" class="px" value="1" name="type" style="width:400px" >
+	<input type="input" class="px" id="keyword" value="<if condition="$vo['keyword'] eq ''">{pigcms:$activityTypeName}<else/>{pigcms:$vo.keyword}</if>" name="keyword" style="width:400px" ><br />
+  	<span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。
+  </TD>
+  <TD rowspan="4" valign="top">
+	  <div style="margin-left:20px">
+		<img id="pic1_src" src="<if condition="$vo['starpicurl'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/ads.jpg<else/>{pigcms:$vo.starpicurl}</if>" width="373px" height="220" >
+		<br />
+		<input class="px"  name="starpicurl" value="<if condition="$vo['starpicurl'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/ads.jpg<else/>{pigcms:$vo.starpicurl}</if>" id="pic1" style="width:363px;"  />
+		<br />
+		  <script src="{pigcms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic1',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a>&nbsp;活动开始图片
+	  </div>
+  </TD>
+</TR>
+<TR>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <TD>
+	<input type="input" class="px" id="title" value="<if condition="$vo['title'] eq ''">{pigcms:$activityTypeName}活动开始了<else/>{pigcms:$vo.title}</if>" name="title" style="width:400px" />
+  	<br />
+  	请不要多于50字!
+  </TD>
+</TR>
+    <TR>
+    <th valign="top"><span class="red">*</span>兑奖信息：</th>
+    <td>
+    <textarea  class="px" id="txt" name="txt"  style="width:400px; height:50px" ><if condition="$vo['txt'] eq ''">兑奖请联系我们，电话138********<else/>{pigcms:$vo.txt}</if></textarea>
+      <br />请不要多于100字! 这个设定但用户输入兑奖时候的显示信息!换行请输入&lt;br&gt;
+  </td>
+</TR>
+
+<TR>
+	<th><span class="red">*</span>活动时间：</th>
+	<td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''">{pigcms:$vo.statdate|date="Y-m-d",###}</if>" onClick="WdatePicker()" name="statdate" />
+		到
+		<input type="input" class="px" id="enddate" value="<if condition="$vo['enddate'] neq ''">{pigcms:$vo.enddate|date="Y-m-d",###}</if>" name="enddate"  onClick="WdatePicker()"  />
+	</td>
+
+</TR>
+
+<TR>
+<th valign="top"><span class="red">*</span>活动规则：</th>
+<td><textarea  class="px" id="aginfo" name="aginfo"  style="width:400px; height:125px" ><if condition="$vo['aginfo'] eq ''">此活动杜绝恶意刷礼盒，每个手机只能有一个微信号帮忙。<else/>{pigcms:$vo.aginfo}</if></textarea><br />换行请输入
+ &lt;br&gt;
+ </td>
+</TR>
+
+<TR>
+<th valign="top">活动说明：</th>
+<td><textarea  class="px" id="info" name="info"  style="width:400px; height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入{pigcms:$activityTypeName}活动页面，祝您好运哦！<else/>{pigcms:$vo.info}</if></textarea><br />换行请输入
+ &lt;br&gt;
+
+</TR>
+	
+ <TR>
+    <th valign="top">主题文字：</th>
+    <td><textarea class="px" id="sttxt"  name="sttxt" style="width:400px"  ><if condition="$vo['sttxt'] eq ''">欢迎参加{pigcms:$activityTypeName}活动，祝您好运哦！<else/>{pigcms:$vo.sttxt}</if></textarea> 活动首页显示文字</td>
+</TR>
+<TR>
+	<th>背景音乐：</th>
+    <td>	 
+	<input class="px" name="backmp3" value="<if condition="$vo['backmp3'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/mp3/bg.mp3<else/>{pigcms:$vo.backmp3}</if>" id="backp3" style="width:300px" onchange="document.getElementById('plmp3').src=this.value"> 
+	<a href="###" onclick="upyunPicUpload('backp3',0,0,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;<a href="###" onclick="chooseFile('backp3','music')" class="a_upload">选择</a>
+	<audio id="plmp3" src="" preload="none"></audio><font color="#FF0000"></font>
+	<br>活动首页的背景音乐 </td>
+	
+</TR>
+<TR>
+	<th valign="top">首页背景图片：</th>
+	<td>
+		<input class="px"  name="hpic" value="<if condition="$vo['hpic'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/backimg.jpg<else/>{pigcms:$vo.hpic}</if>" id="pic3" style="width:300px;"  />
+		<script src="{pigcms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic3',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic3')">预览</a>
+	</td>
+</TR>
+<TR>
+  <th valign="top">我的盒子背景图片：</th>
+  <td>
+    <input class="px"  name="mpic" value="<if condition="$vo['mpic'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/myboximg.jpg<else/>{pigcms:$vo.mpic}</if>" id="pic5" style="width:300px;"  />
+    <script src="{pigcms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic5',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic5')">预览</a>
+  </td>
+</TR>
+<TR>
+  <th valign="top">兑奖页面宣传图片：</th>
+  <td>
+    <input class="px"  name="xpic" value="<if condition="$vo['xpic'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/openimg.jpg<else/>{pigcms:$vo.xpic}</if>" id="pic4" style="width:300px;"  />
+    <script src="{pigcms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic4',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic4')">预览</a>
+    <br>注意图片尺寸，以宽度为标准等比例缩放
+  </td>
+</TR>
+</TBODY>
+</TABLE>
+  </div>
+
+<!--活动结束-->
+<div class="cLineB">
+          	<h4>活动结束内容</h4></div>
+<div class="msgWrap bgfc">
+
+  	<table class="userinfoArea" style=" margin: 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  		<tbody>
+  			<tr>
+  				<th valign="top"><span class="red">*</span>活动结束公告主题：</th>
+  				<td><input type="input" class="px" id="endtite" value="<if condition="$vo['endtite'] eq ''">{pigcms:$activityTypeName}活动已经结束了<else/>{pigcms:$vo.endtite}</if>" name="endtite" style="width:363px" />
+  					<br />
+  					请不要多于50字! </td>
+  				<td rowspan="4" valign="top"><div style="margin-left:20px"><img  id="pic2_src" src="<if condition="$vo['endpicurl'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/ads.jpg<else/>{pigcms:$vo.endpicurl}</if>"  width="373px" height="200px"/> <br />
+  					<input class="px" id="pic2"  name="endpicurl" value="<if condition="$vo['endpicurl'] eq ''">{pigcms:$staticPath}/tpl/static/autumns/img/ads.jpg<else/>{pigcms:$vo.endpicurl}</if>"  style="width:363px;"  />
+  					<br />
+  					  <script src="{pigcms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic2',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic2')">预览</a>&nbsp; 活动结束图片 </div></td>
+  				</tr>
+  			<tr>
+  				<th valign="top">活动结束说明：</th>
+  				<td valign="top"><textarea  class="px" id="endinfo" name="endinfo"  style="width:400px; height:125px" ><if condition="$vo['endinfo'] eq ''">亲，活动已经结束，请继续关注我们的后续活动哦。<else/>{pigcms:$vo.endinfo}</if></textarea><br />换行请输入
+ &lt;br&gt;
+  				  </td>
+  				</tr>
+  			</tbody>
+  		</table>
+  </div>
+
+
+<!--奖项设置-->
+<div class="cLineB">
+          	<h4>活动奖项设置</h4></div>
+<div class="msgWrap bgfc">
+
+<table class="userinfoArea" style=" margin: 0;" border="0" cellspacing="0" cellpadding="0" width="100%"><tbody>
+<TR>
+<th valign="top"><span class="red">*</span>一等奖奖品设置：</th>
+<td><input type="input" class="px" id="fist"  name="fist" value="{pigcms:$vo.fist}"  style="width:250px"/>
+请不要多于50字! </td>
+  <TD rowspan="9" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<th valign="top"><span class="red">*</span>一等奖奖品数量：</th>
+<td><input type="input" class="px" id="fistnums" name="fistnums"      value="{pigcms:$vo.fistnums}" style="width:60px" />
+  <span class="red">如果是100%中奖,请把一等奖的奖品数量[ 1000就代表前1000人都中奖 ]填写多点</span></td>
+</TR>
+<TR>
+<th valign="top">二等奖奖品设置：</th>
+<td><input type="input" class="px" id="second" name="second"     value="{pigcms:$vo.second}"  style="width:250px"/>
+请不要多于50字! </td>
+</TR>
+<TR>
+<th valign="top">二等奖奖品数量：</th>
+<td><input type="input" class="px" id="secondnums" name="secondnums"   value="{pigcms:$vo.secondnums}" style="width:60px" />
+</td>
+</TR>
+<TR>
+<th valign="top">三等奖奖品设置：</th>
+<td><input type="input" class="px" id="third" name="third"   value="{pigcms:$vo.third}" style="width:250px" />
+请不要多于50字! </td>
+</TR>
+<TR>
+<th valign="top">三等奖奖品数量：</th>
+<td><input type="input" class="px" id="thirdnums" name="thirdnums"     value="{pigcms:$vo.thirdnums}" style="width:60px" />
+</td>
+</TR>
+<TR>
+<th valign="top">四等奖奖品设置：</th>
+<td><input type="input" class="px" id="four"  name="four" value="{pigcms:$vo.four}"  style="width:250px"/>
+请不要多于50字! </td>
+  <TD rowspan="9" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<th valign="top">四等奖奖品数量：</th>
+<td><input type="input" class="px" id="fournums" name="fournums"      value="{pigcms:$vo.fournums}" style="width:60px" />
+ </td>
+</TR>
+<TR>
+<th valign="top">五等奖奖品设置：</th>
+<td><input type="input" class="px" id="five"  name="five" value="{pigcms:$vo.five}"  style="width:250px"/>
+请不要多于50字! </td>
+  <TD rowspan="9" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<th valign="top">五等奖奖品数量：</th>
+<td><input type="input" class="px" id="fivenums" name="fivenums"      value="{pigcms:$vo.fivenums}" style="width:60px" />
+ </td>
+</TR>
+<TR>
+<th valign="top">六等奖奖品设置：</th>
+<td><input type="input" class="px" id="six"  name="six" value="{pigcms:$vo.six}"  style="width:250px"/>
+请不要多于50字! </td>
+  <TD rowspan="9" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<th valign="top">六等奖奖品数量：</th>
+<td><input type="input" class="px" id="sixnums" name="sixnums"      value="{pigcms:$vo.sixnums}" style="width:60px" />
+ </td>
+</TR>
+  </tbody>
+
+<tbody>
+<tr>
+<th valign="top"><span class="red">*</span>预计活动的人数：</th>
+<td><input type="input" class="px" id="allpeople" name="allpeople"   value="{pigcms:$vo.allpeople}" style="width:150px"/>  预估活动人数直接影响抽奖概率：中奖概率 = 奖品总数/(预估活动人数*每人抽奖次数) 如果要确保任何时候都100%中奖建议设置为1人参加!<span class='red'>如果要确保任何时候都100%中奖建议设置为1人参加!并且奖项只设置一等奖.</span></td>
+  </tr>
+<tr>
+<th valign="top"><span class="red">*</span>每人最多允许抽奖次数：</th>
+<td><input type="input" class="px" id="canrqnums" name="canrqnums"   value="{pigcms:$vo.canrqnums}" style="width:150px"/>
+必须是数字！0 为不限制 抽完总数就不能抽了!</td>
+ </tr>
+<tr>
+<th valign="top"><span class="red"></span>每天最多抽奖次数：</th>
+<td><input class="px" id="daynums" name="daynums" style="width:150px" value="{pigcms:$vo.daynums}" type="input">
+必须小于总抽奖次数！ 0 为不限制 抽完总数就不能抽了! 可以抽奖天数 = 总数/每天抽奖次数!</td>
+</tr>
+<tr>
+<th valign="top"><span class="red"></span>需要分享的次数：</th>
+<td><input class="px" id="optime" name="optime" style="width:150px" value="{pigcms:$vo.optime}" type="input">
+找小伙伴帮忙的次数</td>
+</tr>
+<tr style="display:none">
+<th valign="top">SN码生成设置：</th>
+<td>
+    <input class="radio" type="radio" checked name="snimport" value="0">自动生成
+    <input class="radio" type="radio" name="snimport" value="1">手动生成(SN码管理)
+</td>
+</tr>
+<th valign="top">SN码重命名为：</th>
+<td><input class="px" id="renamesn" name="renamesn" value="<if condition="$vo.renamesn">{pigcms:$vo.renamesn}<else/>SN码</if>" style="width:150px" type="input"> 例如：CND码,充值密码,SN码 这个主意用于修改SN码的名称，不懂请别修改</td>
+</tr>
+<th valign="top">手机号重命名：</th>
+<td><input class="px" id="renametel" name="renametel" value="<if condition="$vo.renametel">{pigcms:$vo.renametel}<else/>手机号</if>" style="width:150px" type="input"> 例如：QQ号,微信号,手机号等其他联系方式，不懂请别修改</td>
+</tr>
+<tr>
+<th valign="top"><span class="red"></span>兑奖密码：</th>
+<td><input class="px" id="parssword" name="parssword" style="width:150px" value="{pigcms:$vo.parssword}" type="input">消费确认密码长度小于15位</td>
+</tr>
+<tr>
+<th valign="top">是否显示奖品数量：</th>
+<td><input class="radio" type="radio" name="displayjpnums" value="1"  <if condition="$vo['displayjpnums'] eq 1" >checked</if> >显示  <input class="radio" type="radio" name="displayjpnums" value="0"  <if condition="$vo['displayjpnums'] eq 0" >checked</if>>不显</td>
+</tr>
+<TR>
+	<th valign="top">注册后才能参与：</th>
+	<td><input class="radio" type="radio" name="needreg" value="1"  <if condition="$vo['needreg'] eq 1" >checked</if> > 需要先注册  <input class="radio" type="radio" name="needreg" value="0"  <if condition="$vo['needreg'] eq 0" >checked</if>> 不需要先注册</td>
+</TR>
+<tr>
+<th>&nbsp;</th>
+<td><button type="submit" name="button" class="btnGreen">保存</button>　<a href="" class="btnGray vm">取消</a>　<span class="red">请确认功能管理已开启活动奖品功能</span></td>
+                                    </tr>
+</TBODY>
+</TABLE>
+
+
+
+
+  </div>
+
+
+        </div>
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> 微信公众平台源码,微信机器人源码,微信自动回复源码 PigCms多用户微信营销系统</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/style_2_common.css?BPm" />
+<script src="./tpl/User/default/common/js/common.js" type="text/javascript"></script>
+<link href="./tpl/User/default/common/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="nv_member">
+<div style="line-height:200%;padding:10px 20px;">
+<strong>预约科室：</strong>{pigcms:$userinfo['yyks']}<br>
+<strong>预约专家：</strong>{pigcms:$userinfo['yyzj']}<br>
+<strong>预约病种：</strong>{pigcms:$userinfo['yybz']}<br>
+<strong>预约科室：</strong>{pigcms:$userinfo['yyks']}<br>
+<strong>预约患者：</strong>{pigcms:$userinfo['truename']}<br>
+<strong>患者年龄：</strong>{pigcms:$userinfo['age']}<br>
+<strong>患者性别：</strong><if condition="$userinfo['sex'] eq 1">男<else/>女</if><br>
+<strong>患者电话：</strong>{pigcms:$userinfo['utel']}<br>
+
+<strong>下单时间：</strong>{pigcms:$userinfo['booktime']|date="Y年m月d日  H:i:s",###}点<br>
+<strong>预约时间：</strong>{pigcms:$userinfo['dateline']}<br>
+
+<if condition="$userinfo['txt3name'] neq ''">
+                <p>{pigcms:$userinfo['txt3name']} : {pigcms:$userinfo['txt33']|strip_tags}</p>
+                </if>
+
+                <if condition="$userinfo['txt4name'] neq ''">
+                <p>{pigcms:$userinfo['txt4name']} : {pigcms:$userinfo['txt44']|strip_tags}</p>
+                </if>
+
+                <if condition="$userinfo['txt5name'] neq ''">
+                <p>{pigcms:$userinfo['txt5name']} : {pigcms:$userinfo['txt55']|strip_tags}</p>
+                </if>
+
+                <if condition="$userinfo['select4name'] neq ''">
+                <p>{pigcms:$userinfo['select4name']} : {pigcms:$userinfo['yy4']|strip_tags}</p>
+                </if>
+
+                <if condition="$userinfo['select5name'] neq ''">
+                <p>{pigcms:$userinfo['select5name']} : {pigcms:$userinfo['yy5']|strip_tags}</p>
+                </if>
+<strong>预约备注：</strong>{pigcms:$userinfo['uinfo']|strip_tags}<br>
+<br>
+<if condition="$ok eq 1">
+<strong><font  color='red'>修改成功</font> </strong>
+
+<elseif condition="$ok eq 2"/>
+<strong><font  color='red'>修改失败</font> </strong>
+</if>
+</div>
+
+<form class="form" method="post" id="form" action="">
+    <div class="msgWrap bgfc">
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+       <tr>
+        <th><span class="red">*</span>订单状态：</th>
+        <td>
+        <select id="remate" name="remate" class="input-medium" style="width:80px">
+             <option value="0" <if condition="$userinfo['remate'] eq 0">selected="selected"</if>>待回复</option>
+            <option value="1" <if condition="$userinfo['remate'] eq 1">selected="selected"</if>>确认</option>
+             <option value="2" <if condition="$userinfo['remate'] eq 2">selected="selected"</if>>拒绝</option>
+
+        </select>
+
+        </td>
+       </tr>
+       <tr>
+        <th><span class="red">*</span>客服备注：</th>
+        <td>
+        <textarea class="px" id="kfinfo" name="kfinfo" style="width:400px; height:100px">{pigcms:$userinfo['kfinfo']}</textarea>
+        </td>
+       </tr>
+       <tr>
+       <th>&nbsp;</th>
+       <td>
+      <input type="hidden" name="iid" value="{pigcms:$userinfo['iid']}" />
+      <input type="hidden" name="wecha_id" value="{pigcms:$userinfo['wecha_id']}" />
+      <input type="hidden" name="token" value="{pigcms:$userinfo['token']}" />
+       <button type="submit" name="button" class="btnGreen">保存</button> </td>
+       </tr>
+      </tbody>
+     </table>
+     </div>
+
+</body>
+</html>

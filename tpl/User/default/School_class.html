@@ -1,0 +1,12 @@
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="tab" >
+<ul >
+<li class="<if condition="ACTION_NAME EQ 'index' AND ($type  EQ 'semester')">current</if> tabli classty"  id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'index' AND ($type  EQ 'theclass')">current</if> tabli classty" id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'index' AND ($type  EQ 'score')">current</if> tabli classty" id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'index' AND ($type  EQ 'subject')">current</if> tabli classty" id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'index' AND ($type  EQ 'timeframe')">current</if> tabli classty"id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'index' AND ($type  EQ 'week')">current</if> tabli classty" id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a></li>
+
+</ul>
+</div>

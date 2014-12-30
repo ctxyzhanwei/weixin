@@ -1,0 +1,77 @@
+<include file="Public:head"/>
+<include file="Hairdressing:menu"/>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+<div class="content">
+  <div class="cLineB">
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置美容服务相关内容。注意：美容介绍和表单设置，第一次使用，请点击添加美容介绍和添加表单设置，并点击保存</font></strong>
+
+    </p>
+    </div>
+</div>
+  </div>
+
+   <div class="cLineC" style="line-height: 32px;"> <a href="{pigcms::U('Hairdressing/setmeal_add',array('token'=>$token))}" class="btnGrayS vm bigbtn">添加套餐</a>　 </div>
+  <div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th style=" width:100px;">套餐名称</th>
+              <!-- <th style=" width:100px;">套餐简介</th> -->
+              <th style=" width:120px;">操作</th>
+            </tr>
+          </thead>
+
+        <tbody>
+<volist name="items" id="vo">
+            <tr>
+              <td>{pigcms:$vo['cname']}</td>
+               <!-- <td>{pigcms:$vo['info_intro']}</td> -->
+              <td class="norightborder"><a href="{pigcms::U('Hairdressing/setmeal_add',array('token'=>$token,'iid'=>$vo['iid'],'type'=>'edit'))}">编辑</a>
+              <a href="{pigcms::U('Hairdressing/setmeal_del',array('token'=>$token,'iid'=>$vo['iid']))}">删除</a> </td>
+            </tr>
+</volist>
+        </tbody>
+
+        </table>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages"> {pigcms:$page}</div>
+    </div>
+  </div>
+
+</div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,272 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>在线支付配置 </h4>
+   <div class="ftip" style="margin:10px 0">支持微信支付、财付通（WAP接口或者即时到帐接口）和支付宝支付（即时到帐接口）。请填写真实信息，否则支付中可能会出现错误</div> 
+ </div>
+   
+ <!--tab start-->
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script>
+var dialog;
+function showSetting(module,text){
+	dialog = $.dialog({
+		title:text+' 支付配置：',
+		content:document.getElementById(module+'_setting'),
+		lock:true,
+		ok:function(){
+			dialog.close();
+			$('.form').submit();
+		}
+	});
+}
+$(function(){
+	if($('#pay_open').val() == 0){
+		$('.userinfoArea tr:gt(0)').hide();
+		$('.btn_tr').show();
+	}
+	$('#pay_open').change(function(){
+		if($('#pay_open').val() == 1){
+			$('.userinfoArea tr:gt(0)').show();
+		}else{
+			$('.userinfoArea tr:gt(0)').hide();
+			$('.btn_tr').show();
+		}
+	});
+	$('.change_wx_pay').click(function(){
+		$(this).removeClass('btnGray').addClass('btnGreen').siblings('input').removeClass('btnGreen').addClass('btnGray');
+		$('#'+$(this).attr('pay_type')+'_wxpay_box').show().siblings('.wxpay_box').hide();
+		if($(this).attr('pay_type') == 'new'){$('#wx_is_old').val('0')}else{$('#wx_is_old').val('1')}
+	});
+});
+</script>
+<style>
+	.pay_setting{border:1px solid #ccc;margin-top:10px;padding:10px;}
+	.setting_rows p{margin-top:10px;}
+	.setting_rows span{width:100px;display:inline-block;_display:inline;text-align:right;}
+	.setting_rows input{width:250px;}
+	.setting_rows .change_wx_pay{width:150px;}
+	.hidden{display:none;}
+	.userinfoArea th{width:225px;}
+	.userinfoArea th img{vertical-align:middle;border:1px solid #ccc;width:60px;height:30px;margin-right:10px;}
+</style>
+<!--tab end-->    
+
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th>支付开关：</th>
+					<td>
+						<select name="is_open" id="pay_open">
+							<option value="0" <if condition="$config.is_open eq 0">selected</if>>关闭支付</option>
+							<option value="1" <if condition="$config.is_open eq 1"> selected</if>>开启支付</option>
+						</select> 开启支付后，商城等b2c功能将有在线支付功能
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/weixin.png"/>微信支付：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="weixin[open]" id="open_weixin_yes" value="1" <if condition="$config['weixin']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_weixin_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="weixin[open]" id="open_weixin_no" value="0" <if condition="$config['weixin']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_weixin_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('weixin','微信支付');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="weixin_setting">
+								<div class="setting_rows">
+									<p><b>鉴别微信支付新老版本的三种方法：</b><br/>1. 9月中旬后申请的微信支付应该为新版，<br/>2. 申请微信支付时发来两个通知邮件是老版，<br/>3. 申请微信支付时微信发来的邮件中带有“paysignKey”字样是老版！<br/><br/><b>因为微信端的新版微信支付错误提示不完整且不易读，<br/>测试新版微信支付时，如果出现任何问题请先认真检查配置项是不是完全填写正确。</b></p>
+									<p style="text-align:center;margin-bottom:40px;margin-top:20px;">
+										<input type="button" pay_type="new" class="change_wx_pay <if condition="empty($config['weixin']['is_old'])">btnGreen<else/>btnGray</if>" value="新版微信支付"/>
+										<input type="button" pay_type="old" class="change_wx_pay <if condition="$config['weixin']['is_old']">btnGreen<else/>btnGray</if>" value="老版微信支付"/>
+										<input type="hidden" name="weixin[is_old]" id="wx_is_old" value="{pigcms:$config.weixin.is_old|intval=###}"/>
+									</p>
+									<div id="new_wxpay_box" class="wxpay_box" <if condition="$config['weixin']['is_old']">style="display:none;"</if>>
+										<p><span>Appid：</span><input type="text" name="weixin[new_appid]" value="{pigcms:$config.weixin.new_appid}" class="px"/>&nbsp;&nbsp;公众账号ID</p>
+										<p><span>Mchid：</span><input type="text" name="weixin[mchid]" value="{pigcms:$config.weixin.mchid}" class="px" />&nbsp;&nbsp;商户号</p>
+										<p><span>Key：</span><input type="text" name="weixin[key]" value="{pigcms:$config.weixin.key}" class="px" />&nbsp;&nbsp;商户支付密钥Key</p>
+										<p><span>Appsecret：</span><input type="text" name="weixin[appsecret]" value="{pigcms:$config.weixin.appsecret}" class="px" />&nbsp;&nbsp;JSAPI接口中获取openid</p>
+									</div>
+									<div id="old_wxpay_box" class="wxpay_box" <if condition="empty($config['weixin']['is_old'])">style="display:none;"</if>>
+										<p><span>Appid：</span><input type="text" name="weixin[appid]" value="{pigcms:$config.weixin.appid}" class="px"/>&nbsp;&nbsp;公众账号ID</p>
+										<p><span>paysignKey：</span><input type="text" name="weixin[paysignkey]" value="{pigcms:$config.weixin.paysignkey}" class="px" />&nbsp;&nbsp;</p>
+										<p><span>partnerId：</span><input type="text" name="weixin[partnerid]" value="{pigcms:$config.weixin.partnerid}" class="px" />&nbsp;&nbsp;</p>
+										<p><span>partnerKey：</span><input type="text" name="weixin[partnerkey]" value="{pigcms:$config.weixin.partnerkey}" class="px" />&nbsp;&nbsp;</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/alipay.png"/>支付宝：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="alipay[open]" id="open_alipay_yes" value="1" <if condition="$config['alipay']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_alipay_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="alipay[open]" id="open_alipay_no" value="0" <if condition="$config['alipay']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_alipay_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('alipay','支付宝');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="alipay_setting">
+								<div class="setting_rows">
+									<p><span>帐号：</span><input type="text" name="alipay[name]" value="{pigcms:$config.alipay.name}" class="px" /></p>
+									<p><span>PID：</span><input type="text" name="alipay[pid]" value="{pigcms:$config.alipay.pid}" class="px" /></p>
+									<p><span>KEY：</span><input type="text" name="alipay[key]" value="{pigcms:$config.alipay.key}" class="px" /></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/tenpay.png"/>财付通(WAP手机)：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="tenpay[open]" id="open_tenpay_yes" value="1" <if condition="$config['tenpay']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_tenpay_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="tenpay[open]" id="open_tenpay_no" value="0" <if condition="$config['tenpay']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_tenpay_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('tenpay','财付通(WAP手机)');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="tenpay_setting">
+								<div class="setting_rows">
+									<p><span>partnerId：</span><input type="text" name="tenpay[partnerid]" value="{pigcms:$config.tenpay.partnerid}" class="px" /></p>
+									<p><span>partnerKey：</span><input type="text" name="tenpay[partnerkey]" value="{pigcms:$config.tenpay.partnerkey}" class="px" /></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/tenpay.png"/>财付通(即时到帐)：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="tenpayComputer[open]" id="open_tenpaycomputer_yes" value="1" <if condition="$config['tenpayComputer']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_tenpaycomputer_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="tenpayComputer[open]" id="open_tenpaycomputer_no" value="0" <if condition="$config['tenpayComputer']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_tenpaycomputer_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('tenpaycomputer','财付通(即时到帐)');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="tenpaycomputer_setting">
+								<div class="setting_rows">
+									<p><span>partnerId：</span><input type="text" name="tenpayComputer[partnerid]" value="{pigcms:$config.tenpayComputer.partnerid}" class="px" /></p>
+									<p><span>partnerKey：</span><input type="text" name="tenpayComputer[partnerkey]" value="{pigcms:$config.tenpayComputer.partnerkey}" class="px" /></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/allinpay.png"/>通联支付：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="allinpay[open]" id="open_allinpay_yes" value="1" <if condition="$config['allinpay']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_allinpay_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="allinpay[open]" id="open_allinpay_no" value="0" <if condition="$config['allinpay']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_allinpay_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('allinpay','通联支付');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="allinpay_setting">
+								<div class="setting_rows">
+									<p><span>商户号：</span><input type="text" name="allinpay[merchantId]" value="{pigcms:$config.allinpay.merchantId}" class="px" /></p>
+									<p><span>MD5 KEY：</span><input type="text" name="allinpay[merchantKey]" value="{pigcms:$config.allinpay.merchantKey}" class="px" /></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/yeepay.png"/>易宝支付：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="yeepay[open]" id="open_yeepay_yes" value="1" <if condition="$config['yeepay']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_yeepay_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="yeepay[open]" id="open_yeepay_no" value="0" <if condition="$config['yeepay']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_yeepay_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('yeepay','易宝支付');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="yeepay_setting">
+								<div class="setting_rows">
+									<p><span>商户编号：</span><input type="text" name="yeepay[merchantaccount]" value="{pigcms:$config.yeepay.merchantaccount}" class="px" /></p>
+									<p><span>商户私钥：</span><input type="text" name="yeepay[merchantPrivateKey]" value="{pigcms:$config.yeepay.merchantPrivateKey}" class="px" /></p>
+									<p><span>商户公钥：</span><input type="text" name="yeepay[merchantPublicKey]" value="{pigcms:$config.yeepay.merchantPublicKey}" class="px" /></p>
+									<p><span>易宝公钥：</span><input type="text" name="yeepay[yeepayPublicKey]" value="{pigcms:$config.yeepay.yeepayPublicKey}" class="px" /></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/chinabank.png"/>网银在线：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="chinabank[open]" id="open_chinabank_yes" value="1" <if condition="$config['chinabank']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_chinabank_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="chinabank[open]" id="open_chinabank_no" value="0" <if condition="$config['chinabank']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_chinabank_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="###" onclick="showSetting('chinabank','网银在线');" class="a_choose">配置信息</a>
+							</div>
+							<div class="hidden" id="chinabank_setting">
+								<div class="setting_rows">
+									<p><span>商户号：</span><input type="text" name="chinabank[chinabank_account]" value="{pigcms:$config.chinabank.chinabank_account}" class="px" /></p>
+									<p><span>MD5私钥：</span><input type="text" name="chinabank[chinabank_key]" value="{pigcms:$config.chinabank.chinabank_key}" class="px" /></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/daofu.png"/>货到付款：</th>
+					<td>
+						<div class="pay_setting">
+							<div>
+								<input type="radio" name="daofu[open]" id="open_daofu_yes" value="1" <if condition="$config['daofu']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_daofu_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="daofu[open]" id="open_daofu_no" value="0" <if condition="$config['daofu']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_daofu_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/dianfu.png"/>到店付款：</th>
+					<td>
+						<div class="pay_setting">
+							<div style="/*margin-bottom:10px;*/">
+								<input type="radio" name="dianfu[open]" id="open_dianfu_yes" value="1" <if condition="$config['dianfu']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_dianfu_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="dianfu[open]" id="open_dianfu_no" value="0" <if condition="$config['dianfu']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_dianfu_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</div>
+						</div>
+					</td>
+				</tr>
+				<if condition="C('platform_open') eq 1">
+					<tr>
+						<th><img src="{pigcms:$staticPath}/tpl/static/pay_icon/platform.png"/>平台支付：</th>
+						<td>
+							<div class="pay_setting">
+								<div>
+									<input type="radio" name="platform[open]" id="open_platform_yes" value="1" <if condition="$config['platform']['open'] eq 1">checked="checked"</if>/>&nbsp;<label for="open_platform_yes">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="platform[open]" id="open_platform_no" value="0" <if condition="$config['platform']['open'] eq 0">checked="checked"</if>/>&nbsp;<label for="open_platform_no">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="###" onclick="showSetting('platform','平台支付');" class="a_choose">配置信息</a>&nbsp;&nbsp;&nbsp;&nbsp;平台现在开启的是 <b style="color:red;"><if condition="C('pay_type') eq 'alipay'">支付宝<elseif condition="C('pay_type') eq 'tenpay'"/>财付通</if></b> ，开启平台支付后将在您的 <b style="color:red;"><if condition="C('pay_type') eq 'alipay'">支付宝<elseif condition="C('pay_type') eq 'tenpay'"/>财付通</if></b> 关闭时进行显示使用支付。
+								</div>
+								<div class="hidden" id="platform_setting">
+									<div class="setting_rows">
+										<p><span>名称标注：</span><input type="text" name="platform[platformName]" value="{pigcms:$config.platform.platformName}" class="px" />&nbsp;&nbsp;支付时的支付名称额外的标注【如：<font color="red">支付宝(小猪)</font>】，不填写则不展示</p>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</if>
+				<tr class="btn_tr">
+					<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

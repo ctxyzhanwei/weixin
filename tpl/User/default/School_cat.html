@@ -1,0 +1,61 @@
+<include file="Public:head" />
+<include file="School:menu" />
+<script
+	src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<script type="text/javascript"
+	src="/tpl/static/audioplayer/inc/jquery.jplayer.min.js"></script>
+<script type="text/javascript"
+	src="/tpl/static/audioplayer/inc/jquery.mb.miniPlayer.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/tpl/static/audioplayer/css/miniplayer.css" title="style"
+	media="screen" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">当前位置：微学校 >> 首页版块</h4>
+		<a class="right btnGreen vm" style="margin-top: -2px"
+			href="{pigcms::U('School/cat_add',array('token'=>$token,'type'=>'cat'))}">添加版块</a>
+		<div class="clr"></div>
+	</div>
+	<div class="cLineD"></div>
+	<div class="msgWrap">
+		<div class="msgWrap">
+			<table class="ListProduct" style="margin: 0;" border="0"
+				cellspacing="0" cellpadding="0" width="100%">
+				<THEAD>
+					<TR>
+						<TH width="100">图标</TH>
+						<TH width="120">版块名称</TH>
+						<TH width="150">版块链接</TH>
+						<TH width="50">排序</TH>
+						<TH width="60">是否显示</TH>
+						<TH width="100">操作</TH>
+					</TR>
+				</THEAD>
+				<TBODY>
+					<TR></TR>
+					<volist id="list" name="list">
+					<TR>
+						<td><img src="{pigcms:$list['icon']}" style="width:50px;height:50px;"></td>
+						<TD>{pigcms:$list['name']}</TD>
+						<TD>{pigcms:$list['url']}</TD>
+						<TD>{pigcms:$list['sort']}</TD>
+						<TD><if condition="$list['is_show'] eq '1'">显示</if> <if
+								condition="$list['is_show'] eq '0'">隐藏</if></TD>	
+						<TD><a href="{pigcms::U('School/cat_add',array('token'=>$token,'id'=>$list['id'],'type'=>'cat'))}"><font color="red">编辑</font></a>
+						<if condition="$list['system'] eq '0'">
+							<a href="{pigcms::U('School/cat_del',array('token'=>$token,'id'=>$list['id'],'type'=>'cat'))}" onclick="return(confirm('确定要删除吗？'))" title="删除">
+							<font color="#CCC7C7">删除</font>
+							</a>
+						</if>
+						</TD>
+					</TR>
+					</volist>
+				</TBODY>
+			</table>
+		</div>
+	</div>
+</div>
+<include file="Public:footer" />

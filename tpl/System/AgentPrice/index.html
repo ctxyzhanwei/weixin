@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代理商优惠套餐管理</title>
+<include file="common:public" />
+<div class="cr"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+	  <tr>
+		<td width="150">名称</td>
+		<td>公众号数</td>
+		<td>价格</td>
+		<td>管理操作</td>
+	  </tr>
+	    <volist name="info" id="vo">
+			<tr>
+			<td >{pigcms:$vo.name}</td>
+				<td >{pigcms:$vo.maxaccount}</td>
+				<td >{pigcms:$vo.price}</td>
+	
+				<td align='center'>
+					<a href="{pigcms::U('AgentPrice/add/',array('id'=>$vo['id']))}">修改</a> <a href="###" onclick="if(confirm('确定要删除吗')){location.href='{pigcms::U('AgentPrice/del/',array('id'=>$vo['id']))}';}" >删除</a>
+				</td>
+			</tr>
+	    </volist>
+     <tr bgcolor="#FFFFFF"> 
+      <td colspan="8"><div class="listpage">{pigcms:$page}</div></td>
+    </tr>
+   
+</table>
+
+
+</body>
+</html>

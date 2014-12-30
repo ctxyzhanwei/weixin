@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pano_id获取</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+    <link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/style_2_common.css" />
+	<script src="{pigcms::RES}/js/common.js" type="text/javascript"></script>
+    <link href="{pigcms::RES}/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="{pigcms::STATICS}/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={pigcms::$apikey}"></script>
+    <link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+    <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+    <script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<style type="text/css">
+html, body { height: 100%; margin: 0px; padding: 0px;}
+#container {width: 100%; height: 100%;}
+#panel {position: absolute; top: 50px; left: 50%; margin-left: -100px; z-index: 5; background-color: #fff; padding: 5px; border: 1px solid #999;}
+</style>
+</head>
+<body>
+<div class="ftip" style="margin:0">找到相应位置然后复制pano值-> <a id="ok" style="float:none" href="###">已经复制好，关闭该页面</a></div>
+<div id="l-map"></div>
+    <div id="panel">
+        <span>pano:</span>
+        <span id="panoid1"></span>
+    </div>
+    <div id="container"></div>
+    <script type="text/javascript">
+        var radius = 1000;
+        var map = new qq.maps.Map(document.getElementById("container"), {
+            // 地图的中心地理坐标。
+            center: new qq.maps.LatLng(39.916527, 116.397128)
+        });
+        var panoLayer = new qq.maps.PanoramaLayer();
+        panoLayer.setMap(map);
+        var panoService = new qq.maps.PanoramaService();
+        qq.maps.event.addListener(map, 'click', function(evt) {
+            panoService.getPano(evt.latLng, 1000, function(result) {          
+				document.getElementById("panoid1").innerHTML = result ? result.svid : "此处无街景";
+            });
+        });		
+document.getElementById('ok').onclick = function () {
+	art.dialog.close();
+};
+    </script>
+</body>
+</html>

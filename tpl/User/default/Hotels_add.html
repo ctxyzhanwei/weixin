@@ -1,0 +1,113 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content"> 
+	<div class="cLineB"> 
+		<h4>房间分类操作</h4> 
+		<a href="{pigcms::U('Hotels/index',array('token' => $token,'cid'=>$cid))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+	</div> 
+<if condition="$ischild neq 1">
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">此处只显示总店信息，连锁店订单及菜品请进入相应平台进行管理，连锁店登录账号密码及登录地址请在LBS里设置查看</div>
+</if>
+<form method="post" action="" id="formID">
+<input type="hidden" name="id" value="{pigcms:$tableData.id}" />
+<input type="hidden" name="cid" value="{pigcms:$cid}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td>
+        <input type="text" name="name" id="name" value="{pigcms:$tableData.name}" class="px" style="width:200px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>普通价格：</th> 
+        <td>
+        <input type="text" name="price" id="price" value="{pigcms:$tableData.price}" class="px" style="width:50px;" /> (元)
+        </td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>会员价格：</th> 
+        <td>
+        <input type="text" name="vprice" id="vprice" value="{pigcms:$tableData.vprice}" class="px" style="width:50px;" /> (元)
+        </td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>容纳人数：</th> 
+        <td>
+        <input type="text" name="num" id="num" value="{pigcms:$tableData.num}" class="px" style="width:50px;" /> (位)
+        </td> 
+       </tr> 
+       <tr> 
+        <th>房间面积：</th> 
+        <td>
+        <input type="text" name="area" id="area" value="{pigcms:$tableData.area}" class="px" style="width:50px;" /> (㎡)
+        </td> 
+       </tr> 
+       <tr> 
+        <th>床位增加说明：</th> 
+        <td>
+        <input type="text" name="bed" id="bed" value="{pigcms:$tableData.bed}" class="px" style="width:200px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th>所在楼层：</th> 
+        <td>
+        <input type="text" name="floor" id="floor" value="{pigcms:$tableData.floor}" class="px" style="width:200px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th>床宽说明：</th> 
+        <td>
+        <input type="text" name="bedwidth" id="bedwidth" value="{pigcms:$tableData.bedwidth}" class="px" style="width:200px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th>网络情况：</th> 
+        <td>
+        <input type="text" name="network" id="network" value="{pigcms:$tableData.network}" class="px" style="width:200px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th>吸烟说明：</th> 
+        <td>
+        <input type="text" name="smoke" id="smoke" value="{pigcms:$tableData.smoke}" class="px" style="width:200px;" />
+        </td> 
+       </tr>
+       <tr> 
+        <th>展示图片一：</th>
+        <td><input type="text" name="image_1" value="{pigcms:$tableData.image_1}" class="px" id="image1" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image1',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image1')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片二：</th>
+        <td><input type="text" name="image_2" value="{pigcms:$tableData.image_2}" class="px" id="image2" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image2',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image2')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片三：</th>
+        <td><input type="text" name="image_3" value="{pigcms:$tableData.image_3}" class="px" id="image3" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image3',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image3')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片四：</th>
+        <td><input type="text" name="image_4" value="{pigcms:$tableData.image_4}" class="px" id="image4" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image4',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image4')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>描述：</th> 
+        <td><textarea name="note" class="px" style="width:400px;height:80px;">{pigcms:$tableData.note}</textarea></td> 
+       </tr>
+       <tr>   
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="submit" class="btnGreen" id="save">保存</button> &nbsp; <a href="{pigcms::U('Hotels/index',array('token' => $token, 'cid' => $cid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+</form>
+</div> 
+
+<include file="Public:footer" />

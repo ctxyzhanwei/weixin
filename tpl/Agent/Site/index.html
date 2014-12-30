@@ -1,0 +1,72 @@
+<include file="Frame:header"/>
+<script src="{pigcms::STATICS}/forum/js/jquery_min.js" ></script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/lang/cn.js"> </script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/formcheck.js"> </script>
+<link rel="stylesheet" href="tpl/Agent/Common/js/formCheck/theme/grey/formcheck.css" type="text/css" media="screen" />
+<link href="tpl/Agent/Common/style/calendar.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/calendar.js"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function(){
+	new FormCheck('myform');
+});
+</script>
+
+<div class="columntitle">修改资料</div>
+   <form method="post" action="?g=Agent&m=Site&a=index" id="myform">
+            <table class="addTable">
+         <tr>
+          <th>网站名称</th>
+          <td><input type="text" name="sitename" style="width:300px;" class="validate['required'] colorblur" value="{pigcms:$thisAgent.sitename}" /> </td>
+        </tr>
+         <tr>
+          <th>Logo</th>
+          <td><input type="text" name="sitelogo" id="sitelogo" style="width:400px;" class="validate['required'] colorblur" value="<pigcmsif where="$thisAgent['sitelogo']">{pigcms:$thisAgent.sitelogo}<else/>/tpl/Home/pigcms/common/images/logo-pigcms.png</pigcmsif>" /> <a href="###" onclick="upyunWapPicUpload('sitelogo',190,60,'admin')">上传</a>&nbsp;&nbsp;png格式，宽190像素，高60像素</td>
+        </tr>
+        <tr>
+          <th>二维码地址</th>
+          <td><input type="text" id="qrcode" name="qrcode" style="width:400px;" class="validate['required'] colorblur" value="{pigcms:$thisAgent.qrcode}" /> <a href="###" onclick="upyunWapPicUpload('qrcode',258,258,'admin')">上传</a>&nbsp;&nbsp;宽258像素，高258像素</td>
+        </tr>
+         <tr>
+          <th>网站Title</th>
+          <td><input type="text" name="sitetitle" style="width:300px;" class="colorblur" value="{pigcms:$thisAgent.sitetitle}" /> </td>
+        </tr>
+        <tr>
+          <th>Meta关键词</th>
+          <td><input type="text" name="metakeywords" style="width:300px;" class="colorblur" value="{pigcms:$thisAgent.metakeywords}" /> </td>
+        </tr>
+        <tr>
+          <th>Meta描述</th>
+          <td><textarea name="metades" style="width:400px;height:80px;" class="colorblur">{pigcms:$thisAgent.metades}</textarea> </td>
+        </tr>
+        <tr>
+          <th>备案号</th>
+          <td><input type="text" name="copyright" style="width:300px;" class="colorblur" value="{pigcms:$thisAgent.copyright}" /> 可以不要填写</td>
+        </tr>
+         <tr style="display:none">
+          <th>机器人名称</th>
+          <td><input type="text" name="robotname" style="width:300px;" class="colorblur" value="{pigcms:$thisAgent.robotname}" /> </td>
+        </tr>
+         <tr style="display:none">
+          <th>请求数超出提示</th>
+          <td><input type="text" name="connectouttip" style="width:300px;" class="colorblur" value="{pigcms:$thisAgent.connectouttip}" /> </td>
+        </tr>
+         
+         <tr>
+          <th>统计代码</th>
+          <td><textarea name="statisticcode" style="width:400px;height:80px;" class="colorblur"><?php echo base64_decode($thisAgent['statisticcode']);?></textarea></td>
+        </tr>
+      
+          <tr>
+            <td class="addName"></td>
+            <td>
+   
+            <input type="submit" name="doSubmit" value="提交" class="button"/></td>
+          </tr>
+         
+        </table>
+        <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="referer" />
+</form>
+<include file="Frame:footer"/>

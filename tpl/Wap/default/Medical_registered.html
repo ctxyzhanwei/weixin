@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/datepicker_car.css" media="all" />
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="./tpl/User/default/common/js/select/js/comm.js"></script>
+<script src="./tpl/User/default/common/js/select/js/linkagesel-min.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/jquery_ui.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/category.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/bootstrap-datepicker.js"></script>
+
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+        jQuery(document).ready(function(){
+      jQuery("#form1").validationEngine();
+    });
+</script>
+<title>{pigcms:$reser['title']}-{pigcms:$reser['typename']}</title>
+
+        <style>
+            img{width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+                <style>
+            #bookBody .pb_5{
+                padding-bottom:10px!important;
+            }
+        </style>
+
+        <script>
+            $().ready(function(){
+                var nowTemp = new Date();
+                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                var ndate = $('#dateline').datepicker({
+                        format:"yyyy-mm-dd",
+                        onRender: function(date) {
+                           return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                        }
+                }).on("changeDate", function(date){
+                        ndate.datepicker('hide');
+                });
+            });
+        </script>
+    <body onselectstart="return true;" ondragstart="return false;">
+            <div id="bookBody" class="body">
+            <header>
+                <ul>
+                    <li><img src="{pigcms:$reser['headpic']}" style="width:100%;" /></li>
+                </ul>
+            </header>
+            <section>
+                <div class="pt_5 pb_5 pl_10 pr_10">
+                    <dl class="list_book list_book_my">
+                        <dd class="tbox">
+                            <div><label>{pigcms:$reser['typename']|default='我的订单'}</label></div>
+                            <div class="align_right"><a href="{pigcms::U('Medical/ReserveBooking',array('token'=>$token,'wecha_id'=>$wecha_id,'sid'=>$vo['id'],'bid'=>$vo['brand_id'],'getlist'=>1,'title'=>$title,'addtype'=>$reser['addtype']))}" >{pigcms:$count|default=0}</a></div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="pb_5 pl_10 pr_10">
+                    <dl class="list_book list_book_des">
+                        <dd>
+                            <div><label>订单说明</label></div>
+                            <div style="word-break:break-all;word-wrap:nowrap;white-space:normal;padding: 15px 0;">{pigcms:$reser['info']|strip_tags}</div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="pb_5 pl_10 pr_10">
+                    <dl class="list_book list_book_contact">
+                        <dd>
+                            <div>
+                                <a href="http://chabus.duapp.com/mapapi.php?lng={pigcms:$reser['lng']}&lat={pigcms:$reser['lat']}&title=来院路线&info=温馨提示：{pigcms:$reser['address']}">
+                                    <span>地址：{pigcms:$reser['address']}</span>
+                                </a></div>
+        <if condition="$reser['tel'] neq ''">
+        <div style="padding-top: 3px;"><a href="tel:{pigcms:$reser['tel']}"><span>订单电话： {pigcms:$reser['tel']}</span></a></div>
+    </if>
+
+     <if condition="$gopay eq 1">
+        <div style="padding-top: 3px;"><a href><span>预约费用： {pigcms:$reser['price']} </span> 元 </a> </div>
+    <else/>
+       <div style="padding-top: 3px;"><a href><span>预约费用： 免费 </span>  </a> </div>
+    </if>
+                        </dd>
+                    </dl>
+                </div>
+
+
+                <div class="pb_5 pl_10 pr_10">
+<form id="form1" action="{pigcms::U('Medical/add',array('token'=>$token,'wecha_id'=>$wecha_id))}" method="post" >
+                        <input type="hidden" name="wecha_id" id="wecha_id" value="{pigcms:$wecha_id}" />
+                        <input type="hidden" name="rid" id="rid" value="{pigcms:$reser['id']}" />
+                        <input type="hidden" name="type" id="type" value="{pigcms:$reser['addtype']}" />
+                        <dl class="list_book">
+                            <dt><label>请认真填写表单,请认真核对订单信息.</label></dt>
+                            <dd class="tbox">
+                                <div><label>患者姓名:</label></div>
+                                <div><input type="text" name="truename" placeholder="请输入您的真实姓名" value="{pigcms:$reser['truename']}" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="姓名必填项!" data-prompt-position="inline"/></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>联系电话：</label></div>
+                                <div><input type="tel" name="utel" placeholder="请输入您的电话" value="{pigcms:$reser['utel']}" data-validation-engine="validate[required,custom[phone]]"
+                    data-errormessage-value-missing="联系电话必填项!" data-prompt-position="inline"/></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>预约日期：</label></div>
+                                <div><input type="text" name="dateline" placeholder="请选择预约日期" id="dateline" readonly="readonly"  value="{pigcms:$reser['dateline']}" /></div>
+                            </dd>
+
+                            <dd class="tbox">
+                                <div><label>患者性别：</label></div>
+                                <div>
+                                    <select name="sex">
+                                <option value="1" <if condition="$reser['sex'] eq 1">selected="selected"</if>>男</option>
+                                <option value="2"<if condition="$reser['sex'] eq 2">selected="selected"</if>>女</option>
+                                    </select>
+                                </div>
+                            </dd>
+                              <dd class="tbox">
+                                <div><label>患者年龄:</label></div>
+                                <div>
+                                  <input type="number" name="age" id="age"  value="{pigcms:$reser['age']}" placeholder="请输入您的年龄"   data-validation-engine="validate[required,custom[number],min[0],max[150]]" class="px" data-prompt-position="inline" data-errormessage-value-missing="请填写您的年龄!"/>
+                                </div>
+                            </dd>
+                            <dd class="tbox"<if condition="$reser['txt3'] eq ''"> style="display:none;"</if>>
+                                <if condition="$reser['txt3'] neq ''"><input type="hidden" name="txt3name" id="txt3name" value="{pigcms:$reser['txt3']}" /> </if>
+                                <div><label>{pigcms:$reser['txt3']}</label></div>
+                                <div>
+                                  <input type="text" name="txt33" id="txt33" value="" placeholder="{pigcms:$reser['value3']}"  />
+                                </div>
+                            </dd>
+                            <dd class="tbox"<if condition="$reser['txt4'] eq ''"> style="display:none;"</if>>
+                            <if condition="$reser['txt4'] neq ''"><input type="hidden" name="txt4name" id="txt4name" value="{pigcms:$reser['txt4']}" /> </if>
+                                <div><label>{pigcms:$reser['txt4']}</label></div>
+                                <div>
+                                  <input type="text" name="txt44" id="txt44" value="" placeholder="{pigcms:$reser['value4']}"  />
+                                </div>
+                            </dd>
+                             <dd class="tbox"<if condition="$reser['txt5'] eq ''"> style="display:none;"</if>>
+                             <if condition="$reser['txt5'] neq ''"><input type="hidden" name="txt5name" id="txt5name" value="{pigcms:$reser['txt5']}" /> </if>
+                                <div><label>{pigcms:$reser['txt5']}</label></div>
+                                <div>
+                                  <input type="text" name="txt55" id="txt55" value="" placeholder="{pigcms:$reser['value5']}"  />
+                                </div>
+                            </dd>
+
+                             <dd class="tbox">
+                                <div><label>{pigcms:$reser['select1']|default='预约科室'}：</label></div>
+                                <div>
+                                    <select name="yyks">
+                                    	<volist name="svalue1" id="vo">
+                                    	<option value="{pigcms:$vo}">{pigcms:$vo}</option>
+                                    	</volist>
+
+                                    </select>
+                                </div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>{pigcms:$reser['select2']|default='预约专家'}：</label></div>
+                                <div>
+                                    <select name="yyzj">
+                                        <volist name="svalue2" id="vo">
+                                        <option value="{pigcms:$vo}">{pigcms:$vo}</option>
+                                        </volist>
+
+                                    </select>
+                                </div>
+                            </dd>
+                             <dd class="tbox">
+                                <div><label>{pigcms:$reser['select3']|default='预约病种'}：</label></div>
+                                <div>
+                                    <select name="yybz">
+                                        <volist name="svalue3" id="vo">
+                                        <option value="{pigcms:$vo}">{pigcms:$vo}</option>
+                                        </volist>
+
+                                    </select>
+                                </div>
+                            </dd>
+                             <dd class="tbox" <if condition="$reser['select4'] eq ''"> style="display: none;"</if>>
+                             <if condition="$reser['select4'] neq ''"><input type="hidden" name="select4name" id="select4name" value="{pigcms:$reser['select4']}" /> </if>
+                                <div><label>{pigcms:$reser['select4']}：</label></div>
+                                <div>
+                                    <select name="yy4">
+                                        <volist name="svalue4" id="vo">
+                                        <option value="{pigcms:$vo}">{pigcms:$vo}</option>
+                                        </volist>
+
+                                    </select>
+                                </div>
+                            </dd>
+                             <dd class="tbox" <if condition="$reser['select5'] eq ''"> style="display: none;"</if>>
+                              <if condition="$reser['select5'] neq ''"><input type="hidden" name="select5name" id="select5name" value="{pigcms:$reser['select5']}" /> </if>
+                                <div><label>{pigcms:$reser['select5']}：</label></div>
+                                <div>
+                                    <select name="yy5">
+                                        <volist name="svalue5" id="vo">
+                                        <option value="{pigcms:$vo}">{pigcms:$vo}</option>
+                                        </volist>
+
+                                    </select>
+                                </div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>{pigcms:$reser['datename']|default='备注信息'}：</label></div>
+                                <div><textarea name="uinfo" placeholder="请输入备注信息" style="height:80px;"></textarea></div>
+                            </dd>
+                        </dl>
+                        <div style="margin:10px;text-align: center;">
+                <input type="submit" value="提交订单" class="btn_submit"  style="margin:10px auto;text-align: center;cursor:pointer">
+                        </div>
+</form>
+                </div>
+            </section>
+
+        </div>
+
+    </body>
+
+</html>

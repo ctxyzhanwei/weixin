@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="Author" content="0431" />
+<meta name="keywords" content="魔码网络" />
+<meta name="description" content="魔码网络"/>
+<LINK href="master.css?{$rand}" tppabs="http://900025.3g/css/master.css?{$rand}" rel=stylesheet>
+<style type="text/css">
+body, html,#allmap {width: 100%;height: 100%;overflow: hidden;hidden;margin:0;}
+#l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+#r-result{height:100%;width:20%;float:left;}
+</style>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/api-v=1.4.js" tppabs="http://api.map.baidu.com/api?v=1.4"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" tppabs="http://900025.3g/common/js/jquery-1.6.4.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" tppabs="http://900025.3g/common/js/nav.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/search.js" tppabs="http://900025.3g/common/js/search.js"></script>
+<title>地图_魔码网络</title>
+</head>
+
+<body>
+<!--top-->
+<div class="topbg">
+  <center class="logo"><a href="index.html" tppabs="http://900025.3g/html/index.html" title="魔码网络"><img src="smarty/templates/tpls/{$site.template}/logo.png" tppabs="http://900025.3g/images/logo.png" alt="魔码网络" class="logo"></a></center>
+</div>
+<div class="nav"><a href="javascript:void(0);" title="导航按钮" class="navbtn"></a></div>
+<ul class="navbg">
+	<li><a href="about.html" tppabs="http://900025.3g/html/about.html" title="医院介绍">医院介绍</a></li>
+    <li><a href="javascript:void(0);" title="服务项目">服务项目</a>
+        	<ul>
+			            <li><a href="product.php-tid=1.htm" tppabs="http://900025.3g/product.php?tid=1" title="丰胸">丰胸</a></li>
+                        <li><a href="product.php-tid=2.htm" tppabs="http://900025.3g/product.php?tid=2" title="吸脂">吸脂</a></li>
+                        <li><a href="product.php-tid=3.htm" tppabs="http://900025.3g/product.php?tid=3" title="双眼皮">双眼皮</a></li>
+                        <li><a href="product.php-tid=4.htm" tppabs="http://900025.3g/product.php?tid=4" title="隆鼻">隆鼻</a></li>
+                        <li><a href="product.php-tid=5.htm" tppabs="http://900025.3g/product.php?tid=5" title="美容针">美容针</a></li>
+                        <li><a href="product.php-tid=6.htm" tppabs="http://900025.3g/product.php?tid=6" title="去眼袋">去眼袋</a></li>
+                        <li><a href="product.php-tid=7.htm" tppabs="http://900025.3g/product.php?tid=7" title="服务项目">服务项目</a></li>
+                        <li><a href="product.php-tid=8.htm" tppabs="http://900025.3g/product.php?tid=8" title="服务项目">服务项目</a></li>
+                        <li><a href="product.php-tid=9.htm" tppabs="http://900025.3g/product.php?tid=9" title="服务项目">服务项目</a></li>
+                        <li><a href="product.php-tid=10.htm" tppabs="http://900025.3g/product.php?tid=10" title="服务项目">服务项目</a></li>
+                        <li><a href="product.php-tid=11.htm" tppabs="http://900025.3g/product.php?tid=11" title="服务项目">服务项目</a></li>
+                        <li><a href="product.php-tid=12.htm" tppabs="http://900025.3g/product.php?tid=12" title="服务项目">服务项目</a></li>
+                    </ul>
+       
+    </li>
+    <li><a href="news.html" tppabs="http://900025.3g/html/news.html" title="最新资讯">最新资讯</a></li>
+    <li><a href="case.html" tppabs="http://900025.3g/html/case.html" title="成功案例">成功案例</a></li>
+    <li><a href="contact.html" tppabs="http://900025.3g/html/contact.html" title="联系我们">联系我们</a></li>
+</ul>
+<!--top end-->
+
+<div id="allmap"></div>
+<script type="text/javascript">
+window.onload = function (){
+var map = new BMap.Map("allmap");
+map.centerAndZoom(new BMap.Point(125.707081, 43.999808), 18);
+var marker1 = new BMap.Marker(new BMap.Point(125.707081, 43.999808));  // 创建标注
+map.addOverlay(marker1);              // 将标注添加到地图中
+marker1.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+//创建信息窗口
+var infoWindow1 = new BMap.InfoWindow("魔码网络");
+marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+}
+</script>
+</body>
+</html>

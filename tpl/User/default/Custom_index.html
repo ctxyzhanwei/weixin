@@ -1,0 +1,80 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">自定义表单 </h4>
+<div class="clr"></div>
+</div>
+<style>
+	#tags .btnGreen{background-image:none;background-color: #5BA607;color:#ffffff;height:30px;line-height: 30px;}
+	#tags .btnGreen:hover{background-color: #2F8BC9}
+</style>
+<div class="msgWrap form">
+		<ul id="tags" style="width:100%">
+        <li <pigcmsif where="ACTION_NAME eq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/record')}">表单数据统计</a> 
+            </li>
+            <li <pigcmsif where="ACTION_NAME neq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/index')}">表单设置项</a> 
+            </li>
+            <div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+        </ul>
+</div>
+
+<div class="cLine">
+
+<div class="left"> 
+	<a href="{pigcms::U('Custom/set',array('token'=>$token))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加自定义</a>
+</div>
+<div class="searchbar right">
+<form method="post" action="">
+	<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="search" value="" style="height:22px;">
+	<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索" style="height:30px;">
+</form>
+</div>
+
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="160">标题名称</th>
+<th width="160">关键词</th>
+<th width="130">创建时间</th>
+ <th width="100">提交总数</th>
+<th width="280" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{pigcms:$item.title}</td>
+<td>{pigcms:$item.keyword}</td>
+<td>{pigcms:$item.addtime|date="Y-m-d H:i:s",###}</td> 
+<td>{pigcms:$item.count}</td> 
+<td class="norightborder" align="center">
+	<a href="{pigcms::U('Custom/info',array('set_id'=>$item['set_id'],'token'=>$token))}">提交信息管理</a> &nbsp;|&nbsp;
+	<a href="{pigcms::U('Custom/forms',array('set_id'=>$item['set_id'],'token'=>$token))}">输入项管理</a> &nbsp;|&nbsp;
+	<a href="{pigcms::U('Custom/record',array('set_id'=>$item['set_id'],'token'=>$token))}">表单统计</a> &nbsp;|&nbsp;
+	<a href="{pigcms::U('Custom/set',array('set_id'=>$item['set_id'],'token'=>$token))}">修改</a> &nbsp;|&nbsp;
+	<a href="javascript:drop_confirm('删除将清除所有相关的设置信息和用户提交信息?', '{pigcms::U('Custom/del',array('set_id'=>$item['set_id'],'token'=>$token))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

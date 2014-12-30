@@ -1,0 +1,21 @@
+/* calendar style */
+
+#calendarDiv { display: block; display: none; position: relative; border: 1px solid #ccc;}
+#calendarDiv a { cursor: pointer;}
+#calendar { background: #ddd; clear: both; text-align: center; }
+#calendar, #linksTable { width: 180px;}
+#calendar .calendarHeader { background: #eef9eb;border-bottom: 1px solid #ddd; color: #444;}
+#calendar .weekDaysTitleRow { background-color:#fff; color: #333;}
+#calendar .weekDaysRow { background: #fcfcfc; color: #666;}
+#calendar .weekDaysCell { color: #000; border: 1px solid #ddd;}
+#calendar .weekDaysCellOver { background: #fff; border: 1px solid #999;}
+#closeCalender { position: absolute; right: 63px; color:#FFF; margin-bottom: 1px; display: block; padding: 2px 16px; cursor: pointer;}
+#closeCalender:hover { color: #fff;}
+#linksTable { background-color:#bfd3e6;}
+#linksTable a { display: block; color: #fff; letter-spacing: 1px; font-weight: bold; padding: 2px 5px;}
+#prevMonth { float: left;}
+#nextMonth { float: right;}
+#today { background-color:#bfd3e6; color:#FFFFFF;}
+#today a {color:#FFFFFF;}
+#today a:hover {color:#333;}
+.calendarSelectDate{ width:72px;}

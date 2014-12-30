@@ -1,0 +1,535 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/bootstrap_min.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/bootstrap_responsive_min.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/todc_bootstrap.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/themes.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/inside.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/bootstrap_min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jquery_validate_min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jquery_validate_methods.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/inside.js"></script>
+<div style="width:85%;margin-left:180px;">
+<div id="main">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="box">
+                        <div class="box-title">
+                            <div class="span10">
+                                <h3><i class="icon-edit"></i>预约系统设置</h3>
+                            </div>
+                            <div class="span2"><a class="btn" href="Javascript:window.history.go(-1)">返回</a></div>
+                        </div>
+                        <div class="box-content">
+                            <form action="/Wecar/AddCarReserve" method="post" class='form-horizontal form-validate'>
+                            <input type="hidden" name="aid" id="aid" value="30408"/>
+                            <input type="hidden" name="tp" id="tp" value="1"/>
+                            <input type="hidden" name="rid" id="rid" value=""/>
+                            <input type="hidden" name="pid" id="pid" value="d41d8cd98f00b204e9800998ecf8427e"/>
+                             <div class="control-group">
+                                                <label for="keyword" class="control-label">触发关键词：</label>
+                                                <div class="controls">
+                                                    <input type="text" name="keyword" id="keyword" class="input-xlarge" value="" data-rule-required="true" /><span class="maroon">*</span><span class="help-inline">如有多个关键字请用空格隔开</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="title" class="control-label">图文消息标题：</label>
+                                                <div class="controls">
+                                                    <input type="text" name="title" id="title" class="input-xlarge"  value="" data-rule-required="true" /><span class="maroon">*</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="picurl" class="control-label">图文封面：</label>
+                                                <div class="controls"> 
+                                                  <img class="thumb_img" src="http://stc.pigcms.com/img/default/car2.png" style="max-height: 100px;">
+                                                                                                      <input id="picurl" type="hidden" name="picurl" class="input-xlarge" readonly="" data-rule-required="true" data-rule-url="true" value="http://stc.pigcms.com/img/default/car2.png" />
+                                                    <span class="maroon">*</span>
+                                                                                                        <span class="help-inline">
+                                                        <button class="btn select_img" type="button">选择封面</button></span>
+                                                    <span class="help-inline">建议图片尺寸720*400，大小不超过300K</span>
+                                                </div></div>
+                                            <div class="control-group">
+                                                <label for="address" class="control-label">预约地址：</label>
+                                                <div class="controls">
+                                                    <input type="text" name="address" id="address" class="input-xlarge"  value="" data-rule-required="true"  placeholder="请输入接待预约用户的地址"/><span class="maroon">*</span><span class="help-inline">如上海市杨浦区五角场万达广场</span>
+                                                </div>
+                                            </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="">地图标识</label>
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <input type="text" id="suggestId" class="input-xlarge" name="place"  value=""/>
+                                            <button class="btn" type="button" id="positioning">搜索</button>
+                                        </div>
+
+                                        <span class="maroon">注意：这个只是模糊定位，准确位置请地图上标注!</span>
+                                        <div id="l-map">
+                                            <i class="icon-spinner icon-spin icon-large"></i>地图加载中...
+                                        </div>
+                                        <div id="r-result">
+                                            <input type="hidden" id="lng" name="lng" value=""/><input type="hidden" id="lat" name="lat" value=""/>
+                                        </div>
+
+                                      </div>
+                                </div>
+                                    <div class="control-group">
+                                                <label for="tel" class="control-label">预约电话：</label>
+                                                <div class="controls">
+                                                    <input type="text" name="tel" id="tel" class="input-xlarge" value=""  data-rule-required="true" data-rule-phone="true" placeholder="请输入接收预约的电话号码"/><span class="maroon">*</span><span class="help-inline">如021-61234567</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="headpic" class="control-label">预约页面头部图片：</label>
+                                                <div class="controls">
+                                                    <img class="thumb_img" src="http://stc.pigcms.com/img/default/car2.png" style="max-height: 100px;">
+                                                                                                        <input id="headpic" type="hidden" name="headpic" class="input-xlarge" readonly="" data-rule-required="true" data-rule-url="true" value="http://stc.pigcms.com/img/default/car2.png" />
+                                                                                                        <span class="maroon">*</span>
+                                                    <span class="help-inline">
+                                                        <button class="btn select_img" type="button">选择图片</button></span>
+                                                    <span class="help-inline">默认图片大小640*320，图片大小不超过300K</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="info" class="control-label">预约详情：</label>
+                                                <div class="controls">
+                                                    <textarea class="input-xlarge" id="info" name="info" rows="5" placeholder="简述用户预约需要注意的事项"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="typename" class="control-label">重命名订单：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge" name="typename" value="我的订单" id="typename" data-rule-required="true" maxlength="5"/>
+                                                    <span class="maroon">*</span><span class="help-inline">用户修改用户手机中“我的订单”栏目的名称，您可以将其修改成诸如“我的团购”、“我的预约”等</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="typename2" class="control-label">重命名订单说明：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge" name="typename2" value="订单说明" id="typename2" maxlength="5"/>
+                                                    <span class="maroon">*</span><span class="help-inline">用户修改用户手机中“订单说明”栏目的名称，您可以将其修改成诸如“预约说明”、“试驾说明”等</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="typename3" class="control-label">重命名订单电话：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge" name="typename3" value="订单电话" id="typename3" maxlength="5"/>
+                                                    <span class="maroon">*</span><span class="help-inline">用户修改用户手机中“订单电话”栏目的名称，您可以将其修改成诸如“预约电话”、“试驾电话”等</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="typename" class="control-label">订单接收设置：</label>
+                                                <div class="controls">
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="type" value="1"  checked="checked"  />
+                                                        限定时间
+                                                    </label>
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="type" value="2"  />
+                                                        限定每日量
+                                                    </label>
+                                                    <label class="radio inline">
+                                                        <input type="radio" name="type" value="3"  />
+                                                        限定全部总量
+                                                    </label>
+                                                    <span class="help-inline" id="type1">设定您接受订单的起始和结束时间</span>
+                                                    <span class="help-inline" id="type2" style="display:none;">设定您每日接收的订单总数</span>
+                                                    <span class="help-inline" id="type3" style="display:none;">设定您总计可接收的订单总数</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group" >
+                                                <label for="date" class="control-label"></label>
+                                                <div class="controls">
+                                                <div class="input-prepend">
+
+                                                 <span class="add-on"><i class="icon-calendar"></i></span>
+                                                    <input type="text" class="input-xlarge daterangepick" value="" name="date" id="date" />
+                                                    
+                                                </div><span class="help-inline">填写订单的起始和结束时间(为空表示不限制)</span></div>
+                                            </div>
+                                            <div class="control-group"  style="display: none;" >
+                                                <label for="allnums" class="control-label"></label>
+                                                <div class="controls">
+                                                    <input type="text" name="allnums" id="allnums" class="input-mini" value="" data-rule-number="true" />
+                                                    <span class="help-inline">填写最大接收订单数(为空表示不限制)</span>
+                                                </div>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $(function () {
+                                                    $("input[type='radio']").click(function () {
+                                                        var $this = $(this), $val = $this.val(), $div = $this.parents(".control-group");
+                                                        if ($val == 1) {
+                                                            $div.next().show();
+                                                            $div.next().next().hide();
+                                                            $("#type1").show();
+                                                            $("#type2").hide();
+                                                            $("#type3").hide();
+                                                        } else {
+                                                            $div.next().next().show();
+                                                            $div.next().hide();
+                                                            if($val == 2){
+                                                                $("#type2").show();
+                                                                $("#type1").hide();
+                                                                $("#type3").hide();
+                                                            }else{
+                                                                $("#type3").show();
+                                                                $("#type1").hide();
+                                                                $("#type2").hide();
+                                                            }
+                                                        }
+                                                    })
+                                                })
+                                            </script>
+
+<script>
+                                        function dodelit(i) {
+
+
+
+                                            document.getElementById("txt" + i).value = "";
+                                            document.getElementById("value" + i).value = "";
+                                            if (i != 1) {
+                                                document.getElementById("trtxt" + i).style.display = "none";
+                                                document.getElementById("add" + i).style.display = "";
+                                            }
+                                        }
+                                        function doaddit(i) {
+
+                                            document.getElementById('trtxt' + i).style.display = "";
+                                            document.getElementById('add' + i).style.display = "none";
+
+
+                                        }
+                                        function sdodelit(i) {
+
+
+
+                                            document.getElementById("select" + i).value = "";
+                                            document.getElementById("svalue" + i).value = "";
+                                            if (i != 1) {
+                                                document.getElementById("strtxt" + i).style.display = "none";
+                                                document.getElementById("sadd" + i).style.display = "";
+                                            }
+                                        }
+                                        function sdoaddit(i) {
+
+                                            document.getElementById('strtxt' + i).style.display = "";
+                                            document.getElementById('sadd' + i).style.display = "none";
+
+
+                                        }
+                                    </script>
+
+                                     <div class="control-group">
+                                                <label for="tel" class="control-label">订单内容设置：</label>
+                                                <div class="controls">
+                                                <span class="help-inline">填写你要收集的内容！订单默认选项不可以修改删除！</span>
+                                                     <table id="listTable" class="table table-bordered table-hover dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>字段类型</th>
+                                                <th>字段名称</th>
+                                                <th>初始内容</th>
+
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>单行文字：</td>
+                                                <td>
+                                                    <input name="keyword" type="text" disabled="disabled" class="wizard-ignore" value="联系人" readonly="readonly"></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" class="wizard-ignore" value="请输入您的名字" readonly="readonly"></td>
+
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"  checked="checked"  name="name_show" value="1">是否显示
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>单行文字：</td>
+                                                <td>
+                                                    <input name="keyword" type="text" disabled="disabled" class="wizard-ignore" value="联系电话" readonly="readonly"></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" class="wizard-ignore" value="请输入您的电话" readonly="readonly"></td>
+
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"  checked="checked"  name="tel_show" value="1">是否显示
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td>单行文字：</td>
+                                                <td>
+                                                    <input name="keyword" type="text" disabled="disabled" class="wizard-ignore" value="车牌" readonly="readonly"></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" class="wizard-ignore" value="请输入您的车牌" readonly="readonly"></td>
+
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"  checked="checked"  name="plate_show" value="1">是否显示
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>单行文字：</td>
+                                                <td>
+                                                    <input name="keyword" type="text" disabled="disabled" class="wizard-ignore" value="公里数" readonly="readonly"></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" class="wizard-ignore" value="请输入您的公里数" readonly="readonly"></td>
+
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"  checked="checked"  name="kilometers_show" value="1">是否显示
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>日期选择：</td>
+                                                <td>
+                                                    <input name=" " type="text" disabled="disabled" class="wizard-ignore" value="预约日期" onchange="$('odid').value='请输入'+this.value;"></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" id="odid" class="wizard-ignore" value="请输入预约日期"></td>
+
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"  checked="checked"  name="date_show" value="1">是否显示
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>时间选择：</td>
+                                                <td>
+                                                    <input name=" " type="text" disabled="disabled" class="wizard-ignore" value="预约时间" onchange="$('odid').value='请输入'+this.value;"></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" id="odid" class="wizard-ignore" value="请输入预约时间"></td>
+
+                                                <td>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"  checked="checked"  name="time_show" value="1">是否显示
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                                                                        <tr id="trtxt1">
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" name="txt1" id="txt1" value=""></td>
+                                                <td>
+                                                    <input name="value1" id="value1" type="text" value=""></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add2" href="javascript:doaddit(2)">添加</a>　<a href="javascript:dodelit(1)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="trtxt2"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" name="txt2" id="txt2" value=""></td>
+                                                <td>
+                                                    <input name="value2" id="value2" type="text" value=""></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add3" href="javascript:doaddit(3)">添加</a>　<a href="javascript:dodelit(2)">删除</a></p>
+                                                </td>
+                                            </tr>
+
+                                            <tr id="trtxt3"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" name="txt3" id="txt3" value=""></td>
+                                                <td>
+                                                    <input name="value3" id="value3" type="text" value=""></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add4" href="javascript:doaddit(4)">添加</a>　<a href="javascript:dodelit(3)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="trtxt4"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" name="txt4" id="txt4" value=""></td>
+                                                <td>
+                                                    <input name="value4" id="value4" type="text" value=""></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add5" href="javascript:doaddit(5)">添加</a>　<a href="javascript:dodelit(4)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="trtxt5"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" name="txt5" id="txt5" value=""></td>
+                                                <td>
+                                                    <input name="value5" id="value5" type="text" value=""></td>
+
+                                                <td>
+                                                    <p><a href="javascript:dodelit(5)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                                                                        <tr id="strtxt1">
+                                                <td width="120">下拉框1：</td>
+                                                <td>
+                                                    <input type="text" name="select1" value="" id="select1"></td>
+                                                <td>
+                                                    <input name="svalue1" id="svalue1" type="text" value="" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd2" href="javascript:sdoaddit(2)" style="">添加</a>　<a href="javascript:sdodelit(1)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="strtxt2"  style="display: none" >
+                                                <td>下拉框2：</td>
+                                                <td>
+                                                    <input type="text" name="select2" id="select2" value=""></td>
+                                                <td>
+                                                    <input name="svalue2" id="svalue2" type="text" value="" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd3" href="javascript:sdoaddit(3)" style="">添加</a>　<a href="javascript:sdodelit(2)">删除</a></p>
+                                                </td>
+                                            </tr>
+
+                                            <tr id="strtxt3"  style="display: none" >
+                                                <td>下拉框3：</td>
+                                                <td>
+                                                    <input type="text" name="select3" id="select3" value=""></td>
+                                                <td>
+                                                    <input name="svalue3" id="svalue3" type="text" value="" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd4" href="javascript:sdoaddit(4)">添加</a>　<a href="javascript:sdodelit(3)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="strtxt4"  style="display: none" >
+                                                <td>下拉框4：</td>
+                                                <td>
+                                                    <input type="text" name="select4" id="select4" value=""></td>
+                                                <td>
+                                                    <input name="svalue4" id="svalue4" type="text" value="" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd5" href="javascript:sdoaddit(5)">添加</a>　<a href="javascript:sdodelit(4)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="strtxt5"  style="display: none" >
+                                                <td>下拉框5：</td>
+                                                <td>
+                                                    <input type="text" name="select5" id="select5" value=""></td>
+                                                <td>
+                                                    <input name="svalue5" id="svalue5" type="text" value="" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a href="javascript:sdodelit(5)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>多行文字：</td>
+                                                <td>
+                                                    <input name="datename" type="text" value=""></td>
+                                                <td>
+                                                    <input name="add[order][]" type="text" disabled="disabled" value="请留言" readonly="readonly"></td>
+
+                                                <td>订单默认项</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                                </div>
+                                            </div>
+
+                                <div class="control-group">
+                                    <label for="" class="control-label">商家通知设置：</label>
+                                    <input type="hidden" name="take" value="1" />
+                                    <div class="controls">
+                                        <div class="row-fluid margin-bm10">
+                                            订单通知邮箱：<input type="text" class="input-large" data-rule-email="true" name="email" value=""><span class="help-inline"><label class="checkbox inline">
+                                                <input type="checkbox" name="open_email" value="1" >
+                                                开启
+                                            </label>
+                                            </span>
+                                        </div><p style="margin-left:83px;">当有新订单时，发送邮件到此邮箱</p>
+                                    </div>
+                                     <div class="controls">
+                                        <div class="row-fluid">
+                                            订单短信通知：<input type="text" class="input-large" data-rule-mobile="true" name="sms" value=""><span class="help-inline" ><label class="checkbox inline">
+                                                <input type="checkbox" name="open_sms" value="1">
+                                                开启
+                                            </label>
+                                            </span>
+                                        </div><p style="margin-left:83px;">当有新订单时，发送短信到此手机</p>
+                                    </div>
+                                </div>
+
+                            <div class="form-actions">
+                                    
+                                    <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
+                                    <a class="btn" href="Javascript:window.history.go(-1)">取消</a>
+                                </div>
+                            </form>
+                        </div>
+                        <link href="/templates/kindeditor/themes/default/default.css" rel="stylesheet" />
+                        <script src="/templates/kindeditor/kindeditor-min.js"></script>
+                        <script src="/templates/kindeditor/lang/zh_CN.js"></script> 
+                        <script>
+                            var editor1;
+                            KindEditor.ready(function (K) {
+                                editor1 = K.editor({
+                                    themeType: "simple",
+                                    allowFileManager: true
+
+                                });
+                                K('button.select_img').click(function (e) {
+                                         editor1.loadPlugin('smimage', function () {
+                                                editor1.plugin.imageDialog({
+                                                    imageUrl: $(e.target).parent().prevAll("input[type=hidden]").val(),
+                                                    clickFn: function (url, title, width, height, border, align) {
+                                                        var $input = $(e.target).parent().prevAll("input[type=hidden]")
+                                                        $input.val(url)
+                                                        $input.hide();
+                                                        var t_img = $(e.target).parent().prevAll(".thumb_img:first");
+                                                        if (t_img.length == 0) {
+                                                            var tmp = '<img class="thumb_img" src="333" style="max-height: 100px;">';
+                                                            $input.before(tmp.format(url))
+                                                        } else {
+                                                            t_img.attr("src", url);
+                                                        }
+                                                        $(e.target).text("重新选择")
+                                                        editor1.hideDialog();
+                                                    }
+                                                });
+                                            });
+
+                                });
+                            });
+
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+        $(function () {
+            var rid = $("#rid").val();
+            if(rid.length > 0){
+                var op = { 
+                    lat: "",
+                    lng: "",
+                    adr: ""
+                };
+                baidu_map(op);
+            }else{
+                baidu_map();
+            }
+        });
+    </script>
+
+</div>
+<include file="Public:footer"/>

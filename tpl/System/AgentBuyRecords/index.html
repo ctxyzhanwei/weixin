@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代理商优惠套餐管理</title>
+<include file="common:public" />
+<div class="cr"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+	  <tr>
+	  <td align="left" style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;代理商名称</td>
+		 <td align="left" style="text-align:left">用途</td>
+			<td>费用</td>
+			<td>时间</td>
+			<td>成功</td>
+		<td>管理操作</td>
+	  </tr>
+	    <volist name="list" id="list">
+			<tr>
+			<td align="left" style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;{pigcms:$list.agentname}</td>
+			<td align="left" style="text-align:left">{pigcms:$list.des}</td>
+		<td>{pigcms:$list.amount}</td>
+		<td><php>echo date('Y-m-d H:i:s',$list['time']);</php></td>
+	<td><pigcmsif where="$list['status'] eq '1'"><span style="color:green">已成功</span><else/><span style="color:red">未成功</span></pigcmsif></td>
+				<td align='center'>
+					<pigcmsif where="$list['canconfirm'] eq '1'"><a href="{pigcms::U('AgentBuyRecords/confirm',array('id'=>$list['id']))}">确认</a></pigcmsif>
+				</td>
+			</tr>
+	    </volist>
+     <tr bgcolor="#FFFFFF"> 
+      <td colspan="8"><div class="listpage">{pigcms:$page}</div></td>
+    </tr>
+   
+</table>
+
+
+</body>
+</html>

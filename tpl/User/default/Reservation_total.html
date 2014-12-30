@@ -1,0 +1,127 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/bootstrap_min.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/bootstrap_responsive_min.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/todc_bootstrap.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/themes.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/inside.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/bootstrap_min.js"></script>
+
+
+
+<div style="width:86%;margin-left:170px;">
+
+    <style>
+        body{font-family:微软雅黑,宋体,Arial,sans-serif}h1,h2,h3,h4,h5,h6{padding:0;margin:0}.row{width:950px;margin:20px 0 30px 20px;position:relative}.area{border:1px solid #cdced0;width:700px}#memberChart{height:250px;width:100%}#snConsumeChart{height:250px;width:100%}#memberRight{width:200px}.total{border-top:1px solid #cdced0;padding:7px 0 7px 15px}.right{position:absolute;top:0;right:15px;border:1px solid #cdced0;height:286px;width:210px;text-align:center;background-color:#eeeff1}.sep{height:1px;background-color:#cdced0}.txt-1{padding:15px;color:#1f4171}.txt-2{padding:5px;color:#ff7900;font-weight:normal}.txt-3{padding:5px;padding-bottom:20px;color:#beaa8f;font-weight:normal}.txt-4{position:relative;top:6px;left:-20px;color:#2d3645}.count-1{padding-top:25px;color:#ff7900}.count-2{margin-top:20px;color:#beaa8f}.start-time{margin-right:10px}.end-time{margin-left:10px;margin-right:5px}.info-block{text-align:center}
+    </style>
+
+    <body>
+    <div id="main">
+        <div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <div class="box">
+                        <div class="box-title">
+
+                            <h3>我的预约</h3>
+
+
+                        </div>
+
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="area">
+                                    <div id="memberChart">
+                                    </div>
+                                    <div class="total">
+                                        <span class="start-time">2013-11-10</span>
+                                        到<span class="end-time">2013-12-11</span>
+                                        共新增0名会员
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <h4 class="txt-1">新增会员</h4>
+                                    <div class="sep sep1"></div>
+                                    <h1 class="count-1">0</h1>
+                                    <h4 class="txt-2">今日新增会员</h4>
+                                    <h1 class="count-2">0</h1>
+                                    <h4 class="txt-3">昨日新增会员</h4>
+                                    <div class="sep sep2"></div>
+                                    <span class="txt-4">目前会员共计0人</span>
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(function () {
+                                    new Highcharts.Chart({
+                                        chart: {
+                                            renderTo: 'memberChart',
+                                            type: 'line',
+                                            marginRight: 30,
+                                            marginBottom: 25
+                                        },
+                                        title: {
+                                            text: '最近一月新增预约趋势图',
+                                            align: 'left'
+                                        },
+                                        xAxis: {
+                                            type: 'datetime',
+                                            labels: {
+                                                formatter: function () {
+                                                    return getFormatDate(this.value);
+                                                },
+                                                style: {
+                                                    color: '#2f7ed8'
+                                                }
+                                            },
+                                            gridLineWidth: 1,
+                                            tickInterval: 7 * 24 * 3600 * 1000// one week
+                                        },
+                                        yAxis: {
+                                            title: {
+                                                text: '<span>最近一月新增预约趋势图</span>'
+                                            },
+                                            plotLines: [{
+                                                value: 0,
+                                                width: 1,
+                                                color: '#808080'
+                                            }],
+                                            min: 0
+                                        },
+                                        tooltip: {
+                                            formatter: function () {
+                                                return getFormatDate(this.x) + ': <span style="color:red">' + this.y + '人<span>';
+                                            }
+                                        },
+                                        series: [{
+                                            name: "新增会员人数",
+                                            data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                                            pointStart: Date.UTC(2013,11,10),
+                                            pointInterval: 24 * 3600 * 1000 // one day
+                                        }],
+                                        legend: { enabled: false }
+                                    });
+
+
+                                    function getFormatDate(v) {
+                                        var d = new Date(v);
+                                        return d.getFullYear() + "-" + (d.getMonth()) + "-" + d.getDate();
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+    <div id="fallr-overlay"></div>
+</div>
+<include file="Public:footer"/>

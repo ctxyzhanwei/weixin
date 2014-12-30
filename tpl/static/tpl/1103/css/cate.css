@@ -1,0 +1,57 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, .mainmenu, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, .mainmenu {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+
+body { background-color:#ebebeb; font-size:14px; }
+
+body  .mainmenu {  overflow:hidden; margin: 2.5% 0 2.5% 0; width:100%;}
+body  .mainmenu li { float:left;  width:30%;margin: 0 2.5% 2.5% 0;  }
+body  .mainmenu li:nth-child(4n+1) { margin: 0 2.5% 2.5% 2.5%;  }
+body  .mainmenu li a { display:block;   color:#5f5f5f; text-align:center;  overflow:hidden; position:relative;background-color: #fff; }
+body  .mainmenu li a:active{opacity:0.5}
+body  .mainmenu li a img { width:100%;    }
+body  .mainmenu li a .m_left p{ color: #000;display:block;  margin:auto; text-align:center;  line-height:25px; font-size:14px;  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+body  .mainmenu li a .m_right { display: none;  margin-left:35%;margin-right: 2.5%;text-align:center;  font-size:12px; padding: 15px;}
+body  .mainmenu li em{ display:none}
+
+
+body  .mainmenu li:nth-child(4n+4){ float:none;width: 100%; overflow: hidden;}
+body  .mainmenu li:nth-child(4n+4) a{ color:#FFF;margin:0;background-color: transparent; }
+body  .mainmenu li:nth-child(4n+4) .m_left{ float: left; width:30%;background-color: #5fc8b7;margin: 0 2.5%;height: 100px;}
+body  .mainmenu li:nth-child(4n+4) .m_left img{ width:60px;margin-top: 10px;background-color: #5fc8b7;}
+body  .mainmenu li:nth-child(4n+4) a .m_right { display: block;height: 70px; }
+
+
+body  .mainmenu li:nth-child(4n+4) .m_right { background-color:#b45076; }
+body  .mainmenu li:nth-child(4n+4) p:last-child em{ display:block; width:20px; height:20px; background-size:100% 100%; position:absolute; right:20px; bottom:10px;}
+body  .mainmenu li:nth-child(4n+4) p:last-child span{ display:block; overflow:hidden; text-align:left; line-height: 16px;height: 46px; overflow:hidden}
+

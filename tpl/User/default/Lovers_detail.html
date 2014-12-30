@@ -1,0 +1,52 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post" action="" target="_top" enctype="multipart/form-data" >
+<div class="content">
+	<div class="cLineB">
+		<h4>{pigcms:$lotteryTypeName}活动详情</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+	</div> 
+	
+	<div class="msgWrap bgfc"> 
+
+		<table class="ListProduct" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<thead>
+				<tr>
+					<th>排名</th>
+					<th>昵称</th>
+					<th>最高分数</th>
+					<th>手机</th>
+					<th>参与次数</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="list" id="info">
+				<tr>
+					<td>{pigcms:$i}</td>
+					<td>{pigcms:$info.wecha_name}</td>
+					<td>{pigcms:$info.time}</td>
+					<td>{pigcms:$info.phone}</td>
+					<td>{pigcms:$info.usenums}</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+
+
+	</div> 
+	
+</div> 
+
+</form>
+      
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/> 

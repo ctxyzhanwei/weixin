@@ -1,0 +1,40 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+ <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4><span class="red">{pigcms:$catData.name}</span>的分类规格值得设置</h4> 
+    <a href="{pigcms::U('Store/norms',array('token'=>$token,'catid'=>$catid))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <input type="hidden" name="id" value="{pigcms:$set.id}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>分类名称：</th> 
+        <td>{pigcms:$cat.name}</td> 
+       </tr>
+       <tr>
+        <th><span class="red">*</span>规格名称：</th> 
+        <td><input type="text" name="name" value="{pigcms:$set.name}" class="px"/></td> 
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <input type="hidden" value="{pigcms::$catid}" name="catid" />
+       <input type="hidden" value="{pigcms::$token}" name="token" />
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Store/norms',array('token' => $token, 'catid' => $catid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  <include file="Public:footer" />

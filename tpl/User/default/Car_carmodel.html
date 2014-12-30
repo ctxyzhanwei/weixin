@@ -1,0 +1,62 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">车型管理</h4>
+              <div class="clr"></div>
+          </div>
+          
+          <div class="cLine">
+    
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+                <a href="{pigcms::U('Car/add_carmodel',array('token'=>$token))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">添加车型
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th>年款/名称</th>
+                  <th>品牌/车系</th>
+                  <th>报价</th>
+                  <th>显示顺序</th>
+                  <th style="width:200px;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              <volist name="carmodel" id="vo">
+                    <tr>
+                       <td>{pigcms:$vo['model_year']}/{pigcms:$vo['name']}</td>
+                       <td>{pigcms:$vo['brand_serise']}</td>
+                        <td>{pigcms:$vo['dealer_price']}</td>
+                       <td>{pigcms:$vo['sort']}</td>
+                       <td class="input-medium">
+                            <a class="btn" href="{pigcms::U('Car/edit_carmodel',array('token'=>$token,'id'=>$vo['id']))}" title="编辑">编辑</a>
+                            <a class="btn" href="{pigcms::U('Car/del_carmodel',array('token'=>$token,'id'=>$vo['id']))}" title="删除" onclick="return(confirm('确定要删除吗？'))" >删除</a></td>
+                    </tr>
+                </volist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

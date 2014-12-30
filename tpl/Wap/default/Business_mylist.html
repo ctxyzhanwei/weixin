@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8" />
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all" />
+<script type="text/javascript" src="{pigcms::RES}/car/js/jQuery.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/Tabs/css/easy-responsive-tabs.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/car/Tabs/js/easyResponsiveTabs.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            //oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+
+   $('#plug-wrap').removeClass();
+   //document.body.removeChild(document.getElementById('plug-wrap'));
+</script>
+<link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+<link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+<title>订单列表</title>
+<style>
+.aaa {font-size: -webkit-xxx-large;padding-top: 20px;
+            font-size: xx-large;margin:0 auto;height:100px;width: 250px;}
+ </style>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+
+<include file="Business:public_menu"/>
+<p></p><br><br><br>
+<div id="bookBody" class="body">
+<if condition="$reser['headpic'] neq ''">
+            <header>
+                <ul>
+                    <li><img src="{pigcms:$reser['headpic']}" style="width:100%;" /></li>
+                </ul>
+            </header>
+</if>
+<if condition="$books eq ''">
+<div class="text aaa">您还没有订单哟</div>
+</if>
+
+            <section>
+                <div class="p_10">
+                    <form id="form1" action="#" method="post" >
+  <div id="horizontalTab">
+
+            <div class="resp-tabs-container">
+             <volist name='books' id='vo'>
+                <div>
+                     <dl class="list_book">
+
+                            <dt class="ofh">
+                                <label style="width:150px;">
+
+
+                <li><font color="green">{pigcms:$vo['orderid']}</font> <a href="javascript:;" style="background-color:#ccc;float:right;margin-right:0px;color:#000;line-height:20px;border-radius:8px;margin-top:3px;padding:0 5px;"> <if condition="$vo['remate'] eq 0"><em class="no">等待商家受理</em><elseif condition="$vo['remate'] eq 1" /><em class="no"><font color="green">商家已受理</font></em><elseif condition="$vo['remate'] eq 2" /><em class="no"><font color="red">该订单被拒绝</font></em></if></a></li>
+
+            </label>
+                            </dt>
+                            <dd class="tbox">
+                                <div><label>联系人:</label></div>
+                                <div><label>{pigcms:$vo['truename']}</label></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>联系电话：</label></div>
+                                <div><a  style="color:#000;">{pigcms:$vo['tel']}</a></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>
+<if condition="$type eq 'fitness'">
+  健身房间
+<elseif condition="$type eq 'gover'"/>
+  服务窗口
+<elseif condition="$type eq 'food'"/>
+   销售门店
+<elseif condition="$type eq 'travel'"/>
+  景区景点
+<elseif condition="$type eq 'flower'"/>
+   分店名称
+<elseif condition="$type eq 'property'"/>
+    所属小区
+<elseif condition="$type eq 'ktv'"/>
+   KTV分店
+<elseif condition="$type eq 'bar'"/>
+   分店名称
+<elseif condition="$type eq 'fitment'"/>
+    分店名称
+<elseif condition="$type eq 'wedding'"/>
+   分店名称
+<elseif condition="$type eq 'affections'"/>
+    分店名称
+<elseif condition="$type eq 'housekeeper'"/>
+   分店名称
+<elseif condition="$type eq 'lease'"/>
+   分店名称
+<elseif condition="$type eq 'beauty'"/>
+   分店名称
+</if> ：</label></div>
+                                <div><label>{pigcms:$vo['productName']}</label></div>
+                            </dd>
+
+                                <dd class="tbox">
+                                <div><label>
+<if condition="$type eq 'fitness'">
+     健身项目
+<elseif condition="$type eq 'gover'"/>
+  服务项目
+<elseif condition="$type eq 'food'"/>
+    食品列表
+<elseif condition="$type eq 'travel'"/>
+  景区景点
+<elseif condition="$type eq 'flower'"/>
+   特色香花
+<elseif condition="$type eq 'property'"/>
+    业主服务
+<elseif condition="$type eq 'ktv'"/>
+   KTV包厢
+<elseif condition="$type eq 'bar'"/>
+   特色酒水
+<elseif condition="$type eq 'fitment'"/>
+    成功案例
+<elseif condition="$type eq 'wedding'"/>
+   服务项目
+<elseif condition="$type eq 'affections'"/>
+    宠物用品
+<elseif condition="$type eq 'housekeeper'"/>
+   服务项目
+<elseif condition="$type eq 'lease'"/>
+   租赁项目
+<elseif condition="$type eq 'beauty'"/>
+   产品名称
+</if> :</label></div>
+                                <div><label>{pigcms:$vo['orderName']}</label></div>
+                                </dd>
+                        <if condition="$vo['address'] neq ''">
+                            <dd class="tbox">
+                                <div><label>地址：</label></div>
+                                <div><label>{pigcms:$vo['address']} </label></div>
+                            </dd>
+                        </if>
+                        <if condition="$vo['info'] neq ''">
+                            <dd class="tbox">
+                                <div><label>我的留言：</label></div>
+                                <div><label>{pigcms:$vo['info']} </label></div>
+                            </dd>
+                        </if>
+                            <dd class="tbox">
+                                <div><label>下单时间：</label></div>
+                                <div><label>{pigcms:$vo['booktime']|date='Y年m月d日 H:i:s',###}</label></div>
+                            </dd>
+                            <div>
+                                <li class="box group_btn">
+                                    <div>
+                                    <if  condition="$vo['paid'] eq 1" >
+                  <if condition="($type eq 'gover') OR ($type eq 'property')">
+<a>预约成功</a>
+                  <else/>
+
+
+                                       <a style="background-image: -webkit-gradient(linear,left bottom,left top, color-stop(0, #22805A), color-stop(1, #378611) );">已经付款 {pigcms:$vo['payprice']} RMB</a>
+                                     </if>
+                                    <else/>
+                                        <if condition="($type eq 'gover') OR ($type eq 'property')">
+                                            <a>预约成功</a>
+                                        <else/>
+                                            <if condition="$vo['payprice'] neq '0.00'">
+                                            <a>未付款 {pigcms:$vo['payprice']} RMB</a>
+                                         <else/>
+                                            <a >已付款 {pigcms:$vo['payprice']} RMB</a>
+                                             </if>
+                                         </if>
+
+
+                                    </if>
+                                    </div>
+                                    <div><a href="{pigcms::U('Business/delOrder',array('token'=>$vo['token'],'wecha_id'=>$vo['wecha_id'],'id'=>$vo['id'],'type'=>$vo['type'],'bid'=>$bid))}" onclick="return(confirm('如果付款了,请谨慎操作,否则该订单作废处理.'));return false;" id="showcard2" class="gray">删除订单</a></div>
+                                </li>
+                            </div>
+
+                                <if condition="$vo['remate'] neq 0">
+                                <dd>
+                                    <p>客服回复：<font color="#2c2a24">{pigcms:$vo['kfinfo']}</font></p>
+                                 </dd>
+                                </if>
+
+                        </dl>
+                </div>
+                </volist>
+                <li class="box group_btn"><div>
+                   <p>{pigcms:$page}</p>
+                 </div></li>
+
+            </div>
+        </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'accordion', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true,   // 100% fit in a container
+            closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#tabInfo');
+                var $name = $('span', $info);
+
+                $name.text($tab.text());
+
+                $info.show();
+            }
+        });
+    });
+</script>
+                    </form>
+                </div>
+            </section>
+        </div>
+<div class="footerWrapper" style="padding-left: 30%;">
+
+    <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span>
+      <include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+</div>
+
+
+    </body>
+</html>

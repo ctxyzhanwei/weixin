@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<title>{pigcms:$metaTitle}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+	<meta name="format-detection" content="telephone=no" />
+	<link type="text/css" rel="stylesheet" href="{pigcms::$staticFilePath}/css/style.css" />
+	<script src="{pigcms::$staticFilePath}/js/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="{pigcms::$staticFilePath}/js/main.js"></script>
+</head>
+
+<body>
+	<!--头部-->
+	<header class="ts1">
+		<a class="u_back fl" href="javascript:history.go(-1)"></a>
+		<ul class="topbar fr">
+			<li>
+				<a class="icon_user" href="{pigcms::U('Product/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>$isDining))}"> <i></i>
+					我的
+				</a>
+			</li>
+			<li>
+				<a class="icon_shopping" href="{pigcms::U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>$isDining))}"> <i></i>
+					购物车
+				</a>
+			</li>
+			<li>
+				<a class="icon_class" href="{pigcms::U('Product/cats',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>$isDining))}">
+					<i></i>
+					分类
+				</a>
+			</li>
+			<li>
+				<a class="icon_index" href="{pigcms::U('Product/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>$isDining))}">
+					<i></i>
+					主页
+				</a>
+			</li>
+		</ul>
+	</header><!--主体-->
+	<div class="p_floatbox">
+    <div class="f_list_car p_buy clearfix" id="p_buy">
+    	<span class="all_price">总价格：<font id="all_price">￥{pigcms:$totalProductFee}</font></span>
+    	<span>总共<font id="all_numb">{pigcms:$totalProductCount}</font>件商品</span>
+    	<a href="{pigcms::U('Product/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>$isDining))}" class="p_btn_buy"><span class="ts1">进入购物车</span></a>
+    </div>
+</div>
+
+   <script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Product",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Product/index',array('token'=>$token))}",
+            "tTitle": "商城",
+            "tContent": ""
+};
+</script>
+{pigcms:$shareScript}

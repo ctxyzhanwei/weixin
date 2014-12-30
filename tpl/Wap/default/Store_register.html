@@ -1,0 +1,38 @@
+<include file="Store:header"/>
+<link href="tpl/static/store/css/eve.css" rel="stylesheet"/>
+<link href="tpl/static/store/css/other.css" rel="stylesheet"/>
+<div class="msg-err" style="display: none;"></div>
+<div id="login" class="body account">
+    <div class="wrapper">
+        <div id="login-panel" class="panel" data-tab="normal">
+            <div id="normal-panel" class="active-panel normal-panel">
+                <form id="normal-login-form" action="{pigcms::U('Store/register',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" autocomplete="off" method="post">
+                    <p><input class="input-common" type="text" placeholder="账号" name="username" /></p>
+                    <p><input class="input-common" type="text" placeholder="请输入您的手机号" name="tel" /></p>
+                    <p><input class="input-common" type="text" placeholder="请输入您的真实姓名" name="truename" /></p>
+                    <p><input class="input-common" type="text" placeholder="请输入您的通信地址" name="address" /></p>
+                    <p><input class="input-common" type="password" placeholder="请设置您的密码" name="password" /></p>
+                    <p><input class="input-common" type="password" placeholder="请输入您的确认密码" name="password2" /></p>
+					<button type="submit" class="btn-large btn-large mj-submit mj-submit">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="sub-action"><a href="{pigcms::U('Store/login', array('token' => $token, 'wecha_id' => $wecha_id, 'twid' => $twid))}">已有账号，现在登录</a> <!-- <a href="">找回密码</a> --></p>
+<div id="meituan_check" style="margin:0 0 55px 0"><br><br><br></div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName" : "Store",
+            "moduleID" : "",
+            "imgUrl" : "", 
+            "timeLineLink" : "{pigcms::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

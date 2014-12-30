@@ -1,0 +1,31 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+			<!--内页内容-->
+<div class="content_box">
+	<div class="news_box">
+		<section class="news_content">
+            <header class="news_title">{$content.title}</header>
+            <p class="up_time" style="display:none">发表日期:<time puddate="pubdate"> {$content.time|date_format:"%Y-%m-%d"}</time></p>
+            
+            <article style="width:100%;">
+             <div class="news_text" id="content">{$content.content}</div> 
+             
+            </article>
+          </section>
+		<div class="menu_box">
+		
+		{if $nextContent}<a style="float:right" href="{$nextContent->link}" class="nextpage">下一条</a>{/if}
+			{if $previousContent}<a style="float:right" href="{$previousContent->link}" class="prevpage">上一条</a>{/if}
+	
+		</div>
+	</div>
+</div>
+<!--内容结束-->
+{/if}
+{include file=$footer}

@@ -1,0 +1,85 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'music', 'video']
+});
+});
+</script>
+<div class="content">
+<div class="cLineB">
+ </div>
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="iframe" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td><span class="red">吃粽子 —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$set.title}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{pigcms:$set.info}</textarea><br/>最多填写120个字</td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" value="{pigcms:$set.picurl}" id="pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="#" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('pic')">预览</a>   &nbsp; 大小为720x400</td>
+				</tr>
+                <tr>
+					<th>游戏背景图片：</th>
+					<td><input type="text" name="bg" value="{pigcms:$set.bg}" id="bg" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script>
+					<a href="#" onclick="upyunPicUpload('bg',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('bg')">预览</a>   &nbsp; 大小为320x555</td>
+				</tr>
+                	<tr>
+					<th>logo图片：</th>
+					<td><input type="text" name="picurls1" value="{pigcms:$set.picurls1}" id="pic1" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="#" onclick="upyunPicUpload('pic1',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('pic1')">预览</a>   &nbsp; 大小为190*50</td>
+				</tr>
+                <tr>
+					<th>首页粽子图片：</th>
+					<td><input type="text" name="zz" value="{pigcms:$set.zz}" id="zz" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="#" onclick="upyunPicUpload('zz',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('zz')">预览</a>   &nbsp; <a href="/tpl/Wap/default/common/czz/images/c4.png">下载图标模板</a></td>
+				</tr>
+                <tr>
+					<th>关注微信的图标：</th>
+					<td><input type="text" name="wx" value="{pigcms:$set.wx}" id="wx" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="#" onclick="upyunPicUpload('wx',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('wx')">预览</a>   &nbsp; <a href="/tpl/Wap/default/common/czz/images/c18.png">下载图标模板</a></td>
+				</tr>
+                 <TR>
+                  <TH valign="top"><label for="url">更多内容链接：</label></TH>
+                  <TD><input type="input" class="px" id="url" value="{pigcms:$set.url}" name="url" style="width:280px;">  <a href="###" onclick="addLink('url',0)" class="a_choose">从功能库添加</a><br /><span class="red">如需跳转到其他网址，请在输入框右侧选择或这里填写网址(例如：http://baidu.com，记住如果填写必须有http://)</span>如果填写了图文详细内容，这里请留空，不要设置！</TD>
+                </TR>
+                <TR>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+  </div> 
+
+ 
+
+  
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

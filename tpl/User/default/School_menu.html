@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<style>
+    #myClas ul li {
+    margin-left: 5px;
+    }
+
+    .tooltips span {
+display: none;
+}
+    .tooltips:hover span {
+        text-align:left;
+        display: block;
+        position: absolute;
+        margin:0 auto;
+        width: 310px;
+        border: 1px solid #CCC;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #333;
+    }
+
+</style>
+
+<div class="tab" id="myClas">
+<ul>
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'semester'))}">分类管理</a></li>
+<li class="<if condition="(ACTION_NAME EQ 'assess') OR (ACTION_NAME EQ 'assess_add')">current</if> tabli" id="tab2"><a href="{pigcms::U('School/assess',array('token'=>$token))}">教师管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'students'">current</if> tabli" id="tab2"><a href="{pigcms::U('School/students',array('token'=>$token))}">学员管理</a></li>
+<!-- <li class="<if condition="ACTION_NAME EQ 'paycost'">current</if> tabli" id="tab2">
+<a href="{pigcms::U('School/paycost',array('token'=>$token))}">缴费管理</a></li> -->
+<li class="<if condition="ACTION_NAME EQ 'scoresearch' ">current</if> tabli" id="tab5"><a href="{pigcms::U('School/scoresearch',array('token'=>$token))}">成绩查询</a></li>
+<!-- <li class="<if condition="ACTION_NAME EQ 'campusnews'">current</if> tabli" id="tab6"><a href="{pigcms::U('School/campusnews',array('token'=>$token))}">校内新闻</a></li> -->
+<li class="<if condition="(ACTION_NAME EQ 'curriculum')  OR  (ACTION_NAME EQ 'assess_course')">current</if> tabli" id="tab3"><a href="{pigcms::U('School/curriculum',array('token'=>$token))}">课程安排</a></li>
+<li class="<if condition="ACTION_NAME EQ 'subscribe' OR (ACTION_NAME EQ 'subscribe_add')">current</if> tabli" id="tab4"><a href="{pigcms::U('School/subscribe',array('token'=>$token))}">课程预约</a></li>
+<li class="<if condition="ACTION_NAME EQ 'cookbook'">current</if> tabli" id="tab6"><a href="{pigcms::U('School/cookbook',array('token'=>$token))}">食谱安排</a></li>
+<li class="<if condition="ACTION_NAME EQ 'introduction'">current</if> tabli" id="tab7"><a href="{pigcms::U('School/introduction',array('token'=>$token))}">微教育配置</a></li>
+<li class="<if condition="ACTION_NAME EQ 'cat'">current</if> tabli" id="tab7"><a href="{pigcms::U('School/cat',array('token'=>$token))}">首页版块</a></li>
+</ul>
+</div>

@@ -1,0 +1,432 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#intro', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','clearhtml','hr',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut', 'music', 'video','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr', 'fontname', 'fontsize'],
+afterBlur: function(){this.sync();}
+});
+});
+</script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>商品设置</h4> 
+    <a href="{pigcms::U('Store/product',array('token'=>$token,'catid'=>$catid))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+<if condition="$isUpdate eq 1">
+<input type="hidden" name="id" value="{pigcms:$set.id}" />
+</if>
+<form method="post" action="" id="formID">
+<input type="hidden" name="discount" id="discount" value="{pigcms:$set.discount}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td>
+        <input type="hidden" name="pid" id="pid" value="{pigcms:$set.id}"/>
+        <input type="text" name="name" id="name" value="{pigcms:$set.name}" class="px" style="width:400px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th>类别：</th> 
+        <td><span class="red">{pigcms:$productCatData.name}</span></td> 
+       </tr>
+       <if condition="empty($productCatData['color']) neq true">
+       <tr>
+	       <th>{pigcms:$productCatData.color}：</th>
+	       <td>
+	       		<table>
+	       		<tr>
+	       		<volist name="colorData" id="norms" key="i">
+				<td width="130">
+				<if condition="(in_array($norms['id'], $colorList))" >
+				<input type="checkbox" name="color[]" value="{pigcms:$norms.id}" class="color" id="norms_{pigcms:$norms.id}" atr="{pigcms:$norms.value}" checked/>&nbsp;&nbsp;<label for="norms_{pigcms:$norms.id}">{pigcms:$norms.value}</label>
+				<else/>
+				<input type="checkbox" name="color[]" value="{pigcms:$norms.id}" class="color" id="norms_{pigcms:$norms.id}" atr="{pigcms:$norms.value}"/>&nbsp;&nbsp;<label for="norms_{pigcms:$norms.id}">{pigcms:$norms.value}</label>
+				</if>
+				</td>
+				<if condition="($i%5 eq 0)" ></tr><tr></if>
+				</volist>
+				</tr>
+				</table>
+	       </td>
+       </tr>
+       </if>
+       <!-- 规格 -->
+       <if condition="empty($productCatData['norms']) neq true">
+       <tr>
+	       <th>{pigcms:$productCatData.norms}：</th>
+	       <td>
+	       		<table>
+	       		<tr>
+	       		<volist name="formatData" id="norms" key="i">
+				<td width="130">
+				<if condition="(in_array($norms['id'], $formatList))" >
+				<input type="checkbox" name="norms[]" value="{pigcms:$norms.id}" class="norms" id="norms_{pigcms:$norms.id}" atr="{pigcms:$norms.value}" checked/>&nbsp;&nbsp;<label for="norms_{pigcms:$norms.id}">{pigcms:$norms.value}</label>
+				<else/>
+				<input type="checkbox" name="norms[]" value="{pigcms:$norms.id}" class="norms" id="norms_{pigcms:$norms.id}" atr="{pigcms:$norms.value}"/>&nbsp;&nbsp;<label for="norms_{pigcms:$norms.id}">{pigcms:$norms.value}</label>
+				</if>
+				</td>
+				<if condition="($i%5 eq 0)" ></tr><tr></if>
+				</volist>
+				</tr>
+				</table>
+	       </td>
+       </tr>
+       </if>
+       <tr>
+			<td colspan="2">
+				<table id="priceList">
+					<if condition="($productDetailData neq null) ">
+					<tr><th width="130">产品外观</th><th width="130">产品规格</th><th width="130">价格</th><th width="130">会员价</th><th width="130">数量</th></tr>
+			        <volist name="productDetailData" id="detail">
+			           <input type="hidden" class="editselect" value="{pigcms:$detail.id},{pigcms:$detail.color},{pigcms:$detail.colorName},{pigcms:$detail.format},{pigcms:$detail.formatName},{pigcms:$detail.price},{pigcms:$detail.vprice},{pigcms:$detail.num}"/>
+				       <tr class="tnorms">
+					       <td width="130">{pigcms:$detail.colorName}<input type="hidden" value="{pigcms:$detail.color}"/></td>
+					       <td width="130">{pigcms:$detail.formatName}<input type="hidden" value="{pigcms:$detail.format}"/></td>
+					       <td width="130"><input type="text" class="px" style="width:60px;" value="{pigcms:$detail.price}"/></td>
+					       <td width="130"><input type="text" class="px" style="width:60px;" value="{pigcms:$detail.vprice}"/></td>
+					       <td width="130"><input type="text" class="px" style="width:60px;" value="{pigcms:$detail.num}"/></td>
+					       <td width="130"><input type="hidden" value="{pigcms:$detail.id}"/></td>
+				       </tr>
+			        </volist>
+			        </if>
+				</table>
+			</td>
+       </tr>
+       <volist name="attributeData" id="attribute">
+	       <tr>
+		       <th>{pigcms:$attribute.name}：</th>
+		       <td>
+					<input type="text" value="{pigcms:$attribute.value}" class="attribute px" style="width:400px;" atr="{pigcms:$attribute.name}" id="{pigcms:$attribute.id}" aid="{pigcms:$attribute.aid}"/>
+		       </td>
+	       </tr>
+       </volist>
+       <tr> 
+        <th><span class="red">*</span>价格：</th>
+        <td><input type="text" id="price" name="price" value="{pigcms:$set.price}" class="validate[required, length[0,20]] px" style="width:100px;" /> 元</td> 
+       </tr>
+       <if condition="$isgroup eq 1">
+       <tr> 
+        <th><span class="red">*</span>所属组别：</th>
+        <td>
+        <select name="gid" id="gid">
+        <volist name="groups" id="g">
+        	<option value="{pigcms:$g['id']}" <if condition="$set['gid'] eq $g['id']" >selected</if>>{pigcms:$g['name']}</option>
+        </volist>
+        </select>
+        </td> 
+       </tr>
+       </if>
+       <tr> 
+        <th><span class="red">*</span>会员价：</th> 
+        <td><input type="text" id="vprice" name="vprice" value="{pigcms:$set.vprice}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>原价：</th> 
+        <td><input type="text" id="oprice" name="oprice" value="{pigcms:$set.oprice}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+       <tr> 
+        <th>库存：</th> 
+        <td><input type="text" id="num" name="num" value="{pigcms:$set.num}" class="px" style="width:100px;" /></td> 
+       </tr>
+       <tr> 
+        <th>销量基数：</th> 
+        <td><input type="text" id="fakemembercount" name="fakemembercount" value="{pigcms:$set.fakemembercount}" class="px" style="width:100px;" />(如果您不做假数据就设置为0)</td> 
+       </tr>
+       <tr> 
+        <th>是否下架：</th> 
+        <td>
+	        <input type="radio" name="status" class="status" value="0" id="status_0" <if condition="$set['status'] eq 0">checked</if> /><label for="status_0">正常</label>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="radio" name="status" class="status" value="1" id="status_1" <if condition="$set['status'] eq 1">checked</if> /><label for="status_1">下架</label>
+		</td> 
+       </tr>
+       <tr> 
+        <th>邮费：</th> 
+        <td><input type="text" id="mailprice" name="mailprice" value="{pigcms:$set.mailprice}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>关键词：</th>
+        <td><input type="text" name="keyword" id="keyword" value="{pigcms:$set.keyword}" class="px" style="width:400px;" /></td> 
+       </tr>
+       <tr> 
+        <th>Logo地址：</th>
+        <td><input type="text" name="logourl" value="{pigcms:$set.logourl}" class="px" id="pic" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片一：</th>
+        <td><input type="text" name="image1" value="{pigcms:$imageList[0].image}" imageid="{pigcms:$imageList[0].id}" class="px" id="image1" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image1',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image1')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片二：</th>
+        <td><input type="text" name="image2" value="{pigcms:$imageList[1].image}" imageid="{pigcms:$imageList[1].id}" class="px" id="image2" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image2',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image2')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片三：</th>
+        <td><input type="text" name="image3" value="{pigcms:$imageList[2].image}" imageid="{pigcms:$imageList[2].id}" class="px" id="image3" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image3',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image3')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片四：</th>
+        <td><input type="text" name="image4" value="{pigcms:$imageList[3].image}" imageid="{pigcms:$imageList[3].id}" class="px" id="image4" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image4',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image4')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片五：</th>
+        <td><input type="text" name="image5" value="{pigcms:$imageList[4].image}" imageid="{pigcms:$imageList[4].id}" class="px" id="image5" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image5',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image5')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片六：</th>
+        <td><input type="text" name="image6" value="{pigcms:$imageList[5].image}" imageid="{pigcms:$imageList[5].id}" class="px" id="image6" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image6',700,700,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image6')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>排序：</th> 
+        <td><input type="text" id="sort" name="sort" value="{pigcms:$set.sort}" class="px" style="width:50px;" />  数字越小排再越前（大于等于0的整数）</td> 
+       </tr>
+       <TR>
+          <TH valign="top"><label for="info">图文详细页内容：</label></TH>
+          <TD><textarea name="intro" id="intro"  rows="5" style="width:590px;height:360px">{pigcms:$set.intro}</textarea></TD>
+       </TR>  
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="button" name="button" class="btnGreen" id="save">保存</button> &nbsp; <a href="{pigcms::U('Store/index',array('token'=>$token, 'catid' => $catid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+</form>
+  </div> 
+<script type="text/javascript">
+$(document).ready(function(){
+	var oldselect = [];
+	$(".editselect").each(function(){
+		var t = $(this).val().split(",");
+		//alert(t[0]+'---'+ parseInt(t[1])+'---'+  t[2]+'---'+  t[3]+'---'+  t[4]+'---'+  t[5]+'---'+  t[6]);
+		oldselect[t[1] + '_' + t[3]] = new Array(t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7]);
+	});
+	$(".color").click(function(){
+		var selectValue = [];
+		var html = '';
+		var header = '<tr><th width="130">产品外观</th><th width="130">产品规格</th><th width="130">价格</th><th width="130">会员价</th><th width="130">数量</th></tr>';
+		if ($(".norms").html() == null) {
+			$(".color").each(function(){
+				if ($(this).attr('checked')) {
+					var color = $(this).attr('atr');
+					var colorid = $(this).val();
+					selectValue[colorid + '_' + 0] = new Array(0, colorid, color, 0, '', 0, 0, 0);
+				}
+			});
+		} else {
+			$(".color").each(function(){
+				if ($(this).attr('checked')) {
+					var color = $(this).attr('atr');
+					var colorid = $(this).val();
+					$(".norms").each(function(){
+						if ($(this).attr('checked')) {
+							var norms = $(this).attr('atr');
+							var normsid = $(this).val();
+							selectValue[colorid + '_' + normsid] = new Array(0, colorid, color, normsid, norms, 0, 0, 0);
+							//selectValue[colorid + '_' + normsid] = '<tr class="tnorms"><td width="130">' + color + '<input type="hidden" value="' + colorid + '"/></td><td width="130">' + norms + '<input type="hidden" value="' + normsid + '"/></td><td width="130"><input type="text" class="px" style="width:60px;"/></td><td width="130"><input type="text" class="px" style="width:60px;"/></td><td><input type="hidden" value="0"/></td></tr>';
+						}
+					});
+				}
+			});
+		}
+		for (var index in selectValue) {
+			if (oldselect[index] != null && oldselect[index] != '') {
+				html += '<tr class="tnorms"><td width="130">' + oldselect[index][2] + '<input type="hidden" value="' + oldselect[index][1] + '"/></td>';
+				html += '<td width="130">' + oldselect[index][4] + '<input type="hidden" value="' + oldselect[index][3] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + oldselect[index][5] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + oldselect[index][6] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + oldselect[index][7] + '"/></td>';
+				html += '<td><input type="hidden" value="' + oldselect[index][0] + '"/></td></tr>';
+			} else {
+				html += '<tr class="tnorms"><td width="130">' + selectValue[index][2] + '<input type="hidden" value="' + selectValue[index][1] + '"/></td>';
+				html += '<td width="130">' + selectValue[index][4] + '<input type="hidden" value="' + selectValue[index][3] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + selectValue[index][5] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + selectValue[index][6] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + selectValue[index][7] + '"/></td>';
+				html += '<td><input type="hidden" value="' + selectValue[index][0] + '"/></td></tr>';
+			}
+			//html += selectValue[index];
+		}
+		if (html != '') {
+			$("#priceList").html(header + html);
+		} else {
+			$("#priceList").html('');
+		}
+	});
+	$(".norms").click(function(){
+		var selectValue = [];
+		var html = '';
+		var header = '<tr><th width="130">产品外观</th><th width="130">产品规格</th><th width="130">价格</th><th width="130">会员价</th><th width="130">数量</th></tr>';
+		if ($(".color").html() == null) {
+			$(".norms").each(function(){
+				if ($(this).attr('checked')) {
+					var norms = $(this).attr('atr');
+					var normsid = $(this).val();
+					selectValue[0 + '_' + normsid] = new Array(0, 0, '', normsid, norms, 0, 0, 0);
+					//selectValue[colorid + '_' + normsid] = '<tr class="tnorms"><td width="130">' + color + '<input type="hidden" value="' + colorid + '"/></td><td width="130">' + norms + '<input type="hidden" value="' + normsid + '"/></td><td width="130"><input type="text" class="px" style="width:60px;"/></td><td width="130"><input type="text" class="px" style="width:60px;"/></td><td><input type="hidden" value="0"/></td></tr>';
+				}
+			});
+		} else {
+			$(".color").each(function(){
+				if ($(this).attr('checked')) {
+					var color = $(this).attr('atr');
+					var colorid = $(this).val();
+					$(".norms").each(function(){
+						if ($(this).attr('checked')) {
+							var norms = $(this).attr('atr');
+							var normsid = $(this).val();
+							selectValue[colorid + '_' + normsid] = new Array(0, colorid, color, normsid, norms, 0, 0, 0);
+							//selectValue[colorid + '_' + normsid] = '<tr class="tnorms"><td width="130">' + color + '<input type="hidden" value="' + colorid + '"/></td><td width="130">' + norms + '<input type="hidden" value="' + normsid + '"/></td><td width="130"><input type="text" class="px" style="width:60px;"/></td><td width="130"><input type="text" class="px" style="width:60px;"/></td><td><input type="hidden" value="0"/></td></tr>';
+						}
+					});
+				}
+			});
+		}
+		for (var index in selectValue) {
+			if (oldselect[index] != null && oldselect[index] != '') {
+				html += '<tr class="tnorms"><td width="130">' + oldselect[index][2] + '<input type="hidden" value="' + oldselect[index][1] + '"/></td>';
+				html += '<td width="130">' + oldselect[index][4] + '<input type="hidden" value="' + oldselect[index][3] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + oldselect[index][5] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + oldselect[index][6] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + oldselect[index][7] + '"/></td>';
+				html += '<td><input type="hidden" value="' + oldselect[index][0] + '"/></td></tr>';
+			} else {
+				html += '<tr class="tnorms"><td width="130">' + selectValue[index][2] + '<input type="hidden" value="' + selectValue[index][1] + '"/></td>';
+				html += '<td width="130">' + selectValue[index][4] + '<input type="hidden" value="' + selectValue[index][3] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + selectValue[index][5] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + selectValue[index][6] + '"/></td>';
+				html += '<td width="130"><input type="text" class="px" style="width:60px;" value="' + selectValue[index][7] + '"/></td>';
+				html += '<td><input type="hidden" value="' + selectValue[index][0] + '"/></td></tr>';
+			}
+			//html += selectValue[index];
+		}
+		if (html != '') {
+			$("#priceList").html(header + html);
+		} else {
+			$("#priceList").html('');
+		}
+	});
+	$("#save").click(function(){
+		var name = $("#name").val();
+		if (name.length < 1) {
+			art.dialog({title:'消息提示', ok:true, width:300, height:200, content:'名称不能为空'});
+			return false;
+		}
+		var num = $("#num").val();
+		if (isNaN(num)) {
+			art.dialog({title:'消息提示', ok:true, width:300, height:200, content:'库存应该是为正整数'});
+			return false;
+		}
+		var price = $("#price").val();
+		var vprice = $("#vprice").val();
+		var oprice = $("#oprice").val();
+		var mailprice = $("#mailprice").val();
+		var keyword = $("#keyword").val();
+		var pic = $("#pic").val();
+		var intro = $("#intro").val();
+		var gid = $("#gid").val();
+		var fakemembercount = $("#fakemembercount").val();
+		var status = $(".status:checked").val();
+		var attribute = [];
+		var i = 0;
+		var str = '';
+		$(".attribute").each(function(){
+			attribute[i]= {'name':$(this).attr('atr'), 'value':$(this).val(), 'aid':$(this).attr('aid'), 'id':$(this).attr('id')};//new Array($(this).attr('atr'), $(this).val());
+			i ++;
+		});
+		var norms = [];
+		var i = 0;
+		var tnum = 0;
+		$(".tnorms").each(function(){
+			tnum += parseInt($(this).children('td').eq(4).children('input').val());
+			norms[i]= {'color':$(this).children('td').eq(0).children('input').val(), 'format':$(this).children('td').eq(1).children('input').val(), 'price':$(this).children('td').eq(2).children('input').val(), 'vprice':$(this).children('td').eq(3).children('input').val(), 'num':$(this).children('td').eq(4).children('input').val(), 'id':$(this).children('td').eq(5).children('input').val()};
+			i ++;
+		});
+		if (tnum > 0) {
+			num = tnum;
+		}
+		//num = num > tnum ? num : tnum;
+		var image1 = $("#image1").val();
+		var image2 = $("#image2").val();
+		var image3 = $("#image3").val();
+		var image4 = $("#image4").val();
+		var image5 = $("#image5").val();
+		var image6 = $("#image6").val();
+		var imageid1 = parseInt($("#image1").attr('imageid'));
+		var imageid2 = parseInt($("#image2").attr('imageid'));
+		var imageid3 = parseInt($("#image3").attr('imageid'));
+		var imageid4 = parseInt($("#image4").attr('imageid'));
+		var imageid5 = parseInt($("#image5").attr('imageid'));
+		var imageid6 = parseInt($("#image6").attr('imageid'));
+		var images = [];
+		images[0] = {'id':imageid1, 'image':image1};
+		images[1] = {'id':imageid2, 'image':image2};
+		images[2] = {'id':imageid3, 'image':image3};
+		images[3] = {'id':imageid4, 'image':image4};
+		images[4] = {'id':imageid5, 'image':image5};
+		images[5] = {'id':imageid6, 'image':image6};
+		var data = {pid:$("#pid").val(),
+					name:name,
+					num:num,
+					price:price,
+					vprice:vprice,
+					oprice:oprice,
+					mailprice:mailprice,
+					keyword:keyword,
+					pic:pic,
+					gid:gid,
+					intro:intro,
+					status:status,
+					fakemembercount:fakemembercount,
+					attribute:JSON.stringify(attribute),
+					norms:JSON.stringify(norms),
+					images:JSON.stringify(images),
+					token:'{pigcms:$token}',
+					catid:'{pigcms:$catid}',
+					sort:$("#sort").val()
+					};
+		$.post('index.php?g=User&m=Store&a=productSave', data, function(response){
+			if (response.error_code == false) {
+				art.dialog({
+					title:'消息提示', 
+				    content: response.msg, 
+				    width:300, 
+				    height:200,
+				    lock: true,
+				    ok: function () {
+				    	this.time(3);
+				    	location.href='index.php?g=User&m=Store&a=product&token={pigcms:$token}&catid={pigcms:$catid}'
+				        return false;
+				    },
+				    cancelVal: '关闭'
+				});
+			} else {
+				art.dialog({title:'消息提示', time:2, width:300, height:200, content:response.msg});
+			}
+			
+		}, 'json');
+	});
+});
+</script>
+<include file="Public:footer" />

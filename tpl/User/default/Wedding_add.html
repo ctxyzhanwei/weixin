@@ -1,0 +1,228 @@
+<include file="Public:head"/>
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+ <script src="/tpl/static/upyun.js"></script>
+<div class="content">
+<style>
+.msgWrap .control-group {
+margin-bottom: 20px;
+}
+.msgWrap .control-label {
+text-align: left;
+width: 140px;
+font-weight: bold;
+padding-top: 5px;
+float: left;
+display: block;
+margin-bottom: 5px;
+}
+.msgWrap .controls {
+margin-left: 160px;
+}
+.msgWrap .form-actions {
+padding: 19px 20px 20px 160px;
+margin-top: 20px;
+}
+.span4, .span1, .option, .valid, .input-large{
+	background: url(../images/px.png) repeat-x scroll 0 0 #FFFFFF;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    border-style: solid;
+    border-width: 1px;
+	border-radius: 2px 2px 2px 2px;
+	padding:5px;
+	width: 210px;
+}
+</style>
+<script>
+function setlatlng(longitude,latitude){
+	art.dialog.data('longitude', longitude);
+	art.dialog.data('latitude', latitude);
+	art.dialog.open('{pigcms::U('Map/setLatLng')}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<div class="cLineB">
+  <h4>新建微喜帖</h4><a href="{pigcms::U('Wedding/index')}" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+  <div class="msgWrap bgfc">
+  <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+	<div class="control-group">
+		<label for="title" class="control-label">喜帖标题：</label>
+		<div class="controls">
+			<input type="text" name="title" id="title" maxlength="10" class="span4" value="{pigcms:$wedding.title}" data-rule-required="true"><span class="maroon">*</span><span class="help-inline">喜帖标题限制在十个字以内</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="keyword" class="control-label">触发关键词：</label>
+		<div class="controls">
+			<input type="text" name="keyword" id="keyword" class="span4" data-rule-required="true" value="{pigcms:$wedding.keyword}"><span class="maroon">*</span><span class="help-inline">只能设置一个关键字</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="coverurl" class="control-label">喜帖封面：</label>
+		<div class="controls">
+			<img class="thumb_img" id="suicai1_src" src="<if condition="$wedding['coverurl'] neq false">{pigcms:$wedding.coverurl}<else />http://bcs.duapp.com/baeimgs/Tnh1ROgm93.png</if>" style="max-height: 100px;">
+			<input id="suicai1" type="text" name="coverurl" class="px hide" onchange="changpic(this,1)" value="<if condition="$wedding['coverurl'] neq false">{pigcms:$wedding.coverurl}<else />http://bcs.duapp.com/baeimgs/Tnh1ROgm93.png</if>">
+			<span class="help-inline">
+				<a href="javascript:void(0)" onclick="upyunPicUpload('suicai1',700,420,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+				<a href="###" onclick="viewImg('suicai1')" class="btnGrayS vm">预览</a>
+			</span>
+			<span class="help-inline"><span class="maroon">*</span>封面默认大小720*400</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="openpic" class="control-label">开场动画：</label>
+		<div class="controls">
+			<img class="thumb_img" id="suicaipic2_src" src="<if condition="$wedding['openpic'] neq false">{pigcms:$wedding.openpic}<else />http://bcs.duapp.com/baeimgs/jNuxaj1cAj.jpg</if>" style="width: 180px; height: 180px;">
+			<input id="suicaipic2" type="text" name="openpic" class="px hide" onchange="changpic(this,2)" value="<if condition="$wedding['openpic'] neq false">{pigcms:$wedding.openpic}<else />http://bcs.duapp.com/baeimgs/jNuxaj1cAj.jpg</if>">
+			<span class="help-inline">
+						<a href="javascript:void(0)" onclick="upyunPicUpload('suicaipic2',700,420,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+				<a href="###" onclick="viewImg('suicaipic2')" class="btnGrayS vm">预览</a>
+			</span>
+			<span class="help-inline"> 上传400*400左右的新郎新娘合影图,用于喜帖打开时的动画中,图片大小不超过300K </span>
+			<span class="red">不想要开场动画图片地址留空即可!</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="picurl" class="control-label">缩略图：</label>
+		<div class="controls">
+			<img class="thumb_img" id="suicai3_src" src="<if condition="$wedding['openpic'] neq false">{pigcms:$wedding.openpic}<else />http://bcs.duapp.com/baeimgs/2cDQtFbl75.jpg</if>" style="width: 40px; height: 40px;">
+			<input id="suicai3" type="text" name="picurl" class="px hide" onchange="changpic(this,3)" value="<if condition="$wedding['openpic'] neq false">{pigcms:$wedding.openpic}<else />http://bcs.duapp.com/baeimgs/2cDQtFbl75.jpg</if>">
+			<span class="help-inline">
+				<a href="javascript:void(0)" onclick="upyunPicUpload('suicai3',700,420,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+				<a href="###" onclick="viewImg('suicai3')" class="btnGrayS vm">预览</a>
+			</span><span class="help-inline"><span class="maroon">*</span>默认40x40,显示在喜帖主页</span>
+		</div>
+	</div>
+		<div class="control-group">
+		<label for="picurl" class="control-label">相册选择：</label>
+		<div class="controls">
+			<select name="pid">
+				<option value="">请选择相册名称</option>
+				<volist id="photo" name="photo">
+				<option value="{pigcms:$photo.id}" <if condition="$photo['id'] eq $wedding['pid']" >selected="selected"</if>>{pigcms:$photo.title}</option>
+				</volist>
+			</select>
+			<span class="help-inline">
+			</span>
+			<span class="help-inline">
+				<span class="maroon">*</span>
+				<a target="ddd" class="btnGrayS vm" href="{pigcms::U('Photo/add')}">创建相册</a>  如果没有请创建
+			</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="address" class="control-label">新郎名字：</label>
+		<div class="controls">
+			<input type="text" name="man" id="man" class="span4" value="{pigcms:$wedding.man}" data-rule-required="true">
+			<span class="maroon">*</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="woman" class="control-label">新娘名字：</label>
+		<div class="controls">
+			<input type="text" name="woman" id="woman" class="span4" value="{pigcms:$wedding.woman}" data-rule-required="true">
+			<span class="maroon">*</span>
+		</div> 
+	</div>
+	<div class="control-group">
+		<label for="typename" class="control-label"></label>
+		<div class="controls">
+			<label class="radio inline">
+				<input type="radio" name="who_first" checked="checked" value="1"><span class="help-inline">新郎名字在前</span>
+			</label>
+			<label class="radio inline">
+				<input type="radio" name="who_first" value="2"><span class="help-inline">新娘名字在前</span>
+			</label>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="tel" class="control-label">联系电话：</label>
+		<div class="controls">
+			<input type="text" name="phone" id="phone" class="span4" value="{pigcms:$wedding.phone}" data-rule-required="true" data-rule-phone="true"><span class="maroon">*</span><span class="help-inline">如0551-63474223 </span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="time" class="control-label">婚宴日期：</label>
+		<div class="controls"> 
+			<div class="input-prepend">
+				<span class="add-on">
+					<i class="icon-calendar"></i>
+				</span>
+				<input type="input" class="px" onClick="WdatePicker()"  value="<if condition="$wedding['time'] neq false">{pigcms:$wedding.time|date='Y-m-d',###}</if>" name="time"> <span class="maroon">*</span> 
+			</div>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="place" class="control-label">宴席地址：</label>
+		<div class="controls"> 
+			<div class="input-prepend">
+				<input type="text" name="place" class="span4" value="{pigcms:$wedding.place}" onchange="loadmap()" id="suggestId" data-rule-required="true"/> <span class="maroon">*</span> 
+			</div>
+		</div>
+	</div>
+	<div class="control-group">
+		 <label class="control-label" for="suggestId">经纬地址</label>
+		 <div class="controls">
+			<div id="r-result">
+				 <input type="input" class="px" id="longitude" value="{pigcms:$wedding.lng}"  name="lng" style="width:80px;">
+				 <input type="input" class="px" id="latitude" value="{pigcms:$wedding.lat}"  name="lat" style="width:80px;">  <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a>
+				 <input  type="hidden"  name="city" class="px" id="city" size="20" value="" /> 
+			 </div>
+			 <div id="searchResultPanel"></div>
+		 </div>
+    </div>
+	<div class="control-group">
+		<label for="video" class="control-label">喜帖视频：</label>
+		<div class="controls"> 
+			 <input type="text" name="video" id="video" class="span4" style="width:480px" value="{pigcms:$wedding.video}"><p>支持优酷视频地址如;http://v.youku.com/v_show/id_XNjI4ODk5NDQ4.html <br> 腾讯fash视频地址：如http://static.video.qq.com/TPout.swf?vid=v0119s27wd5&amp;auto=0 <br> 也支持mp4和ogg 格式地址 http://www.w3school.com.cn/example/html5/mov_bbb.mp4 </p>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="mp3url">背景音乐</label>
+		<div class="controls">
+			<input type="text" class="px" name="mp3url" value="{pigcms:$wedding.mp3url}" id="mp3url" style="width:200px;float:left" onchange="$('#plmp3').attr('href',this.value"> <a href="###" onclick="upyunPicUpload('mp3url',0,0,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;<a href="###" onclick="chooseFile('mp3url','music')" class="a_upload">选择</a>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="tel" class="control-label">密码：</label>
+		<div class="controls">
+			<input type="text" name="passowrd" id="passowrd" class="span4" value="{pigcms:$wedding.passowrd}" data-rule-required="true"><span class="maroon">*</span><span class="help-inline">设置微信上查看来宾名单的验证密码</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="tel" class="control-label">想要给朋友说的话：</label>
+		<div class="controls">
+			<textarea rows="5" name="word" id="word" class="px" data-rule-required="true" data-rule-maxlength="200" style=" width:450px; height:60px"><if condition="$wedding['word'] neq false">{pigcms:$wedding.word}<else/>亲爱的朋友，我要结婚了，希望能在我的婚礼上得到你的祝福，并祝愿你也幸福.</if></textarea>
+			<span class="maroon">*</span><span class="help-inline">喜帖文字限制在200字以内</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="qr_code" class="control-label">二维码图片地址：</label>
+		<div class="controls">
+			<input id="suicai6" type="text" name="qr_code" class="span4" value="{pigcms:$wedding.qr_code}">
+			<span class="help-inline">
+				<a href="javascript:void(0)" onclick="upyunPicUpload('suicai6',700,420,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+				<a href="###" onclick="viewImg('suicai6')" class="btnGrayS vm">预览</a>
+			</span>
+			<span class="help-inline">
+			<span class="maroon">*</span>默认100x100,显示在喜帖底部</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="copr" class="control-label">底部版权：</label>
+		<div class="controls">
+		<textarea name="copyrite" id="copyrite" class="px" rows="5" style="width:450px; height:60px">{pigcms:$wedding.copyrite}</textarea>
+		</div>
+	</div>
+   <div class="form-actions">
+			<button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>　<button type="button" class="btnGray vm">取消</button>
+		</div>
+</form>
+  </div> 
+ 
+  
+        </div>
+		
+<include file="Public:footer"/>

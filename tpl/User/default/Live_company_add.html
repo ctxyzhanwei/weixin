@@ -1,0 +1,93 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<form class="form" method="post"   action=""  enctype="multipart/form-data" >
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>商家信息<if condition="$info.id">添加<else/>修改</if></h4>
+    <a href="{pigcms::U('Live/company',array('token'=>$token,'id'=>$live_id))}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<TBODY>
+<tr>
+  <th><span class="red">*</span>商家名称：</th>
+  <td>
+    <input name="name" value="<if condition="$info.name eq ''">请点击右侧添加商家信息<else/>{pigcms:$info.name}</if>" id="titledom" readonly="true" style="width:305px;"  />
+    <a href="###" onclick="addCompany()" class="a_choose">添加商家</a>&nbsp;&nbsp;（请尽量不要多次添加同一个商户）
+  </td>
+</tr>
+<script>
+function addCompany(){
+  art.dialog.data('titledom', 'titledom');
+  art.dialog.data('company_id', 'company_id');
+  art.dialog.open('?g=User&m=Live&a=company_list',{lock:true,title:'商家列表',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+</script>
+
+<tr>
+  <th><span class="red">*</span>背景展示图：</th>
+  <td>
+    <input class="px"  name="bg_pic" value="<if condition="$info['bg_pic'] eq ''">{pigcms:$f_siteUrl}/tpl/static/attachment/background/view/../edu/7.jpg<else/>{pigcms:$info.bg_pic}</if>" id="pic1" style="width:320px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic1',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic1')">预览</a>[640*990]&nbsp;（商家展示页背景图片）
+  </td>
+</tr>
+
+<tr>
+  <th><span class="red">*</span>顶部展示图：</th>
+  <td>
+    <input class="px"  name="top_pic" value="<if condition="$info['top_pic'] eq ''">{pigcms:$f_siteUrl}http://www.xingboke.com/tpl/static/attachment/focus/default/../canyin/14.jpg<else/>{pigcms:$info.top_pic}</if>" id="pic2" style="width:320px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic2',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic2')">预览</a>[560*250]&nbsp;（展示页头部图片，也可使用logo）
+  </td>
+</tr>
+
+<tr>
+  <th>排序：</th>
+  <td>
+    <input type="text" class="px" name="sort" value="<if condition="$info.sort eq ''">50<else/>{pigcms:$info.sort}</if>" style="width:50px;">&nbsp;&nbsp;（该排序值将影响页面排版的顺序，数值：0-255）
+  </td>
+</tr>
+
+<tr>
+  <th>商家地图：</th>
+  <td>
+    <input type="radio" name="show_map" class="show_map" value="1" <if condition="$info.show_map neq '0'">checked</if>>显示&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="show_map" class="show_map" value="0" <if condition="$info.show_map eq '0'">checked</if>>隐藏&nbsp;&nbsp;&nbsp;&nbsp;（开启后商家展示页面可以查看商家地理位置）
+  </td>
+</tr>
+
+<tr>
+  <th>是否显示</th>
+  <td>
+    <input type="radio" name="is_show" class="is_show" value="1" <if condition="$info.is_show neq '0'">checked</if>>显示&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="is_show" class="is_show" value="0" <if condition="$info.is_show eq '0'">checked</if>>隐藏&nbsp;&nbsp;&nbsp;&nbsp;（只有开启的内容前台才会显示。）
+  </td>
+</tr>
+
+<TR>
+<th>&nbsp;
+  <input type="hidden" name="company_id" value="{pigcms:$info.company_id}" id="company_id" />
+  <input type="hidden" name="live_id" value="{pigcms:$live_id}" id="live_id" />
+  <input type="hidden" name="id" value="{pigcms:$info.id}">
+</th>
+<td><button class="btnGreen" id="sub">保存</button>　<a href="###"  class="btnGray vm">取消</a>　<span class="red"></span></td>
+</TR>
+</TBODY>
+</TABLE>
+</div>
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

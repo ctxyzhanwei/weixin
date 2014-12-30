@@ -1,0 +1,28 @@
+<div class="footermenu">
+    <ul>
+    <li>
+            <a href="javascript:history.go(-1);">
+            <img src="{pigcms::RES}/card/images/return.png">
+            <p>返回</p>
+            </a>
+        </li>
+    <li>
+            <a <php>if($infoType=='memberCardHome'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=index&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}">
+            <img src="{pigcms::RES}/card/images/home.png">
+            <p>会员卡首页</p>
+            </a>
+        </li>
+        <li>
+            <a <php>if($infoType=='companyDetail'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=companyDetail&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&companyid={pigcms:$thisCompany.id}">
+            <img src="{pigcms::RES}/card/images/detaila.png">
+            <p>商家详情</p>
+            </a>
+        </li>
+        <li>
+            <a <php>if($infoType=='myCard'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=index&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&mycard=1">
+            <span class="num2" >{pigcms:$cardsCount}</span><img src="{pigcms::RES}/card/images/my.png">
+            <p>我的会员卡</p>
+            </a>
+        </li>
+    </ul>
+</div>

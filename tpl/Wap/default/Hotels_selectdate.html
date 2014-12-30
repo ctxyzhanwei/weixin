@@ -1,0 +1,76 @@
+<include file="Hotels:header"/>
+<script src="../tpl/static/hotels/js/common.js"></script>
+<body>
+	<div class="html">
+		<div class="main">
+			<header>
+				<a href="{pigcms::U('Hotels/index',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd arr-hd"></a>
+				<h1>在线预订客房</h1>
+				<a href="{pigcms::U('Hotels/my',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd ico-order">我的订单</a>
+			</header>
+<div class="contxt cont-index">
+	<div class="box-cont box-half index-time">
+		<div class="hd">
+			<span class="ico ico-date">入住时间</span>
+			<p class="table">
+				<select id="select-s" name="hotel_room_order[check_in_date]">
+				<volist name="dates" id="d" key="i">
+					<if condition="$i eq 1">
+					<option value="{pigcms:$d['k']}" selected>{pigcms:$d['v']}</option>
+					<else />
+					<option value="{pigcms:$d['k']}">{pigcms:$d['v']}</option>
+					</if>
+				</volist>
+				</select>
+				<span class="td"><b id="time-s">{pigcms:$dates[0]['v']}</b></span>
+				<span class="arrow arr-big"></span>
+			</p>
+		</div>
+		<div class="bd">
+			<span class="ico ico-date">离店时间</span>
+			<p class="table">
+				<select class="" id="select-e" name="hotel_room_order[check_in_date]">
+				<volist name="dates" id="d" key="i">
+					<if condition="$i eq 2">
+					<option value="{pigcms:$d['k']}" selected>{pigcms:$d['v']}</option>
+					<else />
+					<option value="{pigcms:$d['k']}">{pigcms:$d['v']}</option>
+					</if>
+				</volist>
+				</select>
+				<span class="td"><b id="time-e">{pigcms:$dates[1]['v']}</b></span>
+				<span class="arrow arr-big"></span>
+			</p>
+		</div>
+	</div>
+	<br><br><br>
+	<div class="tcenter"><a class="btn btn-big to_book" onclick="javascript:toBook();">开始预订</a></div>
+</div>
+<script>
+function toBook(){
+	var check_in_date = $('#select-s').val(), check_out_date = $('#select-e').val();
+	if(check_in_date >= check_out_date){
+		alert('离店时间必须大于入住时间!');
+	}else{
+		window.location.href = "{pigcms::U('Hotels/hotel',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}&check_in_date="+check_in_date+"&check_out_date="+check_out_date;
+	}
+}
+
+</script>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/index',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/index',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/index',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

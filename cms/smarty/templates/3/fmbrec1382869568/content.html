@@ -1,0 +1,21 @@
+{include file=$header}
+
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<p class="bordertop"></p>
+<div class="subcon">
+            <h1><p>{$content.title}</p></h1>
+	<div class="view" id="content">{$content.content}</div>
+	</div>
+	<a href="{$smarty.server.referer}" title="返回列表" class="backlist"><span>返回列表</span></a>
+    <p class="borderbottom"></p>
+</div>
+</div>
+{/if}
+
+{include file=$footer}

@@ -1,0 +1,78 @@
+<include file="Public:head"/>  
+<div class="content">
+          <div class="cLineB"><h4>关键词触发第三方接口</h4>
+			<a href="{pigcms::U('Api/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+		  </div> 
+<div class="msgWrap">
+   <form class="form" method="post" action="" target="_top" enctype="multipart/form-data"> 
+   <table class="userinfoArea" style=" margin:20px 0 20px 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+	<tr>
+	  <th valign="top"><label for="keyword">接口触发词：</label></th>
+	  <td>
+		<input type="input" class="px" id="keyword" value="{pigcms:$api.keyword}" name="keyword" style="width:600px"><br>
+		多个关键词请用空格格开：例如: 电影 &nbsp;dy &nbsp;movie (注：关键词必须填写，用于触发接口！) 开启包含匹配触发本接口!  用户输入的只要包含本关键词自动交给本接口处理!  </td>
+	</tr>
+  </thead>
+<thead>
+	<tr>
+	  <th valign="top"> 参数传递:</th>
+	  <td>  
+		<input type="checkbox" id="is_colation" value="1" name="is_colation" <if condition="$api['is_colation'] eq 1">checked</if>> 是否过滤触发词<br>
+			比如设置的电影为触发词,用户输入“电影 美国派” 时，如果启用过滤我们只将“美国派”这个词发送到的你的接口，如果不过滤 就是整个“电影 美国派”全部发送到的接口!
+	  </td>
+	</tr>
+</thead>
+<thead>
+	<tr>
+	  <th valign="top">接口类型：</th>
+	  <td>
+		<input class="radio" type="radio" name="type" value="1" <if condition="$api['type'] eq 1">checked</if>>&nbsp;微信标准接口（标准xml）&nbsp;&nbsp;<input class="radio" type="radio" name="type" value="2" <if condition="$api['type'] eq 2">checked</if>>&nbsp;文本类型接口  <br>
+		我们会post 参数到本接口 Content=用户消息&amp;fromUsername=用户加密id&amp;toUsername=你的公众号token 
+	  </td>
+	</tr>
+  </thead>
+<thead>
+	<tr>
+	  <th valign="top">触发时机：</th>
+	  <td>
+		<input class="radio" type="radio" name="noanswer" value="0" <if condition="$api['noanswer'] eq 0">checked</if>>&nbsp;优先于所有关键词触发&nbsp;&nbsp;<input class="radio" type="radio" name="noanswer" value="1" <if condition="$api['noanswer'] eq 1">checked</if>>&nbsp;系统回答不上来的时候触发 
+	  </td>
+	</tr>
+  </thead>
+  <tbody>
+<tr>
+  <th valign="top"><label for="text">第三方微信api地址：</label></th>
+  <td><input type="input" class="px" id="apiurl" value="{pigcms:$api.url}" name="url" style="width:600px"><br></td>
+</tr>
+<tr>
+  <th valign="top"><label for="text">第三方微信token：</label></th>
+  <td><input type="input" class="px" id="apitoken" value="{pigcms:$api.apitoken}" name="apitoken" style="width:200px"><br>只有是标准的微信接口时才需要填写</td>
+</tr>
+<tr style="display:none">
+  <th valign="top"><label for="token">忽略本接口回复特征词：</label></th>
+  <td><input type="input" class="px" id="token" value="{pigcms:$api.colation_keyword}" name="colation_keyword" style="width:600px"><br>设置 包含关键词用|隔开，包含此特定词则忽略，交给我们处理!  无需忽略请留空!
+
+
+</td>
+   
+</tr>
+<tr>
+                            
+  <th></th>
+  <td><button type="submit" name="button" class="btnGreen left">保存</button>　　<a href="{pigcms::U('Api/index',array('token'=>$token))}" class="btnGray vm">取消</a>
+  <div class="clr"></div>
+</td>
+</tr>
+  </tbody>
+</table>
+    </form> 
+备注：带参数的传递实例，你设定movie为触发词，用户查询某电影必须加空格，格式为：movie&nbsp;美国派，接口将会把movie&nbsp;美国派做为Content提交到你的接口!<br>设置完记得到功能面板开启融合第三方接口才能正式生效！
+
+  </div> 
+
+        </div>
+ <!--底部-->
+  	</div>
+<include file="Public:footer"/>  
+ 

@@ -1,0 +1,65 @@
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////// Red Skin CSS Rules Start                                                                           */
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+body {
+	background-color: #f25849;
+}
+a, p > a {
+	color: #f25849;
+}
+.mainMenuWrapper {
+	border-color: #f25849;
+}
+.mainMenuWrapper > li > a {
+	background-image: url("../../images/skins/red/mainMenuItemBg.png");
+}
+.currentPageNumber, .currentPageNumber:hover {
+	background-color: #f25849;
+}
+input.errorSearchFormSubmitButton, input.errorSearchFormSubmitButton:hover {
+	background-color: #f25849;
+}
+.portfolioOneItemImageWrapper, .portfolioOneFilterableWrapper .portfolioFilterableItemImageWrapper {
+	border-color: #f25849;
+}
+.portfolioMenuWrapper .currentPortfolioFilter {
+	color: #f25849;
+}
+.portfolioOneExpandButton, .portfolioFilterableExpandButton, .singleProjectExpandButton {
+	background-image: url("../../images/skins/red/portfolioExpandButtonBg.png");
+}
+.portfolioOneDetailsButton, .portfolioFilterableDetailsButton, .singleProjectDetailsButton {
+	background-image: url("../../images/skins/red/portfolioDetailsButtonBg.png");
+}
+.smallPostMoreButton {
+	background-image: url("../../images/skins/red/smallPostReadMoreButtonBg.png");
+}
+input.contactSubmitButton, input.contactSubmitButton:hover {
+	background-color: #f25849;
+}
+input.commentSubmitButton, input.commentSubmitButton:hover {
+	background-color: #f25849;
+}
+.accordionButton .accordionButtonIcon {
+	background-image: url("../../images/skins/red/accordionButtonBg.png");
+}
+@media (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2) {
+.mainMenuWrapper > li > a {
+	background-image: url("../../images/skins/red/mainMenuItemBg-x2.png");
+}
+.portfolioOneExpandButton, .portfolioFilterableExpandButton, .singleProjectExpandButton {
+	background-image: url("../../images/skins/red/portfolioExpandButtonBg-x2.png");
+}
+.portfolioOneDetailsButton, .portfolioFilterableDetailsButton, .singleProjectDetailsButton {
+	background-image: url("../../images/skins/red/portfolioDetailsButtonBg-x2.png");
+}
+.smallPostMoreButton {
+	background-image: url("../../images/skins/red/smallPostReadMoreButtonBg-x2.png");
+}
+.accordionButton .accordionButtonIcon {
+	background-image: url("../../images/skins/red/accordionButtonBg-x2.png");
+}
+}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////// Red Skin CSS Rules End                                                                             */
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

@@ -1,0 +1,74 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+
+<div class="cLineB">
+  <h4>名片编辑</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+ <!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Vcard/index')}">名片列表</a></li>
+<li class="current tabli" id="tab2"><a href="#">修改名片</a></li>
+</ul>
+</div>
+<!--tab end-->        
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>姓名：</th>
+				  <td><input type="text" name="name" value="{pigcms:$info.name}" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+					<th>头像：</th>
+					<td><input type="text" id="picurl" value="{pigcms:$info.image}" name="image" class="px" style="width:550px;">  
+					    <script src="/tpl/static/upyun.js"></script>
+                        <a href="javascript:void(0)" onclick="upyunPicUpload('picurl',700,420,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+                        <a href="###" onclick="viewImg('picurl')" class="btnGrayS vm">预览</a>
+					 <br/> 填写图片外链地址，大小为100x100</td>
+				</tr>
+				<tr>
+					<th width="120">电话：</th>
+					<td><input type="text" name="tel"  value="{pigcms:$info.tel}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">手机：</th>
+					<td><input type="text" name="mobile" value="{pigcms:$info.mobile}" class="px" style="width:550px;"></td>
+				</tr>
+				
+				<tr>
+					<th>部门职位：</th>
+					<td><input name="work" value="{pigcms:$info.work}" class="px" style="width:150px;" type="text"></td>
+				</tr>
+                <tr>
+					<th>邮箱：</th>
+					<td><input name="email" class="px" value="{pigcms:$info.email}" style="width:350px;" type="text"></td>
+				</tr>
+                <tr>
+					<th>QQ：</th>
+					<td><input name="qq" class="px" value="{pigcms:$info.qq}" style="width:350px;" type="text"></td>
+				</tr>
+                <tr>
+					<th>排序：</th>
+					<td><input name="sort" class="px" value="{pigcms:$info.sort}" style="width:350px;" type="text"></td>
+				</tr>
+                <tr>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

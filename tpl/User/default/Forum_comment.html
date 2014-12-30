@@ -1,0 +1,104 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB">
+<h4 class="left">讨论社区管理</h4>
+<div class="searchbar right">
+
+
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+
+
+</div>
+<div class="clr"></div>
+</div>
+
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="{pigcms::U('Forum/delComment')}" id="info">
+<div class="cLine">
+<div class="pageNavigator left"> 
+	<a href="###" onclick="if(confirm('您确定要删除吗?')){$('#info').submit();}else{ return false;}" title="批量删除" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/arrow_switch.png" class="vm">批量删除</a>
+	 <a href="###" onclick="$('#info').attr('action','/index.php?g=User&m=Forum&a=checkComment');$('#info').submit();" title="批量审核" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/arrow_switch.png" class="vm">批量审核</a>
+</div>
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+<th width="50">编号</th>
+<th width="100">对应帖子编号</th>
+<th width="100">评论人</th>
+<th class="210">内容</th>
+<th width="50">赞</th>
+<th width="130">创建时间</th>
+<th class="50">状态</th>
+
+<th width="80" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+
+	<volist name="list" id="t"> 
+		<tr>
+			<td><input type="checkbox" value="{pigcms:$t.id}" class="cbitem" name="id[]}"></td>
+			<td>{pigcms:$t.id}</td>
+			<td>{pigcms:$t.tid}</td>
+			<td>{pigcms:$t.uname}</td>
+			<td>{pigcms:$t.content|htmlspecialchars_decode}</td>
+			<td><if condition="$t['favourid'] neq NULL">{pigcms::count(explode(',',$t['favourid']))}<else />0</if></td>
+			<td>{pigcms:$t.createtime|date="Y-m-d H:i:s",###}</td>
+			<td><if condition="$t['status'] eq 1">正常显示<elseif condition="$t['status'] eq -1" /><font color="red">未审核</font><else /><font color="red">已被删除</font></if></td> 
+			<td class="norightborder">
+				<if condition="$t['status'] eq -1">
+					<a href="{pigcms::U('Forum/checkComment',array('token'=>$_GET['token'],'id'=>$t['id']))}">通过审核</a> &nbsp;  &nbsp; 
+				</if>
+				<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Forum/delComment',array('token'=>$_GET['token'],'id'=>$t['id']))}');">删除</a>
+			</td>
+		</tr>
+	</volist>
+</tbody>
+</table>
+<input type="hidden" name="token" value="{pigcms:$_GET['token']}" />
+
+</form>
+
+
+
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

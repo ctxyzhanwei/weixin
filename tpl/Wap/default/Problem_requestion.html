@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{pigcms:$pro_info.title}</title>
+<script type="text/javascript">var yyuc_jspath = "./tpl/static/problem";</script>
+<script type="text/javascript" src="./tpl/static/problem/js/jquery.js"></script>
+<script type="text/javascript" src="./tpl/static/problem/js/yyucadapter.js"></script>
+<link type="text/css" rel="stylesheet" href="./tpl/static/problem/css/war.css">
+</head>
+<body style="background:#feae05;">
+<div class="wrapper">
+	<img class="bg" src="./tpl/static/problem/image/bg_exam.jpg">
+	<img class="bg1" src="./tpl/static/problem/image/bg_exam1.jpg" style="top:372px;height:50%">
+	<div class="top">
+		<div class="time"><span id="jsf">{pigcms:$pro_info.answer_time}</span>:<span id="jsm">0</span></div>
+		<div class="index">第<strong>{pigcms:$question.number}</strong>题</div>
+		<div class="score">积分:<span style="color: red;font-size: 16px;line-height: 30px;">{pigcms:$pro_info.score}</span></div>
+	</div>
+	<div class="question">
+		<div class="title" style="max-height:100%">{pigcms:$question.title}</div>
+		<div class="options">
+			<volist name="question['option']" id="option" key="key">
+				
+				<div class="option" data-value="{pigcms:$option.id}">
+					<img class="oimg" src="./tpl/static/problem/image/option_bg.png">
+					<img class="oimg-sel" src="./tpl/static/problem/image/option_sel_bg.png">
+					<div class="text">
+						<div class="i">{pigcms:$key}、</div>
+						<div class="otext">{pigcms:$option.answer}</div>
+					</div>
+				</div>
+
+			</volist>
+
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.option').click(function(){
+		$('.option').unbind("click");
+		clearInterval(window.djs);
+		checkans($(this).attr('data-value'));
+	});
+	window.djs = setInterval(function(){
+		var jsm = parseInt($('#jsm').text());
+		var jsf = parseInt($('#jsf').text());
+		if(jsm>0){
+			jsm-=1;
+			$('#jsm').text(jsm+'');
+		}else if(jsf>0){
+			jsf-=1;
+			$('#jsm').text('99');
+			$('#jsf').text(jsf+'');
+		}else{
+			checkans('0');
+			clearInterval(window.djs);
+		}
+		
+	},10);
+	
+});
+
+function checkans(ans){
+	ajax("{pigcms::U('Problem/add_rank',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id'],'qid'=>$question['id']))}",{oid:ans,start:'{pigcms:$question.now}'},function(m){
+		if(m=='ok'){
+			tusi('恭喜回答正确');
+		}else if(m=='no'){
+			tusi('回答错误');
+		}else if(m=='out'){
+			tusi('答题超时');
+		}
+		setTimeout(function(){
+			window.location.reload();
+		},500);
+		
+	});
+}
+</script>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Problem",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$pro_info['logo_pic']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "tTitle": "{pigcms:$pro_info.title}",
+            "tContent": "{pigcms:$pro_info.explain}"
+        };
+</script>
+{pigcms:$shareScript}
+</body></html>

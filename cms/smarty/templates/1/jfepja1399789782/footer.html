@@ -1,0 +1,51 @@
+<ul class="footnav">
+	 {if $navChannels}
+{foreach from=$navChannels item=n key=m}
+{if $m<5}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.shortname}</a></li>
+    {/if}
+	{/foreach}
+	{/if}
+</ul>
+<div class="search">
+    <form id="search" name="search" method="post" action="?m=site&c=home&a=search&token={$token}">
+        <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+        <input type="submit" class="button" title="搜索" value="">
+    </form>
+</div>
+<div class="clear"></div>
+<!--<p class="support"></p>-->
+<ul class="foot" style="margin-top:16px;">
+	<li class="searchbtn"><span>搜索</span></li>
+    <!--分享(-->
+        <li class="sharebtn"><a href="?token={$token}&m=site&c=home&a=share"  title="分享"><span>分享</span></a></li>
+        <!--)分享-->
+    <li class="smsbtn"><a href="sms:{$company.mp}" title="短信"><span>短信</span></a></li>
+</ul>
+    
+
+    <!--)商桥-->
+	
+	<!--menu start-->
+{if $showPlugMenu}
+<link rel="stylesheet" href="/tpl/Wap/default/common/css/flash/css/plugmenu.css">
+<div class="plug-div">
+        <div class="plug-phone">
+            <div class="plug-menu themeStyle" style="background:{$site.plugmenucolor}"><span class="close"></span></div> 
+               {foreach from=$plugmenus item=vo key=k}
+                        <div class="themeStyle plug-btn plug-btn{$k+1} close" style="background:{$site.plugmenucolor}">
+							<a  href="{$vo.url}">
+								<span style="background-image: url(/tpl/Wap/default/common/css/flash/images/img/{$vo.name}.png);" ></span>
+							</a>
+						</div>
+                     {/foreach}
+<div class="plug-btn plug-btn5 close"></div>
+                    </div>
+</div>
+<script src="/tpl/Wap/default/common/css/flash/js/zepto.min.js" type="text/javascript"></script>
+<script src="/tpl/Wap/default/common/css/flash/js/plugmenu.js" type="text/javascript"></script>
+{/if}
+<!--menu end-->
+</body>
+</html>
+

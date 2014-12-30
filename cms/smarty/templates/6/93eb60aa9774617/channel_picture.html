@@ -1,0 +1,39 @@
+{include file=$header}<div class="sub">
+{if $subChannels}
+		<div class="clickbtn">
+        <div class="classbtn"><p>打开分类</p></div>
+        <div class="classbtn2"><p>关闭分类</p></div>
+    </div>
+	<div class="clear"></div>
+    <ul class="subnav">
+	 {foreach from=$subChannels item=sc}
+          <li><a href="{$sc.link}" tppabs="/3g/product.php?tid=3" class="ui-bar-g" data-ajax="false">{$sc.name}</a></li>
+          {/foreach}
+                <div class="clear"></div>
+    </ul>
+	{/if}
+	<div class="clear"></div>
+	    	<ul class="productul" style="margin-top:20px;">
+			{if $contents}
+			{foreach from=$contents item=a}
+		    	<li><center>
+        	<a href="{$a.link}"><img src="{$a.thumb}" alt="{$a.title}"></a>
+        	<p><a href="{$a.link}">{$a.title}</a></p>
+        </center></li>
+		    	 {/foreach}
+			 {/if}
+		    </ul>
+    <div class="clear"></div>
+					<div class="pages">
+						<a href="{$previousPageLink}" title="上一页"{if $previousPageLink=='javascript:void(0)'} class="no_prev"{else} class="prev"{/if}>上一页</a>
+						<a href="#bg" title="分页列表" class="page"><span>{$currentPage}/{$totalPage}</span></a>
+						<a href="{$nextPageLink}" title="下一页"{if $previousPageLink=='javascript:void(0)'} class="no_next"{else} class="next"{/if}>下一页</a>
+					</div>
+		<ul class="topages">
+		{section name=loop loop=$totalPage} 
+									<li><a href="{$channel.link}&page={$smarty.section.loop.index+1}" title="第{$smarty.section.loop.index+1}页">第{$smarty.section.loop.index+1}页</a></li>
+			{/section}
+								</ul>
+		<a class="bg" id="bg" href="#subbottom"></a>
+			</div>
+{include file=$footer}

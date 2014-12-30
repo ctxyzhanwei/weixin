@@ -1,0 +1,447 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="{pigcms::Common}/daterangepicker/daterangepicker-bs3.css" />
+<script type="text/javascript" src="{pigcms::Common}/daterangepicker/moment.js"></script>
+<script type="text/javascript" src="{pigcms::Common}/daterangepicker/daterangepicker.js"></script>
+
+
+<div class="content">
+<div class="cLineB">
+  <h4>预约系统设置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+  <div class="msgWrap bgfc">
+  <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+ <input type="hidden" name="rid" id="rid" value="123"/>
+ <if condition="$reslist['id'] neq ''">
+ <input type="hidden" name="id" id="id" value="{pigcms:$reslist['id']}"/>
+ </if>
+    <div class="control-group">
+        <label for="title" class="control-label">图文消息标题：</label>
+        <div class="controls">
+           <input type="text" placeholder="请输入图文消息标题" name="title" id="title" class="span4"  value="{pigcms:$reslist['title']}" schoolSet /><span class="maroon">*</span><span class="help-inline">尽量简单，不要超过20字</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="keyword" class="control-label">触发关键词：</label>
+        <div class="controls">
+            <input type="text" name="keyword" id="keyword" class="span4" schoolSet value="{pigcms:$reslist['keyword']}"><span class="maroon">*</span><span class="help-inline">只能设置一个关键字</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label for="coverurl" class="control-label">图文封面：</label>
+       <div class="controls">
+       <if condition="$reslist['picurl'] neq ''">
+      <img class="thumb_img" id="picurl_src" src="{pigcms:$reslist['picurl']}" style="max-height:100px;">
+</if>
+      <input id="picurl" type="text" class="span4" name="picurl" class="input-xlarge"  schoolSet data-rule-url="true" value="{pigcms:$reslist['picurl']}" />
+          <span class="help-inline">
+               <script src="{pigcms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('picurl',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a>
+              <span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+          </span>
+       </div>
+    <script>
+function setlatlng(longitude,latitude){
+  art.dialog.data('longitude', longitude);
+  art.dialog.data('latitude', latitude);
+  // 此时 iframeA.html 页面可以使用 art.dialog.data('test') 获取到数据，如：
+  // document.getElementById('aInput').value = art.dialog.data('test');
+  art.dialog.open('{pigcms::U('Map/setLatLng',array('token'=>$token,'id'=>$id))}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+    </div>
+     <div class="control-group">
+                                <label for="address" class="control-label">预约地址：</label>
+                                <div class="controls">
+                                    <input type="text" name="address" id="address" class="span4"  value="{pigcms:$reslist['address']}" schoolSet  placeholder="请输入接待预约用户的地址"/><span class="maroon">*</span><span class="help-inline">如合肥市政务区南二环路3818号万达广场</span>
+                                </div>
+                             </div>
+    <div class="control-group">
+    <label for="suggestId" class="control-label">地图标识：</label>
+         <div class="controls">
+          <span class="maroon">注意：这个只是模糊定位，准确位置请地图上标注！</span><br />
+                经度 <input type="text" id="longitude"  name="lng" size="14" class="span4" value="{pigcms:$reslist['lng']}" />
+                纬度 <input type="text"  name="lat" size="14" id="latitude" class="span4" value="{pigcms:$reslist['lat']}" />
+                <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a>
+         </div>
+    </div>
+
+<div class="control-group">
+         <label for="estate_desc" class="control-label">预约电话：</label>
+         <div class="controls">
+             <input type="text" name="tel" id="tel" class="span4" value="{pigcms:$reslist['tel']}"  schoolSet  placeholder="请输入接收预约的电话号码"/><span class="maroon">*</span><span class="help-inline">如0551-65371998</span>
+         </div>
+     </div>
+     <div class="control-group">
+         <label for="project_brief" class="control-label">订单页头部图片：</label>
+          <div class="controls">
+<if condition="$reslist['headpic'] neq ''">
+             <img class="thumb_img" id="headpic_src" src="{pigcms:$reslist['headpic']}" style="max-height: 100px;">
+</if>
+              <input id="headpic"type="text"class="input-large" name="headpic" class="span4 px"  schoolSet data-rule-url="true" value="{pigcms:$reslist['headpic']}" />
+            <span class="maroon">*</span>
+            <span class="help-inline">
+            <a href="###" onclick="upyunPicUpload('headpic',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('headpic')">预览</a>
+         </div>
+     </div>
+     <div class="control-group">
+        <label for="traffic_desc" class="control-label">订单详情：</label>
+        <div class="controls">
+          <textarea class="px" id="info" name="info" style="width:560px;height:75px"  placeholder="显示在图文封面下方，文字请尽量的简洁">{pigcms:$reslist['info']}</textarea>
+        </div>
+    </div>
+
+<div class="control-group" style="display:none">
+      <label for="typename" class="control-label">重命名订单：</label>
+       <div class="controls">
+           <input type="text" class="span4" name="typename" value="{pigcms:$reslist['typename']|default='我的订单'}" id="typename" schoolSet />
+                                                    <span class="maroon">*</span><span class="help-inline">用户修改用户手机中“我的订单”栏目的名称，您可以将其修改成诸如“我的团购”、“我的预约”等</span>
+       </div>
+</div>
+                                            <div class="control-group" style="display:none">
+                                                <label for="typename2" class="control-label">重命名订单说明：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="span4" name="typename2" value="{pigcms:$reslist['typename2']|default='订单说明'}" id="typename2"/>
+                                                    <span class="maroon">*</span><span class="help-inline">用户修改用户手机中“订单说明”栏目的名称，您可以将其修改成诸如“预约说明”、“试驾说明”等</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group" style="display:none">
+                                                <label for="typename3" class="control-label">重命名订单电话：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="span4" name="typename3" value="{pigcms:$reslist['typename3']|default='订单电话'}" id="typename3"/>
+                                                    <span class="maroon">*</span><span class="help-inline">用户修改用户手机中“订单电话”栏目的名称，您可以将其修改成诸如“预约电话”、“试驾电话”等</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group" style="display:none">
+                                                <label for="typename" class="control-label">订单接收设置：</label>
+                                                <div class="controls">
+                                                    <label class="radio inline" >
+                                                        <input type="radio" name="type"class="span2" value="1" <if condition="$reslist['type'] eq 1"> checked="checked"<else/>checked="checked" </if> />
+                                                        限定时间 <span  id="type1">设定您接受订单的起始和结束时间</span>
+                                                    </label>
+                                                    <label class="radio inline" >
+                                                        <input type="radio" name="type" class="span2"value="2" <if condition="$reslist['type'] eq 2"> checked="checked" </if> />
+                                                        限定每日量<span  id="type2" style="display:none;">设定您每日接收的订单总数</span>
+                                                    </label>
+                                                    <label class="radio inline" >
+                                                        <input type="radio" name="type"class="span2" value="3"  <if condition="$reslist['type'] eq 3"> checked="checked" </if>/>
+                                                        限定全部总量<span  id="type3" style="display:none;">设定您总计可接收的订单总数</span>
+                                                    </label>
+
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group" style="display:none">
+                                                <label for="date" class="control-label"></label>
+                                                <div class="controls">
+                                                <div class="input-prepend">
+
+                                                 <span class="add-on"><i class="icon-calendar"></i></span>
+                                                    <input type="text" class="span4" value="{pigcms:$reslist['date']}" name="date" id="date"  style="width: 320px;"/>
+                                                </div><span class="help-inline">填写订单的起始和结束时间(为空表示不限制)</span></div>
+                                            </div>
+                                             <script type="text/javascript">
+               $(document).ready(function() {
+                  $('#date').daterangepicker({
+                    timePicker: true,
+                    timePickerIncrement: 30,
+                    format: 'MM/DD/YYYY hh:mm:ss'
+                  });
+               });
+               </script>
+                                            <div class="control-group"  style="display: none;" >
+                                                <label for="allnums" class="control-label"></label>
+                                                <div class="controls">
+                                                    <input type="text" name="allnums" id="allnums" class="span4" value="{pigcms:$reslist['allnums']}" data-rule-number="true" />
+                                                    <span class="help-inline">填写最大接收订单数(为空表示不限制)</span>
+                                                </div>
+                                            </div>
+    <script type="text/javascript">
+    $(function () {
+         $("input[type='radio']").click(function () {
+            var $this = $(this), $val = $this.val(), $div = $this.parents(".control-group");
+            if ($val == 1) {
+                $div.next().show();
+                $div.next().next().hide();
+                $("#type1").show();
+                $("#type2").hide();
+                $("#type3").hide();
+            } else {
+                $div.next().next().show();
+                $div.next().hide();
+                if($val == 2){
+                    $("#type2").show();
+                    $("#type1").hide();
+                    $("#type3").hide();
+                }else{
+                    $("#type3").show();
+                    $("#type1").hide();
+                    $("#type2").hide();
+                }
+            }
+         })
+            </script>
+
+<script>
+function dodelit(i) {
+   document.getElementById("txt" + i).value = "";
+   document.getElementById("value" + i).value = "";
+   if (i != 1) {
+       document.getElementById("trtxt" + i).style.display = "none";
+       document.getElementById("add" + i).style.display = "";
+   }
+}
+   function doaddit(i) {
+
+    document.getElementById('trtxt' + i).style.display = "";
+   document.getElementById('add' + i).style.display = "none";
+}
+
+function sdodelit(i) {
+
+    document.getElementById("select" + i).value = "";
+    document.getElementById("svalue" + i).value = "";
+    if (i != 1) {
+        document.getElementById("strtxt" + i).style.display = "none";
+       document.getElementById("sadd" + i).style.display = "";
+    }
+}
+function sdoaddit(i) {
+
+     document.getElementById('strtxt' + i).style.display = "";
+     document.getElementById('sadd' + i).style.display = "none";
+}
+  </script>
+
+<div class="control-group" style="display:none">
+        <label for="tel" class="control-label">订单内容设置：</label>
+        <div class="controls">
+        <span class="help-inline">填写你要收集的内容！订单默认选项不可以修改删除！</span>
+<table id="listTable" class="ListProduct table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>字段类型</th>
+             <th>字段名称</th>
+             <th>初始内容</th>
+
+            <th>操作</th>
+        </tr>
+    </thead>
+<tbody>
+    <tr>
+        <td>单行文字：</td>
+        <td>
+            <input name="keyword" type="text" disabled="disabled" class="px wizard-ignore" value="联系人" readonly="readonly"></td>
+        <td>
+            <input name="add[order][]" type="text" disabled="disabled" class="px wizard-ignore" value="请输入您的名字" readonly="readonly"></td>
+
+        <td>
+            <label class="checkbox">
+                <input type="checkbox"     checked="checked" name="name_show" value="1">是否显示
+             </label>
+        </td>
+     </tr>
+    <tr>
+        <td>单行文字：</td>
+        <td>
+             <input name="keyword" type="text" disabled="disabled" class="px wizard-ignore" value="联系电话" readonly="readonly"></td>
+        <td>
+            <input name="add[order][]" type="text" disabled="disabled" class="px wizard-ignore" value="请输入您的电话" readonly="readonly"></td>
+
+        <td>
+            <label class="checkbox">
+                <input type="checkbox"  checked="checked"   name="tel_show" value="1">是否显示
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td>日期选择：</td>
+        <td>
+            <input name=" " type="text" disabled="disabled" class="px wizard-ignore" value="预约日期" onchange="$('odid').value='请输入'+this.value;"></td>
+        <td>
+            <input name="add[order][]" type="text" disabled="disabled" id="odid" class="px wizard-ignore" value="请输入预约日期"></td>
+
+        <td>
+            <label class="checkbox">
+                <input type="checkbox"   checked="checked" name="date_show" value="1">是否显示
+            </label>
+         </td>
+    </tr>
+     <tr>
+        <td>时间选择：</td>
+        <td>
+             <input name=" " type="text" disabled="disabled" class="px wizard-ignore" value="预约时间" onchange="$('odid').value='请输入'+this.value;"></td>
+        <td>
+            <input name="add[order][]" type="text" disabled="disabled" id="odid" class="px wizard-ignore" value="请输入预约时间"></td>
+
+        <td>
+            <label class="checkbox">
+                <input type="checkbox"  checked="checked" name="time_show" value="1">是否显示
+             </label>
+        </td>
+    </tr>
+    <tr id="trtxt1">
+    <td>输入需要增加的内容：</td>
+    <td>
+        <input type="text" class="px" name="txt1" id="txt1" value="{pigcms:$reslist['txt1']}"></td>
+    <td>
+        <input name="value1" class="px" id="value1" type="text" value="{pigcms:$reslist['value1']}"></td>
+
+    <td>
+        <p><a class="btnGrayS vm" id="add2" href="javascript:doaddit(2)">添加</a>　<a href="javascript:dodelit(1)" style="display:none">删除</a></p>
+    </td>
+  </tr>
+                                            <tr id="trtxt2"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="txt2" id="txt2" value="{pigcms:$reslist['txt2']}"></td>
+                                                <td>
+                                                    <input name="value2" class="px" id="value2" type="text" value="{pigcms:$reslist['value2']}"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add3" href="javascript:doaddit(3)">添加</a>　<a href="javascript:dodelit(2)">删除</a></p>
+                                                </td>
+                                            </tr>
+
+                                            <tr id="trtxt3"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="txt3" id="txt3" value="{pigcms:$reslist['txt3']}"></td>
+                                                <td>
+                                                    <input name="value3" class="px" id="value3" type="text" value="{pigcms:$reslist['value3']}"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add4" href="javascript:doaddit(4)">添加</a>　<a href="javascript:dodelit(3)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="trtxt4"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="txt4" id="txt4" value="{pigcms:$reslist['txt4']}"></td>
+                                                <td>
+                                                    <input name="value4" class="px" id="value4" type="text" value="{pigcms:$reslist['value4']}"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="add5" href="javascript:doaddit(5)">添加</a>　<a href="javascript:dodelit(4)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="trtxt5"  style="display: none" >
+                                                <td>输入需要增加的内容：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="txt5" id="txt5" value="{pigcms:$reslist['txt5']}"></td>
+                                                <td>
+                                                    <input name="value5" class="px" id="value5" type="text" value="{pigcms:$reslist['value5']}"></td>
+
+                                                <td>
+                                                    <p><a href="javascript:dodelit(5)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                                                                        <tr id="strtxt1">
+                                                <td width="120">下拉框1：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="select1" value="{pigcms:$reslist['select1']}" id="select1"></td>
+                                                <td>
+                                                    <input name="svalue1" class="px" id="svalue1" type="text" value="{pigcms:$reslist['svalue1']}" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd2" href="javascript:sdoaddit(2)" style="">添加</a>　<a href="javascript:sdodelit(1)" style="display:none">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="strtxt2"  style="display: none" >
+                                                <td>下拉框2：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="select2" id="select2" value="{pigcms:$reslist['select2']}"></td>
+                                                <td>
+                                                    <input name="svalue2" class="px" id="svalue2" type="text" value="{pigcms:$reslist['svalue2']}" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd3" href="javascript:sdoaddit(3)" style="">添加</a>　<a href="javascript:sdodelit(2)">删除</a></p>
+                                                </td>
+                                            </tr>
+
+                                            <tr id="strtxt3"  style="display: none" >
+                                                <td>下拉框3：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="select3" id="select3" value="{pigcms:$reslist['select3']}"></td>
+                                                <td>
+                                                    <input name="svalue3" class="px" id="svalue3" type="text" value="{pigcms:$reslist['svalue3']}" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd4" href="javascript:sdoaddit(4)">添加</a>　<a href="javascript:sdodelit(3)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="strtxt4"  style="display: none" >
+                                                <td>下拉框4：</td>
+                                                <td>
+                                                    <input type="text" class="px" name="select4" id="select4" value="{pigcms:$reslist['select4']}"></td>
+                                                <td>
+                                                    <input name="svalue4" class="px" id="svalue4" type="text" value="{pigcms:$reslist['svalue4']}" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a class="btnGrayS vm" id="sadd5" href="javascript:sdoaddit(5)">添加</a>　<a href="javascript:sdodelit(4)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr id="strtxt5"  style="display: none" >
+                                                <td>下拉框5：</td>
+                                                <td>
+                                                    <input type="text" name="select5" class="px" id="select5" value="{pigcms:$reslist['select5']}"></td>
+                                                <td>
+                                                    <input name="svalue5" id="svalue5" class="px" type="text" value="{pigcms:$reslist['svalue5']}" placeholder="每个选项之间以“|”分割"></td>
+
+                                                <td>
+                                                    <p><a href="javascript:sdodelit(5)">删除</a></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>多行文字：</td>
+                                                <td>
+                                                    <input name="datename" class="px" type="text" value="{pigcms:$reslist['datename']}"></td>
+                                                <td>
+                                                    <input name="add[order][]" class="px" type="text" disabled="disabled" value="请留言" readonly="readonly"></td>
+
+                                                <td>订单默认项</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                                </div>
+                                            </div>
+                                <div class="control-group" style="display:none">
+                                    <label for="" class="control-label">商家通知设置：</label>
+                                    <input type="hidden" name="take" value="1" />
+                                    <div class="controls">
+                                        <div class="row-fluid margin-bm10">
+                                            订单通知邮箱：<input type="text" class="input-large" data-rule-email="true" name="email" value="{pigcms:$reslist['email']}"><span class="help-inline"><label class="checkbox inline">
+                                                <input type="checkbox" name="open_email" value="1" <if condition="$reslist['open_email'] eq 1"> checked="checked"</if>>
+                                                开启
+                                            </label>
+                                            </span>
+                                        </div><p style="margin-left:83px;">当有新订单时，发送邮件到此邮箱</p>
+                                    </div>
+                                     <div class="controls">
+                                        <div class="row-fluid">
+                                            订单短信通知：<input type="text" class="input-large" data-rule-mobile="true" name="sms" value="{pigcms:$reslist['sms']}"><span class="help-inline" ><label class="checkbox inline">
+                                                <input type="checkbox" name="open_sms" value="1" <if condition="$reslist['open_sms'] eq 1"> checked="checked"</if>>
+                                                开启
+                                            </label>
+                                            </span>
+                                        </div><p style="margin-left:83px;">当有新订单时，发送短信到此手机</p>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+            <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>　<button type="button" class="btnGray vm">取消</button>
+        </div>
+                        </div>
+
+</form>
+  </div>
+
+
+        </div>
+
+<include file="Public:footer"/>

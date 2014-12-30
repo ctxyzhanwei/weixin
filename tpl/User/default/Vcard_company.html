@@ -1,0 +1,108 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>公司信息配置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+<div class="tab">
+<ul>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Vcard/index')}">名片列表</a></li>
+<li class="current tabli" id="tab20"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>$infoType['type']))}">公司信息</a></li>
+</ul>
+</div>
+<!--tab end-->        
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>公司名称：</th>
+				  <td><input type="text" name="company" value="{pigcms:$info.company}" class="px" style="width:550px;">
+					</td>
+				</tr>
+				
+				<tr>
+					<th width="120"><span class="red">*</span>公司简介：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px" onkeydown='countChar("info","counter");' onkeyup="countChar('info','counter');">{pigcms:$info.info}</textarea><br/><font color="red">可以输入<span id="counter">400</span>字<br></font></td>
+				</tr>
+                <tr>
+					<th width="120"><span class="red">*</span>公司电话：</th>
+					<td><input type="text" name="company_tel" value="{pigcms:$info.company_tel}" class="px" style="width:550px;"></td>
+				</tr>
+                 <tr>
+					<th width="120"><span class="red">*</span>公司传真：</th>
+					<td><input type="text" name="fax" value="{pigcms:$info.fax}" class="px" style="width:550px;"></td>
+				</tr>
+                 <tr>
+					<th width="120"><span class="red">*</span>公司地址：</th>
+					<td><input type="text" name="address" value="{pigcms:$info.address}" class="px" style="width:550px;"></td>
+				</tr>
+            <!--
+                 <tr>
+					<th width="120"><span class="red">*</span>百度地图：</th>
+					<td><input type="text" name="baiduapi" value="{pigcms:$info.baiduapi}" class="px" style="width:550px;"></td>
+				</tr>
+    
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" id="picurl" name="picurl" value="{pigcms:$set.picurl}" class="px" style="width:550px;">  <input type="button" id="uploadBtn" value="本地上传" /> <br/> 填写图片外链地址，大小为720x400</td>
+				</tr>
+				<tr>
+					<th>第三方接口：</th>
+					<td><input name="apiurl" value="{pigcms:$set.apiurl}" class="px" style="width:550px;" type="text"><br> 只适用于引用第三方3G网站的链接</td>
+				</tr>
+				<if condition="$set and ($infoType.type eq 'Dining')">
+				<tr>
+					<th>订购方式开关：</th>
+					<td><label><input type="checkbox" name="diningyuding" value="1" <if condition="$set.diningyuding eq 1">checked</if> /> 开启预定</label> <label><input type="checkbox" name="diningwaimai" value="1" <if condition="$set.diningwaimai eq 1">checked</if> /> 开启外卖</label></td>-->
+				</tr>
+				<!--</if>-->
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<link rel="stylesheet" href="/static/js/editor/themes/default/default.css" />
+<script charset="utf-8" src="/static/js/editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/static/js/editor/zh_CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		var uploadbutton = K.uploadbutton({
+			button : K('#uploadBtn')[0],
+			fieldName : 'imgFile',
+			url : '/index.php?g=User&m=Attachment&a=upload&type=reply',
+			afterUpload : function(data) {
+				if (data.error === 0) {
+					K('#picurl').val(data.url);
+				} else {
+					alert(data.message);
+				}
+			},
+			afterError : function(str) {
+				alert('自定义错误信息: ' + str);
+			}
+		});
+		uploadbutton.fileBox.change(function(e) {
+			uploadbutton.submit();
+		});
+	});
+</script>
+<script language="javascript">
+function countChar(textareaName,spanName){
+ document.getElementById(spanName).innerHTML=400-document.getElementById(textareaName).value.length;
+ if(document.getElementById(textareaName).value.length>=400){
+  window.alert("已经是最大字数了哦！")
+  return false;
+ }
+}
+</script>
+<include file="Public:footer"/>

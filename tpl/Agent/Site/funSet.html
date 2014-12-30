@@ -1,0 +1,61 @@
+<include file="Frame:header"/>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/lang/cn.js"> </script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/formcheck.js"> </script>
+<link rel="stylesheet" href="tpl/Agent/Common/js/formCheck/theme/grey/formcheck.css" type="text/css" media="screen" />
+<link href="tpl/Agent/Common/style/calendar.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/calendar.js"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/plugins/iframeTools.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function(){
+	new FormCheck('myform');
+});
+</script>
+
+<div class="columntitle">修改资料</div>
+   <form method="post" action="?g=Agent&m=Site&a=funSet" id="myform">
+            <table class="addTable">
+				<tr>
+					<td height="48" align="right">状态：</td>
+					<td colspan="3" class="lt">
+						<input type="radio" class="radio" class="ipt" value="1" name="status" id="status1" <if condition="($info.status eq 1) OR ($info['status'] eq '') ">checked=""</if> >
+							启用
+							<input type="radio" class="radio" class="ipt"  value="0" name="status" id="status2" <eq name="info.status" value="0">checked=""</eq> >
+							关闭
+					</td>
+				</tr>		
+				<tr style="display:none">
+					<td height="48" align="right">等级要求：</td>
+					<td colspan="3" class="lt">
+						<select name="gid">
+								<option vlaue="0">请选择</option>
+							<pigcmslist array="groups" foreach="vo">
+								<option value="{pigcms:$vo.id}" <eq name="vo.id" value="$info.gid">selected="selected"</eq> >{pigcms:$vo.name}</option>
+							</volist>
+						</pigcmslist>
+					</td>
+				</tr>				
+				<tr>
+					<td height="48" align="right">模块名称：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="name" class="colorblur" size="45" value="{pigcms:$info.name}" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right">模块方法名称：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="funname" class="colorblur" size="45" value="{pigcms:$info.funname}" readonly>
+					</td>
+				</tr>
+			
+          <tr>
+            <td class="addName"></td>
+            <td>
+            <input type="hidden" value="{pigcms:$info.id}" name="id" />
+            <input type="submit" name="doSubmit" value="提交" class="button"/></td>
+          </tr>
+         
+        </table>
+        <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="referer" />
+</form>
+<include file="Frame:footer"/>

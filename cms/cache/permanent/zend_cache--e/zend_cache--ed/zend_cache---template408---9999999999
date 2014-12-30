@@ -1,0 +1,23 @@
+                      -174112049O:8:"stdClass":10:{s:2:"id";s:3:"408";s:4:"name";s:12:"文字列表";s:4:"path";s:55:"@/smarty/templates/3/bqudsg1403772577/channel_text.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"63";s:4:"time";s:10:"1403783459";s:4:"code";s:1057:"{include file=$header}
+
+<div class="clear"></div>    <div class="viewtitle">{$channel.name}</div>
+    <div data-role="content" class="content">
+      <div class="newslist">
+        <ul>
+        {if $contents}
+			{foreach from=$contents item=c}
+                  <li><a href="{$c.link}"  title="{$c.title}">{$c.title}</a></li>
+                  {/foreach}
+			 {/if}
+                 
+                </ul>
+      </div>
+      <div class="clear"></div>
+               <div class="pages ui-grid-b">  
+              <div class="ui-block-a"><span class="left ui-bar-h" id="dis"><img src="smarty/templates/tpls/{$site.template}/left.png"  alt="上一页"/></span></div>
+    <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+    <div class="ui-block-c"><a href="{$nextPageLink}"  title="下一页" data-ajax="false" class="right ui-bar-h"><img src="smarty/templates/tpls/{$site.template}/right.png"  alt="下一页"/></a></div>
+</div>
+          </div>
+    <div class="clear"></div>
+{include file=$footer}";}

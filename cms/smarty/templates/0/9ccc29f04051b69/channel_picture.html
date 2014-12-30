@@ -1,0 +1,21 @@
+{include file=$header}
+	    <ul class="productul">
+         {if $contents}
+			{foreach from=$contents item=a key=k}
+		        <li>
+            <a href="{$a.link}"  title="{$a.title}"><img src="{$a.thumb}" alt="{$a.title}"></a>
+            <a href="{$a.link}"  title="{$a.title}" class="title">{$a.title}</a>
+        </li>
+        {/foreach}
+			 {/if}
+             
+		      
+		    </ul>
+    <div class="clear"></div>
+    <div class="pages">
+			<a class="next-left" href="javascript:void(0)">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="pre-left" href="{$nextPageLink}" >&gt;</a>
+	    </div>
+	<div class="clear"></div>
+{include file=$footer}

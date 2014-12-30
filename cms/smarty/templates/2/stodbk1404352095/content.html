@@ -1,0 +1,27 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div data-role="content" id="main">
+
+    <div class="producttit">
+      <div class="title"><span class="fl">{$channel.name}</span></div>
+    </div>
+    <div class="pNC">
+      <div class="ptitle" id="content">{$content.title}</div>
+           {$content.content}</div>
+    <div class="fenye">
+    {if $previousContent}
+      <p><a href="{$previousContent->link}" >上一条：{$previousContent->title}</a></p> {/if}  
+      {if $nextContent}
+      <p><a href="{$nextContent->link}" >下一条：{$nextContent->title}</a></p> {/if}  
+        </div>
+    <div class="clear"></div>
+    <div class="viewback"><a href="{$channel.link}" title="返回列表" class="ui-bar-i" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/fh.jpg" tppabs="fh.jpg" alt="返回列表"></a></div>
+  </div>
+  {/if}
+{include file=$footer}

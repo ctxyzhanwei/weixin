@@ -1,0 +1,344 @@
+body{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+.container{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	min-height: 510px;
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 100% auto;
+	background-color: #2A2172;
+	background-image: url(../img/bg_common.jpg);
+}
+.btn-layout{
+	text-align: center;
+	position: absolute;
+	top: 370px;
+	left: 0;
+	width: 100%;
+}
+.btn-layoutt{
+	text-align: center;
+	position: absolute;
+	top: 370px;
+	left: 0;
+	width: 100%;
+}
+.btn-layout [class^='btn-']{
+	margin: 0 6px;
+}
+/*找人帮他*/
+.btn-alert-other-other,
+/*我也想领*/
+.btn-get-too,
+/*帮他拆礼盒*/
+.btn-open-other,
+/*立即通知他*/
+.btn-alert-other,
+/*察看我的礼盒*/
+.btn-see,
+.btn-see3{
+	border: none;
+	width: 134px;
+	height: 54px;
+	display: inline-block;
+	position: relative;   
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.btn-see33{
+	border: none;
+	width: 150px;
+	height: 70px;
+	display: inline-block;
+	position: relative;   
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.btn-help-other{
+	border: none;
+	width: 134px;
+	height: 54px;
+	display: inline-block;
+	position: relative;   
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.btn-alert-other-other{
+	background-image: url(../img/btn_alert_other.png);
+}
+.btn-see{
+	background-image: url(../img/btn_see.png);
+}
+.btn-see3{
+	background-image: url(../img/btn_see3.png);
+}
+.btn-see33{
+	background-image: url(../img/btn_get_too.png);
+}
+.btn-get-too{
+	height: 72px;
+	background-image: url(../img/btn_get_too.png);
+}
+.btn-open-other{
+	background-image: url(../img/btn_open_other.png);
+}
+
+.btn_help{
+	background-image: url(../img/btn_help.png);
+}
+.btn-help-other{
+	background-image: url(../img/btn_alert_other.png);
+}
+.btn-get-too.big{
+	-webkit-transform: scale(1.3);
+}
+.choose-content-bg{
+	width: 250px;
+	height: 65px;
+	position: absolute;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	background-size: 100% 100%;
+	background-image: url(../img/layer_box.png);
+	top: 100px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.choose-content{
+	position: absolute;
+	top: 155px;
+	width: 100%;
+	left: 0;
+	overflow: hidden;
+}
+.choose-content ul{
+	white-space: nowrap;
+}
+.choose-content li{
+	display: inline-block;
+	width: 100%;
+	height: 161px;
+	position: relative;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 181px 161px;
+}
+.choose-content li img{
+	width: 34px;
+	position: absolute;
+	bottom: 25px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	-webkit-transform: translate3d(64px,0,0);
+}
+.choose-content .prize1{
+	background-image: url(../img/icon_prize1.png);
+}
+.choose-content .prize2{
+	background-image: url(../img/icon_prize2.png);
+}
+.choose-content .prize3{
+	background-image: url(../img/icon_prize3.png);
+}
+.choose-content .prize4{
+	background-image: url(../img/icon_prize4.png);
+}
+.choose-content .prize5{
+	background-image: url(../img/icon_prize5.png);
+}
+.choose-content.opened{
+	top: -30px;
+}
+/*.choose-content.opened img{
+	bottom: 95px;
+	-webkit-transform: translate3d(84px,0,0);
+}*/
+.choose-content.opened li.prize1 img {
+	bottom: 95px;
+	right: 0;
+	-webkit-transform: translate3d(62px,0,0);
+}
+.choose-content.opened li.prize2 {
+	background-size: 455px 360px;
+	height: 500px;
+}
+.choose-content.opened li.prize2 img{
+	bottom: 188px;
+	right: 0;
+	-webkit-transform: translate3d(12px,5px,0);
+}
+
+.choose-content.opened li.prize3 {
+	height: 450px;
+	background-size: 482px 450px;
+}
+.choose-content.opened li.prize3 img {
+	bottom: 104px;
+	right: 0;
+	-webkit-transform:translate3d(4px,8px,0);
+}
+.choose-content.opened li.prize4 {
+	height: 482px;
+	background-size: 296px 239px;
+}
+.choose-content.opened li.prize4 img {
+	bottom: 186px;
+	right: 0;
+	-webkit-transform: translate3d(62px,0,0);
+}
+.choose-content.opened li.prize5 {
+	height: 480px;
+	background-size: 475px 435px;
+}
+.choose-content.opened li.prize5 img {
+	bottom: 145px;
+	right: 0;
+	-webkit-transform: translate3d(60px,0,0);
+}
+.choose-content.opened li{
+	height: 418px;
+	background-size: 493px 418px;
+	background-position-x: right;
+}
+.choose-content.opened .prize1{
+	background-image: url(../img/icon_prize_opened1.png);
+}
+.choose-content.opened .prize2{
+	background-image: url(../img/icon_prize_opened2.png);
+}
+.choose-content.opened .prize3{
+	background-image: url(../img/icon_prize_opened3.png);
+}
+.choose-content.opened .prize4{
+	background-image: url(../img/icon_prize_opened4.png);
+}
+.choose-content.opened .prize5{
+	background-image: url(../img/icon_prize_opened5.png);
+}
+.choose-content li img{
+	bottom: 25px;
+}
+.choose-content li.prize3 img{
+	bottom: 2px;
+	right: 112px;
+}
+.choose-content li.prize4 img{
+	bottom: 35px;
+	right: 56px;
+}
+.copyright{
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	color: #5E43B6;
+}
+.text-num{
+	width: 266px;
+	height: 48px;
+	position: relative;
+	top: 45px;
+	margin: 0 auto;
+	color: #f6dc54;
+	font-size: 16px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-image: url(../img/text_open_prize.png);
+}
+.text-numm{
+	width: 266px;
+	height: 48px;
+	position: relative;
+	top: 45px;
+	margin: 0 auto;
+	color: #f6dc54;
+	font-size: 16px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-image: url(../img/text_prize_opened.png);
+}
+.text-num .have{
+	position: absolute;
+	top: -1px;
+	left: 70px;
+	width: 28px;
+	text-align: center;
+}
+.text-num .rest{
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	width: 28px;
+	text-align: center;
+}
+.text-num.first{
+	width: 202px;
+	height: 45px;
+	background-image: url(../img/text_prize_open_first.png);
+}
+.text-num.first .have,
+.text-num.first .rest,
+.text-num.last .have,
+.text-num.last .rest,
+.text-num.opened .have,
+.text-num.opened .rest,
+.text-num.sharelast .have,
+.text-num.done .rest,
+.text-num.sharelast .rest{
+	display: none;
+}
+.text-num.last{
+	width: 228px;
+	height: 48px;
+	background-image: url(../img/text_open_prize_last.png);
+}
+.text-num.opened{
+	width: 177px;
+	height: 48px;
+	background-image: url(../img/text_prize_open_before.png);
+}
+.text-num.done{
+	width: 170px;
+	height: 42px;
+	background-image: url(../img/text_prize_opened.png);
+}
+.text-num.share{
+	width: 284px;
+	height: 48px;
+	background-image: url(../img/text_num_other.png);
+}
+.text-num.sharelast{
+	width: 243px;
+	height: 48px;
+	background-image: url(../img/text_last_one.png);
+}
+.share-layer{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: rgba(0,0,0,0.9);
+	background-size: 320px 256px;
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-image: url(../img/share.png);
+}
+.share-layer.show{
+	display: block;
+}

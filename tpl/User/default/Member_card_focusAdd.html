@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+          <div class="cLineB"><h4>添加幻灯片</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action="{pigcms::U('Member_card/focusAdd')}" enctype="multipart/form-data" >
+ 
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <TBODY>
+ 
+<TR>
+  <TH valign="top"><label for="keyword">幻灯片描述：</label></TH>
+  <TD><input type="text" class="px" id="keyword" value="" name="info" style="width:500px" ><br />
+                  30个字简短分类描述，可为空   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">幻灯片图片</label></TH>
+  <TD><input type="text" class="px" id="img" value="" name="img" style="width:500px" >  <script src="/tpl/static/upyun.js?2013"></script><a href="###" onclick="chooseFile('img','focus')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img')">预览</a> 建议图片(宽640高320)  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+<TR>
+  <TH valign="top"><label for="keyword">幻灯片链接地址 ：</label></TH>
+  <TD><input type="text" class="px" id="url" value="" name="url" style="width:500px" > <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('url',0)" class="a_choose">从功能库添加</a></if><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

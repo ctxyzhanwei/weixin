@@ -1,0 +1,21 @@
+{include file=$header}
+<div class="clear"></div>
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div class="sub">
+	<div class="subbtn">
+        <a href="?token={$token}&m=site&c=home&a=map"  title="地图" class="mapbtn"><p>地图</p></a>
+        <a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话" class="telbtn"><p>电话</p></a>
+        <a href="{$homeurl}"  title="首页" class="homebtn"><p>首页</p></a>
+    </div>	<h1><p>{$content.title}</p></h1>
+	  <div class="view" id="content">{$content.content}</div>
+	{if $previousContent}<a href="{$previousContent->link}" class="prevpage">上一条：<span>{$previousContent->title}</span></a>{/if}   {if $nextContent}<a href="{$nextContent->link}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>{/if}	<a href="{$channel.link}" title="返回列表" class="backlist"><img src="smarty/templates/tpls/{$site.template}/backbg.jpg"  alt="返回列表"></a>
+</div>
+<p class="subbottombg"></p>
+{/if}
+{include file=$footer}

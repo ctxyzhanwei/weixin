@@ -1,0 +1,139 @@
+<include file="Dining:header"/>
+<body>
+		
+<div data-role="page" data-add-back-btn="true">	
+	<style>
+		@media ( min-width: 20em ) {
+			/* Show the table header rows and set all cells to display: table-cell */
+			.breakpoint td,
+			.breakpoint th,
+			.breakpoint tbody th,
+			.breakpoint tbody td,
+			.breakpoint thead td,
+			.breakpoint thead th {
+				display: table-cell;
+				margin: 0;
+				text-align: center;
+				vertical-align: middle;
+				
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+			/* Hide the labels in each cell */
+			.breakpoint td .ui-table-cell-label,
+			.breakpoint th .ui-table-cell-label {
+				display: none;
+			}
+			
+			.breakpoint .name {
+				text-align: left;
+				padding-left: 20px;
+			}
+			
+			.breakpoint .num {
+				width: 60px;
+			}
+			
+			.breakpoint .price {
+				width: 80px;
+			}
+			
+			.breakpoint .title {
+				width: 80px;
+			}
+		}
+		
+		#orderinfo-layout {
+			margin: 0;
+			padding: 0;
+			
+			font-family: '微软雅黑', '宋体', sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			text-shadow: none;
+		}
+	</style>
+	
+	<div data-role="header" data-position="fixed" data-id="shop_header" data-tap-toggle="false">
+		<h1>订单详情</h1>
+	</div>
+	
+	<div data-role="content" id="orderinfo-layout">
+		<table data-role="table" id="movie-table" data-mode="reflow" class="ui-body-c ui-shadow table-stroke breakpoint">
+	     <thead>
+	       <tr class="ui-bar-b">
+	         <th class="name">名称</th>
+	         <th class="num">购买份数</th>
+	         <th class="price">价格</th>
+	       </tr>
+	     </thead>
+	     <tbody>
+         	<volist name="products" id="p">
+	     		     <tr>
+				    	<td class="name">{pigcms:$p.name}</td>
+	     				<td>{pigcms:$p.total}</td>
+	    				<td>￥{pigcms:$p.price}</td>
+				    </tr>
+	     	</volist>
+     			   <tr>
+			    	<td class="name">总价：</td>
+			     	<td></td>
+			    	<td>￥{pigcms:$totalFee}</td>
+			    </tr>
+	     </tbody>
+	   </table>
+	   
+	   	   <table data-role="table" id="movie-table" data-mode="reflow" class="ui-body-c ui-shadow table-stroke breakpoint">
+	     <thead>
+	       <tr class="ui-bar-b">
+	         <th class="title">订单信息</th>
+	         <th class="value"></th>
+	       </tr>
+	     </thead>
+	     <tbody>
+	     	<tr>
+	     		<td>订单编号</td>
+	     		<td style="text-align: left;">{pigcms:$thisOrder.id}</td>
+	     	</tr>
+	     	<tr>
+	     		<td>下单时间</td>
+	     		<td style="text-align: left;">2{pigcms:$thisOrder.time|date="y-m-d h:i:s",###}</td>
+	     	</tr>
+	     	<tr>
+	     		<td>联系姓名</td>
+	     		<td style="text-align: left;">{pigcms:$thisOrder.truename}</td>
+	     	</tr>
+	     	<tr>
+	     		<td>联系电话</td>
+	     		<td style="text-align: left;">{pigcms:$thisOrder.tel}</td>
+	     	</tr>
+	     	<tr>
+	     		<td>联系地址</td>
+	     		<td style="text-align: left;">{pigcms:$thisOrder.address}</td>
+	     	</tr>
+				     	<tr>
+	     		<td>订单备注</td>
+	     		<td style="text-align: left;">{pigcms:$thisOrder.note}</td>
+	     	</tr>
+	     	<tr>
+	     		<td>订单状态</td>
+	     		<td style="text-align: left;">
+                	<if condition="($thisOrder['handled'] eq 1)"><font color="#00FF00">已审核</font><else/><font color="#FF0000">未审核</font></if>
+                </td>
+	     	</tr>
+	     </tbody>
+	   </table>
+	   
+	   	</div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-id="shop_footer">
+		<div data-role="navbar">
+			<ul>
+           		<li><a  href="/index.php?g=Wap&m=Dining&a=index&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="home">首页</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=lists&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="search" >选购</a></li>
+				<li><a   href="/index.php?g=Wap&m=Dining&a=order&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="grid" >下单</a></li>
+				<li><a   href="/index.php?g=Wap&m=Dining&a=myOrders&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="info" class="ui-btn-active ui-state-persist">个人中心</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

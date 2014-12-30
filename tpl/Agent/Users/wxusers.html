@@ -1,0 +1,29 @@
+<include file="Frame:header"/>
+<div class="columntitle">公众号管理</div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+		<tr class="summary-title">
+		    <td align="center">UID</td>
+		    <td>用户名</td>
+			<td>微信名称</td>
+			<td>微信ID</td>
+			<td>Token</td>
+			<td>操作</td>
+		</tr>
+<pigcmslist array="list" foreach="list">
+    <tr class="tdbg" onMouseOver="this.className='tdbg-dark';" onMouseOut="this.className='tdbg';" style="height:29px;">
+        <td align="center">{pigcms:$list.uid}</td>
+		<td>{pigcms:$list.username}</td>
+		<td>{pigcms:$list.wxname}</td>
+		<td>{pigcms:$list.wxid}</td>
+		<td>{pigcms:$list.token}</td>
+		<td><a href="###" onclick="if(confirm('确定删除吗')){location.href='?g=Agent&m=Users&a=deleteWxUser&id={pigcms:$list.id}'}">删除</a></td>
+    </tr>
+</pigcmslist>
+</table>
+
+</div>
+<div class="pages">{pigcms:$page}</div>
+<include file="Frame:footer"/>

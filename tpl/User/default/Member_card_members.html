@@ -1,0 +1,110 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script>
+<div class="content">
+<include file="Member_card:menu"/>         
+<div class="cLine">
+	<div class="left" style="margin-right:10px;">
+	<form method="post" action="">
+		搜索：<input  value="" name="searchkey" class="px" style="height:25px;line-height:25px;">
+		<button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询</strong></button>
+	</form>
+	</div>
+	<a href="?g=User&amp;m=Member_card&amp;a=exportCardUseRecord&amp;type=all" class="btnGrayS vm left" style="margin-right:10px;">导出所有会员的积分、线下消费记录</a>
+	<a href="?g=User&amp;m=Member_card&amp;a=exportrmb&amp;type=all" class="btnGrayS vm left" >导出所有会员的会员卡消费记录</a>
+	<a class="right btnGrayS vm" href="{pigcms::U('Member_card/index',array('token'=>$token))}">返回</a>
+<span class="clr"></span>
+</div>
+          <div class="msgWrap">
+           <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">注意:在每行的输入框里可以通过输入消费金额（可以填写负数）来增减会员积分</div>
+
+         
+          <input name="delall"  type="hidden" value="del" />
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>卡号</TH>
+				<TH>姓名</TH>
+		        <TH>联系电话</TH>
+		        <TH>领卡时间</TH>
+		        <TH>积分</TH>
+		        <TH>消费总额(元)</TH>  
+            <TH>余额</TH>             
+				<TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+				 <volist id="list" name="members">
+                <TR>
+                  <TD>{pigcms:$list.number}</TD>
+                  <TD>{pigcms:$list.truename}</TD>
+                  <TD>{pigcms:$list.tel}</TD>
+                  <TD>
+                   <if condition="$list['getcardtime'] gt 0">
+                        {pigcms:$list.getcardtime|date='Y-m-d',###}
+                    <else/>
+                   		 无时间记录
+                    </if>                      
+                  </TD>
+                  <TD width="100">
+                  	{pigcms:$list.total_score}
+                    <form method="post"  action="/index.php?g=User&m=Member_card&a=memberExpense&token={pigcms:$Think.get.token}&id={pigcms:$thisCard.id}" >
+                  		<input type="text" name="money" value="0" class="px" style="width:40px;">
+                  		<input type="hidden" name="wecha_id" value="{pigcms:$list.wecha_id}">
+                   		<button type="submit" style="cursor:pointer" class="btnGrayS vm">设置</button>
+					</form>
+                  </TD> 
+                  <TD>{pigcms:$list.expensetotal}</TD>
+                  <TD>
+                  	{pigcms:$list.balance}
+                  </TD>
+                  <TD class="norightborder">				  
+				       <a href="javascript:void(0);" onclick="memberCardRecharge({pigcms:$list.uid})"><strong>充值</strong></a>
+				       |  
+				       <a href="{pigcms::U('Member_card/member',array('token'=>$token,'itemid'=>$list['id'],'id'=>$thisCard['id']))}" ><strong>消费记录</strong></a>
+				       |
+				       <a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member_card&a=member_del&token={pigcms:$Think.get.token}&itemid={pigcms:$list.id}&id={pigcms:$thisCard.id}');"><strong>删除</strong></a> 
+                  </TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+          </div>
+            
+<script>
+function pay_change(id){
+    art.dialog.open('{pigcms::U('Member_card/pay_change',array('token'=>$token,'cardid'=>$thisCard['id']))}&id='+id,{lock:false,title:'会员充值',width:560,height:350,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+
+</script>
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}
+  </script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

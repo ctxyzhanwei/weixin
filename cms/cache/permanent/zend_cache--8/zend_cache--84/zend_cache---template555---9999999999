@@ -1,0 +1,17 @@
+                       613886767O:8:"stdClass":10:{s:2:"id";s:3:"555";s:4:"name";s:12:"文字列表";s:4:"path";s:55:"@/smarty/templates/7/ltdwvc1398909644/channel_text.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:1:"7";s:4:"time";s:10:"1399181132";s:4:"code";s:666:"{include file=$header}<p class="title">{$channel.name}</p>
+<div class="sub">
+		<ul class="news">
+			{if $contents}
+			{foreach from=$contents item=c}
+			<li><a href="{$c.link}" title="{$c.title}"><p>{$c.title}</p></a></li>
+			
+		     {/foreach}
+			 {/if}
+			</ul>
+		<div class="pages">
+		
+				<a href="{$previousPageLink}" class="{if $previousPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="上一页">&lt;</a>
+				<span>{$currentPage}/{$totalPage}</span>
+				<a href="{$nextPageLink}" class="{if $nextPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="下一页">&gt;</a>
+				</div>	</div>
+{include file=$footer}";}

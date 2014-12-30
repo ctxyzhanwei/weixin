@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{pigcms:$info['title']}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi, width=device-width"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+       <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="{pigcms::STATICS}/education/flaticon.css"/>
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/idangerous.swiper.css" />
+    <link href="{pigcms::STATICS}/schools/css/iscroll.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css" />
+    <link rel="Stylesheet" href="{pigcms::STATICS}/schools/css/moban.css" type="text/css" />
+    <link href="{pigcms::STATICS}/schools/css/cate.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+     .btn_music
+        {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('{pigcms::STATICS}/schools/images/play.png') no-repeat center center;
+            background-size: 100% auto;
+            position: absolute;
+            z-index: 100;
+left: 15px;            top: 20px;
+        }
+        .btn_music.on
+        {
+            background-image: url("{pigcms::STATICS}/schools/images/stop.png");
+        }
+
+
+    </style>
+    <script src="{pigcms::STATICS}/schools/js/iscroll.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var myScroll;
+
+        function loaded() {
+            myScroll = new iScroll('wrapper', {
+                snap: true,
+                momentum: false,
+                hScrollbar: false,
+                onScrollEnd: function () {
+                    document.querySelector('#indicator > li.active').className = '';
+                    document.querySelector('#indicator > li:nth-child(' + (this.currPageX + 1) + ')').className = 'active';
+                }
+            });
+        }
+        document.addEventListener('DOMContentLoaded', loaded, false);
+        window.addEventListener("DOMContentLoaded", function () {
+            playbox.init("playbox");
+        }, false);
+
+
+    </script>
+    <script src="{pigcms::STATICS}/schools/js/zepto.min.js" type="text/javascript"></script>
+    <script src="{pigcms::STATICS}/schools/js/plugmenu.js" type="text/javascript"></script>
+<script type="text/javascript">
+window.shareData = {
+            "moduleName":"School",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$info['head_url']}",
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('School/index',array('token'=>$token))}",
+            "tTitle": "{pigcms:$info['title']}",
+            "tContent": "{pigcms:$info['info']|html_entity_decode|strip_tags|mb_substr=0,89,'utf-8'}..."
+        };
+</script>
+{pigcms:$shareScript}
+</head>
+<body id="cate19"  >
+
+    <script src="{pigcms::STATICS}/schools/js/audio.js" type="text/javascript"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            playbox.init("playbox");
+        }, false);
+    </script>
+    <!--轮播背景图-->
+<div class="banner">
+<div id="wrapper">
+     <div id="scroller">
+      <ul id="thelist">
+        <volist name="flash" id="vo">
+          <li><a href=""><img src="{pigcms:$vo['picurl']}" alt="{pigcms:$vo['title']}"></a></li>
+        </volist>
+     </ul>
+     </div>
+</div>
+<div id="nav">
+<div id="prev" onclick="myScroll.scrollToPage('prev', 0,400,5);return false">&larr; prev</div>
+<!-- <ul id="indicator">
+<li class=""></li><li class=""></li><li class="active"></li>
+</ul> -->
+<div id="next" onclick="myScroll.scrollToPage('next', 0,400,5);return false">next &rarr;</div></div>
+<div class="clr"></div>
+</div>
+<if condition="$info['musicurl'] neq ''">
+        <span id="playbox" class="btn_music" onclick="playbox.init(this).play();">
+            <audio src="{pigcms:$info['musicurl']}" loop id="audio"></audio>
+        </span>
+</if>
+<link rel="stylesheet" href="{pigcms::STATICS}/schools/css/idangerous.swiper.css">
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="{pigcms::STATICS}/schools/js/idangerous.swiper-2.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination: '.pagination',
+        loop: true,
+        grabCursor: true,
+        paginationClickable: true
+    })
+    $('.arrow-left').on('click', function (e) {
+        e.preventDefault()
+        mySwiper.swipePrev()
+    })
+    $('.arrow-right').on('click', function (e) {
+        e.preventDefault()
+        mySwiper.swipeNext()
+    })
+</script>
+<script>
+    var count = document.getElementById("thelist").getElementsByTagName("img").length;
+
+    var count2 = document.getElementsByClassName("menuimg").length;
+    for (i = 0; i < count; i++) {
+        document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:" + document.body.clientWidth + "px";
+
+    }
+    document.getElementById("scroller").style.cssText = " width:" + document.body.clientWidth * count + "px";
+
+    setInterval(function () {
+        myScroll.scrollToPage('next', 0, 400, count);
+    }, 3500);
+    window.onresize = function () {
+        for (i = 0; i < count; i++) {
+            document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:" + document.body.clientWidth + "px";
+
+        }
+        document.getElementById("scroller").style.cssText = " width:" + document.body.clientWidth * count + "px";
+    }
+
+
+</script>
+<div class="device" >
+    <a class="arrow-left" href="#"></a><a class="arrow-right" href="#"></a>
+    <div class="swiper-container"  >
+        <div class="swiper-wrapper" >
+                <div class="swiper-slide" >
+                    <div class="content-slide">
+ <a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu1_id']))}">
+                            <p class="ico">
+                                <span class="flaticon-school7"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu1']|default='学校简介'}</p>
+                        </a>
+<a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu2_id'],'type'=>'assess'))}">
+                            <p class="ico">
+                                <span class="flaticon-teach"></span> </p>
+                            <p class="title">
+                                {pigcms:$info['menu2']|default='教师风采'}</p>
+                        </a>
+<a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu3_id']))}">
+                            <p class="ico">
+                                <span class="flaticon-schoolclass"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu3']|default='同学天地'}</p>
+                        </a>
+<a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu4_id']))}">
+                            <p class="ico">
+                                <span class="flaticon-research"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu4']|default='课程介绍'}</p>
+</a> <a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'school'))}">
+                            <p class="ico">
+                                <span class="flaticon-competition"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu5']|default='食谱安排'}</p>
+                        </a>
+<a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu6_id']))}">
+                            <p class="ico">
+                               <span class="flaticon-audiobook"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu6']|default='校园公告'}</p>
+                        </a>
+<a href="{pigcms::U('School/qresults',array('token'=>$token,'wecha_id'=>$wecha_id))}">
+                            <p class="ico">
+                                <span class="flaticon-certificate"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu7']|default='成绩查询'}</p>
+                        </a>
+<a href="{pigcms::U('Reply/index',array('token'=>$token,'wecha_id'=>$wecha_id))}">
+                            <p class="ico">
+                                <span class="flaticon-open14"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu8']|default='家长建议'}</p>
+                        </a>
+<a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'course'))}">
+                            <p class="ico">
+                                <span class="flaticon-education"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu9']|default='课程预约'}</p>
+                        </a>
+<a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'curriculum'))}">
+                            <p class="ico">
+                                <span class="flaticon-clock4"></span></p>
+                            <p class="title">
+                                {pigcms:$info['menu10']|default='课程安排'}</p>
+                        </a>
+           </div>
+                </div>
+        </div>
+        <div class="pagination"></div>
+    </div>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.pagination',
+            loop: true,
+            grabCursor: true,
+            paginationClickable: true
+        })
+        $('.arrow-left').on('click', function (e) {
+            e.preventDefault()
+            mySwiper.swipePrev()
+        })
+        $('.arrow-right').on('click', function (e) {
+            e.preventDefault()
+            mySwiper.swipeNext()
+        })
+    </script>
+</div>
+    <div id="leafContainer">
+    </div>
+
+    <style type="text/css">
+ #leafContainer
+{
+    position:fixed;
+    z-index:2;
+width:100%;
+    height: 690px;
+top:0;
+overflow:hidden;
+}
+ #leafContainer > div
+{
+    position: absolute;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-animation-iteration-count: infinite, infinite;
+    -webkit-animation-direction: normal, normal;
+    -webkit-animation-timing-function: linear, ease-in;
+}
+
+#leafContainer > div > img {
+     position: absolute;
+     width: 100%;
+     -webkit-animation-iteration-count: infinite;
+     -webkit-animation-direction: alternate;
+     -webkit-animation-timing-function: ease-in-out;
+     -webkit-transform-origin: 50% -100%;
+}
+
+ @-webkit-keyframes fade
+{
+
+    0%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+ @-webkit-keyframes drop
+{
+       0%   { -webkit-transform: translate(0px, -50px); }
+    100% { -webkit-transform: translate(0px, 650px); }
+}
+ @-webkit-keyframes clockwiseSpin
+{
+    0%   { -webkit-transform: rotate(-50deg); }
+    100% { -webkit-transform: rotate(50deg); }
+}
+ @-webkit-keyframes counterclockwiseSpinAndFlip
+{
+
+    0%   { -webkit-transform: scale(-1, 1) rotate(50deg); }
+
+    100% { -webkit-transform: scale(-1, 1) rotate(-50deg); }
+}
+ </style>
+    <script type="text/javascript">
+        var animationArr = { "1": "fengye", "2": "snow", "4": "rose" };
+        var animationindex = "0";
+        if (animationArr[animationindex] != undefined) {
+        }
+    </script>
+ <script src='{pigcms::STATICS}/schools/js/bjdh.js' type='text/javascript'></script>
+ <div style="display: none"></div>
+
+    <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span>
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+</body>
+</html>

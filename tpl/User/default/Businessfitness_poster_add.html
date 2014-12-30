@@ -1,0 +1,167 @@
+<include file="Public:head"/>
+<include file="Businessfitness:fitness_menu"/>
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+//   <script>
+
+// var editor;
+// KindEditor.ready(function(K) {
+// editor = K.create('#second_desc', {
+// resizeType : 1,
+// allowPreviewEmoticons : false,
+// allowImageUpload : true,
+// uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+// items : [
+// 'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+// });
+// });
+// </script>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+
+<div class="content">
+  <div class="cLineB">
+    <h4>设置健身中心相关内容</h4>
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>设置健身中心相关内容,注意：第一次使用，请点击添加健身中心等相关设置，并点击保存 </font>
+   </strong>
+    </p>
+    </div>
+   </div>
+</div>
+
+  <div class="msgWrap">
+    <form class="form" method="post" action="" id="formID" target="_top" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <if condition="$busines_second['pid'] neq ''">
+            <input type="hidden" class="px" id="pid" value="{pigcms:$busines_second['pid']}" name="pid" >
+            <input type="hidden" class="px" id="status" value="edit" name="status" >
+        </if>
+            <input type="hidden" class="px" id="type" value="{pigcms:$type}" name="type" >
+          </tr>
+
+          <tr>
+            <th valign="top"><label for="bid_id">选择健身中心</label></th>
+            <td><select name="bid_id" id="bid_id">
+            <option value="">请选择健身中心</option>
+            <volist name="busines_list" id="vo">
+            <option value="{pigcms:$vo.bid}" <if condition="$vo.bid eq $busines_second['bid_id']">selected="selected"</if>>{pigcms:$vo.mtitle}</option>
+        </volist>
+                </select>
+              <br>
+            </td>
+            <td></td>
+          </tr>
+        <tr>
+            <th valign="top"><label for="ablum_id">选择相册</label></th>
+            <td><select name="ablum_id" id="ablum_id">
+            <option value="">请选择相册</option>
+            <volist name="photo" id="vo">
+            <option value="{pigcms:$vo.id}" <if condition="$vo.id eq $busines_second['ablum_id']">selected="selected"</if>>{pigcms:$vo.title}</option>
+        </volist>
+                </select>
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="picurl_1">海报1</label></th>
+            <td><img class="thumb_img" id="picurl_1_src" src="{pigcms:$busines_second['picurl_1']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl_1" value="{pigcms:$busines_second['picurl_1']}" name="picurl_1" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl_1',480,751,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl_1')">预览</a> [480*751]</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="picurl_2">海报2</label></th>
+            <td><img class="thumb_img" id="picurl_2_src" src="{pigcms:$busines_second['picurl_2']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl_2" value="{pigcms:$busines_second['picurl_2']}" name="picurl_2" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl_2',480,751,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl_2')">预览</a> [480,751]</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="picurl_3">海报3</label></th>
+            <td><img class="thumb_img" id="picurl_3_src" src="{pigcms:$busines_second['picurl_3']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl_3" value="{pigcms:$busines_second['picurl_3']}" name="picurl_3" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl_3',480,751,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl_3')">预览</a> [480,751] </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="picurl_4">海报4</label></th>
+            <td><img class="thumb_img" id="picurl_4_src" src="{pigcms:$busines_second['picurl_4']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl_4" value="{pigcms:$busines_second['picurl_4']}" name="picurl_4" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl_4',480,751,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl_4')">预览</a> [480,751]</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="picurl_5">海报5</label></th>
+            <td><img class="thumb_img" id="picurl_5_src" src="{pigcms:$busines_second['picurl_5']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl_5" value="{pigcms:$busines_second['picurl_5']}" name="picurl_5" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl_5',480,751,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl_5')">预览</a> [480,751] </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><button type="submit" name="button" class="btnGreen left">保存</button>
+              <div class="clr"></div></td>
+          </tr>
+        </tbody>
+      </table>
+   </form>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

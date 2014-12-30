@@ -1,0 +1,55 @@
+.m-hd {background:-webkit-linear-gradient(top,#fff,#f9f9f9);box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);border-bottom: 1px solid #D1D1D1;} .tit {text-shadow: 0);color: #999;} .m-hd div a.back {border-right: 1px solid #f9f9f9;} .m-hd div a.cart {border-left: 1px solid #fff;} .m-hd div a.cat, .m-hd div.logo, .m-hd div.tit, .m-hd div a.uc {border-right: 1px solid #f9f9f9;border-left: 1px solid #fff;} .m-hd div a.back:after {background: url(/tpl/static/store/back.png) no-repeat;background-size: contain;} .m-hd div a.cat:after {background: url(/tpl/static/store/caticon.png) no-repeat;background-size: contain;} .m-hd div a.uc:after {background: url(/tpl/static/store/user.png) no-repeat;background-size: contain;} .m-hd div a.cart:after {background: url(/tpl/static/store/cart.png) no-repeat;background-size: contain;}
+/*下面为新増样式*/
+.m-l-search .btn-search {
+width: 5.8rem;
+height: 3.6rem;
+background: url(30/seach_btn.png) no-repeat right;/*1中按钮*/
+background-size: 100% auto;
+border: 0;
+border-radius: 0 .3rem .3rem 0;
+}
+
+.m-detail-mainout .d-info .i-row.act a.buynow, .m-detail-mainout .d-info .i-row.act a.addcart {
+width: 48.5%;
+background: #e1af9a; /*2中左侧按钮.*/
+color: #fff;
+font-size: 1.4rem;
+}
+
+.m-detail-mainout .d-info .i-row.act a.addcart {
+background: #d18e72;/*2中右侧按钮.*/
+}
+
+.detailinfo .tabs li.on {
+background: #fff;
+border-top: .2rem solid #e1af9a; /*需要与2中左侧按钮同色*/
+line-height: 2.8rem;
+color: #e1af9a;/*需要与2中左侧按钮同色*/
+}
+
+.m-cart-e .gobuy {
+line-height: 42px;
+display: block;
+border-radius: 2px;
+background: #e1af9a;/*3中按钮背景颜色.*/
+color: #fff;
+font-size: 16px;
+text-shadow: -1px -1px 1px #d18e72;/*3中文字阴影颜色.*/
+margin: 15px;
+-webkit-box-shadow: 0 -1px 1px #b27257 inset;/*3中按钮阴影颜色.*/
+font-weight: 700;
+}
+
+.m-cart-toal .act a.checkout {
+border-radius: 2px;
+display: block;
+text-align: center;
+-webkit-box-flex: 1;
+width: 100%;
+background: #e1af9a;/*4中按钮颜色，需要与2中左侧按钮同色*/
+color: #fff;
+text-shadow:none;
+-webkit-box-shadow: 0 -1px 1px #b27257 inset;/*4中按钮阴影颜色.*/
+font-weight: 700;
+line-height: 36px;
+}

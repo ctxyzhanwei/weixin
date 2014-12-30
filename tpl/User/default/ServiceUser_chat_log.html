@@ -1,0 +1,55 @@
+<include file="Public:head"/>
+<include file="ServiceUser:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">聊天记录</h4>
+               
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">工号管理：</span>添加工号后，在登陆的时候填写工号，密码，token即可。</p>
+    </div>
+</div>
+          
+         
+          <div class="msgWrap">
+          
+         
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+             <tr>                          
+				<th class="span3">ID</th>
+				<th class="span3">信息</th>
+
+			</tr>
+			  </thead>
+				<tbody>
+					<if condition="$list eq ''">
+						<tr>
+						<td colspan="6" style="text-align:center; height:30px;"><strong>暂无客服信息.</strong></td>
+						</tr>
+					<else/>
+					<volist name="list" id="list">
+						<tr>
+						<td style="text-align:left;">{pigcms:$list['id']}</td> 
+						<td style="text-align:left;">{pigcms:$list['keyword']}</td> 
+
+						
+					
+						</tr>
+					</volist>
+					</if>
+				</tbody>
+            </table>
+         
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

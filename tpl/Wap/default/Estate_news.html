@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/wap/estate/pigcms-ui-1-1.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/wap/estate/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/wap/estate/car_reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/wap/estate/list-8.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/wap/estate/menu-2.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/wap/estate/jQuery.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/back.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/share.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/common.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/index.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/waphome.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/reset.css" media="all">
+
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/swipe.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/zepto.js"></script>
+
+<title>{pigcms:$classify['name']}</title>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+
+
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+
+<div class="body">
+
+                    <header>
+            <div class="head_news">
+                <a href="{pigcms:$classify['url']}">
+                    <ul>
+<if condition="$classify['img'] neq ''">
+                         <li><img src="{pigcms:$classify['img']}" style="width:100%; max-height:400px;"></li>
+</if>
+                    </ul>
+                    <ol>{pigcms:$classify['name']}</ol>
+                </a>
+            </div>
+        </header>
+        <p></p>
+            <section>
+
+                    <ul class="list_ul list_ul_news">
+                     <volist name="imgtxt" id="vo">
+                      <li>
+                        <a class="tbox" href="{pigcms::U('Estate/newlist',array('token'=>$token,'wecha_id'=>$wecha_id,'mid'=>$vo['mid']))}">
+                            <div>
+                                <img src="{pigcms:$vo['pic']}" style="width:60px!important; height:60px;">
+                            </div>
+                            <div>
+                                <p>{pigcms:$vo['title']}</p>
+                                <p>{pigcms:$vo['createtime']|date="Y年m月d日",###}</p>
+                            </div>
+                        </a>
+
+                    </volist>
+                    </ul>
+                    </section>
+</div>
+<!-- <include file="Estate:menu"/> -->
+</body></html>

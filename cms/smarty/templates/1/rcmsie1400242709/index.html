@@ -1,0 +1,52 @@
+{include file=$header}
+{literal}
+<style>
+/*{background:#3C1D59;}*/
+</style>
+{/literal}
+
+<div class="ad">
+
+    <a href="sms:{$company.mp}" title="短信" class="smsbtn"></a>
+    <a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话" class="telbtn"></a>
+    <a href="?token={$token}&m=site&c=home&a=map"  title="地图" class="mapbtn"></a>
+</div>
+ <div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                </div>
+    </div>
+
+<div class="news" style="background:none">
+<div class="sub">
+		<ul class="newsul">
+				 {if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+    	    	<li><a href="{$a.link}" title="{$a.title}"><span>{$a.title}</span></a></li>
+            	{/if}
+		{/foreach}
+		
+		{/if}
+<div class="clear"></div>
+			</ul>
+ </div>
+ </div>
+
+{include file=$footer}

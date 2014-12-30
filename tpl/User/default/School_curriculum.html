@@ -1,0 +1,68 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+
+<script>
+    window.onload=function(){
+        document.forms[0].reset();
+        placeFo();
+    }
+    function placeFo(){
+        document.forms[0].elements[0].focus();
+    }
+</script>
+<div class="content">
+
+          <div class="cLineB">
+              <h4 class="left">当前位置：微学校 >> 课程安排</h4>
+              <div class="clr"></div>
+          </div>
+          <div class="cLineD">
+
+ </div>
+          <div class="msgWrap">
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                <TH>姓名</TH>
+                <TH>班级</TH>
+                <TH>科目</TH>
+                <TH>周天</TH>
+                <TH>时段</TH>
+                <TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+<volist id="list" name="market">
+                <TR>
+                  <TD>{pigcms:$list['tname']}</TD>
+                  <TD>{pigcms:$list['bj_name']}</TD>
+                  <TD>{pigcms:$list['km_name']}</TD>
+                  <TD>{pigcms:$list['xq_name']}</TD>
+                  <TD>{pigcms:$list['sd_name']}</TD>
+                  <TD>
+<a href="{pigcms::U('School/assess_course',array('token'=>$token,'id'=>$list['id'],'tid'=>$list['tid'],'type'=>'edit'))}"><font color="red">编辑</font></a> &nbsp;&nbsp;
+<a class="btn" href="{pigcms::U('School/del_item',array('token'=>$token,'id'=>$list['id'],'deltype'=>'curriculum'))}" onclick="return(confirm('确定要删除吗？'))"  title="删除"><font color="#CCC7C7">删除</font></a>
+                 </TD>
+                </TR>
+</volist>
+              </TBODY>
+            </TABLE>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>公众小秘书</title>
+	<style type="text/css">
+		body{
+			background-image: url({pigcms::RES}/paper/bgtexture.jpg);
+			background-repeat: repeat;
+			margin: 0 auto;
+			width:320px;
+		}
+		#container{
+			margin:0 auto;
+		}
+		#vanish{
+			display: none;
+			font-size: 20pt;
+			color: rgb(258, 125, 0);
+			text-align: center;
+			padding-top: 45px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		#vanish p{
+			margin: 0;
+		}
+		#content{
+			width: 320px;
+			text-align: center;
+			min-height: 480px;
+		}
+		.download{
+			padding-left: 15px;
+		}
+		#productInfo{
+			display: none;
+		}
+		#banner{
+			padding-top: 40px;
+		}
+		#description{
+			padding-top: 25px;
+			padding-bottom: 40px;
+		}
+		#logo{
+			padding-top: 38px;
+			padding-bottom: 44px;
+		}
+		#imageContainer{
+			padding-top: 40px;
+			display: none;
+			font-size: 20pt;
+			color: rgb(258, 125, 0);
+		}
+		#leftTime{
+			position: absolute;
+			padding-top: 2px;
+			left: 280px;
+			top: 24px;
+			height: 38px;
+			width: 37px;
+			background-image: url({pigcms::RES}/paper/timebg.png);
+			font-size: 20pt;
+			color: white;
+			background-repeat: no-repeat;
+			display: none;
+			background-size: 37px 38px;
+		}
+		#loading{
+			font-size: 20px;
+			color: rgb(258, 125, 0);
+			display: none;
+		}
+		#touchArea{
+			display: none;
+		}
+                #account{
+                       color: rgb(258, 125, 0);
+                       font-size:16px;
+                }
+
+        .button {
+
+			/* text */
+				text-decoration: 		none;
+				font: 					24px/1em 'Droid Sans', sans-serif;
+				font-weight: 			bold;
+				text-shadow: 			rgba(255,255,255,.5) 0 1px 0;
+				-webkit-user-select: 	none;
+				-moz-user-select: 		none;
+				user-select: 			none;
+				
+				
+			/* layout */
+				padding: 				.5em .6em .4em .6em;
+				margin: 				.5em;
+				display: 				inline-block;
+				position: 				relative;
+				
+				-webkit-border-radius: 	8px;
+				-moz-border-radius: 	8px;
+				border-radius: 	8px;
+				
+			/* effects */
+				border-top: 		1px solid rgba(255,255,255,0.8);
+				border-bottom: 		1px solid rgba(0,0,0,0.1);
+				
+				background-image: 	-webkit-gradient(radial, 50% 0, 100, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0.7) )), url({pigcms::RES}/paper/noise.png);
+				background-image: 	-moz-radial-gradient(top, ellipse cover, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%), url({pigcms::RES}/paper/noise.png);
+				background-image: 	gradient(radial, 50% 0, 100, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0.7) )), url({pigcms::RES}/paper/noise.png);
+
+				-webkit-transition: background .2s ease-in-out;
+				-moz-transition: 	background .2s ease-in-out;
+				transition: 		background .2s ease-in-out;
+				
+			/* color */
+				color: 				hsl(0, 0%, 40%) !important;
+				background-color: 	hsl(0, 0%, 75%);
+				
+				-webkit-box-shadow: inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */ 
+									hsl(0, 0%, 60%) 0 .1em 3px, hsl(0, 0%, 45%) 0 .3em 1px, /* color border */
+									rgba(0,0,0,0.2) 0 .5em 5px; /* drop shadow */
+				-moz-box-shadow: 	inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */ 
+									hsl(0, 0%, 60%) 0 .1em 3px, hsl(0, 0%, 45%) 0 .3em 1px, /* color border */
+									rgba(0,0,0,0.2) 0 .5em 5px; /* drop shadow */
+				box-shadow:		 	inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */ 
+									hsl(0, 0%, 60%) 0 .1em 3px, hsl(0, 0%, 45%) 0 .3em 1px, /* color border */
+									rgba(0,0,0,0.2) 0 .5em 5px; /* drop shadow */
+			}
+
+			.button.green {
+				color: 				hsl(88, 70%, 30%) !important;
+				background-color: 	hsl(88, 70%, 60%);
+				-webkit-box-shadow: inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */ 
+										hsl(88, 70%, 40%) 0 .1em 3px, hsl(88, 70%, 30%) 0 .3em 1px, /* color border */
+										rgba(0,0,0,0.2) 0 .5em 5px; /* drop shadow */
+				-moz-box-shadow: 	inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */ 
+										hsl(88, 70%, 40%) 0 .1em 3px, hsl(88, 70%, 30%) 0 .3em 1px, /* color border */
+										rgba(0,0,0,0.2) 0 .5em 5px; /* drop shadow */
+				box-shadow:		 	inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */ 
+										hsl(88, 70%, 40%) 0 .1em 3px, hsl(88, 70%, 30%) 0 .3em 1px, /* color border */
+										rgba(0,0,0,0.2) 0 .5em 5px; /* drop shadow */
+			}
+			.button.green:hover { 	background-color: hsl(88, 70%, 75%); }
+
+			/* -------------- States -------------- */
+
+			.button:hover {
+				background-color: 	hsl(0, 0%, 83%);
+			}
+
+
+
+			.button:active {
+				background-image: 	-webkit-gradient(radial, 50% 0, 100, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0) )), url({pigcms::RES}/paper/noise.png);
+				background-image: 	-moz-gradient(radial, 50% 0, 100, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0) )), url({pigcms::RES}/paper/noise.png);
+				background-image: 	gradient(radial, 50% 0, 100, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0) )), url({pigcms::RES}/paper/noise.png);
+
+				-webkit-box-shadow: inset rgba(255,255,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.2) 0 -0.1em .3em, /* inner shadow */ 
+										rgba(0,0,0,0.4) 0 .1em 1px, /* border */
+										rgba(0,0,0,0.2) 0 .2em 6px; /* drop shadow */
+				-moz-box-shadow: 	inset rgba(255,255,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.2) 0 -0.1em .3em, /* inner shadow */ 
+										rgba(0,0,0,0.4) 0 .1em 1px, /* border */
+										rgba(0,0,0,0.2) 0 .2em 6px; /* drop shadow */
+				box-shadow: 		inset rgba(255,255,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.2) 0 -0.1em .3em, /* inner shadow */ 
+										rgba(0,0,0,0.4) 0 .1em 1px, /* border */
+										rgba(0,0,0,0.2) 0 .2em 6px; /* drop shadow */
+
+				-webkit-transform: 	translateY(.2em);
+				-moz-transform: 	translateY(.2em);
+				transform: 			translateY(.2em);
+			}
+
+			.button:focus {
+				outline: none;
+				color: rgba(254,255,255,0.9) !important;
+				text-shadow: rgba(0,0,0,0.2) 0 1px 2px;
+			}
+
+
+
+	</style>
+        <script type="text/javascript">
+          var msgStatus = "ok";
+          var dataType = "text";
+          var contentText = "<?php echo $message;?>";
+          var contentImage = "";
+        </script>
+<style type="text/css"></style></head>
+  <img data-pinit="registered" style="width:100%;position:fixed;top:0;z-index:1000000" src="{pigcms::RES}/paper/2000.jpg">
+  <img src="{pigcms::RES}/paper/2000.jpg" style="width:100%;" data-pinit="registered">
+<body onload="pageLoad()" style="background-size: 720px;">
+	<div id="container">
+		<div id="content">
+			<div id="leftTime"></div>
+			<div id="titleBar" >
+				<div id="logo"><img src="{pigcms::RES}/paper/logo1.png" width="210" height="36"></div>
+				<div id="loading">正在努力加载秘密 ... </div>
+				<div id="touchArea" class="touchArea"><img src="{pigcms::RES}/paper/button.png" width="320" height="296"></div>
+			</div>
+			
+			<div id="imageContainer">
+				{pigcms:$Paper['message']}	  										</div>
+
+            
+
+			<div id="vanish">
+				<p>你来晚了！这个秘密已被看过，并且销毁了!</p>
+			</div>
+
+			<div id="productInfo">
+				<div id="banner"><img src="{pigcms::RES}/paper/logo1.png" width="210" height="36"></div>
+				<div id="description"><img src="{pigcms::RES}/paper/waplogotext.png" width="270" height="50"></div>
+                    <div id="account">
+                    	<a href="weixin://addfriend/gh_d1744a4342de" data-icon="☺" class="button green">马上还Ta一个秘密</a>
+                    	<!--马上关注(公众小秘书)公众号,还TA一个秘密！-->
+                    </div> 
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="{pigcms::RES}/paper/simida.js"></script>
+
+</body></html>

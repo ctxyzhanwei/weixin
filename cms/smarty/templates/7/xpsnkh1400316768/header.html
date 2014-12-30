@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<link rel="Shortcut Icon" href="favicon.ico" />
+<link rel="Bookmark Icon" href="favicon.ico" />
+<link href="logo.png" sizes="114x114" rel="apple-touch-icon">
+<meta name="Author" content="024" />
+
+<meta name="keywords" content="{$metaKeywords}" />
+<meta name="description" content="{$metaDescription}"/>
+<LINK href="templates/v14/jquery.mobile.structure-1.2.0.min.css?{$rand}" tppabs="/3g/css/jquery.mobile.structure-1.2.0.min.css?{$rand}" rel=stylesheet>
+<LINK href="{$cssdir}/style.css?{$rand}" rel=stylesheet>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" ></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/search.js" ></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/tianlan/banner.js" ></script>
+<title>{$metaTitle}</title>
+</head>
+
+<body>
+<div class="topbg">
+	<p class="searchbtn"><span></span></p>
+	<a href="{$homeurl}"  title="{$metaTitle}" class="logo"><img src="{$site.logourl}"  alt="{$metaTitle}" style="max-height:50px;"></a>
+    <p class="navbtn"><span>导航</span></p>
+</div>
+<div class="searchbox">
+    <form id="search" name="search" method="post" action="?m=site&c=home&a=search&token={$token}">
+        <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+        <input type="submit" class="button" title="搜索" value="">
+    </form>
+</div>
+<ul class="navbg">
+	{if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+   
+</ul>

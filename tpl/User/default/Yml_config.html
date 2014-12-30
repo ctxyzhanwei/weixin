@@ -1,0 +1,197 @@
+<include file="Public:head"/>
+<include file="Yml:menu"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+
+
+<div class="content">
+<style>
+.msgWrap .control-group {
+margin-bottom: 20px;
+}
+.msgWrap .control-label {
+text-align: left;
+width: 140px;
+font-weight: bold;
+padding-top: 5px;
+float: left;
+display: block;
+margin-bottom: 5px;
+}
+.msgWrap .controls {
+margin-left: 160px;
+}
+.msgWrap .form-actions {
+padding: 19px 20px 20px 160px;
+margin-top: 20px;
+}
+.span4, .span1, .option, .valid, .input-large{
+	background: url(../images/px.png) repeat-x scroll 0 0 #FFFFFF;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    border-style: solid;
+    border-width: 1px;
+	border-radius: 2px 2px 2px 2px;
+	padding:5px;
+	width: 210px;
+}
+.maroon {
+    color: gray;
+}
+</style>
+<div class="cLineB">
+  <h4>新建印美丽设备</h4><a href="{pigcms::U('Yml/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+  <div class="msgWrap bgfc">
+  <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+	<div class="control-group">
+		<label for="typename" class="control-label">打印机型号：</label>			 
+		<div class="controls">
+				<select name="print_model" id="print_model" style="width: 220px;">
+				  <option value="EPSON_Stylus_Photo_R230" <if condition="($yml.print_model eq 'EPSON_Stylus_Photo_R230')">selected</if>>EPSON R230</option>
+				  <option value="EPSON_Stylus_Photo_R330" <if condition="($yml.print_model eq 'EPSON_Stylus_Photo_R330')">selected</if>>EPSON R330</option>
+				</select>
+				<br /><span class="maroon">*最新版本的ROM支持更换打印机,更换打印机后需要重启设备</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="typename" class="control-label">是否收费：</label>			 
+		<div class="controls">
+				<select name="is_pay" id="is_pay" style="width: 220px;">
+				  <option value="0" <if condition="($yml.is_pay eq 0)">selected</if>>免费模式</option>
+				  <option value="1" <if condition="($yml.is_pay eq 1)">selected</if>>收费模式</option>
+				</select>
+				<br /><span class="maroon">*当为收费模式时同一人打印限制失效,收费模式需要输入验证码+消费码</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="typename" class="control-label">同一人打印限制类型：</label>			 
+		<div class="controls">
+				<select name="limit_type" id="limit_type" style="width: 220px;">
+				  <option value="0" <if condition="($yml.limit_type eq 0)">selected</if>>全局限制</option>
+				  <option value="1" <if condition="($yml.limit_type eq 1)">selected</if>>当日限制</option>
+				</select>
+				<br /><span class="maroon">*当为全局限制时,是从设备激活开始计算用户的打印次数,为当日限制时,是从当天00:00-24:00开始计算用户的打印次数</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="typename" class="control-label">同一人打印限制：</label>			 
+		<div class="controls">
+				<input type="text" name="print_limit" id="print_limit" class="span4" value="{pigcms:$yml.print_limit}" data-rule-required="true">
+				<br /><span class="maroon">*当不允许同一人多次打次浪费资源时,请输入整数,如不限制多次打印,请保持为0 </span>
+		</div>
+	</div>
+	<script src="/tpl/static/upyun.js"></script>
+	<div class="control-group">
+		<label for="intro" class="control-label">小广告位1：</label>
+		<div class="controls">
+			<input type="text" name="small_banner[]" value="{pigcms:$yml.small_banner.0}" id="small_banner1" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('small_banner1',292,233,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('small_banner1')">预览</a>
+			<br /><span class="maroon">292px * 233px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">小广告位2：</label>
+		<div class="controls">
+			<input type="text" name="small_banner[]" value="{pigcms:$yml.small_banner.1}" id="small_banner2" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('small_banner2',292,233,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('small_banner2')">预览</a>
+			<br /><span class="maroon">292px * 233px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">小广告位3：</label>
+		<div class="controls">
+			<input type="text" name="small_banner[]" value="{pigcms:$yml.small_banner.2}" id="small_banner3" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('small_banner3',292,233,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('small_banner3')">预览</a>
+			<br /><span class="maroon">292px * 233px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">小广告位4：</label>
+		<div class="controls">
+			<input type="text" name="small_banner[]" value="{pigcms:$yml.small_banner.3}" id="small_banner4" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('small_banner4',292,233,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('small_banner4')">预览</a>
+			<br /><span class="maroon">292px * 233px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">小广告位5：</label>
+		<div class="controls">
+			<input type="text" name="small_banner[]" value="{pigcms:$yml.small_banner.4}" id="small_banner5" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('small_banner5',292,233,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('small_banner5')">预览</a>
+			<br /><span class="maroon">292px * 233px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">广告位1：</label>
+		<div class="controls">
+			<input type="text" name="banner[]" value="{pigcms:$yml.banner.0}" id="banner1" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('banner1',948,441,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner1')">预览</a>
+			<br /><span class="maroon">948px * 441px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">广告位2：</label>
+		<div class="controls">
+			<input type="text" name="banner[]" value="{pigcms:$yml.banner.1}" id="banner2" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('banner2',948,441,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner2')">预览</a>
+			<br /><span class="maroon">948px * 441px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">广告位3：</label>
+		<div class="controls">
+			<input type="text" name="banner[]" value="{pigcms:$yml.banner.2}" id="banner3" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('banner3',948,441,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner3')">预览</a>
+			<br /><span class="maroon">948px * 441px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">广告位4：</label>
+		<div class="controls">
+			<input type="text" name="banner[]" value="{pigcms:$yml.banner.3}" id="banner4" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('banner4',948,441,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner4')">预览</a>
+			<br /><span class="maroon">948px * 441px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">广告位5：</label>
+		<div class="controls">
+			<input type="text" name="banner[]" value="{pigcms:$yml.banner.4}" id="banner5" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('banner5',948,441,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner5')">预览</a>
+			<br /><span class="maroon">948px * 441px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">操作说明：</label>
+		<div class="controls">
+			<input type="text" name="readme" value="{pigcms:$yml.readme}" id="readme" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('readme',325,390,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('readme')">预览</a>
+			<br /><span class="maroon">325px * 390px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">LOGO：</label>
+		<div class="controls">
+			<input type="text" name="logo" value="{pigcms:$yml.logo}" id="logo" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('logo',331,92,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('logo')">预览</a>
+			<br /><span class="maroon">331px * 92px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">底部图像：</label>
+		<div class="controls">
+			<input type="text" name="footer_url" value="{pigcms:$yml.footer_url}" id="footer_url" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('footer_url',468,130,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('footer_url')">预览</a>
+			<br /><span class="maroon">468px * 130px</span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label for="intro" class="control-label">二维码图像：</label>
+		<div class="controls">
+			<input type="text" name="qrcode" value="{pigcms:$yml.qrcode}" id="qrcode" class="px" style="width:350px;"><a href="###" onclick="upyunPicUpload('qrcode',170,170,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('qrcode')">预览</a>
+			<br /><span class="maroon">170px * 170px</span>
+		</div>
+	</div>
+   <div class="form-actions">
+			<button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>　<button type="button" class="btnGray vm">取消</button>
+		</div>
+</form>
+  </div> 
+ 
+  
+        </div>
+		
+<include file="Public:footer"/>

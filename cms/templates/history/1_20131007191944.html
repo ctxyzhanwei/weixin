@@ -1,0 +1,60 @@
+{include file=$header}
+<div class="clear"></div><div data-role="content" class="content_i">
+  
+  <div class="big-pic big-pic3">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                    </div>
+    </div>
+</div>
+  
+  <div class="product">
+    <div class="title_i"><span class="fl"><img src="smarty/templates/tpls/{$site.template}/ico1.png" tppabs="/3g/images/ico1.png" alt="{$pictureChannel.name}"/>{$pictureChannel.name}</span></div>
+    <div class="productmain">
+      <ul class="ui-grid-b">
+	  {if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<6}
+                    <li class="ui-block-{cycle values="a,b,c"}"><a href="{$a.link}" title="{$a.title}"><img src="{$a.thumb}" style="width:100px;height:73px;" />
+          <h2>{$a.title}</h2>
+          </a></li>
+          {/if}
+		  {/foreach}
+		  {/if}
+                 </ul>
+    </div>
+  </div>
+  <div class="case">
+    <div class="title_i"><span class="fl"><img src="smarty/templates/tpls/{$site.template}/ico2.png" tppabs="/3g/images/ico2.png" alt="{$textChannel.name}"/>{$textChannel.name}</span></div>
+    <div class="casemain">
+      <ul>
+             {if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+    	    	<li><a href="{$a.link}" title="{$a.title}">{$a.title}</a></li>
+            	{/if}
+		{/foreach}
+		{/if}
+            </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+
+{include file=$footer}

@@ -1,0 +1,45 @@
+{include file=$header}
+<div class="clear"></div>    
+ <div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><img src="{$a.thumb}" width="100%" style="margin:0;padding:0;border:none"></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                </div>
+    </div>
+    </div>
+    <div class="indexbg">
+      <div class="product">
+        <div class="productmain">
+          <ul class="ui-grid-b">
+          {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+          			<li class="ui-block-{cycle values="a,b,c"}"><a href="{$a.link}"  title="{$a.title}">
+                    <span><img src="{$a.thumb}" /></span>
+            <h2 style="width:130px;">{$a.title}</h2>
+            </a></li>
+            
+            {/foreach}
+			{/if}
+            	
+           
+			</ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+{include file=$footer}

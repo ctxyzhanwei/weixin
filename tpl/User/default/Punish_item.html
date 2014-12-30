@@ -1,0 +1,78 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">惩罚选项</h4>
+               <div class="left" style="line-height:22px;color:#f00;padding-left:10px;">(友情提示：为了更好的游戏效果，请尽量保持开放12个惩罚选项)</div>
+               <a href="{pigcms::U('Punish/index',array('token'=>$token))}"  class="right btnGrayS vm">返回</a>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+        <a href="{pigcms::U('Punish/item_set',array('token'=>$token,'pid'=>$pid))}" title='添' class='btnGrayS vm bigbtn'>添加选项</a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info">
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                  <TH>编号</TH>
+                  <TH>选项名称(编辑输入框文字后点击空白处就能修改)</TH>
+                  <TH style="display:none;">是否显示</TH>
+                  <TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <volist id="list" name="list" key="key">
+                <TR>
+                  <TD>{pigcms:$key}</TD>
+                  <TD><input type="text" name="name"  class="px item" id="{pigcms:$list.id}"  value="{pigcms:$list.name}" style="width:320px;"></TD>
+                  <TD style="display:none;">
+                    <if condition="$list['is_show'] eq 1">
+                      <span class="green">显示</span>
+                    <else/>
+                      <span class="red">隐藏</span>
+                    </if>
+                  </TD>
+               </TD>
+            <TD class="norightborder">          
+                <a href="{pigcms::U('Punish/item_del',array('token'=>$token,'pid'=>$pid,'id'=>$list['id']))}" onclick="return confirm('确定要删除吗？');">删除</a></TD>
+            </TR>
+        </volist>
+                         
+              </TBODY>
+            </TABLE>
+           </form> 
+          </div>
+            
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+    </div>
+<script src="{pigcms::STATICS}/jquery.min.js" type="text/javascript"></script>
+<script>
+  $(function(){
+    $('.ListProduct').on('blur','.item',function(){
+      var name  = $(this).val();
+      var id    = $(this).attr('id');
+      var obj = {id:id,pid:'{pigcms:$pid}',name:name}
+      if(id){
+        $.post("{pigcms::U('Punish/item_set',array('token'=>$token,'pid'=>$pid,'ajax'=>'1'))}&id="+id, obj,function(data) {
+
+        },"json");
+      }
+    });
+  });
+</script>
+<include file="Public:footer"/>
+ 

@@ -1,0 +1,39 @@
+<include file="Frame:header"/>
+<div class="columntitle">基本信息</div>
+<div style="border:1px solid #E9EFF7;">
+<div style="padding:10px 20px;">
+ <table class="addTable">
+        <tr>
+          <th align="right">代理商名称：</th>
+          <td>
+          {pigcms:$thisAgent.name}
+          </td>
+          </tr>
+            <tr>
+          <th align="right">账户余额：</th>
+          <td>
+          {pigcms:$thisAgent.moneybalance} 元 (此为虚拟金额，实际金额以充值记录为准)
+          </td>
+          </tr>
+          <tr>
+          <th align="right">用户数量：</th>
+          <td>
+          {pigcms:$userCount} 个
+          </td>
+          </tr>
+          <tr>
+          <th align="right">公众号数量：</th>
+          <td>
+          {pigcms:$wxuserCount} 个
+          </td>
+          </tr>
+          <tr>
+          <th align="right">到期时间：</th>
+          <td>
+          <?php echo date('Y-m-d',$thisAgent['endtime']);?>
+          </td>
+          </tr>
+</table>
+</div>
+</div>
+<include file="Frame:footer"/>

@@ -1,0 +1,150 @@
+<include file="Public:head"/>
+<include file="Businessflower:flower_menu"/>
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+  <script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#main_desc', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+
+<div class="content">
+  <div class="cLineB">
+    <h4>请设置花店相关内容</h4>
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置花店相关内容,注意：第一次使用，请点击添加花店相关设置，并点击保存</font></strong>
+    </p>
+    </div>
+   </div>
+</div>
+
+
+  <div class="msgWrap">
+    <form class="form" method="post" action="" id="formID" target="_top" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+          <if condition="$busines_main['mid'] neq ''">
+            <input type="hidden" class="px" id="mid" value="{pigcms:$busines_main['mid']}" name="mid" >
+            <input type="hidden" class="px" id="status" value="edit" name="status" >
+        </if>
+            <input type="hidden" class="px" id="type" value="{pigcms:$type}" name="type" >
+          </tr><tr>
+            <th valign="top"><label for="keyword">花店分店名称：</label></th>
+            <td><input type="input" class="px" id="name" value="{pigcms:$busines_main['name']}" name="name" style="width:300px"  data-validation-engine="validate[required,minSize[2],maxSize[20]]" data-errormessage-value-missing="必填项">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">所属花店：</label></th>
+            <td><select name="bid_id" id="bid_id" data-validation-engine="validate[required]" data-errormessage-value-missing="必填项">
+                <option value="">请选择所花店</option>
+<volist name="busines_list" id="vo">
+<option value="{pigcms:$vo.bid}" <if condition="$vo.bid eq $busines_main['bid_id']">selected="selected"</if>>{pigcms:$vo.mtitle}</option>
+</volist>
+               </select>
+            </td>
+            <td></td>
+          </tr>
+                    <tr>
+            <th valign="top"><label for="keyword">咨询电话：</label></th>
+            <td><input type="input" class="px" id="name" value="{pigcms:$busines_main['telphone']}" name="telphone" style="width:300px"  data-validation-engine="validate[required,minSize[7],maxSize[12]]" data-errormessage-value-missing="必填项">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+
+          <tr>
+          <th valign="top"><label for="keyword">分店图片：</label></th>
+              <td><img class="thumb_img" id="desc_pic_src" src="{pigcms:$busines_main['desc_pic']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="desc_pic" value="{pigcms:$busines_main['desc_pic']}" name="desc_pic" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('desc_pic',180,190,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('desc_pic')">预览</a> [180 × 190] </td>
+          </tr>
+
+          <tr>
+            <th valign="top"><label for="keyword">分店地址：</label></th>
+            <td><input type="input" class="px" id="maddress" value="{pigcms:$busines_main['maddress']}" name="maddress" style="width:300px"  data-validation-engine="validate[required,minSize[2],maxSize[50]]" data-errormessage-value-missing="必填项">
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">显示顺序：</label></th>
+            <td><input type="input" class="px" id="sort" value="{pigcms:$busines_main['sort']|default=1}" name="sort" data-validation-engine="validate[required,custom[integer],min[1]]" data-errormessage-value-missing="必填项">
+              数字越大,越在前面显示.</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">花店分店介绍：</label></th>
+            <td>
+<textarea class="px" id="main_desc" name="main_desc" style="width: 605px; height: 350px;"  data-validation-engine="validate[required,minSize[2]]" data-errormessage-value-missing="必填项">{pigcms:$busines_main['main_desc']}</textarea>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><button type="submit" name="button" class="btnGreen left">保存</button>
+              <div class="clr"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

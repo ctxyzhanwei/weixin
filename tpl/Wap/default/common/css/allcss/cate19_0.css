@@ -1,0 +1,55 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    /*background-color:#e1e0de;*/
+    position:relative;
+}
+
+.body{
+    display:block;
+    /*background:#e9e9e9;
+    background:url(../images/v47_2.jpg);*/
+}
+
+/******************************/
+.list_ul li{
+    
+}
+.list_ul dl{
+    text-align:center;
+    line-height:20px;
+    border-right:1px solid #dadada;
+    border-bottom:1px solid #dadada;
+    /*width:50%;*/
+}
+.list_ul dl a{
+    display:block;
+    color:#909090;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#fffbfc), to(#f0f0ee));
+}
+.list_ul dl:last-of-type{
+    border-right:0;
+}
+.list_ul dd{
+    width:100px;
+    display:table;
+    margin:auto;
+}
+.list_ul div{
+    width:100%;
+    text-align:center;
+    height:60px;
+    vertical-align: middle;
+    display:table-cell;
+    font-size:40px;
+    color:#3e3e3e;
+}
+.list_ul div img{
+    display:none;
+    max-height:100px;
+    max-width:100px;
+}
+.copyright{
+    /*color:#ccc;*/
+}

@@ -1,0 +1,52 @@
+<include file="Store:header"/>
+<style>
+.m-uc-order-li:after {
+	border-right: 0px solid #ccc;
+	border-bottom: 0px solid #ccc;
+}
+</style>
+<if condition="$ordersCount neq 0">
+	<volist name="orders" id="o">
+		<ul class="m-uc-order-li">
+			<li>提现的时间：<span style="color:green">{pigcms:$o['dateline']|date="Y-m-d H:i:s",###}</span></li>
+			<li>提现的金额：<span style="color:green">{pigcms:$o['price']}</span>　元</li>
+			<li>提现账号：<span style="color:green">{pigcms:$o['number']}</span></li>
+			<li>提现银行：<span style="color:green">{pigcms:$o['bank']}</span></li>
+			<li>提现状态：<if condition="$o['status'] eq 1"><span style="color:green">提现成功</span><else /><span style="color:red">审核中</span></if></li>
+		</ul>
+	</volist>
+	<php> if($totalpage > 1) {</php>
+		<div class="m-page uc-orderlist">
+			<if condition="$page eq 1">
+				<div class="pg-pre pg-grey"><a href="javascript:void(0);">上一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-pre"><a href="{pigcms::U('Store/remove', array('token'=>$token,'page'=>intval($page - 1),'wecha_id'=>$wecha_id, 'twid' => $twid))}">上一页<i><em></em></i></a></div>
+			</if>
+			<div class="pg-num">{pigcms:$page}/{pigcms:$totalpage}</div>
+			<if condition="$page eq $totalpage">
+				<div class="pg-next pg-grey"><a href="javascript:void(0);">下一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-next"><a href="{pigcms::U('Store/remove', array('token'=>$token,'page'=>intval($page + 1),'wecha_id'=>$wecha_id, 'twid' => $twid))}">下一页<i><em></em></i></a></div>
+			</if>
+		</div>
+	<php>}else{}</php>
+<else/>
+	<ul style="margin: 15px 10px;border-radius: 4px;line-height: 1.4em;font-size: 16px;border: 1px solid #ddd;background: #f5f5f5;padding: 10px 10px 6px;">
+		<span><li class="p-li" style="padding:10px; text-align:center;">没有提取记录</li></span>
+	</ul>
+</if>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/remove',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/remove',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/remove',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

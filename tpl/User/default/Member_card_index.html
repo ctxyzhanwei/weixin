@@ -1,0 +1,74 @@
+<include file="Public:head"/>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">会员卡</h4>
+<div class="searchbar right">
+</div>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"> <a href='/index.php?g=User&m=Member_card&a=design&token={pigcms:$token}' title='新增会员卡' class='btnGrayS vm bigbtn'><img class="vm" src="./tpl/User/default/common/images/product/add.png">添加会员卡</a></div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">在这里可以添加多种级别的会员卡，比如：普通卡、银卡、金卡等，可以设置每个会员卡的最低积分要求，然会员根据不同的积分领取不同的卡</div>
+<form method="post"  action="" id="info" >
+<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<THEAD>
+<tr>
+<th>名称</th>
+<th width="100">卡片总数</th>
+<th width="100">已开卡会员</th>
+<th width="100">领卡短信验证</th>
+<th class="norightborder">操作</th>
+</tr>
+</THEAD>
+<TBODY>
+<TR></TR>
+<volist id="item" name="cards">
+<TR>
+<TD>{pigcms:$item.cardname}</TD>
+<TD>{pigcms:$item.cardcount}</TD>
+<TD>{pigcms:$item.usercount}</TD>
+<TD> 
+<if condition="$item.is_check eq '1'">
+开启
+<else/>
+关闭
+</if>
+</TD>
+<TD class="norightborder">
+
+<a href="{pigcms::U('Member_card/members', array('token' => $token,'id'=>$item['id']))}">会员卡管理</a> 
+|
+<a href="{pigcms::U('Member_card/notice', array('token' => $token,'id'=>$item['id']))}">会员通知</a>
+|
+<a href="{pigcms::U('Member_card/exchange', array('token' => $token,'id'=>$item['id']))}">积分设置</a> 
+|
+<a href="{pigcms::U('Member_card/create', array('token' => $token,'id'=>$item['id']))}">会员开卡</a> 
+|
+<a href="{pigcms::U('Member_card/design', array('token' => $token,'id'=>$item['id']))}">修改</a> 
+|
+<a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member_card&a=delete&token={pigcms:$token}&id={pigcms:$item.id}');">删除</a></TD>
+</TR>
+</volist>
+</TBODY>
+</TABLE>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages"></div>
+</div>
+<div class="clr"></div>
+</div>
+</div>  
+        <div class="clr"></div>
+		<include file="Public:footer"/>
+      </div>
+    </div>
+  </div> 

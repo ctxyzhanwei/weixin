@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="./tpl/static/applegame/wap/res/index.css" media="all">
+		<title>{pigcms:$title}</title>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <style>
+            img{max-width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+    <style type="text/css">
+        #start-page-main {background:url(./tpl/static/applegame/wap/images/qixibg.jpg) no-repeat center 0 #031448;background-size:100%}
+    </style>
+	
+    <script src="./tpl/static/applegame/wap/res/lxb.js" charset="utf-8" type="text/javascript"></script>
+
+	<script type="text/javascript">
+        (function () {
+							
+			window.start_page_config = {
+				NEEDREGISTER : false,
+				RANKTOTALPAGE:273,
+				NUMLIMIT:false,
+				TOTALRESTTIMES:10000,
+				URL:{
+                RANKDATA:"#"
+                },
+                PATH:{
+                    GAME:"{pigcms::U('AppleGame/game',array('token'=>$_GET['token'],'id'=>intval($_GET['id']),'wecha_id'=>$_GET['wecha_id']))}"
+                }
+            }
+			
+        })();
+    </script>
+	<script type="text/javascript" src="./tpl/static/applegame/wap/res/zepto_min.js"></script>
+	<script type="text/javascript" src="./tpl/static/applegame/wap/res/LocalResizeIMG_min.js"></script>
+	<script type="text/javascript" src="./tpl/static/applegame/wap/res/mobileBUGFix_min.js"></script>
+	<script type="text/javascript" src="./tpl/static/applegame/wap/res/iscroll_min.js"></script>
+	<script type="text/javascript" src="./tpl/static/applegame/wap/res/index.js"></script>
+<div id="start-page">
+	<div id="start-page-main">
+		<div id="btn-start" class="anim"></div>
+		<!-- <a id="btn-prize" class="anim" href="#"></a> -->
+		<div class="panel-container">
+			
+			<ul style="width:100%;" class="container-title">
+				<li style="width:50%;float:left"><a class="btn-rank"></a></li>
+				<li style="width:50%;"><a class="btn-activity"></a></li>
+			</ul>
+			
+			<div class="container-body">
+				<div class="container-content container-rank">
+					<table class="table-title">
+						<colgroup><col width="20%">
+						<col width="20%">
+						<col width="40%">
+						<col width="20%">
+						</colgroup><tbody><tr>
+							<th></th>
+							<th><span class="icon icon-head"></span></th>
+							<th><span class="icon icon-nick"></span></th>
+							<th><span class="icon icon-time"></span></th>
+						</tr>
+					</tbody></table>
+					<div style="overflow: hidden;" class="table-scroll">
+						<table style="transition-property: transform; transform-origin: 0px 0px 0px; transform: translate(0px, 0px) translateZ(0px);" class="table-body">
+							<colgroup><col width="20%">
+							<col width="20%">
+							<col width="40%">
+							<col width="20%">
+							</colgroup>
+							<tbody>
+							<volist name="record" id="record">
+								<tr height="60px;">
+									<td>
+										<span class="<if condition="$i lt 4">icon_rank rank{pigcms:$i}</if>"><if condition="$i gt 3">{pigcms:$i}</if></span>
+									</td>
+									<td>
+										<span class="icon-img-bg">
+											<img class="icon-img" src="{pigcms:$record.portrait}">
+										</span>
+									</td>
+									<td>{pigcms:$record.wecha_name}</td>
+									<td>{pigcms:$record.time}</td>
+								</tr>
+							</volist>
+
+						</tbody>
+					</table>
+					
+					<div style="position: absolute; z-index: 100; width: 7px; bottom: 2px; top: 2px; right: 1px; pointer-events: none; transition-property: opacity; overflow: hidden; opacity: 1;"><div style="position: absolute; z-index: 100; background: none repeat scroll 0% 0% padding-box rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); box-sizing: border-box; width: 100%; border-radius: 3px; pointer-events: none; transition-property: transform; transition-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1); transform: translate(0px, 0px) translateZ(0px); height: 215px;"></div></div></div>
+					<table class="table-bottom">
+						<colgroup><col width="20%">
+						<col width="80%">
+						</colgroup><tbody>
+							<if condition="$_GET['wecha_id'] eq ''">
+								<tr>
+									<td colspan="2">
+										您当前是游客身份，不会记录您的成绩。
+									</td>
+								</tr>
+								<tr>
+
+								<td colspan="2">
+									请关注“{pigcms:$mpName}”后回复“{pigcms:$keyword}”参与此活动
+								</td>
+								</tr>
+								
+							<else />
+							<tr>
+							<td>
+								<if condition="$myinfo eq NULL"><br /><else />
+									<span class="icon-img-bg">
+										<img src="{pigcms:$myinfo.portrait}" class="icon-img">
+									</span>
+								</if>
+							</td>
+							<td align="left">
+								<if condition="$myinfo eq NULL">
+										<a style="color:white" id="myinfo" href="{pigcms::U('Userinfo/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'redirect'=>'AppleGame/index|id:'.$_GET['id'].',token:'.$_GET['token'].',wecha_id:'.$_GET['wecha_id'].',type:1'))}">您没有完善资料，请点击这里填写资料</a>
+									<script>
+										var type = '{pigcms:$_GET["type"]}';
+										if(type == 1){
+											$('#myinfo').remove();
+										}
+									</script>
+									
+								<else />我的排名：<b>{pigcms:$myinfo.rank}</b>   最佳：<b>{pigcms:$myinfo.time}</b>  
+								
+									
+								</if>
+
+							</td>
+							</tr>
+
+							</if>
+						
+					</tbody></table>
+				</div>
+				<div class="container-content container-acitivity">
+						<div class="container-activity-box">
+							<div style="overflow: hidden;" class="container-activity-content">
+								<div style="transition-property: transform; transform-origin: 0px 0px 0px; transform: translate(0px, 0px) translateZ(0px);" class="text">
+									<span class="icon2 icon-time"></span><br>
+									{pigcms:$linfo.statdate|date="Y-m-d H:i:s",###}——{pigcms:$linfo.enddate|date="Y-m-d H:i:s",###}  <br><br>
+									<span class="icon2 icon-rule"></span>
+									<p>
+										{pigcms:$linfo.title}<br/>
+										每人最多有{pigcms:$linfo.canrqnums}次机会
+									</p>
+								
+									<br />
+									<p>
+										本活动奖项：{pigcms::$prizeStr}
+									</p>
+								
+									<br />
+									<p>
+										{pigcms:$linfo.info}
+									</p>
+
+<br><br>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="company-rights">©小猪CMS版权所有</div>	-->
+
+	</div>
+</div>
+
+
+        		<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+	
+<script type="text/javascript">
+window.shareData = {
+            "moduleName":"AppleGame",
+            "moduleID":"{pigcms:$_GET['id']|intval}",
+            "imgUrl": "{pigcms:$linfo.starpicurl}", 
+            "timeLineLink": "{pigcms::C('site_url')}{pigcms::U('AppleGame/index',array('token'=>$_GET['token'],'id'=>intval($_GET['id'])))}",
+            "sendFriendLink": "{pigcms::C('site_url')}{pigcms::U('AppleGame/index',array('token'=>$_GET['token'],'id'=>intval($_GET['id'])))}",
+            "weiboLink": "{pigcms::C('site_url')}{pigcms::U('AppleGame/index',array('token'=>$_GET['token'],'id'=>intval($_GET['id'])))}",
+            "tTitle": "{pigcms:$linfo.title}",
+            "tContent": "{pigcms:$linfo.info}"
+        };
+</script>
+{pigcms:$shareScript}
+
+
+<!--5bCP54yqY21z54mI5p2D5omA5pyJ77yM55uX54mI55qE5Y675q27-->
+</body></html>

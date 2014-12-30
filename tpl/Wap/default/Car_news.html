@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/pigcms-ui-1-1.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/car_reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/list-8.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/menu-2.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/car/js/jQuery.js"></script>
+<title>{pigcms:$classify['name']}</title>
+<script type="text/javascript">
+window.shareData = {
+            "moduleName":"Car",
+            "moduleID":"0",
+            "imgUrl": "",
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Car/news',array('token'=>$token,'type'=>$type))}",
+            "tTitle": "微汽车",
+            "tContent": "微汽车"
+        };
+</script>
+{pigcms:$shareScript}
+    </head>
+<body onselectstart="return true;" ondragstart="return false;">
+
+
+<div class="body">
+            <footer class="nav_footer">
+        <ul class="box">
+            <li><a href="javascript:history.go(-1);">返回</a></li>
+            <li><a href="javascript:history.go(1);">前进</a></li>
+            <li><a href="{pigcms::U('Car/index',array('token'=>$token,'wecha_id'=>$wecha_id))}">首页</a></li>
+            <li><a href="javascript:location.reload();">刷新</a></li>
+        </ul>
+    </footer>
+
+                    <header>
+            <div class="head_news">
+                <a href="{pigcms:$classify['url']}">
+                    <ul>
+                        <li><img src="{pigcms:$classify['img']}" style="width:100%; max-height:400px;"></li>
+                    </ul>
+                    <ol>{pigcms:$classify['name']}</ol>
+                </a>
+            </div>
+        </header>
+        <p></p>
+            <section>
+
+                    <ul class="list_ul list_ul_news">
+                     <volist name="news" id="vo">
+                      <li>
+                        <a class="tbox" href="{pigcms::U('Car/newlist',array('token'=>$token,'wecha_id'=>$wecha_id,'mid'=>$vo['id']))}">
+                            <div>
+                                <img src="{pigcms:$vo['pic']}" style="width:60px!important; height:60px;">
+                            </div>
+                            <div>
+                                <p>{pigcms:$vo['title']}</p>
+                                <p>{pigcms:$vo['createtime']|date="Y年m月d日",###}</p>
+                            </div>
+                        </a>
+
+                    </volist>
+                    </ul>
+                    </section>
+</div>            <div mark="stat_code" style="width:0px; height:0px; display:none;">
+                    </div>
+
+</body></html>

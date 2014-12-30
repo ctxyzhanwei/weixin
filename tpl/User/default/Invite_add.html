@@ -1,0 +1,44 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Invite/index',array('token'=>$token))}" title="新增贺卡" class="btnGrayS vm bigbtn">新增邀请函</a> </div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align:center;">
+<thead>
+<tr>
+<th class="select"><center>编号</center></th>                              
+<th><center>活动主题</center></th>
+<th><center>活动介绍</center></th>
+<th class="norightborder"><center>操作</center></th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<pigcmslist array="pig" foreach="pig">
+<tr>
+	<td>{pigcms:$pig.id}</td>
+	<td>{pigcms:$pig.title}</td>
+	<td>{pigcms:$pig.content}</td>
+	<td class="norightborder">　
+		<a href="{pigcms::U('Invite/index',array('yid'=>$pig['id'],'token'=>$pig['token']))}"><font color="green">编辑邀请函</font></a>　
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Invite/listdel',array('id'=>$pig['id']))}');"><font color="red">删除</font></a>
+    </td>
+</tr>
+</pigcmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages"></div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,1 @@
+如果您想修改标签的程序，比如想修改contents标签程序，那么请把tag_contents.class.php改名为MY_tag_contents.class.php，并且打开程序文件把类名修改为MY_tag_contents

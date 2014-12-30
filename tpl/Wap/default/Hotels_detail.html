@@ -1,0 +1,56 @@
+<include file="Hotels:header"/>
+<body>
+	<div class="html">
+		<div class="main">
+			<header>
+	<a class="ico-hd arr-hd" href="javascript:history.go(-1);"></a>
+	<h1>订单详情</h1>
+</header>
+<div class="contxt cont-artical">
+	<div class="box-cont box-order">
+		<div class="hd">
+			<b>在线预订客房{pigcms:$company['name']}</b>
+			<i>{pigcms:$order['housename']}</i> | <i>{pigcms:$order['nums']}间</i>
+		</div>
+		<div class="bd box-txt">
+			<p><span>入住日期</span><b>{pigcms:$order['startdate']}</b></p>
+			<p><span>离店日期</span><b>{pigcms:$order['enddate']} </b></p>
+			<p><span>订单状态</span><if condition="$order['status'] eq 1"><em>完成入住</em><elseif condition="$order['paid'] eq 1" /><em>已付款</em><else /><i>已预定</i></if></p>
+			<p><span>操作</span><if condition="$order['status'] eq 1"><a class="btn btn-small to_book" onclick="javascript:cancel('{pigcms:$order['id']}', 3);">删除记录</a><else /><a class="btn btn-small to_book" onclick="javascript:cancel('{pigcms:$order['id']}', 2);">取消订单</a></if></p>
+			
+		</div>
+		<div class="ft box-txt">
+			<p><span>联系人电话：</span><b>{pigcms:$order['tel']}</b></p>
+			<p><span>总 金 额：</span><b>￥{pigcms:$order['price']}</b></p>
+		</div>
+	</div>
+	<br><br>
+</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+function cancel(oid, status)
+{
+	$.get("{pigcms::U('Hotels/cancel',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}&oid=" + oid + "&status=" + status, function(response){
+		if (response.error_code == true) {
+			alert(response.msg);
+		} else {
+			location.href = "{pigcms::U('Hotels/my',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}"
+		}
+	}, 'json');
+}
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/detail',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/detail',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/detail',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

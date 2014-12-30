@@ -1,0 +1,39 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+          <div class="cLineB"><h4>分享设置</h4></div>
+
+<include file="Share:header"/>
+
+          <div class="ftip" style="margin:25px auto 5px auto;">在下面设置分享一次可以获取多少积分，分数会加在会员卡里面</div>
+          <form method="post" action="">
+          <div class="msgWrap form">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tbody>
+  
+              		<tr> 
+        <th align="right">分数</th> 
+        <td><input type="text" name="score" value="{pigcms:$record.score}" class="px require" style="width:200px;" /> 每次分享可以获取多少积分</td> 
+       </tr> 
+              		<tr> 
+        <th align="right">次数</th> 
+        <td><input type="text" name="daylimit" value="{pigcms:$record.daylimit}" class="px require" style="width:200px;" /> 每个人每天分享赚积分的最大次数，超过这个数字后分享也不会获取积分</td> 
+       </tr> 
+
+<tr>
+	<th></th>
+	<td><button type="submit" name="button" class="btnGreen">保存</button>　<a href="javascript:history.go(-1);" class="btnGray vm">取消</a></td>
+</tr>
+ </tbody>
+</table>
+            
+          </div>
+          </form>
+          
+        </div>
+<include file="Public:footer"/>

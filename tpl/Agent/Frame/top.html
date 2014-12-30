@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="tpl/Agent/Common/style/style.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/mootools1.3.js"></script>
+<script src="tpl/Agent/Common/js/mootools-more.js"></script>
+<title>无标题文档</title>
+</head>
+<body>
+<?php
+$sitelogo=C('site_logo');
+if (!$sitelogo){
+	$sitelogo='/tpl/Home/pigcms/common/images/logo-pigcms.png';
+}
+?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:84px;background:url(tpl/Agent/Common/image/b.jpg) repeat-x;">
+  <tr>
+    <td style="padding:0 0 0 20px;width:210px;"><img src="<?php echo $sitelogo;?>" border="0" /></td>
+    <td>
+    <div style="border-left:1px solid #436DA6">
+<div style="margin:6px 0; text-align:left; padding-right:10px;">&nbsp;</div>
+<div class="navtitle">
+<?php
+$shu='';
+foreach ($menus as $k=>$item) {
+	echo $shu.'<a id="menu_'.$k.'" href="?g=Agent&m=Frame&a=left&type='.$k.'" onclick="parent.frames.right.location.href=\''.$item['link'].'\'" target="left">'.$item['text'].'</a>';
+	$shu='|';
+}
+?>
+|<a href="?g=Agent&m=Index&a=logout" target=_top style="color:#99C9EA">退出</a>
+</div>
+</div>
+</td>
+  </tr>
+</table>
+
+</body>
+</html>

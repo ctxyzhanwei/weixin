@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+	<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+	<meta content="no-cache" http-equiv="pragma">
+	<meta content="0" http-equiv="expires">
+	<meta content="telephone=no, address=no" name="format-detection">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<title>{pigcms:$estatindex['title']}</title>
+    <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/back.css">
+ 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>   
+	<script type="text/javascript" src="{pigcms::STATICS}/estate/js/index.js"></script>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+        
+<div class="wrapper" id="container">  
+	<!-- start -->   
+	<div class="act_top" id="actTop" style="">    
+		<div class="act_top_show">     
+			<img src="{pigcms:$estatindex['banner']}" width="720" height="175" id="bannerPic">    
+		</div>   
+	</div>  
+	<!--  end -->  
+	<!-- 楼盘简介 start -->   
+	<div class="box box_up">
+		<!-- 收起时加上样式box_up,展开时去掉 -->    
+		<h3>楼盘简介</h3>    
+		<div class="box_time">     
+			{pigcms:$estatindex['estate_desc']|html_entity_decode|trim}  
+		</div>    
+		<a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>   
+	</div>  
+	<!-- 楼盘简介 end -->  
+	<!-- 地图 start -->   
+	<div class="box">    
+		<h3>地图</h3>    
+		<div class="box_map">      
+			<if condition="$isamap eq 1">
+				<div id="l-map" style="height:200px;"></div>  
+				<input type="hidden" id="longitude" value="{pigcms:$estatindex['lng']}">  
+				<input type="hidden" id="latitude" value="{pigcms:$estatindex['lat']}">   
+			<else/>
+				<div>      
+					<a  href="{pigcms::U('Estate/maps',array('token'=>$token,'id'=>$estatindex['id']))}">
+					  	<img  src="http://api.map.baidu.com/staticimage?width=600&height=235&center={pigcms:$estatindex['address']}&markers={pigcms:$estatindex['address']}|{pigcms:$estatindex['lng']},{pigcms:$estatindex['lat']}&zoom=10&markerStyles=s,A,0xff0000"  style="max-height: 200px;width: 100%"/></a>
+				</div>  
+				<p>{pigcms:$estatindex['place']}</p>  
+			</if>  
+		</div>   
+	</div>  
+	<!-- 地图 end -->  
+
+	<!-- 视频 start -->   
+	<if condition="$estatindex['video'] neq ''">
+	<div class="box" jqmoldstyle="block">    
+		<h3>视频欣赏</h3>    
+		<div class="box_type" style="text-align:center;" id="content">{pigcms:$estatindex['video']}</div>   
+		<script src="tpl/Wap/default/common/wedding/js/play.js" type="text/javascript"></script> 
+		<p>&nbsp;</p>   
+	</div>  
+	</if>
+	<!-- 视频 end -->  
+
+	<!-- 项目简介 start -->   
+	<div class="box box_up" style="display:">    
+		<h3>项目简介</h3>    
+		<div class="box_info">     
+			{pigcms:$estatindex['project_brief']|html_entity_decode|trim}  
+		</div>    
+		<a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>   
+	</div>  
+	<!-- 项目简介 end -->  
+	<!-- 交通配套 start -->   
+	<div class="box box_up" style="display:">    
+		<h3>交通配套</h3>    
+		<div class="box_info">     
+			{pigcms:$estatindex['traffic_desc']|html_entity_decode|trim}    
+		</div>    
+		<a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>   
+	</div>  
+	<!-- 交通配套 end --> 
+</div>
+<p>&nbsp;</p>
+<div class="pop_tips" id="popTips" style="display: none; top: 30%;">
+	<div class="oval"></div>
+	<div class="pop_show">
+		<h4 id="tipsTitle">温馨提示</h4>
+		<div class="pop_info" id="tipsMsg">
+			<p></p>
+		</div>
+		<div class="pop_btns">
+			<a href="javascript:void(0);" id="tipsOK">确定</a>
+			<a href="javascript:void(0);" style="display:none;" id="tipsCancel">取消</a>
+		</div>
+	</div>
+</div>
+<div class="pop_mask" id="popMask" style="display:none;"></div>
+<script src="./楼盘简介_files/tvp.player_lite.js" type="text/javascript"></script>
+<a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+<div mark="stat_code" style="width:0px; height:0px; display:none;"></div>
+
+<script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=b6c2c19cf45cd3d2b82541bc857eed7c"></script>
+
+<script type="text/javascript">
+  var mapObj;
+  function mapInit(){
+    if($('#longitude').val() && $('#longitude').val()!=0){
+      mapObj = new AMap.Map("l-map",{
+          view: new AMap.View2D({
+              center:new AMap.LngLat($('#longitude').val(),$('#latitude').val()),//地图中心点
+              zoom:13 //地图显示的缩放级别
+          })
+      });
+    }else{
+       mapObj = new AMap.Map("l-map");
+    }
+    var marker = new AMap.Marker({
+        position:mapObj.getCenter(),
+        draggable:true, //点标记可拖拽
+        cursor:'move',  //鼠标悬停点标记时的鼠标样式
+        raiseOnDrag:true//鼠标拖拽点标记时开启点标记离开地图的效果
+ 
+    });
+    marker.setMap(mapObj);
+    AMap.event.addListener(marker,'dragging',function(e){
+        $('#longitude').attr('value',e.lnglat.getLng())
+        $('#latitude').attr('value',e.lnglat.getLat())
+    })
+  }
+mapInit();
+
+window.shareData = {
+            "moduleName":"Estate",
+            "moduleID":"0",
+            "imgUrl": "",
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Estate/introduce',array('token'=>$token))}",
+            "tTitle": "{pigcms:$estatindex['title']}",
+            "tContent": " {pigcms:$estatindex['project_brief']|html_entity_decode|trim|strip_tags}"
+        };
+</script>
+</body>
+</html>

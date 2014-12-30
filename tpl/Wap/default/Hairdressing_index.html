@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/online_booking.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/datepicker_car.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/pig-ui.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/common.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jquery-ui.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<title>{pigcms:$reslist['title']}</title>
+
+        <style>
+            img{width:100%!important;}
+        </style>
+<script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+</script>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;" id="onlinebooking">
+
+    <div class="qiandaobanner">
+
+        <img src="{pigcms:$reslist['head_url']}">
+
+    </div>
+    <div class="cardexplain">
+    <!--普通用户登录时显示-->
+    <ul class="round">
+        <li>
+            <a href="{pigcms::U('Hairdressing/mylist',array('token'=>$token,'wecha_id'=>$wecha_id))}"><span>我的预约订单<em class="ok"><if condition="$count neq ''">{pigcms:$count}</if></em></span></a>
+        </li>
+    </ul>
+    <!--后台可控制是否显示-->
+    <ul class="round">
+        <li>
+        <h2>预约说明</h2>
+        <div class="text">{pigcms:$reslist['info']}</div>
+        <if condition="$reslist['intro'] neq ''">
+        <div >{pigcms:$reslist['intro']|html_entity_decode}</div>
+        </if>
+        </li>
+    </ul>
+
+    <!--后台可控制是否显示-->
+    <ul class="round">
+        <li class="addr"><a href="http://chabus.duapp.com/mapapi.php?lng={pigcms:$reslist['longitude']}&lat={pigcms:$reslist['latitude']}&title=预约&info={pigcms:$reslist['name']}"><span>地址： {pigcms:$reslist['address']}</span></a></li>
+        <li class="tel"><a href="tel:{pigcms:$reslist['tel']}"><span>预约电话： {pigcms:$reslist['tel']}</span></a></li>
+        <li class="tel"><a href="tel:{pigcms:$reslist['mp']}"><span>预约电话： {pigcms:$reslist['mp']}</span></a></li>
+    </ul>
+
+    <ul class="round roundyellow" >
+        <li class="userinfo"><a href="http://chabus.duapp.com/mapapi.php?lng={pigcms:$reslist['longitude']}&lat={pigcms:$reslist['latitude']}&title=预约&info={pigcms:$reslist['name']}"><span>点击查看地图</span></a></li>
+    </ul>
+
+    <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+    <ul class="round">
+    <form action="" method="post" id="formID">
+        <div class="cardexplain">
+  <ul class="round">
+    <li class="title mb"><span class="none">请认真填写在线预约信息！</span></li>
+    <input type="hidden" name="type" value="meirong">
+    <input type="hidden" name="token" value="{pigcms:$token}">
+    <input type="hidden" name="wecha_id" value="{pigcms:$wecha_id}">
+<if condition="$shows['show1'] neq 2">
+    <li class="nob" id="namea">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>姓名</th>
+          <td><input name="truename" type="text" class="px" id="truename" value="" placeholder="请输入您的真实姓名" data-validation-engine="validate[required,minSize[2],maxSize[8]]" data-errormessage-value-missing="必填项"></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show2'] neq 2">
+    <li class="nob" id="sexa">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>性别</th>
+          <td><select name="sex" id="sex" data-validation-engine="validate[required]" data-errormessage-value-missing="必填项">
+              <option value="1">男</option>
+              <option value="2">女</option>
+          </select></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show3'] neq 2">
+    <li class="nob" id="agea">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>年龄</th>
+          <td><input name="age" type="text" class="px" id="age" value="" placeholder="年龄" data-validation-engine="validate[required,custom[integer],min[5],max[80]]" data-errormessage-value-missing="必填项"></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show4'] neq 2">
+    <li class="nob" id="phonea">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>联系电话</th>
+          <td><input name="tel" type="text" class="px" id="tel" value="" placeholder="请输入您的电话" data-validation-engine="validate[required,minSize[11],maxSize[11]]" data-errormessage-value-missing="必填项"></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show5'] neq 2">
+    <li class="nob" id="scheduled_datea">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>预约时间</th>
+          <td> <input type="text" class="px hasDatepicker" name="dateline" placeholder="" value="{pigcms:$reslist['dateline']}"  readonly="readonly" id="dateline" >
+          </td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show6'] neq 2">
+    <li class="nob" id="addressa">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>地址</th>
+          <td><input name="address" type="text" class="px" id="address" value="" placeholder="请输入您的地址"></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show7'] neq 2">
+    <li class="nob" id="departmentsa">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>套餐选择</th>
+          <td><select name="choose" id="choose" data-validation-engine="validate[required]" data-errormessage-value-missing="必填项">
+              <option value="">请选择套餐</option>
+            <volist name="items" id="vo">
+              <option value="{pigcms:$vo['cname']}">{pigcms:$vo['cname']}</option>
+          </volist>
+            </select>
+          </td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show8'] neq 2">
+    <li class="nob" id="experta">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>人数</th>
+          <td><input name="number" type="text" class="px" id="number" value="1" placeholder="请输入人数" data-validation-engine="validate[required,custom[integer],min[1]]" data-errormessage-value-missing="必填项"></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+<if condition="$shows['show9'] neq 2">
+    <li class="nob" id="diseasea">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+        <tbody><tr>
+          <th>备注</th>
+          <td><input name="info" type="text" class="px" id="info" value="" placeholder="以上如有不足或有其它要求，请在此填写！"></td>
+        </tr>
+      </tbody></table>
+    </li>
+</if>
+  </ul>
+
+
+</div>
+
+    </ul>
+    <div class="footReturn">
+        <input id="showcard" class="submit" value="提交消息" type="submit" style="width: 100%">
+        <div class="window" id="windowcenter">
+            <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+            <div class="content">
+                <div id="txt"></div>
+            </div>
+        </div>
+    </div>
+  </form>
+    </div>
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+        var nowTemp = new Date();
+                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                var ndate = $('#dateline').datepicker({
+                        format:"yyyy-mm-dd",
+                        onRender: function(date) {
+                           return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                        }
+                }).on("changeDate", function(date){
+                        ndate.datepicker('hide');
+                });
+});
+</script>
+<p><br/></p>
+<div mark="stat_code" style="width:0px; height:0px; display:none;">
+</div>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body></html>

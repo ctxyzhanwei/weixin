@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{pigcms:$pro_info.title}</title>
+<script type="text/javascript">var yyuc_jspath = "./tpl/static/problem";</script>
+<script type="text/javascript" src="./tpl/static/problem/js/jquery.js"></script>
+<script type="text/javascript" src="./tpl/static/problem/js/yyucadapter.js"></script>
+<link type="text/css" rel="stylesheet" href="./tpl/static/problem/css/war.css">
+</head>
+<body>
+<div class="wrapper">
+	<img class="bg" src="./tpl/static/problem/image/bg_userinfo.png">
+		<div style="font-size: 26px;padding-top: 20px;padding-left: 30px;">请先填写您的资料：</div>
+		<div class="desc-cont2">
+		<div class="field-contain">
+			<label for="user_name" class="input-label">请输入您的名称:</label>
+			<input type="text" name="user_name" id="user_name" class="input-text" value="">
+		</div>
+		<div class="field-contain">
+			<label for="phone" class="input-label">请输入您的手机号码:</label>
+			<input type="phone" name="phone" id="phone" class="input-text" value="">
+			<span class="tip">*请务必填写正确，此手机号将作为您以后领奖的依据</span>
+		</div>
+		<div class="field-contain">
+			<label for="nickname" class="input-label">请输入您的微信昵称:</label>
+			<input type="text" name="nickname" id="nickname" class="input-text" value="">
+			
+		</div>
+		<button id="save-btn" onclick="gotokz()" class="next-btn">好了，开战吧</button>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+function gotokz(){
+	var user_name= $.trim($('#user_name').val());
+	var phone 	= $.trim($('#phone').val());
+	var nickname= $.trim($('#nickname').val());
+	var rgb = /^13[0-9]{9}$|^15[0-9]{9}$|^18[0-9]{9}$/;
+	
+	if(user_name==''){
+		tusi('请完善用户名称');
+		return;
+	}
+
+	if(!rgb.test(phone)){
+		tusi('请输入正确的手机号');
+		return;
+	}
+	ajax('{pigcms::U('Problem/add_user',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id']))}',{phone:phone,user_name:user_name,nickname:nickname},function(res){
+		
+		var data = $.parseJSON(res); 
+		if(data.err == 1){
+			tusi(data.info);
+			return;
+		}else if(data.err == 2){
+			window.location.href= '{pigcms::U('Problem/requestion',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id']))}';
+		}else{
+			tusi('进入战场...');
+			window.location.href= '{pigcms::U('Problem/requestion',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id']))}';
+		}
+	});	
+}
+
+</script>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Problem",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$pro_info['logo_pic']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "tTitle": "{pigcms:$pro_info.title}",
+            "tContent": "{pigcms:$pro_info.explain}"
+        };
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,40 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+body { background-color:#fff; font-size:14px; }
+body  .mainmenu {  margin: 6px;}
+body  .mainmenu li { border:1px solid  #CCC ; overflow:hidden; margin-bottom:6px;overflow:hidden; }
+body  .mainmenu li a { display:block;  color:#FFF; background-color: #ccc;
+overflow: hidden; position:relative;}
+body  .mainmenu li a img { width:auto; height: 100px; float:left;z-index:-33;}
+body  .mainmenu li a p{ height:100px; width:130px;  background: url(../images/p_bg.png) no-repeat;   position:absolute; right:-1px;text-align:right; padding:0 10px 0 10px;}
+body  .mainmenu li a p b{ float:right; display:block; font-size:18px; color:#666666; font-weight:normal; margin-top:15px; line-height:30px; width:74px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap ; }
+body  .mainmenu li a p span { float:right; display:block;     line-height:16px; font-size:12px; color:#9a9a9a;width:94px;overflow:hidden; text-overflow:ellipsis; height:60px; }

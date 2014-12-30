@@ -1,0 +1,83 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Flappy 2048</title>
+<link rel="shortcut icon" href="http://bbs./favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=0.55, maximum-scale=1, user-scalable=no, minimal-ui,target-densitydpi=device-dpi">
+<meta name="format-detection" content="telephone=no">
+
+
+
+<link rel="image_src" href="{pigcms::RES}/gamett/fbthumb.jpg">
+<style type="text/css">
+.cellol {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select:none;
+	user-select:none;
+}
+</style>
+</head>
+<body style="margin: 0px; overflow: hidden;">
+	<script type="text/javascript" src="http://counter.sina.com.cn/ip/" charset="gb2312"></script> 
+	<script type="text/javascript" src="http://gtg.y3.cn/html5/single/2048/jquery.min.js"></script>
+	<script type="text/javascript" src="{pigcms::RES}/gamett/js/local_storage_manager.js"></script> 
+    <script type="text/javascript" src="{pigcms::RES}/gamett/js/flappy2048.js"></script>
+    <script>
+  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {  
+            "imgUrl": "{pigcms:$f_siteUrl}/tpl/Wap/default/common/img/2048/fla.jpg",
+            "timeLineLink": '{pigcms:$f_siteUrl}/index.php?g=Wap&m=Gamett&a=index&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}',
+            "sendFriendLink":'{pigcms:$f_siteUrl}/index.php?g=Wap&m=Gamett&a=index&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}',
+            "weiboLink": '{pigcms:$f_siteUrl}/index.php?g=Wap&m=Gamett&a=index&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}',
+            "tTitle": "比2048和Flappy Bird还要虐心的游戏我已经在玩啦！速度来挑战我！",
+            "tContent": "太虐心了，赶快来体验下吧",
+            "fTitle": "比2048和Flappy Bird还要虐心的游戏我已经在玩啦！速度来挑战我！",
+            "fContent": "太虐心了，赶快来体验下吧",
+            "wContent": "太虐心了，赶快来体验下吧" 
+        };
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.fContent,
+                "title": window.shareData.fTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.wContent,
+                "url": window.shareData.weiboLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)</script>
+    
+
+</body>
+</html>

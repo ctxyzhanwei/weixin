@@ -1,0 +1,309 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>个人信息记录</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<link href="{pigcms::RES}/css/userinfo/fans.css" rel="stylesheet" type="text/css"> 
+
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  -->
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{pigcms::RES}/css/guajiang/js/jquery.js">\x3C/script>')</script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js?2013"></script>
+<link href="/tpl/static/wall/css/zAlert.css" rel="stylesheet" type="text/css"> 
+<script src="/tpl/static/wall/js/zAlert.js"></script>
+<style>
+
+.footFix{width:100%;text-align:center;position:fixed;left:0;bottom:0;z-index:99;}
+#footReturn a, #footReturn2 a {
+display: block;
+line-height: 41px;
+color: #fff;
+text-shadow: 1px 1px #282828;
+font-size: 14px;
+font-weight: bold;
+}
+#footReturn, #footReturn2 {
+z-index: 89;
+display: inline-block;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+cursor: pointer;
+width: 100%;
+outline: 0 none;
+overflow: visible;
+Unknown property name.-moz-box-sizing: border-box;
+box-sizing: border-box;
+padding: 0;
+height: 41px;
+opacity: .95;
+border-top: 1px solid #181818;
+box-shadow: inset 0 1px 2px #b6b6b6;
+background-color: #515151;
+Invalid property value.background-image: -ms-linear-gradient(top,#838383,#202020);
+background-image: -webkit-linear-gradient(top,#838383,#202020);
+Invalid property value.background-image: -moz-linear-gradient(top,#838383,#202020);
+Invalid property value.background-image: -o-linear-gradient(top,#838383,#202020);
+background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#838383),to(#202020));
+Invalid property value.filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
+Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
+}
+
+.deploy_ctype_tip{z-index:1001;width:100%;text-align:center;position:fixed;top:50%;margin-top:-23px;left:0;}.deploy_ctype_tip p{display:inline-block;padding:13px 24px;border:solid #d6d482 1px;background:#f5f4c5;font-size:16px;color:#8f772f;line-height:18px;border-radius:3px;}
+</style>
+</head>
+<body id="fans" >
+<div class="qiandaobanner"> <!--<img src="{pigcms:$homepic}" > --></div>
+<div class="cardexplain">
+
+<li class="nob">
+	<div class="beizhu">请先完善您的真实个人信息，红色为必填项</div>
+</li>
+
+<ul class="round">
+
+<li>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+<tr>
+<th><font color='red'>微信昵称</font></th>
+<td><input name="nickname" type="text" class="px" id="nickname" value="{pigcms:$info.nickname}" placeholder="请输入您的微信名称"></td>
+</tr>
+</table>
+</li>
+
+<li>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+<tr>
+<th><font color='red'>手机号码</font></th>
+<td><input name="phone"  class="px" id="phone" value="{pigcms:$info.phone}"  type="text" placeholder="请输入您的电话"></td>
+</tr>
+</table>
+</li>
+
+<li>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+<tr>
+<th>真实姓名</th>
+<td><input name="truename"  type="text" class="px" id="truename" value="{pigcms:$info.truename}" placeholder="请输入您的真实姓名"></td>
+</tr>
+</table>
+</li>
+
+<li>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+<tr>
+<th>性别</th>
+<td><select name="sex" class="dropdown-select" id="sex">
+<option  class="dropdown-option">请选择你的性别</option>
+<option  value="1" <if condition="$info['sex'] eq 1">selected</if>>男</option>
+<option  value="2" <if condition="$info['sex'] eq 2">selected</if>> 女</option>
+<option  value="3" <if condition="$info['sex'] eq 3">selected</if>>其他</option>
+</select></td>
+</tr>
+</table>
+</li>
+
+</ul>
+
+
+<ul class="round">
+<li>
+<style>
+.por{width:65px;float:left;height:65px;}
+.por img{width:60px;height:60px;cursor:pointer}
+.por img.selected{border:2px solid #f60}
+</style>
+<script>
+function selectpor(el){
+	$("#portrait").val(el.src);
+	$('#pors img').removeClass('selected');
+	$('#portrait_src').attr('src',el.src);
+	el.className='selected';
+}
+</script>
+<div style="padding:10px 10px 10px 0;">请设置头像</div>
+<input type="hidden" value="{pigcms:$info.portrait}" id="portrait" name="portrait" size="80" />
+<!--
+ <a href="###" onclick="upyunWapPicUpload('portrait',200,200,'{pigcms:$Think.get.token}')" class="a_upload" style="color:red">点击这里上传</a>-->
+<div class="por">
+	<img src="<pigcmsif where="$info.portrait neq ''">{pigcms:$info.portrait}<else/>/tpl/User/default/common/images/portrait.jpg</pigcmsif>" id="portrait_src" />
+</div>
+
+<div style="clear:both"></div>
+或者选择下面头像
+<div style="margin:10px 0 20px 0" id="pors">
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/1.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/2.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/3.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/4.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/5.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/6.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/7.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/8.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/9.jpg" /></div>
+<div class="por"><img onclick="selectpor(this)" src="/tpl/static/portrait/10.jpg" /></div>
+<div style="clear:both"></div>
+</div>
+</li>
+</ul>
+
+
+<div class="footReturn">
+	<a id="showcard"  class="submit" >提交信息</a>
+	<div class="window" id="windowcenter" >
+		<div id="title" class="wtitle"><span class="close" id="alertclose"></span></div>
+		<div class="content">
+			<div id="txt"></div>
+		</div>
+	</div>
+</div>
+<div style="height:60px;" id="msg">&nbsp;</div>
+
+<script type="text/javascript">
+$(function(){
+
+
+});
+
+
+$("#showcard").bind("click",
+function() {
+    var btn = $(this);
+    var nickname  = $("#nickname").val();
+	var phone 	  = $("#phone").val();
+	var truename  = $("#truename").val();
+	var sex 	  = $("#sex").val();
+	var portrait  = $("#portrait").val();
+
+	if($.trim(nickname)  == ''){
+		showTip("请输入您的微信名称",'');
+		return false;
+	}
+	reg=/^0{0,1}(13[0-9]|145|15[0-9]|18[0-9])[0-9]{8}$/i;
+	if(!reg.test(phone)){
+		showTip("请输入正确的11位手机号！",'');
+		return false;
+	}
+    var submitData = {
+        nickname 	: nickname,
+        phone 	  	: phone,
+        truename  	: truename,
+        sex 	  	: sex,
+        portrait  	: portrait,
+    };
+
+    $.getJSON('index.php?g=Wap&m=Scene_member&a=set&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&act_type={pigcms:$act_type}&act_id={pigcms:$act_id}&name={pigcms:$name}', submitData,
+    function(res) {
+        if(res.err == 0 && res.name == 'shake'){
+        	showTip('报名成功，2秒后自动跳转摇一摇',res.href);
+        	
+        	/*
+        	zAlert.Alert({
+				closed: false,
+				content: '报名成功，点击确定参加摇一摇',
+				callback: function() {
+					zAlert.Close();
+					window.location.href=res.href;
+				}
+			})
+    		*/
+		}else if(res.err == 0 && res.name == 'wall'){
+			showTip('报名成功，请关闭窗口返回微信输入框','');
+			/*
+			zAlert.Alert({
+				closed: false,
+				content: '报名成功，请关闭窗口进入微信输入框',
+				callback: function() {
+					zAlert.Close();
+					CloseWebPage();
+				}
+			})
+			*/
+		}else if(res.err == 0 && res.name == 'vote'){
+			showTip('报名成功，2秒后自动跳转投票',res.href);
+			/*
+        	zAlert.Alert({
+				closed: false,
+				content: '报名成功，点击确定参加投票',
+				callback: function() {
+					zAlert.Close();
+					window.location.href=res.href;
+				}
+			})*/
+
+		}else{
+			showTip('报名成功，请关闭窗口后进入活动','');
+			/*
+			zAlert.Alert({
+				closed: false,
+				content: '报名成功，请关闭窗口后进入活动',
+				callback: function() {
+					zAlert.Close();
+					CloseWebPage();
+				}
+			})*/
+		}		
+    },
+    "json")
+});
+/*关闭窗口*/
+function CloseWebPage(){
+if (navigator.userAgent.indexOf("MSIE") > 0) {
+if (navigator.userAgent.indexOf("MSIE 6.0") > 0) {
+window.opener = null;
+window.close();
+} else {
+window.open('', '_top');
+window.top.close();
+}
+}
+else if (navigator.userAgent.indexOf("Firefox") > 0) {
+window.location.href = 'about:blank ';
+} else if(isWeiXin()){
+	WeixinJSBridge.call('closeWindow');
+} else {
+window.opener = null;
+window.open('', '_self', '');
+window.close();
+}
+}
+function isWeiXin(){
+var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		return true;
+	}else{
+		return false;
+	}
+} 
+function showTip(tipTxt,url) {
+	var div = document.createElement('div');
+	div.innerHTML = '<div class="deploy_ctype_tip"><p>' + tipTxt + '</p></div>';
+	var tipNode = div.firstChild;
+	$("#fans").after(tipNode);
+	setTimeout(function () {
+		$(tipNode).remove();
+		if(url){
+			window.location.href=url;
+		}
+	}, 2000);
+}
+</script>
+</div>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Index",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Index/index',array('token'=>$token))}",
+            "tTitle": "",
+            "tContent": ""
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

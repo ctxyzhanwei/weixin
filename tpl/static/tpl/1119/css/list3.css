@@ -1,0 +1,52 @@
+body{ background: url("../images/bg.jpg") repeat; background-size: contain;}
+.list{border-radius: 5px; margin: 10px 2%; width: 96%;}
+.list li{list-style: none; position: relative;margin: 10px 2% 20px 2%; border-radius: 5px; padding:6px 0 0 0;
+    background-color:#e4e4e4;
+    background-repeat:repeat-x;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#e4e4e4),to(#f3f3f3));
+    background:-webkit-linear-gradient(top,#f3f3f3,#e4e4e4);
+    background:-moz-linear-gradient(top,#f3f3f3,#e4e4e4);
+    background:-ms-linear-gradient(top,#f3f3f3,#e4e4e4);
+    background:-o-linear-gradient(top,#f3f3f3,#e4e4e4);
+}
+.list li:before{ content: " "; position: absolute; top:-6px; left: 0; width: 100%; height: 12px; background: url("../images/bg-book-top.png") repeat-x; background-size: contain;}
+.list li:after{content: " "; position: absolute; bottom:-6px; left:1%; width:98%; height: 6px; border-radius: 0 0 5px 5px; background: #c2b199; box-shadow:1px 1px 2px #d7d7d7;}
+.list a{
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: block;
+    background: url("../images/arrow.png") no-repeat right center;
+    background-size: auto 10px;
+    background-origin: content-box;
+}
+.list a:active,
+.list a.active{ background-color: #eee;}
+.list a >*{height: 50px; vertical-align: middle; display: table-cell;}
+.list a >*:last-child{width: 100%;}
+.list .list-img b{ width: 60px; height: 60px; border-radius: 1000px; overflow: hidden;text-align: center; display: block; position: relative;line-height: 60px; }
+.list-img .fa{ font-size: 50px; width: 60px; height: 60px; color: #999;line-height: 60px;}
+.list-img img{width: 100%; height: 100%; border-radius: 10000px; float: left;}
+.list .list-text>*{padding-right: 10px;font-weight: 100;  line-height: 20px; }
+.list h1,
+.list h2{text-indent: 10px;overflow:hidden;height: 20px;}
+.list-text b,
+.list-text small{ padding-left: 10px; display: block;}
+.list a >*:first-child h1,
+.list a >*:first-child h2{text-indent: 0;}
+.list a >*:first-child b,
+.list a >*:first-child small{ padding-left: 0;}
+.list h1,
+.list-text b{ font-size: 14px; color: #333;}
+.list h2,
+.list-text small{ font-size: 12px; color: #e8645a;}
+.btn-up-1{ background: #b09d82;}
+.btn-up-1 .fa{ background: #fff; color: #b09d82;}
+.navPop-1 .navPop-btn{ background: #b09d82;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #b09d82;}
+.navPop-wrap>div a{
+    background: #b09d82;
+    color: #fff;
+}
+.slider-hor .slider-span{ width: 100%;}

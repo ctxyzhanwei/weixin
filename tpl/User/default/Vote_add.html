@@ -1,0 +1,288 @@
+<include file="Public:head"/>
+<script src="{pigcms::STATICS}/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<!--link rel="stylesheet" href="{pigcms::STATICS}/vote/style.css" /-->
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/vote/common.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+<div class="content">
+
+<div class="cLineB">
+  <h4> 
+    <if condition="$vo['type'] eq 'img' or ($type eq 'img')"> 
+      图片
+    <elseif condition="$vo['type'] eq 'text' or ($type eq 'text')"/>
+      文本
+    <else />
+      微现场
+  </if>-投票设置 
+</h4>
+
+<a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+</div>
+
+         <div class="msgWrap bgfc">
+<form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+<if condition="$vo['id'] neq ''">
+  <input type="hidden" name="id" value="{pigcms:$vo['id']}">
+</if>
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"><tbody><tr>
+<th width="120">关键词：</th>
+<td><input type="text" name="keyword" value="<if condition="$vo['keyword'] eq ''">投票<else/>{pigcms:$vo.keyword}</if>" class="px" style="width:550px;"><br><span class="red"><if condition="$type eq 'scene'">添加现场投票，关键词设置失效，无需修改<else/>只能写一个关键词,功能面板必须开启投票</if></span></td>
+</tr>
+
+<tr>
+<th width="120">投票标题：</th>
+<td><input type="text" name="title" value="{pigcms:$vo.title}" class="px" style="width:550px;"></td>
+</tr>
+
+<tr>
+<th>投票图片：</th>
+<td>
+<input type="text" name="picurl" value="{pigcms:$vo.picurl}" class="px" id="picurl" style="width:300px;">
+<script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('picurl',700,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a>&nbsp;填写图片外链地址，大小为720x400</td>
+</tr>
+<tr>
+<th>图片显示：</th>
+<td><label>
+<input type="radio" name="showpic" value="1" checked="checked" id="showpic2">
+显示在投票页面</label>
+<label>
+<input name="showpic" type="radio" id="showpic1" value="0">
+不显示在投票页面</label>
+</td>
+</tr>
+<tr>
+<th valign="top">投票说明：</th>
+<td valign="top"><textarea class="px" id="info" name="info" style="width: 560px; height: 120px; display: ;"><?php echo html_entity_decode(htmlspecialchars_decode($vo['info'])); ?></textarea></td>
+</tr>
+<tr>
+<th valign="top">投票选项：</th>
+<td valign="top"><div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+    <td width="260">选项标题</td>
+    <td width="50">排序</td>
+     <td width="50">票数</td>
+    <if condition="$vo['type'] eq 'img' OR $type eq 'img' OR ($vo['type'] eq 'scene') OR ($type eq 'scene')">
+    <td width="320">图片外链地址&nbsp;&nbsp;&nbsp;&nbsp;如：http://www.pigcms.com</td>
+    <td width="180">图片跳转地址</td>
+    </if>
+    <td class="norightborder"></td>
+</tr>
+</tbody>
+<if condition="$items neq ''">
+<volist name="items" id="ivo" key="key">
+<tbody class="item{pigcms:$ivo.id}" name="div_add_del">
+<tr>
+    <input type="hidden" name="add[id][]"   value="{pigcms:$ivo.id}" style="width:20px;">
+    <td width="120"><input type="text" name="add[item][]" value="{pigcms:$ivo.item}" class="px" style="width:120px;"></td>
+    <td width="20"><input type="text" name="add[rank][]" value="{pigcms:$ivo.rank}" style="width:20px;" class="px"></td>
+    <td width="20"><input type="text" name="add[vcount][]" value="{pigcms:$ivo.vcount}" style="width:20px;" class="px"></td>
+    <if condition="$vo['type'] eq 'img' OR $type eq 'img' OR ($vo['type'] eq 'scene') OR ($type eq 'scene')">
+    <td width="200">
+      <input type="text" name="add[startpicurl][]" value="{pigcms:$ivo.startpicurl}" class="px" id="startpicurl_{pigcms:$key}" style="width:130px;">
+<a href="###" onclick="upyunPicUpload('startpicurl_{pigcms:$key}',700,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('startpicurl_{pigcms:$key}')">预览</a>
+</td>
+    <td width="260"><input type="text" name="add[tourl][]" value="{pigcms:$ivo.tourl}" style="width:100px;" class="px"></td>
+    </if>
+
+    <td width="50" class="norightborder"><a href="javascript:void(0);" vid="{pigcms:$ivo.id}" class="del">删除</a></td>
+</tr>
+ </tbody>
+</volist>
+<else/>
+<tbody class="item">
+    <tr >
+     <input type="hidden" name="add[id][]" readonly="readonly" disabled="disabled"  value="" style="width:20px;" >
+        <td width="120">
+            <input type="text" name="add[item][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[rank][]" value="" style="width:20px;" class="px">
+        </td>
+         <td>
+            <input type="text" name="add[vcount][]" value="" style="width:20px;" class="px">
+        </td>
+        <if condition="$vo['type'] eq 'img' OR $type eq 'img' OR ($vo['type'] eq 'scene') OR ($type eq 'scene')">
+        <td width="200">
+          <input type="text" name="add[startpicurl][]" value="" class="px"  id="img_1" style="width:130px;">
+          <a href="###" onclick="upyunPicUpload('img_1',700,400,'{pigcms:$token}')" class="a_upload">上传</a>
+          <a href="###" onclick="viewImg('img_1')">预览</a>
+        </td>
+        <td width="100"><input type="text" name="add[tourl][]"  value="" class="px" style="width:100px;"></td>
+         </if>
+         <td width="50" class="norightborder"><a href="javascript:void(0);" vid="0" class="del">删除</a>
+        </td>
+    </tr>
+</tbody>
+
+<tbody class="item">
+    <tr >
+     <input type="hidden" name="add[id][]" readonly="readonly" disabled="disabled"  value="" style="width:20px;" >
+        <td width="120">
+            <input type="text" name="add[item][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[rank][]" value="" style="width:20px;" class="px">
+        </td>
+         <td>
+            <input type="text" name="add[vcount][]" value="" style="width:20px;" class="px">
+        </td>
+        <if condition="$vo['type'] eq 'img' OR $type eq 'img' OR ($vo['type'] eq 'scene') OR ($type eq 'scene')">
+        <td width="200">
+          <input type="text" name="add[startpicurl][]" value="" class="px"  id="img_2" style="width:130px;">
+          <a href="###" onclick="upyunPicUpload('img_2',700,400,'{pigcms:$token}')" class="a_upload">上传</a>
+          <a href="###" onclick="viewImg('img_2')">预览</a>
+        </td>
+        <td width="100"><input type="text" name="add[tourl][]"  value="" class="px" style="width:100px;"></td>
+         </if>
+         <td width="50" class="norightborder"><a href="javascript:void(0);" vid="0" class="del">删除</a>
+        </td>
+    </tr>
+</tbody>
+</if>
+</table>
+<tbody>
+        <tr>
+            <td></td>
+            <td colspan="<if condition="$vo['type'] eq 'img' OR $type eq 'img' OR ($vo['type'] eq 'scene') OR ($type eq 'scene')">6<else/>4</if>" class="norightborder">
+              排序默认为1，票数默认为0，如果是图片投票必须添加图片,图片跳转地址没有可以不填写。
+              <a href="javascript:void(0);" class="btnGray right" types="<if condition="$vo['type'] eq 'img' OR $type eq 'img' OR ($vo['type'] eq 'scene') OR ($type eq 'scene')">1<else/>0</if>" id="addItem">添加选项</a>
+            </td>
+        </tr>
+
+  </tbody>
+</div>
+</div>
+
+</td>
+</tr>
+
+<tr>
+<th> 参与人数：</th>
+<td>
+  <input type="text" name="count" value="{pigcms:$vo.count}"  class="px">人
+</p>
+</td>
+</tr>
+
+<tr>
+<th>单选/多选：</th>
+<td>
+  <p style="width: 120px; float: left; display: block; line-height: 32px; height: 32px;">
+    <select name="cknums" class="input-medium">
+      <option value="1" <if condition="$vo['cknums'] eq 1">selected</if>>单选</option>
+      <option value="2" <if condition="$vo['cknums'] eq 2">selected</if>>多选</option>
+    </select>
+
+</p>
+</td>
+</tr>
+
+<tr>
+<th>截至时间：</th>
+<td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''">{pigcms:$vo.statdate|date="Y-m-d",###}</if>" onClick="WdatePicker()" name="statdate">
+到
+<input type="input" class="px" id="enddate" value="<if condition="$vo['enddate'] neq ''">{pigcms:$vo.enddate|date="Y-m-d",###}</if>" name="enddate" onClick="WdatePicker()"></td>
+</tr>
+
+<tr>
+<th>防恶意刷新：</th>
+<td>
+  <input type="radio" name="refresh" value="1" <if condition="$vo.refresh eq '1' or $vo.refresh eq ''">checked</if>>开启 &nbsp;&nbsp;
+  <input type="radio" name="refresh" value="0" <if condition="$vo.refresh eq '0'">checked</if>>关闭  &nbsp;(开启防刷新后一个ip地址只能投一票)
+</td>
+</tr>
+<!--
+<tr>
+<th>投票结果：</th>
+<td>
+<label>
+<input name="display" type="radio" <if condition="$vo['display'] eq 1">checked</if>  value="1" id="RadioGroup2_1">
+投票前可见</label>
+<label>
+<input name="display" type="radio" <if condition="$vo['display'] eq 0">checked <else/> checked</if> id="RadioGroup2_0" value="0">
+投票后可见</label>
+<label>
+<input name="display" type="radio" <if condition="$vo['display'] eq 2">checked</if>id="RadioGroup2_2" value="2">
+投票结束可见</label>
+
+</td>
+</tr>
+
+-->
+<input type="hidden" name="display" value="1">
+<tr>
+<th>&nbsp;</th>
+<td><button type="submit" name="button" class="btnGreen">保存</button>
+<a href="{pigcms::U('Vote/index')}" class="btnGray vm">取消</a>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+</form>
+  </div>
+
+
+        </div>
+<script>
+  $(function(){
+    $('#addItem').click(function(){
+        var type  = $(this).attr('types');
+        var len   = $('.ListProduct').children('tbody').length;
+        var str   = "";
+          str  += '<tbody class="item"><tr ><input type="hidden" name="add[id][]" readonly="readonly" disabled="disabled"  value="" style="width:20px;" ><td width="120"><input type="text" name="add[item][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;"></td><td><input type="text" name="add[rank][]" value="" style="width:20px;" class="px"></td><td><input type="text" name="add[vcount][]" value="" style="width:20px;" class="px"></td>';
+
+        if(type == 1){
+          str  += '<td width="200"><input type="text" name="add[startpicurl][]" value="" class="px" id="url_'+len+'" style="width:130px;"><a href="###" onclick="upyunPicUpload(\'url_'+len+'\',700,400,\'{pigcms:$token}\')" class="a_upload">上传</a><a href="###" onclick="viewImg(\'url_'+len+'\')">预览</a></td><td width="100"><input type="text" name="add[tourl][]" value="" class="px" style="width:100px;"></td>';
+        }
+
+          str  += '<td width="50" class="norightborder"><a href="javascript:void(0);" vid="0" class="del">删除</a></td></tr></tbody>';
+
+          $('.ListProduct').append(str);
+    });
+
+    $(".ListProduct").on('click','.del',function(e){
+      var vid = $(this).attr('vid');
+      if(vid == 0){
+        $(this).parents('.item').remove();
+      }else{
+        if(confirm('确定要删除吗？')){   
+            var obj = {id:vid}
+            $.post("{pigcms::U('Vote/del_tab')}", obj,
+                function(data) {
+                  $('.del').parents('.item'+vid).remove();
+                },
+            "json");
+        }
+      }
+    });
+});
+</script>
+
+<include file="Public:footer"/>

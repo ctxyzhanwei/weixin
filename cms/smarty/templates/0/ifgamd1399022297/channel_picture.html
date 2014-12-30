@@ -1,0 +1,34 @@
+{include file=$header}
+    <p class="clear"></p>
+    <div class="subborder"></div>    <div class="subcon">
+	    	<div class="clickbtn" style="display:none">
+            <div class="classbtn">点击展示分类</div>
+            <div class="classbtn2">点击关闭分类</div>
+        </div>
+        <ul class="subnav">
+			            <li><a href="product.php-tid=1.htm" tppabs="/3g/product.php?tid=1" title="披萨">披萨</a></li>
+                        <li><a href="product.php-tid=2.htm" tppabs="/3g/product.php?tid=2" title="蛋挞">蛋挞</a></li>
+                        <li><a href="product.php-tid=3.htm" tppabs="/3g/product.php?tid=3" title="烤肉">烤肉</a></li>
+                        <div class="clear"></div>
+        </ul>
+		    	<ul class="product">
+			           {if $contents}
+			{foreach from=$contents item=c}
+		        <li><div>
+            <a href="{$c.link}" title="{$c.title}"><img src="{$c.thumb}" alt="{$c.title}"></a>
+            <p><a href="{$c.link}" title="{$c.title}" class="prodtitle">{$c.title}</a></p></div>
+        </li>
+		     {/foreach}
+			 {/if}
+                    </ul>
+        <div class="clear"></div>
+			{if $currentPage&&$totalPage}
+    <div class="pages">
+			<a class="pre-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="next-left" href="{$nextPageLink}">&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	{/if}   </div>
+</div>
+{include file=$footer}

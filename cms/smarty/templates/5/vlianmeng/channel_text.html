@@ -1,0 +1,17 @@
+{include file=$header}<p class="title">{$channel.name}</p>
+<div class="sub">
+		<ul class="news">
+			{if $contents}
+			{foreach from=$contents item=c}
+			<li><a href="{$c.link}" title="{$c.title}"><p>{$c.title}</p></a></li>
+			
+		     {/foreach}
+			 {/if}
+			</ul>
+		<div class="pages">
+		
+				<a href="{$previousPageLink}" class="{if $previousPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="上一页">&lt;</a>
+				<span>{$currentPage}/{$totalPage}</span>
+				<a href="{$nextPageLink}" class="{if $nextPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="下一页">&gt;</a>
+				</div>	</div>
+{include file=$footer}

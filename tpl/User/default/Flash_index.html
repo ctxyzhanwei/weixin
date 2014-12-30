@@ -1,0 +1,70 @@
+<include file="Public:head"/>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+
+<div class="cLineB">
+<if condition="$tip eq 1">
+  <h4>幻灯片管理 <span class="FAQ">3G网站头部幻灯片。</span></h4>
+<else/>
+  <h4>背景图管理 <span class="FAQ">3G网站背景图。</span></h4>
+</if>
+ </div>
+         <div class="cLineC" style="line-height: 32px;">
+ <a href="{pigcms::U('Flash/add',array('tip'=>$tip))}" class="btnGrayS vm bigbtn" ><if condition="$tip eq 1">添加幻灯片<else/>添加背景图</if></a> 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+                   
+                   <th style=" width:120px;"><if condition="$tip eq 1">幻灯片描述<else/>背景图描述</if></th>
+
+<th><if condition="$tip eq 1">幻灯片图片<else/>背景图图片</if> <a  target="999" class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>如果不填写分类图片地址系统将随机分配默认图片。</p>
+</span></a></th>
+                        <th><if condition="$tip eq 1">幻灯片外链地址<else/>背景图外链地址</if><span class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>比如你想跳转到百度，就填写<a class="red">http://www.baidu.com</a></p>
+<p>不需要跳转就不用填写，还可以外链活动，</p>
+<p>直接填写活动外链地址：<a class="red">大转盘387</a></p>
+</span></span></th>
+
+                        <th style=" width:170px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="info" id="vo">
+<tr>
+
+<td>{pigcms:$vo.info}</td>
+<td><div class="cateimg"><img src="{pigcms:$vo.img}" class="cateimg_small"  /><img src="{pigcms:$vo.img}" class="cateimg_big"  /></div></td>
+<td>{pigcms:$vo.url|htmlspecialchars_decode}</td>
+<td class="norightborder">
+	<a href="{pigcms::U('Wap/Index/flash',array('token'=>$_SESSION['token'],'tip'=>$tip))}">查看</a>
+	<a href="{pigcms::U('Flash/edit',array('id'=>$vo['id'],'tip'=>$tip))}">编辑</a>
+	<a href="javascript:drop_confirm('您确定要删除吗?', \'{pigcms::U('Flash/del',array('id'=>$vo['id'],'tip'=>$tip))}\');">删除</a>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content" style="" >
+
+<div class="cLineB">
+<h4 class="left">兑奖记录查询</h4>
+<div class="clr"></div>
+</div>
+<include file="Scoregift:menu"/>
+
+<div class="msgWrap">
+<form method="post" action="" id="info">
+
+<div class="cLine">
+<div class="pageNavigator left">
+<input type="hidden" name="allsmtype" value="2"/>
+ <a href="javascript:void(0)" onclick="allsubmit('2');" title="" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/arrow_switch.png" class="vm">批量删除</a>
+</div>
+<div class="clr"></div>
+</div>
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+<th width="100">姓名</th>
+<th width="300">记录详情</th>
+<th width="100">时间</th>
+<th width="250" class="norightborder">操作</th>
+</tr>
+</thead>
+
+<tbody style="text-align:center;">
+<volist name="data" id="item"> 
+	<tr>
+		<td><input type="checkbox" value="{pigcms:$item.id}" class="cbitem" name="id_{pigcms:$i}"></td>
+		<td>{pigcms:$item.user.truename}</td>
+		<td>{pigcms:$item.info}</td>
+		<td>{pigcms:$item.time|date="Y-m-d H:i",###}</td>
+		<td class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Scoregift/logs_del',array('id'=>$item['id'],'token'=>$token,'acid'=>$acid))}');">删除</a></td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+$(function(){
+	$('#check_box').click(function(){
+	($(this).attr('checked')!="checked")?$('.cbitem').attr('checked',false):$('.cbitem').attr('checked',true);
+	})
+});
+function allsubmit(id){
+		document.getElementById('info').submit();
+}
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,95 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content" style="" >
+
+<div class="cLineB">
+<h4 class="left">奖品兑换</h4>
+<div class="clr"></div>
+</div>
+<include file="Scoregift:menu"/>
+
+<div class="msgWrap">
+
+<form method="post" action="" id="info">
+
+<input name="delall" type="hidden" value="">
+
+<input name="wxid" type="hidden" value="">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+<tr>
+<th width="100">姓名</th>
+<th width="100">手机号</th>
+<th width="100">积分</th>
+<th width="200">奖品名称（所需积分）</th>
+<th width="250" class="norightborder">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody style="text-align:center;">
+<form name="infoForm" id="infoForm" method="post" action="" >
+<volist name="userlist" id="user"> 
+
+<input type="hidden" name="issubmit_{pigcms:$user['id']}" value="0">
+<tr>
+<td>{pigcms:$user.truename}</td>
+<td>{pigcms:$user.tel}</td>
+<td>{pigcms:$user.total_score}</td>
+<td><select name="itemid_{pigcms:$user['id']}">
+<volist name="item_list" id="item">
+<option value="{pigcms:$item.id}">{pigcms:$item.name}(需{pigcms:$item.score} 分)</option>
+</volist></select></td>
+<td class="norightborder"><a href="javascript:;" onclick="exchange({pigcms:$user['id']})">兑换</a></td>
+
+</tr>
+</volist>
+</form>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script type="text/javascript">	
+	function exchange(id){
+		if(vailReSubmit(id)==false) return
+		var itemid=$("select[name='itemid_"+id+"']").val();
+		var subdata={
+			userid:id,
+			itemid:itemid
+		}
+		//防二次点击
+		var issubmit=$("input[name='issubmit_"+id+"']");
+		issubmit.attr('value',"1");//不能再提交
+		$.post("{pigcms::U('Scoregift/exchange_user',array('acid'=>$acid))}",subdata,function(data){
+			if (0 == data.error) {
+				alert(data.msg);				
+				setTimeout('window.location.href="'+data.url+'"',1000);
+			} else {
+				alert(data.msg);
+				setTimeout('window.location.href="'+data.url+'"',1000);
+			}
+		},"json");
+	}
+	function vailReSubmit(id){
+	var issubmit=$("input[name='issubmit_"+id+"']");
+	if(issubmit.val() == 0){
+		return true;
+	}else{
+		alert(' 按一次就够了，请勿重复提交！请耐心等待！谢谢合作！');
+		return false;
+	}
+	
+}
+</script>
+<include file="Public:footer"/>

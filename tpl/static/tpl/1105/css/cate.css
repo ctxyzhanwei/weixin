@@ -1,0 +1,50 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, .mainmenu, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, .mainmenu {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+
+body { font-size:14px;background-color:#fdf7e9 }
+body .mainmenu { margin-right: 5px; margin-bottom: 5px;display: block;  }
+body .mainmenu li { float:left; width: 33.3%;  }
+body .mainmenu li a { display:block;     text-align:center; border-radius:5px; margin: 5px 0 0 5px;color:#f6eddc; padding-bottom:3px }
+body .mainmenu li a img {margin:8px auto 0px; width:30%;   }
+body .mainmenu li a p { padding:0px 3px; text-align:center; margin:auto; line-height:24px;  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;  }
+
+
+body .mainmenu li:nth-child(1) a{background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#9b5960), to(#ab6269)); }
+body .mainmenu li:nth-child(2) a{background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#998463), to(#a9916d)); }
+body .mainmenu li:nth-child(3) a{background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#506d7e), to(#6a8799)); }
+body .mainmenu li:nth-child(4) a{background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#a27c6c), to(#b58b7b)); }
+body .mainmenu li:nth-child(5) a{background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#866689), to(#977399)); }
+body .mainmenu li:nth-child(6) a{background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#81899d), to(#97a2b8)); }
+
+body .mainmenu li:nth-child(n+7) a{ color:#6d6d6d; box-shadow: 0 2px 1px rgba(0,0,0,0.3); padding-bottom:5px; }
+body .mainmenu li:nth-child(n+7) a img{ width:100%;  margin:0px;}

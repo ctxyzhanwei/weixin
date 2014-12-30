@@ -1,0 +1,108 @@
+html, body {
+    color:#222;
+    font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin:0;
+    padding:0;
+}
+img {
+    border:0;
+}
+ol, ul {
+    list-style: none outside none;
+    margin:0;
+    padding: 0;
+}
+a {
+    color:#000000;
+    text-decoration: none;
+}
+.clr {
+    display:block;
+    clear:both;
+    height:0;
+    overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+/*cate25*/
+#cate25{background-color:rgba(159, 133, 96, 0.45);overflow-x: hidden;margin:0 auto;}
+#cate25 .banner img{
+    width:100%;
+}
+#cate25 .imgmenu{
+    margin:10px 0;
+    background-color:rgba(159, 133, 96, 0.45);
+}
+#cate25 .imgmenu ul{
+    display: -webkit-box;
+}
+#cate25 .imgmenu li{
+width:25%;
+display: block;
+}
+#cate25 .imgmenu li a{
+display: block; text-align:center;
+}
+#cate25 .imgmenu li a img{
+    width:50px;
+}
+#cate25 .imgmenu li a p{
+    font-size:14px;
+    color:#fff;
+}
+#cate25 .catemenu {
+overflow: hidden;
+background-color:rgba(159, 133, 96, 0.45);
+display: -webkit-box; position:relative;
+}
+#cate25 .catemenu ul {
+width: 100%;
+overflow: hidden;
+border-top: 1px solid white;
+border-bottom: 1px solid #c5c7cb;
+-webkit-box-flex: 3;
+}
+
+#cate25 .catemenu li{
+display: block;
+padding:5px 0 5px 10px;
+}
+
+#cate25 .catemenu li a {
+display: inline-block;
+margin:0 6px;
+text-align: center;
+font-size: 16px;
+color: #fff;
+line-height: 30px;
+font-size:14px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.cname{ background-color:rgba(159, 133, 96, 0.45);border-top: 1px solid white; border-bottom:1px solid #c5c7cb;  padding:5px; width:90px; text-align:center; display:block;
+background-image: -webkit-gradient(linear,left top,left bottom,from(),to());
+background-image: -webkit-linear-gradient();
+background-image: linear-gradient();-webkit-box-flex: 1; min-height:70px}
+.cname img{width:40px;height:40px;vertical-align: top;
+border: 0; margin:0 5px 0 3px;}
+.cname a{ display: block;
+position: absolute;
+top: 50%;
+margin-top: -28px;
+left: 7px;
+width: 60px;
+height: 60px;}
+.cname p{ font-size:14px;overflow: hidden;
+    color: #fff;
+text-overflow: ellipsis;
+white-space: nowrap;}
+.copyright{
+    color:#fff;
+}

@@ -1,0 +1,85 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" >  
+<div class="cLineB"><h4>微信墙设置</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="acttitle">活动名称：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="title" style="width:350px"  value="{pigcms:$info.title}" >    </TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">关键词：</label></TH>
+  <TD><input type="input" class="px" id="keyword"  name="keyword" style="width:350px"  value="{pigcms:$info.keyword}" >    </TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">Logo：</label></TH>
+  <TD>
+    <input type="input" class="px" id="logo" value="<if condition="$info['logo'] eq ''">./tpl/static/wall/images/default_logo.png<else/>{pigcms:$info.logo}</if>" name="logo" style="width:350px">  
+    <a href="###" onclick="upyunPicUpload('logo',280,75,'{pigcms:$token}')" class="a_upload">上传</a>
+    <a href="###" onclick="viewImg('logo')" class="a_upload">预览</a>[280*75]
+</TD>
+</TR>
+
+<TR>
+  <TH valign="top"><label for="text">回复图片：</label></TH>
+  <TD><input type="input" class="px" id="startbackground" value="{pigcms:$info.startbackground}" name="startbackground" style="width:250px" value="{pigcms:$info.startbackground}" > <script src="/tpl/static/upyun.js"></script><a href="###" onclick="chooseFile('startbackground','background')" class="a_upload">选择</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="upyunPicUpload('startbackground',360,200,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="viewImg('startbackground')" class="a_upload">预览</a> 最佳尺寸宽360px,高200px
+</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">背景：</label></TH>
+  <TD><input type="input" class="px" id="background" value="<if condition="$info['background'] eq ''">./tpl/static/wall/images/default_bg.jpg<else/>{pigcms:$info.background}</if>" name="background" style="width:350px" value="{pigcms:$info.background}" > <script src="/tpl/static/upyun.js"></script><a href="###" onclick="chooseFile('background','background')" class="a_upload">选择</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="upyunPicUpload('background',1500,1000,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="viewImg('background')" class="a_upload">预览</a>  默认为空会有更好的显示效果
+</TD>
+</TR>
+<!--
+<TR>
+  <TH valign="top"><label for="text">结束背景：</label></TH>
+  <TD><input type="input" class="px" id="endbackground" value="{pigcms:$info.endbackground}" name="endbackground" style="width:250px" value="{pigcms:$info.endbackground}" > <script src="/tpl/static/upyun.js"></script><a href="###" onclick="chooseFile('endbackground','background')" class="a_upload">选择</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="upyunPicUpload('endbackground',1500,1000,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="viewImg('endbackground')" class="a_upload">预览</a> 
+</TD>
+</TR>
+-->
+<TR>
+  <TH valign="top"><label for="text">二维码：</label></TH>
+  <TD><input type="input" class="px" id="qrcode" value="{pigcms:$info.qrcode}" name="qrcode" style="width:350px" value="" >  <a href="###" onclick="upyunPicUpload('qrcode',800,800,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="viewImg('qrcode')" class="a_upload">预览</a>
+</TD>
+</TR>
+<TR>
+  <TH valign="top">是否审核：</TH>
+  <TD>
+    <label for="radio5"><input class="radio" id="radio5" type="radio" name="ck_msg" value="0" <eq name="info.ck_msg" value="0">checked="checked"</eq> /> 不审核</label>&nbsp;
+    <label for="radio6"><input id="radio6" class="radio" type="radio" name="ck_msg" value="1"  <eq name="info.ck_msg" value="1">checked="checked"</eq> />需审核</label>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	如果选择审核，只有审核通过的消息才会显示在大屏幕
+  </TD>
+</TR>
+<TR>
+  <TH valign="top">开启微信墙：</TH>
+  <TD>
+    <label for="radio3"><input id="radio3" class="radio" type="radio" name="isopen" value="1"  <eq name="info.isopen" value="1">checked="checked"</eq> /> 开启</label>
+	&nbsp;&nbsp;&nbsp;
+    <label for="radio4"><input class="radio" id="radio4" type="radio" name="isopen" value="0" <eq name="info.isopen" value="0">checked="checked"</eq> /> 关闭</label></TD>
+</TR>
+<TR>
+  <TH></TH>
+  <TD><input type="hidden" value="{pigcms:$info.id}" name="id" /><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+</form>
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

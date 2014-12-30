@@ -1,0 +1,43 @@
+ <include file="Public:head" /> 
+
+<input type="hidden" id="catUrl" value="{pigcms::U('Product/ajaxCatOptions',array('token'=>$token))}" />
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>桌台设置</h4> 
+    <a href="{pigcms::U('Product/tables',array('token'=>$token,'dining'=>$isDining))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+<if condition="$isUpdate eq 1">
+<input type="hidden" name="id" value="{pigcms:$set.id}" />
+</if>
+<input type="hidden" name="discount" id="discount" value="{pigcms:$set.id}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td><input type="text" name="name" value="{pigcms:$set.name}" class="px" style="width:400px;" /></td> 
+       </tr> 
+      <tr> 
+        <th><span class="red">*</span>介绍：</th>
+        <td><input type="text" name="intro" value="{pigcms:$set.intro}" class="px" style="width:400px;" /></td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>顺序：</th> 
+        <td><input type="text" name="taxis" value="{pigcms:$set.taxis}" class="px" style="width:400px;" /></td> 
+       </tr>
+        <tr> 
+       
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <input type="hidden" name="id" value="{pigcms:$set.id}" />
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Product/tables',array('token'=>$token))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  <include file="Public:footer" />

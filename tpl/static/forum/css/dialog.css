@@ -1,0 +1,213 @@
+﻿*{
+	padding:0;
+	margin:0;
+}
+html,body{
+	height:100%;
+	-webkit-text-size-adjust: 100%;
+	/*font-family: Helvetica, Arial, sans-serif;*/
+	font-size:12px;
+}
+img {
+	-ms-interpolation-mode: bicubic;
+	vertical-align: middle;
+}
+
+.box {
+	width: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.box > * {
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+}
+
+
+.dialogWindow{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	/*bottom:0;*/
+	margin:auto;
+	z-index:9000;
+	width:300px;
+	/*height:200px;*/
+	min-height:100px;
+	background:#fff;
+	border-radius:5px;
+	-webkit-box-sizing:border-box;
+}
+.dialogWindow header, .dialogWindow footer{
+	height:35px;
+	line-height: 35px;
+	padding: 0 10px;
+}
+.dialogWindow header:empty, .dialogWindow footer:empty{
+	display:none;
+}
+
+.dialogWindow.on{
+	display:block;
+}
+.dialogCover{display:none;}
+.dialogWindow.on+.dialogCover{
+	display:block;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:1000;
+	background:rgba(0,0,0,0.2);
+}
+
+.dialogWindow header>dl{
+	display:table;
+}
+.dialogWindow header>dl>dd{
+	display:table-cell;
+	width:100%;
+}
+/**********/
+.dialogWindow .dialogContent{
+	/*height:120px;*/
+	padding:0;
+	-webkit-box-sizing:border-box;
+}
+/**********/
+.dialogWindow .dialogBtn{
+	display: block;
+	width:100px;
+	line-height:30px;
+	border:1px solid #ccc;
+	text-align:center;
+	margin:auto;
+}
+/***************************/
+.dialogWindow[data-type="dialog"]{
+	width:100px;
+	height:100px;
+	background:url(img/e7WAUwnrqDBgwgTKlzIsKHDh2gGSBwAccHEixAvaqTYcFCjRoYeNyoM6REhyZIHT4o0qPIjy5YTTcKUmHImx5cwE85cmJPnSYckK66sSAAj0aNIkypdyrSp06dQo0qdSrWq1atYs2rdyrWr169gwxZJAAA7) no-repeat center center;
+	-webkit-background-size:35px auto;
+	background-size:35px auto;
+	background-color:rgba(0,0,0,0.3);
+	border:1px solid #888;
+	border-radius:5px;
+}
+
+/****************************************************/
+.dialogWindow.default{
+	background:#e5e5e5;
+	margin-top:80px;
+	width:260px;
+	border-radius:0px;
+	padding: 20px 10px;
+	-webkit-box-sizing:border-box;
+	left: 50%;
+	margin-left: -130px;
+}
+.dialogWindow.default header{
+	display: none;
+	height:50px;
+	line-height:60px;
+	font-size:20px;
+	color:#f2852a;
+	text-align:center;
+	border-bottom:1px solid #d7d7d7;
+}
+
+
+.dialogWindow.default .dialogBtn{
+	background:#0F5069;
+	font-size:15px;
+	border-radius:3px;
+	height:35px;
+	line-height: 35px;
+	color:#ffffff;
+	border:0;
+	width:63px;
+	padding:0 6px;
+}
+.dialogWindow.default footer .box>div:nth-of-type(2) .dialogBtn{
+	background:#888888;
+}
+
+.dialogWindow.default .article{
+	padding: 0 10px;
+	font-size:13px;
+}
+
+.table_input{
+	margin:10px auto;
+	width:90%;
+}
+
+.table_input .input{
+	font-size:17px;
+	border:1px solid #c1c1c1;
+	background:#ffffff;
+	width:100%;
+	padding:0px 3px;
+	-webkit-box-sizing:border-box;
+	margin: 5px 0;
+	display: inline-block;
+}
+
+
+/**************************/
+.dialogWindow.confirm header{
+	height:20px;
+}
+
+/*************loading*************/
+.dialogWindow.loading{
+	background: url(img/loading.gif) no-repeat center center;
+	-webkit-background-size:50px auto;
+	color:transparent;
+	background-color:rgba(0,0,0,0.5);
+	width:100px;
+	height:100px;
+	left:50%;
+	top:50%;
+	margin-top:-50px;
+	margin-left:-50px;
+}
+
+/***************************************/
+
+.dialogWindow.default.alert .dialogContent{
+	text-align:center;
+	padding:10px 0;
+	word-break: break-all;
+	font-size:15px;
+}
+
+.dialogWindow.default.register td label.pre{
+	padding-left:5px;
+}
+
+.dialogWindow.default.register .wrapInput .input{
+	border:0;
+}
+
+.dialogWindow.default.register .btn_input{
+	display:inline-block;
+	line-height:28px;
+	text-align:center;
+	background:#bbbbbb;
+	width:80px;
+	color:#ffffff;
+	font-size:14px;
+	border:1px solid #ffffff;
+	border-radius:0;
+}
+.dialogWindow.default.register .btn_input[disabled="disabled"]{
+	background:#cccccc;
+}

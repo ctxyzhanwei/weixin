@@ -1,0 +1,78 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">惩罚台</h4>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+				<a href="{pigcms::U('Punish/set',array('token'=>$token))}" title='添加活动' class='btnGrayS vm bigbtn'>添加活动</a>
+            </div>
+          	<div class="searchbar right">  
+                  <form method="post"  action=""  >
+	                  <input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索"  name="search" value="">
+	                  <input type="hidden" name="wxid" value="gh_423dwjkewad"  />
+	                  <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+                  </form>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+					<TH>活动名称</TH>
+					<TH>关键字</TH>
+          <TH>使用次数</TH>
+					<TH>状态</TH>
+					<TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                  <volist id="list" name="list">
+                <TR>
+                  <TD>{pigcms:$list.title}</TD>
+                  <TD>{pigcms:$list.keyword}</TD> 
+                  <TD>{pigcms:$list.use_num}</TD> 
+                  <TD>
+				  <if condition="$list['is_open'] eq 1">
+				  	<span class="green">已开启</span>
+				  <else/>
+				  	<span class="red">未开启</span>
+				  </if>
+				  </TD>
+				 </TD>
+                   <TD class="norightborder">
+                   <a href="{pigcms::U('Punish/item',array('token'=>$token,'id'=>$list['id']))}">惩罚选项</a>
+                   |  
+				   <a href="{pigcms::U('Punish/set',array('token'=>$token,'id'=>$list['id']))}">编辑</a>  
+				   |	  		  
+				   <a href="{pigcms::U('Punish/del',array('token'=>$token,'id'=>$list['id']))}" onclick="return confirm('确定要删除吗');">删除</a></TD>
+                </TR>
+				</volist>
+                         
+              </TBODY>
+            </TABLE>
+           </form> 
+          </div>
+            
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+  	</div>
+<include file="Public:footer"/>
+ 

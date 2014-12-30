@@ -1,0 +1,19 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div class="subpages">
+	<p><h3 style="text-align:center;font-size:16px;">{$content.title}</h3></p>
+        <p id="content">{$content.content}</p>
+
+</div>
+{/if}
+
+
+
+
+{include file=$footer}

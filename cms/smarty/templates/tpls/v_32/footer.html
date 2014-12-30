@@ -1,0 +1,43 @@
+{if !$ismap}<div class="body_footer" style="position:fixed;"><ul>
+  <li><a title="返回首页" href="{$homeurl}"><dl>
+        <dt><img alt="返回首页" src="smarty/templates/tpls/{$site.template}/icon_1.png"></dt>
+        <dd>返回首页</dd>
+      </dl></a></li>
+  <li><a title="地图" href="?token={$token}&m=site&c=home&a=map" rel="external"><dl>
+        <dt><img alt="地图" src="smarty/templates/tpls/{$site.template}/icon_3.png"></dt>
+        <dd>网站地图</dd>
+      </dl></a></li>
+  <li><a title="热线电话" href="tel:{$company.tel}"><dl>
+        <dt><img alt="热线电话" src="smarty/templates/tpls/{$site.template}/icon_4.png"></dt>
+        <dd>热线电话</dd>
+      </dl></a></li>
+  <li><a title="发短信" href="sms:{$company.mp}" data-ajax="false"><dl>
+        <dt><img alt="发短信" src="smarty/templates/tpls/{$site.template}/icon_5.png"></dt>
+        <dd>发短信</dd>
+      </dl></a></li>
+</ul></div></div></div></div>
+
+<!--menu start-->
+{if $showPlugMenu}
+<link rel="stylesheet" href="/tpl/Wap/default/common/css/flash/css/plugmenu.css">
+<div class="plug-div">
+        <div class="plug-phone">
+            <div class="plug-menu themeStyle" style="background:{$site.plugmenucolor}"><span class="close"></span></div> 
+               {foreach from=$plugmenus item=vo key=k}
+                        <div class="themeStyle plug-btn plug-btn{$k+1} close" style="background:{$site.plugmenucolor}">
+							<a  href="{$vo.url}">
+								<span style="background-image: url(/tpl/Wap/default/common/css/flash/images/img/{$vo.name}.png);" ></span>
+							</a>
+						</div>
+                     {/foreach}
+<div class="plug-btn plug-btn5 close"></div>
+                    </div>
+</div>
+<script src="/tpl/Wap/default/common/css/flash/js/zepto.min.js" type="text/javascript"></script>
+<script src="/tpl/Wap/default/common/css/flash/js/plugmenu.js" type="text/javascript"></script>
+{/if}
+<!--menu end-->
+
+</body><script type="text/javascript">
+       {literal} window.onload = function () { initUserStyleData();   modifyAllImage(); }{/literal}
+      </script></html>{/if}

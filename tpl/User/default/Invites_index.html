@@ -1,0 +1,68 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">微邀请管理</h4>
+                 
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="{pigcms:$key}">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+			<a href="{pigcms::U('Invites/add',array('token'=>$token))}" title='新增微邀请内容' class='btnGrayS vm bigbtn'><img src="{pigcms::RES}/images/product/add.png" class="vm" />新增微邀请内容</a>
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                    <TH class="select">选择</TH>
+                    <TH>邀请标题</TH>
+                    <TH>关键词</TH>
+                    <TH>邀请类型</TH>
+                    <TH>外链代码</TH>
+                    <TH style=" width:300px;">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+         <volist name="list" id="list">        
+                 
+                  <TD>  <input type="checkbox" name='del_id[]' value="239" class="checkitem"></TD>
+                    <TD>{pigcms:$list.title}</TD>
+                    <TD>{pigcms:$list.keyword}</TD>
+                    <TD><if condition="$list.type eq 1">会议
+				    <elseif condition="$list.type eq 2" />聚会
+				    <elseif condition="$list.type eq 3" />活动<else />
+				  </if></TD>
+                     <TD>邀请 {pigcms:$list.id}</TD>
+                   <TD align="center">
+				   <a href="index.php?g=User&m=Invites&a=info&type={pigcms:$list.type}&id={pigcms:$list.id}&token={pigcms:$list.token}" class="button icon arrowright">查看名单</a>
+				   <a href="index.php?g=User&m=Invites&a=edit&id={pigcms:$list.id}" class="button icon edit">编辑</a>
+				   <a href="javascript:drop_confirm('您确定要删除吗?', 'index.php?g=User&m=Invites&a=del&id={pigcms:$list.id}&token={pigcms:$list.token}');" class="button danger icon remove">删除</a></TD>
+          
+                </TR>
+				</volist>
+                         
+              </TBODY>
+            </TABLE>
+           </form> 
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+  <!--底部-->
+<include file="Public:footer"/>
+ 

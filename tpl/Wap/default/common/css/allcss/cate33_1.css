@@ -1,0 +1,96 @@
+html, body {
+    color:#222;
+    font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin:0;
+    padding:0;
+}
+img {
+    border:0;
+}
+ol, ul {
+    list-style: none outside none;
+    margin:0;
+    padding: 0;
+}
+a {
+    color:#000000;
+    text-decoration: none;
+}
+.clr {
+    display:block;
+    clear:both;
+    height:0;
+    overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+/*cate20*/
+#cate20{background-color:rgba(0, 0, 0, 0.5);overflow-x: hidden;margin:0 auto;}
+#cate20 .banner img{
+    width:100%;
+}
+#cate20 .catemenu {
+overflow: hidden;
+background-color:rgba(0, 0, 0, 0.5);
+}
+#cate20 .catemenu ul {
+width: 100%;
+overflow: hidden;
+}
+
+
+
+#cate20 .catemenu li {
+border-bottom: 1px solid white;
+display: -webkit-box;
+}
+#cate20 .catemenu li:last-child {
+border-bottom: 1px solid #dfe0e1;
+}
+#cate20 .catemenu li:last-child a {
+border-bottom: 0;
+}
+
+#cate20 .catemenu li a {
+/*-webkit-box-flex: 1;*/
+display: block;
+text-align: center;
+border-right: 1px solid #dfe0e1;
+border-bottom: 1px solid #dfe0e1;
+border-left: 1px solid #f9f8f8;
+font-size: 16px;
+color:#fff;
+height: 37px;
+line-height: 37px;
+width: 25%;
+position: relative;
+font-size:12px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+#cate20 .catemenu li a:first-child {
+border-left: 0 none;
+}
+#cate20 .catemenu li a:last-child {
+border-right: 0 none;
+}
+#cate20 .catemenu a:last-child {
+background: 0;
+margin-right: 0;
+}
+
+.cname{background-color:rgba(0, 0, 0, 0.5);color:#fff;border-top: 1px solid white; border-bottom:1px solid #c5c7cb; line-height:23px; padding:5px; font-size:16px;
+background-image: -webkit-gradient(linear,left top,left bottom,from(),to());
+background-image: -webkit-linear-gradient();
+background-image: linear-gradient();}
+.cname img{width:22px;height:22px;vertical-align: top;
+border: 0; margin:0 5px 0 3px;}
+.copyright{
+    color:#fff;
+}

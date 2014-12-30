@@ -1,0 +1,77 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; font-family:"微软雅黑", "Microsoft Yahei", Arial, Helvetica, sans-serif; word-wrap:break-word; word-break:break-all; font-size:50px; line-height:60px; font-weight:bold; color:#ffffff; text-shadow:#333333 2px 2px 0;}
+ol, ul, li { list-style: none; }
+.cl { height:0; clear:both; overflow:hidden; }
+.fl{ float:left;}
+.fr{ float:right;}
+.none, .ne{ display:none; margin:0;}
+
+body{cursor:url(img/mouse11.cur), default; background-repeat:repeat;}
+body a{cursor:url(img/mouse11.cur), default; text-decoration:none;}
+
+/* 活动大标题,活动时间 */
+.font60{ font-size:60px; line-height:70px;}
+
+/* 呢称 */
+.font40{ font-size:40px; line-height:50px;}
+/* 内容 *
+.font40{ font-size:40px; line-height:50px;}	*/
+
+/* 浮动及来源 */
+.font30{ font-size:30px; line-height:40px;}
+
+/* 信息统计 */
+.font20{ font-size:20px; line-height:30px;}
+
+.colorBlue{color:#00aeff;}
+
+/* 来源 */
+i, u, q{ height:60px; width:60px; padding:0; margin:0; position:absolute; left:0; top:0; display:block; quotes:none;}
+i{ background:url(img/from_float_wx.png);}	/*微信*/
+u{ background:url(img/from_float_xlwb.png);}	/*新浪微博*/
+q{ background:url(img/from_float_txwb.png);}	/*腾讯微博*/
+
+/* 性别 */
+pre, bdo{ height:60px; width:60px; padding:0; margin:0; position:absolute; right:0; top:0; display:block; quotes:none;}
+pre{ background:url(img/sex_float_man.png);}	/*男士*/
+bdo{ background:url(img/sex_float_ms.png); left:0;}	/*女士*/
+
+/*---------------------------------------------------------------------------*/
+
+/*在线客服*/
+#online{ position:fixed; width:135px; top:160px; right:0px; z-index:99999; font-size:12px; line-height:44px; text-shadow:none;}
+#online font{ display:block; height:34px; width:135px; background:url(img/ol_t.gif) left top no-repeat;}
+#online ul, #online ol, #online dl{ border:4px #d45609 solid; border-top:none; border-bottom:none; background:#fff;}
+#online ul{ padding:8px 0px 4px 8px;}
+#online ul li{ height:44px; font-size:12px; line-height:44px; text-shadow:none; border-bottom:1px #dbdbdb dashed;}
+#online ul li img{ vertical-align:middle; margin-right:4px;}
+#online ul a{ color:#666;  font-size:12px; font-weight:normal; line-height:44px; text-shadow:none;}
+#online ul a:hover{ color:#d45609;}
+#online ol{ padding:10px; font-size:14px; font-weight:bold; line-height:32px; text-shadow:none; color:#d45609;}
+#online ol li{ font-size:13px; line-height:22px; text-shadow:none; color:#555555;}
+#online ol img{ vertical-align:middle; margin-right:4px;}
+#online ol a{ color:#d45609; font-size:13px; line-height:32px; text-shadow:none;}
+#online ol a:hover{ color:#721600;}
+#online dl{ padding:4px; color:#d45609;}
+#online dl dt{ padding:6px; font-size:14px; line-height:22px; font-weight:bold; text-shadow:none; color:#d45609;}
+#online dl dt img{ vertical-align:middle; margin-right:4px;}
+#online dl dd{ font-size:13px; font-weight:bold; line-height:22px; text-shadow:none; color:#d45609;}
+#online samp{ display:block; height:8px; width:135px; line-height:8px; font-size:1px; background:url(img/ol_c.gif) left top no-repeat;}
+#online span{ display:block; height:7px; width:135px; line-height:8px; font-size:1px; background:url(img/ol_b.gif) left top no-repeat;}
+#online #down a, #online #down{ color:#666666; font-size:14px; line-height:35px;}
+
+
+
+
+/* 左侧浮动窗口 场景切换 */
+#scene_change{ position:fixed; left:0; top:140px; width:80px; text-shadow:none;}
+#scene_change samp, #scene_change a{ display:block; width:80px; text-shadow:none; text-align:center;}
+#scene_change samp{ font-size:16px; line-height:20px; height:20px;}
+#scene_change a{ margin-top:2px; height:50px; line-height:50px; font-size:16px; background:#00aeff; color:#ffffff;}
+#scene_change a.on{ background:#ffffff; color:#00aeff;}
+#scene_change a.on{ background:none; color:#ffffff;}
+
+
+

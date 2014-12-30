@@ -1,0 +1,141 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">订单管理({pigcms:$page}) </h4>
+<div class="searchbar right">
+<!-- <form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入订购人名字搜索" name="searchkey" value="">
+<input type="hidden" name="ac" value="hotels-list">
+<input type="hidden" name="id" value="9878">
+<input type="hidden" name="wxid" value="gh_423dwjkewad">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form> -->
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$ischild neq 1"> <li class="tabli" id="tab0"><a href="{pigcms::U('Repast/company_index', array('token' => $token,'cid' => $cid))}">餐厅管理</a></li></if>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Repast/index', array('token' => $token,'cid' => $cid))}">餐台管理</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Repast/detail', array('token' => $token,'cid' => $cid))}">餐台预定情况</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Repast/sort', array('token' => $token,'cid' => $cid))}">分类管理</a></li>
+<li class="tabli" id="tab3"><a href="{pigcms::U('Repast/dish', array('token' => $token,'cid' => $cid))}">菜品管理</a></li>
+<li class="current tabli" id="tab4"><a href="{pigcms::U('Repast/orders', array('token' => $token,'cid' => $cid))}">订单管理</a></li>
+<if condition="$ischild neq 1" >
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set', array('token'=>$token,'infotype'=>'Dining'))}">订餐回复配置</a></li>
+</if>
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<!-- <div class="pageNavigator left"> <a href="###" onclick="$('#info').submit()" title="" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/arrow_switch.png" class="vm">处理订单</a></div> -->
+选择订单状态：
+<select onchange="change(this);">
+	<option value="0" <php>if ($status == 0) {echo "selected";}</php>>全部状态</option>
+	<option value="1" <php>if ($status == 1) {echo "selected";}</php>>未付款 / 未就餐</option>
+	<option value="2" <php>if ($status == 2) {echo "selected";}</php>>未付款 / 已就餐</option>
+	<option value="3" <php>if ($status == 3) {echo "selected";}</php>>已付款 / 未就餐</option>
+	<option value="4" <php>if ($status == 4) {echo "selected";}</php>>已付款 / 已就餐</option>
+</select>
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+<th width="70">餐厅</th>
+<th width="70">姓名</th>
+<th width="80">电话</th>
+<th class="60">数量</th>
+<th width="40">总价</th>
+<th class="100">就餐形式</th>
+<th class="80">餐台</th>
+<th class="60">状态</th>
+<th width="130">订餐时间</th>
+<th width="130">预约时间</th>
+<th width="70" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="orders" id="o"> 
+<tr>
+<td><input type="checkbox" value="{pigcms:$o.id}" class="cbitem" name="id_{pigcms:$i}"></td>
+<td><?php echo $Companys_arr[$o['cid']];?></td>
+<td>{pigcms:$o.name}</td>
+<td>{pigcms:$o.tel}</td>
+<td>{pigcms:$o.total}</td>
+<td>{pigcms:$o.price}</td>
+<td><php>if ($o['takeaway'] == 2) {echo "点餐";} elseif ($o['takeaway'] == 1) {echo "外卖";} else {echo "预定";}</php></td>
+<td>{pigcms:$diningTable[$o['tableid']]['name']}</td>
+<td><if condition="$o.paid eq 1"><span style="color:green">已付款</span><else/><span style="color:red">未付款</span></if> / <if condition="$o.isuse eq 1"><span style="color:green">已就餐</span><else/><span style="color:red">未就餐</span></if></td>
+<!-- <td><if condition="$o.handled eq 1"><span style="color:green">已处理</span><else/><span style="color:red">未处理</span></if></td> -->
+<td>{pigcms:$o.time|date="Y-m-d H:i:s",###}</td>
+<td>{pigcms:$o.reservetime|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder"><a href="###" onclick="showIntroDetail({pigcms:$o.id})">详细</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Repast/deleteOrder',array('token'=>$token,'id'=>$o['id']))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+<input type="hidden" name="token" value="{pigcms:$_GET['token']}" />
+</form>
+
+<script>
+function showIntroDetail(id){
+	art.dialog.open('{pigcms::U('Repast/orderInfo',array('token'=>$token,'dining'=>$isDining))}&id='+id,{lock:false,title:'订单详情',width:1000,height:620,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+function change(obj) {
+	location.href = "{pigcms::U('Repast/orders',array('token' => $token, 'cid' => $cid))}&status=" + $(obj).val();
+}
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,137 @@
+<include file="Public:head"/>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+         
+          <div class="cLineB">
+              <h4 class="left">{pigcms:$name}分类文章</h4>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+          
+          <div class="clr" style="height:20px;"></div>
+			<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：修改排序时，首先填写好当前页面每篇文章的排序数值，点击“排序”按钮后整页统一保存。</div>
+          </div>
+          <div class="msgWrap">
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR valign="top">
+					<TH class="answer">标题</TH>
+					<TH class="keywords">关键词</TH>
+					
+                    <TH  class="texttype" >所属分类</TH>
+                    <TH class="time"><button class="btnGrayS" onclick="$('#sortform').submit()" >排序</button></TH>
+                    <TH class="time">浏览次数</TH>
+					<TH class="time">时间</TH>
+					<TH class="edit norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+				<form action="{pigcms::U("Classify/editUsort")}" method="post" id="sortform">
+				<volist name="info" id="vo" empty="没有找到数据">
+				<tr>
+                  <td><div class="answer_text">{pigcms:$vo.title}</div></td>
+                  <td>{pigcms:$vo.keyword}</td>
+                  <td>{pigcms:$vo.classname}</td>
+                  <td>
+					<input type="number" style="border:1px solid #c9c9c9;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;" class="usort" name="usort{pigcms:$vo.id}" value="{pigcms:$vo.usort}" />
+					
+				  </td>
+                  <td>{pigcms:$vo.click}</td>
+                    <td><php>echo date('Y-m-d',$vo['uptatetime']);</php></td>
+                   
+                   <td class="norightborder">
+				   <!--a target="ddd" href="{pigcms::U('Wap/Index/content',array('token'=>$_SESSION['token'],'id'=>$vo['id']))}">查看</a--> 
+  				   <a href="{pigcms::U('Essay/edit',array('id'=>$vo['id']))}" title="编辑图文自定义回复">编辑</a>
+  				   <a href="{pigcms::U('Essay/del',array('id'=>$vo['id']))}">删除</a></td>
+          
+                </tr>
+				</volist>
+					<input type="hidden" name="token" value="{pigcms:$_SESSION['token']}" />
+                </form>       
+              </TBODY>
+            </TABLE>
+<style>
+	.usort {
+		width:45px;
+		height:23px;
+	}
+</style>
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+			//edit-usort
+			/*
+					function editUsort(id){
+						if(document.activeElement.id != 'usortinp'){
+							var val = $(".usort-"+id).html();
+							$(".usort-"+id).html('<input type="number" class="usort" id="usortinp" name="usort" value="'+val+'" onkeydown="if(event.keyCode==13){ upUsort('+id+',$(this).val());}" onblur="upUsort('+id+',$(this).val())" />');
+							$("input[name=usort]").focus();
+						}
+
+						
+					}
+					
+					function upUsort(id,b){
+						$.ajax({
+							url:'{pigcms::U("Img/editUsort")}',
+							data:{"id":id,"v":b,"token":"{pigcms:$Think.session.token}"},
+							type:'POST',
+							dataType:'text',
+							success:function(obj){
+								if(obj != 'error'){
+									$(".usort-"+id).html(obj);
+								}else{
+									$(".usort-"+id).html(b);
+								}
+							}
+						});
+						
+					}
+				*/
+
+   </script>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}
+
+
+  </script>
+  <!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

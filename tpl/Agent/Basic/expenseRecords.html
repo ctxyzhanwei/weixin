@@ -1,0 +1,26 @@
+<include file="Frame:header"/>
+<div class="columntitle">消费记录</div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+<div class="oper" style="border:none"><a href="?g=Agent&m=Basic&a=recharge" class="add">充值</a></div>
+
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+		<tr class="summary-title">
+		    <td>用途</td>
+			<td>费用</td>
+			<td>时间</td>
+			<td>成功</td>
+		</tr>
+<pigcmslist array="list" foreach="list">
+    <tr class="tdbg" onMouseOver="this.className='tdbg-dark';" onMouseOut="this.className='tdbg';" style="height:29px;">
+        <td>{pigcms:$list.des}</td>
+		<td>{pigcms:$list.amount}</td>
+		<td><php>echo date('Y-m-d H:i:s',$list['time']);</php></td>
+	<td><pigcmsif where="$list['status'] eq '1'"><span style="color:green">已成功</span><else/><span style="color:red">未成功</span></pigcmsif></td>
+    </tr>
+</pigcmslist>
+</table>
+
+</div>
+<div class="pages">{pigcms:$page}</div>
+<include file="Frame:footer"/>

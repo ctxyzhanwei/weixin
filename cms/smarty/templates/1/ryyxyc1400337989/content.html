@@ -1,0 +1,15 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+	<h1><p>{$channel.name}</p></h1>
+	<!--<center><img src="{$a.thumb}"  alt="搜赢天下 智引未来"></center>-->    <div class="view" id="content">{$content.content}</div>
+	<p class="hr"></p>
+    {if $previousContent}
+	<a href="{$previousContent->link}"  class="prevpage">上一条：<span>{$previousContent->title}</span></a> {/if}   {if $nextContent}<a href="{$nextContent->link}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>{/if}	<a href="{$channel.link}" title="返回列表" class="backlist">返回列表</a>
+	{/if}
+{include file=$footer}

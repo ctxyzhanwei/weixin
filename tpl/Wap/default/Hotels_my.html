@@ -1,0 +1,98 @@
+<include file="Hotels:header"/>
+<body>
+	<div class="html">
+		<div class="main">
+<header>
+	<a href="{pigcms::U('Hotels/order',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd arr-hd"></a>
+	<h1>我的订单</h1>
+	<a href="{pigcms::U('Hotels/index',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd ico-order">首页</a>
+</header>
+<div class="contxt cont-artical">
+	<div class="box-cont box-list-order page-cont">
+	<volist name="list" id="order">
+    <div class="list-li" onclick="javascript:showOrder('{pigcms:$order['id']}')">
+	<div class="hd box-txt">
+		<b>在线预订客房{pigcms:$company['name']}</b>
+		<p><span>入住日期</span><b>{pigcms:$order['startdate']}</b></p>
+		<p><span>离店日期</span><b>{pigcms:$order['enddate']}</b></p>
+		<p><span>状态</span>
+		<if condition="$order['status'] eq 1"><em>完成入住</em><elseif condition="$order['paid'] eq 1" /><em>已付款</em><else /><i>已预定</i></if>
+		</p>
+	</div>
+	<div class="bd">
+		<span class="arrow arr-small"><em>￥{pigcms:$order['price']}</em><br><i>{pigcms:$order['day']}晚</i></span>
+	</div>
+	</div>
+	</volist>
+	</div>
+	<if condition="$totalpage gt 1">
+	<div class="tcenter"><a href="javascript:void(0);" class="loading" data-remote="true" id="more_loading" rel="next">点击查看更多...</a></div>
+	</if>
+<div class="tcenter"><div class="isloading loading" style="display: none">加载中...</div></div>
+</div>
+
+<script>
+var page = 2;
+$(document).ready(function(){
+	$("#more_loading").click(function(){
+		$(".isloading").css("display",'');
+		$("#more_loading").css("display","none");
+		$.get("{pigcms::U('Hotels/ajaxorder',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}&page=" + page, function(response) {
+			if (response.page == 0) {
+				$("#more_loading").hide();
+			} else {
+				page = response.page;
+				$("#more_loading").css("display","block");
+			}
+			var html = '';
+			$.each(response.data, function(i, v){
+			    html += '<div class="list-li" onclick="javascript:showOrder(' + v.id + ')">';
+			    html += '<div class="hd box-txt">';
+			    html += '<b>在线预订客房' + v.hotelname + '</b>';
+			    html += '<p><span>入住日期</span><b>' + v.startdate + '</b></p>';
+			    html += '<p><span>离店日期</span><b>' + v.enddate + '</b></p>';
+			    html += '<p><span>状态</span><b>未完成</b></p>';
+			    html += '</div>';
+			    html += '<div class="bd">';
+			    html += '<span class="arrow arr-small"><em>￥' + v.price + '</em><br><i>' + v.day + '晚</i></span></div></div>';
+			});
+			$(".box-cont").append(html);
+			$(".isloading").css("display",'none');
+		}, 'json');
+	});
+});
+
+
+$( document ).ajaxStart(function() {
+	$(".isloading").css("display",'');
+	$("#more_loading").css("display","none");
+});
+
+$( document ).ajaxStop(function() {
+	$(".isloading").css("display",'none');
+	$("#more_loading").css("display","block");
+});
+
+function showOrder(order_id){
+	window.location.href = "{pigcms::U('Hotels/detail',array('token' => $token, 'wecha_id' => $wecha_id))}&oid=" + order_id;
+}
+</script>
+
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/my',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/my',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/my',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

@@ -1,0 +1,147 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">订单管理({pigcms:$page}) </h4>
+<div class="searchbar right">
+<!-- <form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入订购人名字搜索" name="searchkey" value="">
+<input type="hidden" name="ac" value="hotels-list">
+<input type="hidden" name="id" value="9878">
+<input type="hidden" name="wxid" value="gh_423dwjkewad">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form> -->
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab0"><a href="{pigcms::U('Hotels/index', array('token' => $token,'cid' => $cid))}">房间类型管理</a></li>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Hotels/house', array('token' => $token,'cid' => $cid))}">房间管理</a></li>
+<li class="current tabli" id="tab4"><a href="{pigcms::U('Hotels/orders', array('token' => $token,'cid' => $cid))}">订单管理</a></li>
+<if condition="$ischild neq 1" >
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set', array('token'=>$token,'infotype'=>'Hotels'))}">酒店预订回复配置</a></li>
+</if>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Hotels/image', array('token' => $token,'cid' => $cid))}">酒店图集</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<!-- <div class="pageNavigator left"> <a href="###" onclick="$('#info').submit()" title="" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/arrow_switch.png" class="vm">处理订单</a></div> -->
+查看当天的预定情况：
+<select onchange="change(this);">
+	<option value="0">全部预定情况</option>
+	<volist name="dates" id="date">
+	<if condition="$date['k'] eq $status">
+	<option value="{pigcms:$date['k']}" selected>{pigcms:$date['v']}</option>
+	<else />
+	<option value="{pigcms:$date['k']}">{pigcms:$date['v']}</option>
+	</if>
+	
+	</volist>
+</select>
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+<th width="70">姓名</th>
+<th width="80">电话</th>
+<th class="60">房间类型</th>
+<th class="60">房间数量</th>
+<th width="80">总价（元）</th>
+<th class="80">入住时间</th>
+<th class="80">退房时间</th>
+<th class="60">状态</th>
+<th width="100" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="orders" id="o"> 
+<tr>
+<td><input type="checkbox" value="{pigcms:$o.id}" class="cbitem" name="id_{pigcms:$i}"></td>
+<td>{pigcms:$o.name}</td>
+<td>{pigcms:$o.tel}</td>
+<td>{pigcms:$o.housename}</td>
+<td>{pigcms:$o.nums}</td>
+<td>{pigcms:$o.price}</td>
+<td>{pigcms:$o.startdate}</td>
+<td>{pigcms:$o.enddate}</td>
+<td><if condition="$o.paid eq 1"><span style="color:green">已付款</span><else/><span style="color:red">未付款</span></if> / 
+<if condition="$o.status eq 0"><span style="color:red">已预定</span>
+<elseif condition="$o.status eq 1" /><span style="color:green">已入住</span>
+<elseif condition="$o.status eq 2" /><span style="color:red">客户取消订单</span>
+<elseif condition="$o.status eq 3" /><span style="color:red">客户删除订单</span></if></td>
+<td class="norightborder"><a href="javascript:void(0);" onclick="showIntroDetail({pigcms:$o.id})">详细</a> 
+<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Hotels/deleteOrder',array('token'=>$token,'id'=>$o['id']))}');">删除</a> 
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+<input type="hidden" name="token" value="{pigcms:$_GET['token']}" />
+</form>
+
+<script>
+function showIntroDetail(id){
+	art.dialog.open('{pigcms::U('Hotels/orderInfo',array('token'=>$token,'cid'=>$cid))}&id='+id,{lock:false,title:'订单详情',width:1000,height:620,yesText:'关闭',background: '#000',opacity: 0.87, close: function(){location.reload();}});
+}
+function showHouse(id){
+	art.dialog.open('{pigcms::U('Hotels/orderInfo',array('token'=>$token,'cid'=>$cid))}&id='+id,{lock:false,title:'订单详情',width:1000,height:620,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+function change(obj) {
+	location.href = "{pigcms::U('Hotels/orders',array('token' => $token, 'cid' => $cid))}&status=" + $(obj).val();
+}
+</script>
+<include file="Public:footer"/>

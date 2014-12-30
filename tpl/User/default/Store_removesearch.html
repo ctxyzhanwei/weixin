@@ -1,0 +1,79 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">佣金提现的详细记录</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$isgroup neq 1 OR $ischild neq 1">
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/index',array('token'=>$token))}">商品分类管理</a></li>
+	<if condition="empty($catid) neq true">
+	<li class="tabli" id="tab0"><a href="{pigcms::U('Store/product',array('token'=>$token))}">商品管理</a></li>
+	</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+	<if condition="$ischild eq 0">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Shop'))}">商城回复配置</a></li>
+	</if>
+	<if condition="$isgroup eq 1">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Store/group',array('token'=>$token))}">商品分组</a></li>
+	<li class="tabli" id="tab7"><a href="{pigcms::U('Store/productgroup',array('token'=>$token))}">分组商品展现</a></li>
+	</if>
+<else />
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/flash',array('token'=>$token))}">商城背景与轮播图</a></li>
+	<li class="current tabli" id="tab2"><a href="{pigcms::U('Store/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+	<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">推广账号</th>
+<th width="150">提现时间</th>
+<th width="50">提现金额</th>
+<th width="150">收款账号</th>
+<th width="100">银行类型</th>
+<th width="100">收款人姓名</th>
+<th width="100">电话</th>
+<th width="50">状态</th>
+<th width="50">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td>{pigcms:$hostlist['twid']}</td>
+<td>{pigcms:$hostlist['dateline']|date="Y-m-d H:i:s",###}</td> 
+<td>{pigcms:$hostlist['price']}</td>
+<td>{pigcms:$hostlist['number']}</td>
+<td>{pigcms:$hostlist['bank']}</td>
+<td>{pigcms:$hostlist['name']}</td>
+<td>{pigcms:$hostlist['tel']}</td>
+<td><if condition="$hostlist['status'] eq 1"><span style="color:green">已提现</span><else/><span style="color:red">审核中</span></if></td>
+<td><a href="javascript:drop_confirm('您确定已转账给该用户了吗?', '{pigcms::U('Store/changestatus',array('token' => $token, 'id' => $hostlist['id'], 'twid' => $hostlist['twid']))}');">转账修改</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,50 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+<include file="Router:menu"/>
+        
+
+
+          <div class="ftip" style="margin:25px auto 5px auto;">下面是您拥有的路由器列表</div>
+          <div class="cLineC" style="line-height: 32px;">
+ <a href="{pigcms::U('Router/set')}" class="btnGrayS vm bigbtn" >添加路由</a>　 
+</div>
+         <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">路由器ID</th>
+<th style=" width:100px;">路由器名称</th>
+<th style=" width:100px;">绑定的公众号</th>              
+<th style=" width:150px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="info" id="actinfo">
+<tr>
+<td>{pigcms:$actinfo.gw_id}</td>
+<td>{pigcms:$actinfo.name}</td>
+    <td>{pigcms:$actinfo.wechat}</td>
+<td class="norightborder">
+<a href="{pigcms::U('Router/lists',array('id'=>$actinfo['id'],'token'=>$_SESSION['token']))}" >在线列表</a>&nbsp;<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Router/delete',array('token'=>$token,'id'=>$actinfo['id']))}');">删除</a>
+</td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+          
+        </div>
+<include file="Public:footer"/>

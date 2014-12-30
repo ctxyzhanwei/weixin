@@ -1,0 +1,27 @@
+{include file=$header}
+			<!--内页内容-->
+<div class="content_box">
+	<!--内页标题-->
+	<div class="title">
+		<p class="tit_name">
+			{$channel.name}</p>
+	</div>
+	<!--内页标题结束-->
+	<div class="news_box">
+		<!--标题列表-->
+		<ul class="news_lists">
+		{if $contents}
+			{foreach from=$contents item=c}
+			<li class="news_title"><a href="{$c.link}" title="{$c.title}">{$c.title}</a><time puddate="pubdate">{$c.time|date_format:"%Y-%m-%d"}</time></li>
+		     {/foreach}
+			 {/if}
+				
+		</ul>
+	</div>
+</div>
+<!--内容结束-->
+<div class="menu_box" style="text-align:right">
+			 {if $previousPageLink!='javascript:void(0)'} <a href="{$previousPageLink}" style="float:right" title="">下一页</a>{/if}
+			 {if $nextPageLink!='javascript:void(0)'} <a href="{$nextPageLink}" style="float:right" title="">上一页</a>{/if}
+		</div>
+{include file=$footer}

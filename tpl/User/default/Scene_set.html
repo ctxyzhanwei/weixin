@@ -1,0 +1,154 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" >  
+<div class="cLineB"><h4>微现场设置</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">现场名称：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="title" style="width:400px"  value="{pigcms:$info.title}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">关键词：</label></TH>
+  <TD><input type="input" class="px" id="keyword"  name="keyword" style="width:400px"  value="{pigcms:$info.keyword}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+ <tr> 
+        <th><span class="red"></span>图文回复图片：</th>
+        <td><input type="text" name="pic" value="{pigcms:$info.pic}" class="px" id="pic" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>
+   
+   <tr> 
+        <th><span class="red"></span>LOGO：</th>
+        <td>
+          <input type="text" name="logo" value="<if condition="$info['logo'] eq ''">./tpl/static/wall/images/default_logo.png<else/>{pigcms:$info.logo}</if>" class="px" id="logo" style="width:320px;" />  
+        <script src="/tpl/static/upyun.js"></script>
+        <a href="###" onclick="upyunPicUpload('logo',280,75,'{pigcms:$token}')" class="a_upload">上传</a> 
+        <a href="###" onclick="viewImg('logo')">预览</a>[280*75]</td> 
+       </tr>
+        <tr> 
+        <th><span class="red"></span>背景图：</th>
+        <td><input type="text" name="background" value="<if condition="$info['background'] eq ''">./tpl/static/wall/images/default_bg.jpg<else/>{pigcms:$info.background}</if>" class="px" id="background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('background',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('background',700,420)">预览</a></td> 
+       </tr>
+      <tr> 
+        <th><span class="red"></span>二维码：</th>
+        <td><input type="text" name="qrcode" value="{pigcms:$info.qrcode}" class="px" id="qrcode" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('qrcode',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('qrcode')">预览</a></td> 
+      </tr>     
+      
+      <tr> 
+        <th><span class="red"></span>简介：</th> 
+        <td><textarea name="intro" class="px" style="width:400px;height:80px;">{pigcms:$info.intro}</textarea></td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>微信墙：</th> 
+        <td>
+            <select name="wall_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="wall"  name="wall">
+                <option value="{pigcms:$wall.id}" <if condition="$wall['id'] eq $info['wall_id']">selected</if>>{pigcms:$wall.title}</option>
+              </volist>
+            </select>
+            <a  class="a_upload"  href="{pigcms::U('Wall/add')}">添加微信墙</a>
+            只能选择已经开启的微信墙活动
+        </td> 
+      </tr>
+
+      <tr> 
+        <th><span class="red"></span>摇一摇：</th> 
+        <td>
+            <select name="shake_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="shake"  name="shake">
+                <option value="{pigcms:$shake.id}" <if condition="$shake['id'] eq $info['shake_id']">selected</if>>{pigcms:$shake.title}</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('Shake/add')}">添加摇一摇</a>
+            只能选择已经开启的摇一摇活动
+        </td> 
+      </tr>
+      <!--
+      <tr> 
+        <th><span class="red"></span>选择投票：</th> 
+        <td> 
+          <volist id="vote_list"  name="vote_list" key="key">
+            <input type="checkbox" name="vote_id[]" value="{pigcms:$vote_list.id}" <in name="vote_list.id" value="$info['vote_id']">checked</in>>{pigcms:$vote_list.title}&nbsp;|&nbsp;
+          </volist>
+          <a href="{pigcms::U('Vote/add',array('type'=>'scene'))}"  class="a_upload" >添加投票</a>
+        </td> 
+      </tr>-->
+  <TH valign="top"><label for="keyword">选择投票：</label></TH>
+  <TD> <a href="###" onclick="addVote()" class="a_choose">添加现场投票</a>&nbsp;&nbsp;<a href="###" onclick="clearVote()" class="a_clear">清空重选</a>
+     
+<script>
+  function addVote(){
+  art.dialog.data('titledom', 'titledom');
+  art.dialog.data('vote_id', 'vote_id');
+  art.dialog.open('?g=User&m=Scene&a=vote_add',{lock:true,title:'投票',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+ function clearVote(){
+  document.getElementById('titledom').innerHTML='';
+  document.getElementById('vote_id').value='';
+}
+</script> 
+      <div class="media mediaFullText" id="titledom" style="margin-top:5px;">
+        <volist id="vote_list"  name="vote" key="key">
+          {pigcms:$vote_list.title}&nbsp;|&nbsp;
+        </volist>
+      </div> 
+      <input type="hidden" id="vote_id" name="vote_id" value="{pigcms:$info['vote_id']}">   
+      <tr> 
+        <th><span class="red"></span>投票开关：</th> 
+        <td>
+          <input type="radio" name="open_vote" value="1" <if condition="$info.open_vote neq '0'">checked</if>>开启
+          <input type="radio" name="open_vote" value="0" <if condition="$info.open_vote eq '0'">checked</if>>关闭
+        </td> 
+      </tr>  
+      <tr> 
+        <th><span class="red"></span>抽奖开关：</th> 
+        <td>
+          <input type="radio" name="open_lottery" value="1" <if condition="$info.open_lottery neq '0'">checked</if>>开启
+          <input type="radio" name="open_lottery" value="0" <if condition="$info.open_lottery eq '0'">checked</if>>关闭
+        </td> 
+      </tr> 
+      <tr> 
+        <th><span class="red"></span>对对碰开关：</th> 
+        <td>
+          <input type="radio" name="open_zzle" value="1" <if condition="$info.open_zzle neq '0'">checked</if>>开启
+          <input type="radio" name="open_zzle" value="0" <if condition="$info.open_zzle eq '0'">checked</if>>关闭
+        </td> 
+      </tr>   
+      <tr> 
+        <th><span class="red">*</span>现场开关：</th> 
+        <td>
+            <input type="radio" name="is_open" value="1" <if condition="$info.is_open neq '0'">checked</if>>开启
+            <input type="radio" name="is_open" value="0" <if condition="$info.is_open eq '0'">checked</if>>关闭
+            <input type="hidden" id="sid" name="id" value="{pigcms:$info.id}">
+        </td> 
+      </tr>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

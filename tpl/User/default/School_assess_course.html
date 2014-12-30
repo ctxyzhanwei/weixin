@@ -1,0 +1,90 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+<script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+<style>
+.maroon{color: red;}
+</style>
+<div class="content">
+<div class="cLineB">
+  <h4>当前位置：微学校 >> <a href="{pigcms::U('School/assess',array('token'=>$token))}">教师管理</a> >> 课程添加</h4>
+ </div>
+
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+      <form class="form" id="formID" method="post" action="" target="_top" enctype="multipart/form-data">
+
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+            <tr>
+                    <th width="120">教师姓名:</th>
+                    <td>
+                        <h1><span class="maroon">{pigcms:$teachers['tname']}</span></h1>
+                    </td>
+            </tr>
+            <tr>
+                    <th width="120">任教班级:</th>
+                    <td>
+                     <select name="bj_id" id="bj_id">
+                    <volist name="li_theclass" id="list">
+                        <option value="{pigcms:$list['sid']}" <if condition="$tcourse['bj_id'] eq $list['sid']"> selected </if>>{pigcms:$list['sname']}</option>
+                    </volist>
+                    </select>
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">任教科目:</th>
+                    <td>
+                    <select name="km_id" id="km_id">
+                    <volist name="li_subject" id="list">
+                    <option value="{pigcms:$list['sid']}" <if condition="$tcourse['km_id'] eq $list['sid']"> selected </if> >{pigcms:$list['sname']}</option>
+                    </volist>
+                    </select>
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">任教星期:</th>
+                    <td>
+                   <select name="xq_id" id="xq_id">
+                    <volist name="li_week" id="list">
+                    <option value="{pigcms:$list['sid']}" <if condition="$tcourse['xq_id'] eq $list['sid']"> selected </if> >{pigcms:$list['sname']}</option>
+                    </volist>
+                    </select>
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">任教时段:</th>
+                    <td>
+                    <select name="sd_id" id="sd_id">
+                    <volist name="li_timeframe" id="list">
+                    <option value="{pigcms:$list['sid']}" <if condition="$tcourse['sd_id'] eq $list['sid']"> selected </if> >{pigcms:$list['sname']}</option>
+                    </volist>
+                    </select>
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+                <tr>
+                   <th><if condition="$tcourse['id'] neq ''"><input type="text" hidden name="id" value="{pigcms:$tcourse['id']}"></if></th>
+                   <input type="text" name="tid" value="{pigcms:$teachers['tid']}" hidden>
+                    <td>
+                  <button type="submit" name="button" class="btnGreen">保存</button>
+                    </td>
+                    </tr>
+                <tr>
+                     <th></th>
+                    <td>
+                   <a href="{pigcms::U('School/assess',array('token'=>session('token')))}" class="btnGray vm">取消</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div>
+</div>
+
+<include file="Public:footer"/>

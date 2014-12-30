@@ -1,0 +1,101 @@
+<style>
+.btn_music {
+display: inline-block;
+width: 35px;
+height: 35px;
+background: url('{pigcms::RES}/images/play.png') no-repeat center center;
+background-size: 100% auto;
+position: absolute;
+z-index: 100;
+left: 15px;
+top: 20px;
+}
+.btn_music.on {
+    background-image: url("{pigcms::RES}/images/stop.png");
+}
+
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
+<script>
+var playbox = (function(){
+    //author:eric_wu
+    var _playbox = function(){
+        var that = this;
+        that.box = null;
+        that.player = null;
+        that.src = null;
+        that.on = true;
+        //
+        that.autoPlayFix = {
+            on: true,
+            evtName: ("ontouchstart" in window)?"touchstart":"mouseover"
+        }
+
+    }
+    _playbox.prototype = {
+        init: function(box_ele){
+            this.box = "string" === typeof(box_ele)?document.getElementById(box_ele):box_ele;
+            this.player = this.box.querySelectorAll("audio")[0];
+            this.src = this.player.src;
+            this.init = function(){return this;}
+            this.autoPlayEvt(true);
+            return this;
+        },
+        play: function(){
+            if(this.autoPlayFix.on){
+                this.autoPlayFix.on = false;
+                this.autoPlayEvt(false);
+            }
+            this.on = !this.on;
+            if(true == this.on){
+                this.player.src = this.src;
+                this.player.play();
+            }else{
+                this.player.pause();
+                this.player.src = null;
+            }
+            if("function" == typeof(this.play_fn)){
+                this.play_fn.call(this);
+            }
+        },
+        handleEvent: function(evt){
+            this.play();
+        },
+        autoPlayEvt: function(important){
+            if(important || this.autoPlayFix.on){
+                document.body.addEventListener(this.autoPlayFix.evtName, this, false);
+            }else{
+                document.body.removeEventListener(this.autoPlayFix.evtName, this, false);
+            }
+        }
+    }
+    //
+    return new _playbox();
+})();
+
+playbox.play_fn = function(){
+    this.box.className = this.on?"btn_music on":"btn_music";
+}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	playbox.init("playbox");
+	/*
+	setTimeout(function() {
+		// IE
+		if(document.all) {
+			document.getElementById("playbox").click();
+		}
+		// 其它浏览器
+		else {
+			var e = document.createEvent("MouseEvents");
+			e.initEvent("touchstart", true, true);
+			document.getElementById("playbox").dispatchEvent(e);
+		}
+	}, 2000);
+	*/
+});
+
+</script>
+<span id="playbox" class="btn_music" onclick="playbox.init(this).play();"><audio autoplay="autoplay" src="{pigcms:$homeInfo.musicurl}" loop id="audio"></audio></span>

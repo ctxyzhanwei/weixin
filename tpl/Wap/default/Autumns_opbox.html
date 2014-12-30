@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://332767.m.weimob.com/webmidautumn/OpenBox -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/autumns/css/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/autumns/css/prize.css" media="all">
+<script type="text/javascript" async="" src="{pigcms:$staticPath}/tpl/static/autumns/js/wtj.js"></script><script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/autumns/js/common.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/autumns/js/prize.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/autumns/js/zepto_min.js"></script>
+<title>{pigcms:$linfo.title}</title>
+        
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <!-- Mobile Devices Support @begin -->
+            
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="">
+        <style>
+            img{max-width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        
+    <div class="shadow-prize"></div>
+    <div data-role="container" class="container common">
+        <header data-role="header"><!----></header>
+        <section data-role="body" class="body">
+            
+            <div class="prize-title">{pigcms:$prize}</div>
+            <img src="{pigcms:$xpic}" class="prize-img">
+            <div class="shadow-cloud"></div>
+            <dl class="prize-ps">
+                <volist name="isprize" id="vo">
+                    <dt>奖品：</dt><dd>{pigcms:$vo.prize}</dd>
+                    <dt>有效期：</dt><dd>{pigcms:$vo.prizedate}&nbsp;&nbsp;到&nbsp;&nbsp;{pigcms:$vo.prizedates}</dd>
+                    <dt>{pigcms:$renamesn}：</dt><dd>{pigcms:$sn}  </dd>
+                    <dt>状态：</dt><dd><if condition="$vo['isprizes'] eq 1">已兑奖<else />未兑奖</if></dd>
+                </volist>
+            </dl>
+            <div class="btn-layout">
+                <if condition="$prizes eq 0">
+                    <a href="javascript:void(0);" class="btn-exchange"></a>
+                    <a href="{pigcms::U('Autumns/box',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$_GET['id']))}" class="btn-again2"></a>
+                <else />
+                    <a href="{pigcms::U('Autumns/box',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$_GET['id']))}" class="btn-again2"></a>
+                </if>
+            </div>
+        </section>
+
+    </div>
+    <div class="panel-box">
+        <div class="panel-content">
+            <div class="panel-close"></div>
+            <span class="icon-prize-useless"></span><br>兑换奖品
+            <hr class="common-hr">
+            <form action="{pigcms::U('Autumns/isprize',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$_GET['id'],'bid'=>$_GET['bid']))}" name="isform"method="post">
+                <label for="info-pass">兑换密码</label>
+                <input type="text" name="info-pass" id="info-pass">
+                <label for="phone" id="isphone">{pigcms:$renametel}</label>
+                <input type="text" name="phone" id="phone">
+                <input type="hidden" value="{pigcms:$isphone}" name="isphone" id="isphone">
+                <input type="hidden" value="332767" name="pid">
+                <input type="hidden" value="{pigcms:$info}" name="info">
+                <input type="hidden" value="1454377" name="snid">
+                <input type="hidden" value="1119710" name="box_id">
+                <input type="hidden" value="67f8e459c59fdfd61bc85a1cbdf28b78" name="v">
+                
+                
+                <div class="btn-layout">
+                    
+                    <input type="submit" class="btn-confirm" id="sub" value="确定">
+                </div>
+            </form>
+        </div>
+    </div>
+<script> 
+    $("#sub").bind("click",
+    function() {
+        var btn = $(this);
+        var infos = $("#info-pass").val();
+        var phone = $("#phone").val();
+
+        if (infos == '') {
+            alert("请输入兑奖密码");
+            return false;
+        }
+
+        if (phone == '') {
+            alert("请输入联系方式");
+            return false;
+        }
+
+        var isphone = document.isform.isphone.value
+        if(isphone == ''){
+            var phone = document.isform.phone.value
+            if(!(/^1[3|4|5|8]\d{9}$/.test(phone))){ 
+                alert("错误,请输入11位的手机号！");
+                return false;
+            }
+        }
+    });
+
+</script>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Autumns",
+            "moduleID":"{pigcms:$_GET['id']|intval}",
+            "imgUrl": "{pigcms:$linfo.starpicurl}",
+            "timeLineLink":"{pigcms::C('site_url')}{pigcms::U('Autumns/index',array('token'=>$_GET['token'],'id'=>intval($_GET['id'])))}",
+            "sendFriendLink":"{pigcms::C('site_url')}{pigcms::U('Autumns/index',array('token'=>$_GET['token'],'id'=>intval($_GET['id'])))}",
+            "weiboLink": "{pigcms::C('site_url')}{pigcms::U('Autumns/index',array('token'=>$_GET['token'],'id'=>intval($_GET['id'])))}",
+            "tTitle": "{pigcms:$linfo.title}",
+            "tTitle": "{pigcms:$linfo.info}",
+        };
+</script>
+{pigcms:$shareScript}
+</body></html>

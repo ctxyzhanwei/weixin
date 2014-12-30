@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">   
+      <div class="cLineB">
+        <h4 class="left">    
+          投票数据统计
+          (<if condition="$vote['cknums'] eq 1"> 单选<else/>多选</if>投票，<span class="number">共有{pigcms:$vote.count}人参与投票</span>)
+        </h4>   
+        <span style="float:right;">
+            <a class="btnGreen" href="javascript:window.history.go(-1);">返回</a>
+        </span>     
+        <div class="clr"></div>
+      </div>
+
+      <div class="msgWrap" style="border:1px solid #e6e6e6;margin-top:10px;">
+         <div id="chartdiv1" align="center"></div>
+         <script type="text/javascript">
+          var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Pie3D.swf", "ChartId", "500", "400", "0", "1");
+          //chart.setTransparent("false");
+          chart.setDataXML('{pigcms:$xml}');
+          //chart.setDataURL("data.html");
+          chart.render("chartdiv1");
+          </script>
+      </div>
+      <div class="cLineB">
+        <h4 class="left">    
+          投票记录
+        </h4>        
+        <div class="clr"></div>
+      </div>
+
+        <table class="ListProduct" width="90%" border="0" cellspacing="0" cellpadding="0">
+          <thead>   
+          <tr>
+            <th width="200">投票人</th>
+            <th width="200">选票</th>
+            <th width="100">时间</th>
+            <th width="100">操作</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <volist name="record" id="item"> 
+            <tr>
+              <td>{pigcms:$item.wxname}</td>
+              <td>{pigcms:$item.itemname}</td>
+              <td>{pigcms:$item.touch_time|date="Y-m-d H:i:s",###}</td>
+              <td><a href="{pigcms::U('Vote/del_record',array('id'=>$item['id']))}" onclick="javascript:return confirm('您确定要删除吗?')">删除</a></td>
+            </tr>
+          </volist>
+          </tbody>
+          </table>
+          {pigcms:$page}
+        </div>  
+<include file="Public:footer"/>

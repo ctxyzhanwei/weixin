@@ -1,0 +1,50 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+          <div class="cLineB"><h4>分享记录</h4></div>
+
+<include file="Share:header"/>
+
+    <div class="msgWrap">
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">下面为粉丝分享发送朋友圈的记录</div>
+<form method="post"  action="" id="info" >
+<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<THEAD>
+<tr>
+<th>模块名称</th>
+<th width="60">模块ID</th>
+<th>分享人</th>
+<th>分享人手机</th>
+<th>时间</th>
+</tr>
+</THEAD>
+<TBODY>
+<TR></TR>
+<volist id="item" name="info">
+<TR>
+<TD>{pigcms:$item.moduleName}</TD>
+<TD>{pigcms:$item.moduleid}</TD>
+<TD>{pigcms:$item.user.truename}</TD>
+<TD>{pigcms:$item.user.tel}</TD>
+<TD class="norightborder"><?php echo date('Y-m-d H:i:s',$item['time']);?></TD>
+</TR>
+</volist>
+</TBODY>
+</TABLE>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+          
+        </div>
+<include file="Public:footer"/>

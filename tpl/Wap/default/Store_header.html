@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" /><meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta name="format-detection" content="telephone=no"/>
+<title>{pigcms:$metaTitle}</title>
+<script src="{pigcms::$staticFilePath}/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="{pigcms::$staticFilePath}/js/jquery.lazyload.js" type="text/javascript"></script>
+<script src="{pigcms::$staticFilePath}/js/notification.js" type="text/javascript"></script>
+<script src="{pigcms::$staticFilePath}/js/swiper.min.js" type="text/javascript"></script>
+<script src="{pigcms::$staticFilePath}/js/main.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="{pigcms::$staticFilePath}/css/style_touch.css">
+<link type="text/css" rel="stylesheet" href="/tpl/static/store/style/{pigcms:$productSet['headerid']}.css">
+</head>
+<script>
+$(document).ready(function(){
+	$(".m-hd .cat").parent('div').click( function() {
+	    var docH=$(document).height();
+	  	$('.sub-menu-list').toggle();
+	    $(".m-right-pop-bg2").addClass("on").css('min-height',docH);
+	});
+	$(".m-right-pop-bg2").click( function() {
+	    $('.sub-menu-list').hide();
+		$(".m-right-pop-bg2").removeClass("on").removeAttr("style");
+	});
+});
+</script>
+<body>
+<div id="top"></div>
+<div id="scnhtm5" class="m-body">
+<div class="m-detail-mainout">
+
+
+
+<div class="m-hd">
+<div><a href="javascript:history.go(-1);" class="back">返回</a></div>
+<div><a href="javascript:void(0);" class="cat">商品分类</a></div>
+<div class="tit">{pigcms:$metaTitle}</div>
+<div><a href="{pigcms::U('Store/myinfo',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}" class="uc">用户中心</a></div>
+<div><a href="{pigcms::U('Store/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" class="cart">购物车<i class="cart_com"><if condition="$totalProductCount neq 0" >{pigcms:$totalProductCount}</if></i></a></div>
+</div>
+
+<ul class="sub-menu-list">
+<li><a href="{pigcms::U('Store/select',array('token' => $_GET['token'], 'wecha_id' => $wecha_id, 'twid' => $twid))}">浏览店铺</a></li>
+<li><a href="{pigcms::U('Store/cats',array('token' => $_GET['token'], 'catid' => $hostlist['id'], 'wecha_id' => $wecha_id, 'cid' => $cid, 'twid' => $twid))}">商城首页</a></li>
+<volist name="cats" id="hostlist" key="i"> 
+<if condition="$hostlist['isfinal'] eq 1">
+<li><a href="{pigcms::U('Store/products',array('token' => $_GET['token'], 'catid' => $hostlist['id'], 'wecha_id' => $wecha_id, 'twid' => $twid))}">{pigcms:$hostlist.name}</a></li>
+<else />
+<li><a href="{pigcms::U('Store/cats',array('token' => $_GET['token'], 'cid' => $hostlist['cid'], 'parentid' => $hostlist['id'], 'wecha_id' => $wecha_id, 'twid' => $twid))}">{pigcms:$hostlist.name}</a></li>
+</if>
+</volist>
+</ul>

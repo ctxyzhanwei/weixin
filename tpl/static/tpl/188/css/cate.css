@@ -1,0 +1,58 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background: url(../images/10_line.jpg) #000;    font-size:14px;  }
+body  .mainmenu { overflow:hidden }
+body  .mainmenu li { float:left;  width:33.3%; height:33%;  position:relative;  }
+body  .mainmenu li a { display:block;   text-align:center; border-width:1px; border-style:solid; border-color:#000; border-left-color:#524F4F; border-top-color:#524F4F; overflow:hidden}
+
+body  .mainmenu li a p b{  display: none; width:25px; height:25px; background:url(../images/10_pix.png) no-repeat; background-size:200% 100%;}
+body  .mainmenu li a img {    width:40%; margin:10px auto 0px; }
+body  .mainmenu li a span { width:100%;  display:block;  line-height:33px;   color:#FFF; overflow:hidden; text-align:center; text-overflow:ellipsis; white-space:nowrap   }
+
+body  .mainmenu li a:active{ background-color:rgba(255,255,255,0.4)}
+body  .mainmenu li a:active img{ opacity:0.5}
+
+
+body  .mainmenu li:nth-child(8n+4),body  .mainmenu li:nth-child(8n+8){ width:100%;}
+body  .mainmenu li:nth-child(8n+4) a p span,body  .mainmenu li:nth-child(8n+8) a p span{ position:absolute; bottom:5px; }
+
+body  .mainmenu li:nth-child(8n+4) a p{ float:left; width:33.3%;  position:relative; position:absolute; left:0px; height:100%;   border-right:1px solid #524F4F;; box-shadow: inset -1px 0px 0px rgba(0,0,0,1)}
+body  .mainmenu li:nth-child(8n+4) a p b{ display:block; position:absolute; top:10px; right:10px;}
+body  .mainmenu li:nth-child(8n+4) a img{ float:right; width:66.6%; height:auto; margin:0px; }
+
+
+
+body  .mainmenu li:nth-child(8n+8) a p{ float:right; width:33.3%;  position:relative; position:absolute; right:0px; height:100%;   border-left:1px solid #000;; box-shadow: inset 1px 0px 1px rgba(100,100,100,1)}
+body  .mainmenu li:nth-child(8n+8) a p b{ display:block; position:absolute; top:10px; left:10px; background-position:-25px 0px;}
+body  .mainmenu li:nth-child(8n+8) a img{ float:left; width:66.6%; height:auto; margin:0px;}
+

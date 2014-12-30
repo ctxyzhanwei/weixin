@@ -1,0 +1,274 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<script src="{pigcms::RES}/js/select/js/jquery.js"></script>
+<script src="{pigcms::RES}/js/select/js/comm.js"></script>
+<script src="{pigcms::RES}/js/select/js/linkagesel-min.js"></script>
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+<style>
+
+  .maroon{ color: red;
+  }
+</style>
+<div class="content">
+<div class="cLineB">
+  <h4>汽车回复配置</h4><!--a href="javascript:history.go(-1);return false;" class="right btnGrayS vm" style="margin-top:-27px">返回</a-->
+ </div>
+ <!--tab start-->
+
+<!--tab end-->
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+      <form class="form" method="post" action="" target="_top" enctype="multipart/form-data"><table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"><tbody>
+                <tr>
+                    <th width="120">触发关键词：</th>
+                    <td> <input type="text" name="keyword" id="keyword"  class="px"  data-rule-maxlength="60" value="{pigcms:$carset['keyword']|default='汽车'}"/>
+                    <span class="maroon">*</span>
+                    <span class="help-inline">如：汽车 或者 微汽车</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">图文标题：</th>
+                    <td>
+                         <input type="text" name="title" id="title" value="{pigcms:$carset['title']}" class="px" />
+                         <span class="maroon">* 图文封面标题</span>
+                     </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">标题图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_src" src="{pigcms:$carset['head_url']|default='tpl/User/default/common/car/car_title.jpg'}"  style="max-height:100px;">
+                         <input type="input" class="px" id="head_url" value="{pigcms:$carset['head_url']|default='tpl/User/default/common/car/car_title.jpg'}"  name="head_url" >
+
+                         <span class="help-inline">
+                              <script src="{pigcms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('head_url',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过300K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">图文外链:</th>
+                    <td>
+                      <input type="text" name="url" id="url" value="{pigcms:$carset['url']}" class="px"  />
+                    <span class="help-block"><font color='red'>请在输入框左侧选择或这里填写网址(例如：http://baidu.com，必须有http://)</font></span>
+                    </td>
+                </tr>
+
+
+<TR>
+  <TH valign="top"><label for="keyword"><font color="red">首页模板：</font></label></TH>
+  <TD>
+
+
+    <input type="text" id="selecttpl" class="px" value="已选择模板 {pigcms:$carset['tpid']|default=23}" disabled size="40"  />
+    <a class="a_upload" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+    <a class="a_upload" onclick="viewTpl()">预览</a> [请注意,并不是所有模板都支持,如果发现所选模板显示不正确,请另换一个]
+    <script>
+        function viewTpl(){
+            var tid = $('#tpid').val();
+            chooseTpl(tid,'',2);
+        }
+    </script>
+    <input type="hidden" class="px" id="tpid" value="{pigcms:$carset['tpid']|default=23}" name="tpid" style="width:250px">
+  </TD>
+  <TD>
+    &nbsp;
+  </TD>
+</TR>
+
+                 <tr>
+                    <th width="120">经销车型</th>
+                    <td>
+                         <input type="text" name="title1" id="title1" value="{pigcms:$carset['title1']|default='经销车型'}" class="px" />
+                         <span class="maroon">* 如 经销车型</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">经销车型图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_1_src" src="{pigcms:$carset['head_url_1']|default='tpl/User/default/common/car/car_jx.jpg'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url_1" value="{pigcms:$carset['head_url_1']|default='tpl/User/default/common/car/car_jx.jpg'}" name="head_url_1" >
+
+                         <span class="help-inline">
+                              <a href="###" onclick="upyunPicUpload('head_url_1',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url_1')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过100K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">经销车型图文外链:</th>
+                    <td>
+                      <input type="url1" name="url1" id="url1" value="{pigcms:$carset['url1']}" class="px" />
+                    <span class="help-block">可以留空</span>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">销售顾问:</th>
+                    <td>
+                         <input type="text" name="title2" id="title2" value="{pigcms:$carset['title2']|default='销售顾问'}" class="px" />
+                         <span class="maroon">* 如 销售顾问</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">销售顾问图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_2_src" src="{pigcms:$carset['head_url_2']|default='tpl/User/default/common/car/car_yuyue.jpg'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url_2" value="{pigcms:$carset['head_url_2']|default='tpl/User/default/common/car/car_yuyue.jpg'}" name="head_url_2" >
+
+                         <span class="help-inline">
+                              <a href="###" onclick="upyunPicUpload('head_url_2',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url_2')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过100K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">销售顾问图文外链:</th>
+                    <td>
+                      <input type="text" name="url2" id="url2" value="{pigcms:$carset['url2']}" class="px" />
+                    <span class="help-block">可以留空</span>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">在线预约:</th>
+                    <td>
+                         <input type="text" name="title3" id="title3" value="{pigcms:$carset['title3']|default='在线预约'}" class="px" />
+                         <span class="maroon">* 如 在线预约</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">在线预约题图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_3_src" src="{pigcms:$carset['head_url_3']|default='tpl/User/default/common/car/car_yuyue.jpg'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url_3" value="{pigcms:$carset['head_url_3']|default='tpl/User/default/common/car/car_yuyue.jpg'}" name="head_url_3" >
+
+                         <span class="help-inline">
+                              <a href="###" onclick="upyunPicUpload('head_url_3',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url_3')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过100K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">在线预约图文外链:</th>
+                    <td>
+                      <input type="text" name="url3" id="url3" value="{pigcms:$carset['url3']}" class="px" />
+                    <span class="help-block">可以留空</span>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">车主关怀：</th>
+                    <td>
+                         <input type="text" name="title4" id="title4" value="{pigcms:$carset['title4']|default='车主关怀'}" class="px" />
+                         <span class="maroon">* 如 车主关怀</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">车主关怀图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_4_src" src="{pigcms:$carset['head_url_4']|default='tpl/User/default/common/car/carowner.png'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url_4" value="{pigcms:$carset['head_url_4']|default='tpl/User/default/common/car/carowner.png'}" name="head_url_4" >
+
+                         <span class="help-inline">
+                              <a href="###" onclick="upyunPicUpload('head_url_4',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url_4')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过100K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">车主关怀图文外链:</th>
+                    <td>
+                      <input type="text" name="url4" id="url4" value="{pigcms:$carset['url4']}" class="px" />
+                    <span class="help-block">可以留空</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th width="120">实用工具:</th>
+                    <td>
+                         <input type="text" name="title5" id="title5" value="{pigcms:$carset['title5']|default='实用工具'}" class="px" />
+                         <span class="maroon">* 如 实用工具</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">实用工具题图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_5_src" src="{pigcms:$carset['head_url_5']|default='tpl/User/default/common/car/tool-box-preferences.png'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url_5" value="{pigcms:$carset['head_url_5']|default='tpl/User/default/common/car/tool-box-preferences.png'}" name="head_url_5" >
+
+                         <span class="help-inline">
+                              <a href="###" onclick="upyunPicUpload('head_url_5',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url_5')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过100K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">实用工具图文外链:</th>
+                    <td>
+                      <input type="text" name="url5" id="url5" value="{pigcms:$carset['url5']}" class="px" />
+                    <span class="help-block">可以留空</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th width="120">车型欣赏:</th>
+                    <td>
+                         <input type="text" name="title6" id="title6" value="{pigcms:$carset['title6']|default='车型欣赏'}" class="px" />
+                         <span class="maroon">* 如 车型欣赏</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">车型欣赏图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_6_src" src="{pigcms:$carset['head_url_6']|default='tpl/User/default/common/car/lanbo14.jpg'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url_6" value="{pigcms:$carset['head_url_6']|default='tpl/User/default/common/car/lanbo14.jpg'}" name="head_url_6" >
+
+                         <span class="help-inline">
+                              <a href="###" onclick="upyunPicUpload('head_url_6',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url_6')">预览</a>
+                              <span class="help-inline">建议图片尺寸365*158，图片大小不超过100K</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+                 <tr>
+                    <th width="120">车型欣赏图文外链:</th>
+                    <td>
+                      <input type="text" name="url6" id="url6" value="{pigcms:$carset['url6']}" class="px" />
+                    <span class="help-block">可以留空</span>
+                    </td>
+                </tr>
+
+                  <tr>
+                    <td>
+                    <if condition="$carset['id'] neq ''">
+                    <input type="hidden" name="id" value="{pigcms:$carset['id']}" />
+                    <input type="hidden" name="status" value="editstatus" />
+
+                    </if>
+                      <input type="hidden" name="token" value="{Pigcms:$token}" />
+                        <button type="submit" name="button" class="btnGreen">保存</button>
+                        <a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div>
+
+        </div>
+<include file="Public:footer"/>

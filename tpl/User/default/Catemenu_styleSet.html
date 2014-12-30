@@ -1,0 +1,145 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script type="text/javascript" src="{pigcms::RES}/css/catemenu-style/common.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/css/catemenu-style/discuz_tips.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/css/catemenu-style/h.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/css/catemenu-style/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/catemenu-style/style2.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/news-render/news_render.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/catemenu-style/style_2_common.css" media="all">
+ <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+        <div class="cLineB">
+          <h4>3G站点底部菜单设置</h4>
+        </div>
+                 <ul id="tags">
+          <li><a href="{pigcms::U('Catemenu/index')}">底部菜单分类设置</a> </li>
+          <li class="selectTag"><a href="{pigcms::U('Catemenu/styleSet')}">底部菜单风格选择</a> </li>
+          <li><a href="{pigcms::U('Home/plugmenu')}">菜单颜色与版权</a> </li>
+          <div class="clr"></div>
+        </ul>
+        <div class="cLineB" style="padding:0;margin:0"></div>
+        <div class="msgWrap">
+        <div class="ftip" style="margin:10px 0">更换菜单样式后需要过大概五分钟才会生效</div> 
+          <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+              <tr>
+                <td><form id="form1" name="form1" method="post" action="">
+                    <ul class="cateradio">
+                     <li <if condition="$radiogroup eq 0"> class="active" </if> >
+                        <label><img src="{pigcms::RES}/css/catemenu-style/000.png">
+                          <input class="radio" type="radio" name="radiogroup" value="0" id="radiogroup_0" <if condition="$radiogroup eq 0"> checked </if>>
+                          关闭底部导航</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 1"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/001.png">
+                          <input class="radio" type="radio" name="radiogroup" value="1" id="radiogroup_1" <if condition="$radiogroup eq 1"> checked </if>>
+                          1.左侧展开</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 2"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/002.png">
+                          <input class="radio" type="radio" name="radiogroup" value="2" id="radiogroup_2" <if condition="$radiogroup eq 2"> checked </if>>
+                          2.右侧展开</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 3"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/003.png">
+                          <input class="radio" type="radio" name="radiogroup" value="3" id="radiogroup_3" <if condition="$radiogroup eq 3"> checked </if>>
+                          3.左侧滑入</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 4"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/004.png">
+                          <input class="radio" type="radio" name="radiogroup" value="4" id="radiogroup_4" <if condition="$radiogroup eq 4"> checked </if>>
+                          4.右侧滑入</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 5"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/005.png">
+                          <input class="radio" type="radio" name="radiogroup" value="5" id="radiogroup_5" <if condition="$radiogroup eq 5"> checked </if>>
+                          5.左侧底部滑入</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 6"> class="active" </if>> 
+                        <label><img src="{pigcms::RES}/css/catemenu-style/006.png">
+                          <input class="radio" type="radio" name="radiogroup" value="6" id="radiogroup_6" <if condition="$radiogroup eq 6"> checked </if>>
+                          6.右侧底部滑入</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 7"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/007.png">
+                          <input class="radio" type="radio" name="radiogroup" value="7" id="radiogroup_7" <if condition="$radiogroup eq 7"> checked </if>>
+                          7</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 8"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/008.png">
+                          <input class="radio" type="radio" name="radiogroup" value="8" id="radiogroup_8" <if condition="$radiogroup eq 8"> checked </if>>
+                          8</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 9"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/009.png">
+                          <input class="radio" type="radio" name="radiogroup" value="9" id="radiogroup_9" <if condition="$radiogroup eq 9"> checked </if>>
+                          9</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 10"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/010.png">
+                          <input class="radio" type="radio" name="radiogroup" value="10" id="radiogroup_10" <if condition="$radiogroup eq 10"> checked </if>>
+                          10</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 11"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/011.png">
+                          <input class="radio" type="radio" name="radiogroup" value="11" id="radiogroup_11" <if condition="$radiogroup eq 11"> checked </if>>
+                          11</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 12"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/012.png">
+                          <input class="radio" type="radio" name="radiogroup" value="12" id="radiogroup_12" <if condition="$radiogroup eq 12"> checked </if>>
+                          12</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 13"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/013.png">
+                          <input class="radio" type="radio" name="radiogroup" value="13" id="radiogroup_13" <if condition="$radiogroup eq 13"> checked </if>>
+                          13</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 14"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/014.png">
+                          <input class="radio" type="radio" name="radiogroup" value="14" id="radiogroup_14" <if condition="$radiogroup eq 14"> checked </if>>
+                          14</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 15"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/015.png">
+                          <input class="radio" type="radio" name="radiogroup" value="15" id="radiogroup_15" <if condition="$radiogroup eq 15"> checked </if>>
+                          15</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 16"> class="active" </if>>
+                        <label><img src="{pigcms::RES}/css/catemenu-style/016.png">
+                          <input class="radio" type="radio" name="radiogroup" value="16" id="radiogroup_16" <if condition="$radiogroup eq 16"> checked </if>>
+                          16</label>
+                      </li>
+                    </ul>
+                    <script>
+                    $(document).ready(function(){
+                      $(".radio").click(function(){
+                          var radiostyle=$(this).val();
+                          //alert(radiostyle);
+                          $(".cateradio li").each(function(){
+                            $(this).removeClass("active");
+                          });
+                          $(this).parents("li").addClass("active");
+                          $.ajax({
+                              type:"get",
+                              url:"index.php?g=User&m=Catemenu&a=styleChange&radiogroup="+radiostyle,
+                              dataType:"json",
+                          });
+                      });
+                    });
+                    </script>
+
+                  </form></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+<!--底部-->   </div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

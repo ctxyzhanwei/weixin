@@ -1,0 +1,68 @@
+<include file="Index:header"/>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/jquery.min.js"></script>
+<div class="content">
+          <div class="cLineB"><h4>切换管理中心模板<span class="FAQ"></span></h4></div>
+          
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+             
+              <tbody>
+				<tr>
+                  <td style="font-size:14px;" align="center">
+                    <div style="width:250px;" id="wrap_old">
+                        <label for="radio_old"><img width="250" src="{pigcms:$staticPath}/tpl/static/newskin/images/s_oldtp.jpg" /></label>
+                        <p style="text-align:center;margin-top:20px">
+                          <input type="radio" name="usertpl" value="0" id="radio_old" <if condition="$usertplid eq 0">checked</if> /> <label for="radio_old">蓝色简洁版</label>
+                        </p>
+                    </div>
+                  </td>
+                	<td style="font-size:14px;" align="center">
+                		
+
+                    <div style="width:250px;">
+                      <label for="radio_new"><img width="250" src="{pigcms:$staticPath}/tpl/static/newskin/images/s_newtp.jpg" /></label>
+                      <p style="text-align:center;margin-top:20px">
+                        <input type="radio" name="usertpl" value="1" id="radio_new" <if condition="$usertplid eq 1">checked</if> /> <label for="radio_new">高端大气版</label>
+                      </p>
+                    </div>
+                      
+                	</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+             
+          </div>
+         <script>
+          jQuery(function($) {
+            var obj = $("input[name=usertpl]");
+           
+            obj.bind("change",function(){
+               var objval =  $("input[name=usertpl]:checked").val();
+               $.ajax({
+                url:"{pigcms::U('Index/switchTpl')}",
+                type:"post",
+                data:"value="+objval,
+                success:function(d){
+                  if(d == 200){
+                    alert('切换模板成功');
+                    location.reload();
+                  }else{
+                    alert('失败了，请稍后再试~');
+                  }
+                }
+               });
+            });
+             
+          });
+         </script>
+          
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>	

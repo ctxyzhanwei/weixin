@@ -1,0 +1,47 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    /*background:url("../../img/v18_bg.png");*/
+    background-color:rgba(159, 133, 96, 0.45);
+    position:relative;
+}
+
+
+.list_ul{
+    margin:10px 5px;
+    overflow:hidden;
+}
+
+.list_ul a{
+    color:#666;
+    display:block;
+    background:#fff;
+    border:1px solid #efefef;
+    border-radius:8px;
+    -webkit-box-shadow:1px 2px 1px rgba(0,0,0,0.3);
+    padding:10px 0;
+    margin:5px;
+}
+.list_ul figcaption{
+    line-height: 30px;
+}
+
+.list_ul figure>div{
+    height:60px;
+    overflow:hidden;
+}
+.list_ul li{
+    display:inline-block;
+    width:50%;
+    float:left;
+    text-align:center;
+    -webkit-box-sizing:border-box;
+}
+.list_ul li img{
+    max-width:52px;
+    max-height:63px;
+}
+.copyright{
+    color:#fff;
+}

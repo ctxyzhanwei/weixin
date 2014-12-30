@@ -1,0 +1,307 @@
+﻿<!DOCTYPE HTML>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+	<meta name="keywords" content="aaa">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+	<link rel="shortcut icon" href="https://res.wx.qq.com/zh_CN/htmledition/images/favicon17ced3.ico" type="image/x-icon">
+	<script src="/tpl/User/default/common/js/jquery.js"></script>
+	<title>聊天1</title>	
+	<style>
+.btn_music {
+display: inline-block;
+width: 35px;
+height: 35px;
+background: url('./tpl/Wap/default/common/images/play.png') no-repeat center center;
+background-size: 100% auto;
+position: absolute;
+z-index: 100;
+left: 126px;
+top: 1px;
+}
+.btn_music.on {
+    background-image: url("./tpl/Wap/default/common/images/stop.png");
+}
+</style>
+<script src="./tpl/Wap/default/common/js/audio.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+function clickMisic(){
+// 两秒后模拟点击
+
+    // IE
+    if(document.all) {
+        document.getElementById("playbox").click();
+    }
+    // 其它浏览器
+    else {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", true, true);
+        document.getElementById("playbox").dispatchEvent(e);
+    }
+setTimeout(function() {
+    // IE
+    if(document.all) {
+        document.getElementById("playbox").click();
+    }
+    // 其它浏览器
+    else {
+        var e = document.createEvent("MouseEvents");
+        e.initEvent("click", false, false);
+        document.getElementById("playbox").dispatchEvent(e);
+    }
+}, 800);
+}
+</script>
+<!--背景音乐end-->
+
+	<script>
+	function showMsg(){
+		var $i=1;
+		if(($i%2)==0){
+			$('title').html('您有一条【新消息】');
+		}else{
+			$('title').html(' ');
+		}
+		alert($i);
+		$i++;
+	}
+	function selected(n,b){
+			$('.chatListColumn').removeClass('activeColumn');
+			$('#'+n).addClass('activeColumn');
+			$('#vernierContainer').css('margin-top',b*50);
+			$('#showNums'+n).hide();
+			$('#vernierContainer').hide();
+			$('#vernierContainer').fadeIn("slow");
+			$('#iframepage').attr({ src: "index.php?g=Chat&m=Index&a=main&openid="+n+'#mian2'});
+			$numCount=parseInt($('#unreadTotalCount').html());
+			if($numCount < 0 ){
+				$('#unreadTotalCount').hide();
+			}else{
+				
+				$count=$numCount-1;
+				$('#unreadTotalCount').html($count);
+			}
+		
+		}
+	$(function(){ 
+	
+		setInterval("startRequest()",5000);
+		//startRequest();
+		$("#toggleSysMenu").click( function () {
+			if($('#textMen').css('display')=='none'){
+				$('#textMen').show();
+			}else{
+				$('#textMen').hide();
+			}
+		});
+		
+	});
+	function startRequest(){
+		$.post("{pigcms::U('Index/ajaxlist')}",
+	   function(data){
+		if(data==false) return false;
+			$objct=eval(data);
+				//alert(data);
+			  $($objct).each(function(d){
+				val=$objct[d];
+				$city=val.city;
+				$id=val.id;
+				$headimgurl=val.headimgurl;
+				$nickname=val.nickname;
+				$endtime=val.endtime;
+				$opnid=val.openid;
+				$subscribe_time=val.subscribe_time;
+				//清空重复内容
+				if('undefined' != typeof($('#'+$opnid))){
+					$('#'+$opnid).remove();
+				 }
+					$str='<div class="chatListColumn" id="'+$opnid+'" onclick="selected(\''+$opnid+'\',1)"> <div class="clicked" style="display:none;"></div><span class="unreadDot" style="display:none">0</span> <span class="unreadDotS" style="display:none"></span><div class="avatar_wrap"><img class="avatar" src="index.php?g=Chat&m=&a=showExternalPic&token={pigcms:$token}&wecha_id='+$opnid+'&url='+$headimgurl+'" /></div><span id="showNums'+$opnid+'" class="unreadDot" style="display: block;">1</span><div class="extend"><p class="time">'+$subscribe_time+'</p>   <div class="edited"><i class="editedIcon"></i></div> <div class="mute" style="display:none;"></div></div><div class="info"> <div class="nickName"><div class="left name" style="">'+$nickname+'</div><div class="clr"></div></div> <div class="descWrapper"> <p class="desc">'+$city+'</p> </div></div> <div class="clr"></div> </div>';
+		clickMisic();
+		//$("playbox").trigger("click") ;
+		//$("playbox").bind("click");
+				$numCount=parseInt($('#unreadTotalCount').html());
+				if($numCount < 0 ){
+					$('#unreadTotalCount').hide();
+				}else{
+					
+					$count=$numCount+1;
+					$('#unreadTotalCount').html($count);
+					$('#unreadTotalCount').show();
+				}
+				
+				$('#conversationContainer').prepend($str);
+				
+				 
+			});
+				
+			
+	   });
+	
+	
+	
+	}
+	</script>
+</head>
+<body>
+     
+
+<img src="/tpl/Chat/default/style/images/spacer17ced3.gif" style="display:">
+<link rel="stylesheet" type="text/css" href="/tpl/Chat/default/style/css/css.css">
+<link rel="stylesheet" type="text/css" href="/tpl/Chat/default/style/css/css1.css">
+<div id="container" style="">
+
+	<div id="chat" class="chatPanel normalPanel" ctrl="1">
+		<div class="panelBackground">
+			<img src="/tpl/Chat/default/style/images/spacer17ced3.gif" >
+			<p></p>
+			<p></p>
+		</div>
+		<div class="content">
+			<div id="chat_leftpanel" class="list" ctrl="1" >
+				<div class="top" >
+					<div id="profile" class="title"> 
+						<div class="myProfile"> 
+							<img src="/tpl/Chat/default/style/css/img/avatar_default17ced3.png"  >
+							<div class="avatar" id="accountAvatarWrapper" click="popupModifyAvatarWin" style="cursor:pointer;"></div>
+							<a class="unreadTotalCount" id="unreadTotalCount" href="javascript:;" style="display:;">0</a>
+						
+							<div class="info"> 
+								<span class="nickName" id='wqvb'>{pigcms:$Think.session.name}</span> 
+									<span id="playbox" class="btn_music" style="display:none" onClick="playbox.init(this).play();" >
+										<audio src="http://mp3.9ku.com/file2/554/553131.mp3" loop="" id="audio"></audio>
+									</span>	
+							</div> 
+							<div class="operaterBox" style="display:none;" id="textMen">  
+								<div class="operaterBoxPanel">
+									<a href="javascript:;" class="addFriends" click="createChatroom"> 
+									<span class="iconPic left"></span>
+									<span class="operaterBoxTitle left">发起聊天</span> 
+									<div class="clr"></div> </a> 
+									<a href="javascript:;" class="DesktopRemind" click="toggleNotify" tip="请先在浏览器设置中取消禁用桌面通知"> 
+									<span class="iconPic iconPicDeskRem left"></span> <span class="operaterBoxTitle left">桌面通知</span> 
+									<div class="clr"></div> </a> <a href="javascript:;" class="voiceCancel" click="toggleMute"> 
+									<span class="iconPic  left"></span> 
+									<span class="operaterBoxTitle left">关闭声音</span> <div class="clr"></div> </a>  
+									<a href="javascript:;" class="feedback" click="feedback">      
+									<span class="iconPic iconFeedback left"></span>       
+									<span class="operaterBoxTitle left">意见反馈</span>       
+									<div class="clr"></div>     </a>    
+									<a href="javascript:;" class="iconLogout" url="/cgi-bin/mmwebwx-bin/webwxlogout" click="logout">
+									<span class="iconPic iconPicLogout left"></span> <span class="operaterBoxTitle left">退出</span>
+									<div class="clr"></div> </a> 
+								</div> 
+							</div> 
+								<a href="javascript:;" class="iconOperater" style="display:none" id="toggleSysMenu"></a> 
+						</div>
+						<div class="clr"></div>
+					</div>
+				</div>
+				<!--search-->
+				<div class="chatListSearch" style="display:none">
+					<div class="chatListSearchPanel">
+						
+						<div class="listOperatorContent" style="display:none">
+							<div class="conmu left active" click="switchPanel" un="conversation" id="chooseConversationBtn">
+								<a class="conmuButton" href="javascript:;" title="聊天">
+									<span class="bag"></span><span id="totalUnreadDot" class="unreadDot" style="display: none;">0</span>
+								</a>
+							</div>
+							<div class="cutOffRule"></div>
+							<div class="addr notChooseOpera right" click="switchPanel" un="contact">
+								<a class="addrButton " href="javascript:;" title="通讯录">
+									<span class="bag"></span>
+								</a>
+							</div>
+						</div>
+						<div class="chatListSearchInput left" style="display:none">
+							<span class="chatListSearchIcon left"></span>
+							<input class="left" type="text" name="search" value="" keydown="preSearch" keyup="search@.chatListSearchInput" placeholder="搜索" id="conv_search">
+							<span class="searchClean left" click="cleanSearchWord@.chatListSearchInput" style="display:none;" id="conv_search_clean"></span>
+						</div>
+						<div class="clr"></div>
+					</div>
+				</div>
+				<!--search end-->
+				<div class="listContentWrap" style="position: relative;  height: 375px;">
+					<div style="height: 100%; width: 100%;  position: relative; display: block;">
+						<div class="listContent" id="chat_conversationListContent" style="width: 100%; top: 0px; position: absolute;" ctrl="1">
+							<div id="conversationContainer">
+								<pigcmslist array="list" foreach="list">
+								<div class="chatListColumn" id="{pigcms:$list.openid}" onClick="selected('{pigcms:$list.openid}',{pigcms:$i})"> 
+									<div class="clicked" style="display:none;"></div>    
+									<span class="unreadDot" style="display:none">0</span>   
+									<span class="unreadDotS" style="display:none"></span>
+									<div class="avatar_wrap">
+										<img class="avatar" src="<if condition="$list['headimgurl'] neq ''">index.php?g=Chat&m=&a=showExternalPic&token={pigcms:$token}&wecha_id={pigcms:$list.openid}&url={pigcms:$list.headimgurl}<else/>/tpl/Chat/default/style/css/img/avatar_default17ced3.png</if>" />
+									</div>
+									<div class="extend">
+										<p class="time">{pigcms:$list.endtime}</p>   
+										<div class="edited">
+											<i class="editedIcon"></i>
+										</div> 
+										<div class="mute" style="display:none;"></div>
+									</div>
+									<div class="info"> 
+										<div class="nickName">
+											<div class="left name" style="">{pigcms:$list.nickname|default='新客户-'}</div>
+											<div class="clr"></div>
+										</div> 
+										<div class="descWrapper"> 
+											<p class="desc">{pigcms:$list.city}－{pigcms:$list.subscribe_time} </p> 
+										</div>
+									</div> 
+									<div class="clr"></div> 
+								</div>         
+								
+								</pigcmslist>
+
+									</div>
+						</div>
+						<div class="scrollbarBox" style="position: absolute; right: 0px; top: 0px; height: 100%;">
+							<div class="scrollbar" style="position: absolute; right: 0px; top: 0px; height: 248px; opacity: 0;"></div>
+						</div>
+					</div>
+		
+				</div>
+				
+				<div class="chatLeftPanelShadow"></div>
+				<!--conmunication and chat-->
+				<div class="listOperator">
+					<div class="listBarContent">
+						
+					</div>
+				</div>
+
+			</div>
+			<div id="vernierContainer" style="width: 32px; position: relative; float: left; overflow: hidden; margin-top: 35px; visibility: visible; height: 372px;">
+				<div class="activeChatVernier" style="top: 124.5px;"><img src="/tpl/Chat/default/style/images/spacer17ced3.gif" onerror="reLoadImg(this)"></div>
+			</div>
+			<div class="chat lightBorder" style="visibility: visible;">
+				<div class="chatContainer" style="height: 492px;">
+				<!--close button-->
+				<!--single and group chat,back to chat icon-->
+				<!-- singleChat groupChat backToChat -->
+				<div class="rightOpBtn groupChat" id="rightOpBtn" click="toggleChatMgr" style="display: none;"><a href="javascript:;"></a></div> 
+				<div class="backToChat" id="leftOpBtn" click="toggleChatMgr" style="display: none;"><a href="javascript:;"></a></div> 
+				
+				
+
+				<iframe src="{pigcms::U('Index/main')}#mian2" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" height="520" onLoad="iFrameHeight()" ></iframe> 
+				<script type="text/javascript" language="javascript"> 
+				function iFrameHeight() { 
+				var ifm= document.getElementById("iframepage"); 
+				var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument; 
+				if(ifm != null && subWeb != null) { 
+				ifm.height = subWeb.body.scrollHeight; 
+				} 
+				} 
+				</script> 
+			
+			<div style="clear: both; visibility: visible;"></div>
+		</div>
+	<div style="clear: both; visibility: visible;"></div>
+</body>
+</html>

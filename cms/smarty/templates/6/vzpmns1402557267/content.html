@@ -1,0 +1,24 @@
+{include file=$header}
+<div class="clear"></div>
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div data-role="content" class="content">
+
+  <div class="padding20" id="content">
+    <div class="view_title">{$content.title}</div>
+        <p>{$content.content}</p>
+    <div class="clear"></div>
+    <div class="viewpage"> {if $previousContent}
+      <a href="{$previousContent->link}" class="prevpage">上一条：<span>{$previousContent->title}</span></a>{/if} 
+      {if $nextContent}<a href="{$nextContent->link}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>{/if}</div>
+    <div class="clear"></div>
+    <div class="viewback"><a href="{$channel.link}"  title="返回列表" class="ui-bar-i" data-ajax="false">返回列表</a></div>
+  </div>
+</div>
+{/if}
+{include file=$footer}

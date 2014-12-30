@@ -1,0 +1,59 @@
+ <div class="clear"></div>
+    <div class="footbg">
+      <div class="footnav">
+        <ul>
+          {if $navChannels}
+{foreach from=$navChannels item=n key=m}
+	{if $m<5}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.shortname}</a></li>
+    {/if}
+	{/foreach}
+	{/if}
+        </ul>
+      </div>
+      <div class="footbar">
+        <div class="search">
+        <form id="search" name="search" method="post" action="?m=site&c=home&a=search&token={$token}" data-ajax="false">
+          <input type="text" class="search_txt" name="SeaStr" id="SeaStr" data-role="none" placeholder="请输入关键词"/>
+          <input type="submit" class="search_but" data-role="none" value="">
+        </form>
+        </div>
+
+      <div class="footer">
+        <ul>
+          <li class="foottel" style="border-left:0;"><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话"><img src="smarty/templates/tpls/{$site.template}/tel.png"  />电话</a></li>
+          <li class="footmess"><a href="sms:{$company.mp}" title="短信"><img src="smarty/templates/tpls/{$site.template}/mess.png"  />短信</a></li>
+          <li class="footmap"><a href="?token={$token}&m=site&c=home&a=map"  title="地图"><img src="smarty/templates/tpls/{$site.template}/map.png"  />地图</a></li>
+          <li class="footshare" style="border-right:0;">
+          <!--分享(-->
+					          <a href="?token={$token}&m=site&c=home&a=share" ><img src="smarty/templates/tpls/{$site.template}/share.png" >分享</a>
+                    <!--)分享-->
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--menu start-->
+{if $showPlugMenu}
+<link rel="stylesheet" href="/tpl/Wap/default/common/css/flash/css/plugmenu.css">
+<div class="plug-div">
+        <div class="plug-phone">
+            <div class="plug-menu themeStyle" style="background:{$site.plugmenucolor}"><span class="close"></span></div> 
+               {foreach from=$plugmenus item=vo key=k}
+                        <div class="themeStyle plug-btn plug-btn{$k+1} close" style="background:{$site.plugmenucolor}">
+							<a  href="{$vo.url}">
+								<span style="background-image: url(/tpl/Wap/default/common/css/flash/images/img/{$vo.name}.png);" ></span>
+							</a>
+						</div>
+                     {/foreach}
+<div class="plug-btn plug-btn5 close"></div>
+                    </div>
+</div>
+<script src="/tpl/Wap/default/common/css/flash/js/zepto.min.js" type="text/javascript"></script>
+<script src="/tpl/Wap/default/common/css/flash/js/plugmenu.js" type="text/javascript"></script>
+{/if}
+<!--menu end-->
+</body>
+</html>

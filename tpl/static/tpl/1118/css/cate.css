@@ -1,0 +1,36 @@
+.box{}
+/*.index{ position: fixed; width:50%; margin: auto; overflow: hidden; height: 60%; top:20%; overflow-y: auto; overflow-x: hidden;}*/
+/*.index a>*{ display: table-cell; vertical-align: middle;}*/
+/*.index a>*:first-child{ width: 100%;}*/
+/*.mod-index{ padding:5px; line-height: 20px; overflow: hidden;}*/
+/*.mod-index b{ padding-right:15px; color: #fff; font-weight: 100;}*/
+/*.mod-index .fa{ color: #ccc;height: 20px; line-height: 20px;}*/
+
+.index{ width: 100%; margin: 100px 0 0 0;  overflow:hidden; position: relative; z-index: 20; text-align: center;}
+.index ul,
+.index li,
+.index a{ width: 100%; display: block; overflow: hidden; list-style: none;}
+.index ul,
+.index li{ height: 100%;}
+.index a{height: 40px; overflow: hidden; float: left; color:#fff;}
+.index .p{ display: inline-block;background: rgba(0,0,0,0.5);width: 80%;padding: 0 5px; height: 30px; line-height: 30px;margin: 5px 0 5px 0;overflow: hidden;color: #fff;}
+/*.index p>*{ display: table-cell; vertical-align: middle; overflow: hidden;}*/
+/*.index p>*:first-child{ width: 100%;}*/
+.mod-index b,
+.mod-index i{ display: inline-block; float: left; text-align: left;}
+.mod-index b{ padding-right:10px; color: #fff; font-weight: 100; height: 30px; overflow: hidden; width: 90%;word-spacing:normal; word-break:normal; word-break:break-all;}
+.mod-index i{ width: 10%; text-align: right;}
+.mod-index .fa{ color: #ccc;height: 30px; line-height: 30px;}
+.index a:nth-of-type(6n+1){}
+.index a:nth-of-type(6n+2){}
+.index a:nth-of-type(6n+3){}
+.index a:nth-of-type(6n+4){}
+.index a:nth-of-type(6n+5){}
+
+.btn-up-1{display: none;}
+.navPop-1 .navPop-btn{ background: #999;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #999;}
+.navPop-wrap>div a{
+    background: #999;
+    color: #fff;
+}

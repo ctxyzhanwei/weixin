@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--注册登录header-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="tpl/Other/default/style/css/frame.css" type="text/css" rel="stylesheet" />
+<link href="tpl/Other/default/style/css/layer_login_v5.css" type="text/css" rel="stylesheet" />
+<link href="tpl/Other/default/style/css/register.css" type="text/css" rel="stylesheet" />
+<link href="tpl/Other/default/style/css/register01.css" type="text/css" rel="stylesheet" />
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script type="text/javascript">
+var $CONFIG = {};
+$CONFIG['lang'] = "zh-cn";
+</script><!--/注册登录header-->
+<title>{pigcms::C('site_name')},<?php echo date('Y',time());?>升级预约报名系统</title>
+</head>
+<body class="B_register B_reg_four ">
+
+	<div class="W_nologin">
+	    <div class="W_header_line"></div>
+    	<div class="W_reg_header W_logo_wave">
+        	<div class="W_nologin_logo_big"></div>
+        </div>
+        <div class="W_nologin_main main_radius_bg">
+                   
+			     <div class="W_reg_info clearfix" id="pl_account_regmail">
+            	<div class="W_reg_form" style="padding-top:40px;font-size:14px;">
+					<img src="conf/images/success.png" width="15">处理进度查询：<font color="red">您的信息我们已经接收，请耐心等待，我们的售后技术人员会与您取得联系</font><p><p/>
+					<form method="post"><input  name="type" type="hidden" class="W_input" value="{pigcms:$Think.get.type}" />                        	
+                    <div class="info_list clearfix">
+                    	<div class="tit"><i>*</i>输入授权域名：</div>
+                    	<div class="inp">
+                    		<input  name="domain" type="text" class="W_input" value="" />                        	
+                    	</div>
+                    </div>
+					 <div class="info_submit clearfix">
+                        <div class="inp">
+                            <button action-type="btn_submit" class="W_btn_big"><span>立即查询</span></button>
+                        </div>
+                    </div>
+					</form>
+                </div>
+                <div class="W_reg_sidebar">
+                	<p class="p1 line">请认真填写</p>
+                    <p class="p2">这些信息会成为</p>
+                    <p class="S_txt2">下次升级的依据</p>
+                    <p class="p3"><span class="number">务必</span>真实</p>
+                    <p class="S_txt2">如果有疑问请联系QQ:</p>
+                    <p class="p3"><span class="number">{pigcms::C('site_qq')}</span></p>
+                    <p class="S_txt2">进行咨询!</p>
+                </div>
+            </div>
+        </div>
+        <!--注册登录footer-->
+        <div class="nologin_footer clearfix">
+	<div class="left_link">
+		<i class="footer_logo"></i>
+		<em class="company_name">{pigcms::C('copyright')}</em>
+        <a href="">皖网文[2011]9368-3号</a>
+        <a href="http://www.miibeian.gov.cn">{pigcms::C('ipc')}</a>
+	</div>
+	<div class="copy">
+		<span>Copyright © 2011-<?php echo date('Y',time());?> {pigcms::C('site_name')}</span>
+			
+			</div>
+
+</div>
+<!-- SUDA_CODE_START -->
+<noscript> <img width="0" height="0" src="style/images/a.gif" border="0" alt="" /> </noscript>
+
+<!-- SUDA_CODE_END -->        <!--/注册登录footer-->
+    </div>
+  
+</body>
+
+</html>

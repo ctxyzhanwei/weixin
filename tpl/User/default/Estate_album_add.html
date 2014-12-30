@@ -1,0 +1,41 @@
+<include file="Public:head"/>
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加楼盘相册</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" >
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>经选择相册名称：</th>
+				  <td>
+					  <select id="poid" name="poid" class="input-medium" schoolSet>
+                            <option value="0">请选择相册</option>
+                                <volist name="photo" id="vo">
+                                    <option value="{pigcms:$vo['id']}" <if condition="$vo['id'] eq $album['poid']">selected="selected"</if>>{pigcms:$vo['title']}</option>
+                                </volist>
+                          </select>
+                     <a href="{pigcms::U('Photo/add',array('token'=>$token,'poid'=>$poid['poid']))}" class="btn"><i class="icon-plus"></i>添加相册</a></td>
+				</tr>
+
+
+				<th>&nbsp;</th>
+				  <if condition="$album['id'] neq ''">
+                                    <input type="hidden" name="id" value="{pigcms:$album['id']}" />
+                                </if>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+
+
+        </div>
+<include file="Public:footer"/>

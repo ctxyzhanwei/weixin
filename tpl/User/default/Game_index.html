@@ -1,0 +1,94 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">微游戏</h4>
+                 
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+  <a href='{pigcms::U('Game/gameLibrary',array('token'=>$token))}' class='btnGrayS vm bigbtn'>从游戏库中添加游戏</a>
+              
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+<TH>活动名称</TH>
+<TH>关键字</TH>
+<TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                  <volist id="list" name="list">
+                <TR>
+              
+                  <TD>{pigcms:$list.title}</TD>
+                  <TD>{pigcms:$list.keyword}</TD> 
+				
+                   <TD class="norightborder">
+				   		<a href="index.php?g=User&m=Game&a=record&token={pigcms:$token}&id={pigcms:$list.id}">查看记录</a>
+                   
+					   	<a href="index.php?g=User&m=Game&a=gameSet&id={pigcms:$list.id}">修改</a>
+					  
+					   	<a href="index.php?g=User&m=Game&a=delGame&id={pigcms:$list.id}">删除</a>
+				   
+				   </TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+           </form> 
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script>
+          </div>
+            
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}</script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>

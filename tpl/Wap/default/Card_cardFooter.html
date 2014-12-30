@@ -1,0 +1,39 @@
+<div style="height:40px;"></div>
+<div class="footermenu">
+    <ul>
+        <li>
+            <a href="/index.php?g=Wap&m=Card&a=index&token={pigcms:$token}&cardid={pigcms:$thisCard.id}&wecha_id={pigcms:$wecha_id}">
+           	<img src="{pigcms::RES}/card/images/home.png">
+            <p>首页</p>
+            </a>
+        </li>
+        
+        <li>
+            <a <php>if(ACTION_NAME=='card'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=card&token={pigcms:$token}&cardid={pigcms:$thisCard.id}&wecha_id={pigcms:$wecha_id}">
+           	<img src="{pigcms::RES}/card/images/c.png">
+            <p>会员卡</p>
+            </a>
+        </li>
+
+        <li>
+            <a <php>if(ACTION_NAME=='notice'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=notice&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&cardid={pigcms:$thisCard.id}">
+           	<img src="{pigcms::RES}/card/images/prev.png">
+            <p>通知</p>
+            </a>
+        </li>
+
+        <li>
+            <a <php>if(ACTION_NAME=='signscore'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=signscore&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&cardid={pigcms:$thisCard.id}">
+           	<img src="{pigcms::RES}/card/images/intergral.png">
+            <p>签到</p>
+            </a>
+        </li>
+
+        <li>
+            <a <php>if(ACTION_NAME=='cards'){</php>class="active"<php>}</php> href="/index.php?g=Wap&m=Card&a=cards&token={pigcms:$token}&cardid={pigcms:$thisCard.id}&wecha_id={pigcms:$wecha_id}">
+           	<img src="{pigcms::RES}/card/images/my.png">
+            <p>会员中心</p>
+            </a>
+        </li>
+    </ul>
+</div>

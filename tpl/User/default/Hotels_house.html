@@ -1,0 +1,106 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">房间管理</h4>
+<div class="clr"></div>
+</div>
+<if condition="$ischild neq 1">
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">此处只显示总店信息，连锁店订单及菜品请进入相应平台进行管理，连锁店登录账号密码及登录地址请在LBS里设置查看</div>
+</if>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab0"><a href="{pigcms::U('Hotels/index', array('token' => $token,'cid' => $cid))}">房间类型管理</a></li>
+<li class="current tabli" id="tab1"><a href="{pigcms::U('Hotels/house', array('token' => $token,'cid' => $cid))}">房间管理</a></li>
+<li class="tabli" id="tab4"><a href="{pigcms::U('Hotels/orders', array('token' => $token,'cid' => $cid))}">订单管理</a></li>
+<if condition="$ischild neq 1" >
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set', array('token'=>$token, 'infotype' => 'Hotels'))}">酒店预订回复配置</a></li>
+</if>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Hotels/image', array('token' => $token,'cid' => $cid))}">酒店图集</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Hotels/houseadd',array('token' => $token,'cid'=>$cid))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加房间</a></div>
+<div class="pageNavigator right"> <a href="{pigcms::U('Hotels/batchadd',array('token' => $token,'cid'=>$cid))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">批量添加房间</a></div>
+<div class="pageNavigator right"> <a href="javascript:void(0);" title="删除" class="btnGrayS vm bigbtn" id="batchdelete">批量删除房间</a>  </div>  
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th class="select"><input type="checkbox" id="selecthouse" />选择</th>
+		<th width="160">房间名称(编号)</th>
+		<th width="160">所属类型</th>
+		<!-- <th width="260">介绍</th> -->
+		<th width="200" class="norightborder">操作</th>
+	</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="tablelist"> 
+	<tr id="tr_{pigcms:$tablelist['id']}">
+		<td><input type="checkbox" name="del_id[]" value="{pigcms:$tablelist['id']}" class="checkitem" /></td>
+		<td>{pigcms:$tablelist.name}</td>
+		<td>{pigcms:$tablelist.sname}</td>
+		<!-- <td>{pigcms:$tablelist.note}</td> -->
+		<td class="norightborder">
+			<a href="{pigcms::U('Hotels/houseadd', array('id' => $tablelist['id'], 'token' => $token,'cid' => $tablelist['cid']))}">修改</a> 
+			<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Hotels/housedel',array('id' => $tablelist['id'], 'token' => $token,'cid' => $tablelist['cid']))}');">删除</a>
+		</td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+	<div class="pageNavigator right">
+		<div class="pages">{pigcms:$page}</div>
+	</div>
+	<div class="clr"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#selecthouse").click(function(){
+		if ($(this).attr('checked')) {
+			$(".checkitem").attr("checked", true);
+		} else {
+			$(".checkitem").attr("checked", false);
+		}
+	});
+	
+	$("#batchdelete").click(function(){
+		var ids = '';
+		var pre = '';
+		$(".checkitem").each(function(i){
+			if ($(this).attr('checked')) {
+				ids += pre + parseInt($(this).val());
+				pre = ','
+			}
+		});
+		if (!confirm('确定批量删除这些房间吗？')) {
+			return false;
+		}
+		$.post("{pigcms::U('Hotels/batchdelete',array('token' => $token,'cid' => $cid))}", {'ids':ids}, function(data){
+			if (data.error_code == false) {
+				$(".checkitem").each(function(i){
+					if ($(this).attr('checked')) {
+						$("#tr_" + $(this).val()).hide();
+					}
+				});
+			}
+		}, 'json');
+	});
+});
+</script>
+<include file="Public:footer"/>

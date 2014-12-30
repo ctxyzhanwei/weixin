@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>资费说明－{pigcms:$f_siteTitle}</title>
+<meta name="keywords" content="微信帮手 微信公众账号 微信公众平台 微信公众账号开发 微信二次开发 微信接口开发 微信托管服务 微信营销 微信公众平台接口开发"/>
+<meta name="description" content="微信公众平台接口开发、托管、营销活动、二次开发"/>
+<include file="$includeHeaderPath"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/style-price.css"/>
+<div class="banner jbanner"></div>
+<div class="main">
+   <div class="pos">&nbsp;&nbsp;&nbsp;当前位置: <a href="{pigcms:$f_siteUrl}">{pigcms:$f_siteName}</a> &raquo; <a href="{pigcms:$f_siteUrl}">资费说明</a></div>
+<div class="abody" style="margin-top:0;padding-top:0">
+             <div class="qtcontent">
+        <div class="document faq" style="margin-top:0;padding-top:0">
+            <div class="normalTitle"><h2>资费</h2></div>
+            <div class="normalContent">
+                <div class="section lastSection">
+                	<table width="100%" border="0" cellpadding="0" cellspacing="0" class=" ListProduct8">
+<thead>
+                			<tr>
+                				<th class="lefttitle"><strong>微信号流量套餐</strong></th>
+                				<pigcmslist array="groups" foreach="g">
+                				<th width="100" <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>>{pigcms:$g.name}</th>
+                				</pigcmslist>
+               				</tr>
+</thead>
+<tbody>
+                			<tr>
+                				<td height="60" valign="middle" class="lefttitle">VIP价格
+                					<a  class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>VIP只是流量套餐！</p>
+</span></a></td>
+<pigcmslist array="prices" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>><span class="price">{pigcms:$g}<p>元 / 月</p></span></td>
+                				</pigcmslist>
+               				</tr>
+               				<tr>
+                				<td height="33" valign="middle" class="lefttitle">允许创建公众号数量
+                					<a  class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>最多允许创建公众号的数量</p>
+</span></a></td>
+<pigcmslist array="wechatNums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>>{pigcms:$g}</td>
+                				</pigcmslist>
+               				</tr>
+                			<tr>
+                				<td height="33" valign="middle" class="lefttitle">自定义图文条数
+                					<a  class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>每个月可以创建的图文回复数量</p>
+</span></a></td>
+<pigcmslist array="diynums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>>{pigcms:$g}</td>
+                				</pigcmslist>
+               				</tr>
+                			<tr>
+                				<td height="33" valign="middle" class="lefttitle">请求数
+                					<a  class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>每个月可以进行多少次回复请求</p>
+</span></a></td>
+<pigcmslist array="connectnums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>>{pigcms:$g}</td>
+                				</pigcmslist>
+               				</tr>
+                		
+               				</tr>
+                            <tr >
+                				<td height="33" class="lefttitle">每月活动创建费次数<span class="tooltips"><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" />
+<span>
+<p><strong>什么是活动创建数量？</strong></p>
+<p>每月允许创建的大转盘等互动活动数量</p>
+</span></span></td>
+                			<pigcmslist array="activitynums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>>{pigcms:$g}</td>
+                				</pigcmslist>
+               				</tr>
+               				<tr >
+                				<td height="33" class="lefttitle">每月会员卡开卡数量<span class="tooltips"><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" />
+<span>
+<p><strong>什么是每月会员卡开卡数量？</strong></p>
+<p>每个月允许创建多少张会员卡提供给会员领取</p>
+</span></span></td>
+                			<pigcmslist array="create_card_nums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>>{pigcms:$g}</td>
+                				</pigcmslist>
+               				</tr>
+                             <tr >
+                				<td height="33" class="lefttitle">自定义版权信息<span class="tooltips"><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" />
+<span>
+<p><strong>自定义版权信息？</strong></p>
+<p>如果不能自定义，将在微网站底部显示页面有:此页面是由【<a href="{pigcms:$f_siteUrl}">{pigcms:$f_siteName}接口平台</a>】系统生成 版权信息</p>
+</span></span></td>
+<pigcmslist array="copyrights" foreach="g">
+<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>><pigcmsif where="$g">可以<else/>不能</pigcmsif></td>
+                				</pigcmslist>
+               				</tr>
+                			<tr >
+                				<td height="50" class="lefttitle"> <span class="red">购买VIP套餐</span><span class="tooltips"><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" />
+<span>
+<p><strong>简单购买流程提醒</strong></p>
+<p></p>
+</span></span></td>
+<pigcmslist array="create_card_nums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>><a class="btnGreens"  href="{pigcms::U('User/Alipay/index',array('gid'=>0))}"><em>立即充值</em></a></td>
+                				</pigcmslist>
+               				</tr>
+                			<tr>
+                				<td height="36" class="lefttitle"><strong>功能列表及套餐对比</strong></td>
+                				<pigcmslist array="create_card_nums" foreach="g">
+                				<td <pigcmsif where="$i eq $count"> class="norightborder"</pigcmsif>></td>
+                				</pigcmslist>
+               				</tr>
+               				<pigcmslist foreach="f" array="funs">
+                			<tr>
+                				<td class="lefttitle" height="33" valign="middle">
+									<a href="###">{pigcms:$f.name}</a> 
+									<a class="tooltips" href="###">
+										<img src="{pigcms::RES}/images/price_help.png" align="absmiddle" />
+										<span>
+										<p>{pigcms:$f.info}</p>
+										</span>
+									</a>
+								</td>
+								<?php 
+									if ($f['access']){
+										$i=1;
+										foreach ($f['access'] as $v){
+								?>
+								
+								<td class="<?php if ($v){echo 'checked';}else{echo 'error';}?><?php if ($i==$count){echo ' norightborder';}?>">&nbsp;</td>
+								 <?php 
+										$i++;
+										}
+									}
+								?>
+                			</tr>
+                				</pigcmslist>
+</tbody>
+               			</table>
+                </div>
+            <div class="section lastSection">
+<p>有疑问的请QQ{pigcms:$f_qq}提问。</p>
+               		</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+<script type="text/javascript">try{Dd('webpage_6').className='left_menu_on';}catch(e){}</script>
+<include file="$includeFooterPath"/>

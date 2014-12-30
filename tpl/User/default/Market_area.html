@@ -1,0 +1,87 @@
+<include file="Public:head"/>
+
+<!-- <script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script> -->
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+
+
+<div class="content">
+  <include file="Market:menu"/>
+  <div class="cLineB">
+    <h4>商圈区域管理</h4>
+    <a href="{pigcms::U('Market/area_set',array('token'=>$token))}"  class="right  btnGrayS vm bigbtn" style="margin-top:-30px">
+      <img class="vm" src="./tpl/User/default/common/images/icons/add.png">
+      添加 区域
+    </a>
+</div>
+
+<div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr> 
+  
+  <th style=" width:120px;">区域名称</th>
+  <th style=" width:60px;">经营范围</th>
+  <th style=" width:120px;">介绍</th>
+  <th style=" width:50px;">设置时间</th>
+  <th style=" width:40px;">显示排序</th>
+  <th style=" width:40px;">是否使用</th> 
+  <th style=" width:80px;">操作</th>
+</tr>
+</thead>
+<volist name="area" id="item">
+          <tbody><tr>
+              <td>
+                <div class="cateimg" style="padding:0 5px;"><img src="{pigcms:$item.area_pic}" class="cateimg_small"></div>
+                {pigcms:$item.area_name}
+              </td>
+              <td>{pigcms:$item.manage}</td>
+              <td>{pigcms:$item.area_intro|htmlspecialchars_decode}</td>
+              <td>{pigcms:$item.add_time|date="Y-m-d",###}</td>
+              <td>{pigcms:$item.sort}</td>
+              <td><if condition="$item.is_use eq 1">使用中<else />未使用</if></td>          
+              <td class="norightborder">
+              <a href="{pigcms::U('Market/area_set',array('area_id'=>$item['area_id']))}" >修改</a> &nbsp;|&nbsp; 
+              <a href="{pigcms::U('Market/area_del',array('area_id'=>$item['area_id']))}" onclick="return(confirm('确定要删除吗？'))" >删除</a> </td>
+            </tr></tbody>
+</volist>
+            </table>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages"> {pigcms:$page}</div>
+    </div>
+  </div>
+</div>
+
+<include file="Public:footer"/>

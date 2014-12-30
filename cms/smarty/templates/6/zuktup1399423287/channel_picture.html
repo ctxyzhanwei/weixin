@@ -1,0 +1,31 @@
+{include file=$header}
+<div class="clear"></div>
+<div data-role="content" class="content">
+
+    <div class="clear"></div>
+    <div class="proul">
+      <ul class="ui-grid-a">
+      {if $contents}
+			{foreach from=$contents item=a key=k}
+                      <li class="ui-block-a">
+          <div><a href="{$a.link}" data-ajax="false" title="{$a.title}"><img src="{$a.thumb}"  alt="{$a.title}" />
+            <p class="ui-bar-g">{$a.title}</p>
+            </a></div>
+        </li>
+        {/foreach}
+		  {/if}
+          
+          
+               
+                  </ul>
+    </div>
+    <div class="clear"></div>
+	    <div class="pages ui-grid-b">
+      
+	    <div class="ui-block-a"><span class="left ui-bar-h"><img src="smarty/templates/tpls/{$site.template}/left.png" tppabs="images/left.png" alt="上一页"/></span></div>
+        <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+        <div class="ui-block-c"><a href="{$nextPageLink}" tppabs="product.php?&pageno=2" class="right ui-bar-h" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/right.png" tppabs="images/right.png" alt="下一页"/></a></div>
+    </div>
+	  </div>
+
+{include file=$footer}

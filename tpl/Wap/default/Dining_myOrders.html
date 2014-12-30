@@ -1,0 +1,90 @@
+<include file="Dining:header"/>
+<body>
+		
+<div data-role="page" data-add-back-btn="true">	
+	<style>
+		@media ( min-width: 20em ) {
+			/* Show the table header rows and set all cells to display: table-cell */
+			.breakpoint td,
+			.breakpoint th,
+			.breakpoint tbody th,
+			.breakpoint tbody td,
+			.breakpoint thead td,
+			.breakpoint thead th {
+				display: table-cell;
+				margin: 0;
+				text-align: center;
+				vertical-align: middle;
+			}
+			/* Hide the labels in each cell */
+			.breakpoint td .ui-table-cell-label,
+			.breakpoint th .ui-table-cell-label {
+				display: none;
+			}
+			
+			.breakpoint .tag {
+				width: 55px;
+			}
+			
+			.breakpoint .time {
+				width: 65px;
+			}
+			
+			.breakpoint .status {
+				width: 55px;
+			}
+			.breakpoint .info {
+				width: 50px;
+			}
+		}
+		
+		#orderhistory-layout {
+			margin: 0;
+			padding: 0;
+			
+			font-family: '微软雅黑', '宋体', sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			text-shadow: none;
+		}
+	</style>
+	
+	<div data-role="header" data-position="fixed" data-id="shop_header" data-tap-toggle="false">
+		<h1>我的订单</h1>
+	</div>
+	
+	<div data-role="content" id="orderhistory-layout">
+		<table data-role="table" id="movie-table" data-mode="reflow" class="ui-body-c ui-shadow table-stroke breakpoint" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="a">
+	     <thead>
+	       <tr class="ui-bar-b">
+	         <th class="tag">订单编号</th>
+	         <th class="time">下单时间</th>
+	         <th class="status">订单状态</th>
+	         <th class="info">订单详情</th>
+	       </tr>
+	     </thead>
+	    	 <tbody>
+         		 <volist name="orders" id="orderlist"> 
+	     		     <tr>
+				    	<td>{pigcms:$orderlist.id}</td>
+				     	<td>{pigcms:$orderlist.time|date="y-m-d h:i:s",###}</td>
+				    	<td> <if condition="($orderlist.handled eq 1)"><font color="#00FF00">已审核</font><else/><font color="#FF0000">未审核</font></if></td>
+				    	<td><a href="/index.php?g=Wap&m=Dining&a=myOrderInfo&token={pigcms:$_GET['token']}&id={pigcms:$orderlist.id}&wecha_id={pigcms:$_GET['wecha_id']}"  data-role="button" data-inline="true" data-mini="true" data-theme="e">详情</a></td>
+				    </tr>
+                </volist> 
+	     	 </tbody>
+	   </table>
+	</div>
+    	<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-id="shop_footer">
+		<div data-role="navbar">
+			<ul>
+           		<li><a href="/index.php?g=Wap&m=Dining&a=index&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="home">首页</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=lists&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="search" >选购</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=order&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="grid" >下单</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=myOrders&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="info" class="ui-btn-active ui-state-persist">个人中心</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

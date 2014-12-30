@@ -1,0 +1,44 @@
+<include file="Frame:header"/>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/lang/cn.js"> </script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/formcheck.js"> </script>
+<link rel="stylesheet" href="tpl/Agent/Common/js/formCheck/theme/grey/formcheck.css" type="text/css" media="screen" />
+<link href="tpl/Agent/Common/style/calendar.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/calendar.js"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/plugins/iframeTools.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function(){
+	new FormCheck('myform');
+});
+</script>
+
+<div class="columntitle">设置友情链接</div>
+   <form method="post" action="?g=Agent&m=Site&a=setLink" id="myform">
+            <table class="addTable">
+					
+				<tr>
+					<td height="48" align="right">网站名称：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="name" class="colorblur" size="45" value="{pigcms:$info.name}" />
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right">链接地址：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="url" class="colorblur" size="45" value="{pigcms:$info.url}" />
+					</td>
+				</tr>
+			
+          <tr>
+            <td class="addName"></td>
+            <td>
+            <input type="hidden" value="1" name="status" />
+            <input type="hidden" value="{pigcms:$info.id}" name="id" />
+            <input type="hidden" value="{pigcms:$thisAgent.id}" name="agentid" />
+            <input type="submit" name="doSubmit" value="提交" class="button"/></td>
+          </tr>
+         
+        </table>
+        <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="referer" />
+</form>
+<include file="Frame:footer"/>

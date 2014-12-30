@@ -1,0 +1,17 @@
+                      1975579611O:8:"stdClass":10:{s:2:"id";s:3:"163";s:4:"name";s:12:"文字列表";s:4:"path";s:54:"@/smarty/templates/1/ba2179fea4f78e4/channel_text.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"21";s:4:"time";s:10:"1401952378";s:4:"code";s:543:"{include file=$header}
+	    <ul class="indexnews">
+               {if $contents}
+			{foreach from=$contents item=c}
+		        <li><p><a href="{$c.link}" title="{$c.title}">{$c.title}</a></p></li>
+			{/foreach}
+			{/if}
+            </ul>
+    {if $currentPage&&$totalPage}
+    <div class="pages">
+			<a class="pre-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="next-left" href="{$nextPageLink}">&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	{/if}
+{include file=$footer}";}

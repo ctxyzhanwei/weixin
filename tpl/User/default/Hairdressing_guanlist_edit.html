@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> 微信公众平台源码,微信机器人源码,微信自动回复源码 PigCms多用户微信营销系统</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/style_2_common.css?BPm" />
+<script src="./tpl/User/default/common/js/common.js" type="text/javascript"></script>
+<link href="./tpl/User/default/common/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="nv_member">
+<div style="line-height:200%;padding:10px 20px;">
+
+<strong>预约人：</strong>{pigcms:$userinfo['truename']}<br>
+<strong>预约套餐：</strong>{pigcms:$userinfo['choose']}<br>
+<strong>电话：</strong>{pigcms:$userinfo['tel']}<br>
+<strong>备注：</strong>{pigcms:$userinfo['info']}<br>
+<strong>下单时间：</strong>{pigcms:$userinfo['booktime']|date="Y年m月d日  H:i:s",###}点<br>
+<strong>预约时间：</strong>{pigcms:$userinfo['dateline']} <br>
+<if condition="$ok eq 1">
+<strong><font  color='red'>修改成功</font> </strong>
+
+<elseif condition="$ok eq 2"/>
+<strong><font  color='red'>修改失败</font> </strong>
+</if>
+</div>
+
+<form class="form" method="post" id="form" action="">
+    <div class="msgWrap bgfc">
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+       <tr>
+        <th><span class="red">*</span>订单状态：</th>
+        <td>
+        <select id="remate" name="remate" class="input-medium" style="width:80px">
+             <option value="0" <if condition="$userinfo['remate'] eq 0">selected="selected"</if>>待回复</option>
+            <option value="1" <if condition="$userinfo['remate'] eq 1">selected="selected"</if>>确认</option>
+             <option value="2" <if condition="$userinfo['remate'] eq 2">selected="selected"</if>>拒绝</option>
+
+        </select>
+
+        </td>
+       </tr>
+       <tr>
+        <th><span class="red">*</span>客服备注：</th>
+        <td>
+        <textarea class="px" id="kfinfo" name="kfinfo" style="width:400px; height:100px">{pigcms:$userinfo['kfinfo']}</textarea>
+        </td>
+       </tr>
+       <tr>
+       <th>&nbsp;</th>
+       <td>
+      <input type="hidden" name="id" value="{pigcms:$userinfo['id']}" />
+      <input type="hidden" name="wecha_id" value="{pigcms:$userinfo['wecha_id']}" />
+      <input type="hidden" name="token" value="{pigcms:$userinfo['token']}" />
+       <button type="submit" name="button" class="btnGreen">保存</button> </td>
+       </tr>
+      </tbody>
+     </table>
+     </div>
+</body>
+</html>

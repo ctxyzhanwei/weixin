@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<link rel="Shortcut Icon" href="favicon.ico" />
+<link rel="Bookmark Icon" href="favicon.ico" />
+<link href="logo.png" sizes="114x114" rel="apple-touch-icon">
+<meta name="Author" content="024" />
+<title>{$metaTitle}</title>
+<meta name="keywords" content="{$metaKeywords}" />
+<meta name="description" content="{$metaDescription}"/>
+<LINK href="smarty/templates/tpls/gangse/jquery.mobile.structure-1.2.0.min.css?{$rand}" rel=stylesheet>
+<LINK href="{$cssdir}/style.css?{$rand}" rel=stylesheet>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" ></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/search.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/tianlan/banner.js"></script>
+</head>
+<body>
+{if !$ismap}
+<div data-role="page" data-theme="f">
+<div class="wrap">
+{/if}
+<div class="header" data-role="header">
+  <div class="logo"><a href="{$homeurl}" title=""><img src="{$site.logourl}" height="35" tppabs="/3g/images/logo.png" alt=""/></a></div>
+  <div class="menu_but"><img src="smarty/templates/tpls/{$site.template}/menu.png" tppabs="/3g/images/menu.png" alt="导航按钮"/></div>
+  <div class="clear"></div>
+  <div class="nav"> <img src="smarty/templates/tpls/{$site.template}/arrow_top.png" tppabs="/3g/images/arrow_top.png" alt="上箭头"/>
+    <ul>
+     {if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+    </ul>
+  </div>
+</div>
+{if !$ismap}
+<div class="search">
+ <form method="post" action="?m=site&c=home&a=search&token={$token}">
+    <input type="text" class="search_txt" name="SeaStr" id="SeaStr" data-role="none" placeholder="请输入关键词"/>
+    <input type="submit" class="search_but" data-role="none" value="">
+  </form>
+</div>
+{/if}

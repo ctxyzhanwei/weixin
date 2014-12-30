@@ -1,0 +1,52 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>活动设置</h4>
+    <a href="{pigcms::U('Punish/item',array('token'=>$token,'id'=>$pid))}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<TBODY>
+<TR>
+	<th valign="top">选项名称：</th>
+	<td>
+		<textarea  class="px" id="info" name="name"  style="width:400px; height:100px" >{pigcms:$set.name}</textarea>
+ 	</td>
+</TR>
+<tr style="display:none;">
+	<th>是否显示</th>
+	<td>
+		<input type="radio" name="is_show" value="1"  <if condition="$set.is_show neq '0'">checked</if>>显示
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="is_show" value="0"  <if condition="$set.is_show eq '0'">checked</if>>隐藏
+	</td>
+</tr>
+
+<TR>
+<th>&nbsp;</th>
+<td>
+	<input type="hidden" class="px" value="{pigcms:$set.id}" name="id" style="width:400px" >
+	<input type="hidden" class="px" value="{pigcms:$set.pid}" name="pid" style="width:400px" >
+	<button type="submit" class="btnGreen" >保存</button>　
+	<a href=""  class="btnGray vm">取消</a>　
+</td>
+<TR>
+
+</TBODY>
+</TABLE>
+  </div>
+</form>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

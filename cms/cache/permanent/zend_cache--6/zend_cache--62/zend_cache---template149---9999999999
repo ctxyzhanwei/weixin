@@ -1,0 +1,37 @@
+                     -1615634049O:8:"stdClass":10:{s:2:"id";s:3:"149";s:4:"name";s:12:"文字列表";s:4:"path";s:55:"@/smarty/templates/8/gohywy1401870694/channel_text.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"18";s:4:"time";s:10:"1401872709";s:4:"code";s:1134:"{include file=$header}
+<!--top end--><!--news-->
+<br><br>
+<div class="news">
+    <ul>
+     {if $contents}
+			{foreach from=$contents item=c}
+        <li><a href="{$c.link}" tppabs="html/news_view-11.html" title="{$c.title}"><p>{$c.title}</p></a></li>
+         {/foreach}
+		
+		{/if}
+        
+  
+           
+    </ul>
+</div>
+<div class="sub">
+    <div class="clear"></div>
+    	<div class="pages">
+		
+				<a href="javascript:void(0);" class="next-left" title="上一页">&lt;</a>
+				<span>{$currentPage}/{$totalPage}</span>
+				<a href="{$nextPageLink}"  class="pre-left" title="下一页">&gt;</a>
+				</div></div>
+<!--news end-->
+<div class="button">
+	<ul>
+    	<li><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}"  class="tel" title="电话"></a></li>
+        <li class="middle_li"><a href="sms:{$company.mp}" class="talk" title="短信"></a></li>
+        <li><a href="?token={$token}&m=site&c=home&a=map" tppabs="html/map.html" title="地图" class="map"></a></li>
+    </ul>
+</div>
+<div class="clear"></div>
+<!--button end-->
+
+<!--bottom-->
+{include file=$footer}";}

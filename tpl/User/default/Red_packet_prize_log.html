@@ -1,0 +1,85 @@
+<include file="Public:head"/>
+
+<div class="content">
+<div class="cLineB">
+<h4 class="left">红包领取记录</h4>
+<a href="javascript:history.go(-1);" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="searchbar right">
+<form method="post" action="">
+<select name="is_reward">
+	<option value="">请选择状态</option>
+	<option value="1">未兑奖</option>
+	<!--<option value="2">申请中</option>-->
+	<option value="3">已兑奖</option>
+</select>
+<input type="text" id="msgSearchInput" class="txt" placeholder="请输入微信昵称" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>   
+	<th width="50">微信昵称</th>                              
+	<th width="80">红包名称</th>
+	<th width="50">红包价值</th>
+	<!--<th width="80">兑奖码</th>-->
+ 	<th width="50">是否兑奖</th>
+	<th width="80"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<pigcmslist array="list" foreach="list">
+<tr>
+	<td>{pigcms:$list.wxname}</td>
+	<td>{pigcms:$list.prize_name}</td>
+	<td>{pigcms:$list.worth}</td>
+	<!--<td>{pigcms:$list.code}</td>-->
+	<td>
+		<if condition="$list.is_reward eq '2'">
+			<font color="">已兑奖</font>
+		<elseif  condition="$list.is_reward eq '1'"/>
+			待确认
+		<else/>
+			未兑奖
+		</if>
+	</td>
+	<td class="norightborder">
+	<!--
+	<if condition="$list.is_reward neq '0'">
+		<a href="javascript:void(0);"  onclick="show_forms({pigcms:$list.id})" style="color:#31a8e7;">兑奖信息</a>
+		|
+	</if>
+	-->
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Red_packet/log_del',array('token'=>$token,'id'=>$list['id'],'packet_id'=>$packet_id))}');">删除</a>
+    </td>
+</tr>
+
+</pigcmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+
+<script>
+function show_forms(id){
+    art.dialog.open('{pigcms::U('Red_packet/show_forms',array('token'=>$token,'packet_id'=>$packet_id))}&id='+id,{lock:false,title:'兑奖信息查看',width:500,height:300,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<include file="Public:footer"/>

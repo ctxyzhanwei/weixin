@@ -1,0 +1,47 @@
+<include file="Public:head"/>
+<include file="ServiceUser:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">微信多客服设置</h4>
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p>微信客服是指微信公众平台自带的多客服系统，只有认证服务号才有此功能。<br>微信客服启用方法，必须满足两个条件：1、有客服处于登录状态；2、下面的人工客服状态处于打开中。这样系统在回答不上来的时候就会切换到客服模式。在客服模式下系统将不再做任何自动回复。<br>如需彻底关闭微信客服：必须让客服全部下线，并且在下面关掉客服状态</p>
+    </div>
+</div>
+          
+       
+          <div class="msgWrap">
+          <div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+
+<TR>
+  <TH valign="top">开启微信人工客服：</TH>
+  <TD><label for="radio3"><input id="radio3" class="radio" type="radio" name="transfer_customer_service" value="1"  <eq name="info.transfer_customer_service" value="1">checked="checked"</eq> /> 开启</label>&nbsp;&nbsp;<label for="radio4"><input class="radio" id="radio4" type="radio" name="transfer_customer_service" value="0" <eq name="info.transfer_customer_service" value="0">checked="checked"</eq> /> 关闭</label></TD>
+</TR>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

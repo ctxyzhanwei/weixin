@@ -1,0 +1,49 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background-color:#f3f2de; font-size:14px; }
+body  .mainmenu { margin:6px; }
+body  .mainmenu li {   margin-top:10px;  overflow:hidden; position:relative; border-radius:6px; }
+body  .mainmenu li a { display:block;  color:#FFF; }
+body  .mainmenu li a img { width:55%; height: auto; float:left; min-height:80px}
+body  .mainmenu li a p{ height:80px; width:42%; padding-left:10px; height:100%;  position:absolute; right:-1px;  color:#FFF}
+body  .mainmenu li a p b{ display:block; font-size:20px;  font-weight:normal; margin-top:7px; line-height:30px; text-align:left; text-overflow:ellipsis; white-space: nowrap; overflow:hidden}
+body  .mainmenu li a p span { display:block; padding-right:5px; text-align:right; line-height:20px; font-size:12px; text-align:left ;text-overflow:ellipsis; white-space: nowrap; overflow:hidden}
+body  .mainmenu li a p em{ display:block; width:20px; height:20px; margin-top:3px;background:url(../images/PIX.png) no-repeat; background-size: 100%;}
+
+body  .mainmenu li:nth-child(3n+1) a p{ background-color:#f57067}
+body  .mainmenu li:nth-child(3n+2) a p{ background-color:#ef6297}
+body  .mainmenu li:nth-child(3n+3) a p{ background-color:#62acdd}
+
+body  .mainmenu li:nth-child(3n+1) {background-color:#f57067; box-shadow:2px 5px 0 #DD574E; border:1px solid #DD574E}
+body  .mainmenu li:nth-child(3n+2) {background-color:#ef6297;box-shadow:2px 5px 0 #D6447B; border:1px solid #D6447B}
+body  .mainmenu li:nth-child(3n+3) {background-color:#62acdd;box-shadow:2px 5px 0 #408FC4; border:1px solid #408FC4}

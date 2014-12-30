@@ -1,0 +1,65 @@
+<include file="Store:header"/>
+<if condition="$ordersCount neq 0">
+	<volist name="orders" id="o">
+		<ul class="m-uc-order-li">
+			<span info_link="{pigcms::U('Store/myDetail',array('token'=>$token,'cartid'=>$o['id'],'wecha_id'=>$wecha_id, 'twid' => $twid))}" onclick="order_jump($(this))">
+				<li class="p-li">
+					<volist name="o['productInfo']" id="row">
+						<a href="{pigcms::U('Store/product',array('token'=>$token,'id'=>$row['id'],'wecha_id'=>$wecha_id, 'twid' => $twid))}">
+						<img title="{pigcms:$row.name}" src="{pigcms:$row.logourl}" width="45" height="45">
+						</a>
+					</volist>
+				</li>
+				<!-- <li>订单编号：<a href="{pigcms::U('Store/product',array('token'=>$token,'id'=>$row['id'],'wecha_id'=>$wecha_id))}">{pigcms:$o.orderid}</a></li> -->
+				<if condition="$alipayConfig['open'] eq 1">
+				<li>支付状态：<php>if($o['paid']){echo '<span style="color:green">已付款</span>';}else{echo '<span style="color:red">未付款</span>';}</php><i class="t">{pigcms:$o.time|date="Y-m-d H:i:s",###}</i></li>
+				</if>
+				<li>订单状态：<php>if($o['sent']){echo '<span style="color:green">已发货</span>';}else{echo '<span style="color:red">未发货</span>';}</php><i class="t">{pigcms:$o.time|date="Y-m-d H:i:s",###}</i></li>
+				<li>订单总额：￥{pigcms:$o.price}
+					<if condition="($o['paid'] eq 0) AND ($alipayConfig['open'] eq 1)">
+					<a href="{pigcms::U('Store/orderCart', array('token' => $token, 'wecha_id' => $wecha_id,'orid' => $o['id'], 'twid' => $twid))}" class="pay-btn">立即付款</a>
+					</if>
+				</li>
+			</span>
+		</ul>
+	</volist>
+	<php> if($totalpage > 1) {</php>
+		<div class="m-page uc-orderlist">
+			<if condition="$page eq 1">
+				<div class="pg-pre pg-grey"><a href="javascript:void(0);">上一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-pre"><a href="{pigcms::U('Store/my',array('token'=>$token,'page'=>intval($page - 1),'wecha_id'=>$wecha_id, 'twid' => $twid))}">上一页<i><em></em></i></a></div>
+			</if>
+			<div class="pg-num">{pigcms:$page}/{pigcms:$totalpage}</div>
+			<if condition="$page eq $totalpage">
+				<div class="pg-next pg-grey"><a href="javascript:void(0);">下一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-next"><a href="{pigcms::U('Store/my',array('token'=>$token,'page'=>intval($page + 1),'wecha_id'=>$wecha_id, 'twid' => $twid))}">下一页<i><em></em></i></a></div>
+			</if>
+		</div>
+	<php>}else{}</php>
+<else/>
+	<ul style="margin: 15px 10px;border-radius: 4px;line-height: 1.4em;font-size: 16px;border: 1px solid #ddd;background: #f5f5f5;padding: 10px 10px 6px;">
+		<span><li class="p-li" style="padding:10px; text-align:center;">没有订单</li></span>
+	</ul>
+</if>
+<script type="text/javascript">
+function order_jump(obj) {
+	location.href = $(obj).attr('info_link');
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

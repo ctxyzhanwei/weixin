@@ -1,0 +1,39 @@
+   <script type="text/javascript">
+window.shareData = {
+            "moduleName":"School",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$info['head_url']}",
+            "sendFriendLink": "{pigcms::C('site_url')}{pigcms::U('School/index',array('token'=>$token))}",
+            "tTitle": "{pigcms:$info['title']}",
+            "tContent": "{pigcms:$info['info']|html_entity_decode|strip_tags|mb_substr=0,89,'utf-8'}..."
+        };
+</script>
+{pigcms:$shareScript}
+
+    <div id="ui-header" >
+        <div class="fixed">
+            <a class="ui-title" id="popmenu">选择分类</a> <a class="ui-btn-left_pre" href="{pigcms::U('School/index',array('token'=>$token,'wecha_id'=>$wecha_id))}">
+            </a><a class="ui-btn-right" href=""></a>
+        </div>
+    </div>
+    <div id="overlay"></div>
+<div id="win" >
+<ul class="dropdown">
+<volist name="cat" id="cat">
+<li><a href="{pigcms:$cat.url}"><span>{pigcms:$cat.name}</span></a></li>
+</volist>
+<!--
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu1_id']))}"><span>{pigcms:$info['menu1']|default='学校简介'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu2_id'],'type'=>'assess'))}"><span>{pigcms:$info['menu2']|default='教师风采'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu3_id']))}"><span>{pigcms:$info['menu3']|default='同学天地'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu4_id'],'type'=>'yyclass'))}"><span>{pigcms:$info['menu4']|default='课程介绍'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'school'))}"><span>{pigcms:$info['menu5']|default='食谱安排'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'cid'=>$info['menu6_id']))}"><span>{pigcms:$info['menu6']|default='校园公告'}</span></a></li>
+<li><a href="{pigcms::U('School/qresults',array('token'=>$token,'wecha_id'=>$wecha_id))}"><span>{pigcms:$info['menu7']|default='成绩查询'}</span></a></li>
+<li><a href="{pigcms::U('Reply/index',array('token'=>$token,'wecha_id'=>$wecha_id))}"><span>{pigcms:$info['menu8']|default='家长建议'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'course'))}"><span>{pigcms:$info['menu9']|default='课程预约'}</span></a></li>
+<li><a href="{pigcms::U('School/public_list',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>'curriculum'))}"><span>{pigcms:$info['menu10']|default='课程安排'}</span></a></li>
+-->
+<div class="clr"></div>
+ </ul>
+</div>

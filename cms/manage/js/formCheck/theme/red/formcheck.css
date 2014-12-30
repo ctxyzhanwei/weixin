@@ -1,0 +1,92 @@
+/* FormCheck tipbox */
+
+/* tipbox :
+	table : 
+		tl		: top left
+		t		: top
+		tr		: top right
+		l 		: left
+		r		: right
+		bl		: bottom left
+		b		: bottom (with mark)
+		br		: bottom right
+		c		: center
+	components : 
+		a.close	: close button
+		err		: errors div
+		p		: error line
+*/
+
+.fc-tbx .tl{
+	background: url('img/tl.png') no-repeat;
+}
+.fc-tbx .t{
+	background: url('img/t.png') repeat-x;
+	height: 16px;
+}
+.fc-tbx .tr{
+	background: url('img/tr.png') no-repeat;
+}
+.fc-tbx .l{
+	background: url('img/l.png') repeat-y;
+	width : 16px;
+}
+.fc-tbx .r{
+	background: url('img/r.png') repeat-y;
+	width: 16px;
+}
+.fc-tbx .bl{
+	background: url('img/bl.png') no-repeat;
+}
+.fc-tbx .b{
+	background: url('img/b.png') no-repeat;
+	height: 25px;
+}
+.fc-tbx .br{
+	background: url('img/br.png') no-repeat;
+}
+.fc-tbx .c{
+	background: url('img/c.png') repeat;
+}
+.fc-tbx a.close {
+	float: right;
+	background: url('img/close.png') no-repeat;
+	position: relative;
+	margin-left: 5px;
+	display: block;
+	width: 10px;
+	height: 10px;
+	cursor: pointer;
+}
+.fc-tbx .err {
+	float: left;
+}
+.fc-tbx p {
+	width : auto;
+	display: block;
+	font-size: 10px;
+	font-family: tahoma, verdana, "sans-serif";
+	margin : 0;
+	padding : 0;
+	border : 0;
+	color : #FFF;
+}
+
+.ajax_loader {
+	background : url('img/ajax-loader.gif') no-repeat center;
+	width : 200px;
+	height : 150px;
+}
+
+
+/* FormCheck validation div */
+
+.fc-error {
+	border : 1px solid #888;
+	margin-top : 5px;
+	background-color : #EAEAEA;
+}
+.fc-error p {
+	margin : 5px;
+	color : #A00;
+}

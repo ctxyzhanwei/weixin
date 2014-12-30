@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<style>
+    #myClas ul li {
+    margin-left: 5px;
+    }
+
+    .tooltips span {
+display: none;
+}
+    .tooltips:hover span {
+        text-align:left;
+        display: block;
+        position: absolute;
+        margin:0 auto;
+        width: 310px;
+        border: 1px solid #CCC;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #333;
+    }
+</style>
+
+<div class="tab" id="myClas">
+<ul>
+<li class="<if condition="(ACTION_NAME EQ 'index') OR (ACTION_NAME EQ 'index_add')">current</if> tabli" id="tab0"><a href="{pigcms::U('Recipe/index',array('token'=>$token,'type'=>'default'))}">食谱列表</a></li>
+</ul>
+</div>

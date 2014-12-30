@@ -1,0 +1,117 @@
+<include file="Public:head"/>  
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">已融合接口数量(0) 条</h4>
+                  <div class="searchbar right">  <form method="get" action="index.php">
+                  <input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="keyz" value="">
+                  
+                  <input type="hidden" name="ac" value="mp3list">
+                  <input type="hidden" name="id" value="9878">
+                  <input type="hidden" name="wxid" value="gh_423dwjkewad">
+                 
+                  <input type="submit" value="搜索" id="msgSearchBtn" href="javascript:;" class="btnGrayS" title="搜索">
+                  </form>
+                  </div>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+				<a href="{pigcms::U('Api/add')}" title="新增接口" class="btnGrayS vm bigbtn"><img src="/tpl/User/default/common/images/api.png" class="vm">新增接口</a>　
+
+              
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="index.php?ac=apilist&amp;id=9878&amp;wxid=gh_423dwjkewad" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th class="select">选择</th>
+					<th class="keywords">关键词</th>
+					<th class="keywords">接口地址</th>
+					<th class="time">接口类型</th>
+					<th class="time">状态</th>
+
+					<th class="time">时间</th>
+					<th class="edit norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <script>
+				function delete_confirm(e) 
+					{
+						if (event.srcElement.outerText == "删除") 
+						{
+							event.returnValue = confirm("删除是不可恢复的，你确认要删除吗？");
+						}
+					}
+			  </script>
+			  <pigcmslist array="api" foreach="api">
+                <tr>
+                  <td>  <input type="checkbox" name="del_id[]" value="3266" class="checkitem"></td>
+                  <td>{pigcms:$api.keyword}</td>
+                  <td>{pigcms:$api.url}</td>
+                  <td><if condition="$api['type'] eq 1">标准xml<else/>文本格式</if></td>
+					<td><if condition="$api['status'] eq 1">启用<else/>关闭</if></td>
+                    <td>{pigcms:$api.time|date='Y-m-d',###}</td>
+                   <td class="norightborder"> 
+					<if condition="$api['status'] eq 1">
+						<a href="{pigcms::U('Api/setInc',array('id'=>$api['id'],'type'=>2))}" title="">关闭</a>
+					<else/>
+						
+						<a href="{pigcms::U('Api/setInc',array('id'=>$api['id'],'type'=>1))}" title="">启用</a> 
+					</if>
+					<a href="{pigcms::U('Api/edit',array('id'=>$api['id']))}" title="">编辑</a> 
+					<a href="{pigcms::U('Api/del',array('id'=>$api['id']))}">删除</a></td>
+				</tr>
+				</pigcmslist>
+                <tr>
+					<td colspan="7" class="edit norightborder"> 
+						<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'del_id')">
+						<label for="checkallBottom">全选</label>
+						<input type="radio" name="optype" checked="checked" value="1">删除
+						<a  class="btnGreens" ><span>确定</span></a>
+					</td>
+                </tr>
+              </tbody>
+            </table>
+           </form> 
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script>
+          </div>
+            
+
+
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  
+ 

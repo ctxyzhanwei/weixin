@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link href="jquery.mobile.structure-1.2.0.min.css?{$rand}" tppabs="3g/css/jquery.mobile.structure-1.2.0.min.css?{$rand}" rel="stylesheet" type="text/css"/> 
+<link href="style.css?{$rand}" tppabs="3g/css/style.css?{$rand}" rel="stylesheet" type="text/css"/>
+<title>地图_魔码网络技术有限公司3G站</title>
+<meta name="keywords" content="魔码网络技术有限公司3G站" />
+<meta name="description" content="魔码网络技术有限公司3G站"/>
+<style type="text/css">
+body, html,#allmap {width: 100%;height: 100%;overflow: hidden;hidden;margin:0;}
+#l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+#r-result{height:100%;width:20%;float:left;}
+</style>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/api-v=1.4.js" tppabs="http://api.map.baidu.com/api?v=1.4"></script>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" tppabs="3g/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" tppabs="3g/js/nav.js"></script>
+</head>
+
+<body>
+<div class="headerview" data-role="header">
+  <div class="headerviewbg">
+    <div class="logo"><a href="index.html" tppabs="3g/html/index.html" title="魔码网络" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/logo.png" tppabs="3g/images/logo.png" alt="魔码网络"/></a></div>
+    <div class="search"><img src="smarty/templates/tpls/{$site.template}/search.png" tppabs="3g/images/search.png" alt="搜索按钮"/> </div>
+  </div>
+</div>
+<div class="menu">
+  <ul class="ui-grid-d">
+    <li class="ui-block-a"><a href="about.html" tppabs="3g/html/about.html" data-ajax="false">关于我们</a></li>
+    <li class="ui-block-b"><a href="news.html" tppabs="3g/html/news.html" data-ajax="false">最新资讯</a></li>
+    <li class="ui-block-c"><a href="product.html" tppabs="3g/html/product.html" data-ajax="false">景观展示</a></li>
+    <li class="ui-block-d"><a href="case.html" tppabs="3g/html/case.html" data-ajax="false">成功案例</a></li>
+    <li class="ui-block-e"><a href="contact.html" tppabs="3g/html/contact.html" data-ajax="false">联系我们</a></li>
+  </ul>
+</div>
+<div class="searchmain">
+  <div class="search_t"><img src="smarty/templates/tpls/{$site.template}/search_t.jpg" tppabs="3g/images/search_t.jpg" alt="作品检索"/></div>
+  <form method="post" action="?m=site&c=home&a=search&token={$token}">
+    <input type="text" class="search_txt" name="SeaStr" id="SeaStr" data-role="none" placeholder="请输入关键词"/>
+    <input type="submit" class="search_but" data-role="none" value="">
+  </form>
+</div>
+<div class="clear"></div>
+<div id="allmap"></div>
+<script type="text/javascript">
+window.onload = function (){
+var map = new BMap.Map("allmap");
+map.centerAndZoom(new BMap.Point(123.433463, 41.768523), 18);
+var marker1 = new BMap.Marker(new BMap.Point(123.433463, 41.768523));  // 创建标注
+map.addOverlay(marker1);              // 将标注添加到地图中
+marker1.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+//创建信息窗口
+var infoWindow1 = new BMap.InfoWindow("市和平区三好街100号华强广场22/23/24层");
+marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+}
+</script>
+<div class="clear"></div>
+<div class="footer" style=" position:absolute; bottom:0; position:fixed" data-role="footer" data-position="fixed">
+  <ul>
+    <li class="foothome"><a href="index.html" tppabs="3g/html/index.html" title="网站首页" class="ui-bar-h" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/home.png" tppabs="3g/images/home.png" /></a></li>
+    <li class="foottel"><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone=96877" title="电话" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/tel.png" tppabs="3g/images/tel.png" /></a></li>
+    <li class="footmail"><a href="sms:15804067964" title="短信" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/mess.png" tppabs="3g/images/mess.png" /></a></li>
+    <li class="footmap"><a href="map.html" tppabs="3g/html/map.html" title="地图" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/map.png" tppabs="3g/images/map.png" /></a></li>
+  </ul>
+  <div class="footbanner"><img src="smarty/templates/tpls/{$site.template}/footbanner.png" tppabs="3g/images/footbanner.png" alt="感动你我的生活空间" /></div>
+</div>
+</div>
+</body></html>

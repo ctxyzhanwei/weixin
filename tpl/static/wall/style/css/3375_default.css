@@ -1,0 +1,456 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/**********************************************************************************************
+						通用部分
+***********************************************************************************************/
+body{}
+.boxQR{ width:0; height:0; float:right; overflow:hidden; text-align:center;}
+.boxQR img{ display:block; margin:0 auto; vertical-align:middle;}
+#boxMain{ margin:0 auto; width:1024px; height:767px; overflow:hidden; position:relative;}
+/*顶部*/
+#boxTop{ width:1024px; height:100px; padding:10px; width:1004px; height:80px; background:url(img/main_bg_4-3.png) left top no-repeat;}
+#boxTop ul{width:100%; overflow:hidden;}
+#boxTop ul li{ float:left; height:80px; overflow:hidden;}
+#boxTop ul li#boxTop_logo{}
+
+#boxTop ul li#boxTop_title{ margin-left:30px; line-height:80px;}
+#boxTop ul li#boxTop_title p{ line-height:80px;}
+
+#boxTop ul li#boxTop_scroll{ margin:0 10px 0 20px;}
+#boxTop ul li#boxTop_scroll #boxTop_scroll_begin, #boxTop ul li#boxTop_scroll #boxTop_scroll_end{display:inline; font-size:60px; line-height:80px;}
+#boxTop ul li#boxTop_scroll b{ font-size:60px; line-height:80px;}
+#boxTop ul li#boxTop_scroll #boxTop_scroll_begin{ text-align:center;}
+#boxTop ul li#boxTop_time{ width:140px;}
+#boxTop ul li#boxTop_time .qr{ height:40px; text-align:center;}
+#boxTop ul li#boxTop_time .qr dl{ float:right; margin-right:14px; width:40px; height:40px; overflow:hidden; position:relative;}
+#boxTop ul li#boxTop_time .qr dl dt{ width:40px; height:40px; overflow:hidden; line-height:14px;}
+#boxTop ul li#boxTop_time .qr dl dt img{}
+#boxTop ul li#boxTop_time .qr dl dd{ width:40px; font-size:12px; line-height:40px; position:absolute; left:0; bottom:0; text-align:center;}
+#boxTop ul li#boxTop_time .qr .qr1{}
+#boxTop ul li#boxTop_time .qr .qr2{}
+#boxTop ul li#boxTop_time #nowTime{ text-align:right;}
+/*#boxTop table{}
+#boxTop td{ height:80px; line-height:80px; vertical-align:middle;}
+#boxTop .switching{}
+#boxTop .switching ul{ height:80px; overflow:hidden;}
+#boxTop .switching li{ height:80px; float:left; text-align:center;}
+
+#boxTop .logo{}
+#boxTop .logo img{ max-width:300px; max-height:80px; overflow:hidden;}
+#boxTop .title{ width:100%; text-align:center; height:80px;}
+#boxTop .title p{ height:80px; overflow:hidden; text-align:center; line-height:80px;}
+#boxTop .time{ width:140px; text-align:center;}
+#boxTop .follow{}
+#boxTop .follow p{ height:80px; overflow:hidden;}
+#boxTop .time .qr{ height:40px; text-align:center;}
+#boxTop .time .qr dl{ float:right; margin-right:14px; width:40px; height:40px; overflow:hidden; position:relative;}
+#boxTop .time .qr dl dt{ width:40px; height:40px; overflow:hidden; line-height:14px;}
+#boxTop .time .qr dl dt img{}
+#boxTop .time .qr dl dd{ width:40px; font-size:12px; line-height:40px; position:absolute; left:0; bottom:0; text-align:center;}
+#boxTop .time .qr .qr1{}
+#boxTop .time .qr .qr2{}
+#boxTop .time p{ line-height:34px;}
+#boxTop #boxCount{ height:80px; overflow:hidden; font-size:20px; line-height:40px;}*/
+/*内容部分*/
+#boxContent{ width:1024px; height:667px; overflow:hidden; background:url(img/main_bg_4-3.png) left bottom no-repeat;}
+#boxContent .boxitem{ width:1024px; height:667px; overflow:hidden;}
+/*控制部分*/
+#boxControl{ width:1024px; height:10px; overflow:hidden; position:absolute; left:0; bottom:0; z-index:9999;}
+#boxControl .bcbox{ border-radius:10px 10px 0 0; padding:1px 20px 1px; width:16px; height:8px; overflow:hidden; margin:0 auto;
+background:rgba(0, 150, 255, 0.7) none repeat scroll 0 0 !important;filter:Alpha(opacity=70);background:#067f00;}
+#boxControl .item{ border-radius:10px 10px 0 0; padding:5px 10px; height:20px; overflow:hidden;
+background:rgba(0, 150, 255, 0.7) none repeat scroll 0 0 !important;filter:Alpha(opacity=70);background:#067f00;}
+#boxControl .item #boxControl_ul{ float:left; overflow:hidden;}
+#boxControl .item #boxControl_ul li{ float:left; margin-right:12px; height:20px; font-size:12px; line-height:20px;}
+#boxControl .item #boxControl_ul li img{ vertical-align:middle; margin-right:2px;}
+#boxControl .item #boxControl_click{ float:left; margin-left:30px;}
+#boxControl .item #boxControl_click li{ float:left; height:20px; font-size:12px; line-height:20px;}
+#boxControl .item #boxControl_click #click_change{ margin:0 10px;}
+#boxControl .item .fun{ float:right; font-size:12px; line-height:20px; font-weight:normal;}
+/*水印部分*/
+#boxDemo{ position:absolute; left:132px; top:233px; background:url(img/demo_watermark.png) no-repeat; width:760px; height:300px; filter:alpha(opacity=60);-moz-opacity:0.6;opacity:0.6;}
+
+/**********************************************************************************************
+						开幕墙
+***********************************************************************************************/
+#kmq{ padding:10px 20px 20px; width:984px; height:636px; overflow:hidden; z-index:-100;}
+
+/**********************************************************************************************
+						规则墙
+***********************************************************************************************/
+#gzq{ padding:10px 20px 20px; width:984px; height:636px; overflow:hidden; line-height:65px;}
+
+/**********************************************************************************************
+						签到墙
+***********************************************************************************************/
+#qdq{ margin:10px 22px 20px; width:980px; height:636px; overflow:hidden; position:relative;}
+#qdq #qdq_list{ position:relative;}
+#qdq #qdq_list li{ position:absolute; left:390px; top:238px; display:none;}
+#qdq #qdq_list li dl{ position:relative; width:132px; height:132px; overflow:hidden;}
+#qdq #qdq_list li dt{ position:relative;}
+#qdq #qdq_list li dt img{ width:132px; height:132px;}
+#qdq #qdq_list li dd{ width:132px; height:40px; position:absolute; left:0; bottom:0; text-align:center; background:#000000;filter:alpha(opacity=60);-moz-opacity:0.6;opacity:0.6; text-shadow:none;}
+#qdq #qdq_list li dd img{ vertical-align:middle;}
+#qdq #qdq_new{ position:absolute;}
+
+/**********************************************************************************************
+						嘉宾展示
+***********************************************************************************************/
+#jbzs{ margin-left:10px; margin-right:10px; margin-bottom:10px; width:1004px; height:656px; overflow:hidden; position:relative;}
+#jbzs #jbzs_list{}
+#jbzs #jbzs_list li{ float:left; margin-top:14px; margin-left:16px; width:230px; height:200px; overflow:hidden; position:relative;}
+#jbzs #jbzs_list li .avatar{}
+#jbzs #jbzs_list li .avatar dt{ width:230px; height:200px; overflow:hidden;}
+#jbzs #jbzs_list li .avatar dt img{ width:230px;}
+#jbzs #jbzs_list li .avatar dd{ width:230px; height:60px; overflow:hidden; left:0; bottom:0; position:absolute; text-align:center;background:#000000;filter:alpha(opacity=60);-moz-opacity:0.6;opacity:0.6; text-shadow:none;}
+
+#jbzs #jbzs_show{ margin:14px; padding:20px; width:932px; height:588px; background:#00a8df; clear:both; display:none; position:absolute; left:0; top:0; overflow:hidden; z-index:999;}
+/* 有图片 */
+#jbzs #jbzs_show.img dl{ float:left; width:450px;}
+#jbzs #jbzs_show.img dl dt{ width:450px; max-height:490px; overflow:hidden;}
+#jbzs #jbzs_show.img dl dt img{ width:450px;}
+#jbzs #jbzs_show.img dl dd{ width:450px; text-align:center; margin-top:10px;}
+#jbzs #jbzs_show.img p{ float:right; width:450px; height:584px; line-height:53px; overflow:hidden;}
+
+/**********************************************************************************************
+						大屏幕
+***********************************************************************************************/
+/*右侧有内容*/
+#dpm_right{ padding:10px 20px 20px; width:984px; height:636px; overflow:hidden;}
+#dpm_right .dpm_left{ float:left; width:554px; height:636px; overflow:hidden;}
+#dpm_right .dpm_left .dpm_list{}
+#dpm_right .dpm_left .dpm_list li{ padding:15px; width:524px; height:606px; overflow:hidden; margin-bottom:13px; background:url(img/3375_4-3_10-10.png);}
+#dpm_right .dpm_left .dpm_list li .fl{ width:524px;}
+#dpm_right .dpm_left .dpm_list li .fl dt{ float:left; width:130px; height:130px; overflow:hidden; position:relative;}
+#dpm_right .dpm_left .dpm_list li .fl dt img{ width:130px; height:130px;}
+#dpm_right .dpm_left .dpm_list li .fl dd{ float:right; width:380px;}
+#dpm_right .dpm_left .dpm_list li .fl dd b{ display:block; width:380px; height:90px; line-height:90px; overflow:hidden; display:block;}
+#dpm_right .dpm_left .dpm_list li .fl dd p{ text-align:right;}
+#dpm_right .dpm_left .dpm_list li .fl dd p img{ vertical-align:middle;}
+#dpm_right .dpm_left .dpm_list li .fr{ width:524px; height:450px; overflow:hidden; padding-top:15px;}
+/*带图片样式*/
+#dpm_right .dpm_left .dpm_list li.img{ padding:10px 15px; height:606px;}
+#dpm_right .dpm_left .dpm_list li.img .fr{ line-height:44px; height:470px; padding-top:5px;}
+#dpm_right .dpm_left .dpm_list li.img .fr .wximg{ display:block; margin:10px auto 5px; max-height:320px; max-width:520px; overflow:hidden;}
+
+#dpm_right .dpm_right{ float:right; width:410px;}
+#dpm_right .dpm_right .dpm_custom{ height:350px; line-height:44px; overflow:hidden;}
+#dpm_right .dpm_right .dpm_qrbox{ padding-top:40px;}
+#dpm_right .dpm_right .dpm_qrbox dl{ float:left; height:240px;}
+#dpm_right .dpm_right .dpm_qrbox dt{ height:200px;}
+#dpm_right .dpm_right .dpm_qrbox dt img{ width:200px; height:200px;}
+#dpm_right .dpm_right .dpm_qrbox dd{ text-align:center; height:40px;}
+
+/*右侧无内容*/
+#dpm{ padding:10px 20px 20px; width:984px; height:636px; overflow:hidden; position:relative;}
+#dpm .dpm_left{ width:984px; height:636px; overflow:hidden;}
+#dpm .dpm_left .dpm_list{ height:auto; overflow:hidden;}
+#dpm .dpm_left .dpm_list li{ padding:15px; padding-left:0; width:969px; height:172px; overflow:hidden; margin-top:0; 
+margin-bottom:15px;/*正常写法普遍支持*/ margin-bottom:0px\0;/*IE8支持*/ *margin-bottom:0px;/*IE7支持*/
+background:url(img/3375_4-3_dpm_bg.png);}
+#dpm .dpm_left .dpm_list li .fl{ width:130px;}
+#dpm .dpm_left .dpm_list li .fl dt{ width:130px; height:130px; overflow:hidden; position:relative;}
+#dpm .dpm_left .dpm_list li .fl dt img{ width:130px; height:130px;}
+#dpm .dpm_left .dpm_list li .fl dd{ height:40px; overflow:hidden; width:130px; text-align:center;}
+#dpm .dpm_left .dpm_list li .fr{ width:810px;}
+#dpm .dpm_left .dpm_list li .fr dt{}
+#dpm .dpm_left .dpm_list li .fr dd{ height:172px; line-height:56px; overflow:hidden;}
+#dpm .dpm_left .dpm_list li .fr dd img{ vertical-align:middle;}
+/*含有图片样式*/
+#dpm .dpm_left .dpm_list li.img{ height:606px; background:url(img/3375_4-3_dpm_img_bg.png);}
+#dpm .dpm_left .dpm_list li.img .fr dd{ height:606px; overflow:hidden; text-align:center;}
+#dpm .dpm_left .dpm_list li.img .fr dd .picture{ display:block; margin:0 auto; max-height:400px; max-width:810px; overflow:hidden; margin-bottom:10px;}
+
+/*右侧*/
+#dpm .dpm_left .dpm_list li#right{ padding:15px; padding-right:0; background:url(img/3375_4-3_dpm_bg-right.png);}
+#dpm .dpm_left .dpm_list li#right .fl{ float:right;}
+#dpm .dpm_left .dpm_list li#right .fr{ float:left;}
+#dpm .dpm_left .dpm_list li#right .fr dd{ text-align:right;}
+/*含有图片样式*/
+#dpm .dpm_left .dpm_list li#right.img{ background:url(img/3375_4-3_dpm_img_bg-right.png);}
+
+/*占数*/
+#dpm .dpm_left .dpm_list li.none{ padding:0; height:0; background:none; margin:0; display:none;}
+/*占位*/
+#dpm .dpm_left .dpm_list li.block{ padding:15px; height:172px; background:none; margin-bottom:15px;}
+
+/**********************************************************************************************
+						抽奖
+***********************************************************************************************/
+#cj{ margin-left:10px; margin-right:10px; margin-bottom:10px; width:1004px; height:657px; overflow:hidden;}
+/*奖项*
+#cj #cj_awards{ padding:20px; width:964px; height:617px;}
+#cj #cj_awards td{ text-align:center;}
+#cj #cj_awards .jxjp td{padding-bottom:30px;}
+#cj #cj_awards .jx td{ background:#ffffff; padding:10px; color:#00aeff; }
+#cj #cj_awards .jp{}
+#cj #cj_awards .jpname{}
+#cj #cj_awards td.fg{ font-size:1px; line-height:1px; width:20px; background:none;}
+/*抽奖*
+#cj #cj_lottery{ padding:20px; width:964px; height:617px;}
+#cj #cj_lottery .cj_awards{}
+#cj #cj_lottery .cj_awards .cj_tit{ float:left; writing-mode:tb-rl; background:#ffffff; text-align:center; padding:10px; width:38px; color:#00aeff; text-shadow:none;}
+#cj #cj_lottery .cj_awards .cj_list{ float:right; width:894px; overflow:hidden;}
+#cj #cj_lottery .cj_awards .cj_list dl{ float:left; margin-left:20px; margin-bottom:15px; width:128px; height:128px; position:relative;}
+#cj #cj_lottery .cj_awards .cj_list dl dt{ width:128px; height:128px; overflow:hidden; position:relative;}
+#cj #cj_lottery .cj_awards .cj_list dl dt img{ width:128px; height:128px; overflow:hidden;}
+#cj #cj_lottery .cj_awards .cj_list dl dd{ text-align:center; width:128px; height:40px; color:#00aeff; overflow:hidden; background:#000000; filter:alpha(opacity=70);-moz-opacity:0.7;opacity:0.7; vertical-align:middle; position:absolute; left:0; bottom:0; text-shadow:none;}
+#cj #cj_lottery .cj_awards .cj_list dl dd img{ vertical-align:-4px;}
+#cj #cj_lottery .cj_lottery_show{ margin-left:90px; border:10px #FFF double; padding:20px; width:802px; height:128px; overflow:hidden;}
+#cj #cj_lottery .cj_lottery_show .cj_lottery_box{width:802px; height:128px; overflow:hidden;}
+#cj #cj_lottery .cj_lottery_show dl{ height:128px; overflow:hidden;}
+#cj #cj_lottery .cj_lottery_show dl dt{ float:left; width:128px; position:relative;}
+#cj #cj_lottery .cj_lottery_show dl dt img{ width:128px; height:128px;}
+#cj #cj_lottery .cj_lottery_show dl dd{ float:right; width:660px;}
+#cj #cj_lottery .cj_lottery_show dl dd b{ float:left; width:660px; height:70px; overflow:hidden; display:block; }
+#cj #cj_lottery .cj_lottery_show dl dd p{ float:left; width:660px;}
+#cj #cj_lottery .cj_lottery_show dl dd p img{ vertical-align:-4px; width:30px; height:30px;}
+
+/****************新抽奖样式************************************************/
+/*
+	大奖品模式
+*/
+#cj_scroll{ padding:20px; padding-top:10px; width:984px; height:637px;/* width:1024px; height:667px; overflow:hidden; */}
+#cj_scroll #cj_show{ width:984px; height:624px; overflow:hidden;}
+	/* 奖项 */
+#cj_scroll #cj_awards_box{ width:984px; height:624px; overflow:hidden;}
+#cj_scroll #cj_awards_box li{ height:624px; overflow:hidden;}
+#cj_scroll #cj_awards_box li table th{ background:#ffffff; color:#00aeff; padding:10px;}
+#cj_scroll #cj_awards_box li table td img{ max-height:420px; max-width:980px; overflow:hidden;}
+#cj_scroll #cj_awards_box li table .img{ padding:20px;}
+	/* 抽奖 */
+#cj_scroll #cj_lottery_box{ width:984px; height:624px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_list{ height:460px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li{ height:460px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li table th{ text-align:center; background:#ffffff; color:#00aeff; padding:10px;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li table th b{ color:#00aeff;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li .list{ padding:10px 0; height:360px; overflow:hidden;}
+	/* 中奖区域 */
+#cj_scroll #cj_lottery_box #cj_lottery_list li .imgbox dl{ width:132px; margin-top:10px; overflow:hidden; float:left;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li .imgbox dl dt{ width:132px; height:132px; overflow:hidden; position:relative;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li .imgbox dl dt img{ width:132px; max-height:132px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li .imgbox dl dd{ width:132px; height:24px; overflow:hidden; font-size:20px; line-height:24px; text-align:center;}
+#cj_scroll #cj_lottery_box #cj_lottery_list li .imgbox p{ font-size:1px; height:1px; width:10px; float:left;}
+
+#cj_scroll #cj_lottery_box #cj_lottery_scroll{ margin-top:14px; padding:20px; height:110px; overflow:hidden; background:#1570A6; border-radius:10px;}
+	/*统计区*/
+#cj_scroll #cj_lottery_box #cj_lottery_scroll #cj_lottery_count{ font-size:20px; line-height:30px; float:left; padding-top:20px; width:86px; height:90px; overflow:hidden; text-align:center;}
+#cj_scroll #cj_lottery_box #cj_lottery_scroll #cj_lottery_count b{ font-size:30px; line-height:34px;}
+	/*滚动区*/
+#cj_scroll #cj_lottery_box #cj_lottery_scroll ul{ float:left; margin-left:10px; width:634px; height:110px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_scroll ul li{ height:110px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_scroll ul li dt{ float:left; position:relative;}
+#cj_scroll #cj_lottery_box #cj_lottery_scroll ul li dt img{ width:110px; height:110px; overflow:hidden;}
+#cj_scroll #cj_lottery_box #cj_lottery_scroll ul li dd{ float:left; margin-left:20px; width:504px; overflow:hidden; font-size:60px; line-height:110px;}
+	/*抽奖按钮*/
+#cj_scroll #cj_lottery_box #cj_lottery_scroll #cj_lottery_button{ float:right; width:200px; height:110px; overflow:hidden; line-height:110px; background:#eb4100; border-radius:10px; text-align:center; vertical-align:middle;}
+	/*清除按钮*/
+#cj_scroll #cj_lottery_box #cj_lottery_scroll .cj_remove{ float:right;}
+#cj_scroll #cj_lottery_box #cj_lottery_scroll .cj_remove input{ font-size:10px;}
+	/* 控制部分 */
+#cj_scroll #cj_control_box{ height:20px; overflow:hidden; font-size:14px; line-height:20px;}
+#cj_scroll #cj_control_box label{ font-size:14px; line-height:20px;}
+#cj_scroll #cj_control_box th{ font-weight:normal;}
+#cj_scroll #cj_control_box th input{ margin-left:10px;}
+#cj_scroll #cj_control_box td input{ margin-left:10px;}
+/*
+	奖品、奖项混合式
+*/
+#cj_scroll.choujiang_2 #cj_lottery_box{}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list{}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li{}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .img{ width:250px;}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .img img{ display:block; max-height:260px; margin:10px auto 0; max-width:250px;}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .img p{ text-align:center;}
+	/* 中奖区域 */
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .list{ width:734px;}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .list .imgbox{ overflow:auto;}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .list .imgbox td{ display:block; height:360px; overflow:auto;}
+#cj_scroll.choujiang_2 #cj_lottery_box #cj_lottery_list li .list .imgbox dl{ width:132px; margin:15px 3px 0; overflow:hidden; float:left;}
+/*
+	无奖品模式
+*/
+#cj_scroll.choujiang_3 #cj_lottery_box{}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list{}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li{}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .img{ width:0px; display:none;}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .img img{ display:block; max-height:260px; margin:10px auto 0; max-width:250px;}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .img p{ text-align:center;}
+	/* 中奖区域 */
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .list{ width:984px;}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .list .imgbox{ overflow:auto;}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .list .imgbox td{ display:block; height:360px; overflow:auto;}
+#cj_scroll.choujiang_3 #cj_lottery_box #cj_lottery_list li .list .imgbox dl{ width:132px; margin:15px 3px 0; overflow:hidden; float:left;}
+
+/**********************************************************************************************
+						对对碰
+***********************************************************************************************/
+#ddp{ padding:20px 0px; width:1024px; height:627px;}
+#ddp #ddp_list{ height:459px; width:1004px; overflow:hidden;}
+#ddp .ddp_list{ height:459px; width:1024px; overflow:auto;}
+#ddp .ddp_list li{ float:left; margin-left:27px; margin-bottom:25px; width:296px; height:128px; overflow:hidden;}
+#ddp .ddp_list li.ml19{ margin-left:19px;}
+#ddp .ddp_list li dl{ float:left; margin-bottom:15px; width:128px; height:128px; position:relative;}
+#ddp .ddp_list li dl dt{ width:128px; height:128px; overflow:hidden;}
+#ddp .ddp_list li dl dt img{ width:128px; height:128px; overflow:hidden;}
+#ddp .ddp_list li dl dd{ text-align:center; width:128px; height:40px; overflow:hidden; background:#000000; filter:alpha(opacity=70);-moz-opacity:0.7;opacity:0.7; vertical-align:middle; position:absolute; left:0; bottom:0; text-shadow:none;}
+#ddp .ddp_list li dl dd img{ vertical-align:-4px;}
+#ddp .ddp_list li #num, #ddp .ddp_list li #num_not{ float:left; width:40px; height:128px; overflow:hidden; font-size:30px; line-height:128px; text-align:center; background:url(img/ddp_bg.png) center no-repeat;}
+#ddp .ddp_list li #num_not{ background:url(img/ddp_bg_not.png) center no-repeat; line-height:212px;}
+
+/* 滚动栏 */
+/*#ddp .ddp_kind_show{ border:10px #FFF double; margin-left:19px; padding:20px; width:924px; height:128px; overflow:hidden; background:url(img/ddp_bg.png) 467px center no-repeat;}*/
+#ddp .ddp_kind_show{ margin:10px 20px 0; padding:20px 10px 25px; width:964px; height:110px; overflow:hidden; background:#1570A6; border-radius:10px; position:relative;}
+#ddp .ddp_kind_show dl{ width:422px; height:110px;}
+#ddp .ddp_kind_show dl dt{width:110px; height:110px; overflow:hidden;}
+#ddp .ddp_kind_show dl dt img{ width:110px; height:110px;}
+#ddp .ddp_kind_show dl dd{ width:300px; overflow:hidden; font-size:60px; line-height:110px;}
+#ddp .ddp_kind_show .ddp_kind_man{ float:left; width:422px; height:110px; overflow:hidden; text-align:right;}
+#ddp .ddp_kind_show .ddp_kind_man dt{ float:right; position:relative;}
+#ddp .ddp_kind_show .ddp_kind_man dd{ float:left; text-align:right;}
+#ddp .ddp_kind_show .ddp_kind_ms{ float:right; width:422px; height:110px; overflow:hidden; text-align:left;}
+#ddp .ddp_kind_show .ddp_kind_ms dl{}
+#ddp .ddp_kind_show .ddp_kind_ms dt{ float:left; position:relative;}
+#ddp .ddp_kind_show .ddp_kind_ms dd{ float:right; text-align:left;}
+#ddp .ddp_count{ position:absolute; bottom:0px; left:0;}
+#ddp .ddp_count td, #ddp .ddp_count th{ font-size:12px; font-weight:normal; line-height:14px;}
+#ddp .ddp_count_left{ padding-right:12px; text-align:right; font-size:12px; font-weight:normal; line-height:14px; }
+#ddp .ddp_count_right{ padding-left:12px; text-align:left; font-size:12px; font-weight:normal; line-height:14px; }
+
+	/*碰按钮*/
+#ddp .ddp_kind_show #ddp_kind_button{ float:left; margin:0 10px; width:100px; height:110px; overflow:hidden; line-height:110px; background:#eb4100; border-radius:10px; text-align:center; vertical-align:middle;}
+
+/**********************************************************************************************
+						微评分
+***********************************************************************************************/
+#wpf{ padding:10px 10px 0px; width:1004px; height:656px;}
+/* 内容部分 */
+#wpf_content{ height:626px; overflow:hidden;}
+	/* 菜单 */
+#wpf_menu{ height:626px;}
+		/*文字模式*/
+#wpf_menu.text{ width:994px; overflow:auto;}
+#wpf_menu.text dl{ margin-left:20px; margin-top:10px; margin-bottom:10px; height:60px; overflow:hidden;}
+#wpf_menu.text dl dt, #wpf_menu.text dl dd{ float:left;}
+#wpf_menu.text dl dt{ width:100px; height:60px; text-align:center; color:#00aeff; background:url(img/wpf_item_bg.png) left center;}
+#wpf_menu.text dl dd{}
+#wpf_menu.text .wpf_menu_name{ text-align:center;}
+		/*图文模式*/
+#wpf_menu.img{ overflow:auto;}
+	/* 单项 */
+#wpf_list{ margin:0 10px; width:984px; height:626px; position:relative;}
+#wpf_list #wpf_previous_item{ width:24px; height:50px; background:url(img/wpf-previous-item.png) no-repeat; position:absolute; z-index:9999; left:0; top:285px;}
+#wpf_list #wpf_next_item{ width:24px; height:50px; background:url(img/wpf-next-item.png) no-repeat; position:absolute; z-index:9999; right:0; top:285px;}
+#wpf_list .wpf_list_item{ float:left; width:984px; height:626px; overflow:hidden; text-shadow:0 0 0;}
+#wpf_list .total, #wpf_list .rule{ width:984px; height:626px; overflow:hidden;}
+#wpf_list .total{}
+#wpf_list .total dt{ margin:20px auto 0; width:500px; height:500px; text-align:center; font-size:100px; line-height:500px; background:#4899ff; border-radius:500px; border:1px #fff solid;}
+#wpf_list .total dd{ margin-top:10px; text-align:center; font-size:60px; line-height:70px;}
+#wpf_list .rule{ float:left; width:0;}
+#wpf_list .desc dt{ text-align:center; background:#ffffff; color:#00aeff; padding:10px;}
+#wpf_list .desc dd{ margin-top:10px;}
+#wpf_list .desc dd .text{ height:420px; line-height:61px; overflow:hidden;}
+#wpf_list .desc dd .cmd{ font-size:44px;}
+
+#wpf_total{ margin:0 10px; width:984px; height:626px;}
+#wpf_total p{ display:block; height:626px; overflow:hidden;}
+#wpf_total #timing, #wpf_total #chart{}
+#wpf_total #timing{ padding-top:60px;}
+#wpf_total #timing b{ display:block; margin:0 auto 0; width:500px; height:500px; text-align:center; font-size:200px; line-height:500px; background:#4899ff; border-radius:500px; border:1px #fff solid;}
+#wpf_total #chart{ display:none;}
+	/* 图表 */
+#wpf_list, #wpf_list b, #wpf_list p, #wpf_list font, #wpf_list span, #wpf_list samp{ text-shadow:0 0 0 #000000;}
+
+/* 控制栏 */
+#wpf_control{ padding:0 20px; height:20px; overflow:hidden; font-size:14px; font-weight:normal; line-height:20px;}
+#wpf_control div, #wpf_control a, #wpf_control label, #wpf_control input{ font-size:14px; font-weight:normal; line-height:20px;}
+
+/**********************************************************************************************
+						微调查
+***********************************************************************************************/
+#wdc{ padding:20px 10px 30px; width:1004px; height:617px; overflow:hidden;}
+#wdc .wdc_list{ margin-left:10px; width:994px; height:617px;}
+#wdc .wdc_list dl{ margin-bottom:29px; overflow:hidden;}
+#wdc .wdc_list dt{ height:50px; overflow:hidden; }
+#wdc .wdc_list dd{height:46px; overflow:hidden; }
+#wdc .wdc_list dd p{ float:left; margin-right:10px; margin-top:4px; width:238px; height:46px; line-height:30px; position:relative; background:#F90; overflow:hidden;}
+#wdc .wdc_list dd p b{ position:absolute; display:block; padding-left:5px; height:46px; line-height:46px; width:232px;}
+#wdc .wdc_list dd p span{ position:absolute; display:block; height:50px; width:200px; background:#900;}
+
+
+
+/**********************************************************************************************
+						提问墙
+***********************************************************************************************/
+#twq{ padding:10px 20px 20px; width:984px; height:636px; overflow:auto; position:relative;}
+#twq .twq_left{ width:984px; height:636px; overflow:hidden;}
+#twq .twq_left .twq_list{ padding-right:20px; width:984px; height:636px; overflow:auto;}
+#twq .twq_left .twq_list li{ width:984px; min-height:150px; max-height:360px; overflow:hidden; margin-top:0; position:relative; 
+margin-bottom:15px;/*正常写法普遍支持*/ margin-bottom:0px\0;/*IE8支持*/ *margin-bottom:0px;/*IE7支持*/}
+#twq .twq_left .twq_list li .close{ position:absolute; top:0; right:0;}
+#twq .twq_left .twq_list li .fl{ width:110px;}
+#twq .twq_left .twq_list li .fl dt{ width:110px; height:110px; overflow:hidden; position:relative;}
+#twq .twq_left .twq_list li .fl dt img{ width:110px; height:110px;}
+#twq .twq_left .twq_list li .fl dd{ height:40px; overflow:hidden; width:110px; text-align:center;}
+#twq .twq_left .twq_list li .fr{ width:874px;}
+#twq .twq_left .twq_list li .fr .bg-header, #twq .twq_left .twq_list li .fr .bg-footer{ margin-left:15px; font-size:1px; line-height:1px; height:10px; overflow:hidden;}
+#twq .twq_left .twq_list li .fr .bg-header{ background:url(img/3375_4-3_twq_bg-header.png) no-repeat;}
+#twq .twq_left .twq_list li .fr .bg-footer{ background:url(img/3375_4-3_twq_bg-footer.png) no-repeat;}
+#twq .twq_left .twq_list li .fr dt{ margin-left:15px;}
+#twq .twq_left .twq_list li .fr dd{ min-height:120px; overflow:hidden; background:url(img/3375_4-3_twq_bg-center.png) repeat-y; padding:0 4px 10px 19px;}
+#twq .twq_left .twq_list li .fr dd img{ vertical-align:middle;}
+/*含有图片样式*/
+#twq .twq_left .twq_list li.img{ height:606px; background:url(img/3375_4-3_twq_img_bg.png);}
+#twq .twq_left .twq_list li.img .fr dd{ height:606px; overflow:hidden; text-align:center;}
+#twq .twq_left .twq_list li.img .fr dd .picture{ display:block; margin:0 auto; max-height:400px; max-width:810px; overflow:hidden; margin-bottom:10px;}
+
+/*右侧*/
+#twq .twq_left .twq_list li#right{ padding:15px; padding-right:0; background:url(img/3375_4-3_twq_bg-right.png);}
+#twq .twq_left .twq_list li#right .fl{ float:right;}
+#twq .twq_left .twq_list li#right .fr{ float:left;}
+#twq .twq_left .twq_list li#right .fr dd{ text-align:right;}
+/*含有图片样式*/
+#twq .twq_left .twq_list li#right.img{ background:url(img/3375_4-3_twq_img_bg-right.png);}
+
+/*占数*/
+#twq .twq_left .twq_list li.none{ padding:0; height:0; background:none; margin:0; display:none;}
+/*占位*/
+#twq .twq_left .twq_list li.block{ padding:15px; height:172px; background:none; margin-bottom:15px;}
+
+
+/**********************************************************************************************
+						数据报表
+***********************************************************************************************/
+#sjbb{ padding:10px 20px 20px; width:984px; height:636px; overflow:hidden;}
+#sjbb_list{ height:626px; overflow:hidden;}
+#sjbb_list li{ height:626px; overflow:hidden;}
+/* 信息 */
+#sjbb_0{}
+#sjbb_0 dd{ text-align:center; font-size:50px; line-height:80px;}
+#sjbb_0_quantity{ float:left; margin-left:50px; width:338px;}
+#sjbb_0_quantity dl{ margin:80px auto 0;}
+#sjbb_0_quantity dt{ width:338px; height:338px; font-size:100px; line-height:338px; text-align:center; background:#4899ff; border-radius:338px; border:1px #fff solid;}
+#sjbb_0_quantity dd{ margin-top:66px;}
+#sjbb_0_type{ float:right; width:486px;}
+#sjbb_0_type dl{ margin:0 auto 0;}
+#sjbb_0_type dt{ width:486px; height:486px;}
+/* 用户 */
+#sjbb_1{}
+#sjbb_1 dd{ text-align:center; font-size:60px; line-height:80px;}
+#sjbb_1_quantity{ float:left; margin-left:50px; width:338px;}
+#sjbb_1_quantity dl{ margin:80px auto 0;}
+#sjbb_1_quantity dt{ width:338px; height:338px; font-size:100px; line-height:338px; text-align:center; background:#4899ff; border-radius:338px; border:1px #fff solid;}
+#sjbb_1_quantity dd{ margin-top:66px;}
+#sjbb_1_active{ float:right; width:486px;}
+#sjbb_1_active dl{ margin:0 auto 0;}
+#sjbb_1_active dt{ width:486px; height:486px;}
+/* 控制栏 */
+#sjbb_bar{text-align:right; height:20px; overflow:hidden;  font-size:14px; line-height:20px; font-weight:normal;}
+#sjbb_bar label, #sjbb_bar input{ font-size:14px; line-height:20px; font-weight:normal;}
+
+/**********************************************************************************************
+						闭幕墙
+***********************************************************************************************/
+#bmq{ padding:10px 20px 20px; width:984px; height:636px; overflow:hidden; z-index:-100;}
+

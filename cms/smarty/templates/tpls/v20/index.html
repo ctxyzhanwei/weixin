@@ -1,0 +1,51 @@
+{include file=$header}
+<div class="clear"></div>
+<div data-role="content" class="content">
+
+
+  <div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+      
+      <div class="pic-list" > 
+      	{if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+              <a href="{$a.link}" ><p><img src="{$a.thumb}" width="100%"></p></a>
+           {/if}
+			{/foreach}
+			{/if}
+               
+            
+            </div>
+      <div class="slide-dot">
+      <div class="slidemain">
+	  {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+              <span{if $k==0} class="slide-dot-cur"{/if}></span>
+			  {/if}
+			{/foreach}
+			{/if}
+            </div>
+    </div>
+    
+    
+  </div>
+  
+  </div>
+  <div class="clear"></div>
+  <div class="indexmenu">
+    <div class="menu">
+	<ul>
+	 {if $navChannels}
+{foreach from=$navChannels item=n key=m}
+{if $m<5}
+    <li class="menu_{cycle values="a,b,c,d,e"}"><a href="{$n.link}" data-ajax="false">{$n.name}</a></li>
+	{/if}
+	{/foreach}
+	{/if}
+	</ul>
+    </div>
+  </div>
+</div>
+{include file=$footer}

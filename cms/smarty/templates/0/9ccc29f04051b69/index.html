@@ -1,0 +1,44 @@
+{include file=$header}
+<div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                </div>
+    </div>
+<ul class="productbox">
+{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<6}
+		<li>
+    	<div>
+        	
+    		<a href="{$a.link}"  title="{$a.title}"><img src="{$a.thumb}"  alt="{$a.title}"></a>
+       
+            <a href="{$a.link}" title="{$a.title}" class="protitle"><span>{$a.title}</span></a>
+            <!-- 上面这个a标签用php限制一下字数把，用css实现太复杂 -->
+        </div>
+    </li>
+       {/if}
+		  {/foreach}
+		  {/if}
+    	
+    </ul>
+<div class="clear"></div>
+
+<div class="clear"></div>
+{include file=$footer}

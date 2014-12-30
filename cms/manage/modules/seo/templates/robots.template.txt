@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /json.php
+Disallow: /html.php
+Sitemap: {mainUrlRoot}/sitemap/news_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/brand_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/serie_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/auto_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/tprice_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/store_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/ucar_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/ucarstore_sitemap.xml
+Sitemap: {mainUrlRoot}/sitemap/tuangou_sitemap.xml

@@ -1,0 +1,82 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">名片管理</h4>
+<div class="searchbar right">
+<form method="post" action="">
+
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli current" id="tab0"><a href="#">名片列表</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Vcard/company')}">公司信息</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Vcard/add')}" title="" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">添加名片</a></div>
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="120">头像</th>
+<th width="80">姓名</th>
+<th width="60">部门</th>
+<th width="150">手机</th>
+<th width="150">邮箱</th>
+<th width="60">QQ</th>
+<th width="80" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="info" id="o"> 
+<tr>
+<td><img src="{pigcms:$o.image}" width="100" height="100" /></td>
+<td>{pigcms:$o.name}</td>
+<td>{pigcms:$o.work}</td>
+<td>{pigcms:$o.mobile}</td>
+<td>{pigcms:$o.email}</td>
+<td>{pigcms:$o.qq}</td>
+<td class="norightborder"><a href="{pigcms::U('Vcard/edit',array('id'=>$o['id']))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Vcard/delete',array('id'=>$o['id']))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

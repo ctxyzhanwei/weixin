@@ -1,0 +1,123 @@
+<include file="Hotels:header"/>
+<body>
+	<div class="html">
+		<div class="main">
+		<header>
+		    <a class="ico-hd arr-hd" href="javascript:history.go(-1);"></a>
+		    <h1>预订成功</h1>
+		</header>
+<div class="contxt cont-artical">
+    <div class="box-cont cont-success">
+        <div class="hd">
+        	<p>恭喜您成功预定！</p>
+            <b>在线预订客房敬业大酒店</b>
+						<i class="success-fr">1间</i>
+						<i class="success-fl">贵宾楼行政标准房</i>
+        </div>
+        <div class="bd box-txt">
+        	<p><span>入住日期</span><b> 04月23日</b></p>
+        	<p><span>离店日期</span><b> 04月24日</b><i class="tright">1晚</i></p>
+            <em>如果您需要取消订单，请在入住当天18:00之前取消</em>
+        </div>
+        <div class="ft box-txt">
+        	<p><span>联系人电话：</span><b>15209838315</b></p>
+            <p><span>现 金 支 付：</span><b>￥280</b></p>
+        </div>
+    </div>
+    <div class="box-cont cont-share">
+			<!--<div class="hd"><span class="arrow arr-small"><b>分享给朋友</b></span></div>
+				<div class="bd"><span class="arrow arr-small"><b>带我去店里</b></span></div>
+				<div class="ft"><span class="arrow arr-small"><b>查看我的订单</b></span></div>-->
+        <div class="warp"><span class="arrow arr-small"><a href="http://m.vcooline.com/app/hotel_orders?aid=39&sid=10459&wxmuid=10393&wxuid=113810#mp.weixin.qq.com"><b>查看我的订单</b></a></span></div>
+    </div>
+    <div class="tcenter"><a href="http://m.vcooline.com/app/hotels?aid=39&sid=10459&wxmuid=10393&wxuid=113810#mp.weixin.qq.com" class="btn btn-big">确定</a></div>
+</div>
+		</div><!-- main end -->
+	</div><!-- html end -->
+	    <footer>
+      <a href="http://m.vcooline.com/vcooline">技术支持：微客来</a>
+    </footer>
+
+
+        <!-- tongji code -->
+      <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u=(("https:" == document.location.protocol) ? "https" : "http") + "://tongji.weiligongshe.com/";
+          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          _paq.push(['setSiteId', 457]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+          g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+
+      </script>
+      <noscript>&lt;p&gt;&lt;img src="http://tongji.weiligongshe.com/piwik.php?idsite=457" style="border:0;" alt="" /&gt;&lt;/p&gt;</noscript>
+      <!-- end tongji code -->
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var config = {
+        link: location.href.replace("wxuid=", "origin_wxuid=").replace("openid=", "origin_openid="),
+        img_url: 'http://m.vcooline.com/uploads/website/logo/1cbb0ca580c0e090e461786852a9daac.jpg',
+        // img_width: '200',
+        // img_height: '200',
+        desc: document.title,
+        title: document.title
+      };
+
+      // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+      document.addEventListener('WeixinJSBridgeReady', function() {
+        var WJ = WeixinJSBridge;
+        // 发送给好友
+        WJ.on('menu:share:appmessage', function() {
+          WJ.invoke('sendAppMessage', config, function(res) {
+            // _report('sendAppMessage', res.err_msg);
+          });
+        });
+        // 发送到朋友圈
+        WJ.on('menu:share:timeline', function() {
+          WJ.invoke('shareTimeline', config, function(res) {
+            // _report('shareTimeline', res.err_msg);
+          });
+        });
+
+        // 发送到微博
+        WJ.on('menu:share:weibo', function() {
+          WJ.invoke('shareWeibo', config, function(res) {
+            // _report('shareWeibo', res.err_msg);
+          });
+        });
+      });
+
+    });
+  </script>
+
+
+
+
+<script>
+alert("预订成功");
+</script>
+
+
+
+</body>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/order',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/order',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/order',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

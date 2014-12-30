@@ -1,0 +1,11 @@
+li{ list-style:none;}
+footer{
+    height:35px;
+    overflow:hidden;
+    margin-top:-35px;
+    position:relative;
+    z-index:10;
+}
+footer .pigcms-copyright{
+    color:#000;}
+footer a{color:#000!important; font-size:12px;}

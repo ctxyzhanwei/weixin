@@ -1,0 +1,66 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    /*background-color:#f4f4f4;*/
+    background-color:rgba(0, 0, 0, 0.5);
+    position:relative;
+}
+
+.card_lol a{
+    vertical-align: middle;
+    height:100px;
+    overflow:hidden;
+}
+
+.card_lol a>div:first-child>*{
+    display: inline-block;
+    width:120px;
+    margin-left:15px;
+}
+.card_lol a>div:first-child>label{
+    font-size:18px;
+}
+.card_lol a>div:first-child{
+    color:#fff;
+    vertical-align: middle;
+    background-color:#3e2463;
+    direction: ltr;
+}
+
+.card_lol a>div:nth-of-type(2){
+    height:100px;
+    background-size:100% auto;
+}
+
+.card_lol[style*="rtl"] a>div:first-child{
+    background-color:#930084;
+}
+
+.v12_ul li{
+    margin:10px;
+}
+
+.v12_ul .link{
+    border:1px solid #ccc;
+    line-height:35px;
+    padding:0 10px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    display:block;
+    color:#000;
+    font-size:16px;
+    background:url("../images/v12_1.png") no-repeat 97% center;
+    -webkit-background-size:20px auto;
+    background-size:20px auto;
+    background-color:#fff;
+}
+.v12_ul .link>span{
+    margin-left:5px;
+    font-size:14px;
+    color:#ccc;
+}
+.copyright{
+    color:#ccc;
+}

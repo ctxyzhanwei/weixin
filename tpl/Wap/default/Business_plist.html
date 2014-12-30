@@ -1,0 +1,114 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{pigcms:$info.title}</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8">
+<link href="{pigcms::RES}/css/Photo/css/photo.css" rel="stylesheet" type="text/css" />
+<link href="{pigcms::RES}/css/Photo/css/photoswipe.css" type="text/css" rel="stylesheet" />
+<script src="{pigcms::RES}/css/Photo/js/klass.min.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/css/Photo/js/code.photoswipe-3.0.5.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+(function(window, PhotoSwipe){
+document.addEventListener('DOMContentLoaded', function(){
+var
+options = {},
+instance = PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+}, false);
+}(window, window.Code.PhotoSwipe));
+</script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            //oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+
+   $('#plug-wrap').removeClass();
+
+</script>
+<link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+<link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="photo">
+<include file="Business:public_menu"/>
+<br><br>
+<if condition="$headpic neq ''">
+<div class="qiandaobanner"> <a ><img src="{pigcms:$headpic}" ></a> </div>
+</if>
+<div  id="main" role="main">
+      <ul id="Gallery" class="gallery">
+        <volist name="photo" id="photo">
+        <li><a href="{pigcms:$photo.picurl}"><img src="{pigcms:$photo.picurl}" alt="  "></a>
+        </li>
+        </volist>
+
+
+      </ul>
+</div>
+
+<!--jquery.min-->
+<script src="{pigcms::RES}/css/Photo/js/jquery.min.js" type="text/javascript"></script>
+<!--下面是瀑布流js-->
+<script src="{pigcms::RES}/css/Photo/js/jquery.imagesloaded.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/css/Photo/js/jquery.wookmark.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    (function ($){
+      $('#Gallery').imagesLoaded(function() {
+        // Prepare layout options.
+        var options = {
+          autoResize: true, // This will auto-update the layout when the browser window is resized.
+          container: $('#main'), // Optional, used for some extra CSS styling
+          offset: 4, // Optional, the distance between grid items
+          itemWidth: 150 // Optional, the width of a grid item
+        };
+
+        // Get a reference to your grid items.
+        var handler = $('#Gallery li');
+
+        // Call the layout function.
+        handler.wookmark(options);
+
+
+      });
+    })(jQuery);
+  </script>
+<div class="footerWrapper" style="padding-left: 30%;">
+
+    <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span>
+</div>
+  <include file="Index:styleInclude"/><include file="$cateMenuFileName"/></p>
+<script type="text/javascript">
+window.shareData = {
+            "moduleName":"Business",
+            "moduleID":"{pigcms:$bid}",
+            "imgUrl": "{pigcms:$info['picurl']}",
+            "sendFriendLink": "{pigcms::C('site_url')}{pigcms::U('Business/plist',array('token'=>$token,'bid'=>$bid,'type'=>$type))}",
+            "tTitle": "{pigcms:$info.title}",
+            "tContent": "{pigcms:$info.info|strip_tags}"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

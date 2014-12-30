@@ -1,0 +1,41 @@
+{include file=$header}
+<div class="clear"></div><div class="viewtitle">
+  <div><span class="fl"><img src="smarty/templates/tpls/{$site.template}/ico3.png" tppabs="/3g/images/ico3.png" alt="图标"/>{$channel.name}</span></div>
+</div>
+<div data-role="content" class="content">
+  <div class="maintop"></div>
+  {if $subChannels}
+  <div class="view_menu"><span><img src="smarty/templates/tpls/{$site.template}/view_nav.png" tppabs="/3g/images/view_nav.png" alt="二级菜单按钮"/>展开{$channel.name}分类</span>
+    <div class="clear"></div>
+    <div class="view_menumain" style="display:none">
+    {foreach from=$subChannels item=sc}
+          <a href="{$sc.link}" tppabs="/3g/product.php?tid=3" class="ui-bar-g" data-ajax="false">{$sc.name}</a>
+          {/foreach}
+        </div>
+  </div>
+  {/if}
+  <div class="clear"></div>
+  <div class="padding20">
+    <div class="proul">
+      <ul class="ui-grid-a">
+							{if $contents}
+			{foreach from=$contents item=a}
+		        			<li class="ui-block-b">
+				<div><a href="{$a.link}" data-ajax="false"><img width="200" height="160" src="{$a.thumb}" alt="{$a.title}" />
+					<p>{$a.title}</p>
+					</a></div>
+			</li>
+		     {/foreach}
+			 {/if}
+			 
+			 		       </ul>
+    </div>
+     <div class="clear"></div>
+          <div class="pages ui-grid-b">  <div class="ui-block-a"><a href="{$previousPageLink}" class="left ui-bar-h" id="dis"><img src="smarty/templates/tpls/{$site.template}/left.png" tppabs="/3g/images/left.png" alt="上一页"/></a></div>
+    <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+    <div class="ui-block-c"><a href="{$nextPageLink}" tppabs="/3g/news.php?&pageno=2" title="下一页" data-ajax="false" class="right ui-bar-h"><img src="smarty/templates/tpls/{$site.template}/right.png" tppabs="/3g/images/right.png" alt="下一页"/></a></div>
+</div>
+      </div>
+</div>
+<div class="clear"></div>
+{include file=$footer}

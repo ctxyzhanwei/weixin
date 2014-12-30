@@ -1,0 +1,124 @@
+<include file="Public:head"/>
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">粉丝行为统计分析</h4>
+                  
+              <div class="clr"></div>
+          </div>
+ <div class="cLineD">
+
+         </div>
+          <div class="cLine">
+    <div class="ftip" style="margin:0 auto">高级服务号才能使用此功能</div>
+</div>
+ <div class="msgWrap form">
+<ul id="tags" style="width:100%">
+		<li <pigcmsif where="$listinfo eq '1'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Wechat_behavior/statistics')}">{pigcms:$days}日行为统计分析</a> 
+			</li>
+			<li <pigcmsif where="$listinfo neq '1'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Wechat_behavior/statisticsTrend')}">趋势对比分析</a> 
+			</li>
+			<pigcmsif where="$detail eq 1">
+			<li style="float:right;background:none">
+				<a href="{pigcms::U('Wechat_behavior/statistics')}" style="background:none">返回</a> 
+			</li>
+			</pigcmsif>
+			<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+</div>
+
+          <div class="msgWrap" style="margin-top:50px;">
+         <div id="chartdiv1" align="center"></div>
+         <pigcmsif where="$statisticsAll eq 1">
+         <script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Pie3D.swf", "ChartId", "600", "500", "0", "1");
+					//chart.setTransparent("false");
+					chart.setDataXML('{pigcms:$xml}');
+					//chart.setDataURL("data.html");
+					chart.render("chartdiv1");
+					</script>
+         </pigcmsif>
+         <pigcmsif where="$detail eq 1">
+					<script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Bar2D.swf", "ChartId", "600", "500", "0", "1");
+					chart.setDataXML('{pigcms:$xml}');
+					chart.render("chartdiv1");
+					</script>
+					</pigcmsif>
+					<pigcmsif where="$statisticsTrend eq 1">
+					<script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/MSArea.swf", "ChartId", "900", "500", "0", "1");
+					chart.setDataXML('{pigcms:$xml}');
+					chart.render("chartdiv1");
+					</script>
+					</pigcmsif>
+          </div>
+<?php if (!$statisticsTrend){
+	?>
+
+           <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="90%">
+              <thead>
+                <tr>
+					<th style="width:600px;">&nbsp;模块</th>
+					<th>次数</th>
+					<pigcmsif where="$detail neq 1"><th>详情</th></pigcmsif>
+                </tr>
+              </thead>
+              <tbody>
+			  <pigcmslist array="list" foreach="list">
+                <tr>
+                  <td>&nbsp;{pigcms:$list.name}</td>
+                  <td>{pigcms:$list.count}</td>
+                  <pigcmsif where="$detail neq 1">
+                  <td>
+						<a href="{pigcms::U('Wechat_behavior/statisticsOfModule',array('module'=>$list['module']))}">详情</a>　
+						
+						
+				   </td>
+				   </pigcmsif>
+                </tr>
+      			</pigcmslist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+            	<?php
+}else {
+	?>
+	<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="90%">
+              <thead>
+                <tr>
+					<th style="width:600px;">&nbsp;模块</th>
+					<th align="center" style="text-align:center">上一周期</th>
+					<th align="center" style="text-align:center">本周期</th>
+					<th align="center" style="text-align:center">趋势</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <pigcmslist array="list" foreach="list">
+                <tr>
+                  <td>&nbsp;{pigcms:$list.name}</td>
+                  <td align="center">{pigcms:$list.lastcount}</td>
+                   <td align="center">{pigcms:$list.count}</td>
+                 
+                  <td align="center">
+						<?php if ($list['count']>$list['lastcount']){echo '<span style="color:#f30;font-size:14px;font-weight:bold">↑</span>';}elseif ($list['count']<$list['lastcount']){echo '<span style="color:green;font-size:14px;font-weight:bold">↓</span>';}else {echo '-';}?>
+				   </td>
+				   
+                </tr>
+      			</pigcmslist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+	<?php
+}
+?>
+        </div>	
+<include file="Public:footer"/>

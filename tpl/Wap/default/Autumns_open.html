@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- saved from url=(0140)http://1071.m.weimob.com/webmidautumn/HelpBox?id=10&pid=1071&wechatid=fromUsername&uid=935955&v=cf3252a3e81896edc14d2d497026fa81&iid=1037565 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/autumns/css/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/autumns/css/openPrize.css" media="all">
+
+<script type="text/javascript" async="" src="{pigcms:$staticPath}/tpl/static/autumns/js/wtj.js"></script><script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/autumns/js/common.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/autumns/js/openPrize.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/autumns/js/zepto_min.js"></script>
+
+<title>{pigcms:$linfo.title}</title>
+        
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+      
+        <!-- Mobile Devices Support @begin -->
+            
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="">
+        <style>
+            img{max-width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        
+    <div data-role="container" class="container ">
+        <header data-role="header"><!----></header>
+        <section data-role="body" class="body">
+            <if condition="$data eq 0">
+                <div class="text-numm"></div>
+            <else />
+                <div class="text-num "> <!--first/last/done/opened-->
+                    <span class="have"></span>
+                    <span class="rest">{pigcms:$data}</span>   
+                </div>
+            </if>
+            <div class="choose-content-bg"></div>
+            <div class="choose-content opened">
+                <ul>
+                    <volist name="box" id="vo">
+                        <li class="prize{pigcms:$vo.box}" data-id="2"></li>
+                    </volist>
+                </ul>
+            </div>  
+            <if condition="$data eq 0">
+                <div class="btn-layoutt">
+                    <a href="{pigcms::U('Autumns/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$_GET['id']))}" class="btn-see33"></a>
+                </div>
+            <else />
+                <if condition="$count eq 0">
+                    <div class="btn-layout">                    
+                        <a href="javascript:void();" class="btn-open-other"></a>                  
+                        <a href="{pigcms::U('Autumns/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$_GET['id']))}" class="btn-see3"></a>                    
+                    </div>
+                <else />
+                    <div class="btn-layout">
+                        <a href="javascript:void(0);" class="btn-help-other"></a>                   
+                        <a href="{pigcms::U('Autumns/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$_GET['id']))}" class="btn-see3"></a>
+                    </div>
+                </if>
+            </if>           
+        </section>
+
+    </div>
+    <div class="share-layer"></div>
+<script>
+	$(function(){
+		$('.btn-open-other').click(function(){
+			//var time	= $('.current').index()+1;
+			$.getJSON("{pigcms::U('Autumns/openx',array('token'=>$token,'id'=>$_GET['id'],'bid'=>$_GET['bid']))}",'',function(data){
+
+                if(data.err == 0){
+					var url = "{pigcms::U('Autumns/open',array('token'=>$token,'id'=>$_GET['id'],'bid'=>$_GET['bid']))}";
+					window.location.href=url;
+                    $('.rest').html(data);
+				}else{
+					 alert(data.info);
+
+                };
+			});
+		});
+	});
+
+</script>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Autumns",
+            "moduleID":"{pigcms:$_GET['id']|intval}",
+            "imgUrl": "{pigcms:$linfo.starpicurl}",
+            "timeLineLink":"{pigcms::C('site_url')}{pigcms::U('Autumns/open',array('token'=>$_GET['token'],'id'=>intval($_GET['id']),'bid'=>$_GET['bid']))}",
+            "sendFriendLink":"{pigcms::C('site_url')}{pigcms::U('Autumns/open',array('token'=>$_GET['token'],'id'=>intval($_GET['id']),'bid'=>$_GET['bid']))}",
+            "weiboLink": "{pigcms::C('site_url')}{pigcms::U('Autumns/open',array('token'=>$_GET['token'],'id'=>intval($_GET['id']),'bid'=>$_GET['bid']))}",
+            "tTitle": "{pigcms:$linfo.title}",
+            "tTitle": "{pigcms:$linfo.info}",
+        };
+</script>
+{pigcms:$shareScript}
+</body></html>

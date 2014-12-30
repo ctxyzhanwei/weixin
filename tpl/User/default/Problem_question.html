@@ -1,0 +1,114 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<link href="{pigcms::RES}/css/activity.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">题目列表</h4>
+    <a href="{pigcms::U('Problem/index',array('token'=>$token))}" class="right  btnGreen">返回</a>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> 
+	<a href="{pigcms::U('Problem/question_add', array('token' => $token,'problem_id'=>$problem_id))}" title="添加" class="btnGrayS vm bigbtn">
+		<img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">
+		添加题目
+	</a>
+</div>
+<div class="pageNavigator  searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="问题关键词搜索" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th width="200">题目名称</th>
+		<th width="100">排序</th>
+		<th width="100">是否显示</th>
+		<th style="width:100px" class="norightborder">操作</th>
+	</tr>
+</thead>
+<tbody>
+<if condition="$question_info">
+<volist name="question_info" id="info" key="k"> 
+	<tr>
+		<td><b></b>{pigcms:$info.title}</td>
+		<td>{pigcms:$info.sort}</td>
+		<td>
+			<if condition="$info.is_show eq '1'">
+				显示
+			<else />
+				隐藏
+			</if>
+		</td>
+
+		<td class="norightborder">		
+			<a href="javascript:show_option({pigcms:$info['id']});">查看选项</a>
+			|
+			<a href="{pigcms::U('Problem/question_edit', array('id' => $info['id'], 'token' => $token,'problem_id'=>$problem_id,'id'=>$info['id']))}">修改</a>
+			|
+			<a href="javascript:drop_confirm('您确定要删除吗?','{pigcms::U('Problem/question_del',array('id' => $info['id'], 'token' => $token,'problem_id'=>$problem_id))}');">删除</a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="background:#fff;padding:0;border:0;border-width:0 1px 1px 1px;border-style:solid;border-color:#eee;display:none;" id="option{pigcms:$info['id']}">
+			<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" style="border:0;">
+			<volist name="info['option']" id="option" key="key"> 
+				<tr>
+					<td>
+						<b>　　　选项{pigcms:$ic[$key-1]}:</b>
+						{pigcms:$option.answer}
+					</td>
+					<td style="width:100px">
+						<if condition="$option.is_true eq '1'">
+							正确选项
+						<else/>
+							错误选项
+						</if>
+					</td>
+					<td style="width:190px">
+						<a href="javascript:drop_confirm('您确定要删除该选项么吗?','{pigcms::U('Problem/option_del',array('id' => $info['id'], 'token' => $token,'problem_id'=>$problem_id,'id'=>$option['id']))}');">删除</a>
+					</td>
+				</tr>
+			</volist>
+			</table>
+		</td>
+	</tr>	
+</volist>
+<else />
+<tr><td colspan="4" align="center">没有找到数据，请先设置题目</td></tr>
+</if>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+	function show_option(id){
+		var obj = $('#option'+id);
+		if(obj.css('display') == 'none'){
+			obj.css('display','');
+		}else{
+			obj.css('display','none');
+		}
+	}
+
+</script>
+
+<include file="Public:footer"/>

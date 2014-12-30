@@ -1,0 +1,109 @@
+<include file="Public:head"/>
+ <script src="{pigcms::RES}/flash/FusionCharts.js" type="text/javascript"></script>
+ <script src="{pigcms::RES}/flash/MSLine.swf" language="javascript" type="text/javascript"></script>      
+<style>
+    .msgWrap{padding:10px 0;}
+    .msgWrap .table{float:left;width:800px;}
+    .msgWrap .count{float:right;width:185px;border: 1px solid #e6e6e6;background: #f9f9f9;}
+    .msgWrap .count .c_1{text-align: center;font-weight: bold;font-size: 15px;border-bottom: 1px solid #e6e6e6;padding: 5px 0;color: #2F8BC9;}
+    .msgWrap .count .c_2{border-bottom: 1px solid #e6e6e6;}
+    .msgWrap .count .c_2 .cr1{color: #ff7500;}
+    .msgWrap .count .c_2 .cr2{color: #999999;}
+    .msgWrap .count .c_2 .cr3{color: #2F8BC9;}
+    .msgWrap .count .c_2 .p_t{text-align: center;font-weight: bold; font-size: 3em;padding-top: 10px;}
+    .msgWrap .count .c_2 .p_b{text-align: center;font-size: 14px;padding-bottom: 5px;height: 25px;line-height: 25px;}
+    .msgWrap .count .c_3{text-align: center;font-size: 12px;padding: 5px 0;height: 25px;line-height: 25px;}
+</style>
+
+<div class="content">
+<div class="cLineB">
+<h4><if condition="$set_name neq ''">“{pigcms:$set_name}”提交统计<else />用户表单提交统计</if> </h4>
+<div class="clr"></div>
+</div>
+
+<style>
+    #tags .btnGreen{background-image:none;background-color: #5BA607;color:#ffffff;height:30px;line-height: 30px;}
+    #tags .btnGreen:hover{background-color: #2F8BC9}
+</style>
+<div class="msgWrap form">
+<ul id="tags" style="width:100%;margin:0;">
+        <li <pigcmsif where="ACTION_NAME eq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/record')}">表单数据统计</a> 
+            </li>
+            <li <pigcmsif where="ACTION_NAME neq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/index')}">表单设置项</a> 
+            </li>
+            <pigcmsif where="$set_id neq ''">
+            <li style="float:right;">
+                <a href="{pigcms::U('Custom/index',array('token'=>$token))}" class="btnGreen">返回</a>
+            </li>
+            </pigcmsif>
+            <div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+        </ul>
+</div>
+
+<div class="searchbar right"> </div>
+<div class="clr"></div>
+
+        	<h4 class="cLineB">选择年份<select class="setting-period" name="year" id="year" onchange="doit($('#period').val())">{pigcms:$yearOption}</select> 选择月份&nbsp;&nbsp;<select class="setting-period" name="period" id="period" onchange="doit(this.value)">
+                
+            <option value="1" <if condition="$month eq 1">selected</if>>1月</option>
+            <option value="2" <if condition="$month eq 2">selected</if>>2月</option>
+            <option value="3" <if condition="$month eq 3">selected</if>>3月</option>
+            <option value="4" <if condition="$month eq 4">selected</if>>4月</option>
+            <option value="5" <if condition="$month eq 5">selected</if>>5月</option>
+            <option value="6" <if condition="$month eq 6">selected</if>>6月</option>
+            <option value="7" <if condition="$month eq 7">selected</if>>7月</option>
+            <option value="8" <if condition="$month eq 8">selected</if>>8月</option>
+            <option value="9" <if condition="$month eq 9">selected</if>>9月</option>
+            <option value="10" <if condition="$month eq 10">selected</if>>10月</option>
+            <option value="11" <if condition="$month eq 11">selected</if>>11月</option>
+            <option value="12" <if condition="$month eq 12">selected</if>>12月</option>
+            </select></h4>
+                <script>
+function doit(month){
+    var year = $('#year').val();
+    location.href= '{pigcms::U('Custom/record',array('token'=>$token,'set_id'=>$set_id))}&'+'month='+month+'&year='+year;
+}
+</script>
+<div class="msgWrap">
+    <div class="table">
+       <table width="100%" cellspacing="0" cellpadding="0" border="0"
+ 		<tbody>
+ 			<tr>
+ 				<td align="center" bgcolor="#f9f9f9">
+					<div id="chartdiv1" align="center">
+					</div>
+					<script type="text/javascript">
+						var chart = new FusionCharts("{pigcms::RES}/flash/MSLine.swf", "ChartId", "800", "260", "0", "1");
+						//chart.setTransparent("false");
+						chart.setDataXML('{pigcms:$xml}');
+						//chart.setDataURL("data.html");
+						chart.render("chartdiv1");
+					</script>
+ 				</td>
+			</tr>
+                <tr>
+ 				<td align="center" bgcolor="#f9f9f9">
+                  <div id="chartdiv2" align="center"></div>
+ 				</td>
+				</tr>
+ 			</tbody>
+ 		</table>   
+    </div>
+    <div class="count">
+        <div class="c_1">表单提交统计</div>
+        <div class="c_2">
+            <p class="p_t cr1">{pigcms:$today_count}</p>
+            <p class="p_b cr1">今日提交总数</p>             
+            <p class="p_t cr2">{pigcms:$yesterday_count}</p>
+            <p class="p_b cr2">昨日提交总数</p>                   
+        </div>
+        <div class="c_3">提交总计{pigcms:$count}次</div>
+    </div>    
+<div class="clr"></div>
+</div>
+ 
+</div>
+
+  <include file="Public:footer"/>

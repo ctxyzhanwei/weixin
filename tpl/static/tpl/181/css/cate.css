@@ -1,0 +1,57 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background-color:#eee;}
+body  .mainmenu { overflow:hidden;display: block;;}
+body  .mainmenu li{ float:left;  width:50%;   background-color:#0099cb; height:25%; overflow:hidden}
+
+body  .mainmenu li a{ display:block;  color:#FFF;   }
+body  .mainmenu li a i{ display:block; height:41%}
+body  .mainmenu li a img{ float: left; width:50%; }
+body  .mainmenu li a p{ width:50%; float:left}
+body  .mainmenu li a p b{ display:block; line-height:18px; font-size:14px;  padding:10% 5% 0px;   overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+body  .mainmenu li a p span{ display:block; height:32px;  padding:0% 5% 0px; font-size:8px; line-height:16px; margin-top:5px; overflow:hidden}
+body  .mainmenu li a:active{ opacity:0.4}
+body  .mainmenu li:nth-child(8n+1){ background-color:#ffcc9a}
+body  .mainmenu li:nth-child(8n+2){ background-color:#9bcbcd}
+body  .mainmenu li:nth-child(8n+3){ background-color:#e7ccb1}
+body  .mainmenu li:nth-child(8n+4){ background-color:#77a5bc}
+body  .mainmenu li:nth-child(8n+5){ background-color:#9bafb0}
+body  .mainmenu li:nth-child(8n+6){ background-color:#e7ccb1}
+body  .mainmenu li:nth-child(8n+7){ background-color:#77a5bc}
+body  .mainmenu li:nth-child(8n+8){ background-color:#ffcc9a}
+
+
+body  .mainmenu li:nth-child(8n+3) img{ float:right}
+body  .mainmenu li:nth-child(8n+4) img{float:right}
+body  .mainmenu li:nth-child(8n+7) img{ float:right}
+body  .mainmenu li:nth-child(8n+8) img{float:right}

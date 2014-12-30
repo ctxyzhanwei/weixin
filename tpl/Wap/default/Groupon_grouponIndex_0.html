@@ -1,0 +1,129 @@
+<include file="Groupon:header_0"/>
+<div class="nav-bar">
+    <ul class="nav" id="orderNav">
+        <li class="dropdown-toggle activedesc" data-nav="category" order="time">
+            <span style="padding-left:12px;">按时间</span>
+            <b class="caret"></b>
+        </li>
+        <li class="dropdown-toggle" data-nav="category" order="salecount">
+            <span style="padding-left:12px;">按人数</span>
+            <b class="caret"></b>
+        </li>
+        <li class="dropdown-toggle" data-nav="biz" order="price">
+            <span style="padding-left:12px;">按价格</span>
+            <b class="caret"></b>
+        </li>
+        <li class="dropdown-toggle" data-nav="sort" order="discount">
+            <span style="padding-left:12px;">按折扣</span>
+            <b class="caret"></b>
+        </li>
+    </ul>
+</div>
+<div id="deals" class="deals-list">
+<volist name="products" id="hostlist">
+<div><a href="{pigcms::U('Groupon/product',array('token'=>$token,'id'=>$hostlist['id'],'wecha_id'=>$wecha_id))}" class="dl">
+<pigcmsif where="$hostlist['new'] eq 1">
+<span class="dl-new"><span class="dl-mark">新单</span><i></i></span>
+</pigcmsif>
+<img src="{pigcms:$hostlist.logourl}" data-src="{pigcms:$hostlist.logourl}" width="122" height="74" alt=""><ul><li class="dl-brand break-word">{pigcms:$hostlist.name}</li><li class="dl-title dl-indent break-word">&nbsp;&nbsp;截止{pigcms:$hostlist.endtime|date="Y-m-d",###}</li><li class="dl-price">&nbsp;<strong>{pigcms:$hostlist.price}</strong>元<del>{pigcms:$hostlist.oprice}元</del><span>已售{pigcms:$hostlist['salecount']+$hostlist['fakemembercount']}</span></li></ul></a></div>
+</volist>
+</div>
+<div class="submit-box m-t10">
+<button id="show_more" class="btn-large mj-submit mj-submit" page="2" <pigcmsif where="$count gt $pageSize"><else/>style="display:none"</pigcmsif>>加载更多</button>
+</div>
+
+<div class="shade hide"></div>
+<input type="hidden" value="1" id="pageid" />
+<input type="hidden" id="canScroll" value="1" />
+<script type="text/javascript">
+$(function() {
+	$('#search_form').submit(function() {
+		var search_name = $('#search_name').val();
+		if (search_name == '') {
+			return false;
+		}
+	});
+
+	//点击排序
+	var base_url = '{pigcms::U('Groupon/grouponIndex',array('token'=>$token,'wecha_id'=>$wecha_id))}';
+	var b_url = '<if condition="$isSearch neq 1">{pigcms::U('Groupon/ajaxGrouponProducts',array('token'=>$token,'wecha_id'=>$wecha_id))}<else/>{pigcms::U('Groupon/ajaxGrouponProducts',array('token'=>$token,'keyword'=>$_GET['keyword'],'wecha_id'=>$wecha_id))}</if>'
+		method = 'DESC',
+		_get_method = '{pigcms:$method}',
+		order = '{pigcms:$order}',
+		_get_order  = '';
+	if (_get_order != '') {
+		order = _get_order;
+	}
+	$('#orderNav li').removeClass('activedesc');
+	$('#orderNav li').removeClass('activeasc');
+	
+
+	if (_get_method == 'DESC')  {
+		method = 'ASC';
+		$('#orderNav li[order="' + order + '"]').addClass('activedesc');
+	}else{
+		$('#orderNav li[order="' + order + '"]').addClass('activeasc');
+	}
+	
+	
+	$('#orderNav li').click(function() {
+		var order = $(this).attr('order');
+		var url = base_url + '&order=' + order+'&method='+method;
+		location.href = url;
+	});
+
+	/*---------------------加载更多--------------------*/
+	var total = {pigcms:$count},
+		pagesize = {pigcms:$pageSize},
+		pages = Math.ceil(total / pagesize);
+
+	var com_link = '{pigcms::U('Groupon/product',array('token'=>$token,'wecha_id'=>$wecha_id))}';
+
+
+
+	if (pages > 1) {
+		var _page = $('#show_more').attr('page');
+		$(window).bind("scroll",function() {
+			if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
+				if (_page > pages) {
+					$('#show_more').show().html('没有更多了').delay(1500).slideUp(1000);
+					return;
+				}
+				$('#show_more').show().html('加载中...');
+				
+				if($('#canScroll').val()==0){//不要重复加载
+					return;
+				}
+				$('#canScroll').attr('value',0);
+				$.ajax({
+					type : "GET",
+					data : {'page' : _page, 'inajax' : 1},
+					url :  b_url + '&order=' + order + '&method=' + method + '&pagesize='+pagesize,
+					dataType : "json",
+					success : function(RES) {
+						$('#canScroll').attr('value',1);
+						$('#show_more').hide().html('加载更多');
+						
+						data = RES.products;
+						
+						//alert(b_url + 'order=' + order + '&method=' + method + '&pagesize='+pagesize)
+						if(data.length){
+						$('#show_more').attr('page',parseInt(_page)+1);
+						}
+						_page = $('#show_more').attr('page');
+						var _tmp_html = '';
+						$.each(data, function(x, y) {
+							_tmp_html +='<div><a href="' + com_link + '&id=' + y.id + '" class="dl"><img src="' +y.logourl + '" data-src="' +y.logourl + '" width="122" height="74" alt=""><ul><li class="dl-brand break-word">' + y.name + '</li><li class="dl-title dl-indent break-word">&nbsp;&nbsp;截止' + y.enddate + '</li><li class="dl-price">&nbsp;<strong>' + y.price + '</strong>元<del>' + y.oprice + '元</del><span>已售' + y.membercount + '</span></li></ul></a></div>';
+						});
+						$('#deals').append(_tmp_html);
+						
+					}
+				});
+			}
+		});
+
+		
+	}
+});
+</script>
+<include file="Groupon:footer_0"/>

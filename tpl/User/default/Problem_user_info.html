@@ -1,0 +1,73 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+<div class="cLineB">
+
+<h4 class="left">幸运答题</h4>
+<a class="right btnGreen" href="/index.php?g=User&m=Problem&a=index&token=kvdhyj1396063025">返回</a>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> 
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="px left" placeholder="输入关键词搜索" name="search" value="">
+<input type="submit" value="搜索" id="msgSearchBtn"  class="btnGrayS" title="搜索">
+</form>
+</div>
+
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">用户名</th>
+<th width="60">微信昵称</th>
+<th width="60">联系电话</th>
+<th width="50">答题总积分</th>
+<th width="80">加入时间</th>
+<th width="120" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<if condition="$info">
+<volist name="info" id="list"> 
+<tr>
+<td>{pigcms:$list.user_name}</td>
+<td>{pigcms:$list.nickname}</td>
+<td>{pigcms:$list.phone}</td>
+<td>{pigcms:$list.score_count} 分</td>
+<td>{pigcms:$list.add_time|date='Y-m-d H:i:s',###}</td>
+
+<td class="norightborder">
+	<a href="javascript:void(0);" onclick="lottery_log({pigcms:$list.id})">查看答题记录</a>
+	|
+	<a href="{pigcms::U('Problem/user_del', array('uid' => $list['id'], 'token' => $token,'problem_id'=>$problem_id))}" onclick="javascript:return confirm('您确定要删除该用户吗');">删除</a>
+</td>
+</tr>
+</volist>
+<else />
+	<tr><td colspan="6" align="center">暂时没有用户参加活动</td></tr>
+</if>
+</tbody>
+</table>
+</form>
+<script>
+function lottery_log(id){
+    art.dialog.open('{pigcms::U('Problem/show_question_log',array('token'=>$token,'problem_id'=>$problem_id))}&uid='+id,{lock:false,title:'信息详情',width:600,height:350,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>  

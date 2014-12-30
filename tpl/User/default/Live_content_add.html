@@ -1,0 +1,153 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>场景内容<if condition="$info.id">添加<else/>修改</if></h4>
+    <a href="{pigcms::U('Live/content',array('token'=>$token,'id'=>$live_id))}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%"><TBODY>
+<TR>
+  <th valign="top"><span class="red">*</span>内容名称：</th>
+  <TD>
+  <input type="input" class="px" id="name" value="{pigcms:$info.name}" name="name" style="width:320px" />
+    请不要多于50字!
+  </TD>
+</TR>
+
+<tr>
+  <th><span class="red">*</span>添加类型：</th>
+  <td>
+    <input type="radio" name="type" class="type" value="1" <if condition="$info.type neq '2'">checked</if>>图片内容&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="type" class="type" value="2" <if condition="$info.type eq '2'">checked</if>>视频内容&nbsp;&nbsp;&nbsp;  （选择视频内容后页面上部分显示内容图片，下部分显示视频图片内容）
+  </td>
+</tr>
+
+<tr>
+  <th><span class="red">*</span>内容图片：</th>
+  <td>
+      <input class="px"  name="bg_pic" value="{pigcms:$info.bg_pic}" id="pic1" style="width:320px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic1',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic1')">预览</a>&nbsp;[640*990]&nbsp;&nbsp;&nbsp;（如果是视频内容推荐图片高度减少一半）
+  </td>
+</tr>
+
+<tr id="mv">
+  <th><span class="red">*</span>视频资源：</th>
+  <td>
+    <input class="px"  name="movie_link" value="{pigcms:$info.movie_link}" id="movie_link" style="width:320px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+        <a href="###" onclick="upyunPicUpload('movie_link',0,0,'{pigcms:$token}')" class="a_upload">上传</a> 
+		<a href="###" onclick="chooseFile('movie_link','')" class="a_upload">选择</a> 
+	  &nbsp;&nbsp;&nbsp;&nbsp;视频只支持格式为“MP4”，视频编码为AVC(H264)的资源,如：move.mp4
+  </td>
+</tr>
+
+<tr id="mv_pic">
+  <th><span class="red">*</span>视频裁图：</th>
+  <td>
+    <input class="px"  name="movie_pic" value="{pigcms:$info.movie_pic}" id="pic2" style="width:320px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic2',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic2')">预览</a>&nbsp;[640*300]&nbsp;&nbsp;&nbsp;（视频展示图片）
+  </td>
+</tr>
+
+<tr>
+  <th>排序：</th>
+  <td>
+    <input type="text" class="px" name="sort" value="<if condition="$info.sort eq ''">50<else/>{pigcms:$info.sort}</if>" style="width:50px;">&nbsp;&nbsp;（该排序值将影响页面排版的顺序，数值：0-255）
+  </td>
+</tr>
+
+<tr>
+  <th>是否显示</th>
+  <td>
+    <input type="radio" name="is_show" class="is_show" value="1" <if condition="$info.is_show neq '0'">checked</if>>显示&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="is_show" class="is_show" value="0" <if condition="$info.is_show eq '0'">checked</if>>隐藏&nbsp;&nbsp;&nbsp;&nbsp;（只有开启的内容前台才会显示。）
+  </td>
+</tr>
+
+<TR>
+<th>&nbsp;
+  <input type="hidden" name="id" value="{pigcms:$info.id}">
+  <input type="hidden" name="live_id" value="{pigcms:$live_id}">
+</th>
+<td><a href="javascript:void(0);" class="btnGreen" id="sub">保存</a>　<a href=""  class="btnGray vm">取消</a>　<span class="red"></span></td>
+</TR>
+</TBODY>
+</TABLE>
+</div>
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+<script>
+  $(function(){
+
+    var type = $('.type:checked').val();
+    show(type);
+
+    $('.type').change(function(){
+      var val = $(this).val();
+      show(val);
+    });
+
+    $('#sub').click(function(){
+      var ctype = $('.type:checked').val();
+      var name  = $('#name').val();
+      var bg_pic  = $('#pic1').val();
+      var move    = $('#mv1').val();
+      var mv_pic  = $('#pic2').val();
+      var msg     = '';
+      if(ctype == 1){
+        if(name == ''){
+          msg += '内容名称不能为空'+'\n';
+        }
+        if(bg_pic == ''){
+          msg += '背景图片不能为空'+'\n';
+        }
+      }else if(ctype == 2){
+        if(name == ''){
+          msg += '内容名称不能为空'+'\n';
+        }
+        if(bg_pic == ''){
+          msg += '背景图片不能为空'+'\n';
+        }
+        if(move == '' || mv_pic == ''){
+          msg += '视频地址和裁图不能为空'+'\n';
+        }
+      }
+
+      if(msg.length > 0){
+        alert(msg);
+        return false;
+      }else{
+        $('.form').submit(); 
+      }
+    })
+  });
+
+  function show(val){  
+      if(val == '1'){
+        $('#mv').css('display','none');
+        $('#mv_pic').css('display','none');        
+        
+      }else if(val == '2'){
+        $('#mv').css('display','');
+        $('#mv_pic').css('display','');   
+      }
+  }
+
+</script>
+<include file="Public:footer"/>

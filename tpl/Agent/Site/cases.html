@@ -1,0 +1,25 @@
+<include file="Frame:header"/>
+<div class="columntitle">成功案例管理</div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+<div class="oper" style="border:none"><a href="?g=Agent&m=Site&a=setCase" class="add">添加</a></div>
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+		<tr class="summary-title">
+		    <td>名称</td>
+		    <td>图片</td>
+		    <td>url</td>
+			<td>操作</td>
+		</tr>
+<pigcmslist array="list" foreach="list">
+    <tr class="tdbg" onMouseOver="this.className='tdbg-dark';" onMouseOut="this.className='tdbg';" style="height:29px;">
+		<td>{pigcms:$list.name}</td>
+		<td><img src="{pigcms:$list.img}" width="60" /></td>
+		<td>{pigcms:$list.url}</td>
+		<td><a href="?g=Agent&m=Site&a=setCase&id={pigcms:$list.id}">修改</a> <a href="###" onclick="if(confirm('确定删除吗')){location.href='?g=Agent&m=Site&a=deleteCase&id={pigcms:$list.id}'}">删除</a></td>
+    </tr>
+</pigcmslist>
+</table>
+
+</div>
+<div class="pages">{pigcms:$page}</div>
+<include file="Frame:footer"/>

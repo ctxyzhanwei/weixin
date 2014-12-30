@@ -1,0 +1,116 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+    <script>
+    jQuery.validator.addMethod("white_list", function(value, element) { 
+    var tel = /^[a-z/?=&A-Z0-9_-:,\.]*$/; 
+    return this.optional(element) || (tel.test(value)); 
+    }, "白名单格式错误，使用英文逗号(,)分隔主机名或IP地址。");
+    function insert_home()
+    {
+        document.getElementById("success_url").value = "{pigcms::C('site_url')}/index.php?g=Wap&m=Index&a=index&token={pigcms:$node_info.token}";
+    }
+    </script>
+
+<div class="content">
+
+<div class="cLineB">
+  <h4>RippleOS配置 <form action="{pigcms::U('User/RippleOS/delete')}" method="post" class="right btnGrayS vm" novalidate="novalidate">
+                                <button class="btn" type="submit" data-loading-text="清除中...">清除配置</button>
+                            </form></h4>
+
+							
+							
+  <div class="ftip" style="margin:25px auto 5px auto;">认证上网设置 (用户关注认证后可以上网，之后再次来店可免认证，取消关注后需要重新认证)</div>
+ </div>
+
+    		<div class="msgWrap bgfc"> 
+    	<form action="{pigcms::U('User/RippleOS/set')}" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+    			<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+    				<tbody> 
+       				<tr>
+       					<th><span class="red">*</span>上网关键字：</th>
+       					<td><input type="text" name="keyword" id="keyword" value="{pigcms:$node_info.keyword|default=''}" class="px" data-rule-required="true" data-rule-maxlength="90" style="width:550px;" /><br />户输入此关键词将会返回认证提示，多个关键词之间使用空格分隔。例如：wifi 上网 免费上网</td> 
+       				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>回复文字：</th>
+        				<td> <input type="text" name="text" id="text" value="{pigcms:$node_info.text|default=''}" class="px" data-rule-required="true" data-rule-maxlength="90" style="width:550px;" /><br />输入关键词后的返回认证文字。例如：10分钟内点击此文字，认证后可以上网x分钟</td> 
+       				</tr>		
+       				<tr>
+       					<th><span class="red">*</span>获取验证码关键词：</th>
+       					<td><input type="text" name="code_keyword" id="code_keyword" value="{pigcms:$node_info.code_keyword|default=''}" class="px" data-rule-required="true" data-rule-maxlength="90" style="width:550px;" /><br />用户输入此关键词将会返回上网验证码。例如: 电脑上网 上网验证码</td> 
+       				</tr>
+       				<tr> 
+        				<th>节点名称：</th> 
+        				<td>{pigcms:$node_info.wx_id}</td> 
+       				</tr>
+       				<tr> 
+        				<th>创建时间：</th>
+        				<td>{pigcms:$node_info.created_at}</td> 
+      				</tr>
+       				<tr> 
+        				<th>更新时间：</th>
+        				<td>{pigcms:$node_info.updated_at}</td> 
+      				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>图片回复链接：</th>
+					    <td><input type="text" name="token" id="token" value="{pigcms::C('site_url')}/Auth?token={pigcms:$node_info.token}"  class="px" data-rule-required="true" data-rule-url="true" style="width:550px;"><br/> 将此链接填入图片回复的"URL或活动外链代码"即可完成图片回复认证</td>
+      				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>认证页地址：</th> 
+        				<td><input type="text" name="login_url" id="login_url" value="{pigcms:$node_info.login_url|default=''}" class="px" data-rule-required="true" data-rule-url="true" style="width:550px;" /><br />输入认证页面URL，以http://开头，例如：http://demo.rippletek.com/ext/portal/rptk3wxandcode.html</td> 
+       				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>认证成功地址：</th> 
+       	 				<td><input type="text" name="success_url" id="success_url" value="{pigcms:$node_info.success_url|default=''}" class="px" data-rule-required="true" data-rule-url="true" style="width:550px;" />&nbsp;&nbsp;<button class="btnGreen" type="button" onclick="insert_home()">插入微官网地址</button><br />输入成功页面URL，以http://开头，例如：http://demo.rippletek.com/ext/portal/rptksuccess.html</td> 
+       				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>开启认证：</th> 
+        				<td><input type="checkbox" name="is_portal" value="1" <eq name="node_info.is_portal" value="1">checked="checked"</eq> ></td> 
+       				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>未认证可微信聊天：</th> 
+        				<td> <input type="text" name="wx_unauth_timeout" id="wx_unauth_timeout" value="{pigcms:$node_info.wx_unauth_timeout|default=''}" class="px" data-rule-number="true" data-msg-number="时间范围5-99分钟" data-rule-min="5" data-msg-min="时间范围5-99分钟" data-rule-max="99" data-msg-max="时间范围5-99分钟" style="width:120px;" />&nbsp;&nbsp;未认证可使用微信聊天的时间，无法在微信中访问网页。不填写为可以使用微信聊天10分钟</td> 
+       				</tr>
+							<tr> 
+        				<th><span class="red">*</span>认证后可上网：</th> 
+        				<td> <input type="text" name="login_timeout" id="login_timeout" value="{pigcms:$node_info.login_timeout|default=''}" class="px" data-rule-number="true" data-msg-number="时间范围1-1440分钟" data-rule-min="1" data-msg-min="时间范围1-1440分钟" data-rule-max="1440" data-msg-max="时间范围1-1440分钟" style="width:120px;" />&nbsp;&nbsp;认证成功后可以上网时间，不填写为可以上网1440分钟</td> 
+       				</tr>
+							<tr> 
+        				<th><span class="red">*</span>再次认证方式：</th> 
+        				<td><select name="auth2nd" id="auth2nd" class="input-medium">
+                    			<option value="1" <eq name="node_info.auth2nd" value="1"> selected="selected"</eq>>无需认证</option>
+                          <option value="0" <eq name="node_info.auth2nd" value="0"> selected="selected"</eq>>与首次一致</option>
+                          <option value="2" <eq name="node_info.auth2nd" value="2"> selected="selected"</eq>>简单认证</option>
+                     </select>
+									
+					 &nbsp;&nbsp;"简单认证"即在二次连接时候，需要打开浏览器点击任意网页。选择"与首次一致"，无法实现取消关注后需要重新认证。</td> 
+       				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>IOS关闭主动弹窗：</th> 
+        				<td><input type="checkbox" name="hide_cp" value="1" <eq name="node_info.hide_cp" value="1"> checked="checked"</eq> >&nbsp;&nbsp;IOS终端(iPhone, iPod, iPad)和WP终端将不会主动弹窗，和Android认证流程一致</td> 
+       				</tr>
+       				<tr> 
+        				<th><span class="red">*</span>网址白名单：</th> 
+        				<td> <textarea id="white_list" name="white_list" class="px" style="resize:none; width:550px;height:80px;" data-rule-white_list="true">{pigcms:$node_info.white_list}</textarea><br />使用英文逗号(,)分隔主机名或IP地址，例如：qq.com,weibo.co</td> 
+       				</tr>
+       				<tr> 
+
+			           <th>&nbsp;</th>					
+					<td>
+					    <button type="submit"  name="button"  data-loading-text="提交中..." class="btnGreen left" >保存</button>
+                        <a  target="ddd" href="http://www.rippletek.com" target="_blank" class="btnGray vm" >RippleOS官网</a>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+
+	<include file="Public:footer"/>
+	
+

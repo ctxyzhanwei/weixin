@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class=" clickberry-extension clickberry-extension-standalone"><head>
+<meta charset="utf-8">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/car_reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/list-8.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/menu-2.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/car/js/jQuery.js"></script>
+<script type="text/javascript">
+window.shareData = {
+            "moduleName":"Car",
+            "moduleID":"0",
+            "imgUrl": "",
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Car/newlist',array('token'=>$token,'type'=>$type,'mid'=>$imgtxt['id']))}",
+            "tTitle": "微汽车",
+            "tContent": "微汽车"
+        };
+</script>
+{pigcms:$shareScript}
+<title>{pigcms:$imgtxt['title']}</title>
+
+        <style>
+            img{width:100%!important;}
+        </style>
+   </head>
+<body onselectstart="return true;" ondragstart="return false;">
+    <link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/font-awesome.css" media="all">
+
+<div class="body" style="padding-bottom:60px;">
+                    <footer class="nav_footer">
+        <ul class="box">
+            <li><a href="javascript:history.go(-1);">返回</a></li>
+            <li><a href="javascript:history.go(1);">前进</a></li>
+            <li><a href="{pigcms::U('Car/index',array('token'=>$token,'wecha_id'=>$wecha_id))}">首页</a></li>
+            <li><a href="javascript:location.reload();">刷新</a></li>
+        </ul>
+    </footer>
+
+        <section class="news_article">
+        <header>
+            <h3 style="font-size:14px;">{pigcms:$imgtxt['title']}</h3>
+            <small class="gray">{pigcms:$imgtxt['createtime']|date="Y-m-d",###}</small>
+        </header>
+        <article>
+            <p>
+             <img src="{pigcms:$imgtxt['pic']}" style="width:100%;">
+             </p><p>
+
+    {pigcms:$imgtxt['info']|html_entity_decode|trim}
+        </p><p></p>
+        </article>
+    </section>
+
+<div style="padding-bottom:0!important;">
+    <a href="javascript:window.scrollTo(0,0);" style="font-size:12px;margin:5px auto;display:block;color:#fff;text-align:center;line-height:35px;background:#333;margin-bottom:-10px;">返回顶部</a>
+</div></div>
+                <div mark="stat_code" style="width:0px; height:0px; display:none;">
+                    </div>
+
+</body></html>

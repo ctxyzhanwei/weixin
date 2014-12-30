@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="{$metaKeywords}" />
+<meta name="description" content="{$metaDescription}"/>
+<LINK href="{$cssdir}/style.css?{$rand}" rel=stylesheet>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" tppabs="common/js/jquery-1.6.4.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" tppabs="common/js/nav.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/search.js" tppabs="common/js/search.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/banner.js" tppabs="common/js/banner.js"></script>
+<title>{$metaTitle}</title>
+</head>
+<body>
+{if !$homepage}
+<center class="subtop">
+    <a href="{$homeUrl}" title="{$site.name}"><img src="{$site.logourl}" tppabs="3g/images/logo.png" alt="{$site.name}" class="logo"></a>
+</center>
+{if !$ismap}
+<div class="sub">
+	<div class="iconleft"></div>
+    <div class="iconright">
+    	<p><a href="{$homeUrl}" title="首页" class="iconhome"></a></p>
+        <p><a href="javascript:void(0);" title="搜索" class="iconsearch"></a></p>
+        <p><a href="javascript:void(0);" title="导航" class="iconnav"></a></p>
+    </div>
+   	<div class="search">
+    	<div>
+            <form method="post" action="?m=site&c=home&a=search&token={$token}">
+                <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+                <input type="submit" class="button" value="">
+            </form>
+        </div>
+    </div>
+    <div class="nav" id="nav">
+    	<ul>
+		 {if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+        </ul>
+        <a href="#" class="backtop"><img src="smarty/templates/tpls/{$site.template}/backtop.png" tppabs="3g/images/backtop.png" alt="返回顶部"></a>
+    </div>
+    <p class="clear"></p>
+{/if}
+{/if}

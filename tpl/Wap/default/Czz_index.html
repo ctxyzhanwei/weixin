@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{pigcms:$info.title}</title>
+<meta name="keywords" content="微乾隆™"/>
+<meta name="description" content="微乾隆™"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="address=no"/>
+<meta name="viewport" id="viewport" content="target-densitydpi=device-dpi,width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="author" content="cgi.beijing"/>
+<meta name="copyright" content="微乾隆™"/>
+<link href="http://ttxd.qq.com/cp/ttxd_cbzwdh_140505/css/cgi.waiting.css" rel="stylesheet" type="text/css">
+<link href="{pigcms::RES}/czz/css/main.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#c3 {
+display: none;
+z-index: 2;
+<if condition="$info['picurls1'] neq ''">
+background: url("{pigcms:$info.picurls1}");</if>
+}
+#c13 {
+display: none;
+z-index: 2;
+<if condition="$info['picurls1'] neq ''">
+background: url("{pigcms:$info.picurls1}");</if>
+}
+#c1 {
+display: none;
+z-index: 1;
+<if condition="$info['bg'] neq ''">
+background: url("{pigcms:$info.bg}");
+</if>
+}
+#c18 {
+display: none;
+z-index: 11;
+<if condition="$info['wx'] neq ''">
+background: url("{pigcms:$info.wx}");</if>
+}
+#c4 {
+display: none;
+z-index: 2;
+<if condition="$info['zz'] neq ''">
+background: url("{pigcms:$info.zz}");</if>
+}
+</style>
+</head>
+<body>
+<div id="loading">15%</div>
+<div id="container"></div>
+<script src="{pigcms::RES}/czz/js/ping_tcss_ied.js"></script><script type="text/javascript">if(typeof(pgvMain)=="function"){pgvMain()};</script><script src="{pigcms::RES}/czz/js/jquery.js"></script><script src="{pigcms::RES}/czz/js/jquery.preload.min.js"></script><script src="{pigcms::RES}/czz/js/resize.js"></script></script> 
+<script>
+$(function(){$("#loading").css("line-height",$(window).innerHeight()+"px");$("#loading").css("opacity",0.6);init();preloadImg()});var items=[];function init(){items.push({name:"c1",rect:{t:0,l:0,w:0,h:0},img:"c1.jpg"});items.push({name:"c2",rect:{t:0,l:0,w:0,h:0},img:"c2.png"});items.push({name:"c3",rect:{t:0,l:0,w:0,h:0},img:"c3.png"});items.push({name:"c4",rect:{t:0,l:0,w:0,h:0},img:"c4.png"});items.push({name:"c5",rect:{t:0,l:0,w:0,h:0},img:"c5.png"});items.push({name:"c6",rect:{t:0,l:0,w:0,h:0},img:"c6.png"});items.push({name:"c7",rect:{t:0,l:0,w:0,h:0},img:"c7.png"});items.push({name:"c8",rect:{t:0,l:0,w:0,h:0},img:"c8.png"});items.push({name:"c9",rect:{t:0,l:0,w:0,h:0},img:"c9.png"});items.push({name:"c10",rect:{t:0,l:0,w:0,h:0},img:"c10.png"});items.push({name:"c11",rect:{t:0,l:0,w:0,h:0},img:"c11.png"});items.push({name:"c12",rect:{t:0,l:0,w:0,h:0},img:"c12.png"});items.push({name:"c13",rect:{t:0,l:0,w:0,h:0},img:"c13.png"});items.push({name:"c14",rect:{t:0,l:0,w:0,h:0},img:"c14.png"});items.push({name:"c15",rect:{t:0,l:0,w:0,h:0},img:""});items.push({name:"c16",rect:{t:0,l:0,w:0,h:0},img:"c16.png"});items.push({name:"c17",rect:{t:0,l:0,w:0,h:0},img:"c17.png"});items.push({name:"c18",rect:{t:0,l:0,w:0,h:0},img:"c18.png"});items.push({name:"c19",rect:{t:0,l:0,w:0,h:0},img:"c19.png"});items.push({name:"c20",rect:{t:0,l:0,w:0,h:0},img:"c20.png"});items.push({name:"c21",rect:{t:0,l:0,w:0,h:0},img:"c21.png"});items.push({name:"c22",rect:{t:0,l:0,w:0,h:0},img:"c22.png"});items.push({name:"c23",rect:{t:0,l:0,w:0,h:0},img:"c23.png"});items.push({name:"c24",rect:{t:0,l:0,w:0,h:0},img:"c24.png"});items.push({name:"c25",rect:{t:0,l:0,w:0,h:0},img:"c25.png"});items.push({name:"c26",rect:{t:0,l:0,w:0,h:0},img:"c26.png"});items.push({name:"c27",rect:{t:0,l:0,w:0,h:0},img:"c27.png"});items.push({name:"c28",rect:{t:0,l:0,w:0,h:0},img:"c28.png"});items.push({name:"c29",rect:{t:0,l:0,w:0,h:0},img:"c29.png"});items.push({name:"c30",rect:{t:0,l:0,w:0,h:0},img:"c30.png"});items.push({name:"c31",rect:{t:0,l:0,w:0,h:0},img:"c31.png"});items.push({name:"c32",rect:{t:0,l:0,w:0,h:0},img:"c32.png"});items.push({name:"c33",rect:{t:0,l:0,w:0,h:0},img:"c33.png"});items.push({name:"c34",rect:{t:0,l:0,w:0,h:0},img:"c34.png"});items.push({name:"c35",rect:{t:0,l:0,w:0,h:0},img:"c35.png"});items.push({name:"c31m",rect:{t:0,l:0,w:0,h:0},img:"c31.png"});items.push({name:"c32m",rect:{t:0,l:0,w:0,h:0},img:"c32.png"});items.push({name:"c33m",rect:{t:0,l:0,w:0,h:0},img:"c33.png"});items.push({name:"c34m",rect:{t:0,l:0,w:0,h:0},img:"c34.png"});items.push({name:"c35m",rect:{t:0,l:0,w:0,h:0},img:"c35.png"});items.push({name:"c36",rect:{t:0,l:0,w:0,h:0},img:"c36.png"});var a="";items.forEach(function(b){a+='<div class="imgElement" id="'+b.name+'"></div>'});a+='<div id="c14_">x 0</div>';$("#container").html(a);setTimeout(function(){resizeArea();$(window).resize(function(){resizeArea()});window.onorientationchange=function(){resizeArea()};load_page_1()},50)}var imgArr=["http://ttxd.qq.com/cp/ttxd_cbzwdh_140505/css/cgi.waiting.png","tpl/Wap/default/common/czz/images/c1.jpg","tpl/Wap/default/common/czz/images/c2.png","tpl/Wap/default/common/czz/images/c3.png","tpl/Wap/default/common/czz/images/c4.png","tpl/Wap/default/common/czz/images/c5.png","tpl/Wap/default/common/czz/images/c6.png","tpl/Wap/default/common/czz/images/c7.png","tpl/Wap/default/common/czz/images/c8.png","tpl/Wap/default/common/czz/images/c9.png","tpl/Wap/default/common/czz/images/c10.png","tpl/Wap/default/common/czz/images/c11.png","tpl/Wap/default/common/czz/images/c12.png","tpl/Wap/default/common/czz/images/c13.png","tpl/Wap/default/common/czz/images/c14.png","tpl/Wap/default/common/czz/images/c16.png","tpl/Wap/default/common/czz/images/c17.png","tpl/Wap/default/common/czz/images/c18.png","tpl/Wap/default/common/czz/images/c19.png","tpl/Wap/default/common/czz/images/c20.png","tpl/Wap/default/common/czz/images/c21.png","tpl/Wap/default/common/czz/images/c22.png","tpl/Wap/default/common/czz/images/c23.png","tpl/Wap/default/common/czz/images/c24.png","tpl/Wap/default/common/czz/images/c25.png","tpl/Wap/default/common/czz/images/c26.png","tpl/Wap/default/common/czz/images/c27.png","tpl/Wap/default/common/czz/images/c28.png","tpl/Wap/default/common/czz/images/c29.png","tpl/Wap/default/common/czz/images/c30.png","tpl/Wap/default/common/czz/images/c31.png","tpl/Wap/default/common/czz/images/c32.png","tpl/Wap/default/common/czz/images/c33.png","tpl/Wap/default/common/czz/images/c34.png","tpl/Wap/default/common/czz/images/c35.png","tpl/Wap/default/common/czz/images/c36.png"];var loadCount=0;function preloadImg(){$.preload(imgArr,1,function(){loadCount++;var a=Math.round((loadCount/imgArr.length)*100);$("#loading").html(a+"%");if(loadCount>=imgArr.length){$("#loading").css("display","none")}})};
+</script>
+
+
+<script>
+function load_page_1() {
+    $("#c1").css("display", "block");
+    $("#c2").css("display", "block");
+    $("#c2").addClass("imgElementClick");
+    $("#c3").css("display", "block");
+    $("#c4").css("display", "block")
+}
+function load_page_2() {
+    $("#c1").css("display", "block");
+    $("#c2").css("display", "none");
+    $("#c3").css("display", "none");
+    $("#c4").css("display", "none");
+    $("#c29").css("display", "block");
+    $("#c29").addClass("imgElementClick");
+    $("#c18").addClass("imgElementClick");
+    $("#c19").addClass("imgElementClick");
+    $("#c30").css("display", "block");
+    $("#c21").css("display", "block");
+    $("#c25").css("display", "block");
+    $("#c13").css("display", "block");
+    $("#c14").css("display", "block");
+    $("#c14_").css("display", "block");
+    $("#c16").css("display", "block");
+    $("#c17").css("display", "block");
+    $("#c5").css("display", "block");
+    $("#c6").css("display", "block")
+}
+var baozi_max = 50;
+var eat_max_time = 15;
+var first_eat = true;
+var finish_eat = false;
+var eat_count = 0;
+var anim_count = 0;
+var animArr_1 = ["#c28", "#c26", "#c27", "#c26", "#c27"];
+var animArr_2 = ["#c34", "#c31", "#c32", "#c33", "#c35"];
+var animArr_3 = ["#c35m", "#c34m", "#c31m", "#c32m", "#c33m"];
+function tmpFn() {
+    if (anim_count > 4) {
+        anim_count = 0
+    }
+    if (anim_count == 2 || anim_count == 4) {
+        eat_count++;
+        $("#c14_").html("x " + eat_count)
+    }
+    if (eat_count > baozi_max * 0.33 && eat_count < baozi_max * 0.66) {
+        $("#c6").css("display", "none");
+        $("#c7").css("display", "block")
+    } else {
+        if (eat_count > baozi_max * 0.66) {
+            $("#c7").css("display", "none");
+            $("#c8").css("display", "block")
+        }
+    }
+    animArr_1.forEach(function(a) {
+        $(a).css("display", "none")
+    });
+    $(animArr_1[anim_count]).css("display", "block");
+    animArr_2.forEach(function(a) {
+        $(a).css("display", "none")
+    });
+    $(animArr_2[anim_count]).css("display", "block");
+    animArr_3.forEach(function(a) {
+        $(a).css("display", "none")
+    });
+    $(animArr_3[anim_count]).css("display", "block");
+    anim_count++
+}
+function winORlose() {
+    if (finish_eat == true) {
+        return
+    } else {
+        finish_eat = true
+    }
+    $("#c29").css("display", "none");
+    $("#c10").css("display", "block");
+    animArr_1.forEach(function(a) {
+        $(a).css("display", "none")
+    });
+    animArr_2.forEach(function(a) {
+        $(a).css("display", "none")
+    });
+    animArr_3.forEach(function(a) {
+        $(a).css("display", "none")
+    });
+    if (eat_count <= 20) {
+        $("#c22").css("display", "block")
+    } else {
+        if (eat_count > 20 && eat_count <= 40) {
+            $("#c23").css("display", "block")
+        } else {
+            if (eat_count > 40) {
+                $("#c24").css("display", "block")
+            }
+        }
+    }
+    setTimeout(function() {
+        $("#c10").css("display", "none");
+        $("#c11").css("display", "block");
+        $("#c36").css("display", "block");
+        $("#c12").css("display", "block");
+        $("#c18").css("display", "block");
+        $("#c19").css("display", "block");
+        $("#c20").css("display", "block");
+        if (eat_count <= 20) {
+            chat = eat_count + "个粽子不过瘾， 必须得牛逼！！";
+            share = "我在 《吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了5%的人，求填饱";
+            share_imgUrl = "{pigcms:$info.picurl}"
+        } else {
+            if (eat_count <= 35) {
+                chat = "我勒个去，你只吃了" + eat_count + "个粽子，太慢了吧！";
+                share = "我在 《吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了15%的人，求填饱";
+                share_imgUrl = "{pigcms:$info.picurl}"
+            } else {
+                if (eat_count <= 50) {
+                    chat = "胃口不错，一口气吃" + eat_count + "个，吃完粽子记得喝碗汤";
+                    share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了25%的人，求填饱";
+                    share_imgUrl = "{pigcms:$info.picurl}"
+                } else {
+                    if (eat_count <= 65) {
+                        chat = "万万没有想到！你吃了" + eat_count + "个粽子！放开吃，吃完哥请你喝肉饼汤！";
+                        share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了35%的人，求填饱";
+                        share_imgUrl = "{pigcms:$info.picurl}"
+                    } else {
+                        if (eat_count <= 80) {
+                            chat = "你吃了" + eat_count + "个粽子，看样子你根本停不下来，加油，再来一次更牛的！！";
+                            share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了45%的人，求填饱";
+                            share_imgUrl = "{pigcms:$info.picurl}"
+                        } else {
+                            if (eat_count <= 95) {
+                                chat = "你吃了" + eat_count + "个粽子，这样的速度，标准的一吃货啊，有潜质 ！";
+                                share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了55%的人，求填饱";
+                                share_imgUrl = "{pigcms:$info.picurl}"
+                            } else {
+                                if (eat_count <= 110) {
+                                    chat = "你吃了" + eat_count + "个粽子，我看你天赋异禀、骨骼惊奇，想来是百年难得一见的吃货奇才！";
+                                    share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了65%的人，求填饱";
+                                    share_imgUrl = "{pigcms:$info.picurl}"
+                                } else {
+                                    if (eat_count <= 125) {
+                                        chat = "我勒个去，你吃了" + eat_count + "个粽子…说点什么好？记得吃药…。";
+                                        share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了75%的人，求填饱";
+                                        share_imgUrl = "{pigcms:$info.picurl}"
+                                    } else {
+                                        if (eat_count <= 140) {
+                                            chat = "你吃了" + eat_count + "个粽子，这么快的速度，够神啊";
+                                            share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了85%的人，求填饱";
+                                            share_imgUrl = "{pigcms:$info.picurl}"
+                                        } else {
+                                            chat = "天啊，你竟然吃了" + eat_count + "个粽子，简直是神一般的存在，膜拜啦！";
+                                            share = "我在《 吃粽子大赛》中吃掉了" + eat_count + "个粽子，打败了95%的人，求填饱";
+                                            share_imgUrl = "{pigcms:$info.picurl}"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        $("#c20").html(chat)
+    },
+    2000)
+}
+var chat = "";
+$(document).on("click touchstart", "#c2",
+function(a) {
+    a.preventDefault();
+    a.stopPropagation();
+    load_page_2()
+});
+$(document).on("click touchstart", "#c29",
+function(a) {
+    a.preventDefault();
+    a.stopPropagation();
+    if (first_eat == true) {
+        $("#c17").animate({
+            width: 0
+        },
+        eat_max_time * 1000, winORlose);
+        first_eat = false
+    }
+    $("#c25").css("display", "none");
+    tmpFn()
+});
+$(document).on("click touchstart", "#c18",
+function(a) {
+    a.preventDefault();
+    a.stopPropagation();
+    window.location.href = "{pigcms:$info.url}"
+});
+$(document).on("click touchstart", "#c19",
+function(a) {
+    a.preventDefault();
+    a.stopPropagation();
+    $("#container").html("");
+    window.location.reload()
+});
+$(function() {});
+var shareUrl = "{pigcms::C('site_url')}{pigcms::U(Czz/index,array('token'=>$_GET['token']))}",
+shareTitle = "《 吃粽子大赛》，求填饱！",
+share = "《 吃粽子大赛》，求填饱！",
+share_imgUrl = "{pigcms:$info.picurl}";
+var onBridgeReady = function() {
+    var a = "";
+    WeixinJSBridge.on("menu:share:appmessage",
+    function(b) {
+        var f = "{pigcms:$info.picurl}",
+        c = shareUrl;
+        var e = shareTitle;
+        var d = share;
+        WeixinJSBridge.invoke("sendAppMessage", {
+            img_url: f,
+            img_width: "240",
+            img_height: "240",
+            link: c,
+            desc: d,
+            title: e
+        },
+        function(g) {})
+    });
+    WeixinJSBridge.on("menu:share:timeline",
+    function(b) {
+        var f = "{pigcms:$info.picurl}",
+        c = shareUrl;
+        var e = shareTitle;
+        var d = share;
+        WeixinJSBridge.invoke("shareTimeline", {
+            img_url: f,
+            img_width: "240",
+            img_height: "240",
+            link: c,
+            desc: d,
+            title: d
+        },
+        function(g) {})
+    })
+};
+if (document.addEventListener) {
+    document.addEventListener("WeixinJSBridgeReady", onBridgeReady, false)
+} else {
+    if (document.attachEvent) {
+        document.attachEvent("WeixinJSBridgeReady", onBridgeReady);
+        document.attachEvent("onWeixinJSBridgeReady", onBridgeReady)
+    }
+};
+/*  |xGv00|64afc39a02a4fd356fdf7a63851d2f26 */
+
+</script>
+</body>
+</html>
+<!--[if !IE]>|xGv00|3f39174f19c4f99a37cbda6c4cddb83d<![endif]-->

@@ -1,0 +1,52 @@
+<include file="Frame:header"/>
+<script src="{pigcms::STATICS}/forum/js/jquery_min.js" ></script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/lang/cn.js"> </script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/formcheck.js"> </script>
+<link rel="stylesheet" href="tpl/Agent/Common/js/formCheck/theme/grey/formcheck.css" type="text/css" media="screen" />
+<link href="tpl/Agent/Common/style/calendar.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/calendar.js"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function(){
+	new FormCheck('myform');
+});
+</script>
+
+<div class="columntitle">设置成功案例</div>
+   <form method="post" action="?g=Agent&m=Site&a=setCase" id="myform">
+            <table class="addTable">
+					
+				<tr>
+					<td height="48" align="right">名称：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="name" class="colorblur" size="45" value="{pigcms:$info.name}" />
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right">图片地址：</td>
+					<td colspan="3" class="lt">
+						<input type="text" id="qrcode" name="img" class="colorblur" size="45" value="{pigcms:$info.img}" /> <a href="###" onclick="upyunWapPicUpload('qrcode',100,100,'admin')">上传</a>
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right">链接地址：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="url" class="colorblur" size="45" value="{pigcms:$info.url}" />
+					</td>
+				</tr>
+			
+          <tr>
+            <td class="addName"></td>
+            <td>
+            <input type="hidden" value="1" name="status" />
+            <input type="hidden" value="{pigcms:$info.id}" name="id" />
+            <input type="hidden" value="{pigcms:$thisAgent.id}" name="agentid" />
+            <input type="submit" name="doSubmit" value="提交" class="button"/></td>
+          </tr>
+         
+        </table>
+        <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="referer" />
+</form>
+<include file="Frame:footer"/>

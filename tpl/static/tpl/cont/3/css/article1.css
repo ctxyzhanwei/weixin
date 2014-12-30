@@ -1,0 +1,17 @@
+.article{ padding: 0 5px;}
+.article .hd,
+.article .bd{ padding: 5px; line-height: 20px; color: #333;}
+.article .hd{ padding: 18px 5px 10px 5px; border-bottom: 1px dashed #333;}
+.article .hd h1{ font-size:16px; font-weight: normal;}
+.article .hd small{font-size: 12px; color: #aaa;}
+.article img{ max-width: 100%;}
+.article .bd ul,
+.article .bd ol{-webkit-padding-start:20px;}
+.btn-up-1{ background: #999;}
+.btn-up-1 .fa{ background: #fff; color: #999;}
+.navPop-1 .navPop-btn{ background: #999;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #999;}
+.navPop-wrap>div a{
+    background: #999;
+    color: #fff;
+}

@@ -1,0 +1,172 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" >  
+<div class="cLineB"><h4>摇一摇设置</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="acttitle">活动名称：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="title" style="width:500px"  value="{pigcms:$info.title}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">关键词：</label></TH>
+  <TD><input type="input" class="px" id="keyword"  name="keyword" style="width:500px"  value="{pigcms:$info.keyword}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+ <tr> 
+        <th>图文回复图片：</th>
+        <td><input type="text" name="thumb" value="{pigcms:$info.thumb}" class="px" id="thumb" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('thumb',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('thumb')">预览</a></td> 
+       </tr>
+<tr> 
+  <TR>
+  <TH valign="top"><label for="text">Logo：</label></TH>
+  <TD>
+    <input type="input" class="px" id="logo" value="<if condition="$info['logo'] eq ''">./tpl/static/wall/images/default_logo.png<else/>{pigcms:$info.logo}</if>" name="logo" style="width:350px"> 
+    <a href="###" onclick="upyunPicUpload('logo',400,400,'{pigcms:$token}')" class="a_upload">上传</a>
+    <a href="###" onclick="viewImg('logo')" class="a_upload">预览</a>[280*75]
+</TD>
+</TR>
+        <th><span class="red"></span>简介：</th> 
+        <td><textarea name="intro" class="px" style="width:400px;height:80px;">{pigcms:$info.intro}</textarea></td> 
+       </tr>
+<TR style="display:none">
+  <TH valign="top">类型：</TH>
+  <TD><label for="radio1"><input id="radio1" class="radio" type="radio" name="shaketype" value="1"  <eq name="info.shaketype" value="1">checked="checked"</eq> /> 以手机竖直中轴线垂直地面的为临界点，左右摇省力</label><br /><label for="radio2"><input class="radio" id="radio2" type="radio" name="shaketype" value="2" <eq name="info.shaketype" value="2">checked="checked"</eq> /> 以手机摇晃时达到一定的加速度值为一次来计算，较费力，但不用考虑方向</label></TD>
+</TR>
+</THEAD>
+  <TBODY>
+<TR>
+  <TH valign="top"><label for="text">手机端传输间隔：</label></TH>
+  <TD><input type="input" class="px" id="clienttime"  name="clienttime" style="width:50px" value="{pigcms:$info.clienttime}" >  数字越大大屏幕上更新的越慢!
+ 
+
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR> 
+<TR>
+  <TH valign="top"><label for="text">大屏幕页面传输间隔：</label></TH>
+  <TD><input type="input" class="px" id="showtime"  name="showtime" style="width:50px" value="{pigcms:$info.showtime}" >  数字越大大屏幕上更新的越慢!
+ 
+
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">游戏开始倒数计时：</label></TH>
+  <TD><input type="input" class="px" id="starttime"  name="starttime" style="width:50px" value="{pigcms:$info.starttime}" > 
+ 
+
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">摇晃时间：</label></TH>
+  <TD><input type="input" class="px" id="usetime"  name="usetime" style="width:50px" value="{pigcms:$info.usetime}" > 秒  每个用户只能摇约定秒数，尽量设置时间长一点。
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">最多次数：</label></TH>
+  <TD><input type="input" class="px" id="endshake"  name="endshake" style="width:50px" value="{pigcms:$info.endshake}" > 下  第一个用户达到这个数字时活动就停止。
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">大屏幕页面展示人数：</label></TH>
+  <TD><input type="input" class="px" id="shownum"  name="shownum" style="width:100px" value="{pigcms:$info.shownum}" >  摇晃成绩在大屏幕上显示最前面的人数
+ 
+
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">大屏幕背景：</label></TH>
+  <TD>
+    <input type="input" class="px" id="background" value="<if condition="$info['background'] eq ''">./tpl/static/wall/images/default_bg.jpg<else/>{pigcms:$info.background}</if>" name="background" style="width:250px" > 
+    <script src="/tpl/static/upyun.js"></script>
+    <a href="###" onclick="upyunPicUpload('background',1500,1000,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;&nbsp;&nbsp;
+    <a href="###" onclick="viewImg('background')" class="a_upload">预览</a> 
+ 
+<input type="hidden" name="id" value="{pigcms:$info.id}" />
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+
+<TR>
+  <TH valign="top"><label for="text">大屏幕背景音乐：</label></TH>
+  <TD><input type="input" class="px" id="backgroundmusic" value="<if condition="$info.backgroundmusic eq ''">/tpl/static/wall/music/v2.mp3<else/>{pigcms:$info.backgroundmusic}</if>" name="backgroundmusic" style="width:250px" value="" >  <a href="###" onclick="chooseFile('backgroundmusic','music')" class="a_upload">选择</a> 定义大屏幕背景音乐，为URL地址
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<!--
+<TR>
+  <TH valign="top"><label for="text">客户端起始音效：</label></TH>
+  <TD><input type="input" class="px" id="music" value="{pigcms:$info.music}" name="music" style="width:250px" value="" > <a href="###" onclick="chooseFile('music','music')" class="a_upload">选择</a> 提醒用户开始摇一摇的音效效果
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+-->
+<TR>
+  <TH valign="top"><label for="text">二维码图片地址：</label></TH>
+  <TD><input type="input" class="px" id="qrcode" value="{pigcms:$info.qrcode}" name="qrcode" style="width:250px" value="" >  <a href="###" onclick="chooseFile('qrcode','my')" class="a_upload">选择</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="upyunPicUpload('qrcode',1500,1000,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;&nbsp;&nbsp;<a href="###" onclick="viewImg('qrcode')" class="a_upload">预览</a> 大屏幕显示的二维码
+ 
+
+</TD>
+  <TD rowspan="2" valign="top"></TD>
+</TR>
+<tr> 
+        <th><span class="red"></span>头部喊话文字：</th>
+        <td>
+          <span>游戏过程中屏幕上面的加油呐喊文字,多个词使用“|”隔开(使用：shift+\)</span><br />
+          <textarea name="cheer" class="px" style="width:400px;height:80px;"><if condition="$info['cheer'] eq ''">再大力！|再大力，再大力!|摇，大力摇！|小心手机，别飞出去伤到花花草草|看灰机～～～<else/>{pigcms:$info.cheer}</if></textarea>
+        </td> 
+       </tr>  
+<tr> 
+    <th><span class="red"></span>规则说明：</th> 
+    <td>
+      <textarea name="rule" class="px" style="width:300px;height:80px;">{pigcms:$info.rule}</textarea>
+    </td> 
+</tr>    
+<tr> 
+  
+<tr> 
+        <th><span class="red"></span>活动介绍：</th> 
+        <td><textarea name="info" class="px" style="width:400px;height:80px;">{pigcms:$info.info}</textarea></td> 
+       </tr>
+<TR>
+  <TH valign="top">活动状态：</TH>
+  <TD><label for="radio3"><input id="radio3" class="radio" type="radio" name="isopen" value="1"  <eq name="info.isopen" value="1">checked="checked"</eq> /> 开启</label><br /><label for="radio4"><input class="radio" id="radio4" type="radio" name="isopen" value="0" <eq name="info.isopen" value="0">checked="checked"</eq> /> 关闭</label></TD>
+</TR>
+<!--
+<TR>
+  <TH valign="top">游戏开始：</TH>
+  <TD><label for="radio5"><input id="radio5" class="radio" type="radio" name="isact" value="1"  <eq name="info.isact" value="1">checked="checked"</eq> /> 开始</label><br /><label for="radio6"><input class="radio" id="radio6" type="radio" name="isact" value="0" <eq name="info.isact" value="0">checked="checked"</eq> /> 关闭</label></TD>
+</TR>
+-->   
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

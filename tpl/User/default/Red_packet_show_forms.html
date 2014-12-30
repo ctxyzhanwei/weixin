@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>兑奖信息</title>
+
+<link rel="stylesheet" href="./tpl/User/default/common/css/style.css" />
+</head>
+<body>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;">使用方法：点击“确认兑奖”确认用户的兑奖申请。</div>
+	<div>
+		<table width="100%" class="ListProduct">
+			<tbody>
+				<tr>
+					<td align="right">微信号:</td>
+					<td>{pigcms:$info.wxname}</td>
+					<td align="right">手机号码:</td>
+					<td><b>{pigcms:$info.mobile}</b></td>
+				</tr>
+				<tr>
+					<td align="right">金额:</td>
+					<td>{pigcms:$info.price}</td>
+					<td align="right">兑奖时间:</td>
+					<td>{pigcms:$info.add_time|date="Y-m-d h:i:s",###}</td>
+				</tr>
+				<tr>
+					<td align="right"></td>
+					<td></td>
+					<td align="right">兑换状态:</td>
+					<td>
+						<if condition="$info.status eq 1">
+							已兑换
+						<else/>
+						 	未兑换
+						</if>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" align="right"><a href="javascript:void(0);" class="right btnGrayS vm" id="ok">确认兑奖</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>	
+<script>
+	$(function(){
+		$('#ok').click(function(){
+			if(confirm('确定标记已兑奖码？')){
+				 $.getJSON('./index.php?g=User&m=Red_packet&a=is_ok', {token:'{pigcms:$token}',id:"{pigcms:$info.id}",packet_id:'{pigcms:$info.packet_id}'}, function(data){
+				      alert(data.info); 
+				      if(data.err == 0){
+				    	  window.parent.location.reload();
+				      } 
+				  });  
+			}
+			
+		});
+		
+	});
+</script>
+</body>
+</html>

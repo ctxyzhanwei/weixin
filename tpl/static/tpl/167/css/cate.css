@@ -1,0 +1,36 @@
+html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin:0; padding:0; }
+img { border:0; }
+ol, ul { list-style: none outside none; margin:0; padding: 0; }
+a { color:#000000; text-decoration: none; }
+.clr { display:block; clear:both; height:0; overflow:hidden; }
+.copyright { padding:8px; text-align:center; font-size:14px; color:#333; }
+.copyright a { color:#333; }
+h2 { font-size:16px; }
+body { background-color:#151515; font-size:14px; min-width:320px }
+body .mainmenu { margin-right: 4px; }
+body .mainmenu:after { clear: both; content: " "; display: block; }
+body .mainmenu li { overflow:hidden; float:left; width:25%; }
+body .mainmenu li a { border-radius:3px; display:block; color:#FFF; margin:4px 0 0 4px; text-align: center; padding:5px; background-color:#0076D3;height:60px;overflow:hidden; }
+body .mainmenu li a img { width:40px; height:40px; }
+body  .mainmenu li:nth-child(7n+1) a  p:last-child{ display:none;}
+body .mainmenu li:nth-child(7n+1) {
+width:50%;
+}
+ body .mainmenu li:nth-child(7n+1) a {
+height:134px;
+}
+ body .mainmenu li:nth-child(7n+1) a img {
+width: 80px;
+height: 80px;
+margin-top: 20px;
+}
+body .mainmenu li:nth-child(7n+6) {width:50%;}
+body .mainmenu li:nth-child(7n+6) a { height:auto;padding:0px;}
+body .mainmenu li:nth-child(7n+6) a img{ width:100%; height:auto;}
+body .mainmenu li:nth-child(7n+6) a p { display:none;}
+
+body .mainmenu li:nth-child(7n+7) {width:50%;}
+body .mainmenu li:nth-child(7n+7) a { height:auto;padding:0px;}
+body .mainmenu li:nth-child(7n+7) a img{ width:100%; height:auto;}
+body .mainmenu li:nth-child(7n+7) a p { display:none;}

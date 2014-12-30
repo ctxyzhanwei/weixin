@@ -1,0 +1,116 @@
+<include file="Public:head"/>
+<include file="Business:public_menu"/>
+<!-- <script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script> -->
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+
+
+<include file="Business:tips"/>
+
+
+  <div class="cLineC" style="line-height: 32px;"> <a href="{pigcms::U('Business/poster_add',array('token'=>$token,'type'=>$type))}" class="btnGrayS vm bigbtn">添加宣传海报</a> </div>
+  <div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th style=" width:100px;">
+ <if condition="$type eq 'fitness'">
+健身中心名称
+      <elseif condition="$type eq 'gover'"/>
+政务部门
+      <elseif condition="$type eq 'food'"/>
+食品公司名称
+      <elseif condition="$type eq 'travel'"/>
+旅游公司名称
+      <elseif condition="$type eq 'flower'"/>
+花店公司
+      <elseif condition="$type eq 'property'"/>
+物业公司
+      <elseif condition="$type eq 'ktv'"/>
+KVT名称
+      <elseif condition="$type eq 'bar'"/>
+酒吧名称
+      <elseif condition="$type eq 'fitment'"/>
+装修公司名称
+      <elseif condition="$type eq 'wedding'"/>
+婚庆公司名称
+      <elseif condition="$type eq 'affections'"/>
+宠物公司名称
+      <elseif condition="$type eq 'housekeeper'"/>
+家政公司名称
+      <elseif condition="$type eq 'lease'"/>
+租赁公司名称
+      <elseif condition="$type eq 'beauty'"/>
+美容公司名称
+  </if>
+           </th>
+              <th style=" width:100px;">选用相册</th>
+              <th style=" width:100px;">海报1</th>
+              <th style=" width:100px;">海报2</th>
+              <th style=" width:100px;">海报3</th>
+              <th style=" width:100px;">海报4</th>
+              <th style=" width:100px;">海报5</th>
+              <th style=" width:120px;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+              <volist name="busines_pic" id="vo">
+                <tr>
+                    <td>{pigcms:$vo.0}</td>
+                    <td>{pigcms:$vo.1}</td>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl_1}" class="cateimg_small"></div></td>
+                    <td><div class="cateimg"><if condition="$vo.picurl_2 neq ''">
+                      <img src="{pigcms:$vo.picurl_2}" class="cateimg_small"></if>
+                    </div></td>
+                    <td><div class="cateimg"><if condition="$vo.picurl_3 neq ''"><img src="{pigcms:$vo.picurl_3}" class="cateimg_small"></if></div></td>
+                    <td><div class="cateimg"><if condition="$vo.picurl_4 neq ''"><img src="{pigcms:$vo.picurl_4}" class="cateimg_small"></if></div></td>
+                    <td><div class="cateimg"><if condition="$vo.picurl_5 neq ''"><img src="{pigcms:$vo.picurl_5}" class="cateimg_small"></if></div></td>
+                    <td>
+              <a href="{pigcms::U('Business/poster_add',array('pid'=>$vo['pid'],'type'=>$vo['type']))}" class="btnGreen">编辑</a>
+              <a href="{pigcms::U('Business/poster_del',array('pid'=>$vo['pid'],'type'=>$vo['type']))}" onclick="return(confirm('确定要删除吗？'))" class="btnGreen">删除</a>
+                    </td>
+                </tr>
+              </volist>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages">{pigcms:$page}</div>
+    </div>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

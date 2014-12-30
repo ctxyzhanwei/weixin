@@ -1,0 +1,213 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<link href="{pigcms::RES}/css/activity.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">题目设置</h4>
+  <a href="{pigcms::U('Problem/question',array('token'=>$token,'problem_id'=>$problem_id))}" class="right  btnGreen">返回</a>
+<div class="clr"></div>
+</div>
+<style>
+  div.activity{margin: 0px}
+  .topic_box{border-top: 0px;}
+  .question_box ul a.list_del {float:none;}
+</style>
+<div class="indexout">
+<div class="new_pub">
+      <div class="activity">
+        <form id="survey_form" method="post">  
+            <div class="topic_box">
+                    <div class="question_box" id="question_info_1">
+                    <p class="question_info">
+                        <span>问题<u>1</u>：</span>
+                        <input type="text" class="txt" name="title[0]" value="{pigcms:$quest_info.title}">
+                        <input type="hidden" class="hide_txt" name="qid[0]" id="qid[0]" value="{pigcms:$quest_info.id}">
+                        <input type="text" class="sort" name="sort[0]" value="{pigcms:$quest_info.sort}" style="border:1px solid #ccc;width:30px;">排序
+                        <input type="checkbox" class="px" name="is_show[0]" id="ismulti_1" value="1" <if condition="$quest_info.is_show eq '1'">checked</if>>显示
+                    </p>
+                    <ul id="0" class="optionul">
+                        <volist name="quest_info['op_data']" id="option" key="key">
+                          <li>
+                              <span>A</span><u>选项：</u>
+                               <input type="hidden" class="hide_txt" name="oid[0][0]" id="oid[0][0]" value="{pigcms:$option.id}">
+                              <input type="text" class="txt" name="answer[0][0]" value="{pigcms:$option.answer}">
+                              <input type="checkbox" class="checkd" name="is_true[0][0]" id="is_true_0" value="1" <if condition="$option.is_true eq '1'">checked</if>>答案
+                              <a class="list_del" href="javascript:;" title="删除这个选项">×</a>
+                          </li>
+                        </volist>
+                     </ul>
+
+                <p class="bot_add"><a href="javascript:;" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">再添加一个选项</a></p>
+                </div>
+            </div>
+           
+            <ul>            
+    <ul class="pub_list">
+    <li class="bot">
+         <input class="btnGreen" type="button" id="submit_survey" value="修改"> &nbsp;
+         <a href="{pigcms::U('Research/index',array('token'=>$token))}" class="btnGray vm">取消</a>
+        </li>
+    </ul>
+</ul>     
+</form>
+</div>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $("#submit_survey").click(function(){
+      var flag = true;
+      var info = '';
+
+      $('.question_box').each(function(){
+
+        //alert($(this).find('.question_info>.txt').length);
+        var input = $(this).find('.question_info>.txt');
+            if(input.val() == '' || input.val() == '请填写问题的题目'){
+              flag = false;
+              info += '请填写完整的题目信息\n';
+            }else{
+              var option = input.parent('.question_info').siblings('.optionul').find('li .txt');
+              var is_true = input.parent('.question_info').siblings('.optionul').find('.checkd');
+              var op_flag = false;
+              var is_flag = false;
+              for (var i = option.length - 1; i >= 0; i--) {
+                  if(option[i].value != ''){
+                    op_flag = true;
+                  }
+
+                  if(is_true[i].checked === true){
+                    is_flag = true;
+                  }
+              };    
+                  if(!op_flag){
+                    info += '每个问题请至少设置一个答案选项\n';
+                  }
+                  if(!is_flag){
+                    info += '每个题目请至少设置一个正确的答案\n';
+                  }
+              
+            }
+      });
+          if(info.length > 0){
+            alert(info);
+          }else{
+            $("form:first").submit(); 
+          }
+
+    });
+    
+  checked();
+  letters();
+});
+function checked(){
+      $(".optionul li").find('.checkd').each(function(){
+      $(this).click(function(){
+        if($(this).attr('checked') === true){
+          $(this).parent().siblings('li').children('input:checkbox').attr('checked','');
+        }
+      });
+    });
+}
+
+/*添加选项*/
+function number(){
+  var i = 0;
+    $(".optionul li").each(function(){
+        $(this).find("input[name='userfile']").attr("id","userfile_" + i).live("change",function(){
+          uploadimage($(this).attr("id"));
+        });
+        i ++;
+    })  
+}
+
+$(".orange_tips a.close").click(function(){
+    $(".orange_tips").remove();
+})
+
+/*添加选项*/
+var a = new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+function letters(){
+    $(".question_box ul li").each(function(){
+        $(this).find("span:first").html(a[$(this).index()]);  
+        $(this).find(".txt").attr('name', 'answer['+$(this).parent().attr('id')+']['+$(this).index()+']');
+        $(this).find(".hide_txt").attr('name', 'oid['+$(this).parent().attr('id')+']['+$(this).index()+']');
+        $(this).find(".checkd").attr('name', 'is_true['+$(this).parent().attr('id')+']['+$(this).index()+']');
+        $(this).find(".checkd").attr('name', 'is_true['+$(this).parent().attr('id')+']['+$(this).index()+']');
+    }); 
+    $(".topic_box .question_box").each(function(){
+        $(this).find(".question_info span u").html($(this).index() + 1);
+    }); 
+    $('#question_info_1 .box_del').remove();
+    $('.question_box ul li .txt').focus(function(){
+        $(this).next().show();
+    });
+    checked();
+}
+
+$(".question_box ul li .list_del").live('click',function(){                        
+  $(this).parents("li").remove();
+  var id = $(this).siblings('.hide_txt').val();
+  if(id){
+      option_del(id);
+  }
+  letters();
+});  
+function option_del(id)
+{
+   $.post("{pigcms::U('Problem/option_del',array('token' => $token,'problem_id'=>$problem_id))}&is_ajax=1&id="+id, $('#survey_form').serialize(), function(response){
+       if (response) {
+          return true;
+       } 
+   }, 'json'); 
+}
+    
+$(".question_box .bot_add a.btnGrayS").live('click',function(){
+    var t = '<li><span>A</span><u>选项：</u><input type="hidden" class="hide_txt"> <input type="text" class="txt"/><input type="checkbox" class="checkd" name="is_true[1][2]" id="ismulti_1" value="1">答案<a class="list_del" href="javascript:;" title="删除这个选项">×</a></li>';
+    if($(this).parents(".question_box").find("ul li").size() <= 25){
+        $(this).parents(".question_box").find("ul").append(t);
+        letters();
+        number();
+    }else{
+        alert("您添加的数量够用了！");
+    }
+});
+/*添加选项结束*/
+
+$(".box_del").live('click',function(){
+    $(this).parents(".question_box").remove();
+    $(".question_box").each(function() {
+        //$(this).find("u").html($(this).index());
+    }); 
+    letters();
+    number();
+})
+
+/*添加题目和删除题目结束*/
+
+$(".question_box p .txt").live('focusin',function(){
+    if($(this).val() == "请填写问题的题目"){
+        $(this).val("");
+    $(this).css("color","#666");
+    }
+}).live('focusout',function(){
+    if($(this).val() == ""){
+        $(this).val("请填写问题的题目");
+    $(this).css("color","#999");
+    }
+});
+
+
+function dateformat(id, day){
+ var date = new Date();
+ date.setDate(date.getDate()+day);
+ var deadline = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+ $("#" + id).val(deadline);
+}
+</script>
+<include file="Public:footer"/>

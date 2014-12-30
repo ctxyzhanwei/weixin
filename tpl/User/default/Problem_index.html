@@ -1,0 +1,110 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+
+<h4 class="left">幸运答题</h4>
+<div class="left" style="line-height:22px;color:#f00;padding-left:10px;">(友情提示：为了活动顺利进行，请设置好足够的题目选项再开启游戏)</div>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> 
+	<a href="{pigcms::U('Problem/game_set',array('token'=>$token,'dining'=>$isDining))}" title="添加" class="btnGrayS vm bigbtn">
+		<img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">
+		添加活动
+	</a>
+</div>
+<div class="pageNavigator  searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">活动名称</th>
+<th width="60">关键词</th>
+<th width="45">活动持续</th>
+<th width="45">答题数量</th>
+<th width="45">奖励积分</th>
+<th width="45">答题时间</th>
+
+<!--
+<th width="45">参与限制</th>
+
+<th width="150">活动说明</th>-->
+<th width="45">是否开始</th>	
+<th width="160" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="list"> 
+<tr>
+<td>{pigcms:$list.name}</td>
+<td>{pigcms:$list.keyword}</td>
+<td>{pigcms:$list.end_day}天</td>
+<td>{pigcms:$list.question_num}题/天</td>
+<td>{pigcms:$list.score}分/题</td>
+<td>{pigcms:$list.answer_time}秒</td>
+
+<!--
+<td>{pigcms:$list.sub_limit}次/天</td>
+
+<td>{pigcms:$list.explain}</td>-->
+<td>
+	<if condition="$list.is_open eq '1'">
+	已开启
+	<else />
+	已关闭
+	</if>
+</td> 
+
+<td class="norightborder">
+	<a href="{pigcms::U('Problem/question',array('token'=>$token,'problem_id'=>$list['id']))}">题目设置</a>
+	|
+	<a href="{pigcms::U('Problem/user_info',array('token'=>$token,'problem_id'=>$list['id']))}">用户信息</a>
+	|
+	<a href="{pigcms::U('Problem/game_set',array('id'=>$list['id'],'token'=>$token))}">修改</a> 
+	|
+	<a href="{pigcms::U('Problem/game_del',array('id'=>$list['id'],'token'=>$token))}" onclick="javascript:confirm('您确定要删除吗?');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+<script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script> 
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>  

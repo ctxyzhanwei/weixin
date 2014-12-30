@@ -1,0 +1,91 @@
+<include file="Public:head"/>
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+  <h4 style="margin-bottom:10px;">粉丝昵称：{pigcms:$userinfo['nickname']}</h4><span style="color:red"> 粉丝关注时间：{pigcms:$userinfo['subscribe_time']|date='Y-m-d H:i:s',###} <pigcmsif where="$endtime neq 0">粉丝最后一次访问时间：{pigcms:$endtime|date='Y-m-d H:i:s',###|default="早期粉丝，查无音讯"}</pigcmsif></span>
+  <a href="" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+ <div class="msgWrap form">
+		<ul id="tags">
+		<li <pigcmsif where="$type neq 'list'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Wechat_behavior/statisticsOfSingleFans',array('openid'=>strip_tags($_GET['openid'])))}">行为统计</a> 
+			</li>
+			<li <pigcmsif where="$type eq 'list'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Wechat_behavior/wechatList',array('openid'=>strip_tags($_GET['openid'])))}">行为列表</a> 
+			</li>
+			
+			<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+		<div id="tagContent">
+		<?php
+		if ($type=='list'){
+		?>
+		<div class="tagContent selectTag" id="tagContent0" style="display: block;WIDTH: 100%;">
+		<fieldset>
+            <ul class="cateradio">
+                <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+				 <thead>
+					<tr>
+						<th> 粉丝行为编号</th>
+						<th>事件名</th>
+						<th>事件发生时间</th>
+						<th>事件执行次数</th>
+						<th>触发关键词</th>
+						<th style="display:none">操作</th>
+					</tr>
+				</thead>
+				   <tbody>
+			    <pigcmslist array="list" foreach="list">
+                <tr>
+                  <td>{pigcms:$list.id}</td>
+                  <td>{pigcms:$list.behavior}</td>
+                  <td>{pigcms:$list.enddate|date='Y-m-d H:i:s',###}</td>
+                  <td>{pigcms:$list.num|default='1'}</td>
+                  <td>
+					{pigcms:$list.keyword}
+               
+                  <td class="norightborder" style="display:none">
+						<a href="{pigcms::U('Wechat_behavior/wechatList',array('openid'=>$list['openid']))}">粉丝行为管理</a>　
+						
+						
+				   </td>
+                </tr>
+      			</pigcmslist>
+                 <tr>
+
+                </tr>
+              </tbody>
+				
+			</table>
+           
+           
+          </div>
+            </ul>
+</fieldset>
+</div>
+<?php
+		}else{
+		?>
+<div id="chartdiv1" style="margin-top:20px;" align="center"></div>
+					<script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Pie3D.swf", "ChartId", "600", "500", "0", "1");
+					//chart.setTransparent("false");
+					chart.setDataXML('{pigcms:$xml}');
+					//chart.setDataURL("data.html");
+					chart.render("chartdiv1");
+					</script>
+<?php
+		}
+		?>
+</div>		 
+
+  
+
+        <div class="clr"></div>
+          </div>
+  
+        </div>
+<include file="Public:footer"/>
+			

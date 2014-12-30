@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订餐</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<link rel="stylesheet" type="text/css" href="tpl/static/dining/css/jqm/dining.min.css" />
+	<link rel="stylesheet" type="text/css" href="tpl/static/dining/css/jqm/jquery.mobile.structure-1.3.2.min.css" />
+	
+	<script src="tpl/static/dining/js/jqm/jquery-1.9.1.min.js"></script>
+	<script>
+		$(document).bind("mobileinit", function() {
+			//初始化代码
+			$.mobile.loadingMessage = "正在加载";
+			$.mobile.pageLoadErrorMessage = "加载页面出错";
+
+			$.mobile.page.prototype.options.backBtnText = "后退";
+			$.mobile.dialog.prototype.options.closeBtnText = "关闭";
+
+			$.mobile.page.prototype.options.domCache = false;
+
+			$.mobile.pushStateEnabled = false;
+
+			if (navigator.userAgent.indexOf("Android") != -1)
+			{
+				$.mobile.defaultPageTransition = 'none'; 
+				$.mobile.defaultDialogTransition = 'none'; 
+			}
+			else
+			{
+				$.mobile.defaultPageTransition = 'slide'; 
+				$.mobile.defaultDialogTransition = 'pop';
+			}
+		});
+		
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+   		WeixinJSBridge.call('hideToolbar');//下方导航
+    	//WeixinJSBridge.call('hideOptionMenu');右上
+		});
+	</script>
+	<script src="tpl/static/dining/js/jqm/jquery.mobile-1.3.2.min.js"></script>
+	
+	<script src="tpl/static/dining/js/iscroll/iscroll-lite.js"></script>
+	
+	<script src="tpl/static/dining/js/shoporder.js"></script>
+	<link rel="stylesheet" type="text/css" href="tpl/static/dining/css/shop.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Repast/index',array('token'=>$token))}",
+            "tTitle": "订餐",
+            "tContent": ""
+};
+</script>
+{pigcms:$shareScript}

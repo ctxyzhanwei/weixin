@@ -1,0 +1,58 @@
+{include file=$header}
+<div class="banner">
+ <div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                    </div>
+    </div>
+</div>
+
+</div>
+
+<div class="news" style="background:none">
+  <ul class="newsul">
+				 {if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+    	    	<li><a href="{$a.link}" title="{$a.title}">{$a.title}</a></li>
+            	{/if}
+		{/foreach}
+		<div class="clear"></div>
+		{/if}
+<div class="clear"></div>
+			</ul>
+ </div>
+ <div class="clear" style="height:100px;"></div>
+ <ul class="productul">
+{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<3}
+                    <li style="width:32%">
+					<div>
+					<a href="{$a.link}" title="{$a.title}"><img src="{$a.thumb}"/></a>
+          <p><a href="{$a.link}" title="{$a.title}">{$a.title}</a></p>
+          </div></li>
+          {/if}
+		  {/foreach}
+		  {/if}
+		  <div class="clear"></div>
+			</ul>
+	<div class="clear"></div>
+ <div style="height:30px;"></div>
+{include file=$footer}

@@ -1,0 +1,69 @@
+<include file="Public:head"/>
+<div class="content" >  
+<div class="cLineB">
+  <h4>发送记录<span class="FAQ"></span></h4>
+ </div>
+ 
+<div class="msgWrap form">
+<ul id="tags" style="width:100%">
+		<li>
+				<a href="?g=User&m=Message&a=index">发送消息（通过群发接口）</a> 
+			</li>
+		<li>
+				<a href="?g=User&m=Message&a=index2">发送消息（通过客服接口）</a> 
+			</li>
+			<li class="selectTag">
+				<a href="?g=User&m=Message&a=sendHistory">发送记录</a> 
+			</li>
+			<li>
+				<a href="?g=User&m=Message&a=help">帮助说明</a> 
+			</li>
+						<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+</div>
+
+
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">标题</th>
+<th style=" width:80px;">类型</th>
+<th style=" width:80px;">成功数量</th>               
+<th style=" width:150px;" class="norightborder">时间</th>
+<th style=" width:80px;">操作</th>    
+</tr>
+</thead>
+<volist name="info" id="actinfo">
+<tr>
+<td>{pigcms:$actinfo.title}</td>
+<td>{pigcms:$actinfo.msgtype}</td>
+<td>{pigcms:$actinfo.reachcount}</td>
+<td>
+<php>echo date('Y-m-d',$actinfo['time']);</php>
+</td>
+<td class="norightborder"><a charset="a_oper" href="{pigcms::U('Message/item',array('id'=>$actinfo['id']))}">查看</a></td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

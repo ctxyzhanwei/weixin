@@ -1,0 +1,116 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<div class="content">
+         <div class="cLineB">
+          <h4>
+          	添加开卡即送
+          </h4>
+          <a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+         </div>
+       
+          <form method="post" action="">
+          <div class="msgWrap form">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tbody>
+	  <tr>
+	      <th>活动名称：</th>
+	      <td>
+	      	<input type="input" class="px" class="name" value="{pigcms:$set.name}" name="name"> 
+	      </td>
+	 </tr>             		
+    
+    <tr>
+		<th>活动持续时间：</th>
+		<td>	
+			<input type="input" class="px" class="start" value="<if condition="$set.start neq ''">{pigcms:$set.start|date='Y-m-d',###}</if>" name="start" onClick="WdatePicker()">
+			-
+			<input type="input" class="px" class="end" value="<if condition="$set.end neq ''">{pigcms:$set.end|date='Y-m-d',###}</if>" name="end"   onClick="WdatePicker()">
+		</td>
+	</tr>
+
+</tr>
+<tr>
+	<th valign="top">赠送类型：</th>
+	<td>
+		<input type="radio" class="type" name="type" value="1" <if condition="$set.type eq '1' or $set.type eq ''">checked</if>>积分 &nbsp;
+		<input type="radio" class="type" name="type" value="2" <if condition="$set.type eq '2'">checked</if>>优惠劵
+	</td>
+</tr>
+<tr class="value" <if condition="$set.type eq '2'">style="display:none;"</if>>
+	<th valign="top">赠送积分：</th>
+	<td>
+		<input type="text" name="item_value" value="{pigcms:$set.item_value}" style="width:65px;" class="px scroe">分
+	</td>
+</tr>
+<tr class="attr" <if condition="$set.type eq '1'  or $set.type eq ''">style="display:none;"</if>>
+	<th valign="top">赠送优惠劵：</th>
+	<td>
+		<select name="item_attr" class="item_attr">
+			<option value="">选择卷类</option>
+			<option value="1" <if condition="$set.item_attr eq '1'">selected</if>>优惠劵</option>
+			<option value="2" <if condition="$set.item_attr eq '2'">selected</if>>现金卷</option>
+		</select>
+		<select name="item_value" class="item_value" disabled="true">
+			<option value="">选择优惠劵</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th>状态：</th>
+	<td>
+		<input type="radio" name="is_open" value="1" <if condition="$set.is_open eq '1' or $list.is_open eq ''">checked</if>>开启
+		<input type="radio" name="is_open" value="0" <if condition="$set.is_open eq '0'">checked</if>>关闭
+	</td>
+</tr>
+<tr>
+	<th></th>
+	<td><button type="submit" id="button" name="button" class="btnGreen">保存</button>　<a href="javascript:history.go(-1);" class="btnGray vm">取消</a></td>
+</tr>
+ </tbody>
+</table>
+            
+          </div>
+          </form>
+        </div>
+<script>
+	$(function(){
+		$('.type').change(function(){
+			if($(this).val() == '1'){
+				$('.value').css('display','');
+				$('.attr').css('display','none');
+				$('.item_value').attr('disabled',true);
+				$('.scroe').attr('disabled',false);
+			}else{
+				$('.value').css('display','none');
+				$('.attr').css('display','');
+				$('.scroe').attr('disabled',true);
+				$('.item_value').attr('disabled',false);
+			}
+		});
+		$('.item_attr').change(function(){
+			var attr 	= $(this).val();
+			if(attr != ''){
+				$.getJSON("{pigcms::U('Member_card/get_value',array('token'=>$token))}",{cardid:{pigcms:$thisCard['id']},item_attr:attr},function(data){
+					
+					if(data.err){
+						alert('请求错误，稍后再试');
+					}else{
+						var res = data.info;
+						var html = '';
+						if(res){
+							var len = res.length;
+							for(i=0;i<len;i++){
+								html += '<option value='+res[i].id+'>'+res[i].title+'</option>';
+							}
+						}else{
+							html += '<option value="">未找到卷</option>';
+						}
+						$('.item_value').html(html);
+					}
+				});
+			}
+		});
+		
+	});
+</script>
+<include file="Public:footer"/>

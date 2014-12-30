@@ -1,0 +1,37 @@
+                      -275810005O:8:"stdClass":10:{s:2:"id";s:3:"332";s:4:"name";s:12:"图片列表";s:4:"path";s:57:"@/smarty/templates/7/a29fb437810b09f/channel_picture.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"0";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"57";s:4:"time";s:10:"1403293353";s:4:"code";s:1324:"{include file=$header}
+<div data-role="content" id="main">
+
+    <div class="producttit">
+      <div class="title"><span class="fl">{$channel.name}</span></div>
+    </div>
+{if $subChannels}
+	 <div class="view_menu"><span>展开分类</span></div>
+  <div class="view_menumain">
+  {foreach from=$subChannels item=c}
+         <a href="{$c.link}" class="ui-bar-g" data-ajax="false">{$c.name}</a>
+         {/foreach}
+      </div>
+	{/if}
+  <div class="clear"></div>
+    <div class="padding20">
+      <div class="proul">
+        <ul class="ui-grid-a">
+         {if $contents}
+			{foreach from=$contents item=a key=k}
+          						          <li class="ui-block-b">
+            <div><a href="{$a.link}"  data-ajax="false"><img src="{$a.thumb}"  alt="{$a.title}" />
+              <p>{$a.title}</p>
+              </a></div>
+          </li>
+          {/foreach}
+			 {/if}
+					          
+					 				         </ul>
+      </div>
+	    <div class="pages ui-grid-b">  <div class="ui-block-a"><div class="left" id="dis">上一页</div></div>
+    <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+    <div class="ui-block-c"><div class="right"><a href="{$nextPageLink}"  data-ajax="false">下一页</a></div></div>
+</div>
+	    </div>
+  </div>
+  {include file=$footer}";}

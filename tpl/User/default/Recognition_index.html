@@ -1,0 +1,83 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>认证服务号渠道二维码生成与统计</h4>
+            
+ </div>
+
+<div class="ftip" style="margin:25px auto 5px auto;">只有认证服务号才能使用（向微信官方交过300元认证费的服务号）</div>
+    
+ <div class="msgWrap bgfc" style=" padding:5px 10px; margin:0">
+ 
+   <table class="ListProduct" border="" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+		<tr>
+			<th style="width:80px;">渠道ID</th>
+			<th>渠道名称</th>
+			<th>渠道使用量</th>
+			<th>触发关键词</th>
+			<th style="width:80px;">渠道二维码</th>
+			<th style="width:80px;">状态</th>
+			<th style=" width:100px;" class="norightborder">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+			  <pigcmslist array="list" foreach="list">
+                <tr>
+                  <td style="width:80px;">{pigcms:$list.id}</td>
+                  <td>{pigcms:$list.title}</td>
+                  <td>{pigcms:$list.attention_num}</td>
+                  <td>{pigcms:$list.keyword}</td>
+                  <td><pigcmsif where="$list['code_url'] neq ''"><a href="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={pigcms:$list.code_url}" target="_blank">点击查看</a><else/><a href="{pigcms::U('Recognition/get_code',array('id'=>$list['id']))}">获取二维码</a> </pigcmsif></td>
+				   <td><pigcmsif where="$list['status'] eq 0">启用<else/>暂停</pigcmsif></td>
+                  <td class="norightborder">
+						<pigcmsif where="$list['status'] eq 0"><a href="{pigcms::U('Recognition/status',array('type'=>1,'id'=>$list['id']))}">停用</a><else/><a href="{pigcms::U('Recognition/status',array('type'=>0,'id'=>$list['id']))}">启用</a></pigcmsif> | 
+						<a href="{pigcms::U('Recognition/del',array('id'=>$list['id']))}">删除</a>　
+				   </td>
+                </tr>
+      			</pigcmslist>
+                 <tr>
+                </tr>
+              </tbody>
+	</table>
+	 <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+<table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+<tr>
+  <th valign="top"><label for="title">渠道名称：</label></th>
+  <td><input type="input" class="px" required="" id="title" value="" name="title" style="width:400px"> 请认真填写生成后不可以编辑！只能删除重建<br>
+                   </td>
+  <td>&nbsp;</td>
+</tr>
+                              <tr>
+  <th valign="top"><label for="keyword">触发关键词：</label></th>
+  <td><input type="input" class="px" id="keyword" value="" name="keyword" style="width:60px"> 必填项<br>
+                   </td>
+  <td>&nbsp;</td>
+</tr>
+                            </thead>
+                            
+  <tbody>
+ 
+<tr>
+  <th></th>
+  <td><button type="submit" name="button" class="btnGreen left">添加</button> 
+  </td>
+  </tr>
+  </tbody>
+</table>
+  </form>
+
+       
+       <div class="clear"></div>
+      </div>
+  </div>
+<include file="Public:footer"/>

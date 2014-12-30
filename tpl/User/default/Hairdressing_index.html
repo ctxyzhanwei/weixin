@@ -1,0 +1,145 @@
+<include file="Public:head"/>
+<include file="Hairdressing:menu"/>
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+
+<div class="content">
+  <div class="cLineB">
+    <h4>设置美容项目</h4>
+
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置美容服务相关内容。注意：美容介绍和表单设置，第一次使用，请点击添加美容介绍和添加表单设置，并点击保存</font></strong>
+
+    </p>
+    </div>
+</div>
+
+   </div>
+
+  <div class="msgWrap">
+    <form class="form" method="post" action=""  id= "formID" target="_top" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+
+        <tr>
+          <th valign="top"><label for="keyword">关键词</label></th>
+          <td><input type="input" class="px" id="keyword" value="{pigcms:$setindex['keyword']}" name="keyword" class="px" data-validation-engine="validate[required,minSize[1],maxSize[10]]" data-errormessage-value-missing="必填项">
+            填写关键词10个字以内<br>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th valign="top"><label for="keyword">标题</label></th>
+          <td><input type="input" class="px" id="title" value="{pigcms:$setindex['title']}" name="title" class="px" data-validation-engine="validate[required,minSize[2],maxSize[15]]"
+                    data-errormessage-value-missing="必填项">
+            <br>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th valign="top"><label for="keyword">图文封面</label></th>
+          <td> <p>
+                <img class="thumb_img" id="main_url_src" src="{pigcms:$setindex['mian_url']}" style="max-height:100px;">
+                <input type="input" class="px" id="mian_url" value="{pigcms:$setindex['mian_url']}" name="mian_url" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传回复图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+
+                <span class="help-inline">
+                              <script src="{pigcms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('mian_url',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('mian_url')">预览</a>
+                              <span class="maroon">图片大小不超过300K [700*420](仅图文回复显示)</span>
+                </span>
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th valign="top"><label for="keyword">预约头部图片</label></th>
+          <td>
+             <p>
+                <img class="thumb_img" id="head_url_src" src="{pigcms:$setindex['head_url']}" style="max-height:100px;">
+                <input type="input" class="px" id="head_url" value="{pigcms:$setindex['head_url']}" name="head_url" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传回复图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+
+                <span class="help-inline">
+                <a href="###" onclick="upyunPicUpload('head_url',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url')">预览</a>
+                              <span class="maroon">图片大小不超过300K [700*420](仅预约头部显示)</span>
+                </span>
+            </p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th valign="top"><label for="keyword">图文简介</label></th>
+          <td>
+            <textarea style="border: 1px solid #D8D7D7;" name="info" id="info" cols="80" placeholder="美容简介" data-validation-engine="validate[required,minSize[15],maxSize[200]]"
+                    data-errormessage-value-missing="你写的太少了!"  rows="10">{pigcms:$setindex['info']}</textarea>
+            <span class="maroon">* (200字以内)</span>
+          </td>
+          <td></td>
+        </tr>
+
+         <tr>
+          <th valign="top"><label for="keyword">请选择LBS信息</label></th>
+          <td>
+                <select name="bls_id" id="bls_id" data-validation-engine="validate[required]" data-errormessage-value-missing="必选项">
+                  <option value="">请选择LBS信息</option>
+                    <volist name="compay_list" id="vo">
+                    <option value="{pigcms:$vo['id']}" <if condition="$setindex['bls_id'] eq $vo['id']">selected</if>>{pigcms:$vo['name']}</option>
+                    </volist>
+                </select>
+                <span> * 必须要先填写LBS信息[请在(<font color="red">分支机构</font>)里添加LBS],才可以使用短信提醒功能.</span>
+          </td>
+          <td></td>
+        </tr>
+        <if condition="$setindex['hid'] neq ''">
+            <input type="hidden" class="px" id="hid" value="{pigcms:$setindex['hid']}" name="hid" >
+            <input type="hidden" name="type" value="edit">
+        </if>
+        <tr>
+          <th></th>
+          <td><button type="submit" name="button" class="btnGreen left">保存</button>
+            <div class="clr"></div></td>
+        </tr>
+        </tbody>
+
+      </table>
+    </form>
+  </div>
+</div>
+
+<include file="Public:footer"/>

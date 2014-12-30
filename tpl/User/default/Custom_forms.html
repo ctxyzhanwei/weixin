@@ -1,0 +1,84 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4>表单输入项管理 </h4>
+<div class="clr"></div>
+</div>
+<!--<a href="{pigcms::U('Custom/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> -->
+<style>
+	#tags .btnGreen{background-image:none;background-color: #5BA607;color:#ffffff;height:30px;line-height: 30px;}
+	#tags .btnGreen:hover{background-color: #2F8BC9}
+</style>
+<div class="msgWrap form">
+<ul id="tags" style="width:100%">
+        <li <pigcmsif where="ACTION_NAME eq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/record')}">表单数据统计</a> 
+            </li>
+            <li <pigcmsif where="ACTION_NAME neq 'record'">class="selectTag"</pigcmsif>>
+                <a href="{pigcms::U('Custom/index')}">表单设置项</a> 
+            </li>
+            <li style="float:right;">
+            	<a href="{pigcms::U('Custom/index',array('token'=>$token))}" class="btnGreen">返回</a>
+            </li>
+            <div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+        </ul>
+</div>
+
+
+
+<div class="cLine">
+<div class="left"> 
+	<a href="{pigcms::U('Custom/forms_set',array('token'=>$token,'set_id'=>$set_id))}" title="输入设置" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">输入设置</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="150">显示名称</th>
+<th width="50">输入类型</th>
+<th width="50">效果预览</th>
+<th width="40">排序</th>
+<th width="40">是否显示</th>
+<th width="100" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{pigcms:$item.field_name}</td>
+<td>{pigcms:$item.field_type}</td>
+<td>{pigcms:$item.input}</td>
+<td>{pigcms:$item.sort}</td>
+<td>
+	<if condition="$item.is_show eq '1'">
+		显示
+	<else />
+		不显示
+	</if>
+</td>
+<td class="norightborder">
+	<a href="{pigcms::U('Custom/forms_set',array('field_id'=>$item['field_id'],'token'=>$token,'set_id'=>$set_id))}">修改</a> |
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Custom/forms_del',array('field_id'=>$item['field_id'],'token'=>$token))}');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

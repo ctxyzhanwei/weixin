@@ -1,0 +1,76 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">签到设置</h4>
+                  
+              <div class="clr"></div>
+          </div>
+ <div class="msgWrap form">
+<ul id="tags" style="width:100%">
+		<li <pigcmsif where="$listinfo eq '1'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Signin/index')}">粉丝签到列表</a> 
+			</li>
+			<!--
+			<li <pigcmsif where="$listinfo eq '2'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Signin/integral_conf')}">签到奖励</a> 
+			</li>
+			-->
+			<li <pigcmsif where="$listinfo eq '3'">class="selectTag"</pigcmsif>>
+				<a href="{pigcms::U('Signin/set')}">签到设置</a> 
+			</li>
+			<pigcmsif where="$detail eq 1">
+			<li style="float:right;background:none">
+				<a href="{pigcms::U('Wechat_behavior/statistics')}" style="background:none">返回</a> 
+			</li>
+			</pigcmsif>
+			<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+</div>
+
+
+      
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+						<input type="text" name="keywords"  class="px" value="{pigcms:$set.keywords}"> <br />
+						触发签到关键词
+				  </td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$set.title}" class="px" style="width:550px;"><br>回复签到的时候出现的图文标题</td>
+				</tr>
+
+				<tr>
+					<th width="120">签到介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="content" id="info" class="px">{pigcms:$set.content}</textarea><br/>最多填写120个字<br>签到回复的介绍</td>
+				</tr>
+				<tr>
+					<th>签到图片：</th>
+					<td><input type="text" name="reply_img" value="{pigcms:$set.reply_img}" id="pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>   &nbsp; 大小为720x400<br>回复签到的时候出现的图文图片地址</td>
+				</tr>
+				<tr>
+					<th>签到页头部图片：</th>
+					<td><input type="text" name="top_pic" value="<if condition="$set.top_pic eq ''">./tpl/static/sign/top.jpg<else/>{pigcms:$set.top_pic}</if>" id="top_pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('top_pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('top_pic')">预览</a>   &nbsp; 大小为720x400<br>回复签到的时候出现的图文图片地址</td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<input type="hidden" name="id" value="{Pigcms:$set.id}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+        </div>
+<include file="Public:footer"/>

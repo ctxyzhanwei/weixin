@@ -1,0 +1,105 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>  
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">当前位置：<a href="{pigcms::U('Member_card/index',array('token'=>$token))}">会员卡</a> >> <a href="{pigcms::U('Member_card/members',array('token'=>$token,'id'=>$thisCard['id']))}">{pigcms:$thisCard.cardname}会员管理</a> >> {pigcms:$thisUser.truename}</h4>
+                 
+              <div class="clr"></div>
+          </div>
+      
+          <div class="msgWrap">
+          
+         
+          <input name="delall"  type="hidden" value="del" />
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" />
+           <h5 style="margin-top:20px;">会员资料</h5>
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>卡号</TH>
+				<TH>微信名</TH>
+				<TH>姓名</TH>
+        <TH>联系电话</TH>
+				<TH>QQ号码</TH> 
+        <TH>领卡时间</TH>
+        <TH>积分</TH>
+        <TH>消费总额(元)</TH>
+
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+
+				 <volist id="list" name="members">
+                <TR>
+                  <TD>{pigcms:$list.number}</TD>
+                  <TD>{pigcms:$list.wechaname}</TD>
+                  <TD>{pigcms:$list.truename}</TD>
+                  <TD>{pigcms:$list.tel}</TD>
+                  <TD>{pigcms:$list.qq}</TD> 
+                  <TD>
+                   <if condition="$list['getcardtime'] gt 0">
+                        {pigcms:$list.getcardtime|date='Y-m-d',###}
+                    <else/>
+                    无时间记录
+                    </if>                      
+                  </TD>
+                  <TD>{pigcms:$list.total_score}</TD> 
+                  <TD>{pigcms:$list.expensetotal}</TD> 
+                </TR>
+				</volist>
+
+
+              </TBODY>
+            </TABLE>
+          
+<h5 style="margin-top:20px;">签到记录</h5>
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>日期</TH>
+				<TH>获取积分</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+				 <volist id="r" name="records">
+                <TR>
+                  <TD>{pigcms:$r.sign_time|date='Y-m-d',###}</TD>
+                  <TD>{pigcms:$r.expense}</TD>
+                </TR>
+				</volist>
+
+              </TBODY>
+            </TABLE>
+          </div>
+            
+
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}
+  </script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

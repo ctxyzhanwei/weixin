@@ -1,0 +1,40 @@
+<include file="Dining:header"/>
+<body>
+		
+<div data-role="page" data-add-back-btn="true" id="shopindex-page">
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-id="shop_header">
+		<h1>{pigcms:$reply_info.title}</h1>
+	</div>
+	
+	<div data-role="content">
+					<div class="m-center">
+						<img class="logo" alt="" src="{pigcms:$reply_info.picurl}">
+					</div>
+					
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider">公告</li>
+			<li>
+            	{pigcms:$printer.Describe}
+            </li>		
+		</ul>
+		
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider">基本信息</li>
+			<li>{pigcms:$reply_info.info}</li>
+			</ul>
+		</div>
+         <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-id="shop_footer">
+		<div data-role="navbar">
+			<ul>
+           		<li><a  href="/index.php?g=Wap&m=Dining&a=index&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="home" class="ui-btn-active ui-state-persist">首页</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=lists&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="search" >选购</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=order&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="grid" >下单</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=myOrders&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="info">个人中心</a></li>
+			</ul>
+		</div>
+	</div>
+	</div>
+   
+</div>
+</body>
+</html>

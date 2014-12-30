@@ -1,0 +1,19 @@
+body{ background: #250848;}
+.article{ padding: 0 5px;}
+.article .hd,
+.article .bd{ padding: 5px; line-height: 20px;color: #fff}
+.article .hd{ padding: 18px 5px 10px 5px; border-bottom: 1px dashed #444;}
+.article .hd h1{ font-size:18px; font-weight: normal;}
+.article .hd small{font-size: 12px;}
+.article .bd{}
+.article img{ max-width: 100%;}
+.article .bd ul,
+.article .bd ol{-webkit-padding-start:20px;}
+.btn-up-1{ background: #250848;}
+.btn-up-1 .fa{ background: #fff; color: #250848;}
+.navPop-1 .navPop-btn{ background: #250848;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #250848;}
+.navPop-wrap>div a{
+    background: #250848;
+    color: #fff;
+}

@@ -1,0 +1,53 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#734631;}
+.copyright a{color:#734631;}
+body { background-color:#2B1500; font-size:14px; }
+body  .mainmenu { margin:3px 6px 6px 3px; overflow:hidden;  }
+body  .mainmenu li { float:left;  width:50%; }
+body  .mainmenu li a { display:block;  color:#FFF;  margin-left:3px; margin-top:3px;background:-webkit-gradient(linear, 55% 100%, 55% 0%, from(#431e0b), to(#734631));  height:80px; overflow:hidden; padding:0 8px 0 50px; position: relative;box-shadow:0 1px 1px rgba(255, 255, 255, 0.26) inset,0 1px 1px rgba(0, 0, 0, 0.26); }
+body  .mainmenu li a img { width:30px; height:30px; display: inline-block; vertical-align:middle; position: absolute; top:50%; left:10px; margin-top: -15px;  }
+
+body  .mainmenu li a span{  margin-top:10px;line-height:24px; font-size:15px;text-align:right;display:block;  }
+body  .mainmenu li a p{ display:block; height:32px;line-height:16px; font-size:12px;text-align:right;color:#b5a188;overflow:hidden; }
+
+
+body  .mainmenu li:first-child a{ border-radius:8px 0px 0px 0px}
+body  .mainmenu li:nth-child(2) a{border-radius:0px 8px 0px 0px}
+body  .mainmenu li:nth-last-child(2) a{border-radius:0px 0px 0px 8px}
+body  .mainmenu li:last-child a{ border-radius:0px 0px 8px 0px}
+
+
+
+
+body  .mainmenu li a { height:80px; padding:0 12px 0 50px;}
+body  .mainmenu li a img { width:30px; height:30px; display: inline-block; vertical-align:middle; position: absolute; top:50%; left:10px; margin-top: -18px; padding:3px; background-color:rgba(0, 0, 0, 0.46); border-radius:100%; box-shadow:0 1px 1px rgba(255, 255, 255, 0.26); }
+
+body  .mainmenu li a{ border-radius:8px !important; box-shadow:0 1px 1px rgba(255, 255, 255, 0.26) inset,0 1px 1px rgba(0, 0, 0, 0.26); }

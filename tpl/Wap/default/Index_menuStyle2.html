@@ -1,0 +1,144 @@
+<style type="text/css">
+body{ margin-bottom:60px !important;}
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+ul,li{ list-style:none; margin:0;padding:0}
+#plug-wrap {
+    position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0);
+    z-index:800;
+}
+.top_bar {
+    position:fixed;
+    bottom:0;
+    right:0px;
+    z-index:900;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: Helvetica, Tahoma, Arial, Microsoft YaHei, sans-serif;
+}
+.plug-menu {
+    -webkit-appearance:button;
+    display:inline-block;
+    width:36px;
+    height:36px;
+    border-radius:36px;
+    position: absolute;
+    bottom:17px;
+    right: 17px;
+    z-index:999;
+    box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+    background-color: #B70000;
+    -webkit-transition: -webkit-transform 200ms;
+    -webkit-transform:rotate(1deg);
+    color:#fff;
+    background-image:url('tpl/Wap/default/common/images/plug.png');
+    background-repeat: no-repeat;
+    -webkit-background-size: 80% auto;
+    background-size: 80% auto;
+    background-position: center center;
+}
+.plug-menu:before {
+    font-size:20px;
+    margin:9px 0 0 9px;
+}
+.plug-menu:checked {
+    -webkit-transform:rotate(135deg);
+}
+.top_menu>li {
+    width: 32px;
+    height:32px;
+    border-radius:32px;
+    box-shadow: 0 0 0 3px #FFFFFF, 0 2px 5px 3px rgba(0, 0, 0, 0.25);
+    background:#B70000;
+    position:absolute;
+    bottom:0;
+    right:0;
+    margin-bottom: 20px;
+    margin-right:20px;
+    z-index:900;
+    -webkit-transition: -webkit-transform 200ms;
+}
+.top_menu>li a {
+    color:#fff;
+    font-size:20px;
+    display: block;
+    height: 100%;
+    line-height: 33px;
+    text-align: center;
+}
+.top_menu>li>a label{
+display:none;
+}
+.top_menu>li a img {
+display: block;
+width: 22px;
+height: 22px;
+text-indent: -999px;
+position: absolute;
+top: 50%;
+left: 50%;
+margin-top: -11px;
+margin-left: -11px;
+}
+.top_menu>li.on:nth-of-type(1) {
+-webkit-transform: translate(-0, -100px) rotate(720deg);
+}
+.top_menu>li.on:nth-of-type(2) {
+-webkit-transform: translate(-47px, -81px) rotate(720deg);
+}
+.top_menu>li.on:nth-of-type(3) {
+-webkit-transform: translate(-81px, -45px) rotate(720deg);
+}
+.top_menu>li.on:nth-of-type(4) {
+-webkit-transform: translate(-100px, 0) rotate(720deg);
+}
+ 
+#sharemcover {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+display: none;
+z-index: 20000;
+}
+#sharemcover img {
+position: fixed;
+right: 18px;
+top: 5px;
+width: 260px;
+height: 180px;
+z-index: 20001;
+border:0;
+}
+</style>
+<div class="top_bar" style="-webkit-transform:translate3d(0,0,0)">
+<nav>
+    <ul id="top_menu" class="top_menu">
+      <input type="checkbox" id="plug-btn" class="plug-menu themeStyle" style="background-color:{pigcms:$homeInfo.plugmenucolor};background-image:url('tpl/Wap/default/common/images/plug.png');border:0px;">
+       <volist name="catemenu" id="vo">
+          <li class="themeStyle out" style="background:{pigcms:$homeInfo.plugmenucolor}"> <a href="{pigcms:$vo.url}"><img src="{pigcms:$vo.picurl}"><label>{pigcms:$vo.name}</label></a></li>
+          </volist>
+</ul>
+  </nav>
+</div>
+
+<div id="plug-wrap" style="display: none;" ></div>
+<script>
+$(function(){
+        $(".plug-menu").click(function(){
+        var li = $(this).parents('ul').find('li');
+        if(li.attr("class") == "themeStyle on"){
+                li.removeClass("themeStyle on");
+                li.addClass("themeStyle out");
+        }else{
+                li.removeClass("themeStyle out");
+                li.addClass("themeStyle on");
+        }
+        });
+});
+</script>

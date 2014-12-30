@@ -1,0 +1,343 @@
+h2,ul {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+
+body {
+	background: #583587
+}
+
+h3,li,ul,ol,i,p {
+	margin: 0;
+	padding: 0
+}
+
+body {
+	background-color: #583587
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+.clearfix {
+	display: inline-block
+}/*\*/* html .clearfix {
+	height: 1%
+}
+
+.clearfix {
+	display: block
+}/**/.Panel.Vote,.Panel.VoteList {
+	position: absolute;
+	width: 90%;
+	left: 50%;
+	margin-left: -45%;
+	height: 72%;
+	top: 17%;
+	border: 1px solid rgba(255,255,255,0.5);
+	background-color: rgba(255,255,255,0.2);
+	opacity: 0;
+	display: none;
+	overflow: hidden
+}
+
+.Panel.VoteList ul {
+	margin: 0 10px
+}
+
+.Panel.VoteList li {
+	height: 70px;
+	line-height: 70px;
+	overflow: hidden;
+	color: #fff;
+	border-bottom: 1px dashed #fff;
+	font-size: 24px
+}
+
+.Panel.VoteList li p {
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 68%
+}
+
+.listTit {
+	height: 60px;
+	line-height: 60px;
+	color: #fff;
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	padding: 0 10px;
+	font-size: 30px
+}
+
+.Panel.VoteList li span,.restart {
+	display: block;
+	float: right;
+	width: 15%;
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+	text-align: center;
+	background-color: #d13b46;
+	color: #fff;
+	border-radius: 3px;
+	box-shadow: 0 0 1px #333;
+	margin-top: 15px;
+	cursor: pointer;
+	margin-left: 5px;
+	font-size: 22px
+}
+
+.restart {
+	background-color: #09f
+}
+
+.Panel.VoteList li .record {
+	background-color: #f90
+}
+
+.Panel.VoteList li span.disable {
+	background-color: #ccc
+}
+
+.title {
+	height: 60px;
+	line-height: 66px;
+	overflow: hidden;
+	background: rgba(255,255,255,0.3);
+	border-bottom: 1px solid rgba(255,255,255,0.4);
+	position: relative
+}
+
+.title h2 {
+	color: #fff;
+	font-size: 26px;
+	float: left;
+	background: url("../images/cup.png") 0 18px no-repeat;
+	background-size: 26px 24px;
+	padding-left: 40px;
+	margin-left: 10px;
+	text-shadow: 0 0 1px #333;
+	width: 60%;
+	overflow: hidden
+}
+
+.title .inf {
+	position: absolute;
+	right: 10px;
+	top: 0
+}
+
+.title .inf .numbers {
+	color: #f8f4a1;
+	font-weight: bold;
+	font-size: 30px;
+	position: relative;
+	top: -7px
+}
+
+.title .inf .inf-btn {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+	text-align: center;
+	background-color: #d13b46;
+	color: #fff;
+	border-radius: 3px;
+	box-shadow: 0 0 1px #333;
+	margin-top: 10px;
+	margin-left: 10px;
+	font-size: 24px;
+	cursor: pointer
+}
+
+.panelBox {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	overflow-x: hidden;
+	text-align: center
+}
+
+.panelBox ul {
+	padding-bottom: 60px
+}
+
+.panelBox li {
+	text-align: left;
+	float: left;
+	font-size: 24px;
+	position: relative
+}
+
+.panelBox li .vote-item-box {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	left: 0;
+	top: 0
+}
+
+.panelBox li .cardView {
+	width: 0;
+	height: 100%;
+	overflow: hidden;
+	background: #95827b;
+	color: #fff;
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	top: 0
+}
+
+.panelBox li .cardView .rank {
+	margin-top: 30%;
+	font-size: 30px
+}
+
+.panelBox li .cardView .ticketNum {
+	width: 60%;
+	margin: 10px auto;
+	background-color: #f9f4a2;
+	color: #d13b46;
+	overflow: hidden;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 3px
+}
+
+.panelBox li:nth-child(1) .cardView {
+	background: #d13b46
+}
+
+.panelBox li:nth-child(2) .cardView {
+	background: #ac3bd1
+}
+
+.panelBox li:nth-child(3) .cardView {
+	background: #3c85d2
+}
+
+.panelBox li .vote-item-box img {
+	width: 100%;
+	height: 100%
+}
+
+.panelBox li .vote-item-states {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: #fff
+}
+
+.panelBox li .vote-item-states u {
+	font-style: italic;
+	color: red;
+	font-weight: bold;
+	position: absolute;
+	left: 5px;
+	top: 0;
+	text-decoration: none;
+	opacity: 1;
+	text-shadow: 0 0 2px #fff;
+	font-size: 100px
+}
+
+.panelBox li .vote-item-num {
+	width: 50%;
+	height: 50px;
+	float: left;
+	overflow: hidden
+}
+
+.panelBox li .vote-item-num i {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 40px;
+	height: 40px;
+	background: url("../images/love3.png") center center no-repeat;
+	background-size: 30px 30px
+}
+
+.panelBox li .vote-item-num span {
+	margin-left: 40px
+}
+
+.panelBox li .vote-item-name {
+	width: 50%;
+	height: 40px;
+	float: right;
+	overflow: hidden;
+	text-align: right;
+	padding-right: 10px;
+	box-sizing: border-box
+}
+
+.panelBox.two ul {
+	position: relative;
+	top: 50%;
+	margin-top: -180px;
+	left: 50%;
+	margin-left: -340px
+}
+
+.panelBox.three ul {
+	position: relative;
+	top: 50%;
+	margin-top: -160px;
+	left: 50%;
+	margin-left: -450px
+}
+
+.panelBox.four ul {
+	position: relative;
+	top: 50%;
+	margin-top: -130px;
+	left: 50%;
+	margin-left: -440px
+}
+
+.panelBox.two ul li {
+	width: 300px;
+	height: 300px;
+	margin: 0 20px
+}
+
+.panelBox.three ul li {
+	width: 260px;
+	height: 260px;
+	margin: 0 20px
+}
+
+.panelBox.four ul li {
+	width: 200px;
+	height: 200px;
+	margin: 0 10px
+}
+
+.panelBox.more ul {
+	width: 880px;
+	display: inline-block
+}
+
+.panelBox.more ul li {
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin: 15px 10px
+}

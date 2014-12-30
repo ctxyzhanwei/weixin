@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+
+<script src="./tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="./tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">课程预约订单管理</h4>
+
+          </div>
+
+          <div class="cLine">
+    <div class="alert">
+    <p>（ 本次收集订单总数：<span class="redamount">{pigcms:$count}</span>个　　预订成功：<span class="redamount">{pigcms:$ok_count}</span>个　　预订失败：<span class="redamount">{pigcms:$lose_count}</span>个　　等待客服回电订单：<span class="redamount">{pigcms:$call_count}</span>个） </p>
+    </div>
+</div>
+
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                    <tr>
+                    <th width="60">真实姓名</th>
+                    <th class="85">电话</th>
+                    <th class="85">预约课程</th>
+                    <th width="160">提交时间</th>
+                    <th class="60">订单状态</th>
+                    <th width="150" class="norightborder">操作</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <tr></tr>
+                <volist name="books" id="o">
+                    <tr>
+                        <td>{pigcms:$o.truename}</td>
+                        <td>{pigcms:$o.tel}</td>
+                        <td>{pigcms:$o.housetype} </td>
+                        <td>{pigcms:$o.booktime|date="Y-m-d H:i",###}</td>
+                        <td><if condition="$o.remate eq 0">待回复<elseif condition="$o.remate eq 1"/>确认<elseif condition="$o.remate eq 2"/>拒绝</if></td>
+                        <td class="norightborder"><a href="###" onclick="showIntroDetail({pigcms:$o['id']})">详细</a>
+                        <a class="btn" href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('School/manage_del',array('token'=>$o['token'],'id'=>$o['id'],'rid'=>$rid,'type'=>$addtype))}');"  title="删除">删除</a></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <input type="hidden" name="token" value="{pigcms:$_GET['token']}" />
+           </form>
+          </div>
+           <script>
+            function showIntroDetail(id){
+                art.dialog.open('{pigcms::U('School/reservation_uinfo',array('token'=>$token))}&id='+id,{lock:false,title:'预约订单详情',width:700,height:420,yesText:'关闭',background: '#000',opacity: 0.87});
+            }
+        </script>
+
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

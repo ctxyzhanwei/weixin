@@ -1,0 +1,175 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{pigcms:$thisForm.title}</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{pigcms::RES}/css/style/css/hotels.css" rel="stylesheet" type="text/css">
+<script src="{pigcms::RES}/css/style/js/jquery.min.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+
+</head>
+
+<body id="wrap">
+<style>
+.round li.address {
+    background: url("{pigcms::RES}/card/images/addr.png") no-repeat scroll 11px center / 22px 22px rgba(0, 0, 0, 0);
+    line-height: 22px;
+    padding-left: 40px;
+}
+.deploy_ctype_tip{z-index:1001;width:100%;text-align:center;position:fixed;top:50%;margin-top:-23px;left:0;}.deploy_ctype_tip p{display:inline-block;padding:13px 24px;border:solid #d6d482 1px;background:#f5f4c5;font-size:16px;color:#8f772f;line-height:18px;border-radius:3px;}
+textarea{
+    border: 1px solid #E8E8E8;
+}
+</style>
+<div class="banner">
+<div id="wrapper">
+<div id="scroller" style="float:none">
+<ul id="thelist">
+               
+<li style="float:none"><p>{pigcms:$thisForm.title}</p>
+
+<if condition="$thisForm.top_pic neq ''">
+	<a href="{pigcms::U('Custom/detail',array('token'=>$token,'id'=>$thisForm['set_id']))}">
+	<img src="{pigcms:$thisForm.top_pic}" alt="{pigcms:$thisForm.title}" style="width:100%"/></a>
+</if>
+
+</li>
+</ul>
+</div>
+</div>
+<div class="clr"></div>
+</div>
+<div class="cardexplain">
+<if condition="$_GET['success'] eq 1">
+<ul class="round roundyellow" id="success">
+<li style="height:40px;line-height:40px; font-size:16px; text-align:center">{pigcms:$thisForm.successtip}</li>
+</ul>
+<script type="text/javascript">
+$(function() {
+	$('#success').show().delay(1600).slideUp(1600);
+	return;
+});
+</script>
+</if>
+
+<ul class="round">
+
+<li class="tel">
+<a href="tel:{pigcms:$thisForm.tel}">
+<span>{pigcms:$thisForm.tel}</span>
+</a>
+</li>
+<li class="address">
+<a href="{pigcms::U('Custom/maps',array('token'=>$token,'id'=>$thisForm['set_id'],'id'=>$thisForm['set_id']))}">
+<span>{pigcms:$thisForm.address}</span>
+</a>
+</li>
+<li class="detail">
+<a href="{pigcms::U('Custom/detail',array('token'=>$token,'id'=>$thisForm['set_id'],'id'=>$thisForm['set_id']))}">
+<span>查看详情</span>
+</a>
+</li>
+
+</ul>
+<if condition="($spoor neq 0) and ($wecha_id neq 'null')">
+<ul>
+	<li class="nob">
+		<a href="{pigcms::U('Custom/spoor',array('token'=>$token,'id'=>$thisForm['set_id'],'wecha_id'=>$wecha_id,'id'=>$thisForm['set_id']))}">
+			<div class="beizhu">查看提交记录({pigcms:$spoor})</div>
+		</a>
+	</li>
+</ul>
+</if>
+<if condition="$submitted neq 1">
+<form method="post" action="" id="form" onSubmit="return tgSubmit()">   
+<ul class="round">
+<li class="title mb"><span class="none">请填写以下信息</span></li>
+<li class="nob">
+{pigcms:$formData}
+</li>                                                  
+</ul>
+<div class="footReturn" style="text-align:center">
+<if condition="$submitted neq 1">
+<input type="submit" style="margin:0 auto 20px auto;width:90%"  class="submit" value="提交信息" />
+</if>
+</div>
+</form>
+<else/>
+
+</if>
+<script>
+function showTip(tipTxt) {
+	var div = document.createElement('div');
+	div.innerHTML = '<div class="deploy_ctype_tip"><p>' + tipTxt + '</p></div>';
+	var tipNode = div.firstChild;
+	$("#wrap").after(tipNode);
+	setTimeout(function () {
+		$(tipNode).remove();
+	}, 1500);
+}
+function tgSubmit(){
+ 	<volist name="verify" id="item">
+ 		
+ 		<if condition="$item['type'] eq 'checkbox'">			
+ 				var ck =  $("#{pigcms:$item['id']}:checked").length; 
+ 			 	<if condition="$item['is_empty'] eq 1">
+					if(ck == 0){
+						showTip("{pigcms:$item['name']}不能为空")
+						return false;
+					}
+				</if>			
+ 		<elseif condition="$item['type'] eq 'radio'" />
+ 			/*
+ 			<if condition="$item['is_empty'] eq 1">
+					if($("#{pigcms:$item['id']}:checked").val() == undif){
+						showTip("{pigcms:$item['name']}不能为空")
+						return false;
+					}
+			</if>
+			*/
+ 		<elseif condition="$item['type'] eq 'textarea'" />	
+ 			<if condition="$item['is_empty'] eq 1">
+					if($.trim($("#{pigcms:$item['id']}").val()) == ""){
+						showTip("{pigcms:$item['name']}不能为空")
+						return false;
+					}
+			</if>
+ 		<else />
+ 			var values = $("#{pigcms:$item['id']}").val();	
+ 				<if condition="$item['is_empty'] eq 1">
+					if($.trim(values) == ""){
+						showTip("{pigcms:$item['name']}不能为空")
+						return false;
+					}
+				</if>
+
+				<if condition="$item['match'] neq ''">
+					var regu = /{pigcms:$item['match']}/; 
+					var re = new RegExp(regu); 
+					if (!re.test($.trim(values))) {
+						showTip("{pigcms:$item['err_info']}")
+						return false;
+					}
+				</if>			
+ 		</if>
+ 	</volist>
+}
+	</script>
+</div>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Custom",
+            "moduleID":"{pigcms:$thisForm.set_id}",
+            "imgUrl": "{pigcms:$thisForm.top_pic}", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Custom/index',array('token'=>$token,'id'=>$thisForm['set_id']))}",
+            "tTitle": "{pigcms:$thisForm.title}",
+            "tContent": "{pigcms:$thisForm.intro}"
+        };
+</script>
+</body>
+{pigcms:$shareScript}
+</html>

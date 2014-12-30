@@ -1,0 +1,313 @@
+<include file="Store:header"/>
+<style>
+#content{display:none;width:100%;overflow:hidden;position:absolute;top:0}#imgs{-webkit-transition-property:-webkit-transform;-webkit-transition-duration:0.5s;-webkit-transition-timing-function:ease-out;-webkit-transform:translate3d(0px,0px,0px);height:100%}#imgs li{float:left;text-align:center;height:100%;padding-top:65px}#imgs img{width:94%;-webkit-transform:translate3d(0px,0px,0px)}.bg{width:100%;top:0;left:0;background:#000;opacity:0.8;position:absolute;display:none}.close{display:none;position:absolute;z-index:10;right:3%;top:20px;color:#fff;cursor:pointer;background:#999;border-radius:3px;padding:5px 8px}.s_count{display:none;position:absolute;z-index:10;right:3%;top:25px;color:#fff;margin-right:60px}
+.infodetail img{
+    max-width: 100%;
+}
+</style>
+<!--轮播--->
+<div class="focusPic">
+	<div class="views">
+		<if condition="empty($imageList) neq true">
+			<ul class="warp" id="fd">
+				<volist name="imageList" id="img">
+				<li class="li"><img src="{pigcms:$img.image}"></li>
+				</volist>
+			</ul>
+		<else/>
+			<ul class="warp" id="fd">
+				<li class="li"><img src="{pigcms:$product.logourl}"></li>
+			</ul>
+		</if>
+	</div>
+	<if condition="empty($imageList) neq true">
+		<ul class="tabs">
+			<volist name="imageList" id="img" key="i">
+			<li class="li">{pigcms:$i}</li>
+			</volist>
+		</ul>
+	<else/>
+		<ul class="tabs"><li>0</li></ul>
+	</if>
+</div>
+<script>
+var focusPic = new Swiper('.focusPic .views',{pagination: '.focusPic .tabs',autoplay:3000})
+</script>
+<!--轮播结束--->
+<div class="d-info">
+<form id="product_buy_form" name="product_buy_form" action="#" method="POST">
+<h1>{pigcms:$product.name}</h1>
+<div class="price">
+<span class="okp">销售价：<em id="xsprice">￥{pigcms:$product.price}</em></span>
+<span class="okp">会员价：<em id="vprice">￥{pigcms:$product.vprice}</em></span>
+<span>市场价：<i>￥{pigcms:$product.oprice}</i></span>
+</div>
+<div style="display:none;" class="price">促销：<font color="red">新春热卖~~~</font></div>
+<if condition="empty($catData['color']) neq true">
+<div class="i-row">
+<div class="t">{pigcms:$catData.color}：</div>
+<div class="c">
+	<ul class="ys cm">
+		<volist name="colorData" id="detail" key="colorId">
+			<li style="cursor:pointer" class="color" id="color_{pigcms:$detail['color']}">
+				<if condition="$detail['logo'] neq ''"><img src="{pigcms:$detail['logo']}"><else/>{pigcms:$detail['colorName']}</if>
+			</li>
+		</volist>
+	</ul>
+</div>
+</div>
+</if>
+<if condition="empty($catData['norms']) neq true">
+<div class="i-row">
+<div class="t">{pigcms:$catData.norms}：</div>
+<div class="c">
+<ul id="shoe_size_list" class="ys cm">
+	<volist name="formatData" id="detail" key="formatId">
+		<li style="cursor:pointer" class="norms" id="norms_{pigcms:$detail['format']}">{pigcms:$detail['formatName']}</li>
+	</volist>
+</ul>
+</div>
+</div>
+</if>
+<if condition="empty($catData['norms']) neq true OR empty($catData['color']) neq true">
+<volist name="productDetail" id="pro">
+<input type="hidden" id="color_{pigcms:$pro.color}_norms_{pigcms:$pro.format}" value="{pigcms:$pro.num}" did="{pigcms:$pro.id}" price="{pigcms:$pro.price}" vprice="{pigcms:$pro.vprice}" class="hidden"/>
+</volist>
+</if>
+<div class="i-row">
+<div class="t">数量：</div>
+<div class="c buynum">
+<i style="cursor: pointer;" class="numadjust dec" onclick="plus_minus({pigcms:$product.id}, -1,{pigcms:$product.price})"></i>
+<input id="buy_num" name="goods[num]" type="text" value="1">
+<i style="cursor: pointer;" class="numadjust add" onclick="plus_minus({pigcms:$product.id},1,{pigcms:$product.price})"></i>
+<span class="stock">(库存<span id="stock">{pigcms:$product.num}</span>)</span>
+</div>
+</div>
+<div class="i-row">
+<div class="t">邮费：</div>
+<div class="c buynum">
+<span class="stock">￥{pigcms:$product.mailprice}</span>
+</div>
+</div>
+<div id="show_msg" style="display:none;" class="error"></div>
+<div class="i-row act">
+<a href="javascript:;" onClick="QuickBuy()" class="buynow">立即购买</a>
+<a href="javascript:;" id="btn_add_cart" class="addcart" onclick="add_cart();">加入购物车</a>
+</div>
+</form>
+</div>
+<div class="d-info">
+<div class="detailinfo">
+<ul class="tabs"><li>详情</li><li>评论<i>({pigcms:$num})</i></li></ul>
+<div class="views">
+<div class="warp">
+<div class="li">
+<ul class="detail-list">
+<!-- <li>{pigcms:$product.name}</li> -->
+<volist name="attributeData" id="attribute">
+<li><label>{pigcms:$attribute.name}：</label><span>{pigcms:$attribute.value}</span></li>
+</volist>
+<div class="infodetail">{pigcms:$product.intro}</div>
+</ul>
+<div class="m-page more_detailinfo" style="display:none;" >
+<div class="pg-num"><a href="javascript:void(0);">查看图文详情</a></div>
+</div>
+<div style="display:none;" class="m-page hide_detailinfo">
+<div class="pg-num"><a href="javascript:void(0);">收起图文详情</a></div>
+</div>
+<div class="goods_intro"></div>
+</div>
+<div class="li">
+<div class="com-dec"><span class="star"><span class="st-box" style="width:{pigcms:$percent}"><i></i></span></span>评价<b>{pigcms:$score}</b>分，共<b>{pigcms:$num}</b>位参与</div>
+<ul class="com-list">
+<volist name="comment" id="com">
+<li>
+<p>{pigcms:$com['wecha_id']}：{pigcms:$com['score']}分　{pigcms:$com['productinfo']}
+</p>
+<p>{pigcms:$com['content']}<i>&nbsp;&nbsp;{pigcms:$com.dateline|date="Y-m-d H:i",###}</i></p>
+</li>
+</volist>
+
+</ul>
+<if condition="$page gt 0">
+<div class="m-page more_comment_list">
+<div class="com_pg-num pg-num" id="{pigcms:$page}"><a href="javascript:void(0);">查看更多评论</a></div>
+</div>
+</if>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript"> 
+var detailinfo = new Swiper('.detailinfo .views',{pagination: '.detailinfo .tabs',autoplay:false});
+var SysSecond; 
+var InterValObj; 
+var buyDetailId = '';
+$(document).ready(function() {
+	$(".com_pg-num").click(function(){
+		var page = parseInt($(this).attr('id'));
+		$.get("{pigcms::U('Store/getcomment',array('token'=>$token,'pid'=>$product['id'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" + '&page='+page, function(response){
+			if (response.error_code == false) {
+				var html = '';
+				$.each(response.data, function(i, data){
+					html += '<li><p>' + data.wecha_id + '：' + data.score + '分　' + data.productinfo + '</p>';
+					html += '<p>' + data.content + '<i>&nbsp;&nbsp;' + data.dateline + '</i></p></li>';
+				});
+				if (html != '') {
+					$(".com-list").append(html);
+				}
+				if (response.page > 0) {
+					$(".com_pg-num").attr('id', response.page);
+				} else {
+					$(".m-page").hide();
+				}
+			}
+		}, 'json');
+	});
+	
+	
+	SysSecond = parseInt($("#remainSeconds").html()); //这里获取倒计时的起始时间 
+	InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 
+	$(".color").click(function(){
+		if ($(this).attr('class') != 'color on') {
+			$(this).addClass('on').siblings().removeClass('on');
+			var id = $(this).attr('id');
+			var nextid = 'norms_0';
+			$('.norms').each(function(){
+				if ($(this).attr('class') == 'norms on') {
+					nextid = $(this).attr('id');
+				}
+			});
+			if ($("#" + id + "_" + nextid).val() != null && $("#" + id + "_" + nextid).val() != '') {
+				buyDetailId = id + "_" + nextid;
+				$("#stock").text($("#" + id + "_" + nextid).val());
+				$("#xsprice").text('￥' + $("#" + id + "_" + nextid).attr('price'));
+				$("#vprice").text('￥' + $("#" + id + "_" + nextid).attr('vprice'));
+			} else {
+				$("#stock").text(0);
+			}
+		} else {
+			$(this).removeClass('on');
+		}
+	});
+	$(".norms").click(function(){
+		if ($(this).attr('class') != 'norms on') {
+			$(this).addClass('on').siblings().removeClass('on');
+			var id = $(this).attr('id');
+			var nextid = 'color_0';
+			$('.color').each(function(){
+				if ($(this).attr('class') == 'color on') {
+					nextid = $(this).attr('id');
+				}
+			});
+			if ($("#" + nextid + "_" + id).val() != '' && $("#" + nextid + "_" + id).val() != null) {
+				buyDetailId = nextid + "_" + id;
+				$("#stock").text($("#" + nextid + "_" + id).val());
+				$("#xsprice").text('￥' + $("#" + nextid + "_" + id).attr('price'));
+				$("#vprice").text('￥' + $("#" + nextid + "_" + id).attr('vprice'));
+			} else {
+				$("#stock").text(0);
+			}
+		} else {
+			$(this).removeClass('on');
+		}
+	});
+}); 
+
+//将时间减去1秒，计算天、时、分、秒 
+function SetRemainTime() {
+	if (SysSecond > 0) { 
+		SysSecond = SysSecond - 1; 
+		var second = Math.floor(SysSecond % 60);             // 计算秒     
+		var minite = Math.floor((SysSecond / 60) % 60);      //计算分 
+		var hour = Math.floor((SysSecond / 3600) % 24);      //计算小时 
+		var day = Math.floor((SysSecond / 3600) / 24);        //计算天 
+		$("#remainTime").html('&nbsp;&nbsp;还剩'+day + "天" + hour + "小时" + minite + "分" + second + "秒"); 
+	} else {//剩余时间小于或等于0的时候，就停止间隔函数 
+		window.clearInterval(InterValObj); 
+		//这里可以添加倒计时时间为0后需要执行的事件 
+	} 
+}
+//加减
+function plus_minus(rowid, number,price) {
+    var num = parseInt($('#buy_num').val());
+    num = num + parseInt(number);
+    if (num > parseInt($('#stock').text())) {
+    	num = parseInt($('#stock').text());
+    }
+    if (num < 0) {
+        return false;
+    }
+     $('#buy_num').attr('value',num);
+}
+function add_cart() {
+	$("#btn_add_cart").attr("disable", false);
+	var count = parseInt($('#buy_num').val());
+	var did = parseInt($("#" + buyDetailId).attr('did'));
+	if ($('.hidden').eq(0).val() != null && $('.hidden').eq(0).val() != '' && $('.hidden').eq(0).val() != 'undefined') {
+		if (isNaN(did)) {
+	        return floatNotify.simple('请选择相应属性的产品');
+		}
+	} else {
+		did = 0;
+	}
+	if (count > parseInt($("#stock").text())) {
+		return floatNotify.simple('抱歉，您的购买量超过了库存了');
+	}
+	$.ajax({
+		url: "{pigcms::U('Store/addProductToCart',array('token'=>$token,'id'=>$product['id'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" + '&count='+count + '&did=' + did,
+		success: function(data) {
+			if(data){
+				var datas=data.split('|');
+                $('.cart_com').text(datas[0]); 
+                $("#btn_add_cart").attr("disable", true);
+                return floatNotify.simple('加入购物车成功');
+			} else {
+				return floatNotify.simple('抱歉，您的请求不正确');
+			}
+		}
+	});
+}
+function QuickBuy() {
+	var count = parseInt($('#buy_num').val());
+	var did = parseInt($("#" + buyDetailId).attr('did'));
+	if ($('.hidden').eq(0).val() != null && $('.hidden').eq(0).val() != '' && $('.hidden').eq(0).val() != 'undefined') {
+		if (isNaN(did)) {
+			return floatNotify.simple('请选择相应属性的产品');
+			return false;
+		}
+	} else {
+		did = 0;
+	}
+	if (count > parseInt($("#stock").text())) {
+		return floatNotify.simple('抱歉，您的购买量超过了库存了');
+	}
+	$.ajax({
+		url: "{pigcms::U('Store/addProductToCart',array('token'=>$token,'id'=>$product['id'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" + '&count='+count + '&did=' + did,
+		success: function(data) {
+			if(data){
+				location.href = "{pigcms::U('Store/cart',array('token' => $token,'wecha_id' => $_GET['wecha_id'], 'twid' => $twid))}";;
+			} else {
+				return floatNotify.simple('抱歉，您的请求不正确');
+			}
+		}
+	});
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"{pigcms:$product['id']}",
+            "imgUrl": "{pigcms:$product['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/product',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/product',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/product',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

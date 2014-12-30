@@ -1,0 +1,19 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div class="clear"></div>
+<div class="sub" style="margin-top:20px;">
+<div class="clear"></div>
+    <h1>{$content.title}</h1>
+    <div class="view" id="content">{$content.content}</div>
+    <a href="{$channel.link}" title="返回列表" class="backlist">返回列表</a>
+    <div class="clear"></div>
+</div>
+{/if}
+{include file=$footer}
+

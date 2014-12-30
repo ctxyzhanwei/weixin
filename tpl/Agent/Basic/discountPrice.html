@@ -1,0 +1,28 @@
+<include file="Frame:header"/>
+<div class="columntitle">优惠套餐</div>
+<div class="ftip" style="margin:10px 0">您的余额为虚拟余额，不能使用余额进行购买。<pigcmsif where="$alipayOpen">您需要进行支付购买。<else/>您需要在下面点击购买然后把钱线下交给总管理员，然后由他给您开通购买。</pigcmsif></div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+		<tr class="summary-title">
+		    <td>套餐名称</td>
+			<td>可开公众号数量</td>
+			<td>标准价</td>
+			<td>优惠价</td>
+			<td>购买</td>
+		</tr>
+<pigcmslist array="list" foreach="list">
+    <tr class="tdbg" onMouseOver="this.className='tdbg-dark';" onMouseOut="this.className='tdbg';" style="height:29px;">
+        <td>{pigcms:$list.name}</td>
+        <td>{pigcms:$list.maxaccount}</td>
+        <td><span style="text-decoration:line-through"><?php echo $thisAgent['wxacountprice']*$list['maxaccount'];?>元</span></td>
+		<td>{pigcms:$list.price}元</td>
+		<td><a href="<pigcmsif where="$alipayOpen">{pigcms::C('site_url').U('Agent/Pay/recharge',array('discountpriceid'=>$list['id']))}<else/>{pigcms::C('site_url').U('Agent/Basic/buyDiscountPrice',array('discountpriceid'=>$list['id']))}</pigcmsif>">购买</a></td>
+    </tr>
+</pigcmslist>
+</table>
+
+</div>
+<div class="pages">{pigcms:$page}</div>
+<include file="Frame:footer"/>

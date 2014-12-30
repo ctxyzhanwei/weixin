@@ -1,0 +1,154 @@
+body{
+	background: url('../images/bg.png');
+	background-size: 20px 20px;
+}
+
+#wrap{
+	width:96%;
+	height: 96%;
+	overflow: hidden;
+	padding-left:2.3%;
+	padding-top: 4%;
+}
+
+.plate,.plate ul{
+	width:100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.plate li{
+	width:33%;
+	height: 19.5%;
+	overflow: hidden;
+	float: left;
+	background: #461106;
+	border:1px solid #000;
+	margin-left:-1px;
+	margin-top:-1px;
+	color:#fff5cf;
+	text-shadow:0px 0px 1px #333;
+}
+
+.plate-item{
+	overflow: hidden;
+	border:1px solid rgba(90,31,1,0.6);
+	background: url('../images/item-bg.png') center center no-repeat;
+	background-size: 100% 100%;
+	opacity: 0.4;
+}
+
+.plate-item span{
+	display: block;
+	height: 100%;
+	box-sizing:border-box;
+	padding:10px;
+}
+
+.plate li.blank-item{
+	background: none;
+}
+
+.plate li.plate-btn{
+	position: absolute;
+	width:33%;
+	height: 58.5%;
+	left:33.1%;
+	top:19.9%;
+	cursor:pointer;
+	background: url('../images/btn.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.plate li.plate-btn span{
+	display: block;
+	max-width:76px;
+	height:100%;
+	font-weight: bold;
+	font-size: 40px;
+	color:#441006;
+	overflow: hidden;
+	margin:0 auto;
+	text-align: center;
+	/*background: url('../images/zi.png') center center no-repeat;
+	background-size: 36px 115px;*/
+}
+.plate li.plate-btn span table{height:100%;}
+
+.plate li.active .plate-item{
+	border:1px solid #fcde00;
+	opacity: 1;
+}
+
+.plate li.active .plate-item span{
+	border:1px solid #fcde00;
+}
+
+.plate li.plate-btn.runing{
+	opacity: 0.9;
+}
+
+.pop{
+	width:280px;
+	position: fixed;
+	left:50%;
+	top:25%;
+	margin-left:-140px;
+	padding:40px 20px;
+	box-sizing:border-box;
+	z-index: 100;
+	display: none;
+}
+
+.pop-info{
+	background: #fff5cf;
+}
+
+.pop-result{
+	background: #fcde5a;
+}
+
+.pop-closed{
+	position: absolute;
+	right:0;
+	top:0;
+	width:30px;
+	height: 30px;
+	overflow: hidden;
+	background: #914816;
+	text-align: center;
+	line-height: 26px;
+	font-size:20px;
+	color: #fff;
+}
+
+.pop-con{
+	font-size:20px;
+	color: #914816;
+}
+
+.pop-con p{
+	line-height: 30px;
+	text-align: center;
+}
+
+.pop-mask{
+	background: rgba(0,0,0,0.7);
+	width:100%;
+	height: 100%;
+	position: fixed;
+	left:0;
+	top:0;
+	z-index: 10;
+	display: none;
+}
+
+.smile{
+	display: block;
+	width:43px;
+	height: 43px;
+	margin:0 auto;
+	background: url('../images/smile.png') center center no-repeat;
+	background-size: 43px 43px;
+}

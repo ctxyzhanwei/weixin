@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{pigcms:$pro_info.title}</title>
+
+<script type="text/javascript">var yyuc_jspath = "./tpl/static/problem";</script>
+<script type="text/javascript" src="./tpl/static/problem/js/jquery.js"></script>
+<script type="text/javascript" src="./tpl/static/problem/js/yyucadapter.js"></script>
+<link type="text/css" rel="stylesheet" href="./tpl/static/problem/css/war.css">
+</head>
+<body>
+<div class="wrapper">
+    <img class="bg" src="./tpl/static/problem/image/bg_userinfo.png">
+    <if condition="$data['status'] eq 0">
+	    <div class="desc-cont1">
+	        <img class="bg" src="./tpl/static/problem/image/bg_reading_2.png">
+	        <button class="next-btn start1" style="border: none;width:130px;padding:5px 10px;">积分:{pigcms:$data.score}</button>
+			<div class="start-text">今日问题已结束,<br>明天继续来征战。</div>
+		</div>
+		<div class="desc-cont01">
+			<button class="next-btn start2" onclick="location.href='{pigcms:$f_siteUrl}{pigcms::U('Problem/rank',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id']))}'">查看排名</button>
+		</div>
+	<elseif condition="$data['status'] eq 2"/>	
+		<div class="desc-cont1">
+	        <img class="bg" src="./tpl/static/problem/image/bg_reading_2.png">
+	        <button class="next-btn start1" style="border: none;width:130px;padding:5px 10px;">积分:{pigcms:$data.score}</button>
+			<div class="start-text">赛事已过{pigcms:$data.end_day}天,<br>欢迎下次光临。</div>
+		</div>
+		<div class="desc-cont01">
+			<button class="next-btn start2" onclick="location.href='{pigcms:$f_siteUrl}{pigcms::U('Problem/rank',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id']))}'">查看排名</button>
+		</div>
+	<else />
+		<div class="wrapper">
+	    <img class="bg" src="./tpl/static/problem/image/bg_userinfo.png">
+	    <div class="desc-cont1">
+	        <img class="bg" src="./tpl/static/problem/image/bg_reading_2.png">
+			<button class="next-btn start1" onclick="location.href='{pigcms:$f_siteUrl}{pigcms::U('Problem/requestion',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$pro_info['id']))}'">开始答题</button>
+			<div class="start-text">赛事进入第{pigcms:$data.play_day}天<br>祝您马到成功!</div>
+		</div>
+</div>
+	</if>
+</div>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Problem",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$pro_info['logo_pic']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "tTitle": "{pigcms:$pro_info.title}",
+            "tContent": "{pigcms:$pro_info.explain}"
+        };
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

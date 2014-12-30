@@ -1,0 +1,153 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>微场景设置</h4><a href="{pigcms::U('Live/index',array('token'=>$token))}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%"><TBODY>
+
+<TR>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <TD>
+  <input type="input" class="px" id="name" value="{pigcms:$info.name}" name="name" style="width:400px" />
+    <br />
+    （请不要多于50字!）
+  </TD>
+</TR>
+
+<TR>
+  <th valign="top"><span class="red">*</span>关键词：</th>
+  <TD>
+	<input type="hidden" class="px" value="{pigcms:$info.id}" name="id">
+	<input type="input" class="px" id="keyword" value="<if condition="$info['keyword'] eq ''">{pigcms:$lotteryTypeName}<else/>{pigcms:$info.keyword}</if>" name="keyword" style="width:400px" ><br />
+  	（<span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。）
+  </TD>
+</TR>
+
+<TR>
+<th valign="top">活动说明：</th>
+<td><textarea  class="px" id="info" name="intro"  style="width:400px; height:100px" >{pigcms:$info.intro}</textarea>
+</td>
+</TR>
+
+<tr>
+  <TH valign="top"><label for="text">背景音乐：</label></TH>
+  <TD>
+  <input type="input" class="px" id="backp3" value="<if condition="$info.music eq ''">{pigcms:$f_siteUrl}/tpl/static/live/default/mis.mp3<else/>{pigcms:$info.music}</if>" name="music" style="width:250px" value="" >  
+  <script src="/tpl/static/upyun.js"></script>
+  <a href="###" onclick="upyunPicUpload('backp3',0,0,'{pigcms:$token}')" class="a_upload">上传</a> 
+  <a href="###" onclick="chooseFile('backp3','music')" class="a_upload">选择</a> 
+    &nbsp;&nbsp;
+    （设置微场景的背景音乐）
+	
+</TD>
+</tr>
+
+<tr>
+  <th>首页图片：</th>
+  <td>
+    <input class="px"  name="open_pic" value="<if condition="$info['open_pic'] eq ''">{pigcms:$f_siteUrl}/tpl/static/attachment/background/car/9.jpg<else/>{pigcms:$info.open_pic}</if>" id="pic1" style="width:250px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic1',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic1')">预览</a>[640*990]&nbsp;（场景首页展示图）
+  </td>
+</tr>
+
+<tr id="masking_pic">
+  <th>幕布图片：</th>
+  <td>
+    <input class="px"  name="masking_pic" value="<if condition="$info['masking_pic'] eq ''">{pigcms:$f_siteUrl}/tpl/static/attachment/background/car/4.jpg<else/>{pigcms:$info.masking_pic}</if>" id="pic2" style="width:250px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic2',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic2')">预览</a>[640*990]&nbsp;（开启幕布后生效，首页需要拉开幕布才能进入场景）<br />
+      幕布特效图片暂时只能使用本地图片。如果使用了远程图片，请关闭幕布以免影响使用！
+    </td>
+</tr>
+
+<TR>
+  <th valign="top">幕布提醒文字：</th>
+  <TD>
+  <input type="input" class="px" id="warn" value="<if condition="$info.warn eq ''">请用手指擦一擦<else/>{pigcms:$info.warn}</if>" name="warn" style="width:250px" />&nbsp;&nbsp;&nbsp;&nbsp;
+    （开启幕布出现在幕布上的提示文字）
+  </TD>
+</TR>
+
+<tr>
+  <th>分享背景图：</th>
+  <td>
+    <input class="px"  name="share_bg" value="<if condition="$info['share_bg'] eq ''">{pigcms:$f_siteUrl}/tpl/static/attachment/background/car/10.jpg<else/>{pigcms:$info.share_bg}</if>" id="pic4" style="width:250px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic4',640,990,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic4')">预览</a>[640*990]&nbsp;（底部分享页面背景）
+    </div>
+    </td>
+</tr>
+
+<tr>
+  <th>分享按钮：</th>
+  <td>
+    <input class="px"  name="share_button" value="<if condition="$info['share_button'] eq ''">{pigcms:$f_siteUrl}/tpl/static/live/default/share-button.png<else/>{pigcms:$info.share_button}</if>" id="pic5" style="width:250px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic5',580,100,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic5')">预览</a>[580*100]&nbsp;（底部分享按钮图片）
+    </div>
+    </td>
+</tr>
+<!--
+<tr>
+  <th>结束提示图片：</th>
+  <td>
+    <input class="px"  name="end_pic" value="<if condition="$info['end_pic'] eq ''">{pigcms:$f_siteUrl}/tpl/static/live/default/end.png<else/>{pigcms:$info.end_pic}</if>" id="pic6" style="width:250px;"  />
+      <script src="/tpl/static/upyun.js"></script>
+      <a href="###" onclick="upyunPicUpload('pic6',580,100,'{pigcms:$token}')" class="a_upload">上传</a> 
+      <a href="###" onclick="viewImg('pic6')">预览</a>[640*50]&nbsp;（场景浏览结束时跳出的提示图片）
+    </div>
+    </td>
+</tr>
+-->
+<tr>
+  <th>是否开启幕布：</th>
+  <td>
+    <input type="radio" name="is_masking" class="is_masking" value="1" <if condition="$info.is_masking neq '0'">checked</if>>开启&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="is_masking" class="is_masking" value="0" <if condition="$info.is_masking eq '0'">checked</if>>关闭&nbsp;&nbsp;&nbsp;&nbsp;（如果开启幕布，将会打开幕布后才能进入场景）
+  </td>
+</tr>
+
+<tr>
+  <th>商家展示：</th>
+  <td>
+    <input type="radio" name="show_company" class="show_company" value="1" <if condition="$info.show_company neq '0'">checked</if>>开启&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="show_company" class="show_company" value="0" <if condition="$info.show_company eq '0'">checked</if>>关闭&nbsp;&nbsp;&nbsp;&nbsp;（开启后页面展示商家分支页面）
+  </td>
+</tr>
+
+<tr>
+  <th>场景开关：</th>
+  <td>
+    <input type="radio" name="is_open" class="is_open" value="1" <if condition="$info.is_open neq '0'">checked</if>>开启&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="is_open" class="is_open" value="0" <if condition="$info.is_open eq '0'">checked</if>>关闭&nbsp;&nbsp;&nbsp;&nbsp;（开启的应用后才能正常访问）
+  </td>
+</tr>
+<TR>
+<th>&nbsp;</th>
+<td><button type="submit" class="btnGreen" >保存</button>　<a href=""  class="btnGray vm">取消</a>　<span class="red"></span></td>
+</TR>
+</TBODY>
+</TABLE>
+</div>
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

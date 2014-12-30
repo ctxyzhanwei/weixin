@@ -1,0 +1,55 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+ </div>
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="iframe" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td><span class="red">fly2048 —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$set.title}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{pigcms:$set.info}</textarea><br/>最多填写120个字</td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" value="{pigcms:$set.picurl}" id="pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="#" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('pic')">预览</a>   &nbsp; 大小为720x400</td>
+				</tr>
+                	<tr>
+					<th>广告图片：</th>
+					<td><input type="text" name="picurls1" value="{pigcms:$set.picurls1}" id="pic1" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="#" onclick="upyunPicUpload('pic1',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('pic1')">预览</a>   &nbsp; 大小为720x400</td>
+
+				</tr>
+                <tr>
+					<th width="120">广告语：</th>
+					<td><textarea style="width:560px;height:75px" name="ad" id="ad" class="px">{pigcms:$set.ad}</textarea><br/>最多填写100个字</td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+  </div> 
+
+ 
+
+  
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

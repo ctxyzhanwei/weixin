@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://sale.suning.com/images/advertise/001/hbgz30/active-rule.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="telephone=no" name="format-detection">
+	<title>{pigcms:$packet_info.title}</title>
+    <link rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/packet/css/base.css">
+    <link rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/packet/css/redbg.css">
+<style>
+.activeRule-content{min-height:350px;}
+</style>   
+</head>
+<body style="<if condition="$packet_info.bgcolor neq ''">background:{pigcms:$packet_info.bgcolor};</if>">
+    <section class="pdlayout">
+            <div class="activeRule-top pr" style="<if condition="$packet_info.bgcolor neq ''">background:{pigcms:$packet_info.bgcolor};</if>">
+                <img src="{pigcms:$staticPath}/tpl/static/packet/images/active_bg.png" width="100%" height="59">
+            </div>
+            <div class="activeRule-content  pdlayout pr">
+       			{pigcms:$packet_info.info|htmlspecialchars_decode}
+            </div>
+    </section>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Red_packet",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$packet_info.msg_pic}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Red_packet/index',array('token' => $token,'id'=>$packet_info['id']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Red_packet/index',array('token' => $token,'id'=>$packet_info['id']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Red_packet/index',array('token' => $token,'id'=>$packet_info['id']))}",
+            "tTitle": "{pigcms:$packet_info.title}",
+            "tContent": "{pigcms:$packet_info.title}"
+        };
+</script>
+{pigcms:$shareScript}   
+</body>
+</html>

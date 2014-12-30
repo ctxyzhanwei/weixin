@@ -1,0 +1,57 @@
+<include file="Public:head"/>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+
+<div class="content">
+<div class="cLineB">
+<h4>
+会员卡通知
+</h4>
+<a class="right btnGrayS vm" style="margin-top:-27px" href="javascript:history.go(-1);">返回</a>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href='/index.php?g=User&m=Member_card&a=noticeSet&id={pigcms:$thisCard.id}&token={pigcms:$token}' title='添加通知' class='btnGrayS vm bigbtn'><img class="vm" src="./tpl/User/default/common/images/product/add.png">添加通知</a></div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post"  action="" id="info" >
+<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<THEAD>
+<tr>
+<th>标题</th>
+<th width="100">截止日期</th>
+<th width="140">添加时间</th>
+<th class="norightborder">操作</th>
+</tr>
+</THEAD>
+<TBODY>
+<TR></TR>
+<volist id="item" name="list">
+<TR>
+<TD>{pigcms:$item.title}</TD>
+<TD>{pigcms:$item.endtime|date="Y-m-d",###}</TD>
+<TD>{pigcms:$item.time|date="Y-m-d H:i:s",###}</TD>
+<TD class="norightborder">
+<a href="/index.php?g=User&m=Member_card&a=noticeSet&token={pigcms:$token}&id={pigcms:$thisCard.id}&noticeid={pigcms:$item.id}">编辑</a> <a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member_card&a=noticeDelete&token={pigcms:$token}&noticeid={pigcms:$item.id}&id={pigcms:$thisCard.id}');">删除</a></TD>
+</TR>
+</volist>
+</TBODY>
+</TABLE>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+      
+        <div class="clr"></div>
+		<include file="Public:footer"/>
+      </div>
+    </div>
+  </div> 

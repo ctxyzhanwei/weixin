@@ -1,0 +1,57 @@
+{include file=$header}
+  <div data-role="content" id="main">
+ 
+    <div class="lxfs">
+      <a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/dh.png" tppabs="images/dh.png"></a>
+      <a href="sms:{$company.mp}" title="短信" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/hw.png" tppabs="images/hw.png"></a>
+      <a href="?token={$token}&m=site&c=home&a=map" tppabs="html/map.html" title="地图" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/dz.png" tppabs="images/dz.png"></a>
+    </div>
+   
+   <div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list">
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div data-role="content" id="main">
+
+    <div class="padding20">
+      <div class="news_i">
+        <ul>
+          {if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+                  <li class="news_common" onClick="this.className='news_current'"><a href="{$a.link}"   data-ajax="false" title="{$a.title}">{$a.title}</a></li>
+                   {/if}
+		{/foreach}
+		
+		{/if}
+                 
+                </ul>
+
+      </div>
+    </div>
+    
+</div>
+{include file=$footer}

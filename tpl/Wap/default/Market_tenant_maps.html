@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<title>{pigcms::$tenant['name']}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+	<meta name="format-detection" content="telephone=no" />
+	<link type="text/css" rel="stylesheet" href="{pigcms::$staticFilePath}/css/style.css" />
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+	
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={pigcms::$apikey}"></script>
+<div class="main">
+	<div class="p_map">
+    <div id="container"></div>
+        <script type="text/javascript">
+        $(function(){
+        	var wh = $(window).height();
+        	var bh = $('body').height();
+        	var mh = $('#container').css('height');
+        	mh = mh.replace('px', '');
+        	oh = bh - wh;
+        	nmh = mh - oh;
+        	$('#container').css('height', nmh+'px');
+        
+        	var sContent = function(id, name, imgsrc, address, tel){
+        		return "<h2 style='margin:0 0 7px 0;padding:0 0'>"+name+"</h2>" + 
+        		"<img style='float:right;margin:0px 0px 0px 4px' id='imgDemo' src='"+imgsrc+"' width='120' height='80' />" + 
+        		"<p style='padding-right:10px'>地址："+address+"</p>" +
+        		"<p style=''>电话："+tel+"</p>" +
+        		"" +
+        		"</div>";
+        	}
+        	var storeList = [{"id":"{pigcms::$tenant['id']}","title":"{pigcms::$tenant['name']}","top_pic":"{pigcms::$tenant['logourl']}","address":"{pigcms::$tenant['address']}","tel":"{pigcms::$tenant['tel']}","longitude":"{pigcms::$tenant['longitude']}","latitude":"{pigcms::$tenant['latitude']}"}<volist name="branchStores" id="c">,{"id":"{pigcms::$c['id']}","name":"{pigcms::$c['name']}","top_pic":"{pigcms::$c['top_pic']}","address":"{pigcms::$c['address']}","tel":"{pigcms::$c['tel']}","longitude":"{pigcms::$c['longitude']}","latitude":"{pigcms::$c['latitude']}"}</volist>];
+        	// 编写自定义函数,创建标注
+        	function addMarker(point, content){
+        	  var marker = new BMap.Marker(point);  // 创建标注
+        	  map.addOverlay(marker);
+        	  var infoWindow = new BMap.InfoWindow(content);
+        	  map.openInfoWindow(infoWindow,point); //开启信息窗口
+        	  marker.addEventListener("click", function(){          
+        		   this.openInfoWindow(infoWindow);
+        		   //图片加载完毕重绘infowindow
+        		   document.getElementById('imgDemo').onload = function (){
+        		       infoWindow.redraw();
+        		   }
+        		});
+        	}
+        	var map = new BMap.Map("container");
+        	var point = new BMap.Point({pigcms::$tenant['longitude']}, {pigcms::$tenant['latitude']});
+        	map.centerAndZoom(point, 13);
+        	var user_marker = new BMap.Marker(point);  // 创建标注
+        	map.addOverlay(user_marker);
+            	   
+        	for (var i = 0, l=storeList.length; i < l; i ++) {
+        	  var point = new BMap.Point(storeList[i].longitude, storeList[i].latitude);
+        	  var content = sContent(storeList[i].id,storeList[i].title,storeList[i].top_pic,storeList[i].address,storeList[i].tel);
+        	  addMarker(point, content);
+        	}
+            
+        });
+        </script>
+	</div>
+</div>
+ <script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Market",
+            "moduleID":"{pigcms:$thisForm.market_id}",
+            "imgUrl": "{pigcms:$thisForm.logo_pic}", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Market/tenant_maps',array('token'=>$token,'latitude'=>$thisForm['latitude'],'longitude'=>$thisForm['longitude']))}",
+            "tTitle": "{pigcms:$thisForm.title}",
+            "tContent": "{pigcms:$thisForm.address}"
+};
+</script>
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+{pigcms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿html,body{height:100%;}
+body{font:14px "黑体",Arial; color:#fff; background:#FFF;}
+body,div,dl,dt,dd,ul,li,p,form,span,em,button{ padding:0; margin:0; border:0;}
+img{ border:0; vertical-align:top;}
+em{ font-style:normal;}
+li{ list-style:none;}
+q:before,q:after { content:'';}
+input{ color:#FFF; font-size:14px; color:#333; font-family:"黑体";}
+a{ color:#fff; text-decoration:none; outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a:hover,.select-box-radio q{ color:#fff; text-decoration:none;}
+div{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.left{ float:left;}
+.right{ float:right;}
+.wrapper{position:relative;width:640px;height:1007px;margin:0 auto;overflow:hidden;}
+.clear{clear:both;float:none;}
+.hidden{display:none;}
+.transparent{opacity:0;}
+.bg{position:absolute;top:0px;left:-640px;z-index:1000;width:1280px;height:1007px;background:url('img/bg.jpg') no-repeat;}
+.animation1,.animation2,.animation3{position:absolute;top:0px;left:0px;z-index:1001;width:100%;height:100%;}
+.animation2,.animation3{display:none;}
+.animation1 .title{position:absolute;top:30px;left:90px;width:448px;height:167px;background:url('img/title_1.png') no-repeat;}
+.deer_group{position:absolute;}
+.pop1{display:none;position:absolute;top:347px;left:35px;width:248px;height:175px;background:url('img/pop_1.png') no-repeat;}
+.pop2{display:none;position:absolute;top:245px;left:277px;width:284px;height:182px;padding:45px 20px 20px 20px;background:url('img/pop_bg.png') no-repeat;font-size:36px;color:#794523;}
+.pop2 .content_border{height:50px;line-height:50px;overflow:hidden;color:#cc0308;}
+.pop2 .content_1{float:left;}
+.pop2 .content_3{float:right;}
+.deer{position:absolute;top:470px;left:175px;width:345px;height:350px;background:url('img/reindeer_1.png') no-repeat;}
+.deer_frame2{background:url('img/reindeer_2.png') no-repeat;}
+.newyearcar{position:absolute;top:503px;left:362px;width:897px;height:324px;background:url('img/new_year_car.png') no-repeat;}
+.opengift{display:none;position:absolute;top:581px;left:941px;width:134px;height:134px;border-radius:168px;background:url('img/open_card_entry.png') no-repeat 50% 50%;}
+.animation2 .title,.animation3 .title{position:absolute;top:30px;left:64px;width:507px;height:192px;background:url('img/title_2.png') no-repeat;}
+.animation2 .title{opacity:0;-webkit-transform-origin:50% 50%;-webkit-transform:scale(0.1);top:500px;}
+.animation2 .newyearcar,.animation3 .newyearcar{left:-278px;}
+.goto_flower{position:absolute;top:240px;left:220px;width:290px;padding-right:70px;height:160px;background:url('img/goto_flower.png') no-repeat 160px 90px;color:#7b5d48;font-size:30px;text-align:right;}
+.star{position:absolute;width:115px;height:115px;background:url('img/star.png') no-repeat;-webkit-transform-origin:50% 50%;-webkit-transform:scale(0.3);}
+.animation2 .flower{position:absolute;width: 500px;height: 400px;top: 200px;left: 80px;}
+.start{position:absolute;z-index:1002;top:481px;left:240px;width:160px;height:160px;background:url('img/start.png') no-repeat 50% 50%;}
+.share_help_entry{position:absolute;top:440px;left:370px;width:194px;height:45px;background:url('img/share_help_entry.png') no-repeat;}
+.card_help{display:none;position:absolute;z-index:1003;top:0;left:0px;width:640px;height:1007px;background:url('img/card_help.jpg') no-repeat;}
+
+.messageBox {
+position: absolute;
+top: 270px;
+width: 80%;
+z-index: 900;
+padding-left: 50px;
+color:  #fde4bb;
+}
+
+.sort_textarea{
+	position:  absolute;
+top: 0px;
+width: 80%;
+z-index: 900;
+padding-left: 0px;
+color:   #000 ;
+}
+
+.name{
+ color:   #fde4bb ;
+ display: block;
+text-align: right;
+margin-top:5px;
+height: 28px;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);font-size:24px;
+
+}
+.time {
+font-size: 12px;
+display: block;
+text-align: right;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);font-size:16px;
+}
+.message{height:85px; overflow-x:hidden;-webkit-overflow-scrolling:touch;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);font-size:24px;}
+.messageBox input, .messageBox textarea{ font-size:24px;background-color:transparent; border:0;}
+.messageBox input{ text-align:right; height:26px;}
+.messageBox textarea{ text-align:left;  width:100%; height:70px; overflow: hidden; }
+
+
+.arr {
+position: fixed;
+right: 30px;
+top: 25px;
+width: 16px;
+height: 21px;
+background: url(img/arr.png) center center no-repeat;
+background-size: 16px 21px;
+-webkit-transform: translateY(0);
+-webkit-transition: -webkit-transform 200ms ease-in-out;
+z-index: 900;
+}
+.gift {
+width: 60px;
+height: 60px;
+background: url(img/gift.png) center center no-repeat;
+background-size: 60px 60px;
+position: fixed;
+right: 8px;
+top: 45px;
+z-index:899;
+cursor:pointer;
+-webkit-transform: rotate(0);
+-webkit-transition: -webkit-transform 500ms ease-in-out;
+}

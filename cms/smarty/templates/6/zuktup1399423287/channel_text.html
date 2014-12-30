@@ -1,0 +1,24 @@
+{include file=$header}
+<div class="clear"></div>
+<div data-role="content" class="content">
+  <!--<div class="title">
+    <div class="title_word"><span>最新资讯</span></div>
+  </div>-->
+  <ul class="newslist">
+  	 {if $contents}
+			{foreach from=$contents item=c}
+      <li><a href="{$c.link}"  data-ajax="false">{$c.title}</a></li>
+        {/foreach}
+			 {/if}
+             
+  
+    </ul>
+  <div class="clear"></div>
+      <div class="pages ui-grid-b">
+      
+	    <div class="ui-block-a"><span class="left ui-bar-h"><img src="smarty/templates/tpls/{$site.template}/left.png" tppabs="images/left.png" alt="上一页"/></span></div>
+        <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+        <div class="ui-block-c"><a href="{$nextPageLink}"  class="right ui-bar-h" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/right.png"  alt="下一页"/></a></div>
+    </div>
+	</div>
+{include file=$footer}

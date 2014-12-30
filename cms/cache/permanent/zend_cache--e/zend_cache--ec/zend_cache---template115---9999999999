@@ -1,0 +1,22 @@
+                      2126781984O:8:"stdClass":10:{s:2:"id";s:3:"115";s:4:"name";s:12:"图片列表";s:4:"path";s:58:"@/smarty/templates/3/btqmui1401700732/channel_picture.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"0";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"13";s:4:"time";s:10:"1401701208";s:4:"code";s:666:"{include file=$header}
+	    <ul class="productul">
+        
+        	{if $contents}
+			{foreach from=$contents item=a key=k}
+			
+		        <li>
+            <a href="{$a.link}"  title="{$a.title}"><img src="{$a.thumb}"  alt="{$a.title} "></a>
+            <a href="{$a.link}"  title="{$a.title}" class="title">{$a.title}</a>
+        </li>
+         
+		  {/foreach}
+		  {/if}
+		       
+		    </ul>
+	<div class="clear"></div>
+    <div class="pages">
+        		<a class="next-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="pre-left" href="{$nextPageLink}" >&gt;</a>
+	    </div>
+	{include file=$footer}";}

@@ -1,0 +1,61 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>商品分类设置</h4> 
+    <a href="{pigcms::U('Store/index',array('token'=>$token, 'cid' => $cid))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <input type="hidden" name="id" value="{pigcms:$set.id}" /> 
+    <input type="hidden" name="cid" value="{pigcms:$cid}" /> 
+    <input type="hidden" name="parentid" value="{pigcms:$parentid}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <if condition="$parentid gt 0">
+       <tr> 
+        <th>父分类名称：</th> 
+        <td>{pigcms:$parentname}</td> 
+       </tr>
+       </if>
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td><input type="text" name="name" value="{pigcms:$set.name}" class="px" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th>Logo地址：</th> 
+        <td><input type="text" name="logourl" value="{pigcms:$set.logourl}" id="pic" class="px" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,300,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a> （建议尺寸：420*300）</td> 
+       </tr> 
+       <tr> 
+        <th>分类规格：</th> 
+        <td><input type="text" name="norms" value="{pigcms:$set.norms}" id="norms" class="px"/>(如：鞋的规格是：鞋码。即填写【鞋码】。尺寸，尺码，体积...。没有外观可不填写。可参考淘宝写)</td> 
+       </tr>
+       <tr> 
+        <th>商品的外观：</th> 
+        <td><input type="text" name="color" value="{pigcms:$set.color}" id="color" class="px"/>(如：衣服一般有颜色,即填写【颜色】；酒水一般都是没有颜色的，没有外观可不填写)</td> 
+       </tr>
+       <tr> 
+        <th>简介：</th> 
+        <td><textarea name="des" class="px" style="width:400px;height:80px;">{pigcms:$set.des}</textarea></td> 
+       </tr>
+       <tr> 
+        <th>排序：</th> 
+        <td><input type="text" name="sort" value="{pigcms:$set.sort}" id="sort" class="px" style="width:40px;"/>数字越小排再越前（大于等于0的整数）</td> 
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Store/index',array('token' => $token, 'cid' => $cid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div> 
+  <include file="Public:footer" />

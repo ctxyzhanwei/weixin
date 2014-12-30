@@ -1,0 +1,51 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content" >  
+
+ <div class="ftip" style="margin:25px auto 5px auto;">请先设置如下信息</div>
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+				<tr>
+					<th width="120">微信号名称：</th>
+					<td><input type="text" name="wxname" value="{pigcms:$info.wxname}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">微信号：</th>
+					<td><input type="text" name="wxid" value="{pigcms:$info.wxid}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th>微信号logo：</th>
+					<td><input type="text" name="wxlogo" id="wxlogo" value="{pigcms:$info.wxlogo}" class="px" style="width:550px;">   <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('wxlogo',120,120,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('wxlogo')">预览</a> 长360 宽200</td>
+				</tr>
+				<tr>
+					<th width="120">链接：</th>
+					<td><input type="text" name="link" value="{pigcms:$info.link}" id="link" class="px" style="width:550px;"> <a href="###" onclick="addLink('link',0)" class="a_choose">从功能库添加</a></td>
+				</tr>
+ 
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

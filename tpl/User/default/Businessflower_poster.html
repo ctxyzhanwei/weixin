@@ -1,0 +1,93 @@
+<include file="Public:head"/>
+<include file="Businessflower:flower_menu"/>
+<!-- <script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script> -->
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+
+<div class="content">
+  <div class="cLineB">
+    <h4>请设置花店相关内容</h4>
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置花店相关内容,注意：第一次使用，请点击添加花店相关设置，并点击保存</font></strong>
+    </p>
+    </div>
+   </div>
+</div>
+
+
+  <div class="cLineC" style="line-height: 32px;"> <a href="{pigcms::U('Businessflower/poster_add',array('token'=>$token,'type'=>$type))}" class="btnGrayS vm bigbtn">添加宣传海报</a> </div>
+  <div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th style=" width:100px;">花店</th>
+              <th style=" width:100px;">选用相册</th>
+              <th style=" width:100px;">海报1</th>
+              <th style=" width:100px;">海报2</th>
+              <th style=" width:100px;">海报3</th>
+              <th style=" width:100px;">海报4</th>
+              <th style=" width:100px;">海报5</th>
+              <th style=" width:120px;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+              <volist name="busines_pic" id="vo">
+                <tr>
+                    <td>{pigcms:$vo.0}</td>
+                    <td>{pigcms:$vo.1}</td>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl_1}" class="cateimg_small"></div></td>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl_2}" class="cateimg_small"></div></td>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl_3}" class="cateimg_small"></div></td>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl_4}" class="cateimg_small"></div></td>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl_5}" class="cateimg_small"></div></td>
+                    <td>
+              <a href="{pigcms::U('Businessflower/poster_add',array('pid'=>$vo['pid'],'type'=>$vo['type']))}" class="btnGreen">编辑</a>
+              <a href="{pigcms::U('Businessflower/poster_del',array('pid'=>$vo['pid'],'type'=>$vo['type']))}" onclick="return(confirm('确定要删除吗？'))" class="btnGreen">删除</a>
+                    </td>
+                </tr>
+              </volist>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages">{pigcms:$page}</div>
+    </div>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

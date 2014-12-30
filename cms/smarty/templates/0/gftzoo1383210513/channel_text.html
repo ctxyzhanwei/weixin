@@ -1,0 +1,21 @@
+{include file=$header}
+    <p class="clear"></p>
+    <div class="subborder"></div>    <div class="subcon">
+	    	<ul class="newsul">
+			          {if $contents}
+			{foreach from=$contents item=c}
+			<li><a href="{$c.link}" title="{$c.title}"><p>{$c.title}</p></a></li>
+			
+		     {/foreach}
+			 {/if}
+                    </ul>
+		{if $currentPage&&$totalPage}
+    <div class="pages">
+			<a class="pre-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="next-left" href="{$nextPageLink}">&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	{/if}    </div>
+</div>
+{include file=$footer}

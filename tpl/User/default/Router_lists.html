@@ -1,0 +1,50 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+<include file="Router:menu"/>
+        
+
+
+          <div class="ftip" style="margin:25px auto 5px auto;">共有{pigcms:$pageinfo.total}人在线</div>
+
+         <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">MAC地址</th>
+<th style=" width:100px;">IP</th>
+<th style=" width:100px;">下行</th>  
+<th style=" width:100px;">上行</th>             
+<th style=" width:150px;" class="norightborder">连接时间</th>
+</tr>
+</thead>
+<volist name="list" id="actinfo">
+<tr>
+<td>{pigcms:$actinfo.mac}</td>
+<td>{pigcms:$actinfo.ip}</td>
+    <td><?php echo ($actinfo['in_come']/1024).'kb';?></td>
+    <td><?php echo ($actinfo['out_go']/1024).'kb';?></td>
+<td class="norightborder">
+<?php date('Y-m-d H:i:s',$actinfo['created_at']);?>
+</td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+          
+        </div>
+<include file="Public:footer"/>

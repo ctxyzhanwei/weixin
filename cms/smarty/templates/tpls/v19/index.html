@@ -1,0 +1,45 @@
+{include file=$header}
+<div class="indexbg">
+<div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                </div>
+    </div>
+      <div data-role="content" class="content_i">
+
+        <div class="product">
+          <ul>
+           {if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+            <li style="height:26px;over-flow:none;line-height:26px;{if $k==0}border-radius:5px 5px 0 0;{/if}{if $k==4}border-bottom:0;border-radius:0 0 5px 5px{/if}"><a href="{$a.link}"  title="{$a.title}">
+             
+              <div class="protxt">&nbsp;{$a.title}</div>
+              </a></li>
+              {/if}
+		{/foreach}
+		
+		{/if}
+        
+           
+          </ul>
+        </div>
+      </div>
+    </div>
+   {include file=$footer}

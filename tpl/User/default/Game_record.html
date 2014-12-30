@@ -1,0 +1,65 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">游戏记录</h4>
+                 
+              <div class="clr"></div>
+          </div>
+          
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>参与用户</TH>
+				<TH>记录时间</TH>
+				<TH>记录内容</TH>
+				<TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                  <volist id="list" name="list">
+                <TR>
+              
+                  <TD>{pigcms:$list.username}</TD>
+                  <TD>{pigcms:$list.time|date="Y-m-d H:i:s",###}</TD> 
+                  <TD>{pigcms:$list.score}</TD> 
+				
+                   <TD class="norightborder">
+				   <a href="index.php?g=User&m=Game&a=record_del&rid={pigcms:$list.gameid}&id={pigcms:$list.id}">删除</a></TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+           </form> 
+
+          </div>
+
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}</script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>

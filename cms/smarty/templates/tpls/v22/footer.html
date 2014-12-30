@@ -1,0 +1,42 @@
+<ul class="footnav">
+	  {if $navChannels}
+{foreach from=$navChannels item=n key=k}
+{if $k<5}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.shortname}</a></li>
+	{/if}
+	{/foreach}
+	{/if}
+
+</ul>
+<div class="clear"></div>
+
+<ul class="footbg">
+	<li><a class="map" href="?token={$token}&m=site&c=home&a=map"  title="地图">地图</a></li>
+    <li><a class="tel" href="tel:{$company.tel}" title="电话">电话</a></li>
+    <li><a class="sms" href="sms:{$company.mp}" title="短信">短信</a></li>
+    <!--分享(-->
+        <li><a href="?token={$token}&m=site&c=home&a=share"  class="share" title="分享">分享</a></li>
+        <!--)分享-->
+</ul>
+  <!--menu start-->
+{if $showPlugMenu}
+<link rel="stylesheet" href="/tpl/Wap/default/common/css/flash/css/plugmenu.css">
+<div class="plug-div">
+        <div class="plug-phone">
+            <div class="plug-menu themeStyle" style="background:{$site.plugmenucolor}"><span class="close"></span></div> 
+               {foreach from=$plugmenus item=vo key=k}
+                        <div class="themeStyle plug-btn plug-btn{$k+1} close" style="background:{$site.plugmenucolor}">
+							<a  href="{$vo.url}">
+								<span style="background-image: url(/tpl/Wap/default/common/css/flash/images/img/{$vo.name}.png);" ></span>
+							</a>
+						</div>
+                     {/foreach}
+<div class="plug-btn plug-btn5 close"></div>
+                    </div>
+</div>
+<script src="/tpl/Wap/default/common/css/flash/js/zepto.min.js" type="text/javascript"></script>
+<script src="/tpl/Wap/default/common/css/flash/js/plugmenu.js" type="text/javascript"></script>
+{/if}
+<!--menu end-->
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Admin-AN-QQrobot</title>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<style> 
+html,body{height:auto;width:100%;margin:0px}
+body,a,input,textarea,select{font-family:"微软雅黑","Verdana","arial","宋体";color:#333333;font-size:12px}
+p{margin:0px;padding:0px}
+ul,li{list-style-type:none;padding:0px;margin:0px}
+form{margin:0px}
+img{border:0px}
+a{text-decoration:none}
+a:hover{color:#006600;text-decoration:underline}
+.ui_win{width:1150px;height:auto;padding:10px;margin:0 auto}
+.ui_list{table-layout:fixed;background:#ccc;width:100%}
+.ui_list td{cursor:default;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ui_list .tr1{text-align:center;background:#d8d8d8;color:#000;font-weight:bold}
+.ui_list .tr1 a{color:#006600}
+.ui_list .tr1 .page{float:left}
+.ui_list .tr1 .sear{float:right}
+.ui_list .tr2{}
+.ui_list .tr2 .del{color:#ff0000}
+.ui_list .tr2 .info{color:#d8d8d8;font-size:10px;font-style:italic}
+.ui_list .tr2.on{background:#e8e8e8;color:#000}
+.ui_list .tr2.out{background:#fff}
+ 
+.ui_list .tr2 .inp{height:21px;line-height:21px;border:none;background:#f0f0f0;width:100%}
+.ui_list .tr2 .tex{height:100px;line-height:21px;border:none;background:#f0f0f0;width:100%}
+.ui_list .tr2 .inp:focus,.ui_list .tr2 .tex:focus{outline:none}
+.ui_list .tr2 .btn{width:50px}
+</style>
+<script type="text/javascript"> 
+function $(o){return document.getElementById(o)};
+function search(){
+var word=$("tcz_word").value;
+var st=$("tcz_st").value;
+var isok=$("tcz_isok").value;
+//if((word==""||word=="关键字")&&isok==10){
+//	alert("请输入关键字");
+//	$("tcz_word").focus();
+//	return;
+//	}
+location.href="index.php?g=Other&m=Index&a=so"+word+st+"&type="+isok;
+}
+function delmess(tips){
+if(tips=="")tips="确定要操作该条记录吗？";
+if(confirm(tips))return true;
+return false;
+}
+window.onload=function(){
+$("tcz_word").focus();
+var isok=10;
+var st="";
+if(isok!=10)$("tcz_isok").value=isok;
+if(st=="ok")$("tcz_st").value="ok";
+}
+</script>
+</head>
+<body>
+<div class="ui_win">
+<table border="0" cellpadding="8" cellspacing="1" class="ui_list">
+<tr class="tr1">
+<td colspan=7>
+<div class="sear">
+共有 {pigcms:$count} 个未完成升级
+<form method="get" action="/index.php?g=Other&m=Index&a=admin#content">
+<select id="tcz_isok">
+	<option value="1">域名</option>
+	<option value="3">手机</option>
+	<option value="2">qq</option>
+</select>
+
+<input id="tcz_word" type="text" value="关键字" onKeyUp="if(event.keyCode==13)search()" onfocus="this.select()" onblur="if(this.value=='')this.value='关键字'" onmouseup="if(this.value=='关键字')this.value=''">
+<button type="submit" >搜索</button>
+</form>
+</div></td></tr>
+<tr class="tr1">
+<td style="width:50px">编号</td>
+<td style="width:100px">姓名</td>
+<td style="width:100px">手机</td>
+<td style="width:100px">QQ</td>
+<td style="width:300px">域名</td>
+<td style="width:150px">购买时间</td>
+<td style="width:50px">价格</td>
+<td style="width:50px">版本</td>
+<td style="width:100px">操作</td>
+</tr>
+<volist  id="list" name="list">
+<tr class="tr2 out" onmouseover="this.className='tr2 on'" onmouseout="this.className='tr2 out'" title="网友（0）">
+	<td>
+		{pigcms:$list.id}
+	</td><td>
+		<a href="?word=&st=&isok=10&log=edit&id=209557&page=1">{pigcms:$list.username}</a>
+	</td>
+	<td>
+		<a href="?word=&st=&isok=10&log=edit&id=209557&page=1">{pigcms:$list.tel}</a>
+	</td>
+	<td>
+		<a href="?log=changeisok&id=209557"><span style="color:#ff0000">{pigcms:$list.qq}</span></a>
+	</td>
+	<td><a href="index.php?g=Other&m=Index&a=admin&id={pigcms:$list.id}#content">{pigcms:$list.domain}</a></td>
+	<td>{pigcms:$list.time|date='Y-m-d',###}</td>
+	<td>{pigcms:$list.price}</td>
+	<td> {pigcms:$list.type}</　</td>
+	<td>
+	<if condition="$list['status'] eq 0">
+		<a href="index.php?g=Other&m=Index&a=setInc&id={pigcms:$list.id}" class="del" onclick="return delmess('')">[接收信息并处理]</a>
+	</if>
+	<if condition="$list['status'] eq 1">
+		<a href="index.php?g=Other&m=Index&a=setInc&id={pigcms:$list.id}" class="del" onclick="return delmess('')">[处理中…………]</a>
+		</if>
+		<if condition="$list['status'] eq 2">　
+		<a  class="del" style="color:#ccc">[此次升完成]</a>
+		</if>	
+	</td>
+</tr>
+</volist>
+
+
+</table>
+<form action="?log=save&id=0" method="post" name="form1" style="padding-bottom:5px;">
+<table border="0" cellpadding="8" cellspacing="1" class="ui_list" style="border-top:10px solid #fff">
+<td style="width:300px">关键词</td>
+<td>回复</td>
+<td style="width:50px">审核</td>
+<td style="width:50px">范围</td>
+<td style="width:50px">编号</td>
+<td style="width:50px">操作</td>
+<td style="width:90px">时间</td>
+</tr>
+<tr class="tr2 out">
+	<td style="width:300px">
+		<textarea class='tex' name="send_msg"></textarea>
+	</td>
+	<td>
+		<textarea class='tex' name="send_answer">{pigcms:$con.info}</textarea>
+	</td>
+	<td style="width:50px">
+		<label>
+			<input type="radio" name='send_isok' value=0>综合</label><br>
+			<label><input type="radio" name='send_isok' value=1 checked>正常</label><br>
+			<label><input type="radio" name='send_isok' value=2>完全</label><br>
+			<label><input type="radio" name='send_isok' value=3>问答</label><br>
+			<label><input type="radio" name='send_isok' value=4>正则</label>
+	</td>
+	<td style="width:50px">机器人ID<br><input style="text-align:center" onfocus="this.select()" class='inp' type='text' name='send_robotid' value='0'></td>
+	<td style="width:50px">
+		<input class='btn' type='submit' value='添加'><br><br><input class='btn' type='button' value='注销' onclick="location.href='?log=logout'">
+	</td>
+	<td style="width:90px">10-10 15:43:15</td>
+</tr>
+<tr class="tr1">
+	<td colspan=7>当前操作模式：添加</td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>

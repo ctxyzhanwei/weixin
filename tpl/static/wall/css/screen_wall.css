@@ -1,0 +1,131 @@
+body{background-repeat: repeat-x;}
+.Panel.MsgList {
+	position: absolute;
+	top: 15%;
+	height: 76%;
+	left: 0;
+	opacity: 0;
+	width: 90%;
+	left: 50%;
+	margin-left: -45%;
+	overflow: hidden;
+	display: none
+}
+/*
+.MsgList .MsgItem {
+	margin-bottom: 8.5px; 
+	visibility: visible;
+	width: 100%;
+	height: 32%;
+	position: relative;
+	background-color: rgba(18,96,176,0.90);
+	background: -moz-linear-gradient(top,rgba(18,96,176,0.90),rgba(8,53,111,0.90));
+	background: -ms-linear-gradient(top,rgba(18,96,176,0.90),rgba(8,53,111,0.90));
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgba(18,96,176,0.90)),to(rgba(8,53,111,0.90)));
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border: 1px solid rgba(255,255,255,0.5);
+	margin: 0 0 .5% 0
+}
+*/
+.MsgList .MsgItem {
+	margin-bottom: 8.5px; 
+	visibility: visible;
+	width: 100%;
+	height: 32%;
+	position: relative;
+	background-color: rgba(18, 96, 176, 0);
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgba(255, 255, 255, 0.11)),to(rgba(255, 255, 255, 0.34)));
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.11) 0%,rgba(255,255,255,0.34) 100%);
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 6px;
+    margin: 4.5px 0 0 0
+}
+.MsgList .MsgItem: last-child {
+	margin-bottom: 0
+}
+.MsgList .MsgItem .head {
+	width: 143px; 
+	height: 143px; 
+	top: 20px; 
+	left: 20px;
+	position: absolute;
+	background-color: #fff;
+	border: 2px solid rgba(255,255,255,0.5);
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	background-size: cover
+}
+.MsgList .MsgItem .nickname {
+	width: 1237px; 
+	height: 35.75px; 
+	top: 20px; 
+	left: 183px; 
+	font-size: 31px;
+	position: absolute;
+	overflow: hidden;
+	color: #f9fe25
+}
+.MsgList .MsgItem .msgword {
+	width: 1237px; 
+	height: 87.25px; 
+	top: 75.75px; 
+	left: 183px; 
+	font-size: 76px;
+	position: absolute;
+	overflow: hidden;
+	color: #fff
+}
+.msgin {
+	-webkit-animation: msgin-transform 1s .2s ease both;
+	-moz-animation: msgin-transform 1s .2s ease both
+}
+.faceicon {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	display: none;
+	vertical-align: middle
+}
+.faceicon img {
+	width: 2880px;
+	height: 64px;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+@-webkit-keyframes msgin-transform {
+	0 {
+	-webkit-transform: perspective(400px) rotateX(90deg);
+	opacity: 0
+}
+40% {
+	-webkit-transform: perspective(400px) rotateX(-10deg)
+}
+70% {
+	-webkit-transform: perspective(400px) rotateX(10deg)
+}
+100% {
+	-webkit-transform: perspective(400px) rotateX(0);
+	opacity: 1
+}
+}@-moz-keyframes flipInX {
+	0 {
+	-moz-transform: perspective(400px) rotateX(90deg);
+	opacity: 0
+}
+40% {
+	-moz-transform: perspective(400px) rotateX(-10deg)
+}
+70% {
+	-moz-transform: perspective(400px) rotateX(10deg)
+}
+100% {
+	-moz-transform: perspective(400px) rotateX(0);
+	opacity: 1
+}
+}

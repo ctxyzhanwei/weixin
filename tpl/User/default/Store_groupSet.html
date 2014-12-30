@@ -1,0 +1,52 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>商品分组设置</h4> 
+    <a href="{pigcms::U('Store/group',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <input type="hidden" name="gid" value="{pigcms:$group.id}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody>
+       <tr> 
+        <th>分组名称：</th> 
+        <td>{pigcms:$group.name}</td> 
+       </tr>
+       <tr>
+	       <th>分支店铺名称：</th>
+	       <td>
+	       		<table>
+	       		<tr>
+	       		<volist name="company" id="com" key="i">
+				<td width="260">
+				<if condition="(in_array($com['id'], $relation))" >
+				<input type="checkbox" name="company[]" value="{pigcms:$com.id}" class="norms" id="company_{pigcms:$com.id}" checked/>&nbsp;&nbsp;<label for="company_{pigcms:$com.id}">{pigcms:$com.name}</label>
+				<else/>
+				<input type="checkbox" name="company[]" value="{pigcms:$com.id}" class="norms" id="company_{pigcms:$com.id}" />&nbsp;&nbsp;<label for="company_{pigcms:$com.id}">{pigcms:$com.name}</label>
+				</if>
+				</td>
+				<if condition="($i%2 eq 0)" ></tr><tr></if>
+				</volist>
+				</tr>
+				</table>
+	       </td>
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Store/group',array('token' => $token, 'cid' => $cid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div> 
+  <include file="Public:footer" />

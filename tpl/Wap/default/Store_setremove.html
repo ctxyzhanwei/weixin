@@ -1,0 +1,88 @@
+<include file="Store:header"/>
+<form method="post" action="{pigcms::U('Store/setremove',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" id="FromID">
+<div>
+	<div class="m-ck-module">
+	<h1>收款信息</h1>
+	<ul>
+		<li class="addr-info">
+			<ul class="addr-addnew-form addr-edit-form" id="addr-edit-form">
+				<li>
+					<label>收款人姓名：</label>
+					<span>
+						<input name="name" id="name" value="{pigcms:$remove['name']}" type="text" placeholder="输入收款人姓名" />
+					</span>
+					<label>收款人手机：</label>
+					<span>
+						<input name="tel" id="tel" value="{pigcms:$remove['tel']}" type="text" placeholder="输入您的收款电话" />
+					</span>
+					<label>收款人账号：</label>
+					<span>
+						<input name="number" id="number" value="{pigcms:$remove['number']}" type="text" placeholder="输入您的收款账号" />
+					</span>
+					<label>收款方式：</label>
+					<span>
+						<input name="bank" id="bank" value="{pigcms:$remove['bank']}" type="text" placeholder="银行名称（如交通，工商，支付，财付通等）" />
+					</span>
+					<label>开户地址：</label>
+					<span>
+						<input name="address" id="address" value="{pigcms:$remove['address']}" type="text" placeholder="输入开户行地址" />
+					</span>
+					<label>提现金额：</label>
+					<span>
+						<input name="price" id="price" value="{pigcms:$remove['price']}" type="text" placeholder="您能提取的最大金额" />
+					</span>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+<div class="m-cart-toal m-checkout-toal">
+<p class="act"><a id="sub_order" href="javascript:;" class="checkout">确认</a></p>
+</div>
+</div>
+</form>
+<script>
+var scale = "{pigcms:$setting['score']}";
+var totalscore = "{pigcms:$fans['total_score']}";
+$(document).ready(function(){
+	$("#sub_order").click(function(){
+		var userName=$('#name').val();
+		if($.trim(userName) == ""){
+			return floatNotify.simple('请填写姓名');
+			return false;
+		}
+		var userPhone = $("#tel").val()
+		if ($.trim(userPhone) == "") {
+			return floatNotify.simple('请填写您的手机号码');
+			return false;
+		}
+		var patrn = /^1\d{10}$/;
+		if (!patrn.exec($.trim(userPhone))) {
+			return floatNotify.simple('手机号格式错误');
+			return false;
+		}
+		/*var address = $("#address").val()
+		if ($.trim(address) == "") {
+			return floatNotify.simple('请填写您的详细地址');
+			return false;
+		}*/
+		$("#FromID").submit();
+		return false;
+	});
+});
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

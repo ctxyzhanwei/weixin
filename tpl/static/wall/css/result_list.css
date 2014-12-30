@@ -1,0 +1,86 @@
+body {
+	margin:0
+}
+.clearfix {
+	*zoom:1
+}
+.clearfix:before,.clearfix:after {
+	display:table;
+	line-height:0;
+	content:""
+}
+.clearfix:after {
+	clear:both
+}
+ul {
+	list-style:none;
+	padding:0;
+	margin:0
+}
+h1 {
+	color:#069;
+	font-size:24px;
+	padding:0 0 0 30px
+}
+.rotate-tab {
+	background:#ccc;
+	margin-bottom:30px;
+	padding:0 30px
+}
+.rotate-tab li {
+	float:left
+}
+.rotate-tab li a {
+	display:block;
+	height:40px;
+	line-height:40px;
+	text-decoration:none;
+	color:#333;
+	font-size:18px;
+	padding:0 20px
+}
+.rotate-tab li.active a {
+	background:#fff;
+	font-weight:700
+}
+.member-list {
+	padding-left:35px;
+	height:300px
+}
+.member-list li {
+	float:left;
+	padding:0;
+	margin:0 70px 40px 0;
+	width:220px;
+	height:100px;
+	overflow:hidden;
+	background:url("../images/love2.png") center center no-repeat
+}
+.member-list li .nan {
+	width:80px;
+	height:100px;
+	overflow:hidden;
+	float:left
+}
+.member-list li .nv {
+	width:80px;
+	height:110px;
+	overflow:hidden;
+	float:right
+}
+.member-list li img {
+	width:80px;
+	height:80px;
+	overflow:hidden;
+	display:block;
+	border-radius:5px;
+	margin:0
+}
+.member-list li p {
+	margin:0;
+	height:20px;
+	line-height:20px;
+	overflow:hidden;
+	text-align:center;
+	font-size:14px
+}

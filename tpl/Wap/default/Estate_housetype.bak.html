@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class=" clickberry-extension clickberry-extension-standalone"><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="Keywords" content="pigcms、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销">
+<meta name="Description" content="pigcms八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。">
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+<meta content="clickberry-extension-here">
+        <link rel="stylesheet" type="text/css" href="{pigcms::COMMON}/wap/estate/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::COMMON}/wap/estate/back.css" media="all">
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/share.js"></script>
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/common.js"></script>
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/house.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::COMMON}/wap/estate/home.css" media="all" />
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/maivl.js"></script>
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/swipe.js"></script>
+<script type="text/javascript" src="{pigcms::COMMON}/wap/estate/zepto.js"></script>
+
+
+<title>楼盘户型</title>
+
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+<div class="wrapper" id="container">
+    <!-- start -->
+        <div class="act_top" id="actTop">
+            <div class="act_top_show">
+                <img src="{pigcms:$es_data['house_banner']|default='./tpl/static/vhouse/pigcms32.jpg'}" width="720" height="130" id="bannerPic">
+            </div>
+        </div>
+        <div id="roomDetails"><div class="box box_up box_up3" id="box0"> <h3>{pigcms:$es_data['title']}</h3>
+        <div class="box_type" style=" height:auto;">
+            <ul class="house_type">
+            <volist name="housetype" id="vo">
+                <li id="boxLi{pigcms:$vo['id']}" class="current">
+                <a href="javascript:void(0);" onclick="List.toggleList({pigcms:$vo['id']},0);">
+                 <strong>{pigcms:$vo['name']}</strong>
+                 <span>{pigcms:$vo['title']}</span>
+                 <em>{pigcms:$vo['fang']}房{pigcms:$vo['ting']}厅  {pigcms:$vo['area']}</em>
+                
+                    <br /> 
+                 </a>
+                 <div class="house_photo house_arrow" style="display: -webkit-box;">
+                 <a href="{pigcms::U('Estate/show_album',array('token'=>$token,'id'=>$vo['id'],'wecha_id'=>$wecha_id))}"  class="ico_type">户型图</a>
+                 <if condition="$vo['panorama_id'] neq ''">
+                 <a href="{pigcms::U('Panorama/index',array('token'=>$token,'id'=>$vo['panorama_id'],'wecha_id'=>$wecha_id,'sgssz'=>'mp.weixin.qq.com'))}"  class="ico_360">全景图</a>
+                 </if>
+                 </div>
+                 </li>
+            </volist>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <p>&nbsp;</p>
+    <!-- end -->
+</div>
+
+<div id="popFail" style="display: none;" jqmoldstyle="block">
+    <div class="bk"></div>
+    <div class="cont">
+        <img src="{pigcms::COMMON}/wap/estate/loading.gif" alt="loading...">
+        正在加载...
+    </div>
+</div>
+<include file="Estate:menu"/>
+</body></html>

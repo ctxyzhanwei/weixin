@@ -1,0 +1,69 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">楼盘相册管理</h4>
+               <a href="{pigcms::U('Estate/index',array('token'=>$token))}"  class="right  btnGreen">
+                返回
+              </a>
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span><if condition="$album neq ''">
+                                    <span style="color:red;">（注：系统默认为至少添加3个相册,注意不要重复添加同一个相册）</span><span style="color:red;">（注：请不要重复添加同一个相册，否则删除一个同样的相册都删除）修改<strong><a href="{pigcms::U('Photo/index',array('token'=>$token))}"><font color='green'>[相册内容]</font></a></strong></span>
+                                <else/>
+                                 <span style="color:red;"> 请您先去［楼盘简介］添加楼盘信息。再来添加楼盘相册</span>
+                                </if></p>
+    </div>
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+                <a href="{pigcms::U('Estate/album_add',array('token'=>$token,'pid'=>$pid))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">添加相册
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                                        <tr>
+                                            <th class="span3">相册名称</th>
+                                            <th class="span5">描述</th>
+                                            <th class="span2">操作</th>
+                                        </tr>
+                                    </thead>
+                                            <tbody>
+                                        <if condition="$album eq ''">
+                                        <tr>
+                                        <td colspan="5" style="text-align:center; height:30px;"><strong>无任何楼盘信息.</strong></td>
+                                        </tr>
+                                    <else/>
+                                    <volist name="album" id="list">
+                                        <tr> 
+                                        <td style="text-align:center;">{pigcms:$list['title']}</td>
+                                        <td style="text-align:center;">{pigcms:$list['info']}</td> 
+                                        <td style="text-align:center;">
+                                        <a href="{pigcms::U('Estate/album_add',array('poid'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" class="btn">编辑</a>
+                                        <a href="{pigcms::U('Estate/album_del',array('id'=>$list['mid'],'token'=>$list['token'],'pid'=>$pid))}" onclick="return(confirm('确定要删除吗？'))" class="btn">删除</a></a>
+</td>
+                                        </tr>
+                                    </volist>
+                                    </if>
+                                            </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

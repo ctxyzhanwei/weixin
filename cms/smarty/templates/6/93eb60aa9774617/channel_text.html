@@ -1,0 +1,23 @@
+{include file=$header}<div class="sub">
+		<ul class="newsul">
+		      {if $contents}
+			{foreach from=$contents item=c}
+			<li><a href="{$c.link}" title="{$c.title}"><p>{$c.title}</p></a></li>
+			
+		     {/foreach}
+			 {/if}
+            </ul>
+				<div class="pages">
+						<a href="{$previousPageLink}" title="上一页"{if $previousPageLink=='javascript:void(0)'} class="no_prev"{else} class="prev"{/if}>上一页</a>
+						<a href="#bg" title="分页列表" class="page"><span>{$currentPage}/{$totalPage}</span></a>
+						<a href="{$nextPageLink}" title="下一页"{if $previousPageLink=='javascript:void(0)'} class="no_next"{else} class="next"{/if}>下一页</a>
+					</div>
+		<ul class="topages">
+		{section name=loop loop=$totalPage} 
+									<li><a href="{$channel.link}&page={$smarty.section.loop.index+1}" title="第{$smarty.section.loop.index+1}页">第{$smarty.section.loop.index+1}页</a></li>
+			{/section}
+								</ul>
+		<a class="bg" id="bg" href="#subbottom"></a>
+			</div>
+{include file=$footer}
+

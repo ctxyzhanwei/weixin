@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class=" clickberry-extension clickberry-extension-standalone">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/online_booking.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/pig-ui.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/common.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<title>我的预约</title>
+        <style>
+            img{width:100%!important;}
+        </style>
+    <meta content="clickberry-extension-here">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;" id="onlinebooking-list">
+
+<div class="qiandaobanner">
+    <a href="javascript:;">
+<if condition="$headpic neq ''">
+        <img src="{pigcms:$headpic}">
+</if>
+    </a></div><a href="javascript:;">
+    </a><div class="cardexplain"><a href="javascript:;">
+
+</a>
+<ul class="round">
+<if condition="$books eq ''">
+<a href="javascript:;">
+        <li class="title">
+        <span>订单详情 <if condition="$vo['remate'] eq 0"><em class="no">等待客服回电</em></if></span>
+        </li>
+</a>
+<li><a href="javascript:;">
+            </a><div class="text"><a href="javascript:;">您还没有预约。</div>
+</li>
+</if>
+<volist name="books" id="vo">
+<a href="javascript:;">
+        <li class="title">
+        <span>{pigcms:$vo['orderid']} &nbsp;<if condition="$vo['remate'] eq 0"><em class="no">等待处理</em><elseif condition="$vo['remate'] eq 1"/><em class="no"><font color="green">已处理</font></em><elseif condition="$vo['remate'] eq 2"/><em class="no"><font color="red">已拒绝</font></em></if></span>
+        </li>
+</a>
+<li><a href="javascript:;">
+            </a><div class="text"><a href="javascript:;">
+                <p>预约患者：{pigcms:$vo['truename']}</p>
+                <p>联系电话：{pigcms:$vo['utel']}</p>
+                <p>预约科室 ：{pigcms:$vo['yyks']}</p>
+                <p>预约专家 ：{pigcms:$vo['yyzj']}</p>
+                <p>预约病种 ：{pigcms:$vo['yybz']}</p>
+                <p>付款状态 ： <if condition="$vo['paid'] eq 1">已付款<else/>未付款</if></p>
+                <p>付款金额 ：  {pigcms:$vo['price']} 元</p>
+                <p>提交时间 ：{pigcms:$vo['booktime']|date='Y年m月d日',###}</p>
+
+                <if condition="$vo['txt3name'] neq ''">
+                <p>{pigcms:$vo['txt3name']} : {pigcms:$vo['txt33']|strip_tags}</p>
+                </if>
+
+                <if condition="$vo['txt4name'] neq ''">
+                <p>{pigcms:$vo['txt4name']} : {pigcms:$vo['txt44']|strip_tags}</p>
+                </if>
+
+                <if condition="$vo['txt5name'] neq ''">
+                <p>{pigcms:$vo['txt5name']} : {pigcms:$vo['txt55']|strip_tags}</p>
+                </if>
+
+                <if condition="$vo['select4name'] neq ''">
+                <p>{pigcms:$vo['select4name']} : {pigcms:$vo['yy4']|strip_tags}</p>
+                </if>
+
+                <if condition="$vo['select5name'] neq ''">
+                <p>{pigcms:$vo['select5name']} : {pigcms:$vo['yy5']|strip_tags}</p>
+                </if>
+
+                <p>我的留言: {pigcms:$vo['uinfo']|strip_tags}</p>
+
+
+                </a><div class="footReturn"><a href="javascript:;"></a>
+<if condition="$vo['remate'] eq 0">
+<a id="" style="color:#fff;" class="submit" href="{pigcms::U('Medical/del',array('token'=>$token,'wecha_id'=>$wecha_id,'iid'=>$vo['iid'],'rid'=>$vo['rid']))}">删除订单</a></if>
+<if condition="$vo['remate'] neq 0">
+<p>客服回复：<font color="#2c2a24">{pigcms:$vo['kfinfo']}</font></p>
+</if>
+
+                </div>
+        </div>
+</li>
+</volist>
+</ul>
+{pigcms:$page}
+<!--页码-->
+    </div>
+                <div mark="stat_code" style="width:0px; height:0px; display:none;">
+                    </div>
+
+</body></html>

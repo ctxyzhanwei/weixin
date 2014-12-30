@@ -1,0 +1,26 @@
+{include file=$header}
+<div class="clear"></div>
+<div class="sub">
+	<div class="subbtn">
+        <a href="?token={$token}&m=site&c=home&a=map"  title="地图" class="mapbtn"><p>地图</p></a>
+        <a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话" class="telbtn"><p>电话</p></a>
+        <a href="{$homeurl}"  title="首页" class="homebtn"><p>首页</p></a>
+    </div>	   
+     <ul class="newsul">
+     {if $contents}
+			{foreach from=$contents item=c}
+		    	<li><a href="{$c.link}"  title="{$c.title}"><p>{$c.title}</p></a></li>
+                {/foreach}
+			 {/if}
+             
+		    	
+		    </ul>
+    <div class="pages">
+    			<a class="next-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="pre-left" href="{$nextPageLink}" >&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	</div>
+<p class="subbottombg"></p>
+{include file=$footer}

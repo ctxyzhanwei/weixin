@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html class="RENDERCOMPLETE"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>{pigcms:$info.name}的名片二维码</title>
+    <style>
+	body{margin: 0px; padding: 0px; font-size: 14px;}
+	.top{width: 100%; height: 43px; line-height: 43px; background-image: url({pigcms::RES}/vcard/ico-back.jpg); background-repeat: no-repeat; background-position: left; text-align: center; color: #fff; overflow: auto; background-color: #282828;}
+	.body{width: auto; min-height: 250px; margin: 20px; background-color: #fff; overflow: auto; text-align: center;}
+	.ewm{width: auto; height: 200px; margin: 20px; background-color: #fff;}
+	.title{font-size: 13px; color: #000; margin-bottom: 20px;}
+	.bot{width: auto; min-height: 43px; text-align: center;}
+	.bot img{margin: 10px;}
+	</style>
+</head>
+<body>
+<a href="javascript:history.go(-1);"><div class="top">二维码名片</div></a>
+<div class="body">
+	<div class="ewm">{pigcms:$ewm}</div>
+    <div class="title">用微信“扫一扫”上面的二维码图案，直接将名片信息保存至您的手机通讯录。</div>
+</div>
+<div class="bot"><a href="{pigcms::U('Vcard/index',array('token'=>$info['token'],'id'=>$info['pid'],'wecha_id'=>$wecha_id))}#mp.weixin.qq.com"><img src="{pigcms::RES}/vcard/5.jpg" /></a><br/><a href="{pigcms::U('Index/index',array('token'=>$info['token'],'wecha_id'=>$wecha_id))}"><img src="{pigcms::RES}/vcard/6.jpg" /></a></div>
+</body></html>

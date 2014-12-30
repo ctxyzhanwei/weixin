@@ -1,0 +1,80 @@
+<table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+              <if condition="$busines_second['sid'] neq ''">
+            <input type="hidden" class="px" id="sid" value="{pigcms:$busines_second['sid']}" name="sid" >
+            <input type="hidden" class="px" id="status" value="edit" name="status" >
+        </if>
+            <input type="hidden" class="px" id="type" value="{pigcms:$type}" name="type" >
+
+            <th valign="top"><label for="keyword">套餐名称</label></th>
+            <td><input type="input" class="px" id="name" value="{pigcms:$busines_second['name']}" name="name" style="width:300px" data-validation-engine="validate[required,minSize[2],maxSize[20]]" data-errormessage-value-missing="必填项">
+              尽量简单，不要超过20字 </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">选择分店</label></th>
+            <td><select name="mid_id" id="mid_id"  data-validation-engine="validate[required]" data-errormessage-value-missing="必填项">
+                <option value="">请选择分店</option>
+                <volist name="busines_list" id="vo">
+                <option value="{pigcms:$vo.mid}" <if condition="$vo.mid eq $busines_second['mid_id']">selected="selected"</if>>{pigcms:$vo.name}</option>
+            </volist>
+                 </select>
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">套餐图片</label></th>
+            <td><img class="thumb_img" id="picurl_src" src="{pigcms:$busines_second['picurl']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl" value="{pigcms:$busines_second['picurl']}" name="picurl" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl',700,420,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl')">预览</a> [700*420]</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">套餐</label></th>
+            <td><input type="input" class="px" id="learntime" value="{pigcms:$busines_second['learntime']}" name="learntime" style="width:100px" data-validation-engine="validate[required,minSize[2],maxSize[20]]" data-errormessage-value-missing="必填项">
+              </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">简要描述</label></th>
+            <td><input type="input" class="px" id="datatype" value="{pigcms:$busines_second['datatype']}" name="datatype" style="width:200px" data-validation-engine="validate[required,minSize[2],maxSize[50]]" data-errormessage-value-missing="必填项">
+              </td>
+            <td></td>
+          </tr>
+                  <tr>
+            <th valign="top"><label for="oneprice">一口价</label></th>
+            <td><input type="input" class="px" id="oneprice" value="{pigcms:$busines_second['oneprice']}" name="oneprice" style="width:100px" data-validation-engine="validate[required,custom[number],min[0]]" data-errormessage-value-missing="必填项">
+              默认单位:RMB</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="googsnumber">库存数 :</label></th>
+            <td><input type="input" class="px" id="googsnumber" value="{pigcms:$busines_second['googsnumber']}" name="googsnumber" style="width:200px" data-validation-engine="validate[required,custom[number],min[0]]" data-errormessage-value-missing="必填项">
+            如果是库存是 0 ,那么就是等于商品下架. 每下一单,就减少1个库存.
+              </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">排序</label></th>
+            <td><input type="input" class="px" id="sort" value="{pigcms:$busines_second['sort']|default=1}" name="sort" style="width:30px"data-validation-engine="validate[required,custom[integer],min[1]]" data-errormessage-value-missing="必填项">
+              数字越大,越在前面显示. </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">套餐介绍</label></th>
+            <td>
+    <textarea class="px" id="second_desc" name="second_desc" style="width: 605px; height: 350px;"  data-validation-engine="validate[required,minSize[2]]" data-errormessage-value-missing="必填项" >{pigcms:$busines_second['second_desc']}</textarea>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><button type="submit" name="button" class="btnGreen left">保存</button>
+              <div class="clr"></div></td>
+          </tr>
+        </tbody>
+      </table>

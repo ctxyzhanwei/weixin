@@ -1,0 +1,60 @@
+.m-hd {background:-webkit-linear-gradient(top,#A0A0A0,#666);box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);border-bottom: 1px solid #777;} .tit {text-shadow: 0 1px rgba(0, 0, 0, 0.8);color: #FFF;} .m-hd div a.back {border-right: 1px solid #666;} .m-hd div a.cart {border-left: 1px solid #A0A0A0;} .m-hd div a.cat, .m-hd div.logo, .m-hd div.tit, .m-hd div a.uc {border-right: 1px solid #666;border-left: 1px solid #A0A0A0;} .m-hd div a.back:after {background: url(/tpl/static/store/back2.png) no-repeat;background-size: contain;} .m-hd div a.cat:after {background: url(/tpl/static/store/caticon2.png) no-repeat;background-size: contain;} .m-hd div a.uc:after {background: url(/tpl/static/store/user2.png) no-repeat;background-size: contain;} .m-hd div a.cart:after {background: url(/tpl/static/store/cart2.png) no-repeat;background-size: contain;}
+/*下面为新増样式*/
+.m-l-search .btn-search {
+width: 5.8rem;
+height: 3.6rem;
+background: url(28/seach_btn.png) no-repeat right;/*1中按钮*/
+background-size: 100% auto;
+border: 0;
+border-radius: 0 .3rem .3rem 0;
+}
+
+.m-detail-mainout .d-info .i-row.act a.buynow, .m-detail-mainout .d-info .i-row.act a.addcart {
+width: 48.5%;
+background: #a0a0a0; /*2中左侧按钮.*/
+color: #fff;
+font-size: 1.4rem;
+}
+
+.m-detail-mainout .d-info .i-row.act a.addcart {
+background: #897e7e;/*2中右侧按钮.*/
+}
+.detailinfo .tabs {
+display: -webkit-box;
+border-bottom: .2rem solid #fff;
+background: #f5f5f5;
+font-size: 1.4rem;
+}
+.detailinfo .tabs li.on {
+background: #fff;
+border-top: .2rem solid #a0a0a0; /*需要与2中左侧按钮同色*/
+line-height: 2.8rem;
+color: #a0a0a0;/*需要与2中左侧按钮同色*/
+}
+
+.m-cart-e .gobuy {
+line-height: 42px;
+display: block;
+border-radius: 2px;
+background: #a0a0a0;/*3中按钮背景颜色.*/
+color: #fff;
+font-size: 16px;
+text-shadow: -1px -1px 1px #898989;/*3中文字阴影颜色.*/
+margin: 15px;
+-webkit-box-shadow: 0 -1px 1px #5f5f5f inset;/*3中按钮阴影颜色.*/
+font-weight: 700;
+}
+
+.m-cart-toal .act a.checkout {
+border-radius: 2px;
+display: block;
+text-align: center;
+-webkit-box-flex: 1;
+width: 100%;
+background: #a0a0a0;/*4中按钮颜色，需要与2中左侧按钮同色*/
+color: #fff;
+text-shadow:none;
+-webkit-box-shadow: 0 -1px 1px #5f5f5f inset;/*4中按钮阴影颜色.*/
+font-weight: 700;
+line-height: 36px;
+}

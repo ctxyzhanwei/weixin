@@ -1,0 +1,31 @@
+                     -1779708219O:8:"stdClass":10:{s:2:"id";s:4:"1418";s:4:"name";s:6:"内容";s:4:"path";s:50:"@/smarty/templates/5/iutuuc1400658077/content.html";s:13:"generate_path";s:46:"?m=site&c=home&a=content&contentid={contentID}";s:4:"type";s:1:"3";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"65";s:4:"time";s:10:"1400658215";s:4:"code";s:1138:"{include file=$header}
+{literal}
+<style>
+#content img{max-width:72%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div class="clear"></div><div class="viewtitle">
+  <div><span class="fl"><img src="smarty/templates/tpls/{$site.template}/ico3.png" tppabs="/3g/images/ico3.png" alt="图标"/>{$channel.name}</span></div>
+</div>
+<div data-role="content" class="content">
+  <div class="maintop"></div>
+  <div class="view_menu">
+  </div>
+  <div class="clear"></div>
+  <div class="padding20">
+    <div id="content" class="view_title">{$content.title}</div>
+        <p>{$content.content}</p>
+    <div class="clear"></div>
+    <div class="viewpage">
+	{if $previousContent}<a href="{$previousContent->link}" class="prevpage">上一条：<span>{$previousContent->title}</span></a>{/if}
+	{if $nextContent}<a href="{$nextContent->link}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>{/if}
+	
+	</div>
+    <div class="viewback"><a href="{$smarty.server.HTTP_REFERER}" title="返回列表" class="ui-bar-i">返回列表</a></div>
+  </div>
+</div>
+<div class="clear"></div>
+{/if}
+{include file=$footer}";}

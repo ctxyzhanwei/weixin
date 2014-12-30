@@ -1,0 +1,613 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+	font-family: Flaticon;
+        font-size: 50px;
+font-style: normal;
+margin-left: 14px;
+}.flaticon-30:before {
+	content: "\e000";
+}
+.flaticon-45:before {
+	content: "\e001";
+}
+.flaticon-601:before {
+	content: "\e002";
+}
+.flaticon-a1:before {
+	content: "\e003";
+}
+.flaticon-a2:before {
+	content: "\e004";
+}
+.flaticon-a3:before {
+	content: "\e005";
+}
+.flaticon-abacus:before {
+	content: "\e006";
+}
+.flaticon-academic:before {
+	content: "\e007";
+}
+.flaticon-adn1:before {
+	content: "\e008";
+}
+.flaticon-alarm1:before {
+	content: "\e009";
+}
+.flaticon-alphabet1:before {
+	content: "\e00a";
+}
+.flaticon-alphabet2:before {
+	content: "\e00b";
+}
+.flaticon-amount:before {
+	content: "\e00c";
+}
+.flaticon-application5:before {
+	content: "\e00d";
+}
+.flaticon-audio7:before {
+	content: "\e00e";
+}
+.flaticon-audiobook:before {
+	content: "\e00f";
+}
+.flaticon-avi1:before {
+	content: "\e010";
+}
+.flaticon-b4:before {
+	content: "\e011";
+}
+.flaticon-b5:before {
+	content: "\e012";
+}
+.flaticon-backpack:before {
+	content: "\e013";
+}
+.flaticon-bag:before {
+	content: "\e014";
+}
+.flaticon-big52:before {
+	content: "\e015";
+}
+.flaticon-big55:before {
+	content: "\e016";
+}
+.flaticon-big56:before {
+	content: "\e017";
+}
+.flaticon-big57:before {
+	content: "\e018";
+}
+.flaticon-book10:before {
+	content: "\e019";
+}
+.flaticon-book11:before {
+	content: "\e01a";
+}
+.flaticon-book12:before {
+	content: "\e01b";
+}
+.flaticon-book13:before {
+	content: "\e01c";
+}
+.flaticon-book14:before {
+	content: "\e01d";
+}
+.flaticon-book15:before {
+	content: "\e01e";
+}
+.flaticon-book7:before {
+	content: "\e01f";
+}
+.flaticon-book8:before {
+	content: "\e020";
+}
+.flaticon-book9:before {
+	content: "\e021";
+}
+.flaticon-brain2:before {
+	content: "\e022";
+}
+.flaticon-briefcase2:before {
+	content: "\e023";
+}
+.flaticon-brush6:before {
+	content: "\e024";
+}
+.flaticon-bulb1:before {
+	content: "\e025";
+}
+.flaticon-bulk:before {
+	content: "\e026";
+}
+.flaticon-calendar5:before {
+	content: "\e027";
+}
+.flaticon-calendar6:before {
+	content: "\e028";
+}
+.flaticon-canvas:before {
+	content: "\e029";
+}
+.flaticon-cd:before {
+	content: "\e02a";
+}
+.flaticon-certificate2:before {
+	content: "\e02b";
+}
+.flaticon-certificate3:before {
+	content: "\e02c";
+}
+.flaticon-certificate:before {
+	content: "\e02d";
+}
+.flaticon-checkered:before {
+	content: "\e02e";
+}
+.flaticon-chemical:before {
+	content: "\e02f";
+}
+.flaticon-chemistry:before {
+	content: "\e030";
+}
+.flaticon-cinema2:before {
+	content: "\e031";
+}
+.flaticon-cinema3:before {
+	content: "\e032";
+}
+.flaticon-clock4:before {
+	content: "\e033";
+}
+.flaticon-clock5:before {
+	content: "\e034";
+}
+.flaticon-competition:before {
+	content: "\e035";
+}
+.flaticon-computer12:before {
+	content: "\e036";
+}
+.flaticon-correct2:before {
+	content: "\e037";
+}
+.flaticon-creche:before {
+	content: "\e038";
+}
+.flaticon-curriculum:before {
+	content: "\e039";
+}
+.flaticon-deleted:before {
+	content: "\e03a";
+}
+.flaticon-desktop:before {
+	content: "\e03b";
+}
+.flaticon-diary1:before {
+	content: "\e03c";
+}
+.flaticon-document5:before {
+	content: "\e03d";
+}
+.flaticon-document6:before {
+	content: "\e03e";
+}
+.flaticon-dotplot:before {
+	content: "\e03f";
+}
+.flaticon-download4:before {
+	content: "\e040";
+}
+.flaticon-download8:before {
+	content: "\e041";
+}
+.flaticon-draw:before {
+	content: "\e042";
+}
+.flaticon-earth2:before {
+	content: "\e043";
+}
+.flaticon-education1:before {
+	content: "\e044";
+}
+.flaticon-education2:before {
+	content: "\e045";
+}
+.flaticon-education3:before {
+	content: "\e046";
+}
+.flaticon-educational1:before {
+	content: "\e047";
+}
+.flaticon-educational:before {
+	content: "\e048";
+}
+.flaticon-education:before {
+	content: "\e049";
+}
+.flaticon-encyclopedia:before {
+	content: "\e04a";
+}
+.flaticon-favorite5:before {
+	content: "\e04b";
+}
+.flaticon-fifteen:before {
+	content: "\e04c";
+}
+.flaticon-file3:before {
+	content: "\e04d";
+}
+.flaticon-filing:before {
+	content: "\e04e";
+}
+.flaticon-first4:before {
+	content: "\e04f";
+}
+.flaticon-first5:before {
+	content: "\e050";
+}
+.flaticon-flag4:before {
+	content: "\e051";
+}
+.flaticon-football1:before {
+	content: "\e052";
+}
+.flaticon-foreign:before {
+	content: "\e053";
+}
+.flaticon-forms:before {
+	content: "\e054";
+}
+.flaticon-geography:before {
+	content: "\e055";
+}
+.flaticon-glasses1:before {
+	content: "\e056";
+}
+.flaticon-glasses:before {
+	content: "\e057";
+}
+.flaticon-graph:before {
+	content: "\e058";
+}
+.flaticon-guitar:before {
+	content: "\e059";
+}
+.flaticon-hand:before {
+	content: "\e05a";
+}
+.flaticon-hierarchical:before {
+	content: "\e05b";
+}
+.flaticon-homework:before {
+	content: "\e05c";
+}
+.flaticon-icloud1:before {
+	content: "\e05d";
+}
+.flaticon-icloud:before {
+	content: "\e05e";
+}
+.flaticon-images:before {
+	content: "\e05f";
+}
+.flaticon-information2:before {
+	content: "\e060";
+}
+.flaticon-injection:before {
+	content: "\e061";
+}
+.flaticon-insignia:before {
+	content: "\e062";
+}
+.flaticon-ipad:before {
+	content: "\e063";
+}
+.flaticon-keyboard2:before {
+	content: "\e064";
+}
+.flaticon-leaf4:before {
+	content: "\e065";
+}
+.flaticon-lecture1:before {
+	content: "\e066";
+}
+.flaticon-lecture:before {
+	content: "\e067";
+}
+.flaticon-library:before {
+	content: "\e068";
+}
+.flaticon-looking1:before {
+	content: "\e069";
+}
+.flaticon-looking2:before {
+	content: "\e06a";
+}
+.flaticon-look:before {
+	content: "\e06b";
+}
+.flaticon-magnet2:before {
+	content: "\e06c";
+}
+.flaticon-mail4:before {
+	content: "\e06d";
+}
+.flaticon-mathematical1:before {
+	content: "\e06e";
+}
+.flaticon-mathematical:before {
+	content: "\e06f";
+}
+.flaticon-measure:before {
+	content: "\e070";
+}
+.flaticon-measuring:before {
+	content: "\e071";
+}
+.flaticon-meeting:before {
+	content: "\e072";
+}
+.flaticon-microscope:before {
+	content: "\e073";
+}
+.flaticon-molecules1:before {
+	content: "\e074";
+}
+.flaticon-mouse2:before {
+	content: "\e075";
+}
+.flaticon-museum2:before {
+	content: "\e076";
+}
+.flaticon-music12:before {
+	content: "\e077";
+}
+.flaticon-music13:before {
+	content: "\e078";
+}
+.flaticon-necktie:before {
+	content: "\e079";
+}
+.flaticon-new5:before {
+	content: "\e07a";
+}
+.flaticon-numbers:before {
+	content: "\e07b";
+}
+.flaticon-olympic:before {
+	content: "\e07c";
+}
+.flaticon-online1:before {
+	content: "\e07d";
+}
+.flaticon-online2:before {
+	content: "\e07e";
+}
+.flaticon-online:before {
+	content: "\e07f";
+}
+.flaticon-open14:before {
+	content: "\e080";
+}
+.flaticon-paper9:before {
+	content: "\e081";
+}
+.flaticon-paperclip:before {
+	content: "\e082";
+}
+.flaticon-paragraph9:before {
+	content: "\e083";
+}
+.flaticon-pdf2:before {
+	content: "\e084";
+}
+.flaticon-pdf:before {
+	content: "\e085";
+}
+.flaticon-pen22:before {
+	content: "\e086";
+}
+.flaticon-pencil7:before {
+	content: "\e087";
+}
+.flaticon-pencil8:before {
+	content: "\e088";
+}
+.flaticon-physical:before {
+	content: "\e089";
+}
+.flaticon-physics:before {
+	content: "\e08a";
+}
+.flaticon-picture5:before {
+	content: "\e08b";
+}
+.flaticon-pie3:before {
+	content: "\e08c";
+}
+.flaticon-pillar:before {
+	content: "\e08d";
+}
+.flaticon-placard:before {
+	content: "\e08e";
+}
+.flaticon-planet1:before {
+	content: "\e08f";
+}
+.flaticon-play6:before {
+	content: "\e090";
+}
+.flaticon-play7:before {
+	content: "\e091";
+}
+.flaticon-protractor:before {
+	content: "\e092";
+}
+.flaticon-pushpin:before {
+	content: "\e093";
+}
+.flaticon-q:before {
+	content: "\e094";
+}
+.flaticon-quarter:before {
+	content: "\e095";
+}
+.flaticon-research:before {
+	content: "\e096";
+}
+.flaticon-robot3:before {
+	content: "\e097";
+}
+.flaticon-rubber3:before {
+	content: "\e098";
+}
+.flaticon-schedule:before {
+	content: "\e099";
+}
+.flaticon-school1:before {
+	content: "\e09a";
+}
+.flaticon-school4:before {
+	content: "\e09b";
+}
+.flaticon-school6:before {
+	content: "\e09c";
+}
+.flaticon-school7:before {
+	content: "\e09d";
+}
+.flaticon-schoolclass:before {
+	content: "\e09e";
+}
+.flaticon-science1:before {
+	content: "\e09f";
+}
+.flaticon-science2:before {
+	content: "\e0a0";
+}
+.flaticon-science:before {
+	content: "\e0a1";
+}
+.flaticon-set1:before {
+	content: "\e0a2";
+}
+.flaticon-shake:before {
+	content: "\e0a3";
+}
+.flaticon-shelf:before {
+	content: "\e0a4";
+}
+.flaticon-shopping7:before {
+	content: "\e0a5";
+}
+.flaticon-signature2:before {
+	content: "\e0a6";
+}
+.flaticon-small53:before {
+	content: "\e0a7";
+}
+.flaticon-small54:before {
+	content: "\e0a8";
+}
+.flaticon-smartphone2:before {
+	content: "\e0a9";
+}
+.flaticon-smartphone:before {
+	content: "\e0aa";
+}
+.flaticon-stage:before {
+	content: "\e0ab";
+}
+.flaticon-steps:before {
+	content: "\e0ac";
+}
+.flaticon-stethoscope2:before {
+	content: "\e0ad";
+}
+.flaticon-student:before {
+	content: "\e0ae";
+}
+.flaticon-table:before {
+	content: "\e0af";
+}
+.flaticon-tablet2:before {
+	content: "\e0b0";
+}
+.flaticon-tactil1:before {
+	content: "\e0b1";
+}
+.flaticon-talking:before {
+	content: "\e0b2";
+}
+.flaticon-teacher:before {
+	content: "\e0b3";
+}
+.flaticon-teach:before {
+	content: "\e0b4";
+}
+.flaticon-telescope:before {
+	content: "\e0b5";
+}
+.flaticon-the25:before {
+	content: "\e0b6";
+}
+.flaticon-thought:before {
+	content: "\e0b7";
+}
+.flaticon-time2:before {
+	content: "\e0b8";
+}
+.flaticon-uniform:before {
+	content: "\e0b9";
+}
+.flaticon-university1:before {
+	content: "\e0ba";
+}
+.flaticon-university2:before {
+	content: "\e0bb";
+}
+.flaticon-university:before {
+	content: "\e0bc";
+}
+.flaticon-unknown1:before {
+	content: "\e0bd";
+}
+.flaticon-unknown:before {
+	content: "\e0be";
+}
+.flaticon-virus:before {
+	content: "\e0bf";
+}
+.flaticon-wagon:before {
+	content: "\e0c0";
+}
+.flaticon-wall3:before {
+	content: "\e0c1";
+}
+.flaticon-window10:before {
+	content: "\e0c2";
+}
+.flaticon-window11:before {
+	content: "\e0c3";
+}
+.flaticon-window8:before {
+	content: "\e0c4";
+}
+.flaticon-window9:before {
+	content: "\e0c5";
+}
+.flaticon-working1:before {
+	content: "\e0c6";
+}

@@ -1,0 +1,716 @@
+﻿@CHARSET "UTF-8";
+
+/********************** icons ***************************/
+.ui-icon-lewaimai-cart {
+	background-image: url(/img/icons/shopping-cart.png);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-lewaimai-cart {
+		background-image: url(/img/icons/shopping-cart@2x.png) !improtant;
+		background-size: 26px 19px;
+	}
+}
+
+/********************* 共用参数 ******************************/
+.m-center {
+	text-align: center;
+}
+
+.font-16 {
+	font-size: 16px;
+}
+
+table {
+	border: 0;
+	border-collapse: collapse;
+	
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.ui-li-heading {
+	white-space: normal;
+}
+
+.ui-li-desc {  
+	white-space: normal;
+}
+
+.ui-btn-up-c {
+	font-weight: normal;
+}
+
+.header {
+	height: 42px;
+}
+
+.header-back {
+	position: absolute;
+	left: 0;
+	top: 0;
+	
+	width: 80px;
+	height: 40px;
+	
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	
+	line-height: 40px;	
+}
+
+.header-title {
+	padding: 0;
+	margin: 0;
+	
+	margin-left: 100px;
+	
+	font-size: 20px;
+	line-height: 40px;
+}
+
+/********************* 店铺列表  ******************************/
+#allshop-page #shoplist li a {
+	padding: 0px 40px 0px 0px;
+}
+
+#nearbyshop-page li a {	
+	padding: 0px 40px 0px 0px;
+}
+
+.cart-shopinfo {
+	padding: 0;
+}
+
+.cart-shopinfo .cart-shopimg
+{
+	width: 100px;
+	height: 100px;
+	
+	text-align: center;
+	vertical-align: middle;
+}
+
+.cart-shopinfo img {
+	max-width: 80px;
+	max-height: 80px;
+	
+	margin: 0;
+	
+	text-align: center;
+	vertical-align: middle;
+}
+
+.cart-shopinfo .cart-shopdetail {
+	padding: 10px 10px 10px 0;
+	margin: 0;
+}
+
+.cart-shopdetail h3 {
+	margin: 0 0 5px 0;
+}
+
+.cart-shopinfo .cart-worktime {
+	position: absolute;
+	right: 5px;
+	top: 25px
+}
+
+.cart-shopinfo .cart-distance {
+	position: absolute;
+	right: 5px;
+	bottom: 10px
+}
+
+/********************* 店铺首页 ******************************/
+.logo {
+	width: 100%;
+}
+
+#shopindex-page span {
+	white-space: normal;
+}
+
+/********************* 购物界面参数  ******************************/
+#order-layout.ui-content {
+	margin: 0;
+	padding: 0;
+	
+	font-family: '微软雅黑', '宋体', sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	text-shadow: none;
+	
+	width: 100%;
+	
+	position: absolute;
+	top: 42px;
+	bottom: 58px;
+}
+
+.order-info {	
+	width: 100%;
+	height: 50px;
+	
+	position: absolute;
+	top: 0px;
+
+	color: #c4c2b7;
+	background-color: #333333;
+	
+	line-height: 50px;
+}
+
+#order_totalnum_layout {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 90px;
+	height: 100%;
+	
+	background: url(img/tips_bar_bg_left.png) repeat;
+}
+
+#order_totalnum_text {
+	margin: 0;
+	padding-left: 15px;
+	
+	font-size: 18px;
+}
+
+#order_totalprice_text {
+	color: #ffb20b;
+	font-size: 20px;
+	font-weight: bold;
+	
+	margin: 0 0 0 100px;
+}
+
+.order-content {
+	width: 100%;
+	
+	position: absolute;
+	top: 50px;
+	bottom: 0px;
+}
+
+#typelist {
+	position: absolute;
+	left: 0;
+	width: 79px;
+	height: 100%;
+	
+	padding: 0;
+	
+	background:#dad8cb;
+	
+	border-right: 1px solid #b7b6ac;
+}
+
+#wrapper {
+	position: absolute; z-index: 1;
+	width: 100%;
+	height: 100%;
+
+	overflow:auto;
+}
+
+#scroller {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width: 100%;
+	padding:0;
+}
+
+#typelist ul {
+	margin: 0;
+	padding: 0;
+	
+	text-align: center;
+}
+
+#typelist li {
+	margin-top: 10px;
+	
+	width: 100%;
+	height: 44px;
+	display: table;
+	
+	list-style-type: none;
+	vertical-align: middle;
+	
+	color: #3f3737;
+	background-color: #faf8f1;
+}
+
+#typelist li span{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#typelist li.active {
+	color: #ffffff;
+	background-color: #fdae24;
+	
+	-webkit-box-shadow: #666 0px 0px 8px;
+	-moz-box-shadow: #666 0px 0px 8px;
+	box-shadow: #666 0px 0px 8px;
+}
+
+#foodlist {
+	position: absolute;
+	left: 80px;
+	right: 0;
+	height: 100%;
+	
+	padding: 0;
+}
+
+#wrapper2 {
+	position: absolute; z-index: 1;
+	width: 100%;
+	height: 100%;
+
+	overflow:auto;
+}
+
+#scroller2 {
+	position:absolute; z-index:1;
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+.fooditem {
+	padding: 0;
+	margin: 0;
+	
+	wdith: 100%;
+		
+	word-wrap: break-word;
+	word-break: break-all;
+	
+	border-bottom: 1px dashed #c9d29d;
+}
+
+.fooditem .foodtitle {		
+	width: 100%;
+	line-height: 16px;
+	padding: 1px 0 1px 0;
+}
+
+.fooditem .foodtitle td{		
+	padding: 0;
+}
+
+.fooditem td.foodname {	
+	color: #3f3737;
+	
+	vertical-align: middle;
+	
+	padding-left: 5px;
+}
+
+.fooditem .foodlabel {
+	text-align: center;
+	vertical-align: middle;
+	width: 40px;
+}
+
+.fooditem .foodlabel div {
+	width: 40px;
+	height: 40px;	
+
+	background-color: #ff4d4d;
+	vertical-align: middle;
+	
+	-moz-border-radius: 20px 20px 20px 20px;
+	border-radius: 20px 20px 20px 20px;
+	
+	display: table;
+}
+
+.LabelText {
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: 600;
+
+	padding: 0 6px 0 6px;
+	margin: 0;
+	
+	vertical-align: middle;
+	
+	display: table-cell;
+}
+
+.fooditem .foodprice
+{
+	color: #3f3737;
+	text-align: center;
+	vertical-align: middle;
+	width: 80px;
+}
+
+.fooditem .foodprice-nounit
+{
+	color: #736357;
+	text-align: center;
+	vertical-align: middle;
+	width: 60px;
+}
+
+.foodattention-active {
+	width: 10px;	
+	
+	background: url(img/list_icon_selected.png) repeat;
+}
+
+.foodattention {
+	width: 10px;
+}
+
+.fooddetail {
+	width: 100%;
+	height: 50px;
+	
+	background: url(img/fooddetail_bg.png) repeat;
+	
+	/*margin-bottom: 1px;*/
+}
+
+.fooddetail table {	
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.add-btn .ui-btn-inner {
+	padding: 2px 10px 2px 10px;
+	margin: 0;
+}
+
+.reduce-btn .ui-btn-inner {
+	padding: 2px 12px 2px 12px;
+	margin: 0;
+}
+
+.add-btn .ui-btn-text, .reduce-btn .ui-btn-text {
+	font-size: 26px;
+	font-weight: normal;
+}
+
+.add-btn .ui-btn-corner-all, .reduce-btn .ui-btn-corner-all {
+	-webkit-border-radius: .5em;
+	border-radius: .5em;
+}
+
+.add-btn .ui-btn-inline, .reduce-btn .ui-btn-inline {
+	margin: 0;
+}
+
+.fooddetail .food-op {
+	width: 160px;
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+.fooddetail .foodnum {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	
+	width: 20px;
+	height: 20px;
+	
+	text-align:center;
+	vertical-align: middle;
+	
+	color: #3f3737;
+	font-size: 16px;
+}
+
+/********************* 食物详情对话框 ******************************/
+#wrapper3 {
+	overflow:auto;
+}
+
+#foodinfo-content {
+/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	width:100%;
+	padding:0;
+}
+
+#foodinfo-content #foodname {
+	padding: 0;
+	margin: 0;
+	
+	color: #f7931e;
+}
+
+.foodimage {
+	margin-top: 5px;
+	width: 100%;
+	height: auto;
+}
+
+#foodinfo-content p {
+	padding: 0;
+	margin: 0;
+	
+	font-size: 14px;
+}
+
+#foodinfo-content .attr-title {
+	color: #29abe2;
+	font-weight: bold;
+}
+
+/********************* 购物车的 ******************************/
+#cart-layout.ui-content {
+	margin: 0;
+	padding: 0;
+	
+	font-family: '微软雅黑', '宋体', sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	text-shadow: none;
+	
+	width: 100%;
+}
+
+#cartlist {
+	margin: 0;
+	padding: 0;
+	
+	background-color: #f8f7ed;
+}
+
+.cartitem {		
+	width: 100%;
+	
+	word-wrap: break-word;
+	word-break: break-all;
+	
+	padding: 1px 0 1px 0;
+	
+	border-bottom: 1px dashed #c9d29d;
+}
+
+.cartitem .foodname {
+	color: #3f3737;
+	
+	line-height: 16px;
+	
+	height: 44px;
+	vertical-align: middle;
+	
+	padding-left: 5px;
+}
+
+.cartitem .foodprice
+{
+	color: #3f3737;
+	text-align: center;
+	vertical-align: middle;
+	width: 90px;
+	
+	line-height: 16px;
+	
+	padding: 0;
+}
+
+.cartitem .foodprice-nounit
+{
+	color: #3f3737;
+	text-align: center;
+	vertical-align: middle;
+	width: 60px;
+	
+	line-height: 16px;
+	
+	padding: 0;
+}
+
+.cartitem .food-op {
+	width: 110px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0;
+}
+
+.cartitem .foodnum {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	
+	width: 20px;
+	height: 20px;
+	
+	text-align:center;
+	vertical-align: middle;
+	
+	color: #3f3737;
+	font-size: 16px;
+}
+
+.cart-empty {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	
+	padding-top: 10px;
+	
+	border-bottom: 1px dashed #c9d29d;
+}
+
+.cart-empty p {
+	margin: 0 0 0 0;
+	
+	font-size: 16px;
+	color: #ed1c24;
+	font-weight: bold;
+}
+
+#priceinfo {
+	width: 100%;
+	height: 50px;
+	
+	padding: 0;
+	margin: 0;
+	
+	background: url(img/pay_bg_total.png) repeat;
+}
+
+.memberactive {
+	text-decoration: line-through;
+}
+
+.membernotactive {
+	color: red;
+}
+
+#cart_memberprice {
+	color: red;
+}
+
+#pay-select {
+	padding: 15px 15px 0px 15px;
+}
+
+#cart-balance-value {
+	color: red;
+}
+
+
+
+.cart-editalertinfo {	
+	font-size: 14px;
+	font-weight: normal;
+	color: red;
+}
+
+.cart-attention{
+	background:#333;
+	background: -ms-linear-gradient(top left, #333, #666);
+	background: -moz-linear-gradient(top left, #333, #666);
+	background: -webkit-linear-gradient(top left, #333, #666);
+	
+	min-height: 50px;
+	
+	vertical-align: middle;
+}
+
+.cart-attentiontext {
+	font-size: 16px;
+	font-weight: normal;
+	
+	vertical-align: middle;
+}
+
+/************************************积分换购**********************************/
+#pointprize-page .pointprize-item {
+	padding: 0;
+}
+
+.pointprize-shopimg
+{
+	width: 100px;
+	height: 100px;
+	
+	text-align: center;
+	vertical-align: middle;
+}
+
+.pointprize-shopimg img {
+	max-width: 80px;
+	max-height: 80px;
+
+	margin: 0;
+	
+	text-align: center;
+	vertical-align: middle;
+}
+
+td.pointprize-shopdetail {
+	padding: 10px 10px 10px 0;
+	margin: 0;
+}
+
+.pointprize-shopdetail h3 {
+	margin: 0 0 5px 0;
+}
+
+.pointprize-shopdetail p {
+	margin: 0 0 5px 0;
+}
+
+.pointprize-price {
+	color: red;
+}
+
+.pointprizenum {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	
+	width: 20px;
+	height: 20px;
+	
+	text-align:center;
+	vertical-align: middle;
+	
+	color: black;
+	font-size: 16px;
+}
+
+#prize-totalpoint {
+	color: red;
+}
+
+.f_order_list dd {
+    border: 1px solid #E0E0E0;
+    display: inline-block;
+    margin: 5px 2px;
+    padding: 2px;
+}
+
+.p_mod:after, .f_mod:after {
+    background: none repeat scroll 0 0 #63B908;
+    content: " ";
+    display: block;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 11px;
+    width: 2px;
+}
+
+.ddlSelectTime{
+width:150px;
+
+}

@@ -1,0 +1,119 @@
+<include file="Hotels:header"/>
+<link rel="stylesheet" type="text/css" href="../tpl/static/hotels/css/main.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../tpl/static/hotels/css/hotel2.css" media="all" />
+<script src="../tpl/static/hotels/lightbox/js/jquery.lightbox-0.5.js"></script>
+<link rel="stylesheet" type="text/css" href="../tpl/static/hotels/lightbox/css/jquery.lightbox-0.5.css" media="all" />
+<body>
+	<div class="html">
+		<div class="main">
+<header>
+  <a href="{pigcms::U('Hotels/selectdate',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd arr-hd"></a>
+  <h1>{pigcms:$company['name']}</h1>
+  <a href="{pigcms::U('Hotels/my',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd ico-order">我的订单</a>
+</header>
+<div class="contxt cont-artical">
+  <div class="box-cont box-hotel">
+	<div id="js_imgs" class="hotel-g-proimg">
+		<a href="{pigcms:$company['logourl']}" rel="lightbox">
+		<img src="{pigcms:$company['logourl']}" width="65" height="65">
+		<if condition="$count gt 0">
+			<span class="img-g-bg">{pigcms:$count}张</span>
+			<volist name="imagelist" id="row">
+				<a href="{pigcms:$row.image}" rel="lightbox" title="{pigcms:$row['info']}"></a>
+			</volist>
+		</if>
+		</a>
+	</div>
+    <div class="hotel-td">
+      <p><span class="ico ico-comment" >{pigcms:$company['name']}</span><i class="arrow arr-small"></i></p>
+      <p><span class="ico ico-phone" onclick="javascript:window.location.href='tel:{pigcms:$company['tel']}';">{pigcms:$company['tel']}</span><i class="arrow arr-small"></i></p>
+    </div>
+  </div>
+  <div class="box-cont box-list">
+		<a href="{pigcms::U('Card/companyMap', array('token'=>$token, 'wecha_id'=>$wecha_id, 'companyid'=>$company['id']))}">
+			<span class="ico ico-location">{pigcms:$company['address']}</span>
+			<span class="arrow arr-small"></span>
+		</a>
+  </div>
+  <div class="box-cont box-txt box-hotel-txt">
+    <p><span>入住</span><b> {pigcms:$sday}</b></p>
+    <p><span>离店</span><b> {pigcms:$eday} （{pigcms:$days} 晚）</b></p>
+  </div>
+  <div class="box-cont box-list-room">
+	<volist name="list" id="sort">
+	<div class="list-li">
+	  <input type="hidden" class="image1" value="{pigcms:$sort['image_1']}" />
+	  <input type="hidden" class="image2" value="{pigcms:$sort['image_2']}" />
+	  <input type="hidden" class="image3" value="{pigcms:$sort['image_3']}" />
+	  <input type="hidden" class="image4" value="{pigcms:$sort['image_4']}" />
+	  <input type="hidden" class="name" value="{pigcms:$sort['name']}" />
+	  <input type="hidden" class="area" value="{pigcms:$sort['area']}" />
+	  <input type="hidden" class="num" value="{pigcms:$sort['num']}" />
+	  <input type="hidden" class="bed" value="{pigcms:$sort['bed']}" />
+	  <input type="hidden" class="bedwidth" value="{pigcms:$sort['bedwidth']}" />
+	  <input type="hidden" class="network" value="{pigcms:$sort['network']}" />
+	  <input type="hidden" class="floor" value="{pigcms:$sort['floor']}" />
+	  <input type="hidden" class="smoke" value="{pigcms:$sort['smoke']}" />
+	  <input type="hidden" class="note" value="{pigcms:$sort['note']}" />
+	  <div class="table">
+	    <div class="hd box-txt td">
+	      <a class="box-block list-a"><span class="visuallyhidden">链接</span></a>
+	      <p><span>普通价格</span><em>￥{pigcms:$sort['price']}</em></p>
+	      <p><span>会员价格</span><em>￥{pigcms:$sort['vprice']}</em></p>
+	    </div>
+	    <div class="bd td">
+	      <span>{pigcms:$sort['name']}</span>
+	    </div>
+	    <div class="bd2 td">
+	    	<if condition="$sort['houses'] gt $sort['useHouse']">
+	    	<a class="btn btn-small" href="{pigcms::U('Hotels/order',array('wecha_id' => $wecha_id, 'token' => $token, 'sid' => $sort['id'], 'startdate' => $startdate, 'enddate' => $enddate))}">预订</a>
+	    	<else />
+	    	<a class="btn btn-error btn-small">已满</a>
+	    	</if>
+	        
+	    </div>
+	  </div>
+	</div>
+	</volist>
+  </div>
+  <div class="tcenter"></div>
+  <div class="tcenter"><div class="isloading loading" style="display: none">加载中...</div></div>
+</div>
+	</div>
+</div>
+<div class="cui-view cui-layer" id="cui" style="left:20px; top:20px; z-index: 3019; visibility: visible;display:none">
+	<div class="cui-layer-padding">
+		<div class="cui-layer-content">
+			<div class="cui-pop-box">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="cui-view cui-mask cui-opacitymask" id="cui-1406610920399" style="position: absolute; left: 0px; top: 0px; width:100%; height:100%; z-index: 3017;display:none">
+<div></div>
+</div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("a[rel='lightbox']").lightBox({
+        imageLoading: '../tpl/static/hotels/lightbox/images/lightbox-ico-loading.gif',
+        imageBtnClose: '../tpl/static/hotels/lightbox/images/lightbox-btn-close.gif',
+        imageBtnPrev: '../tpl/static/hotels/lightbox/images/lightbox-btn-prev.gif',
+        imageBtnNext: '../tpl/static/hotels/lightbox/images/lightbox-btn-next.gif',
+        imageBlank: '../tpl/static/hotels/lightbox/images/lightbox-blank.gif',
+        fixedNavigation: false
+    });
+});
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/hotel',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/hotel',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/hotel',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

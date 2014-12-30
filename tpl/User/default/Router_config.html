@@ -1,0 +1,71 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content" >  
+<include file="Router:menu"/>
+ <div class="ftip" style="margin:25px auto 5px auto;">下面填写粉丝上网时回复的图文消息和wifi登陆页使用的图片，如果没有图片就直接保存即可</div>
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+  <tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<input type="text" name="keyword" value="{pigcms:$info.keyword}" class="px" style="width:250px;"> 比如：我要上网</td>
+				</tr>
+				<tr>
+					<th width="120">回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$info.title}" class="px" style="width:550px;"></td>
+				</tr>
+				
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" id="picurl" value="{pigcms:$info.picurl}" class="px" style="width:550px;">   <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('picurl',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a> 长360 宽200</td>
+				</tr>
+				<tr>
+					<th width="120">回复简介：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{pigcms:$info.info}</textarea><br/>最多填写120个字</td>
+				</tr>
+ <TR>
+  <TH valign="top"><label for="acttitle">上网密码：</label></TH>
+  <TD><input type="password" class="px" id="password"  name="password" style="width:400px"  value="" > 六位字母或者数字，留空则不修改密码，仅当笔记本上网的时候用到</TD>
+  <TD>&nbsp;</TD>
+</TR>		
+  <TR>
+  <TH valign="top"><label for="acttitle">联系QQ：</label></TH>
+  <TD><input type="input" class="px" id="contact_qq"  name="contact_qq" style="width:400px"  value="{pigcms:$info.contact_qq}" ></TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">欢迎图片文件：</label></TH>
+  <TD><input type="input" class="px" id="welcome_img"  name="welcome_img" style="width:400px"  value="{pigcms:$info.welcome_img}" >  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('welcome_img',500,500,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('welcome_img')">预览</a>&nbsp;&nbsp;不上传就使用默认的  长606 宽360</TD>
+  <TD>&nbsp;</TD>
+</TR>
+ <tr> 
+        <th>成功图片文件：</th>
+        <td><input type="text" name="other_img" value="{pigcms:$info.other_img}" class="px" id="other_img" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('other_img',500,500,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('other_img')">预览</a>&nbsp;&nbsp;不上传就使用默认的  长606 宽360</td>
+       </tr>
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

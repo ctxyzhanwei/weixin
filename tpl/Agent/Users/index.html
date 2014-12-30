@@ -1,0 +1,36 @@
+<include file="Frame:header"/>
+<div class="columntitle">用户管理</div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+
+<div class="oper" style="border:none"><div style="width:260px;float:left"><a href="?g=Agent&m=Users&a=addUser" class="add">添加</a> 按照用户名搜索：<input type="text" id="keyword" style="width:90px;height:18px;" class="colorblur" value="<?php echo htmlspecialchars($_GET['keyword']);?>" /></div> <input type="button" onclick="location.href='?g=Agent&m=Users&a=index&keyword='+$('keyword').value" name="doSubmit" value="搜索" style="float:left" class="button"/>
+<div style="clear:both"></div>
+</div>
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+		<tr class="summary-title">
+		    <td>会员组ID</td>
+		    <td>用户名</td>
+		    <td>会员组</td>
+		    <td>手机</td>
+		    <td>到期日期</td>
+			<td>最后登录时间</td>
+			<td>最后登录IP</td>
+			<td>操作</td>
+		</tr>
+<pigcmslist array="list" foreach="list">
+    <tr class="tdbg" onMouseOver="this.className='tdbg-dark';" onMouseOut="this.className='tdbg';" style="height:29px;">
+     <td>{pigcms:$list.gid}</td>
+        <td>{pigcms:$list.username}</td>
+        <td>{pigcms:$list.groupName}</td>
+		<td>{pigcms:$list.mp}</td>
+		<td><php>echo date('Y-m-d',$list['viptime']);</php></td>
+		<td><php>echo date('Y-m-d H:i:s',$list['lasttime']);</php></td>
+		<td>{pigcms:$list.lastip}</td>
+		<td><a href="?g=Agent&m=Users&a=updateUser&id={pigcms:$list.id}">修改</a> <a href="###" onclick="if(confirm('确定删除吗')){location.href='?g=Agent&m=Users&a=deleteUser&id={pigcms:$list.id}'}">删除</a></td>
+    </tr>
+</pigcmslist>
+</table>
+
+</div>
+<div class="pages">{pigcms:$page}</div>
+<include file="Frame:footer"/>

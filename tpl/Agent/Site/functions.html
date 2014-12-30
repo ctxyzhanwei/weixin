@@ -1,0 +1,30 @@
+<include file="Frame:header"/>
+<div class="columntitle">功能管理</div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+
+
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+		<tr class="summary-title">
+		    <td align="center">ID</td>
+		    <td>名称</td>
+		    <td>等级要求</td>
+			<td>方法名</td>
+			<td>描述</td>
+			<td>操作</td>
+		</tr>
+<pigcmslist array="list" foreach="list">
+    <tr class="tdbg" onMouseOver="this.className='tdbg-dark';" onMouseOut="this.className='tdbg';" style="height:29px;">
+        <td align="center">{pigcms:$list.id}</td>
+		<td>{pigcms:$list.name}</td>
+		<td>{pigcms:$list.groupName}</td>
+		<td>{pigcms:$list.funname}</td>
+		<td>{pigcms:$list.info}</td>
+		<td><a href="?g=Agent&m=Site&a=funSet&id={pigcms:$list.id}">修改</a></td>
+    </tr>
+</pigcmslist>
+</table>
+
+</div>
+<div class="pages">{pigcms:$page}</div>
+<include file="Frame:footer"/>

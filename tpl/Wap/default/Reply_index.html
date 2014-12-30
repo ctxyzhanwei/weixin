@@ -1,0 +1,420 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>留言板</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+<link href="tpl/static/messageboard/css/message.css?2013" rel="stylesheet" type="text/css">
+</head>
+<script type="text/javascript" src="tpl/static/jquery.min.js"></script>
+<body id="message">
+  <div class="qiandaobanner"><a   href="javascript:history.go(-1);"><img src="tpl/static/messageboard/images/522c649a6fd98.jpg?2013" ></a> </div>
+
+<div class="cardexplain">
+	<div class="window" id="windowcenter" style="z-index:100">
+		<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+		<div class="content">
+                    <div id="txt"></div>
+		</div>
+	</div>
+	<script type="text/javascript"> 
+//ajax中点击留言1回复重新加载页面
+function func1(){
+    window.location.reload();
+}  
+//ajax中点击留言2回复重新加载页面
+function func2(){
+    window.location.reload();
+}        
+//留言处理1 start
+$(document).on("click","#showcard1",function(){
+    var check = $("#check").val();
+    var wecha_id = $("#wecha_id").val();
+    var token = $("#token").val();
+    var btn = $(this);
+	var wxname = $("#wxname1").val();
+	if (wxname  == '') {
+		alert("请输入昵称");
+		return
+	}
+	var info = $("#info1").val();
+	if (info == '') {
+		alert("请输入内容");
+		return
+	}
+        $.ajax({
+            type:"get",
+            url:"index.php?g=Wap&m=Reply&a=leave&wecha_id="+wecha_id+"&check="+check+"&token="+token+"&name="+wxname+"&message="+info,
+            dateType:"json",
+            success:function(res){
+                var res = eval("("+res+")");
+                var data = res['data'];
+                //留言失败
+                if(res['status'] == 0){
+                    alert(res['info']);
+                    $("#wxname1").val("") ;
+                    $("#info1").val("");
+                    $("#closel").trigger("click");
+                    return;
+                }else if(res['status'] == 1){
+                    
+                    var html = "";
+                    html+="<li class='green bounceInDown'>";
+               
+                    html+="<h3>"+data['name']+"<span>"+data['time']+"</span><div class='clr'></div></h3>";
+                    html+="<dl>"
+                    html+="<dt class='hfinfo' date="+data['id']+" >"+data['message']+"</dt>";
+                    html+="</dl>";
+          
+    
+                    html+="<dl class='huifu' >"
+                    html+="<dt><span>　<a  class='hhbt czan js1'  date="+data['id']+" href='javascript:func1(this)' sid ='btn"+data['id']+"' id='js1' >回复</a>"; 　
+                    html+="<p   class='hhly"+data['id']+"' style='display:none;' id='show"+data['id']+"' > <textarea name='info' id='info"+data['id']+"' class='pxtextarea hly"+data['id']+"' ></textarea>"; 
+                    html+="<a class='hhsubmit submit' date="+data['id']+" href='javascript:void(0)' id='submit2'>确定</a> </p></span></dt>";
+                    html+="</dl>";
+                    html+="</li>";
+                    alert(res['info']);
+                    $(html).prependTo("#limsg");
+               
+                    $("#limsg").html(html);
+                    $("#wxname1").val("") ;
+                    $("#info1").val("");
+                    $("#closel").trigger("click");
+                    return;
+                }else{
+                    alert(res['info']);
+                    $("#wxname1").val("") ;
+                    $("#info1").val("");
+                    $("#closel").trigger("click");
+                    return;
+                }
+                
+            }
+        });
+        
+});
+//留言1 end
+
+//留言处理2 start
+$(document).on("click","#showcard2",function(){
+    var check = $("#check2").val();
+    var wecha_id = $("#wecha_id2").val();
+    var token = $("#token2").val();
+    var btn = $(this);
+	var wxname = $("#wxname2").val();
+	if (wxname  == '') {
+		alert("请输入昵称");
+		return
+	}
+	var info = $("#info2").val();
+	if (info == '') {
+		alert("请输入内容");
+		return
+	}
+        $.ajax({
+            type:"get",
+            url:"index.php?g=Wap&m=Reply&a=leave&wecha_id="+wecha_id+"&check="+check+"&token="+token+"&name="+wxname+"&message="+info,
+            dateType:"json",
+            success:function(res){
+                //var data = res.split(",")
+                var res = eval("("+res+")");
+                var data = res['data'];
+                //留言失败
+                if(res){
+                    if(res['status'] == 0){
+                        alert(res['info']);
+                        $("#wxname2").val("") ;
+                        $("#info2").val("");
+                        $("#close2").trigger("click");
+                        return;
+                        exit;
+                    }else if(res['status'] == 2){
+                        alert(res['info']);
+                        $("#wxname2").val("") ;
+                        $("#info2").val("");
+                        $("#close2").trigger("click");
+                        return;
+                        exit;
+                    }else{
+                    
+                        var html = "";
+                        html+="<li class='green bounceInDown'>";
+
+                        html+="<h3>"+data['name']+"<span>"+data['time']+"</span><div class='clr'></div></h3>";
+                        html+="<dl>"
+                        html+="<dt class='hfinfo' date="+data['id']+" >"+data['message']+"</dt>";
+                        html+="</dl>";
+
+
+                        html+="<dl class='huifu' >"
+                        html+="<dt><span>　<a  class='hhbt czan js1'  date="+data['id']+" href='javascript:func2(this)' sid ='btn"+data['id']+"' ' >回复</a>"; 　
+                        html+="<p   class='hhly"+data['id']+"' style='display:none;' id='show"+data['id']+"' > <textarea name='info' id='info"+data['id']+"' class='pxtextarea hly"+data['id']+"' ></textarea>"; 
+                        html+="<a class='hhsubmit submit' date="+data['id']+" href='javascript:void(0)' id='submit2'>确定</a> </p></span></dt>";
+                        html+="</dl>";
+                        html+="</li>";
+                        
+
+                        alert(res['info']);
+                        $(html).prependTo("#limsg");
+                   
+                        $("#limsg").html(html);
+                        $("#wxname2").val("") ;
+                        $("#info2").val("");
+                        $("#close2").trigger("click");
+                        return
+                    }
+                }else{
+                    alert("留言失败");
+                    return;
+                }
+            }
+        });
+        
+});
+//留言2 end
+
+//回复处理start
+$(document).on("click",".sure",function(){
+    var message_id = $(this).attr("id");
+    //alert(message_id);exit;
+    var reply = $("#info"+message_id).val();
+    var check = $("#needCheck").val();
+
+    if(reply.length <1){
+        alert("请输入回复内容");
+        return;
+    }
+    var wecha_id = $("#wecha_id").val();
+
+    $.ajax({
+        type:"get",
+        url:"index.php?g=Wap&m=Reply&a=reply&wecha_id="+wecha_id+"&check="+check+"&message_id="+message_id+"&token={pigcms:$token}&reply="+reply,
+        success:function(result){
+            //alert(result);exit;
+            if(result){
+                //var data = result.split(",") 
+                var result = eval("("+result+")");
+                //alert(result['info']);exit;
+                var data = result['data'];
+                //回复失败
+                if(result['status'] == 0){
+                    alert(result['info']);
+                    $("#info"+message_id).val("");
+                    $("#close"+message_id).trigger("click");
+                    return;
+                    
+                }else if(result['status'] ==2){
+                    alert(result['info']);
+                    $("#info"+message_id).val("");
+                    $("#close"+message_id).trigger("click");
+                    return;
+                }else{
+                   
+                    var html ="";
+                    var replyid = data['id'];
+                    //$("#replayid").val("replyid");
+                    html +="<dl class='huifu'>"
+                    html += "<dt><span>回复："+data['reply']+ "<span>"+data['time']+"</span></span></dt>";
+                    html +="</dl>";
+                    alert(result['info']);
+                    $("#info"+message_id).val("");
+                    $("#close"+message_id).trigger("click");
+                    $(html).prependTo("#huifu"+message_id);
+                }
+
+                
+            }else{
+                arert("回复失败");
+                return;
+            }
+         }
+    });
+});
+//回复处理end
+
+
+
+$(document).ready(function () { 
+   
+
+ 
+$(".hhsubmit").click(function () { 
+	 var objid = $(this).attr("date");
+	var info = $(".hly"+objid).val();
+	if (info == '') {
+		alert("请输入内容");
+		return
+	}
+	var submitData = {
+		nickname:'',
+        fid:objid,
+		info: info,
+		action: "setly"
+	};
+	$.post('/Comment/setly/?wxid=18&openid=o7VbEjvJUp2yrzxWOtm3Nzl6CLxM', submitData,
+	function(data) {
+		if (data.success == true) {
+			alert(data.msg);
+          setTimeout('window.location.href=location.href',1000);
+			return
+		} else {}
+	},
+	"json")
+ });  
+   
+   $(".hfinfo").click(function () { 
+
+	 
+	 var objid = $(this).attr("date");
+   
+	  $(".hhly"+objid).slideToggle();
+	 
+ 
+ });  
+   $(".hhbt").click(function () { 
+
+	 
+	 var objid = $(this).attr("date");
+   
+	  $(".hhly"+objid).slideToggle();
+	 
+ 
+ });  
+}); 
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+ 
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+ 
+}); 
+
+function alert(title){
+var showTime = arguments[1] ? arguments[1] : 1000;
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+setTimeout('$("#windowcenter").slideUp(500)',showTime);
+} 
+$(document).ready(function(){
+  $(".first1").click(function(){
+  $(".ly1").slideToggle();
+  });
+});
+$(document).ready(function(){
+  $(".first2").click(function(){
+  $(".ly2").slideToggle();
+  });
+});
+</script> 
+ 
+<div class="history">
+    <div class="history-date">
+      <ul>
+      	<a  ><h2 class="first first1" style="position: relative;" id="closel">请点击留言</h2></a>
+		<!--<li class="nob  mb"><div class="beizhu">留言审核通过后才会显示在留言墙上！</div></li>-->
+		<li  class="green bounceInDown nob ly1" style="display:none" >
+<!--       	<form method="post" id="form1" action="{pigcms::U('Reply/liuyan',array('token'=>$token,'wecha_id'=>$wecha_id))}">-->
+			<dl>
+                            <input type="text" value="{pigcms:$needCheck}" name="check" id="check" style="display:none;">
+                            <input type="text" value="{pigcms:$wecha_id}" name="wecha_id" id="wecha_id" style="display:none;">
+                            <input type="text" value="{pigcms:$token}" name="token" id="token" style="display:none;">
+		     <dt><input name="wxname"  type="text" class="px" id="wxname1" value=""  placeholder="请输入您的昵称"></dt>
+			 <dt><textarea name="info" class="pxtextarea" style=" height:60px;"  id="info1"  placeholder="请输入留言" ></textarea></dt>
+			<dt><a id="showcard1"  class="submit" >提交留言</a></dt>
+          </dl>
+<!--        </form>-->
+		</li>	
+         <font id="limsg"></font>
+    <if  condition="$needpass eq 1 && session('readMessage') neq 1">
+         <li class="green bounceInDown"><a href="javascript:showPassInput();">请输入密码查看留言</a></li>
+         <script type="text/javascript">
+            function showPassInput(){
+                var inputCode = "<input type='password' name='readpass' class='px' placeholder='请输入查看密码' /><br /><a onclick='sendpass()' class='submit'>确定</a>";
+                alert(inputCode,300000);
+            }
+
+            function sendpass(){
+                var pass = $('input[name=readpass]').val();
+
+
+                $.ajax({
+                    url: '{pigcms::U("Reply/checkpass",array("token"=>$_GET["token"]))}',
+                    type: 'POST',
+                    dataType: 'html',
+                    data: {readpass: pass,token:"{pigcms:$_GET['token']}"},
+                    success:function(data){
+                        if(data == 1){
+                            location.reload();
+                        }else{
+                            alert('密码错误');
+                            
+                        }
+                    }
+                });
+                
+                
+            }
+         </script>
+    <else />
+         <volist name="res" id="val">
+         <li class="green bounceInDown">
+          <h3><!--<img src="style/images/logo100x100.jpg">-->{pigcms:$val.name}<span>{pigcms:$val.time|date="Y-m-d H:i:s",###}</span><div class="clr"></div></h3>
+          <dl>
+            <dt class="hfinfo" date="{pigcms:$val.id}" >{pigcms:$val.message}</dt>
+          </dl>
+            <dl class="huifu" >
+              <dt><span>　<a  class="hhbt czan js1"  date="{pigcms:$val.id}" href="javascript:void(0)" id="close{pigcms:$val.id}">回复</a> 
+                           <input type="text" value="{pigcms:$val.id}" name="message_id" id="message_id" style="display:none;"> 
+                           <input type="text" value="{pigcms:$needCheck}" name="needCheck" id="needCheck" style="display:none;"> 
+			  <p  style="display:none;" class="hhly{pigcms:$val.id}" > <textarea name="info{pigcms:$val.id}" id="info{pigcms:$val.id}" class="pxtextarea hly{pigcms:$val.id}" ></textarea> 
+                              <a class="hhsubmit submit sure" date="{pigcms:$val.id}" id="{pigcms:$val.id}" href="javascript:void(0)"> 确定</a> </p></span></dt>
+          </dl>
+          <font id="huifu{pigcms:$val.id}"></font>
+           
+         <php></php>
+          <!--回复内容-->
+          <volist name="val['vo']" id="va">
+                   
+		  <dl class="huifu" >
+
+		     <dt><span>回复：{pigcms:$va.reply} <span>{pigcms:$va.time|date="Y-m-d H:i:s",###}</span></span></dt>
+          </dl> 
+          </volist>
+         </li>
+        </volist>
+    </if>
+                <li  class="green bounceInDown nob ly2" style="display:none" >
+                                
+			<dl>
+                     <input type="text" value="{pigcms:$needCheck}" name="check" id="check2" style="display:none;">
+                     <input type="text" value="{pigcms:$wecha_id}" name="wecha_id" id="wecha_id2" style="display:none;">
+                     <input type="text" value="{pigcms:$token}" name="token" id="token2" style="display:none;">
+		     <dt><input name="wxname"  type="text" class="px" id="wxname2" value="" placeholder="请输入您的昵称"></dt>
+			 <dt><textarea name="info" class="pxtextarea" style=" height:60px;" id="info2"  placeholder="请输入留言"></textarea></dt>
+			<dt><a id="showcard2"  class="submit" href="javascript:void(0)">提交留言</a> </dt>
+          </dl>
+                  
+		</li>
+		
+		<a  ><h2 class="first first2" style="position: relative;" id="close2">请点击留言</h2></a>
+       
+      </ul>
+    </div>
+  </div>
+
+</div>
+  
+  
+<div class="cLine">
+<div class="pageNavigator right" align="center">
+<div class="pages" style="margin:-10px 0px 10px 0px;">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+<script src="{pigcms::RES}/css/style/js/plugback.js" type="text/javascript" type="text/javascript"></script>
+</body>
+</html>

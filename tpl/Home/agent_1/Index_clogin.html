@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>登陆与注册－{pigcms:$f_siteTitle}</title>
+<meta name="keywords" content="微信帮手 微信公众账号 微信公众平台 微信公众账号开发 微信二次开发 微信接口开发 微信托管服务 微信营销 微信公众平台接口开发"/>
+<meta name="description" content="微信公众平台接口开发、托管、营销活动、二次开发"/>
+<link rel="stylesheet" type="text/css" href="../tpl/static/style.css" />
+</head>
+<body class="loggedout" style="background:url(../tpl/static/bg.jpg);">
+	<div id="olark" style="display: none;"><olark><iframe id="olark-loader" frameborder="0"></iframe></olark></div> 
+	<div class="container-fluid" style="width:600px;">
+		<div class="row-fluid header-row">
+			<div class="span9" style="color:#6682A1;padding:4px 0 0 20px;font-size:14px; font-family:Microsoft Yahei">连锁系统登录 >></div>
+		</div>
+		<div class="row-fluid col-wrap">
+			<div id="content" class="span9 col" style="width:100%">
+				<div class="halfwidthcontainer">
+  					<div class="subpage clientarea login  clearfix">
+					<form method="post" action="{pigcms::U('Users/companylogin')}" class="form-stacked">
+					<div class="row-fluid">
+						<div class="span4 offset4" style="margin-left:20%">
+							<div class="logincontainer">
+								<fieldset class="control-group">
+									<div class="control-group">
+										<label class="control-label" for="username">账号:</label>
+										<div class="controls">
+					                    	<input type="hidden" name="cid" value="{pigcms:$cid}"/>
+					                    	<input type="hidden" name="k" value="{pigcms:$k}"/>
+											<input class="input-xlarge" name="username" id="username" autocomplete="off" type="text" />
+										</div>
+									</div>
+									<div class="control-group">
+									    <label class="control-label" for="password">密码:</label>
+										<div class="controls">
+										    <input class="input-xlarge" name="password" id="password" autocomplete="off" type="password" />
+										</div>
+									</div>
+									<div align="center">
+										<div class="loginbtn"><input class="btn btn-primary btn-large" value="登 录" style="font-size:14px; font-family:Microsoft Yahei" type="submit" /></div>
+										<div class="rememberme"></div>
+									</div>
+							</fieldset>
+		
+							</div>
+						</div>
+					</div>
+					</form>
+					</div>
+				</div>     		
+			</div>     	
+		</div>     	
+		<div class="mobile-menu-trigger visible-phone">
+		</div>
+		<div class="row-fluid footer">
+			<div class="span6">
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+$("#username").focus();
+</script>
+</html>

@@ -1,0 +1,95 @@
+<div class="topbg">
+<div class="top">
+<div class="toplink">
+<style>
+<if condition="$usertplid eq 1">
+.topbg{background:url({pigcms:$staticPath}/tpl/static/newskin/images/top.gif) repeat-x; height:101px; /*box-shadow:0 0 10px #000;-moz-box-shadow:0 0 10px #000;-webkit-box-shadow:0 0 10px #000;*/}
+.top {
+    margin: 0px auto; width: 988px; height: 101px;
+}
+
+.top .toplink{ height:30px; line-height:27px; color:#999; font-size:12px;}
+.top .toplink .welcome{ float:left;}
+.top .toplink .memberinfo{ float:right;}
+.top .toplink .memberinfo a{ color:#999;}
+.top .toplink .memberinfo a:hover{ color:#F90}
+.top .toplink .memberinfo a.green{ background:none; color:#0C0}
+
+.top .logo {width: 990px; color: #333; height:70px; font-size:16px;}
+.top h1{ font-size:25px;float:left; width:230px; margin:0; padding:0; margin-top:6px; }
+.top .navr {WIDTH:750px; float:right; overflow:hidden;}
+.top .navr ul{ width:850px;}
+.navr li {text-align:center; float: left; height:70px; font-size:1em; width:103px; margin-right:5px;}
+.navr li a {width:103px; line-height:70px; float: left; height:100%; color: #333; font-size: 1em; text-decoration:none;}
+.navr li a:hover { background:#ebf3e4;}
+.navr li.menuon {background:#ebf3e4; display:block; width:103px;}
+.navr li.menuon a{color:#333;}
+.navr li.menuon a:hover{color:#333;}
+.banner{height:200px; text-align:center; border-bottom:2px solid #ddd;}
+.hbanner{ background: url(img/h2003070126.jpg) center no-repeat #B4B4B4;}
+.gbanner{ background: url(img/h2003070127.jpg) center no-repeat #264C79;}
+.jbanner{ background: url(img/h2003070128.jpg) center no-repeat #E2EAD5;}
+.dbanner{ background: url(img/h2003070129.jpg) center no-repeat #009ADA;}
+.nbanner{ background: url(img/h2003070130.jpg) center no-repeat #ffca22;}
+<else />
+
+.topbg{BACKGROUND-IMAGE: url({pigcms:$staticPath}{pigcms::ltrim(RES,'.')}/images/top.png);BACKGROUND-REPEAT: repeat-x; height:124px; box-shadow:0 0 10px #000;-moz-box-shadow:0 0 10px #000;-webkit-box-shadow:0 0 10px #000;}
+.top {
+	MARGIN: 0px auto; WIDTH: 988px; HEIGHT: 124px;
+}
+
+.top .toplink{ height:27px; line-height:27px; color:#999; font-size:12px;}
+.top .toplink .welcome{ float:left;}
+.top .toplink .memberinfo{ float:right;}
+.top .toplink .memberinfo a{ color:#999;}
+.top .toplink .memberinfo a:hover{ color:#F90}
+.top .toplink .memberinfo a.green{ background:none; color:#0C0}
+
+.top .logo {WIDTH: 990px;COLOR: #333; height:70px;  FONT-SIZE:16px; PADDING-TOP:25px}
+.top h1{ font-size:25px; margin-top:20px; float:left; width:230px; margin:0; padding:0;}
+.top .navr {WIDTH:750px; float:right; overflow:hidden; margin-top:10px;}
+.top .navr ul{ width:850px;}
+.navr LI {TEXT-ALIGN:center;FLOAT: left;HEIGHT:32px;FONT-SIZE:1em;width:103px; margin-right:5px;}
+.navr LI A {width:103px;TEXT-ALIGN:center; LINE-HEIGHT:30px; FLOAT: left;HEIGHT:32px;COLOR: #333; FONT-SIZE: 1em;TEXT-DECORATION: none
+}
+.navr LI A:hover {BACKGROUND: url({pigcms:$staticPath}{pigcms::ltrim(RES,'.')}/images/navhover.gif) center no-repeat;color:#009900;}
+.navr LI.menuon {BACKGROUND: url({pigcms:$staticPath}{pigcms::ltrim(RES,'.')}/images/navon.gif) center no-repeat; display:block;width:103px;HEIGHT:32px;}
+.navr LI.menuon a{color:#FFF;}
+.navr LI.menuon a:hover{BACKGROUND: url(img/navon.gif) center no-repeat;}
+.banner{height:200px; text-align:center; border-bottom:2px solid #ddd;}
+.hbanner{ background: url(img/h2003070126.jpg) center no-repeat #B4B4B4;}
+.gbanner{ background: url(img/h2003070127.jpg) center no-repeat #264C79;}
+.jbanner{ background: url(img/h2003070128.jpg) center no-repeat #E2EAD5;}
+.dbanner{ background: url(img/h2003070129.jpg) center no-repeat #009ADA;}
+.nbanner{ background: url(img/h2003070130.jpg) center no-repeat #ffca22;}
+</if>
+</style>
+<div class="welcome">欢迎使用多用户微信营销服务平台!</div>
+    <div class="memberinfo"  id="destoon_member">	
+		<if condition="$_SESSION[uid]==false">
+			<a href="{pigcms::U('Index/login')}">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="{pigcms::U('Index/login')}">注册</a>
+			<else/>
+			你好,<a href="/#" hidefocus="true"  ><span style="color:red">{pigcms:$Think.session.uname}</span></a>（uid:{pigcms:$Think.session.uid}）
+			<a href="/#" onclick="Javascript:window.open('{pigcms::U('System/Admin/logout')}','_blank')" >退出</a>
+	</if>	
+	</div>
+</div>
+    <div class="logo">
+        <div style="float:left"></div>
+            <h1><a href="/" title="多用户微信营销服务平台"><img src="{pigcms:$f_logo}" /></a></h1>
+            <div class="navr">
+        <ul id="topMenu">           
+            <li <if condition="(ACTION_NAME eq 'index') and (GROUP_NAME eq 'Home')">class="menuon"</if> ><a href="/">首页</a></li>
+                <!--<li <eq name="ACTION_NAME" value="fc">class="menuon"</eq>><a href="{pigcms::U('Home/Index/fc')}">功能介绍</a></li>
+                <li <eq name="ACTION_NAME" value="about">class="menuon"</eq>><a href="{pigcms::U('Home/Index/about')}">关于我们</a></li>
+                <li <eq name="ACTION_NAME" value="price">class="menuon"</eq>><a href="{pigcms::U('Home/Index/price')}">资费说明</a></li>
+                <li <eq name="ACTION_NAME" value="common">class="menuon"</eq>><a href="{pigcms::U('Home/Index/common')}">微信导航</a></li>
+                --><li <eq name="GROUP_NAME" value="User">class="menuon"</eq>><a href="{pigcms::U('User/Index/index')}">管理中心</a></li>
+                <li <eq name="ACTION_NAME" value="help">class="menuon"</eq>><a href="{pigcms::U('Home/Index/help')}">帮助中心</a></li>
+            
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>

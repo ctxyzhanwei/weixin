@@ -1,0 +1,124 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">实用工具</h4>
+              <div class="clr"></div>
+          </div>
+
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>(第一次启用请先自己添加对应的工具,每次只能添加一项)开启状态可以在手机显示，关闭就不显示,您也可以修改URL</p>
+    </div>
+</div>
+
+
+          <div class="msgWrap">
+
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                    <th>工具名称</th>
+                    <th>URL</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+<script>
+   jQuery(document).ready(function(){
+<volist name="utility" id="vo">
+ jQuery("#formID{pigcms:$i}").validationEngine("attach",{
+    promptPosition:"centerRight",
+    autoPositionUpdate:true
+  });
+</volist>
+    });
+</script>
+                <volist name="utility" id="vo">
+
+<form method="post" action="" id="formID{pigcms:$i}">
+
+                            <tr>
+                              <input type="hidden"  name="id" value="{pigcms:$vo['id']}">
+                                <td><span class="sn weather"><input type="text" name="name" id="name{pigcms:$i}" value="{pigcms:$vo['name']}" data-validation-engine="validate[required,minSize[2],maxSize[10]]"
+                    data-errormessage-value-missing="必填项!"></span></td>
+                                <td><span class="sn weather"><input type="text" name='url' style="width:400px;" value="{pigcms:$vo['url']}" id="url{pigcms:$i}" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须填写网址!"  data-errormessage-custom-error="请填写正确的网址"></span></td>
+
+                                <td>
+                                <select name="status" id="status">
+                                <option value="1" <if condition="$vo['status'] eq 1">selected="selected"</if>>开启</option>
+                                  <option value="2" <if condition="$vo['status'] eq 2">selected="selected"</if>>关闭</option>
+                                </select>
+                                </td>
+                                <td><button type="submit" name="button" id="button{pigcms:$i}" class="btnGreen">保存</button>
+<a href="{pigcms::U('Car/item_del',array('id'=>$vo['id'],'type'=>'del'))}" onclick="return(confirm('确定要删除吗？'))" class="btnGreen">删除</a>
+                                </td>
+                            </tr>
+
+ </form>
+                </volist>
+
+<if condition="$utility eq ''">
+
+<form method="post" action="" id="formID11">
+
+                            <tr>
+                              <input type="hidden"  name="token" value="{pigcms:$token}">
+                                <td><span class="sn weather"><input type="text" name="name" id="name11" value="车贷计算器" data-validation-engine="validate[required,minSize[2],maxSize[10]]"
+                    data-errormessage-value-missing="必填项!"></span></td>
+                                <td><span class="sn weather"><input type="text" name='url' style="width:400px;" value="http://car.m.yiche.com/qichedaikuanjisuanqi" id="url11" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须填写网址!"  data-errormessage-custom-error="请填写正确的网址"></span></td>
+
+                                <td>
+                                <select name="status" id="status">
+                                <option value="1" <if condition="$vo['status'] eq 1">selected="selected"</if>>开启</option>
+                                  <option value="2" <if condition="$vo['status'] eq 2">selected="selected"</if>>关闭</option>
+                                </select>
+                                </td>
+                                <td><button type="submit" name="button" id="button{pigcms:$i}" class="btnGreen">保存</button></td>
+                            </tr>
+
+ </form>
+</if>
+<form method="post" action="">
+
+                            <tr>
+                              <input type="hidden"  name="token" value="{pigcms:$token}">
+                                <td><span class="sn weather"><input type="text" name="name" placeholder="工具名称" id="name10" value="" data-validation-engine="validate[required,minSize[2],maxSize[10]]"
+                    data-errormessage-value-missing="必填项!"></span></td>
+                                <td><span class="sn weather"><input type="text" name='url' style="width:400px;" value="" id="url10" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须填写网址!"  data-errormessage-custom-error="请填写正确的网址" placeholder="工具对应的网址"></span></td>
+
+                                <td>
+                                <select name="status" id="status">
+                                <option value="1" <if condition="$vo['status'] eq 1">selected="selected"</if>>开启</option>
+                                  <option value="2" <if condition="$vo['status'] eq 2">selected="selected"</if>>关闭</option>
+                                </select>
+                                </td>
+                                <td><button type="submit" name="button"  class="btnGreen">保存</button>
+
+                                </td>
+                            </tr>
+
+ </form>
+
+
+</tbody>
+            </table>
+
+          </div>
+
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

@@ -1,0 +1,44 @@
+<include file="Public:head"/>
+<div class="content" >  
+<div class="cLineB">
+  <h4>{pigcms:$info.name}中奖名单</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+ </div>
+
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">昵称</th>
+<th style=" width:180px;">手机</th>             
+<th style=" width:150px;" class="norightborder">奖项</th>
+</tr>
+</thead>
+<volist name="records" id="actinfo">
+<tr>
+<td>{pigcms:$actinfo.nickname}</td>
+<td>{pigcms:$actinfo.mp}</td>
+<td>{pigcms:$actinfo.prize}</td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

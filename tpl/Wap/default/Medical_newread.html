@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+  <title>{pigcms:$imgtxt['title']}</title>
+<meta name="keywords" content="{pigcms:$imgtxt['keyword']}" />
+<meta name="description" content="{pigcms:$imgtxt['text']}" />
+  <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/public-them/generated/jquery.mobile.flatui.css" />
+  <script src="{pigcms::STATICS}/public-them/generated/js/jquery.js"></script>
+  <script src="{pigcms::STATICS}/public-them/generated/js/jquery.mobile-1.4.0-rc.1.js"></script>
+<style>
+.ui-mobile [data-role=page],
+.ui-mobile [data-role=dialog],
+.ui-page {
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 0;
+}
+</style>
+</head>
+<body>
+  <div data-role="page">
+
+   <!--  <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div> -->
+
+  <include file="Medical:menu"/>
+
+    <div data-role="content" role="main">
+      <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" data-theme="a">{pigcms:$imgtxt['title']}</li>
+        <p style="padding: .7em 1em;vertical-align: middle;">{pigcms:$imgtxt['info']|html_entity_decode|trim}</p>
+      </ul>
+
+<include file="Medical:footer"/>
+
+    </div>
+  </div>
+
+  <div id="highlight"> </div>
+</body>
+</html>

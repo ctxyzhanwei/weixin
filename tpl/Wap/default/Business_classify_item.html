@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{pigcms:$busines['mtitle']}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="Keywords" content="{pigcms:$busines['mtitle']}" />
+    <meta name="Description" content="{pigcms:$busines['mtitle']}" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+    <link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            //oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+</script>
+
+
+<body id="news3">
+<!--分享-->
+    <div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display: none;">
+        <img src="{pigcms::STATICS}/schools/images/guide.png"></div>
+
+<include file="Business:public_menu"/>
+
+    <div class="Listpage" >
+    <div class="top46" ></div>
+    <div class="page-bizinfo" >
+        <div style="position: relative;" class="header">
+            <h1 id="activity-name">{pigcms:$classify['name']}</h1>
+            <!-- <span class="commentNum">浏览次数:{pigcms:$readinfo['click']}</span> -->
+        </div>
+        <div id="content" class="text">
+        <if condition="$classify['desc_pic'] neq ''">
+                <div class="showpic"><img alt="" src="{pigcms:$classify['desc_pic']}"> </div>
+        </if>
+            <p> {pigcms:$classify['main_desc']|html_entity_decode} </p>
+        </div>
+
+<if condition="$type eq 'fitness'">
+     <p>健身项目</p>
+<elseif condition="$type eq 'gover'"/>
+  <p>服务项目</p>
+<elseif condition="$type eq 'food'"/>
+    <p>食品列表</p>
+<elseif condition="$type eq 'travel'"/>
+  <p>景区景点</p>
+<elseif condition="$type eq 'flower'"/>
+   <p>特色香花</p>
+<elseif condition="$type eq 'property'"/>
+     <p>业主服务</p>
+<elseif condition="$type eq 'ktv'"/>
+   <p>KTV包厢</p>
+<elseif condition="$type eq 'bar'"/>
+   <p>特色酒水</p>
+<elseif condition="$type eq 'fitment'"/>
+    <p>成功案例</p>
+<elseif condition="$type eq 'wedding'"/>
+   <p>服务项目</p>
+<elseif condition="$type eq 'affections'"/>
+    <p>宠物用品</p>
+<elseif condition="$type eq 'housekeeper'"/>
+    <p>服务项目</p>
+<elseif condition="$type eq 'lease'"/>
+    <p>租赁项目</p>
+<elseif condition="$type eq 'beauty'"/>
+    <p>美容套餐</p>
+</if>
+       <style>
+TABLE.ListProduct {
+    BORDER-TOP: #d3d3d3 1px solid;
+    MARGIN-TOP: 5px;
+    WIDTH: 100%;
+    MARGIN-BOTTOM: 5px;_border-collapse: collapse;
+
+}
+TABLE.ListProduct THEAD TH {
+    BORDER-BOTTOM: #d3d3d3 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #f1f1f1; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; COLOR: #666; FONT-SIZE: 14px; BORDER-TOP: #e3e3e3 1px solid; FONT-WEIGHT: normal; BORDER-RIGHT: #ddd 1px solid; PADDING-TOP: 5px; color:#000000; font-weight:bold;text-align: center;
+}
+TABLE.ListProduct TBODY TD {
+    BORDER-BOTTOM: #eee 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BORDER-RIGHT: #eee 1px solid; PADDING-TOP: 10px;
+    font-size:12px;_empty-cells:show;word-break: break-all;text-align: center;
+}
+TABLE.ListProduct TBODY TR:nth-child(2n+1) {
+    background-color:#FCFCFC;
+}
+TABLE.ListProduct TBODY TR:hover {
+    background-color:#F1FCEA;
+}
+TABLE.ListProduct TBODY TD p{
+    PADDING: 0;font-size:12px;_empty-cells:show;word-break: break-all;
+}
+TABLE.ListProduct Tfoot TD {
+    BORDER-BOTTOM: #eee 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BORDER-RIGHT: #eee 1px solid; PADDING-TOP: 10px; background-color:#f9f9f9;
+    font-size:12px;_empty-cells:show;word-break: break-all;
+}
+TABLE.ListProduct THEAD TH.norightborder {
+    BORDER-RIGHT: 0;
+}
+TABLE.ListProduct TBODY TD.norightborder {
+    BORDER-RIGHT: 0;
+}
+TABLE.ListProduct .select{
+    width: 30px;
+}
+TABLE.ListProduct .keywords{width: 150px;
+}
+TABLE.ListProduct .answer{
+    width: 375px;
+}
+TABLE.ListProduct .answer_text{
+     width: 360px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis; height:16px
+}
+.answer_text img{
+     margin-right: 5px; float:left;
+}
+TABLE.ListProduct .category{
+    width: 70px;
+}
+TABLE.ListProduct .time{
+    width: 70px;
+}
+
+
+TABLE.ListProduct .edit{
+    width: 120px;
+}
+</style>
+
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+ <tr>
+<if condition="$type eq 'fitness'">
+           <th>健身项目</th>
+           <th>健身目的</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'gover'"/>
+           <th>服务名称</th>
+           <th>服务项目</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'food'"/>
+           <th>食品名称</th>
+           <th>重量</th>
+           <th>可否购买</th>
+<elseif condition="$type eq 'travel'"/>
+           <th>景点名称</th>
+           <th>景点特色</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'flower'"/>
+           <th>香花名称</th>
+           <th>花语</th>
+           <th>可否购买</th>
+<elseif condition="$type eq 'property'"/>
+           <th>业主服务</th>
+           <th>服务描述</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'ktv'"/>
+           <th>包厢名称</th>
+           <th>包厢描述</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'bar'"/>
+           <th>特色酒水</th>
+           <th>简要描述</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'fitment'"/>
+           <th>装修套餐</th>
+           <th>简要描述</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'wedding'"/>
+           <th>套餐名称</th>
+           <th>服务范围</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'affections'"/>
+           <th>名称</th>
+           <th>简要描述</th>
+           <th>可否购买</th>
+<elseif condition="$type eq 'housekeeper'"/>
+           <th>服务项目</th>
+           <th>服务范围</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'lease'"/>
+           <th>租赁项目</th>
+           <th>服务范围</th>
+           <th>可否预约</th>
+<elseif condition="$type eq 'beauty'"/>
+           <th>套餐名称</th>
+           <th>产品功效</th>
+           <th>可否购买</th>
+</if>
+       </tr>
+<volist name="sec_item" id="vo">
+
+        <tr>
+            <td><a href="{pigcms::U('Business/project',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$vo['type'],'bid'=>$bid,'sid'=>$vo['sid']))}">{pigcms:$vo['name']}</a></td>
+            <td><a href="{pigcms::U('Business/project',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$vo['type'],'bid'=>$bid,'sid'=>$vo['sid']))}">{pigcms:$vo['datatype']}</a></td>
+            <td><if condition="$vo['googsnumber'] neq 0"><a href="{pigcms::U('Business/project',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$vo['type'],'bid'=>$bid,'sid'=>$vo['sid']))}">可以</a><else/>X</if></td>
+
+        </tr>
+    </volist>
+    </table>
+{pigcms:$page}
+        <div class="page-content"></div>
+
+    </div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+<div id="mess_share" >
+    <div id="share_1">
+        <button class="button2" onclick="document.getElementById('mcover').style.display='block';">
+            <img src="{pigcms::STATICS}/schools/images/icon_msg.png">&nbsp;发送给朋友</button>
+    </div>
+    <div id="share_2">
+        <button class="button2" onclick="document.getElementById('mcover').style.display='block';">
+            <img src="{pigcms::STATICS}/schools/images/icon_timeline.png">&nbsp;分享到朋友圈</button>
+    </div>
+    <div class="clr"></div>
+
+ <div class="clr"></div>
+    <a target="_self" href="#news3" class="footer"><span class="top">返回顶部</span></a>
+</div>
+
+    <div class="copyright">
+      <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span></div>
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+</div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" >  
+<include file="Router:menu"/>
+
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="acttitle">名称：</label></TH>
+  <TD><input type="input" class="px" id="gw_name"  name="gw_name" style="width:500px"  value="{pigcms:$info.name}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">路由器ID：</label></TH>
+  <TD><input type="input" class="px" id="gw_id"  name="gw_id" style="width:500px"  value="{pigcms:$info.gw_id}" >  打开路由器的登录页面就可以看到 </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR style="display:none">
+  <TH valign="top"><label for="acttitle">绑定的公众号：</label></TH>
+  <TD><input type="input" class="px" id="public_wechat_id"  name="public_wechat_id" style="width:500px"  value="{pigcms:$info.wechat}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+ <tr> 
+        <th>二维码图片地址：</th>
+        <td><input type="text" name="qrcode_url" value="{pigcms:$info.qrcode}" class="px" id="thumb" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('thumb',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('thumb')">预览</a></td> 
+       </tr>
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

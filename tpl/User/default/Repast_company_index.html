@@ -1,0 +1,107 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">餐厅管理</h4>
+<div class="clr"></div>
+</div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">此处只显示总店信息，连锁店订单及菜品请进入相应平台进行管理，连锁店登录账号密码及登录地址请在LBS里设置查看</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$ischild neq 1"> <li class="current tabli" id="tab0"><a href="{pigcms::U('Repast/company_index', array('token' => $token,'cid' => $cid))}">餐厅管理</a></li></if>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Repast/index', array('token' => $token,'cid' => $cid))}">餐台管理</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Repast/detail', array('token' => $token,'cid' => $cid))}">餐厅预定情况</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Repast/sort', array('token' => $token,'cid' => $cid))}">分类管理</a></li>
+<li class="tabli" id="tab3"><a href="{pigcms::U('Repast/dish', array('token' => $token,'cid' => $cid))}">菜品管理</a></li>
+<li class="tabli" id="tab4"><a href="{pigcms::U('Repast/orders', array('token' => $token,'cid' => $cid))}">订单管理</a></li>
+<if condition="$ischild neq 1" >
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set', array('token'=>$token,'infotype'=>'Dining'))}">订餐回复配置</a></li>
+</if>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Repast/company',array('token' => $token,'cid'=>$cid))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加餐厅</a></div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th width="">店铺名称</th>
+		<th width="">支持外卖</th>
+		<th width="">外卖费</th>
+		<th width="">店铺类型</th>
+		<th width="">短信通知</th>
+        <th width="">短信验证码</th>
+		<th width="">邮件通知</th>
+        <th width="">无线打印</th>
+		<th width="" class="norightborder">操作</th>
+	</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="tablelist"> 
+	<tr>
+		<td><?php echo $Companys_arr[$tablelist['cid']];?></td>
+		<td>
+        <?php if ($tablelist['istakeaway'] == 0) 
+        		echo '不支持';
+              else 
+              	echo '支持';
+        ?>
+        </td>
+		<td>{pigcms:$tablelist.price}</td>
+		<td>{pigcms:$tablelist.category}</td>
+		<td>
+        <?php if ($tablelist['phone_status'] == 0) 
+        		echo '关闭';
+              else 
+              	echo '开启';
+        ?>
+        </td>
+		<td>
+        <?php if ($tablelist['phone_authorize'] == 0) 
+        		echo '关闭';
+              else 
+              	echo '开启';
+        ?>
+        </td>        
+		<td>
+        <?php if ($tablelist['email_status'] == 0) 
+        		echo '关闭';
+              else 
+              	echo '开启';
+        ?>
+        </td>
+		<td>
+        <?php if ($tablelist['print_status'] == 0) 
+        		echo '关闭';
+              else 
+              	echo '开启';
+        ?>
+        </td>        
+		<td class="norightborder">
+			<a href="{pigcms::U('Repast/company', array('id' => $tablelist['id'], 'token' => $token,'cid' => $tablelist['cid']))}">修改</a> 
+			<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Repast/company_del',array('id' => $tablelist['id'], 'token' => $token,'cid' => $tablelist['cid']))}');">删除</a>
+		</td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+	<div class="pageNavigator right">
+		<div class="pages">{pigcms:$page}</div>
+	</div>
+	<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

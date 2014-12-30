@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>行业应用-{pigcms:$busines['mtitle']}</title>
+<!-- meta tags start -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{pigcms:$busines['mtitle']}" />
+<meta name="Description" content="{pigcms:$busines['mtitle']}{pigcms:$busines['mtitle']}" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<!-- meta tags end -->
+
+<!-- favorite icon starts -->
+<!-- <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon" />-->
+ <!-- favorite icon ends -->
+
+<!-- Google fonts start -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic' rel='stylesheet' type='text/css' />
+<!-- Google fonts end -->
+
+<!-- CSS files start -->
+<link href="{pigcms::STATICS}/public_them/css/framework.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{pigcms::STATICS}/public_them/css/colorbox.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{pigcms::STATICS}/public_them/css/elements.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{pigcms::STATICS}/public_them/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{pigcms::STATICS}/public_them/css/responsive.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{pigcms::STATICS}/public_them/css/hidpi.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{pigcms::STATICS}/public_them/css/skin.css" rel="stylesheet" type="text/css" media="all" />
+<link href="{pigcms::STATICS}/public_them/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{pigcms::STATICS}/public_them/src/idangerous.swiper.css">
+<!-- CSS files end -->
+
+<!-- JavaScript files start -->
+<script type="text/javascript" src="{pigcms::STATICS}/public_them/js/jquery.min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/public_them/js/effects.jquery-ui.min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/public_them/js/jquery.nivo-slider.min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/public_them/js/jquery.colorbox.min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/public_them/js/custom.js"></script>
+<!-- JavaScript files end -->
+  <style>
+/* Demo Styles */
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+  height: 100%;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+}
+.red-slide {
+  background: #ca4040;
+}
+.blue-slide {
+  background: #4390ee;
+}
+.orange-slide {
+  background: #ff8604;
+}
+.green-slide {
+  background: #49a430;
+}
+.pink-slide {
+  background: #973e76;
+}
+.swiper-slide .title {
+  font-style: italic;
+  font-size: 42px;
+  margin-top: 80px;
+  margin-bottom: 0;
+  line-height: 45px;
+}
+.pagination {
+  position: absolute;
+  z-index: 20;
+  left: 10px;
+  bottom: 10px;
+}
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #222;
+  margin-right: 5px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.swiper-visible-switch {
+  background: #aaa;
+}
+.swiper-active-switch {
+  background: #fff;
+}
+  </style>
+</head>
+<body>
+<!-- website wrapper starts -->
+<div class="websiteWrapper">
+  <!-- main menu wrapper starts -->
+<include file="Business:public_menu"/>
+  <!-- main menu wrapper ends -->
+
+
+
+  <!-- slider wrapper ends -->
+
+  <!-- page wrapper starts -->
+  <div class="pageWrapper homePageWrapper">
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide red-slide"><!--img height: 625px; -->
+        <img src="{pigcms:$pics['picurl_1']}" alt="" title="" border="0" />
+        <div class="title">{pigcms:$busines['mtitle']}</div>
+      </div>
+      <div class="swiper-slide blue-slide">
+      <img src="{pigcms:$pics['picurl_2']}" alt="" title="" border="0" />
+        <div class="title">{pigcms:$busines['mtitle']}</div>
+      </div>
+      <div class="swiper-slide orange-slide">
+      <img src="{pigcms:$pics['picurl_3']}" alt="" title="" border="0" />
+        <div class="title">{pigcms:$busines['mtitle']}</div>
+      </div>
+      <div class="swiper-slide green-slide">
+      <img src="{pigcms:$pics['picurl_4']}" alt="" title="" border="0" />
+        <div class="title">{pigcms:$busines['mtitle']}</div>
+      </div>
+      <div class="swiper-slide pink-slide">
+      <img src="{pigcms:$pics['picurl_5']}" alt="" title="" border="0" />
+        <div class="title">{pigcms:$busines['mtitle']}</div>
+      </div>
+    </div>
+    <div class="pagination"></div>
+  </div>
+  <!--script src="{pigcms::STATICS}/public_them/src/jquery-1.10.1.min.js"></script-->
+  <script src="{pigcms::STATICS}/public_them/src/idangerous.swiper.js"></script>
+  <script>
+  var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    paginationClickable: true
+  })
+  </script>
+  <include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+  </div>
+  <!-- page wrapper ends -->
+
+  <!-- footer wrapper starts -->
+<div class="footerWrapper">
+    <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span>
+</div>
+  <!-- footer wrapper ends -->
+
+</div>
+<!-- website wrapper ends -->
+</body>
+</html>

@@ -1,0 +1,139 @@
+<include file="Groupon:header_0"/>
+<div class="msg-ok" id="okMsg" style="display: none;"></div>
+<div class="msg-err" id="errMsg" style="display: none;"></div>
+<div id="deal" class="deal" xmlns="http://www.w3.org/1999/html">
+    <div class="deal-intro">
+        <div class="deal-album" id="album" style="overflow: hidden;">
+            <div id="iscroll" class="scroll" style="width: 1488px; -webkit-transition: -webkit-transform 0ms; transition: -webkit-transform 0ms; -webkit-transform-origin: 0px 0px; -webkit-transform: translate3d(0px, 0px, 0);">
+                <ul>
+                        <li><img class="bigImg" src="{pigcms:$product.logourl}"></li>
+                </ul>
+            </div>
+            <span class="left"></span>
+            <span class="right"></span>
+        </div>
+        <div class="m-t15 deal-pricetag">
+            <div>
+                <strong class="discount-price">{pigcms:$product.price}<span>元</span></strong>
+                <span class="dt-price">{pigcms:$product.oprice}元</span>
+            </div>
+            <a class="btn-large btn-tip" onclick="add_cart();" href="###">立即购买</a>
+        </div>
+       
+        <div class="deal-title">
+            <h1>{pigcms:$product.name}</h1>
+
+            <p class="explain">{pigcms:$intro}...<a href="{pigcms::U('Groupon/detail',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$product['id']))}">详细信息</a></p>
+
+        </div>
+        <ul class="deal-tips">
+            <li><span class="icon-fonts">C</span>已售{pigcms:$product['salecount']+$product['fakemembercount']}</li>
+            <li><span class="icon-fonts">D</span>{pigcms:$product.endtime|date="Y-m-d",###}结束</li>
+        </ul>
+    </div>
+<!--daojishi--> 
+<script type="text/javascript"> 
+ var SysSecond; 
+ var InterValObj; 
+  
+ $(document).ready(function() { 
+  SysSecond = parseInt($("#remainSeconds").html()); //这里获取倒计时的起始时间 
+  InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 
+ }); 
+ 
+ //将时间减去1秒，计算天、时、分、秒 
+ function SetRemainTime() { 
+  if (SysSecond > 0) { 
+   SysSecond = SysSecond - 1; 
+   var second = Math.floor(SysSecond % 60);             // 计算秒     
+   var minite = Math.floor((SysSecond / 60) % 60);      //计算分 
+   var hour = Math.floor((SysSecond / 3600) % 24);      //计算小时 
+   var day = Math.floor((SysSecond / 3600) / 24);        //计算天 
+ 
+   $("#remainTime").html('&nbsp;&nbsp;还剩'+day + "天" + hour + "小时" + minite + "分" + second + "秒"); 
+  } else {//剩余时间小于或等于0的时候，就停止间隔函数 
+   window.clearInterval(InterValObj); 
+   //这里可以添加倒计时时间为0后需要执行的事件 
+  } 
+ } 
+</script> 
+<div id="remainSeconds" style="display:none">{pigcms:$leftSeconds}</div> 
+<!--daojishi end-->
+    <div class="box-style deal-comment">
+             <span id="remainTime" style="font-size:16px;font-weight:800;color:#FF9900"></span>
+    </div>
+    <div id="deal-bizinfo" class="box-style deal-bizinfo">
+        <h2><span class="icon-fonts">H</span>商家信息</h2>
+
+            <div class="biz-info">
+                <a href="{pigcms::U('Groupon/company',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$product['id']))}">
+                    <div class="biz-detail">
+                        <p class="title ell"> {pigcms:$thisCompany.name}</p>
+
+                        <p class="address ell">{pigcms:$thisCompany.address}</p>
+                    </div>
+                </a>
+
+                <div class="icon-fonts call">
+                    <a href="tel:{pigcms:$thisCompany.tel}">E</a>
+                </div>
+            </div>
+            <a class="more" href="{pigcms::U('Groupon/company',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$product['id']))}">查看全部{pigcms:$branchStoreCount}家分店</a>
+    </div>
+
+
+<script type="text/javascript">
+    //点击加入购物车
+    function add_cart() {
+    	location.href="{pigcms::U('Groupon/orderCart',array('token'=>$token,'id'=>$product['id'],'price'=>$product['price'],'count'=>1,'wecha_id'=>$_GET['wecha_id']))}";
+    }
+</script>
+    
+    <div style="margin:0 10px 10px 10px">
+            <a class="btn-large btn-tip" onclick="add_cart();" href="###">立即购买</a>
+    </div>
+<div class="box-style deal-advice"><h2><span class="icon-fonts">K</span>相关团购推荐</h2>
+<ul gaevent="imt/deal/relate">
+<pigcmslist array="products" foreach="hostlist"> 
+<li><a class="advice-buy ell" href="{pigcms::U('Groupon/product',array('token'=>$_GET['token'],'id'=>$hostlist['id'],'wecha_id'=>$_GET['wecha_id']))}">{pigcms:$hostlist.name}</a></li>
+</pigcmslist>
+</ul></div></div>
+<div id="mask" class="shadow" style="display: none"></div>
+
+<div id="pop-wrapper" class="pop-layer" style="display: none;">
+    <h4>弹窗</h4>
+
+    <div id="content" class="content">
+
+    </div>
+</div>
+
+<div id="img_pop" class="img-pop" style="display: none;">
+
+</div>
+<nav class="pageinator clearfix">
+    <div id="nav-page" class="pg-next">
+    </div>
+    <pigcmsif where="$hideTopButton neq 1">
+    <div id="nav-top" class="pg-top">
+        <span class="btn btn-top"><span class="icon icon-top"><a href="#top" style="color:#666">回到顶部</a></span></span>
+    </div>
+    </pigcmsif>
+</nav>
+<footer>
+<div class="ft-copyright"><span class="ft-copyright-text"> &copy;<?php echo date('Y',time());?> </span></div>
+</footer>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Groupon",
+            "moduleID":"{pigcms:$product.id}",
+            "imgUrl": "{pigcms:$product.logourl}", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Groupon/product',array('token'=>$token,'id'=>$product['id']))}",
+            "tTitle": "{pigcms:$product.name}",
+            "tContent": ""
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

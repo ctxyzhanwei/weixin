@@ -1,0 +1,190 @@
+<include file="Repast:header"/>
+<body id="page_allMenu">
+<div class="center">
+	<if condition="empty($dishlist) neq true">
+	<volist name="dishlist" id="com">
+    <section id="infoSection" style="float:none;width:100%;">
+        <article>
+			<div >
+				<dl id="list_{pigcms:$com['id']}" dunitname="{pigcms:$com['unit']}" dsubcount="1" dishid="{pigcms:$com['id']}" dname="{pigcms:$com['name']}" dtaste="" ddescribe="{pigcms:$com['des']}" dprice="{pigcms:$com['price']}" dishot="{pigcms:$com['ishot']}" dspecialprice="{pigcms:$com['price']}" disspecial="1"   onclick="selectOne(this, '{pigcms:$com['id']}', '{pigcms:$com['price']}');"> 
+					<dt><h3>{pigcms:$com['name']}</h3></dt>                    
+					<dd>
+ 						<a href="javascript:void(0)" class="dataIn" onclick="showImgDetail(this);event.stopPropagation();">
+						<img src="{pigcms:$com['image']}" alt="" title="">
+						<if condition="$com['ishot'] eq 1">
+						<span style="font-size:10px;">推荐</span>
+						</if>
+						</a>
+   					</dd>
+					<dd>
+						<em>{pigcms:$com['price']}元/{pigcms:$com['unit']}</em>
+					</dd> 
+					<input type="checkbox" class="favourite" value="{pigcms:$com['id']}" checked onclick="favourite(this, event);">
+					<button shopinfo="{pigcms:$com['id']}" class="<php>if ($com['select']) {echo 'selectBtn choose choosen';} else {echo 'selectBtn choose unchoose';}</php>"></button>
+				</dl>
+			</div>
+        </article>
+    </section>
+	</volist>
+	<else />
+	<div style="float:none;width:100%;" class="headselect">
+	<a class="link_tel icon-phone">您还没有收藏喜欢的菜！</a>
+	</div>
+	<div id="container"></div>
+	</if>
+</div>
+<include file="Repast:footer"/>
+	
+<script type="text/javascript">
+
+$(document).ready(function(){
+    var min_height = $(document).height() - 95;
+    $("#container").css({"min-height":min_height});
+});
+
+function showImgDetail(thi){
+    var parentDl = thi.parentNode.parentNode;
+    var childImg = thi.childNodes[0]
+    if(childImg.nodeType == 3){
+        childImg = thi.childNodes[1];
+    }
+
+    popPic(childImg.src,
+            parentDl.getAttribute('dname'),
+            parentDl.getAttribute('dprice') + '元/' + parentDl.getAttribute('dunitName'),
+            parentDl.getAttribute('dIsSpecial'),
+            parentDl.getAttribute('dSpecialPrice') + '元/' + parentDl.getAttribute('dunitName'),
+            parentDl.getAttribute('dsubCount'),
+            parentDl.getAttribute('dtaste'),
+            parentDl.getAttribute('ddescribe'),
+            parentDl.getAttribute('dishot')
+        );
+}
+
+function popPic(imgUrl,title,price, isSpecial, specialPrice, people,teast,assess,isHot){
+    var _title = title,
+        _price = price,
+        _people = null;//people,
+        _teast = teast,
+        _assess = assess;
+
+        var hotHtml = '';
+        if (isHot != 0) {
+        	hotHtml += '<b>推荐</b>';
+        }
+        _tmpHtml = "<div class='content'>"+hotHtml+"<img src='"+imgUrl+"' alt='' title=''><h2>"+_title;
+        _tmpHtml += "<i>"+_price+"</i>";
+
+        if (_people) {
+            _tmpHtml += "<span>"+_people+"人点过</span>";
+        }
+        _tmpHtml += "</h2>";
+
+        if (_teast) {
+            _tmpHtml += "<h3>口味："+_teast+"</h3>";
+        }
+
+        if (_assess) {
+            _tmpHtml += "<p>"+_assess+"</p>";
+        }
+
+        _tmpHtml += '</div>';
+    MDialog.popupCustom(_tmpHtml,true,true);
+}
+function favourite(thi, evt){
+    evt.stopPropagation();
+    var checkeds = '';
+    if($(thi).is(':checked')){
+        checkeds = '1';
+    }else{
+        checkeds = '0';
+    }
+    MDialog.confirm(
+        '', '您确定要从喜欢栏目中移除？', null,
+        '确定', function() {
+            
+            var id = $(thi).val();
+            var check = '';
+            if($(thi).is(':checked')){
+                check = '1';
+            }else{
+                check = '0';
+            }
+            $.ajax({
+            	url:"{pigcms::U('Repast/dolike', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}",
+                data:{'id':id,'check':check},
+                type:'POST',
+                dataType:'json',
+                cache:false,
+                beforeSend:function(){
+                    MLoading.show('加载中');
+                },
+                success:function(msgObj){
+                    MLoading.hide();
+                    if(msgObj.status == '1'){
+                        $("#list_"+id).remove();
+                    }else{
+                        return false;
+                    }
+                }
+            });
+
+        }, null,
+        '取消', function(){thi.checked = true;}, null,
+            null, true, true
+        );
+}
+window.selected = {total:0, dishes:{}};
+function selectOne(container, dishid, price) {
+	var btn = container.querySelectorAll("button")[0];
+    if (btn.className.indexOf("choosen")>-1) {
+        _removeClass(btn, 'choosen');
+        _addClass(btn, 'unchoose');
+        //unselected
+        delete window.selected.dishes[dishid];
+        window.selected.total -=1;
+        editOrder(dishid, -1);
+    } else {
+        _removeClass(btn, 'unchoose');
+        _addClass(btn, 'choosen');
+        //selected
+        window.selected.dishes[dishid] = {
+            price:price,
+            num:1
+        }
+        window.selected.total +=1;
+        editOrder(dishid, 1);
+
+    }
+    if(!("origTotal" in window.selected)){
+        window.selected.origTotal = parseInt(_q(".footer_menu .num").innerHTML);
+    }
+    _q(".footer_menu .num").innerHTML = window.selected.origTotal + window.selected.total;
+    //console.log(window.selected);
+}
+
+function editOrder(id, num){
+    $.ajax({
+        'url':"{pigcms::U('Repast/editOrder', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}",
+        'data':{'id':id, 'num':num, 'des':''},
+        'type':'POST',
+        'async':'false',
+        'success':function(db){}
+    });
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Repast/like',array('token' => $token, 'cid' => $cid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Repast/like',array('token' => $token, 'cid' => $cid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Repast/like',array('token' => $token, 'cid' => $cid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关于我们</title>
+<include file="common:public" />
+<div class="cr"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+      <tr>
+
+        <td>标题</td>
+        <td>管理操作（仅支持添加一项）</td>
+      </tr>
+<if condition="$list neq ''">
+            <tr>
+                <!-- <td align='center'>{pigcms:$list['id']}</td> -->
+                <td >{pigcms:$list['title']}</td>
+
+                <td align='center'>
+                    <a href="{pigcms::U('Aboutus/edit/',array('id'=>$list['id']))}">修改</a>
+                    | <eq name="list.username" value="admin"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{pigcms::U('Aboutus/del/',array('id'=>$list['id']))}','确定删除该用户吗?')">删除</a></eq>
+                </td>
+            </tr>
+        </if>
+        <style>
+            .current{border: 0;padding: 1px 9px;color: #fff;background: #3F8EF3 url(main/pageh.png) no-repeat;}
+        </style>
+     <tr bgcolor="#FFFFFF">
+
+     <!--  <td colspan="8"><div class="listpage">{pigcms:$page}</div></td> -->
+
+    </tr>
+
+</table>
+
+
+
+</body>
+</html>

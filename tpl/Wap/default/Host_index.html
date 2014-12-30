@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>{pigcms:$set['title']}|在线订购</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{pigcms::RES}/css/style/css/hotels.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="" >
+<div class="qiandaobanner"> 
+  <if condition="$set['ppicurl'] neq false">
+   <img src="{pigcms:$set['ppicurl']}"  />  
+  <else />
+    <img src="{pigcms::RES}/css/style/images/default.jpg"  />  
+ </if>
+ </div>
+<div class="cardexplain"> 
+
+  <!--普通用户登录时显示-->
+     
+
+<!--商家房价及类型-->
+<ul class="round">
+<li class="title"><span class="none">{pigcms:$set['title']}</span></li>
+            
+ <volist name="list" id="vo">            
+<li class="dandanb"> <!--订房-->
+<a href="index.php?g=Wap&m=Host&a=lists&token={pigcms:$vo.token}&id={pigcms:$vo.id}&wecha_id={pigcms:$Think.get.wecha_id}&hid={pigcms:$set['id']}"><span>
+<table class="jiagebiao" width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div>{pigcms:$vo.type}</div>
+<div><img src="{pigcms:$vo.picurl}" class="showimg">
+<p>{pigcms:$vo.typeinfo}</p>
+<p>原价：<a class="yuanjia">￥{pigcms:$vo.price}</a></p>
+<p>优惠价：<a class="youhuijia">￥{pigcms:$vo.yhprice}</a></p></td>
+</tr>
+</table>
+</span></a>
+</li>
+</volist>  
+</ul>
+
+<!--后台可控制是否显示-->
+<ul class="round">
+<li class="title"><span class="none">订单说明</span></li>
+<li>
+<div class="text">
+{pigcms:$set['info2']}
+</div>
+</li>
+</ul>
+
+<!--后台可控制是否显示-->
+<ul class="round">
+<li class="addr"><a href="?g=Wap&m=Company&a=map&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}"><span>{pigcms:$set['address']}</span></a></li>
+<li class="tel"><a href="tel://{pigcms:$set['tel2']}"><span>{pigcms:$set['tel2']} 电话预订</span></a></li>
+<if condition="$set['tel'] neq false">
+<li class="tel"><a href="tel://{pigcms:$set['tel']}"><span>{pigcms:$set['tel']} 电话预订</span></a></li>
+</if>
+<li class="detail"><a href="index.php?g=Wap&m=Host&a=companyDetail&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}&hid={pigcms:$Think.get.hid}"><span>查看商家详情</span></a></li>
+</ul>
+</div>
+
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Host",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Host/index',array('token'=>$token))}",
+            "tTitle": "{pigcms:$set['title']}",
+            "tContent": "{pigcms:$set['title']}"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

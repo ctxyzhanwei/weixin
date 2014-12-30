@@ -1,0 +1,71 @@
+*{
+padding:0px;
+margin:0px;
+font-family:"Microsoft YaHei",SimHei,Verdana,Arial,sans-serif;
+}
+body{
+background:#E4E7EE url(../images/login_header_bg.jpg) no-repeat top center;
+}
+li{
+list-style:none;
+}
+img{
+border:0;
+}
+.hidden{
+display:none;	
+}
+.clear{
+clear:both;	
+}
+input,textarea{outline:none;}
+.collwe_logo{height:90px;padding-top:50px;}
+.collwe_logo img{display:block;margin:0 auto;}
+.input_text{
+	position:relative
+}
+.input_text .login_pad{
+display: block; top:0px; left: 0px; line-height: 41px; text-indent: 14px; color: rgb(221, 231, 243); font-size: 16px; position: absolute;
+}
+.reg_login{width:478px;padding:0 0 35px;clear:both;overflow:auto;background:#fff;margin:0 auto;}
+.reg_login h2{text-align:center;height:40px;color:#536672;line-height:40px;font-size:24px;font-family:"Microsoft YaHei";font-weight:normal;padding:20px 0 0;}
+.reg_login ul{width:400px;margin:0 auto;}
+.reg_login ul li{margin-top:20px;}
+.reg_login ul li.pwd{position:relative;}
+.reg_login ul li.pwd span.forgetpwd{position:absolute;display:block;top:12px;right:10px;font-size:12px;color:#ccc;}
+.reg_login ul li.input_text input.text:focus{background:none repeat scroll 0 0 rgba(46, 159, 255, 0.1);border:2px solid #8ccafe;}
+.reg_login ul li.input_text img{vertical-align:middle;}
+.reg_login ul li.input_text input.text{font-family:"Microsoft YaHei";transition: background 0.5s ease 0s, border-color 0.5s ease 0s;border-radius:5px;text-indent:10px;border:2px solid #E4E7EE;background:none;font-weight:normal;font-size:16px;width:396px;height:38px;line-height:38px;letter-spacing:1px;color:#C1C9D3;}
+.reg_login ul li.input_text input.textcode:focus{background:none repeat scroll 0 0 rgba(46, 159, 255, 0.1);border:2px solid #8ccafe;}
+.reg_login ul li.input_text input.textcode{font-family:"Microsoft YaHei";transition: background 0.5s ease 0s, border-color 0.5s ease 0s;border-radius:5px;text-indent:10px;border:2px solid #E4E7EE;background:none;font-weight:normal;font-size:16px;width:200px;height:38px;line-height:38px;letter-spacing:1px;color:#C1C9D3;}
+.reg_login ul li.input_text select.text{font-family:"Microsoft YaHei";transition: background 0.5s ease 0s, border-color 0.5s ease 0s;border-radius:5px;text-indent:10px;border:2px solid #E4E7EE;background:none;font-weight:normal;font-size:16px;width:121px;height:38px;line-height:38px;margin-right:12px;letter-spacing:1px;color:#666666;}
+.reg_login ul li.input_text a.forget{font-size:14px;color:#2D9FFF;text-decoration:none;}
+.reg_login ul li.input_text span.error{display:block;font-size:14px;font-family:ËÎÌå;height:30px;line-height:30px;color:#525355;margin-top:18px;text-indent:8px;}
+.reg_login ul li span.btn{cursor:pointer;display:block;width:189px;height:42px;line-height:42px;text-align:center;border-radius:5px;float:left;font-size:16;}
+.reg_login ul li span.login{margin-right:20px;background:#2E9FFF;color:#fff;}
+.reg_login ul li span.register {background:#E3E6EC;color:#546673;}
+.footer{text-align:center;font-size:14px;color:#536672;margin-top:40px;font-weight:300;font-family:ºÚÌå;font-family:arial;}
+.reg_login ul li span.login:hover,.reg_login ul li span.reg:hover{background:#307cce;}
+.reg_login ul li span.btn a{color:#546673;text-decoration:none;}
+.reg_login ul li span.register:hover{background:#ccc;}
+.reg_login ul li span.reg {margin-left:110px;background:#2E9FFF;color:#fff;}
+.reg_login ul li span.reg a{color:#fff;}
+
+.tips{width:396px;height:45px;line-height:45px;color:#9b3e21;font-size:14px;letter-spacing:1px;background:#ffdabc;margin:10px auto 0;border:2px solid #e86d3e;border-radius:5px;text-align:center;}
+.forgot{width:396px;cursor:pointer;color:#fff;background:#2E9FFF;display:block;height:42px;line-height:42px;text-align:center;border-radius:5px;float:left;font-size:16;}
+.forgot:hover{background:#307cce;}
+.tips_forgot{width:396px;margin:10px auto 0;font-size:16px;line-height:26px;color:#888;}
+.tips_info{font-family:"ËÎÌå";padding:20px;width:356px;margin:18px auto 0;height:80px;background:none repeat scroll 0 0 #E3E6EC;border-radius:5px;}
+.tips_info p{line-height:24px;margin-top:8px;color:#666;}
+.tips_info h3{font-weight:normal;font-size:20px;color:#666;}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> 微信公众平台源码,微信机器人源码,微信自动回复源码 PigCms多用户微信营销系统</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/style_2_common.css?BPm" />
+<script src="{pigcms::RES}/js/common.js" type="text/javascript"></script>
+<link href="{pigcms::RES}/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="nv_member">
+<div style="line-height:200%;padding:10px 20px;">
+支付状态：<if condition="$thisOrder.paid eq 1">已付款<else/>未付款</if><br>
+订购人：{pigcms:$thisOrder.truename}<br>
+电话：{pigcms:$thisOrder.tel}<br>
+地址：{pigcms:$thisOrder.address}<br>
+总数：{pigcms:$totalCount}<br>
+商品金额：<span style="color:#f30;font-size:16px;font-weight:bold">{pigcms:$totalFee}</span>元<br>
+运费：<span style="color:#f30;font-size:16px;font-weight:bold">{pigcms:$mailprice}</span>元<br>
+应付金额：<span style="color:#f30;font-size:16px;font-weight:bold">{pigcms:$thisOrder['price']}</span>元<br>
+兑换积分：<span style="color:#f30;font-size:16px;font-weight:bold">{pigcms:$thisOrder['score']}</span>分<br>
+</div>
+
+<form class="form" method="post" id="form" action=""> 
+<if condition="$isUpdate eq 1">
+<input type="hidden" name="id" value="{pigcms:$set.id}" />
+</if>
+<input type="hidden" name="discount" id="discount" value="{pigcms:$set.discount}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+      <tr> 
+        <th><span class="red">*</span>支付状态：</th> 
+        <td><select name="paid"><option value="0" <if condition="$thisOrder.paid eq 0">selected</if>>未付款</option><option value="1" <if condition="$thisOrder.paid eq 1">selected</if>>已付款</option></select></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>发货状态：</th> 
+        <td><select name="sent"><option value="0" <if condition="$thisOrder.sent eq 0">selected</if>>未发</option><option value="1" <if condition="$thisOrder.sent eq 1">selected</if>>已发</option></select></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>快递公司：</th>
+        <td><input type="text" name="logistics" value="{pigcms:$thisOrder.logistics}" class="px" style="width:200px;" /></td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>快递单号：</th>
+        <td><input type="text" name="logisticsid" value="{pigcms:$thisOrder.logisticsid}" class="px" style="width:200px;" /></td> 
+       </tr>
+       
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+      <input type="hidden" name="groupon" value="1" />
+       <button type="submit" name="button" class="btnGreen">保存</button> </td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+   
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="120" align="center" style="text-align:center">名称</th>
+<th class="60" align="center" style="text-align:center">详情</th>
+<th width="160" align="center" style="text-align:center">单价（元）</th>
+
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="products" id="o"> 
+<tr>
+<td align="center">
+<img src="{pigcms:$o.logourl}"  width="100"/><br>{pigcms:$o.name}</td>
+<td align="center">
+<if condition="empty($o['detail']) neq true">
+<volist name="o['detail']" id="row">
+单价：￥{pigcms:$row.price}<br/>
+{pigcms:$o.colorTitle}<if condition="empty($row['colorName']) neq true">：{pigcms:$row.colorName}<br/></if>
+{pigcms:$o.formatTitle}<if condition="empty($row['formatName']) neq true">：{pigcms:$row.formatName}<br/></if>
+数量：{pigcms:$row.count}<br/>
+</volist>
+<else/>
+数量：{pigcms:$o.count}<br/>
+</if>
+</td>
+<if condition="empty($o['detail']) neq true">
+<td align="center"><php>{echo $o['detail'][0]['price'];}</php></td>
+<else/>
+<td align="center">{pigcms:$o.price}</td>
+</if>
+</tr>
+</volist>
+</tbody>
+</table>
+</body>
+</html>

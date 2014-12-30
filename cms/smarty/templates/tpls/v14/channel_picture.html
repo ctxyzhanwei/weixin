@@ -1,0 +1,36 @@
+{include file=$header}
+<div class="sub">
+		<!--<div class="clickbtn">
+        <div class="classbtn"><p>打开分类</p></div>
+        <div class="classbtn2"><p>关闭分类</p></div>
+    </div>-->
+    <!--<ul class="subnav">
+		        <li><a href="product.php-tid=1.htm" tppabs="http://900029.3g/product.php?tid=1" title="分类1">分类1</a></li>
+                <li><a href="product.php-tid=2.htm" tppabs="http://900029.3g/product.php?tid=2" title="分类2">分类2</a></li>
+                <li><a href="product.php-tid=3.htm" tppabs="http://900029.3g/product.php?tid=3" title="分类3">分类3</a></li>
+                <div class="clear"></div>
+    </ul>-->
+	        <ul class="productul">
+				{if $contents}
+			{foreach from=$contents item=a}
+		    	<li><center>
+        	<a href="{$a.link}"  title="{$a.title}"><img src="{$a.thumb}"  alt="{$a.title}"></a>
+        	<p><a href="{$a.link}"  title="{$a.title}">{$a.title}</a></p>
+        </center></li>
+         {/foreach}
+			 {/if}
+		    	
+		    </ul>
+    <div class="clear"></div>
+					<div class="pages">
+						<a href="{$previousPageLink}" title="上一页" class="no_prev">上一页</a>
+						<a href="#" title="分页列表" class="page" style="readonly"><span>{$currentPage}/{$totalPage}</span></a>
+						<a href="{$nextPageLink}"  title="下一页" class="next">下一页</a>
+					</div>
+		<!--<ul class="topages">
+									<li class="nowpage"><a href="javascript:void(0);" title="第1页">第1页</a></li>
+												<li><a href="product.php-&pageno=2.htm" tppabs="http://900029.3g/product.php?&pageno=2" title="第2页">第2页</a></li>
+								</ul>-->
+		<a class="bg" id="bg" href="#foot"></a>
+			</div>
+{include file=$footer}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/style.css" media="all">        
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/peak-3.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/back.css">
+
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<title>关于我们</title>
+
+<!-- <script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/common.js"></script> -->
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/waphome.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/swipe.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/zepto.js"></script>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta name="Keywords" content="" />
+        <meta name="Description" content="" />
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+
+        <style>
+            /*img{width:100%!important;}*/
+           /* a{color:#000;text-decoration:none; }
+            a:hover {color:#24ac32;text-decoration:underline;}
+            a:visited { color: #000;text-decoration:none; }*/
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+
+<div class="body" style="padding-bottom:60px;">
+
+    <div class="top_bar footer_bar">
+        </div>
+        <section class="news_article">
+        <header>
+            <h3 style="font-size:14px;">{pigcms:$about['name']}</h3>
+
+            <p><img src="{pigcms:$about['logourl']}" alt=""  style="width:100%!important;"></p>
+        </header>
+        <article>
+            <p>
+                <a style="text" href="{pigcms::U('Estate/maps',array('token'=>$token,'id'=>$estatindex['id'],'type'=>'about'))}">
+                    <span color="#2c2c2c">地址： {pigcms:$about['address']}</span>
+                    <if condition="$isamap eq 1">
+                        <div id="l-map" style="height:200px;"></div>  
+                        <input type="hidden" id="longitude" value="{pigcms:$estatindex['lng']}">  
+                        <input type="hidden" id="latitude" value="{pigcms:$estatindex['lat']}">   
+                    <else/>
+                    <img  src="http://api.map.baidu.com/staticimage?width=600&height=235&center=&markers=|{pigcms:$about['longitude']},{pigcms:$about['latitude']}&zoom=10&markerStyles=s,A,0xff0000"  height="235" style="max-height: 250px;max-width: 390px;"/>
+
+                    </if>  
+                </a>
+
+            <p>
+            <strong>
+                <span style="color:#009900;font-size:16px;">
+                     免费热线：<a href="tel:{pigcms:$about['tel']}">{pigcms:$about['tel']}</a>
+                </span>
+            </strong><br />
+                公司简介：<br />
+            <p style="width:100%!important;">
+                {pigcms:$about['intro']|html_entity_decode|trim}
+            </p>
+        </p>
+        </article>
+    </section>
+
+    <a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+
+</div>
+<script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=b6c2c19cf45cd3d2b82541bc857eed7c"></script>
+
+<script>
+
+  var mapObj;
+  function mapInit(){
+    if($('#longitude').val() && $('#longitude').val()!=0){
+      mapObj = new AMap.Map("l-map",{
+          view: new AMap.View2D({
+              center:new AMap.LngLat($('#longitude').val(),$('#latitude').val()),//地图中心点
+              zoom:13 //地图显示的缩放级别
+          })
+      });
+    }else{
+       mapObj = new AMap.Map("l-map");
+    }
+    var marker = new AMap.Marker({
+        position:mapObj.getCenter(),
+        draggable:true, //点标记可拖拽
+        cursor:'move',  //鼠标悬停点标记时的鼠标样式
+        raiseOnDrag:true//鼠标拖拽点标记时开启点标记离开地图的效果
+ 
+    });
+    marker.setMap(mapObj);
+    AMap.event.addListener(marker,'dragging',function(e){
+        $('#longitude').attr('value',e.lnglat.getLng())
+        $('#latitude').attr('value',e.lnglat.getLat())
+    })
+  }
+mapInit();
+</script>
+
+    </body>
+</html>

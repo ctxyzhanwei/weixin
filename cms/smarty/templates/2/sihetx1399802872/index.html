@@ -1,0 +1,46 @@
+{include file=$header}
+
+<div class="bannerbg">
+	<img src="smarty/templates/tpls/zongse/bannerbg.jpg" alt="" class="bannerbgpic">
+    <div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+        <div class="big-pic-in">
+            <div class="pic-list">
+			{if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<4}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" style="height:188px;" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                            </div>
+            <div class="slide-dot">
+            	<center>
+					                   
+									   {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<4}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                                    </center>    
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height:20px;"></div>
+<div class="clear"></div>
+<ul class="productbox">
+{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<3}
+		<li>
+    	<div><a href="{$a.link}" title="{$a.title}"><img max-width="150" src="{$a.thumb}" alt="{$a.title}"></a></div>
+        <p>{$a.title}</p>
+    </li>
+    	{/if}
+		{/foreach}
+		{/if}
+    </ul>
+
+{include file=$footer}

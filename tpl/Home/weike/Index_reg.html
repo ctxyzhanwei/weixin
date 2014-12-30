@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>注册 - {pigcms::C('site_name')}</title>
+<meta name="keywords" content="微信帮手 微信公众账号 微信公众平台 微信公众账号开发 微信二次开发 微信接口开发 微信托管服务 微信营销 微信公众平台接口开发"/>
+<meta name="description" content="微信公众平台接口开发、托管、营销活动、二次开发"/>
+<link rel="stylesheet" href="{pigcms::RES}/css/bootstrap_140705.css" onerror="_cdnFallback(this)">
+<link rel="stylesheet" href="{pigcms::RES}/css/app_signup_fc2bd0d4fe.css" onerror="_cdnFallback(this)">
+</head>
+<body style="">
+<div class="container js-container">
+<div id="header"><div><div class="header-side"><a href="{pigcms::U('Index/login')}">登录</a></div>
+<div class="header-logo"></div>
+<div class="header-title">免费注册</div>
+</div>
+</div>
+<div id="main"><div class="clearfix"><div class="content js-content">
+<form action="{pigcms::U('Users/checkreg')}" method="post" class="form-horizontal">
+<input style="display:none" type="text" name="fakeusernameremembered">
+<input style="display:none" type="password" name="fakepasswordremembered">
+<div class="control-group">
+<label class="control-label" for="mobile"><em class="required">*</em>用户名：</label>
+<div class="controls">
+<input class="input signup" type="text" id="username" name="username" placeholder="请输入用户名" maxlength="11" autocomplete="off">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="password"><em class="required">*</em>设置密码：</label>
+<div class="controls">
+<input class="input signup" type="password" id="password" name="password" placeholder="6~20个字符" maxlength="20" autocomplete="off">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="password_again"><em class="required">*</em>确认密码：</label>
+<div class="controls">
+<input class="input signup" type="password" id="repassword" name="repassword" placeholder="再输一次" maxlength="20">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="nickname">电子邮箱：</label>
+<div class="controls">
+<input class="input signup" type="text" id="email" name="email" placeholder="请输入电子邮箱" maxlength="20">
+</div>
+</div>
+<div class="control-group">
+<div class="controls">
+<button type="submit" class="btn btn-large btn-primary btn-signup js-btn-signup" data-loading-text="确认注册...">确认注册</button>
+</div>
+</div>
+</form>
+</div>
+<div class="sidebar js-sidebar"></div>
+<div class="qq-server-wrap">
+<div class="qq-server-content">
+<span class="qq-server-before">在线客服</span>
+<span class="qq-server-after" onclick="window.open(&#39;http://wpa.qq.com/msgrd?v=3&uin={pigcms:$f_qq}&site=qq&menu=yes&#39;)">点此咨询</span>
+</div>
+<div class="qq-server-total"></div>
+</div>
+</div></div>
+<div id="footer"><p class="copyright">© <a href="http://www.51sywx.com/">51sywx.com</a></p></div>
+</div>
+<!--[if lte IE 9]>
+<link rel="stylesheet" href="http://static.koudaitong.com/v2/vendor/kill-ie-6.css">
+<script src="http://kdt-static.qiniudn.com/v2/vendor/kill-ie-6.js" onerror="_cdnFallback(this)"></script>
+<script src="http://kdt-static.qiniudn.com/v2/vendor/json2.js" onerror="_cdnFallback(this)"></script>
+<![endif]-->
+</body>
+</html>

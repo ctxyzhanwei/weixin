@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>最新资讯_魔码网络技术有限公司3G站</title>
+<meta name="keywords" content="魔码网络技术有限公司3G站" />
+<meta name="description" content="魔码网络技术有限公司3G站"/>
+<meta name="Author" content="024">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="jquery.mobile.structure-1.2.0.min.css?{$rand}" tppabs="3g/css/jquery.mobile.structure-1.2.0.min.css?{$rand}" />
+<link rel="stylesheet" type="text/css" href="style.css?{$rand}" tppabs="3g/css/style.css?{$rand}" />
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" tppabs="3g/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery.mobile-1.2.0.min.js" tppabs="3g/js/jquery.mobile-1.2.0.min.js"></script>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/banner.js" tppabs="3g/js/banner.js"></script>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/search.js" tppabs="3g/js/search.js"></script>
+<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" tppabs="3g/js/nav.js"></script>
+<script type="text/javascript">
+$(document).bind("mobileinit", function(){
+	$.mobile.ajaxEnabled=false;
+});
+</script>
+</head>
+<body>
+<div data-role="page" data-theme="f">
+<div class="wrap">
+<div class="headerview" data-role="header">
+  <div class="headerviewbg">
+    <div class="logo"><a href="index.html" tppabs="3g/html/index.html" title="魔码网络" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/logo.png" tppabs="3g/images/logo.png" alt="魔码网络"/></a></div>
+    <div class="search"><img src="smarty/templates/tpls/{$site.template}/search.png" tppabs="3g/images/search.png" alt="搜索按钮"/> </div>
+  </div>
+</div>
+<div class="menu">
+  <ul class="ui-grid-d">
+    <li class="ui-block-a"><a href="about.html" tppabs="3g/html/about.html" data-ajax="false" title="关于我们">关于我们</a></li>
+    <li class="ui-block-b"><a href="news.html" tppabs="3g/html/news.html" data-ajax="false" title="最新资讯">最新资讯</a></li>
+    <li class="ui-block-c"><a href="product.html" tppabs="3g/html/product.html" data-ajax="false" title="景观展示">景观展示</a></li>
+    <li class="ui-block-d"><a href="case.html" tppabs="3g/html/case.html" data-ajax="false" title="成功案例">成功案例</a></li>
+    <li class="ui-block-e"><a href="contact.html" tppabs="3g/html/contact.html" data-ajax="false" title="联系我们">联系我们</a></li>
+  </ul>
+</div>
+<div class="searchmain">
+  <div class="search_t"><img src="smarty/templates/tpls/{$site.template}/search_t.jpg" tppabs="3g/images/search_t.jpg" alt="景观检索"/></div>
+  <form method="post" action="?m=site&c=home&a=search&token={$token}">
+    <input type="text" class="search_txt" name="SeaStr" id="SeaStr" data-role="none" placeholder="请输入关键词"/>
+    <input type="submit" class="search_but" data-role="none" value="">
+  </form>
+</div>
+<div class="clear"></div>
+<div data-role="content" class="content">
+  <div class="title"><span class="fl">最新资讯</span></div>
+  <div class="news_i">
+    <ul>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-11.html" tppabs="3g/html/news_view-11.html" data-ajax="false" title="2012，聚焦营销新动力——营销中国行站圆满落幕2012，聚焦营销新动力——营销中国行站圆满落幕">2012，聚焦营销新动力——营销中国行站圆满落幕2012，聚焦营销新动力——营销中国行站圆满落幕</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-10.html" tppabs="3g/html/news_view-10.html" data-ajax="false" title="【西中踏浪 魔码远航】——2012辽宁魔码年度旅游活动报道【西中踏浪 魔码远航】——2012辽宁魔码年度旅游活动报道">【西中踏浪 魔码远航】——2012辽宁魔码年度旅游活动报道【西中踏浪 魔码远航】——2012辽宁魔码年度旅游活动报道</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-9.html" tppabs="3g/html/news_view-9.html" data-ajax="false" title="“坐等客户 坐拥商机”——魔码西窑建材交易中心路演活动报道">“坐等客户 坐拥商机”——魔码西窑建材交易中心路演活动报道</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-8.html" tppabs="3g/html/news_view-8.html" data-ajax="false" title="2012第十一届中国国际装备制造业博览会活动报道">2012第十一届中国国际装备制造业博览会活动报道</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-7.html" tppabs="3g/html/news_view-7.html" data-ajax="false" title="搜赢天下 智引未来——2011年营销中国行9月21日站">搜赢天下 智引未来——2011年营销中国行9月21日站</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-6.html" tppabs="3g/html/news_view-6.html" data-ajax="false" title="铁岭站&quot;搜赢天下 智引未来&quot;-9月21日2011年营销中国行">铁岭站&quot;搜赢天下 智引未来&quot;-9月21日2011年营销中国行</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-5.html" tppabs="3g/html/news_view-5.html" data-ajax="false" title="认知体验分享8月12日站推广客户成长计划之搜索营销基础培训会">认知体验分享8月12日站推广客户成长计划之搜索营销基础培训会</a></li>
+          <li class="news_common" onClick="this.className='news_current'"><a href="news_view-4.html" tppabs="3g/html/news_view-4.html" data-ajax="false" title="2012，聚焦营销新动力——营销中国行站圆满落幕">2012，聚焦营销新动力——营销中国行站圆满落幕</a></li>
+        </ul>
+  </div>
+  <div class="clear"></div>
+    <div class="pages ui-grid-b">
+      <div class="ui-block-a"><span class="left ui-bar-h"><img src="smarty/templates/tpls/{$site.template}/left.png" tppabs="3g/images/left.png" alt="上一页"/></span></div>
+    <div class="ui-block-b"><div class="page_change">1/2</div></div>
+    <div class="ui-block-c"><a href="news.php-&pageno=2.htm" tppabs="3g/news.php?&pageno=2" class="right ui-bar-h" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/right.png" tppabs="3g/images/right.png" alt="下一页"/></a></div>
+  </div>
+	</div>
+<div class="clear"></div>
+<div class="footer">
+  <ul>
+    <li class="foothome"><a href="index.html" tppabs="3g/html/index.html" title="网站首页" class="ui-bar-h" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/home.png" tppabs="3g/images/home.png" /></a></li>
+    <li class="foottel"><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone=96877" title="电话" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/tel.png" tppabs="3g/images/tel.png" /></a></li>
+    <li class="footmail"><a href="sms:15804067964" title="短信" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/mess.png" tppabs="3g/images/mess.png" /></a></li>
+    <li class="footmap"><a href="map.html" tppabs="3g/html/map.html" title="地图" data-ajax="false"><img src="smarty/templates/tpls/{$site.template}/map.png" tppabs="3g/images/map.png" /></a></li>
+  </ul>
+  <div class="footbanner"><img src="smarty/templates/tpls/{$site.template}/footbanner.png" tppabs="3g/images/footbanner.png" alt="感动你我的生活空间" /></div>
+</div>
+</div></div>
+</body></html>

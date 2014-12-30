@@ -1,0 +1,58 @@
+<include file="Public:head"/>
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加点评</h4>
+  <a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" >
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>标题：</th>
+				  <td>
+					<input type="text" id="title" name="title" value="{pigcms:$impress['title']}" class="input-large px"  data-rule-maxlength="10" maxlength="10">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">请不要超过10个中文印象！</span>
+					</td>
+				</tr>
+				<tr>
+					<th width="120">显示顺序：</th>
+					<td> <input type="text" id="sort" name="sort" value="{pigcms:$impress['sort']|default=1}" class="input-mini px"  data-rule-number="true">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">数值越大越靠前</span></td>
+				</tr>
+				<tr>
+					<th width="120">印象数：</th>
+					<td> <input type="text" id="comment" name="comment" value="<if condition="$impress['comment'] eq ''">0<else/>{pigcms:$impress['comment']}</if>" class="input-large px"  data-rule-number="true">
+                                        <span class="maroon">*</span></td>
+				</tr>
+				<tr>
+					<th>是否显示：</th>
+					<td><label class="radio inline">
+                                            <input type="radio" name="is_show" value="1" <if condition="$impress['is_show'] eq 1"> checked="checked"</if>>显示此印象
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" name="is_show" value="0" <if condition="$impress['is_show'] eq 0"> checked="checked"</if>>不显示此印象
+                                        </label></td>
+				</tr>
+				<th>&nbsp;</th>
+				  <if condition="$impress['id'] neq ''">
+                                    <input type="hidden" name="id" value="{pigcms:$impress['id']}" />
+                                    </if>
+                                    <input type="hidden" name="pid" value="{pigcms:$pid}">
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+
+
+        </div>
+<include file="Public:footer"/>

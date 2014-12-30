@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <title>楼盘相册</title>
+        <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/photo.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/back.css" media="all">
+        <script type="text/javascript" src="{pigcms::STATICS}/estate/js/share.js"></script>
+        <script type="text/javascript" src="{pigcms::STATICS}/estate/js/common.js"></script>
+        <script type="text/javascript" src="{pigcms::STATICS}/estate/js/picshow.js"></script>
+    </head>
+    
+    <body onselectstart="return true;" ondragstart="return false;">
+        <style type="text/css">
+            #popFail .bk{background-color:rgba(194,194,194,0.5);} .pop_photo{height:100%;}
+            .pop_photo .photo li{float:left;height:100%;} .photo_show img{background:#202020
+            url("./tpl/static/estate/images/top_show.gif")
+            no-repeat center center;} .pop_photo .photo li{background:url("./tpl/static/estate/images/top_show.gif")
+            no-repeat center center;} .pop_photo .photo li.noLoading{opacity:0;*filter:alpha(opacity=0);}
+            .pop_photo .photo li img{border-radius:5px;}
+        </style>
+        <div class="wrapper" style="display:block;">
+            <!-- start -->
+            <div class="photo_area" id="scroller" style="opacity: 1.0000000000000002; overflow: hidden;"><!--  photo_wide -->
+                <ul class="photo_show" id="scrollList"></ul>
+                <!-- 由于每个li的宽度不固定，需要用js来获取ul的宽度 -->
+                <ul class="nav_photo" id="scrollTips"></ul>
+            </div>
+            <div class="pop_photo" id="scroller1" style="display: none; overflow: hidden;">
+                <ul class="photo" id="scrollPic" style=""></ul>
+                <div class="info" id="picName"></div>
+                <a href="javascript:void(0);" id="photoClick" class="btn_show_close" style="z-index:9999;"><span>关闭</span></a>
+            </div>
+            <!-- end -->
+        </div>
+        <div id="popFail" style="display: none;" jqmoldstyle="block">
+            <div class="bk">
+            </div>
+            <div class="cont">
+                <img src="./tpl/static/estate/images/load.gif" alt="loading...">
+                正在加载...
+            </div>
+        </div>
+        <div class="pop_tips" id="popTips" style="display:none;">
+            <div class="oval">
+            </div>
+            <div class="pop_show">
+                <h4 id="tipsTitle">
+                    温馨提示
+                </h4>
+                <div class="pop_info" id="tipsMsg">
+                    <p>
+                    </p>
+                </div>
+                <div class="pop_btns">
+                    <a href="javascript:void(0);" id="tipsOK">
+                        确定
+                    </a>
+                    <a href="javascript:void(0);" style="display:none;" id="tipsCancel">
+                        取消
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pop_mask" id="popMask" style="display:none;">
+        </div>
+
+<script type="text/template" id="template1"><!--缩略图-->
+    <% for(var i=0,il=data.length;i < il;i++){ var idx = i%9 + 1;%>
+        <li class="color_<%=idx%>" id="picshow<%=idx%>">
+            <%
+            for(var ps=1;ps<3;ps++){
+                var psdata = data[i]['ps'+ps];
+                %>
+                <div class="ps_<%=ps%>">
+                    <% for(var j=0,jl=psdata.length;j<jl;j++){
+                        if(psdata[j].type == 'title'){
+                            %>
+                            <div class="ps_1_0" style="width:<%=psdata[j].width%>px;max-width:<%=psdata[j].width%>px;overflow:hidden;"><h3><%=psdata[j].title%></h3><p><%=psdata[j].subTitle%></p></div>
+                        <% }else if(psdata[j].type == 'img'){ %>
+                            <div style="max-width:<%=psdata[j].size[0]*(150/psdata[j].size[1])%>px;">
+                            <img id="thubImg<%=psdata[j].idx%>" onclick="PICSHOW.slidePics(this,<%=psdata[j].idx%>);" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" osrc="<%=psdata[j].img%>" alt="<%=psdata[j].name%>" idth="<%=psdata[j].size[0]*(150/psdata[j].size[1])%>" height="150"/></div>
+                        <% }else if(psdata[j].type == 'text'){ %>
+                            <div class="ps_2_0" style="width:<%=psdata[j].width%>px;max-width:<%=psdata[j].width%>px;"><!-- 根据文字的多少计算层的宽度 -->
+                                <p><%=psdata[j].content%></p>
+                            </div>
+                        <% } /*end of psdata[j].type*/
+                    } /*end of psdata loop*/
+                    %>
+                </div>
+                <%
+                } /* end of ps for*/
+                %>
+        </li>
+    <%  } /* end of data.leng */
+        %>
+</script>
+<script type="text/tempalte" id="template2"><!-- 数据-->
+    <% for(var i=0,il=data.length;i<il;i++){ var cidx = i+start, cls = (i == idx) ? ' class="current"':''; %>
+            <li><a href="javascript:void(0);"<%=cls%> onclick="sTo(<%=cidx%>);return false;"><%=data[i]%></a></li>
+        <% }%>
+</script>
+<script type="text/template" id="template3"><!--大图浏览-->
+    <% for(var i=0,il=data.length;i<il;i++){ %><li style="width:<%=R.w%>px;" class="noLoading" id="bLi<%=data[i].idx%>">
+        <img id="bImg<%=data[i].idx%>" load="false" width="<%=R.w%>" height="<%=R.h%>" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+        </li><% } %>
+</script>
+        <script>
+            var PID     = {pigcms:$estatindex.id};
+            var TOKEN   = '{pigcms:$token}';
+            var WECHATID = '{pigcms:$wecha_id}';
+        </script>
+        <a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+        <div mark="stat_code" style="width:0px; height:0px; display:none;">
+        </div>
+
+    </body>
+
+</html>

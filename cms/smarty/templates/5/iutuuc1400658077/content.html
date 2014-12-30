@@ -1,0 +1,31 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:72%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div class="clear"></div><div class="viewtitle">
+  <div><span class="fl"><img src="smarty/templates/tpls/{$site.template}/ico3.png" tppabs="/3g/images/ico3.png" alt="图标"/>{$channel.name}</span></div>
+</div>
+<div data-role="content" class="content">
+  <div class="maintop"></div>
+  <div class="view_menu">
+  </div>
+  <div class="clear"></div>
+  <div class="padding20">
+    <div id="content" class="view_title">{$content.title}</div>
+        <p>{$content.content}</p>
+    <div class="clear"></div>
+    <div class="viewpage">
+	{if $previousContent}<a href="{$previousContent->link}" class="prevpage">上一条：<span>{$previousContent->title}</span></a>{/if}
+	{if $nextContent}<a href="{$nextContent->link}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>{/if}
+	
+	</div>
+    <div class="viewback"><a href="{$smarty.server.HTTP_REFERER}" title="返回列表" class="ui-bar-i">返回列表</a></div>
+  </div>
+</div>
+<div class="clear"></div>
+{/if}
+{include file=$footer}

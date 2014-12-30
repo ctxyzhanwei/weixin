@@ -1,0 +1,74 @@
+<include file="Public:head"/>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+
+<div class="cLineB">
+  <h4>分类管理<if condition="$fid neq 0">({pigcms:$thisClassify.name}子分类)</if>  <span class="FAQ">设置好分类，在图文编辑的时候就可以选择分类，系统会自动生成一个3G网站。</span></h4>
+ <if condition="$_GET['fid'] neq ''"> <a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></if>
+ </div>
+         <div class="cLineC" style="line-height: 32px;">
+ <a href="<if condition="$fid neq 0">{pigcms::U('Classify/add',array('fid'=>$fid))}<else/>{pigcms::U('Classify/add')}</if>" class="btnGrayS vm bigbtn">添加<if condition="$fid neq 0">{pigcms:$thisClassify.name}子</if>分类</a>　 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+                    <th style=" width:120px;">分类名称</th>
+                   <th style=" width:120px;">分类描述</th>
+<th style=" width:70px;">显示顺序</th>
+<th style=" width:80px">分类图片 <a target="999" class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>分类图片最佳尺寸：宽720高400</p>
+<p>不支持上传图片，请把图片上传到腾讯微博，再这里填写图片的外链地址。</p>
+<p>如果不填写分类图片地址系统将随机分配默认图片。</p>
+</span></a></th>
+<th>外链网站或活动 <span class="tooltips" ><img src="{pigcms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>比如你想跳转到百度，就填写<a class="red">http://www.baidu.com</a></p>
+<p>不需要跳转就不用填写，还可以外链活动，</p>
+<p>直接填写活动外链地址：<a class="red">大转盘387</a></p>
+</span></span></th>
+<th style=" width:80px;"  >首页显示</th>
+                        <th class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="info" id="vo">
+<tr>
+<td>{pigcms:$vo.name}</td>
+<td>{pigcms:$vo.info}</td>
+<td>{pigcms:$vo.sorts}</td>
+<td><div class="cateimg" style="margin-left:13px"><img src="{pigcms:$vo.img}" class="cateimg_small"  /><img src="{pigcms:$vo.img}" class="cateimg_big"  /></div></td>
+<td>{pigcms:$vo.url}</td>
+<td><eq name="vo.status" value="1">显示<else/>不显示</eq></td>
+<td class="norightborder" width="120">
+	<nobr><!--a target="ddd" href="{pigcms::U('Wap/Index/classify',array('token'=>$_SESSION['token']))}">查看</a-->
+	<a href="{pigcms::U('Classify/index',array('fid'=>$vo['id']))}">子分类</a>
+  <a href="<?php if ($vo['fid']==0){?>{pigcms::U('Classify/flash',array('tip'=>3,'id'=>$vo['id']))}<?php }else{?>{pigcms::U('Classify/flash',array('tip'=>3,'id'=>$vo['id'],'fid'=>$vo['fid']))}<?php }?>">幻灯片</a>
+  <a href="<?php if ($vo['fid']==0){?>{pigcms::U('Classify/essay',array('id'=>$vo['id']))}<?php }else{?>{pigcms::U('Classify/essay',array('id'=>$vo['id'],'fid'=>$vo['fid']))}<?php }?>">文章</a>
+	<a href="<?php if ($vo['fid']==0){?>{pigcms::U('Classify/edit',array('id'=>$vo['id']))}<?php }else{?>{pigcms::U('Classify/edit',array('id'=>$vo['id'],'fid'=>$vo['fid']))}<?php }?>">编辑</a>
+	<a href="<?php if ($vo['fid']==0){?>{pigcms::U('Classify/del',array('id'=>$vo['id']))}<?php }else{?>{pigcms::U('Classify/del',array('id'=>$vo['id'],'fid'=>$vo['fid']))}<?php }?>">删除</a>
+	</nobr>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

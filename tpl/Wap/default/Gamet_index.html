@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>2048加强版</title>
+
+  <link href="{pigcms::RES}/gamet/style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="{pigcms::RES}/gamet/favicon.ico">
+  <link rel="apple-touch-icon" href="{pigcms::RES}/gamet/apple-touch-icon.png">
+   <!-- Mobile Devices Support @begin -->
+
+
+
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+
+
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+
+
+            <meta content="no-cache" http-equiv="pragma">
+
+
+
+            <meta content="0" http-equiv="expires">
+
+
+
+            <meta content="telephone=no, address=no" name="format-detection">
+
+
+
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+
+
+
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+
+        <!-- Mobile Devices Support @end -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+
+<body>
+  <div class="container">
+   <div class="scores-left"><img src="{pigcms:$info.picurls1}"></div>
+    <div class="heading"> 
+      <div class="ad">{pigcms:$info.ad}</div> 
+     
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+    <p class="game-intro">Jump through the tiles and get to <strong>2048!</strong></p>
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+	        <a class="keep-playing-button">Keep going</a>
+          <a class="retry-button">Try again</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="tile tile-block-a"><div class="tile-inner"></div></div>
+        <div class="tile tile-block-b"><div class="tile-inner"></div></div>
+        <div class="tile tile-block-c"><div class="tile-inner"></div></div>
+        <div class="tile tile-block-d"><div class="tile-inner"></div></div>
+        <div class="tile tile-bird"><div class="tile-inner"></div></div>
+      </div>
+    </div>
+
+    <p class="game-explanation">
+      <strong class="important">How to play:</strong> Press <strong>any key</strong> to move the tile. When the tile go through a barrier, you get <strong>score!</strong>
+    </p>
+    <hr>
+    <p>
+    Created by <a href="http://github.com/hczhcz" target="_blank">hcz.</a> Based on <a href="http://gabrielecirulli.com" target="_blank">2048 by Gabriele Cirulli</a> and <a href="http://en.wikipedia.org/wiki/Flappy_Bird" target="_blank">Flappy Bird by Dong Nguyen.</a>
+    </p>
+    <hr>
+    <p>More 2048 games:</p>
+    <p><a href="https://hczhcz.github.io/Racing-2048">Racing 2048</a>, <a href="https://hczhcz.github.io/2048">Upside down</a>, <a href="https://hczhcz.github.io/2048/2047">Role reversal</a>, <a href="https://hczhcz.github.io/2048/20ez">Easy ver</a>, <a href="https://hczhcz.github.io/2048/20mu">喵 ver</a>, <a href="https://hczhcz.github.io/my-2048">Customizable 2048</a></p>
+  </div>
+
+  <script src="{pigcms::RES}/gamet/js/animframe_polyfill.js"></script>
+  <script src="{pigcms::RES}/gamet/js/keyboard_input_manager.js"></script>
+  <script src="{pigcms::RES}/gamet/js/html_actuator.js"></script>
+  <script src="{pigcms::RES}/gamet/js/grid.js"></script>
+  <script src="{pigcms::RES}/gamet/js/tile.js"></script>
+  <script src="{pigcms::RES}/gamet/js/local_score_manager.js"></script>
+  <script src="{pigcms::RES}/gamet/js/game_manager.js"></script>
+  <script src="{pigcms::RES}/gamet/js/application.js"></script>
+    <script type="text/javascript">  
+$(function(){  
+  
+var imglist =document.getElementsByTagName("img");  
+//安卓4.0+等高版本不支持window.screen.width，安卓2.3.3系统支持  
+/* 
+var _width = window.screen.width; 
+var _height = window.screen.height - 20; 
+ 
+var _width = document.body.clientWidth; 
+var _height = document.body.clientHeight - 20; 
+*/  
+var _width,   
+    _height;  
+doDraw();  
+  
+window.onresize = function(){  
+    doDraw();  
+}  
+  
+function doDraw(){  
+    _width = window.innerWidth;  
+    _height = window.innerHeight - 20;  
+    for( var i = 0, len = imglist.length; i < len; i++){  
+        DrawImage(imglist[i],_width,_height);  
+    }  
+}  
+  
+function DrawImage(ImgD,_width,_height){   
+    var image=new Image();   
+    image.src=ImgD.src;   
+    image.onload = function(){  
+        if(image.width>30 && image.height>30){   
+       
+            if(image.width/image.height>= _width/_height){   
+                if(image.width>_width){  
+                    ImgD.width=_width;   
+                    ImgD.height=(image.height*_width)/image.width;   
+                }else{   
+                    ImgD.width=image.width;   
+                    ImgD.height=image.height;   
+                }   
+            }else{   
+                if(image.height>_height){  
+                    ImgD.height=_height;   
+                    ImgD.width=(image.width*_height)/image.height;   
+                }else{   
+                    ImgD.width=image.width;   
+                    ImgD.height=image.height;   
+                }   
+            }  
+        }     
+    }  
+  
+}  
+     
+})  
+</script>
+ <script>
+  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {  
+            "imgUrl": "{pigcms:$f_siteUrl}/tpl/Wap/default/common/img/2048/2048t.png",
+            "timeLineLink": '{pigcms:$f_siteUrl}/index.php?g=Wap&m=Gamet&a=index&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}',
+            "sendFriendLink":'{pigcms:$f_siteUrl}/index.php?g=Wap&m=Gamet&a=index&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}',
+            "weiboLink": '{pigcms:$f_siteUrl}/index.php?g=Wap&m=Gamet&a=index&token={pigcms:$Think.get.token}&wecha_id={pigcms:$Think.get.wecha_id}',
+            "tTitle": "2048加强版",
+            "tContent": "指尖上的2048，你玩的过去吗？",
+            "fTitle": "2048加强版",
+            "fContent": "指尖上的2048，你玩的过去吗？",
+            "wContent": "指尖上的2048，你玩的过去吗吧？" 
+        };
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.fContent,
+                "title": window.shareData.fTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.wContent,
+                "url": window.shareData.weiboLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)</script>
+</body>
+</html>

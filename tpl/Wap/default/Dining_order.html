@@ -1,0 +1,300 @@
+<include file="Dining:header"/>
+<body>
+	
+<div data-role="page" id="shopcart-page">
+	<script type="text/javascript">
+		var delivery_fee_valid = parseInt(0);
+		var always_delivery_fee = parseInt(0);
+		var delivery_fee = parseInt(3.0);
+		var basicprice = parseFloat(10.0);
+
+		var totalPrice = parseFloat(353.5);
+
+		var isMember = parseInt(0);
+
+		var isShowMemberPrice = parseInt(0);
+		var mebmerPriceCount = parseFloat(8.8);
+
+		//短信验证码相关
+		var wait = 180; //重新获取验证码的时间间隔
+		
+		
+		function offlineClick()
+		{
+			document.getElementById("balance-info").style.display = "none";
+
+			document.getElementById("paypassword-layout").style.display = "none";
+		}
+
+		function balanceClick()
+		{
+			document.getElementById("balance-info").style.display = "";
+
+			document.getElementById("paypassword-layout").style.display = "";
+		}
+
+		$('#shopcart-page').on("pageshow",function(){
+			
+		})
+		
+		initCarTotalPrice('/index.php?g=Wap&m=Dining&a=carTotalPrice');
+	</script>
+	
+	<style>		
+		@media ( max-height: 320px ) {
+			.ui-footer-fixed {
+				position: absolute;
+			}
+		}
+		@media ( min-height: 320px ) {
+			.ui-header-fixed {
+				position: fixed;
+			}	
+			.ui-footer-fixed {
+				position: fixed;
+			}
+		}
+	</style>
+	
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-id="shop_header">
+    
+		<h1>{pigcms:$title}</h1>
+	</div>
+	
+	<div data-role="content" id="cart-layout">		
+		<div id="cartlist">	
+        		<php>if($_SESSION['session_cart_mall']==''||$_SESSION['session_cart_mall']=='a:0:{}'){</php>		
+				 <div class="cart-empty">
+					<p>您的购物车为空^_^</p>
+					<a href="/index.php?g=Wap&m=Dining&a=lists&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-role="button" data-inline="true" data-theme="b">立即选购</a>
+				 </div>
+                 <php>}</php>	
+                 	
+				 <volist name="cats" id="hostlist"> 
+					<div id="foodtitle_{pigcms:$hostlist.id}" class="cartitem">
+						<table width="100%">
+							<td id="foodname_{pigcms:$hostlist.id}" class="foodname">{pigcms:$hostlist.name}</td>	
+							<td class="foodprice">￥{pigcms:$hostlist.price}/</td>
+							<td class="food-op">
+								<span class="reduce-btn"><button data-inline="true" onClick="cart_dec_onclick({pigcms:$hostlist.id}, '/index.php?g=Wap&m=Dining&a=pages&type=dec&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&id={pigcms:$hostlist.id}&price={pigcms:$hostlist.price}&name={pigcms:$hostlist.name}')">-</button></span>
+								<div id="cart_foodnum_{pigcms:$hostlist.id}" class="foodnum">{pigcms:$hostlist.count}</div>
+								<span class="add-btn"><button data-inline="true" onClick="cart_plus_onclick({pigcms:$hostlist.id}, '/index.php?g=Wap&m=Dining&a=pages&type=plus&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&id={pigcms:$hostlist.id}&price={pigcms:$hostlist.price}&name={pigcms:$hostlist.name}')">+</button></span>
+							</td>
+						</table>
+					</div>
+				</volist> 
+					<div id="delivery_fee" class="cartitem" style="display: none;">
+						<table width="100%">
+							<td class="foodname">外送费</td>	
+							<td class="foodprice">￥3.0</td>
+							<td class="food-op"></td>
+						</table>							
+					</div>					
+					</div>
+			
+		<table id="priceinfo" style="display: ">
+			<td style="width: 120px; padding-left: 5px;">总价：<span class="membernotactive">￥<span id="cart_totalprice">0</span></span></td>
+		</table>
+		<p style="display: none; margin: 0;">已选：<span id="cart_totalnum">0</span></p>
+		
+				<form id="cart_form" action="" method="post">
+                
+                
+                <!--------------------------------------------------------------------->
+       			 <div class="contact-info1">	
+					<ul data-role="listview" data-inset="true" data-theme="d">
+						<li data-role="list-divider">您的点餐方式</li>
+						<li style="padding: 5px 10px 5px 10px">
+							<dl class="f_order_list single dining_type" >
+                              <dd id="1" onClick="typeclick(1)"><label for="table_1">点餐</label>
+                                <input type="radio" id="table_1" name="diningtypes" title="点餐" value="1" checked="checked"  onClick="typeclick(1)"/>
+                              </dd>
+                              <php>if($diningConfig['diningwaimai']==1){</php>
+                              <dd id="2" onClick="typeclick(2)"><label for="table_2">外卖</label>
+                                <input type="radio" id="table_2" name="diningtypes" title="外卖" value="2"  onClick="typeclick(2)"/>
+                              </dd>
+                             <php>}</php>
+                             <php>if($diningConfig['diningyuding']==1){</php>
+                              <dd class="on" id="3" onClick="typeclick(3)"><label for="table_3">预定</label>
+                                <input type="radio" id="table_3" name="diningtypes" title="预定" value="3"  onClick="typeclick(3)"/>
+                              </dd>
+                              <php>}</php>
+                            </dl>
+						</li>
+					</ul>
+				</div>
+                
+                 <div class="contact-info2">	
+					<ul data-role="listview" data-inset="true" data-theme="d">
+						<li data-role="list-divider">请填写就餐时间</li>
+                        <li style="padding: 5px 10px 5px 10px">
+							<dl class="f_order_list single">
+            					<dd >
+                                	<select name="buytimestamp" id="buytimestamp" onChange="tables()" class="ddlSelectItem">
+                               		<volist name="dateTimes" id="d">
+                                	<option value="{pigcms:$d}"><php>echo date('m月d日',$d);</php></option>
+                                	</volist>
+                               		</select> 
+          						</dd>
+                                <dd >
+                                	<select name="hour" id="hour" onChange="tables()" class="ddlSelectItem">
+                                	<option value="" selected>选择时间</option>
+                                	<volist name="hours" id="h">
+                                	<option value="{pigcms:$h}"><php>echo $h.'时';</php></option>
+                                	</volist>
+                                	</select>
+       							</dd>         
+                 			 </dl>
+						</li>
+					</ul>
+				</div>
+                
+                
+                 <div class="contact-info3">	
+					<ul data-role="listview" data-inset="true" data-theme="d">
+						<li data-role="list-divider">请选择桌台</li>
+						<li style="padding: 5px 10px 5px 10px">
+							<dl class="f_order_list single">
+            					<volist name="tables" id="t">
+                                  <dd id="table_radio_{pigcms:$t.id}" <if condition="$i eq 0"> class = "on"</if>><label>{pigcms:$t.name}
+                                    <input type="radio" class="radio_tableid" name="tableid" value="{pigcms:$t.id}" /></label>
+                                  </dd>
+                                </volist>       
+                 			 </dl>
+						</li>
+					</ul>
+				</div>
+                
+                            
+                 <!--------------------------------------------------------------------->
+				<input type="hidden" name="coupon" value="-1">				
+				<div class="contact-info">	
+					<ul data-role="listview" data-inset="true" data-theme="d">
+						<li data-role="list-divider">联系信息</li>
+						<li style="padding: 5px 10px 5px 10px">
+							<table style="padding: 0; margin: 0; width: 100%;">
+								<tr>
+									<td width="80px"><label for="name">联系姓名：</label></td>
+									<td>
+										<input type="text" id="name" name="name" value="{pigcms:$userinfo.truename}" placeholder="如：张先生、王小姐">
+									</td>
+								</tr>
+								<tr id="nameinfo-layout" style="display: none;">
+									<td width="80px"></td>
+									<td colspan="2" id="nameinfo" class="cart-editalertinfo"></td>
+								</tr>
+								
+								<tr>
+									<td width="80px"><label for="phone">联系电话：</label></td>
+									<td>
+										<input type="tel" id="phone" name="phone" value="{pigcms:$userinfo.tel}" placeholder="如：18200000000">
+									</td>
+								</tr>
+								<tr id="phoneinfo-layout" style="display: none;">
+									<td width="80px"></td>
+
+									<td colspan="2" id="phoneinfo" class="cart-editalertinfo"></td>
+								</tr>	
+													
+								<tr>
+									<td width="80px"><label for="address">联系地址：</label></td>
+									<td>
+										<input type="text" id="address" name="address" value="{pigcms:$userinfo.address}" placeholder="如：XX小区5号楼318">
+									</td>
+								</tr>
+								<tr id="addressinfo-layout" style="display: none;">
+									<td width="80px"></td>
+									<td colspan="2" id="addressinfo" class="cart-editalertinfo"></td>
+								</tr>
+								<tr>
+									<td width="80px"><label for="note">订单备注：</label></td>
+									<td><textarea id="note" name="note" placeholder="如：不要辣、12点前送到" ></textarea></td>
+								</tr>	
+							</table>					
+								
+							<table id="paypassword-layout" style="display: none;">
+								<tr>
+									<td width="80px"><label for="paypassword">交易密码：</label></td>
+									<td width="80px">
+										<input type="password" id="paypassword" name="paypassword">
+									</td>
+									<td></td>
+								</tr>
+								<tr id="paypasswordinfo-layout" style="display: none;">
+									<td width="80px"></td>
+									<td colspan="2" id="paypasswordinfo" class="cart-editalertinfo"></td>
+								</tr>
+							</table>
+							
+							<table id="captcha-layout" style="word-wrap: break-word; word-break: break-all; display: none;">
+								<tr>
+									<td width="80px"><label for="captcha">验证码：</label></td>
+									<td width="80px"><input type="tel" id="captcha" name="captcha"></td>
+									<td style="padding-left: 5px;"><button id="getcaptcha" type="button" data-mini="true" onClick="sendCaptcha(119607, 'oXWABj4X0S2VulJw_-fR6_uRsRF8', 19, 51)">发送验证码</button></td>
+								</tr>
+								<tr>
+									<td width="80px"></td>
+									<td colspan="2" id="cart-captchainfo" class="cart-editalertinfo">第一次下单需要验证手机号码，请点击上面的按钮获取。</td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+					<a data-role="button" href="#" onClick="submitOnclick('{pigcms:$token}','{pigcms:$wecha_id}')" id="submit-btn" data-theme="b">提交订单</a>
+                    
+				</div>
+				</form>
+				
+		<div id="sorryx" style="z-index: 10000; text-align:center; position:fixed; top:150px; width:100%; color:#fff; display:none" class="cart-attention">
+			<p id="attention-content" class="cart-attentiontext"></p>
+		</div>
+        
+        
+	</div>
+	
+	<div data-role="footer" data-position="fixed" data-id="shop_footer" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+           		<li><a  href="/index.php?g=Wap&m=Dining&a=index&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="home">首页</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=lists&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="search" >选购</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=order&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="grid" class="ui-btn-active ui-state-persist" >下单</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=myOrders&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="info">个人中心</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+
+function typeclick(tid){
+	if(tid==2){
+	$('.contact-info3').hide();
+  	 }else{
+	$('.contact-info3').show();
+	}
+}
+
+function tables(){
+	$.ajax({
+		url:'?g=Wap&m=Product&a=ajaxTables&token={pigcms:$token}&time='+$('#buytimestamp').val()+'&hour='+$('#hour').val(),
+		success : function(data) {
+			var tableids=data.split(',');
+
+			var count=tableids.length;
+			if(count){
+				$('.radio_tableid').checked=false;
+				$('.f_order_list dd').removeClass('on');
+				$('.f_order_list dd').css('display','');
+				for(i=0;i<count;i++){
+					var id=tableids[i];
+					if($('#table_radio_'+id)){
+						$('#table_radio_'+id).css('display','none');
+					}
+				}
+			}
+
+		}
+	});
+}
+</script>
+</body>
+</html>

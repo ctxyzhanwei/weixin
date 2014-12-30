@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="{$metaKeywords}" />
+<meta name="description" content="{$metaDescription}"/>
+<LINK href="{$cssdir}/style.css?{$rand}" rel=stylesheet>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/zongse/jquery-1.6.4.min.js" tppabs="/common/js/jquery-1.6.4.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/zongse/nav.js" tppabs="/common/js/nav.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/zongse/search.js" tppabs="/common/js/search.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/zongse/banner.js" tppabs="/common/js/banner.js"></script>
+<title>{$metaTitle}</title>
+</head>
+
+<body>
+<div class="topbg">
+    {if $homepage}
+	<img src="smarty/templates/tpls/zongse/searchbtn.png" tppabs="/images/searchbtn.png" alt="搜索按钮" class="searchbtn">
+	{else}
+	<a href="{$homeUrl}" title=""><img src="smarty/templates/tpls/zongse/homebtn.jpg" class="homebtn"></a>
+	{/if}
+	<a href="{$homeUrl}" title="{$site.name}" class="logo"><img src="{$site.logourl}" height="26" alt="{$site.name}"></a>
+    <img src="smarty/templates/tpls/zongse/navbtn.png" alt="导航" class="navbtn">
+</div>
+<div class="searchbox">
+{if $homepage}
+    <form method="post" action="?m=site&c=home&a=search&token={$token}">
+        <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+        <input type="submit" class="button" title="搜索" value="">
+    </form>
+	{/if}
+</div>
+<ul class="navbg">
+{if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+</ul>

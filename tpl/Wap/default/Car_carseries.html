@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ><head>
+<meta charset="utf-8">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/car/js/jquery152_min.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/jquery_easing.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/com_clanmo_gallery_min.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/swipe.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/Tabs/css/easy-responsive-tabs.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/car/Tabs/js/easyResponsiveTabs.js"></script>
+
+<title>{pigcms:$title}-车型－车系</title>
+        <style>
+            img{width:100%!important;}
+        </style>
+    <meta content="clickberry-extension-here">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;" class="portrait">
+
+
+    <div class="header">
+        <div class="logo">
+           {pigcms:$title} <img src="{pigcms:$logo}"width="213" height="29" alt="" style="width:auto!important;max-width:213px;">
+        </div>
+        <!-- <div style="clear: both;"></div>-->
+    </div>
+    <span class="gradient_h_wbw"></span>
+
+<!-- 车系列表 begin -->
+<!--- 车型列表 begin -->
+        <div class="main" style="padding-top: 10px;">
+        <!--Horizontal Tab-->
+        <div id="horizontalTab">
+            <ul class="resp-tabs-list">
+                <volist name="series" id="vo">
+                <li>{pigcms:$vo['shortname']} </li>
+                </volist>
+            </ul>
+            <div class="resp-tabs-container">
+            <volist name="series" id="vo">
+            <div>
+
+                <img alt="{pigcms:$vo['name']}" style="width:100%;max-height:400px;" src="{pigcms:$vo['picture']}" data-touchable="touchable"/>
+            <div class="main" style="padding-top: 10px;padding-bottom: 10px;">
+                    {pigcms:$vo['info']|html_entity_decode}
+           </div>
+            <div class="main" style="padding-top: 10px;">
+            <ul class="car_detail">
+
+                <li class="box group_btn">
+                    <div><a href="{pigcms::U('Car/smodelList',array('token'=>$token,'wecha_id'=>$wecha_id,'sid'=>$vo['id'],'bid'=>$vo['brand_id'],'getlist'=>1,'title'=>$title))}" class="gray" style="width:200px;">{pigcms:$vo['brand']|preg_replace='/^[0-9]*?@/','',###} {pigcms:$vo['name']}</a></div>
+
+                </li>
+            </ul>
+        </div>
+        </div>
+            </volist>
+            </div>
+        </div>
+        </div>
+
+<!-- 车型详情 begin -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'accordion', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true,   // 100% fit in a container
+            closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#tabInfo');
+                var $name = $('span', $info);
+
+                $name.text($tab.text());
+
+                $info.show();
+            }
+        });
+    });
+</script>
+<!-- end -->
+ <p><br /><br /><br /><br /></p>
+<include file="Car:menu"/>
+                    <div mark="stat_code" style="width:0px; height:0px; display:none;">
+                    </div>
+
+</body></html>

@@ -1,0 +1,53 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB">
+<h4 class="left"></h4>
+<div class="searchbar right">
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<div class="cLineB">
+  <h4>邀请函报名嘉宾 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+    
+	<div class="tab_th">
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align:center;">
+		<thead>
+		<tr><th>姓名</th><th>电话</th><th>Email</th><th>身份</th><th>操作</th></tr>
+		</thead>
+		<tbody>
+		<tr></tr>
+			<volist name="list" id="Invite">
+			<tr><td>{pigcms:$Invite.name}</td><td>{pigcms:$Invite.mobile}</td><td>{pigcms:$Invite.email}</td><td>{pigcms:$Invite.post}</td><td><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Invite/enrdel',array('token'=>$Invite['token'],'id'=>$Invite['id']))}');"><font color="red" size="2"><b>删除</b></font></a></td></tr>
+			</volist>
+		</tbody>
+		</table>
+   </div>
+<if condition="session('isQcloud') neq true">
+
+	<include file="Public:footer"/>
+	
+</if>

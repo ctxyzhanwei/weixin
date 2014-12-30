@@ -1,0 +1,68 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">房间管理</h4>
+<div class="clr"></div>
+</div>
+<if condition="$ischild neq 1">
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">此处只显示总店信息，连锁店订单及菜品请进入相应平台进行管理，连锁店登录账号密码及登录地址请在LBS里设置查看</div>
+</if>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab0"><a href="{pigcms::U('Hotels/index', array('token' => $token,'cid' => $cid))}">房间类型管理</a></li>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Hotels/house', array('token' => $token,'cid' => $cid))}">房间管理</a></li>
+<li class="tabli" id="tab4"><a href="{pigcms::U('Hotels/orders', array('token' => $token,'cid' => $cid))}">订单管理</a></li>
+<if condition="$ischild neq 1" >
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set', array('token'=>$token, 'infotype' => 'Hotels'))}">酒店预订回复配置</a></li>
+</if>
+<li class="current tabli" id="tab1"><a href="{pigcms::U('Hotels/image', array('token' => $token,'cid' => $cid))}">酒店图集</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Hotels/imageadd',array('token' => $token,'cid'=>$cid))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加图片</a></div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th class="select">选择</th>
+		<th width="160">描述</th>
+		<th width="160">图片</th>
+		<th width="200" class="norightborder">操作</th>
+	</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="tablelist"> 
+	<tr>
+		<td><input type="checkbox" name="del_id[]" value="285" class="checkitem"></td>
+		<td>{pigcms:$tablelist.info}</td>
+		<td><div class="cateimg"><img src="{pigcms:$tablelist.image}" class="cateimg_small"  /><img src="{pigcms:$tablelist.image}" class="cateimg_big"  /></div></td>
+		<!-- <td>{pigcms:$tablelist.note}</td> -->
+		<td class="norightborder">
+			<a href="{pigcms::U('Hotels/imageadd', array('id' => $tablelist['id'], 'token' => $token,'cid' => $tablelist['cid']))}">修改</a> 
+			<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Hotels/imagedel',array('id' => $tablelist['id'], 'token' => $token,'cid' => $tablelist['cid']))}');">删除</a>
+		</td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+	<div class="pageNavigator right">
+		<div class="pages">{pigcms:$page}</div>
+	</div>
+	<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

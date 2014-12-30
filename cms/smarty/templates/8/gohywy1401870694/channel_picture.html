@@ -1,0 +1,38 @@
+{include file=$header}
+<!--top end--><!--img-->
+<br><br>
+<div class="sub">
+	    <ul class="product">
+         {if $contents}
+			{foreach from=$contents item=a key=k}
+                <li>
+            <div>
+                <a href="{$a.link}"  title="{$a.title}"><img src="{$a.thumb}"  alt="{$a.title}"></a>
+                <p><a href="{$a.link}"  title="{$a.title}">{$a.title}</a></p>
+            </div>
+        </li>
+        {/foreach}
+			 {/if}
+             
+ 
+            </ul>
+    <div class="clear"></div>
+    	<div class="pages">
+		
+				<a href="javascript:void(0);" class="next-left" title="上一页">&lt;</a>
+				<span>{$currentPage}/{$totalPage}</span>
+				<a href="{$nextPageLink}"  class="pre-left" title="下一页">&gt;</a>
+				</div>	    </div>  
+<!--img end-->
+<div class="button">
+	<ul>
+    	<li><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}"  class="tel" title="电话"></a></li>
+        <li class="middle_li"><a href="sms:{$company.mp}" class="talk" title="短信"></a></li>
+        <li><a href="?token={$token}&m=site&c=home&a=map" tppabs="html/map.html" title="地图" class="map"></a></li>
+    </ul>
+</div>
+<div class="clear"></div>
+<!--button end-->
+
+<!--bottom-->
+{include file=$footer}

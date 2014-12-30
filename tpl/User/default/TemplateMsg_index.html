@@ -1,0 +1,62 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+<script src="{pigcms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">模板消息配置</h4>
+              <div class="clr"></div>
+          </div>
+
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;margin-top:5px;">温馨提示：此功能仅限于已开通微信支付功能的公众号使用。<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 必须填写【模板ID】才能【开启】模板消息推送状态。<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;【模板ID】请到 <a href="http://mp.weixin.qq.com" target="_blank" style="color:#029700">微信公众平台</a> >> 模板消息 >> 模板库 选择对应【模板编号】的模板，然后获取【模板ID】填写到此处。 </div>
+            
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR align="center">
+                  <TH>模板编号</TH>
+                  <TH>模板名</TH>
+                  <TH>回复内容</TH>
+                  <TH>头部颜色</TH>
+                  <TH>文字颜色</TH>
+                  <TH>状态</TH>
+                  <TH class="norightborder">模板ID</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <form action="" method="post">
+                  <volist name="list" id="t">
+                    <tr>
+                      <td><input type="hidden" name="tempkey[]" value="{pigcms:$t.tempkey}" />{pigcms:$t.tempkey}</td>
+                      <td><input type="hidden" name="name[]" value="{pigcms:$t.name}" />{pigcms:$t.name}</td>
+                      <td><input type="hidden" name="content[]" value="{pigcms:$t.content}" /><pre>{pigcms:$t.content}</pre></td>
+                      <td><input type="text" name="topcolor[]" value="{pigcms:$t.topcolor}" class="px color" style="width: 55px; background:{pigcms:$t.topcolor}; color: rgb(255, 255, 255);"</td>
+                      <td>
+                        <input type="text" name="textcolor[]" value="{pigcms:$t.textcolor}" class="px color" style="width: 55px; background:{pigcms:$t.textcolor}; color: rgb(255, 255, 255);" />
+                      </td>
+                      <td>
+                          <select name="status[]">
+                            <option value="0" <if condition="$t['status'] eq 0">selected</if>>关闭</option>
+                            <option value="1" <if condition="$t['status'] eq 1">selected</if>>开启</option>
+                          <select>
+                      </td>
+                      <td class="norightborder"><input type="text" class="px" name="tempid[]" value="{pigcms:$t.tempid}" /></td>
+                    </tr>
+                  </volist>
+                  <tr>
+                    <td colspan="7" align="center"><button class="btnGreen">保存</button></td>
+                  </tr>
+              </form>      
+              </TBODY>
+            </TABLE>
+
+</div>
+
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+  <!--底部-->
+    </div>
+<include file="Public:footer"/>

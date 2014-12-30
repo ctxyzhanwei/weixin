@@ -1,0 +1,74 @@
+<include file="Scene:header"/>
+<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/screen_shake.css">
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+
+<body class="FUN WALL" style="background-image:url({pigcms:$info.background});" >
+<div class="Panel Top" style="top: 0px;">
+    <if condition="$info['logo'] neq ''">
+        <img class="activity_logo" src="{pigcms:$info.logo}">
+    </if>
+    <div class="top_title" style="font-size: 30px">
+        <div>欢迎您参加-{pigcms:$info.title}</div>    
+    </div>
+    <if condition="$info.qrcode neq ''">
+        <img class="mp_account_codeimage" src="{pigcms:$info.qrcode}">
+    </if>
+</div>
+<audio autoplay src="{pigcms:$info.backgroundmusic}" loop></audio>
+
+<!--<audio id="Audio_Player" src="{pigcms:$info.music}" preload="preload"></audio>-->
+<div class="Panel SloganList"></div>
+<div class="Panel Track" style="display: none; opacity: 1;overflow: hidden;">
+    <div class="tracklist"></div>
+    <div class="runlist" style="width:100%;position: absolute;overflow: visible;left:0;top:0;height:100%;"></div>
+    <div class="cutdown-end"></div>
+    <div class="track-tool"></div>
+    <div class="track-result"></div>
+</div>
+
+<div class="round-welcome" style="display: block;">
+    <div class="label top">微信扫一扫，发送<span class="activity_key">{pigcms:$info.keyword}</span>参与游戏！</div>
+    <img src="{pigcms:$info.qrcode}">
+    <div class="label bottom"><span class="shake-icon shake"></span>游戏开始后不停摇动手机,已链接人数<span id="connectcount" style="color:#ff0000;">0</span>人</div>
+    <div class="button-start">开始游戏</div>
+    <!--<div class="button restart">重新报名</div>-->
+</div>
+
+<div class="result-layer" style="display: none;">
+    <div class="result-label" style="display: none;">GAME OVER</div>
+    <div class="result-cup" style="display: none;">
+        <!--<span class="button nexttound">开始下一轮</span>-->
+        <!--<span class="button allresult">全部排名</span>-->
+        <span class="button reset" onclick="javascript:window.location.reload();">再玩一次</span>
+        <span class="button result" onclick="showShake({pigcms:$info.id})">查看结果</span>  
+	</div>
+</div>
+
+<div class="cutdown-start">{pigcms:$info.starttime}</div>
+
+<div class="loginform">
+    <div class="activity_title">微现场体验</div>
+    <div><input id="password" class="password" placeholder="请输入微现场的管理密码" type="password"></div>
+    <div class="submitline">
+        <button class="button-login">开启</button>
+    </div>
+</div>
+<div class="loader" style="display: none;">
+    <div class="icon"></div>
+</div>
+
+<script>
+/*赛道尺寸*/
+var id={pigcms:$info.id}, diff = {pigcms:$info.shownum} ,starttime = {pigcms:$info.starttime};
+
+var showtime={pigcms:$info.showtime}*1000;
+var sceneid = '{pigcms:$sceneid}';
+var SLOGANS = {pigcms:$info['cheer']};
+function showShake(id){
+    art.dialog.open('{pigcms::U('Scene/show_shake',array('token'=>$token,'sceneid'=>$sceneid))}&id='+id,{lock:false,title:'信息详情',width:1200,height:600,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<script type="text/javascript" src="/tpl/static/wall/js/scene_shake.js" charset="utf-8"></script>
+<include file="Scene:footer"/>

@@ -1,0 +1,108 @@
+<style type="text/css">
+body { margin-bottom:60px !important; }
+ul, li { list-style:none; margin:0; padding:0 }
+#plug-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0); z-index:800; transition: all 100ms ease-out; -webkit-transition: all 100ms ease-out; }
+.top_bar { position:fixed; bottom:0; right:0px; z-index:900; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: Helvetica, Tahoma, Arial, Microsoft YaHei, sans-serif; }
+.plug-menu { -webkit-appearance:button; display:inline-block; width:36px; height:36px; border-radius:36px; position: absolute; bottom:17px; right: 17px; z-index:999; box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25); background-color: #B70000; -webkit-transition: -webkit-transform 200ms; -webkit-transform:rotate(1deg); color:#fff; background-image:url('tpl/Wap/default/common/images/plug.png'); background-repeat: no-repeat; -webkit-background-size: 80% auto; background-size: 80% auto; background-position: center center; }
+.plug-menu:before { font-size:20px; margin:9px 0 0 9px; }
+.plug-menu:checked { -webkit-transform:rotate(135deg); }
+.top_menu { margin-right: -45px; }
+.top_menu>li { min-width: 86px; padding: 0 10px; height:32px; border-radius:32px; box-shadow: 0 0 0 3px #FFFFFF, 0 2px 5px 3px rgba(0, 0, 0, 0.25); background:#B70000; margin-bottom: 23px; margin-right: 23px; z-index:900; transition: all 200ms ease-out; -webkit-transition: all 200ms ease-out; }
+.top_menu>li:last-child { margin-bottom: 80px; }
+.top_menu>li a { color:#fff; font-size:20px; display: block; height: 100%; line-height: 33px; text-indent:26px; text-decoration:none; position:relative; font-size:16px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.top_menu>li a img { display: block; width: 24px; height: 24px; text-indent: -999px; position: absolute; top: 50%; left: 10px; margin-top: -13px; margin-left: -12px; }
+ .top_menu>li.on:nth-of-type(1) {
+-webkit-transform: translate(-45px, 0) rotate(0deg);
+transition: all 700ms ease-out;
+-webkit-transition: all 700ms ease-out;
+}
+.top_menu>li.on:nth-of-type(2) {
+-webkit-transform: translate(-45px, 0) rotate(0deg);
+transition: all 600ms ease-out;
+-webkit-transition: all 600ms ease-out;
+}
+.top_menu>li.on:nth-of-type(3) {
+-webkit-transform: translate(-45px, 0) rotate(0deg);
+transition: all 500ms ease-out;
+-webkit-transition: all 500ms ease-out;
+}
+.top_menu>li.on:nth-of-type(4) {
+-webkit-transform: translate(-45px, 0) rotate(0deg);
+transition: all 400ms ease-out;
+-webkit-transition: all 400ms ease-out;
+}
+.top_menu>li.on:nth-of-type(5) {
+-webkit-transform: translate(-45px, 0) rotate(0deg);
+transition: all 300ms ease-out;
+-webkit-transition: all 300ms ease-out;
+}
+.top_menu>li.on:nth-of-type(6) {
+-webkit-transform: translate(-45px, 0) rotate(0deg);
+transition: all 200ms ease-out;
+-webkit-transition: all 200ms ease-out;
+}
+
+/**/
+.top_menu>li.out:nth-of-type(1) {
+-webkit-transform: translate(-45px, 280px) rotate(0deg);
+transition: all 600ms ease-out;
+-webkit-transition: all 600ms ease-out;
+}
+.top_menu>li.out:nth-of-type(2) {
+-webkit-transform: translate(-45px, 235px) rotate(0deg);
+transition: all 500ms ease-out;
+-webkit-transition: all 500ms ease-out;
+}
+.top_menu>li.out:nth-of-type(3) {
+-webkit-transform: translate(-45px, 190px) rotate(0deg);
+transition: all 400ms ease-out;
+-webkit-transition: all 400ms ease-out;
+}
+.top_menu>li.out:nth-of-type(4) {
+-webkit-transform: translate(-45px, 145px) rotate(0deg);
+transition: all 300ms ease-out;
+-webkit-transition: all 300ms ease-out;
+}
+.top_menu>li.out:nth-of-type(5) {
+-webkit-transform: translate(-45px, 100px) rotate(0deg);
+transition: all 200ms ease-out;
+-webkit-transition: all 200ms ease-out;
+}
+.top_menu>li.out:nth-of-type(6) {
+-webkit-transform: translate(-45px, 55px) rotate(0deg);
+transition: all 100ms ease-out;
+-webkit-transition: all 100ms ease-out;
+}
+.top_menu>li.out { width: 20px; height: 20px; min-width: 20px; border-radius: 20px; padding: 0; opacity: 0; }
+.top_menu>li.out a { display:none; }
+/**/
+#sharemcover { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: none; z-index: 20000; }
+#sharemcover img { position: fixed; right: 18px; top: 5px; width: 260px; height: 180px; z-index: 20001; border:0; }
+</style>
+
+<div class="top_bar" style="-webkit-transform:translate3d(0,0,0)">
+<nav>
+    <ul id="top_menu" class="top_menu">
+      <input type="checkbox" id="plug-btn" class="plug-menu themeStyle" style="background-color:{pigcms:$homeInfo.plugmenucolor};background-image:url('tpl/Wap/default/common/images/plug.png');border:0px;">
+      <volist name="catemenu" id="vo">
+          <li class="themeStyle out" style="background:{pigcms:$homeInfo.plugmenucolor}"> <a href="{pigcms:$vo.url}"><img src="{pigcms:$vo.picurl}"><label>{pigcms:$vo.name}</label></a></li>
+        </volist>
+</ul>
+  </nav>
+</div>
+
+<div id="plug-wrap" style="display: none;" ></div>
+<script>
+$(function(){
+        $(".plug-menu").click(function(){
+        var li = $(this).parents('ul').find('li');
+        if(li.attr("class") == "themeStyle on"){
+                li.removeClass("themeStyle on");
+                li.addClass("themeStyle out");
+        }else{
+                li.removeClass("themeStyle out");
+                li.addClass("themeStyle on");
+        }
+        });
+});
+</script>

@@ -1,0 +1,72 @@
+{include file=$header}
+<div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<4}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<4}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                    </div>
+    </div>
+</div>
+<div class="icons">
+	<div class="one">
+	{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<3}
+    	<a href="{$a.thumb}" title="{$a.title}" class="icons{$k+1}">
+        	<center><img src="smarty/templates/tpls/hongsecanting/icons{$k+1}.png" alt="{$a.title}"></center>
+            <p>{$a.title}</p>
+        </a>
+		{/if}
+		{/foreach}
+		{/if}
+    </div>
+    <div class="two">
+    	<a href="{$homeUrl}" title="HOME" class="homebtn">HOME</a>
+        <a href="javascript:void(0);" title="MENU" class="menubtn">MENU</a>
+        <a href="javascript:void(0);" title="SEARCH" class="searchbtn">SEARCH</a>
+        <div class="search">
+        	<div>
+                <form method="post" action="?m=site&c=home&a=search&token={$token}">
+                    <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+                    <input type="submit" class="button" value="">
+                </form>
+            </div>
+        </div>
+        <div class="nav">
+        	<a href="javascript:void(0);" title="收起" class="navback"><center><img src="smarty/templates/tpls/hongsecanting/back.png" tppabs="/images/back.png" alt="收起"></center></a>
+			{if $navChannels}
+{foreach from=$navChannels item=n}
+	<a href="{$n.link}" title="{$n.name}">{$n.name}<span></span></a>
+	{/foreach}
+	{/if}
+        
+        </div>
+    </div>
+    <div class="one">
+    	{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k>2&&$k<6}
+    	<a href="{$a.thumb}" title="{$a.title}" class="icons{$k-2}">
+        	<center><img src="smarty/templates/tpls/hongsecanting/icons{$k-2}.png" alt="{$a.title}"></center>
+            <p>{$a.title}</p>
+        </a>
+		{/if}
+		{/foreach}
+		{/if}
+    </div>
+</div>
+{include file=$footer}

@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{pigcms:$thisForm.name}</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{pigcms::RES}/css/style/css/hotels.css" rel="stylesheet" type="text/css">
+<script src="{pigcms::RES}/css/style/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{pigcms::$staticFilePath}/js/main.js"></script>
+
+</head>
+
+<body id="wrap">
+
+<div class="cardexplain">
+
+
+<ul class="round">
+<li class="title mb"><span class="none">信息</span></li>
+<volist name="submitInfo" id="item">
+<li class="nob" style="height:35px;line-height:35px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+<tr>
+<th>{pigcms:$item.displayname}</th>
+<td>{pigcms:$item.value}</td>
+</tr>
+</table>
+</li>
+</volist>                                                          
+</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Panorama",
+            "moduleID":"{pigcms:$item.id}",
+            "imgUrl": "{pigcms:$item.frontpic}", 
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Panorama/item',array('token'=>$token,'id'=>$item['id']))}",
+            "tTitle": "{pigcms:$item.name}",
+            "tContent": ""
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

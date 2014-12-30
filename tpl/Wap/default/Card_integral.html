@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{pigcms:$thisCard.cardname}积分兑换</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{pigcms::RES}/card/style/style.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/jquery.min.js" type="text/javascript"></script>
+<script src="/tpl/static/alert.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/card/js/accordian.pack.js" type="text/javascript"></script>
+<style>
+header {
+    margin: 0 10px;
+    position: relative;
+    z-index: 4;
+}
+header ul {
+	margin:0 -1px;
+	border: 1px solid #179f00;
+	border-radius: 3px;
+	width: 100%;
+	overflow: hidden;
+}
+header ul li a.on {
+    background-color:#179f00;
+    color: #ffffff;
+    background-image: -moz-linear-gradient(center bottom , #179f00 0%, #5dd300 100%);
+}
+header ul li a {
+    color: #0b8e00;
+    display: block;
+    font-size: 15px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    width:50%;
+    float:left;
+}
+.pic{width:100%;margin-bottom:10px;}
+.over{background:#aaa;border:1px solid #aaa;box-shadow: 0 1px 0 #cccccc inset, 0 1px 2px rgba(0, 0, 0, 0.5);}
+.window .title{background-image: linear-gradient(#179f00, #179f00);}
+</style>
+</head>
+<body id="cardnews" onLoad="new Accordian(&#39;basic-accordian&#39;,5,&#39;header_highlight&#39;);" class="mode_webapp">
+<div class="qiandaobanner">
+	<a href="javascript:history.go(-1);"><img src="{pigcms:$thisCard.vip}" ></a>
+</div>
+<header>
+	<nav id="nav_1" class="p_10">
+		<ul class="box">
+			<li><a href="index.php?g=Wap&m=Card&a=integral&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&cardid={pigcms:$thisCard.id}&type={pigcms:$type}&is_use=0" class="<if condition="$is_use eq '0'">on</if>">未使用</a></li>
+			<li><a href="index.php?g=Wap&m=Card&a=integral&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&cardid={pigcms:$thisCard.id}&type={pigcms:$type}&is_use=1" class="<if condition="$is_use eq '1'">on</if>">已使用</a></li>
+		</ul>
+	</nav>
+</header>
+<div id="basic-accordian">
+<volist name="list" id="item">
+<div id="test{pigcms:$item.id}-header" class="accordion_headings  <?php if ($item['id']==$firstItemID){?>header_highlight<?php } ?>">
+<div class="tab gift">
+<span class="title">{pigcms:$item.title}<p>有效期至{pigcms:$item.enddate|date='Y年m月d日',###}</p></span>
+</div>
+<div id="test{pigcms:$item.id}-content">
+<div class="accordion_child">
+<img src="{pigcms:$item.pic}" class="pic">
+<div id="queren{pigcms:$item.id}" style="display:none;">
+								<p style=" margin:10px 0 0 0">
+									<input name="username" class="px" id="username{pigcms:$item.id}" value="" type="text" placeholder="请输入商家用户名">
+								</p>
+								<p style=" margin:10px 0 0 0">
+									<input name="password" class="px" id="password{pigcms:$item.id}" value="" type="password" placeholder="请输入商家密码">
+								</p>
+								<p style=" margin:10px 0 0 0">
+									<textarea placeholder="备注信息" class="px" id="notes{pigcms:$item.id}" name="notes"></textarea>
+								</p>
+								<if condition="$item.is_use eq '0'">
+								<p style=" margin:10px 0">
+									<a id="showcard0" class="submit" href="javascript:void(0)" onclick="use({pigcms:$item.id})">确定兑换</a>
+								</p>
+								</if>
+							</div>
+							<p class="explain_sn" id="shiyong{pigcms:$item.id}" style="width: 100%;margin: 0px auto;color: #fff;">
+			           			<a style="height: 25px;line-height: 25px;" class="submit" href="###" onclick="this.style.display='none';document.getElementById('queren{pigcms:$item.id}').style.display=''">点击立即兑换</a>
+			           		</p>
+<b>详情说明</b>
+<ul style="min-height:200px;">{pigcms:$item.info}</ul>
+<div style="clear:both;height:20px;"></div>
+</div> 
+<div style="clear:both;height:20px;"></div>
+</div>
+</div>
+</volist>
+</div>
+<script>
+var jQ = jQuery.noConflict();
+function use(i){
+	var username =  jQ('#username'+i).val();
+	var password =  jQ('#password'+i).val();
+	var notes 	 =  jQ('#notes'+i).val();
+	if(!username){
+		alert('请输入商家用户名');
+		return false;
+	}
+	if(!password){
+		alert('请输入商家密码');
+		return false;
+	}
+	var itemid=i;
+	var submitData = {
+			password:password,
+			record_id:itemid,
+			username:username,
+			notes:notes,
+			coupon_type:3,
+		};	
+	jQ.post('/index.php?g=Wap&m=Card&a=action_useIntergral&wecha_id={pigcms:$wecha_id}&token={pigcms:$token}', submitData,
+	function(data) {
+		if (data.success == 1) {
+			document.getElementById('queren'+i).style.display='none';
+			document.getElementById('password'+i).value = '';
+			alert(data.msg);
+		}else{
+			alert(data.msg);
+		}
+	}, "json");
+}
+</script>
+<include file="Card:cardFooter"/>
+<include file="Card:share"/>
+</body>
+</html>

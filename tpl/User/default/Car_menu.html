@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<div class="tab">
+<ul>
+<li class="<if condition="ACTION_NAME EQ 'index' OR ACTION_NAME EQ 'carbrand'">current</if> tabli" id="tab0"><a href="{pigcms::U('Car/index',array('token'=>$token))}">品牌管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'series' OR ACTION_NAME EQ 'addseries'">current</if> tabli" id="tab2"><a href="{pigcms::U('Car/series',array('token'=>$token))}">车系管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'carmodel' OR ACTION_NAME EQ 'add_carmodel'">current</if> tabli" id="tab3"><a href="{pigcms::U('Car/carmodel',array('token'=>$token))}">车型管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'salers' OR ACTION_NAME EQ 'add_saler'">current</if> tabli" id="tab4"><a href="{pigcms::U('Car/salers',array('token'=>$token))}">销售管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'reservation' OR ACTION_NAME EQ 'res_edit' OR ACTION_NAME EQ 'res_manage'">current</if> tabli" id="tab5"><a href="{pigcms::U('Car/reservation',array('token'=>$token))}">预约管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'carowner'">current</if> tabli" id="tab6"><a href="{pigcms::U('Car/carowner',array('token'=>$token))}">车主关怀</a></li>
+<li class="<if condition="ACTION_NAME EQ 'utility'">current</if> tabli" id="tab7"><a href="{pigcms::U('Car/utility',array('token'=>$token))}">实用工具</a></li>
+<li class="<if condition="ACTION_NAME EQ 'carnews'">current</if> tabli" id="tab8"><a href="{pigcms::U('Car/carnews',array('token'=>$token))}">汽车文章</a></li>
+<li class="<if condition="ACTION_NAME EQ 'carset'">current</if> tabli" id="tab8"><a href="{pigcms::U('Car/carset',array('token'=>$token))}">回复设置</a></li>
+<li class="<if condition="ACTION_NAME EQ 'caronwers'">current</if> tabli" id="tab8"><a href="{pigcms::U('Car/caronwers',array('token'=>$token))}">车主</a></li>
+</ul>
+</div>

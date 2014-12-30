@@ -1,0 +1,96 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<include file="Member_card:menu"/>      
+          <div class="cLine">
+			<div class="pageNavigator left">
+				<a  href="{pigcms::U('Member_card/add_gifts',array('token'=>$token,'id'=>$thisCard['id']))}" title="添加开卡即送" class="btnGrayS vm bigbtn">
+					<img class="vm" src="./tpl/User/default/common/images/product/add.png">
+					添加开卡即送
+				</a>
+			</div>	  
+			<a href="{pigcms::U('Member_card/index',array('token'=>$token))}" class="right btnGrayS vm">返回</a>     
+			<div class="clr"></div>
+<!-- 导入end -->		
+          </div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">用户领卡成功后，将会兑现设置好的奖励，赠送优惠劵请先在优惠劵活动中添加“赠送卷”</div>             
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th width="150">活动名称</th>
+					<th width="200">赠送类型</th>	
+					<th width="100">生效时间</th>				
+					<th width="100">过期时间</th>
+					<th width="100">状态</th>
+                    <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <volist name="list" id="list">           
+                <tr>
+					  <td>{pigcms:$list.name}</td>
+					  <td>
+					  	<if condition="$list.type eq '1'">
+							　积分 - {pigcms:$list.item_value}点
+					  	<else/>
+					  		<if condition="$list.item_attr eq '1'">
+					  		优惠劵 -
+					  		<elseif condition="$list.item_attr eq '2'"/>
+					  		代金卷 -
+					  		</if>
+					  		{pigcms:$list.item_name}
+					  	</if>
+					  	</td>
+					  <td>
+						{pigcms:$list.start|date="Y-m-d",###}
+					  </td>
+					   <td>
+						{pigcms:$list.end|date="Y-m-d",###}
+					  </td>
+					  <td>
+					  	<if condition="$list.is_open eq '1'">
+							已开启
+					  	<else/>
+							已关闭
+					  	</if>
+					  </td>
+                      <td>                       
+                    	<a href="index.php?g=User&m=Member_card&a=edit_gifts&gid={pigcms:$list.id}&id={pigcms:$thisCard.id}">修改</a>
+                       	<a href="index.php?g=User&m=Member_card&a=del_gifts&gid={pigcms:$list.id}&id={pigcms:$thisCard.id}" onclick="return confirm('确定要删除吗?');">删除</a>
+                    </td>
+                </tr>
+				</volist>
+      			
+              </tbody>
+            </table>
+           </form> 
+			<script>
+			   function checkvotethis() {
+					var aa=document.getElementsByName('del_id[]');
+					var mnum = aa.length;
+					j=0;
+					for(i=0;i<mnum;i++){
+					if(aa[i].checked){
+					j++;
+					}
+					}
+					if(j>0) {
+					document.getElementById('info').submit();
+					} else {
+					alert('未选中内容！')
+					}
+				}
+			</script>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+             </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

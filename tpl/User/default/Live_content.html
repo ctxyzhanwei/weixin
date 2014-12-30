@@ -1,0 +1,87 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">场景内容</h4>
+<a href="{pigcms::U('Live/index',array('token'=>$token))}"  class="right btnGrayS vm" >返回</a>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Live/content_add',array('token'=>$token,'live_id'=>$live_id))}" title="添加内容" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加内容</a></div>
+<div class="searchbar right">
+	<form method="post" action="">
+		类型：
+		<select name="type" id="">
+			<option value="">请选择....</option>
+			<option value="1">图片内容</option>
+			<option value="2">视频内容</option>
+		</select>
+		<input type="text" id="msgSearchInput" class="txt" placeholder="输入关键词搜索" name="search" value="">
+		<input type="hidden" name="ac" value="hotels-list">
+		<input type="hidden" name="id" value="9878">
+		<input type="hidden" name="wxid" value="gh_423dwjkewad">
+		<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+	</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">内容名称</th>
+<th width="120">图片内容</th>
+<th width="120">视频连接</th>
+<th width="120">视频裁图</th>
+<th width="40">类型</th>
+<th width="40">是否显示</th>
+ <th width="40">排序</th>
+<th width="50" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{pigcms:$item.name}</td>
+<td><a href="{pigcms:$item.bg_pic}" target="_blank">点击查看图片</a></td>
+<td><if condition="$item.movie_link eq ''">无<else/><a href="{pigcms:$item.movie_link}" target="_blank">点击查看视频内容</a></if></td>
+<td><if condition="$item.movie_pic eq ''">无<else/><a href="{pigcms:$item.movie_pic}" target="_blank">点击查看视频图片</a></if></td> 
+<td>	
+	<if condition="$item.type eq '1'">
+		图片
+	<elseif condition="$item.type eq '2'"/>	
+		视频
+	</if>
+</td>
+<td>
+	<if condition="$item.is_show eq '1'">
+		显示
+	<else/>	
+		隐藏
+	</if>
+</td> 
+<td>{pigcms:$item.sort}</td>
+<td class="norightborder">
+	<a href="{pigcms::U('Live/content_add',array('id'=>$item['id'],'token'=>$token,'live_id'=>$live_id))}">修改</a>
+	|
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Live/content_del',array('id'=>$item['id'],'token'=>$token,'live_id'=>$live_id))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

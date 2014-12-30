@@ -1,0 +1,98 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>-->
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+
+
+    
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+
+<div class="cLineB">
+  <h4>讨论社区配置 </h4>
+ </div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<!--tab end-->    
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="{pigcms::U('Forum/set')}" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<span class="red">论坛 或者 讨论社区 —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				
+				<tr>
+					<th width="120">讨论社区名字</th>
+					<td><input type="text" name="forumname" value="{pigcms:$conf.forumname|default=$wxname.'官方粉丝社区'}" class="px" style="width:250px;"></td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" id="picurl" value="{pigcms:$conf.picurl}" class="px" style="width:550px;"><script src="/tpl/static/upyun.js"></script>  <a href="###" onclick="upyunPicUpload('picurl',360,200,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a><br/> </td>
+				</tr>
+				
+				<tr>
+					<th>讨论社区Logo：</th>
+					<td><input type="text" name="logo" id="logo" value="{pigcms:$conf.logo}" class="px" style="width:550px;">  <a href="###" onclick="upyunPicUpload('logo',1500,1000,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('logo')">预览</a><br/> </td>
+				</tr>				
+				<tr>
+					<th>自定义背景</th>
+					<td><input type="text" name="bgurl" id="bgurl" value="{pigcms:$conf.bgurl}" class="px" style="width:550px;">  <a href="###" onclick="upyunPicUpload('bgurl',1500,1000,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('bgurl')">预览</a><br/> </td>
+				</tr>
+				<tr>
+					<th width="120">图文回复介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="intro" id="intro" class="px">{pigcms:$conf.intro}</textarea></td>
+				</tr>
+				
+				
+				<tr>
+					<th width="120">是否需要审核新帖</th>
+					<td>
+						<input type="radio" name="ischeck" id="nocheck" <if condition="$conf['ischeck'] eq 0">checked</if> value="0" /><label for="nocheck">不需要 &nbsp;</label>
+						<input type="radio" name="ischeck" id="check" <if condition="$conf['ischeck'] eq 1">checked</if> value="1" /><label for="check">需要</label>
+					</td>
+				</tr>
+								
+				<tr>
+					<th width="120">是否需要审核新评论</th>
+					<td>
+						<input type="radio" name="comcheck" id="nocomcheck" <if condition="$conf['comcheck'] eq 0">checked</if> value="0" /><label for="nocomcheck">不需要 &nbsp;</label>
+						<input type="radio" name="comcheck" id="comcheck" <if condition="$conf['comcheck'] eq 1">checked</if> value="1" /><label for="comcheck">需要</label>
+					</td>
+				</tr>
+				
+				<tr>
+					<th width="120">开启/关闭讨论社区</th>
+					<td>
+						<input type="radio" name="isopen" id="open" <if condition="$conf['isopen'] eq 1">checked</if> value="1" /><label for="open">开启 &nbsp;</label>
+						<input type="radio" name="isopen" id="noopen" <if condition="$conf['isopen'] eq 0">checked</if> value="0" /><label for="noopen">关闭</label>
+						 &nbsp; &nbsp; &nbsp;<tt style="color:red">(*选择关闭将不能打开讨论社区)</tt>
+					</td>
+				</tr>
+				
+				
+				
+				<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="token" value="{pigcms:$_GET['token']}" />
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

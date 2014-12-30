@@ -1,0 +1,372 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+textarea{
+    border:1px lightgrey solid;
+    width:140px;
+    height: 100px;
+};
+
+ </style>
+  <script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#business_desc', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+
+<div class="content">
+  <div class="cLineB">
+    <h4>设置食谱相关内容</h4>
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>注意：第一次使用，请点击添加食谱，并编辑并点击保存 </font><br/>
+    复制上周食谱的时候,请先选择时间,然后保存即可.
+   </strong>
+    </p>
+    </div>
+   </div>
+</div>
+
+
+<div class="msgWrap">
+  <form class="form" method="post" id="formID" action="" target="_top" enctype="multipart/form-data">
+<table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+ <tbody>
+<tr>
+        <if condition="$recipe['id'] neq ''">
+            <input type="hidden"  id="id" value="{pigcms:$recipe['id']}" name="id" >
+            <input type="hidden"  id="status" value="edit" name="status" >
+        </if>
+        <input type="hidden"  id="type" value="school" name="type" >
+</tr>
+      <tr>
+        <th>标题</th>
+        <td colspan="4"><input type="text" name="title" id="title" class="px" value="{pigcms:$recipe['title']|default='一周食谱'}" style="width:400px;" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项"></td>
+      </tr>
+    <tr>
+        <th>关键词</th>
+        <td colspan="4"><input type="text" name="keyword"  id="keyword" value="{pigcms:$recipe['keyword']|default='食谱'}" class="px" style="width:400px;" data-validation-engine="validate[required,minSize[1]]"
+                    data-errormessage-value-missing="必填项"></td>
+      </tr>
+    <tr>
+        <th>图文信息描述</th>
+        <td colspan="4">
+        <textarea name="infos" id="infos" style="width:400px;height: 200px;"  data-validation-engine="validate[required,minSize[1],maxSize[200]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$recipe['infos']}</textarea></td>
+      </tr>
+
+        <tr>
+            <th ><label for="keyword">图文消息封面</label></th>
+            <td colspan="4"><img class="thumb_img" id="headpic_src" src="{pigcms:$recipe['headpic']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="headpic" value="{pigcms:$recipe['headpic']}" name="headpic" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传回复图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png" style="width:400px;">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('headpic',468,180,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('headpic')">预览</a> [468*180] </td>
+
+          </tr>
+      <tr>
+        <th>排序</th>
+        <td colspan="4"><input type="text" name="sort" value="{pigcms:$recipe['sort']|default=1}" class="px" style="width:400px;" data-validation-engine="validate[required,custom[integer],min[1]]" data-errormessage-value-missing="必填项,必须是数字"> &nbsp; 数值越大,越靠前</td>
+      </tr>
+      <tr>
+        <th>是否显示</th>
+        <td colspan="4">
+            <select name="ishow" id="ishow">
+            <option value="1" <if condition="$recipe['ishow'] eq 1">selected</if>>显示</option>
+            <option value="2" <if condition="$recipe['ishow'] eq 2">selected</if>>隐藏</option>
+            </select>
+        </td>
+      </tr>
+            <tr>
+        <th>时间段</th>
+        <td colspan="4"><input type="input" class="px" id="begintime" style="width:185px;" value="<if condition="$recipe['begintime'] neq ''">{pigcms:$recipe['begintime']|date="Y-m-d",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-M-d',minDate:'%y-%M-%d',maxDate:'%y-%M-#{%d+8}'})" name="begintime" data-validation-engine="validate[required]"
+                    data-errormessage-value-missing="必填项,请选择日期"/>
+    到
+    <input type="input" class="px" id="endtime" style="width:185px;" value="<if condition="$recipe['endtime'] neq ''">{pigcms:$recipe['endtime']|date="Y-m-d",###}</if>" name="endtime"  onClick="WdatePicker({dateFmt:'yyyy-M-d',minDate:'%y-%M-%d',maxDate:'%y-%M-#{%d+14}'})"  data-validation-engine="validate[required]"
+                    data-errormessage-value-missing="必填项,请选择日期"/> &nbsp; <strong>复制上周食谱仅需修改一下时间,保存即可</strong></td>
+      </tr>
+       <tr style="border-top: 1px rgb(194, 183, 183) solid;">
+        <th style="border-right: 1px rgb(194, 183, 183) solid;">日期/餐段</th>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(194, 183, 183) solid;text-align:center;background-color: gainsboro;"> 早餐</th>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(194, 183, 183) solid;text-align:center;background-color: gainsboro;">早加餐</th>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(194, 183, 183) solid;text-align:center;background-color: gainsboro;">午餐</th>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(194, 183, 183) solid;text-align:center;background-color: gainsboro;">午加餐</th>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(194, 183, 183) solid;text-align:center;background-color: gainsboro;">晚餐</th>
+      </tr>
+
+      <tr>
+      <?php $monarr = @unserialize($recipe['monday']);?>
+      <?php $tuearr = @unserialize($recipe['tuesday']);?>
+      <?php $wedarr = @unserialize($recipe['wednesday']);?>
+      <?php $thuarr = @unserialize($recipe['thursday']);?>
+      <?php $friarr = @unserialize($recipe['friday']);?>
+      <?php $satarr = @unserialize($recipe['saturday']);?>
+      <?php $sunarr = @unserialize($recipe['sunday']);?>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(184, 116, 116) solid;" >星期一</th>
+        <td><textarea name="monday[mon_zc]"  id="mon_zc" placeholder="请输入早餐食材" data-validation-engine="validate[required,minSize[2]]"
+        data-errormessage-value-missing="必填项">{pigcms:$monarr['mon_zc']|default='松子大米粥,煮鸡蛋,豆沙包'}</textarea><br/><img class="thumb_img" id="zc_pic_src" src="{pigcms:$monarr['zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="zc_pic" <if condition="$monarr['zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$monarr['zc_pic']}" </if>  name="monday[zc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<br>
+<a href="###" onclick="upyunPicUpload('zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="monday[mon_zjc]"  id="mon_zjc" placeholder="请输入早加餐食材,没有可以不填写." >{pigcms:$monarr['mon_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="mon_zjc_pic_src" src="{pigcms:$monarr['mon_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="mon_zjc_pic" <if condition="$monarr['mon_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$monarr['mon_zjc_pic']}"  </if> name="monday[mon_zjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('mon_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('mon_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="monday[mon_wc]"  id="mon_wc" placeholder="请输入午餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$monarr['mon_wc']|default='米饭,珍珠鱼丸,木耳园白菜,冬瓜丸子汤'}</textarea><br/><img class="thumb_img" id="mon_wc_pic_src" src="{pigcms:$monarr['mon_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="mon_wc_pic" <if condition="$monarr['mon_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$monarr['mon_wc_pic']}"  </if>  name="monday[mon_wc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('mon_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('mon_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="monday[mon_wjc]"  id="mon_wjc" placeholder="请输入午加餐食材,没有可以不填写." >{pigcms:$monarr['mon_wjc']|default='苹果'}</textarea><br/><img class="thumb_img" id="mon_wjc_pic_src" src="{pigcms:$monarr['mon_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="mon_wjc_pic" <if condition="$monarr['mon_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$monarr['mon_wjc_pic']}" </if> name="monday[mon_wjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('mon_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('mon_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="monday[mon_wwc]"  id="mon_wwc" placeholder="请输入晚餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$monarr['mon_wwc']|default='发糕,肉炒三丁,熏干芹菜,玉米面粥'}</textarea><br/><img class="thumb_img" id="mon_wwc_pic_src" src="{pigcms:$monarr['mon_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="mon_wwc_pic" <if condition="$monarr['mon_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$monarr['mon_wwc_pic']}" </if> name="monday[mon_wwc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('mon_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('mon_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+      <tr>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(184, 116, 116) solid;">星期二</th>
+       <td><textarea name="tuesday[tus_zc]"  id="tus_zc" placeholder="请输入早餐食材" data-validation-engine="validate[required,minSize[2]]"
+        data-errormessage-value-missing="必填项">{pigcms:$tuearr['tus_zc']|default='青菜肉丝柳叶面,摊鸡蛋,菊花卷'}</textarea><br/><img class="thumb_img" id="tus_zc_pic_src" src="{pigcms:$tuearr['tus_zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="tus_zc_pic" <if condition="$tuearr['tus_zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$tuearr['tus_zc_pic']}" </if>  name="tuesday[tus_zc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script><br>
+<a href="###" onclick="upyunPicUpload('tus_zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('tus_zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="tuesday[tus_zjc]"  id="tus_zjc" placeholder="请输入早加餐食材,没有可以不填写." >{pigcms:$tuearr['tus_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="tus_zjc_pic_src" src="{pigcms:$tuearr['tus_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="tus_zjc_pic" <if condition="$tuearr['tus_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$tuearr['tus_zjc_pic']}"  </if> name="tuesday[tus_zjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('tus_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('tus_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="tuesday[tus_wc]"  id="tus_wc" placeholder="请输入午餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$tuearr['tus_wc']|default='米饭,鸡丁黄瓜,蕃茄菜花,鸡蛋紫菜汤'}</textarea><br/><img class="thumb_img" id="tus_wc_pic_src" src="{pigcms:$tuearr['tus_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="tus_wc_pic" <if condition="$tuearr['tus_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$tuearr['tus_wc_pic']}"  </if>  name="tuesday[tus_wc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('tus_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('tus_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="tuesday[tus_wjc]"  id="tus_wjc" placeholder="请输入午加餐食材,没有可以不填写." >{pigcms:$tuearr['tus_wjc']|default='香蕉'}</textarea><br/><img class="thumb_img" id="tus_wjc_pic_src" src="{pigcms:$tuearr['tus_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="tus_wjc_pic" <if condition="$tuearr['tus_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$tuearr['tus_wjc_pic']}" </if> name="tuesday[tus_wjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('tus_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('tus_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="tuesday[tus_wwc]"  id="tus_wwc" placeholder="请输入晚餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$tuearr['tus_wwc']|default='小笼包子,小米粥'}</textarea><br/><img class="thumb_img" id="tus_wwc_pic_src" src="{pigcms:$tuearr['tus_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="tus_wwc_pic" <if condition="$tuearr['tus_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$tuearr['tus_wwc_pic']}" </if> name="tuesday[tus_wwc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('tus_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('tus_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+      <tr >
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(184, 116, 116) solid;">星期三</th>
+<td><textarea name="wednesday[wed_zc]"  id="wed_zc" placeholder="请输入早餐食材" data-validation-engine="validate[required,minSize[2]]"
+        data-errormessage-value-missing="必填项">{pigcms:$wedarr['wed_zc']|default='松子大米粥,煮鸡蛋,豆沙包'}</textarea><br/><img class="thumb_img" id="wed_zc_pic_src" src="{pigcms:$wedarr['wed_zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="wed_zc_pic" <if condition="$wedarr['wed_zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$wedarr['wed_zc_pic']}" </if>  name="wednesday[wed_zc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script><br>
+<a href="###" onclick="upyunPicUpload('wed_zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('wed_zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="wednesday[wed_zjc]"  id="wed_zjc" placeholder="请输入早加餐食材,没有可以不填写." >{pigcms:$wedarr['wed_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="wed_zjc_pic_src" src="{pigcms:$wedarr['wed_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="wed_zjc_pic" <if condition="$wedarr['wed_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$wedarr['wed_zjc_pic']}"  </if> name="wednesday[wed_zjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('wed_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('wed_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="wednesday[wed_wc]"  id="wed_wc" placeholder="请输入午餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$wedarr['wed_wc']|default='米饭,珍珠鱼丸,木耳园白菜,冬瓜丸子汤'}</textarea><br/><img class="thumb_img" id="wed_wc_pic_src" src="{pigcms:$wedarr['wed_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="wed_wc_pic" <if condition="$wedarr['wed_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$wedarr['wed_wc_pic']}"  </if>  name="wednesday[wed_wc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('wed_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('wed_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="wednesday[wed_wjc]"  id="wed_wjc" placeholder="请输入午加餐食材,没有可以不填写." >{pigcms:$wedarr['wed_wjc']|default='苹果'}</textarea><br/><img class="thumb_img" id="wed_wjc_pic_src" src="{pigcms:$wedarr['wed_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="wed_wjc_pic" <if condition="$wedarr['wed_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$wedarr['wed_wjc_pic']}" </if> name="wednesday[wed_wjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('wed_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('wed_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="wednesday[wed_wwc]"  id="wed_wwc" placeholder="请输入晚餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$wedarr['wed_wwc']|default='发糕,肉炒三丁,熏干芹菜,玉米面粥'}</textarea><br/><img class="thumb_img" id="wed_wwc_pic_src" src="{pigcms:$wedarr['wed_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="wed_wwc_pic" <if condition="$wedarr['wed_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$wedarr['wed_wwc_pic']}" </if> name="wednesday[wed_wwc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('wed_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('wed_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+      <tr>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(184, 116, 116) solid;">星期四</th>
+<td><textarea name="thursday[thu_zc]"  id="thu_zc" placeholder="请输入早餐食材" data-validation-engine="validate[required,minSize[2]]"
+        data-errormessage-value-missing="必填项">{pigcms:$thuarr['thu_zc']|default='青菜肉丝柳叶面,摊鸡蛋,菊花卷'}</textarea><br/><img class="thumb_img" id="thu_zc_pic_src" src="{pigcms:$thuarr['thu_zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="thu_zc_pic" <if condition="$thuarr['thu_zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$thuarr['thu_zc_pic']}" </if>  name="thursday[thu_zc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script><br>
+<a href="###" onclick="upyunPicUpload('thu_zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('thu_zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="thursday[thu_zjc]"  id="thu_zjc" placeholder="请输入早加餐食材,没有可以不填写." >{pigcms:$thuarr['thu_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="thu_zjc_pic_src" src="{pigcms:$thuarr['thu_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="thu_zjc_pic" <if condition="$thuarr['thu_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$thuarr['thu_zjc_pic']}"  </if> name="thursday[thu_zjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('thu_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('thu_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="thursday[thu_wc]"  id="thu_wc" placeholder="请输入午餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$thuarr['thu_wc']|default='米饭,鸡丁黄瓜,蕃茄菜花,鸡蛋紫菜汤'}</textarea><br/><img class="thumb_img" id="thu_wc_pic_src" src="{pigcms:$thuarr['thu_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="thu_wc_pic" <if condition="$thuarr['thu_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$thuarr['thu_wc_pic']}"  </if>  name="thursday[thu_wc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('thu_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('thu_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="thursday[thu_wjc]"  id="thu_wjc" placeholder="请输入午加餐食材,没有可以不填写." >{pigcms:$thuarr['thu_wjc']|default='香蕉'}</textarea><br/><img class="thumb_img" id="thu_wjc_pic_src" src="{pigcms:$thuarr['thu_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="thu_wjc_pic" <if condition="$thuarr['thu_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$thuarr['thu_wjc_pic']}" </if> name="thursday[thu_wjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('thu_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('thu_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="thursday[thu_wwc]"  id="thu_wwc" placeholder="请输入晚餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$thuarr['thu_wwc']|default='小笼包子,小米粥'}</textarea><br/><img class="thumb_img" id="thu_wwc_pic_src" src="{pigcms:$thuarr['thu_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="thu_wwc_pic" <if condition="$thuarr['thu_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$thuarr['thu_wwc_pic']}" </if> name="thursday[thu_wwc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('thu_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('thu_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+      <tr>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(184, 116, 116) solid;">星期五</th>
+<td><textarea name="friday[fri_zc]"  id="fri_zc" placeholder="请输入早餐食材" data-validation-engine="validate[required,minSize[2]]"
+        data-errormessage-value-missing="必填项">{pigcms:$friarr['fri_zc']|default='松子大米粥,煮鸡蛋,豆沙包'}</textarea><br/><img class="thumb_img" id="fri_zc_pic_src" src="{pigcms:$friarr['fri_zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="fri_zc_pic" <if condition="$friarr['fri_zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$friarr['fri_zc_pic']}" </if>  name="friday[fri_zc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script><br>
+<a href="###" onclick="upyunPicUpload('fri_zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('fri_zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="friday[fri_zjc]"  id="fri_zjc" placeholder="请输入早加餐食材,没有可以不填写." >{pigcms:$friarr['fri_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="fri_zjc_pic_src" src="{pigcms:$friarr['fri_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="fri_zjc_pic" <if condition="$friarr['fri_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$friarr['fri_zjc_pic']}"  </if> name="friday[fri_zjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('fri_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('fri_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="friday[fri_wc]"  id="fri_wc" placeholder="请输入午餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$friarr['fri_wc']|default='米饭,珍珠鱼丸,木耳园白菜,冬瓜丸子汤'}</textarea><br/><img class="thumb_img" id="fri_wc_pic_src" src="{pigcms:$friarr['fri_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="fri_wc_pic" <if condition="$friarr['fri_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$friarr['fri_wc_pic']}"  </if>  name="friday[fri_wc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('fri_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('fri_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="friday[fri_wjc]"  id="fri_wjc" placeholder="请输入午加餐食材,没有可以不填写." >{pigcms:$friarr['fri_wjc']|default='苹果'}</textarea><br/><img class="thumb_img" id="fri_wjc_pic_src" src="{pigcms:$friarr['fri_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="fri_wjc_pic" <if condition="$friarr['fri_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$friarr['fri_wjc_pic']}" </if> name="friday[fri_wjc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('fri_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('fri_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="friday[fri_wwc]"  id="fri_wwc" placeholder="请输入晚餐食材" data-validation-engine="validate[required,minSize[2]]"
+                    data-errormessage-value-missing="必填项">{pigcms:$friarr['fri_wwc']|default='发糕,肉炒三丁,熏干芹菜,玉米面粥'}</textarea><br/><img class="thumb_img" id="fri_wwc_pic_src" src="{pigcms:$friarr['fri_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="fri_wwc_pic" <if condition="$friarr['fri_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$friarr['fri_wwc_pic']}" </if> name="friday[fri_wwc_pic]" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png"><br>
+<a href="###" onclick="upyunPicUpload('fri_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('fri_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+      <tr>
+        <th style="border-right: 1px rgb(194, 183, 183) solid;border-bottom: 1px rgb(184, 116, 116) solid;">星期六</th>
+<td><textarea name="saturday[sat_zc]"  id="sat_zc" placeholder="请输入早餐食材" >{pigcms:$satarr['sat_zc']|default='青菜肉丝柳叶面,摊鸡蛋,菊花卷'}</textarea><br/><img class="thumb_img" id="sat_zc_pic_src" src="{pigcms:$satarr['sat_zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sat_zc_pic" <if condition="$satarr['sat_zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$satarr['sat_zc_pic']}" </if>  name="saturday[sat_zc_pic]">
+<script src="{pigcms::STATICS}/upyun.js"></script><br>
+<a href="###" onclick="upyunPicUpload('sat_zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sat_zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="saturday[sat_zjc]"  id="sat_zjc" placeholder="请输入早加餐食材,没有可以不填写." >{pigcms:$satarr['sat_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="sat_zjc_pic_src" src="{pigcms:$satarr['sat_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sat_zjc_pic" <if condition="$satarr['sat_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$satarr['sat_zjc_pic']}"  </if> name="saturday[sat_zjc_pic]" ><br>
+<a href="###" onclick="upyunPicUpload('sat_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sat_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="saturday[sat_wc]"  id="sat_wc" placeholder="请输入午餐食材" >{pigcms:$satarr['sat_wc']|default='米饭,鸡丁黄瓜,蕃茄菜花,鸡蛋紫菜汤'}</textarea><br/><img class="thumb_img" id="sat_wc_pic_src" src="{pigcms:$satarr['sat_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sat_wc_pic" <if condition="$satarr['sat_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$satarr['sat_wc_pic']}"  </if>  name="saturday[sat_wc_pic]" ><br>
+<a href="###" onclick="upyunPicUpload('sat_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sat_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="saturday[sat_wjc]"  id="sat_wjc" placeholder="请输入午加餐食材,没有可以不填写." >{pigcms:$satarr['sat_wjc']|default='香蕉'}</textarea><br/><img class="thumb_img" id="sat_wjc_pic_src" src="{pigcms:$satarr['sat_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sat_wjc_pic" <if condition="$satarr['sat_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$satarr['sat_wjc_pic']}" </if> name="saturday[sat_wjc_pic]"><br>
+<a href="###" onclick="upyunPicUpload('sat_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sat_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="saturday[sat_wwc]"  id="sat_wwc" placeholder="请输入晚餐食材">{pigcms:$satarr['sat_wwc']|default='小笼包子,小米粥'}</textarea><br/><img class="thumb_img" id="sat_wwc_pic_src" src="{pigcms:$satarr['sat_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sat_wwc_pic" <if condition="$satarr['sat_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$satarr['sat_wwc_pic']}" </if> name="saturday[sat_wwc_pic]" ><br>
+<a href="###" onclick="upyunPicUpload('sat_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sat_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+
+      <tr style="border-bottom: 1px rgb(194, 183, 183) solid;">
+        <th style="border-right: 1px rgb(194, 183, 183) solid;">星期日</th>
+<td><textarea name="sunday[sun_zc]"  id="sun_zc" placeholder="请输入早餐食材" >{pigcms:$sunarr['sun_zc']|default='松子大米粥,煮鸡蛋,豆沙包'}</textarea><br/><img class="thumb_img" id="sun_zc_pic_src" src="{pigcms:$sunarr['sun_zc_pic']|default='/tpl/static/recipe/zc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sun_zc_pic" <if condition="$sunarr['sun_zc_pic'] eq ''">value="<?php echo C('site_url');?>/tpl/static/recipe/zc.jpg" <else/>value="{pigcms:$sunarr['sun_zc_pic']}" </if>  name="sunday[sun_zc_pic]" >
+<script src="{pigcms::STATICS}/upyun.js"></script><br>
+<a href="###" onclick="upyunPicUpload('sun_zc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sun_zc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="sunday[sun_zjc]"  id="sun_zjc" placeholder="请输入早加餐食材" >{pigcms:$sunarr['sun_zjc']|default='牛奶'}</textarea><br/><img class="thumb_img" id="sun_zjc_pic_src" src="{pigcms:$sunarr['sun_zjc_pic']|default='/tpl/static/recipe/zjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sun_zjc_pic" <if condition="$sunarr['sun_zjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/zjc.jpg" <else/>value="{pigcms:$sunarr['sun_zjc_pic']}"  </if> name="sunday[sun_zjc_pic]" ><br>
+<a href="###" onclick="upyunPicUpload('sun_zjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sun_zjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="sunday[sun_wc]"  id="sun_wc" placeholder="请输入午餐食材" >{pigcms:$sunarr['sun_wc']|default='米饭,珍珠鱼丸,木耳园白菜,冬瓜丸子汤'}</textarea><br/><img class="thumb_img" id="sun_wc_pic_src" src="{pigcms:$sunarr['sun_wc_pic']|default='/tpl/static/recipe/wc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sun_wc_pic"
+        <if condition="$sunarr['sun_wc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wc.jpg" <else/>value="{pigcms:$sunarr['sun_wc_pic']}"  </if>  name="sunday[sun_wc_pic]"><br>
+<a href="###" onclick="upyunPicUpload('sun_wc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sun_wc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="sunday[sun_wjc]"  id="sun_wjc" placeholder="请输入午加餐食材">{pigcms:$sunarr['sun_wjc']|default='苹果'}</textarea><br/><img class="thumb_img" id="sun_wjc_pic_src" src="{pigcms:$sunarr['sun_wjc_pic']|default='/tpl/static/recipe/wjc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sun_wjc_pic" <if condition="$sunarr['sun_wjc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wjc.jpg" <else/>value="{pigcms:$sunarr['sun_wjc_pic']}" </if> name="sunday[sun_wjc_pic]" ><br>
+<a href="###" onclick="upyunPicUpload('sun_wjc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sun_wjc_pic')">预览</a> [400 × 300]</td>
+
+        <td><textarea name="sunday[sun_wwc]"  id="sun_wwc" placeholder="请输入晚餐食材" >{pigcms:$sunarr['sun_wwc']|default='发糕,,肉炒三丁,熏干芹菜,玉米面粥'}</textarea><br/><img class="thumb_img" id="sun_wwc_pic_src" src="{pigcms:$sunarr['sun_wwc_pic']|default='/tpl/static/recipe/wwc.jpg'}" style="max-height:100px;max-width: 143px;"><input type="input" class="px" id="sun_wwc_pic" <if condition="$sunarr['sun_wwc_pic'] eq ''"> value="<?php echo C('site_url');?>/tpl/static/recipe/wwc.jpg" <else/>value="{pigcms:$sunarr['sun_wwc_pic']}" </if> name="sunday[sun_wwc_pic]" ><br>
+<a href="###" onclick="upyunPicUpload('sun_wwc_pic',400,300,'{pigcms:$token}')" >上传</a> &nbsp;&nbsp;
+<a href="###" onclick="viewImg('sun_wwc_pic')">预览</a> [400 × 300]</td>
+      </tr>
+<tr>
+
+  <td colspan="4"><button type="reset"  class="btnGreen left">取消</button>
+    <td colspan="3"><button type="submit" name="button" class="btnGreen left">保存</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</form>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

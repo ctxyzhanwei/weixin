@@ -1,0 +1,9 @@
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="tab">
+	<ul>
+		<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{pigcms::U('ServiceUser/index',array('token'=>$token))}">客服工号管理</a></li>
+		<li class="<if condition="ACTION_NAME EQ 'wechatService'">current</if> tabli" id="tab1"><a href="{pigcms::U('ServiceUser/wechatService',array('token'=>$token))}">微信客服设置</a></li>
+		<li class="<if condition="ACTION_NAME EQ 'son'">current</if> tabli" id="tab2"><a href="{pigcms::U('ServiceUser/chat_log',array('token'=>$token))}">聊天记录管理</a></li>
+	
+	</ul>
+</div>

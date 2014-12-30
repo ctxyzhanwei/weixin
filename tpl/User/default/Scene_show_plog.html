@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://wxsyb.bama555.com/activity/free_vote/result_list/?id=23839&rotate_id=58 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>投票</title>
+	<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/winner_list.css">
+</head>
+<body style="width:1200px;min-height:550px;">
+<h1>中奖记录</h1>
+	<ul class="rotate-tab clearfix">
+		<volist id="prize_info" name="prize_info" empty="没有中奖记录">
+			<li class="<if condition="$prize_info['id'] eq $pid">active</if>">
+				<a href="{pigcms::U('Scene/show_plog',array('id'=>$prize_info['sceneid'],'pid'=>$prize_info['id']))}">{pigcms:$prize_info.name}</a>
+			</li>
+		</volist>
+		<span class="clear"></span>
+	</ul>
+<div class="member-list" style="height: 316px;">
+	<ul class="clearfix">
+		<ul class="clearfix">
+			<volist id="user" name="user" key="key">
+				<li>
+					<div class="member-avatar"><img src="{pigcms:$user.head}"></div>
+					<span>{pigcms:$user.name}</span>
+				</li>	
+			</volist>
+		</ul>
+	</ul>
+</div>
+</body></html>

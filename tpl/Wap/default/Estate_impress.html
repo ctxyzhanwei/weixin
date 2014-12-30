@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>专家点评•房友印象</title>
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/back.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/review.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/jquery.min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/estate/js/common.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/estate/js/review.js"></script>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body onselectstart="return true;" ondragstart="return false;" style="background:#363634;">
+<div class="wrapper">
+    <!-- start -->
+        <ul class="nav_top" id="navTop" style="display: -webkit-box;">
+            <li><a href="javascript:void(0);" onclick="REVIEW.switchPanel(0);return false;" class="current">房友印象</a></li>
+            <li><a href="javascript:void(0);" onclick="REVIEW.switchPanel(1);return false;">专家点评</a></li>
+        </ul>
+    <!-- end -->
+    <div id="impress" class="impress">  
+        <h3>选择或添加您的楼盘印象</h3>
+        <div class="box1"> 
+            <ul>
+            <li class="my_in">
+                <a href="javascript:void(0);" id="userReview" onclick="REVIEW.addReview(0,&#39;&#39;,&#39;my_in&#39;);" class="00" style="-webkit-box-flex:4;"> 
+                    <if condition="$user_comment eq ''">    
+                        <em>添加<br>我的印象</em> 
+                    <else/>
+                        <div class="is_review">我的楼盘印象<i>“{pigcms:$user_comment['imp_user']}”</i>与{pigcms:$user_comment.comment}房友相同</div>
+                    </if>   
+                </a> 
+            </li>
+            <if condition="$impress neq ''">
+                <volist name="impress" id="impress" key="key">
+                    <li class="{pigcms:$impress.class}" id="id_{pigcms:$impress.id}" style="background-color:{pigcms:$impress.color};">
+                        <a href="javascript:void(0);" onclick="REVIEW.addReview({pigcms:$impress.id},&#39;{pigcms:$impress.title}&#39;,&#39;id_{pigcms:$impress.id}&#39;);">     
+                            <span>{pigcms:$impress.title} <br />{pigcms:$impress.comment}</span>    
+                        </a> 
+                    </li>
+                </volist> 
+            <else/>
+                <div style="text-align:center;height:35px;line-height:35px;">暂时没有其他印象数据！您可以点击添加自己独特的印象</div>
+            </if>
+            </ul>
+        </div>
+    </div>    
+
+    <div id="professional" style="display:none;">
+        <if condition="$expert neq ''">  
+        <volist id="expert" name="expert">
+        <div class="review_box">    
+            <div class="review_man"> 
+                <img src="{pigcms:$expert.face}" width="70" height="70" style="width:70px!important; height:70px!important; " alt="">     
+                <h3>{pigcms:$expert.name}<em><br>{pigcms:$expert.position}</em></h3>     
+                <p>{pigcms:$expert.description}</p>    
+            </div>    
+            <div class="review_word">     
+                <h2>{pigcms:$expert.title}</h2>     
+                <p>{pigcms:$expert.comment}</p>    
+            </div>   
+        </div> 
+        </volist>
+        <else/>
+            <div style="text-align:center;height:35px;line-height:35px;">暂时没有专家点评！</div>
+        </if>     
+    </div>
+
+<div class="pop_tips" id="popTips" style="display: none; top: 30%;">
+    <div class="pop_show">
+        <h4>我的楼盘印象是</h4>
+        <div class="pop_info">
+            <input type="hidden" id="reviewId" value="0">
+            <input id="inputImpress" maxlength="4" type="text" class="input_impress" placeholder="输入四个字的楼盘印象">
+        </div>
+        <div class="pop_btns">
+            <a href="javascript:void(0);" onclick="REVIEW.closePop();">取消</a>
+            <a href="javascript:void(0);" onclick="REVIEW.sendReview();" class="out">确定</a>
+        </div>
+    </div>
+</div>
+<div class="pop_tips" id="noticeDiv" style="display: none; top: 30%;">
+    <div class="oval"></div>
+    <div class="pop_show">
+        <h4 id="tipsTitle">温馨提示</h4>
+        <div class="pop_info" id="tipsMsg">
+            <p>请输入四个字的中文描述</p>
+        </div>
+        <div class="pop_btns">
+            <a href="javascript:;" id="noticeBtn">确定</a>
+        </div>
+    </div>
+</div>
+<div id="popFail" style="display: none;" jqmoldstyle="block">
+    <div class="bk"></div>
+    <div class="cont">
+        <img src="./房友印象_files/load.gif" alt="loading...">
+        正在加载...
+    </div>
+</div>
+<div class="pop_mask" id="popMask" style="display:none;"></div>
+
+<script>
+var PID      = {pigcms:$estatindex['id']};
+var TOKEN    = "{pigcms:$token}";
+var WECHA_ID = '{pigcms:$wecha_id}';
+</script>
+
+<a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+
+<div mark="stat_code" style="width:0px; height:0px; display:none;">
+</div>
+
+<script>
+
+
+/*
+function getMyId(obj,id){
+    var imp_id   = id;
+    var token    = "{pigcms:$token}";
+    var wecha_id = "{pigcms:$wecha_id}";
+    if (wecha_id == '') {
+        alert("请关注后再重新点赞哦。");
+        return
+    }
+
+    var submitData ={
+        imp_id  : imp_id,
+        token   : token,
+        wecha_id:wecha_id,
+    };
+
+    var myurl="{pigcms::U('Estate/impress_add',array('token'=>$token,'wecha_id'=>$wecha_id))}";
+    $.post(myurl,submitData,function(retuandata){
+        var xobj=eval('('+retuandata+')');
+         if(xobj.errno == 1){
+            alert(xobj.msg);
+            window.location.reload();
+         }else if(xobj.errno == 2){
+             alert(xobj.msg + ' '+ xobj.thiscom);
+
+         }else if(xobj.errno == 0){
+            alert(xobj.msg);
+         }
+    });
+
+}*/
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<link href="{pigcms::RES}/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="{pigcms::RES}/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{pigcms::RES}/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/js/scrolltop.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $BanContBg = $(".BanContBg")
+	var $BanPic = $(".BanPic");
+	var $BanTxt = $(".BanTxt");
+	var $BanBtn = $(".BanBtn");
+	var BanBtnLi = 0;
+	$BanPicLi = $BanPic.find("li");
+	$BanTxtLi = $BanTxt.find("li");
+	$BanBtnLi = $BanBtn.find("li");
+	for(i=0;i<$BanPicLi.length;i++){
+		var BanPicLiSrc = $BanPicLi.eq(i).find("img")[0].src;
+		$BanPicLi.eq(i).css({"background-image":"url('"+BanPicLiSrc+"')"});
+		$BanPicLi.eq(i).find("img").css({"display":"none"});
+		}
+	$BanPicLi.hide().css({"opacity":0}).eq(BanBtnLi).show().css({"opacity":1});
+	$BanTxtLi.hide().eq(BanBtnLi).show();
+	$BanBtnLi.eq(BanBtnLi).addClass("Active")
+	$BanBtnLi.click(function(){
+		$BanContBg.css({"opacity":0});
+		$(this).addClass("Active").siblings().removeClass("Active");
+		BanBtnLi = $BanBtnLi.index(this);
+		$BanPicLi.hide().css({"opacity":0}).eq(BanBtnLi).show();
+		$BanPicLi.eq(BanBtnLi).animate({opacity:1},1000);
+		$BanContBg.animate({opacity:0.2},1000);
+		$BanTxtLi.hide().eq(BanBtnLi).show();
+		})
+		})
+</script>
+</head>
+<body>
+<div id="top">
+  <div class="topwrap">
+    <div class="tel">武汉网云商，网友最喜欢的微信营销平台！</div>
+    <div class="tag">
+		<if condition="$_SESSION[uid]==false">
+			<a href="{pigcms::U('Home/Index/login')}">平台登陆　</a> |　 <a href="{pigcms::U('Home/Index/reg')}">申请入驻　</a> |　
+			<else/>
+			{pigcms:$Think.session.uname} 欢迎您，<a href="/#" onclick="Javascript:window.open('{pigcms::U('System/Admin/logout')}','_blank')" >退出　</a> |　 <a href="{pigcms::U('User/Index/index')}" hidefocus="true">管理中心　</a> |　
+	</if>	
+	</div>
+  </div>
+  </div>
+<!--导航 start -->
+<div class="head">
+  <div class="head_top">
+    <div class="logo"><a href="/" title="网云商微信营销">国内领先的功能性微信运营平台</a></div>
+    <div class="menu">
+      <ul>
+        <li><a href="{pigcms::U('Home/Index/index')}" title="首页"<if condition="(ACTION_NAME eq 'index') and (GROUP_NAME eq 'Home')"> class="selected"</if>>首页</a></li>
+        <li><a href="{pigcms::U('Home/Index/gn')}" title="功能"<eq name="ACTION_NAME" value="gn"> class="selected"</eq>>功能</a></li>
+        <li><a href="{pigcms::U('Home/Index/case')}" title="案例"<eq name="ACTION_NAME" value="case"> class="selected"</eq>>案例</a></li>
+        <li><a href="#" title="定制" >定制</a></li>
+        <li><a href="{pigcms::U('Home/Index/about')}" title="关于"<eq name="ACTION_NAME" value="about"> class="selected"</eq>>关于</a></li>
+        <li><a href="{pigcms::U('Home/Index/content')}" title="联系我们"<eq name="ACTION_NAME" value="content"> class="selected"</eq>>联系我们</a></li>
+      </ul>
+    </div>
+    <div class="tel01"> <span class="wz01">24小时服务热线</span> <span class="wz02">13XXXXXXXXX</span></div>
+  </div>
+</div>
+<!--导航 end --> 

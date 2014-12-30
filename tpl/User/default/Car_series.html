@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">车系管理</h4>
+              <div class="clr"></div>
+          </div>
+          
+          <div class="cLine">
+   
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+                <a href="{pigcms::U('Car/addseries',array('token'=>$token))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">添加车系
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>图片</th>
+                    <th>品牌</th>
+                    <th>显示顺序</th>
+                    <th>操作</th>
+                    
+                </tr>
+              </thead>
+              <tbody>
+              <volist name="series" id="vo">
+                         <tr>
+                                        <!--td class="with-checkbox">
+                                            <input type="checkbox" name="check" value="1467" /></td-->
+                     <td>{pigcms:$vo['name']}</td>
+                     <td><img type="img" src="{pigcms:$vo['picture']}" style="max-height: 50px;" /></td>
+                     <td>{pigcms:$vo['brand']|preg_replace='/^[0-9]*?@/','',###}</td>
+                     <td>{pigcms:$vo['sort']}</td>
+                     <td class="input-medium">
+                         <a class="btn" href="{pigcms::U('Car/editseries',array('token'=>$token,'id'=>$vo['id']))}" title="编辑">编辑</a>
+                         <a class="btn"  onclick="return(confirm('确定要删除吗？'))" href="{pigcms::U('Car/delseries',array('token'=>$token,'id'=>$vo['id']))}" title="删除" >删除</a></td>
+                 </tr>
+                 </volist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

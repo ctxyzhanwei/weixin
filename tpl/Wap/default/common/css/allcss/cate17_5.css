@@ -1,0 +1,80 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    background-color:#e1e0de;
+    position:relative;
+}
+
+.body{
+    display:block;
+    background:url('../../img/template/lib/v58_1.png') no-repeat center 0;
+    background-size:100% 100%;
+}
+
+
+.list_ul{
+    margin: 10px;
+    /*width:260px;*/
+}
+
+/*.list_ul a{
+    color:#666;
+    display:block;
+    background:#fff;
+    line-height:35px;
+    overflow:hidden;
+}*/
+.list_ul li{
+    
+}
+
+.list_ul li a{
+    border-radius:5px;
+    display:block;
+    height:100px;
+    margin:5px;
+    -webkit-box-sizing:border-box;
+    /*background:rgba(144, 156, 159, 0.6);*/
+    background-color:rgba(140, 92, 210, 0.5);
+    overflow:hidden;
+    font-size:45px;
+    color:#fff;
+    position:relative;
+}
+.list_ul li a label{
+    margin:8px;
+    display:block;
+    width: 100px;
+    overflow: hidden;
+}
+.list_ul li a small{
+    display:block;
+    font-size:14px;
+}
+
+.list_ul li a span[class*="icon"]{
+    position:absolute;
+    bottom:10px;
+    display:block;
+    width:100%;
+    text-align:center;
+}
+
+.box_title{
+    padding:60px 10px 30px 10px;
+}
+
+.box_title>hgroup>*{
+    color:#fff;
+    margin:5px;
+    font-size:24px;
+    padding-right:10px;
+    overflow:hidden;
+}
+.box_title>hgroup>h2{
+    font-size:18px;
+}
+.box_title>hgroup>h3{
+    font-size:16px;
+}

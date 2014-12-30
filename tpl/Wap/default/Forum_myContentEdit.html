@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="" name="Keywords">
+	<meta content="" name="Description">
+    <title></title>
+	<link rel="shortcut icon" href="/favicon.ico" />
+    <!--[if lte IE 9]><script src="{pigcms::STATICS}/forum/js/watermark.js"></script><![endif]-->
+	<!--[if IE 7]><link href="{pigcms::STATICS}/forum/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+</head>
+<body>
+	<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+		<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+		<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/forum/css/main.css" ></link>
+		<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/forum/css/dialog.css" ></link>
+		<script src="{pigcms::STATICS}/forum/js/jquery_min.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/swipe.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/main.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/dialog_min.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/helper_min.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/pics.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/input.js" ></script>
+		<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+		<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+		<script src="/tpl/static/upyun.js"></script>
+		<script>
+		 	$().ready(function(){
+				form_emotion.rend();
+				myInput.maxLength = 500;
+			});
+
+			function switchPage(thi, index){
+				$("#nav_page li").removeClass("on").eq(index).addClass("on");
+			}
+
+			function submit(){
+				var form = document.getElementById("form_1");
+				var article = document.getElementById("form_article").innerHTML;
+				document.getElementById("form_article_hidden").value = article;
+				if(article.length == 0){
+					alert("请输入内容", 2000);return;
+				}
+				form.submit();
+			}
+
+			function getCaretCharacterOffsetWithin(element) {
+			    var caretOffset = 0;
+			    if (typeof window.getSelection != "undefined") {
+			        var range = window.getSelection().getRangeAt(0);
+			        var preCaretRange = range.cloneRange();
+			        preCaretRange.selectNodeContents(element);
+			        preCaretRange.setEnd(range.endContainer, range.endOffset);
+			        caretOffset = preCaretRange.toString().length;
+			    } else if (typeof document.selection != "undefined" && document.selection.type != "Control") {
+			        var textRange = document.selection.createRange();
+			        var preCaretTextRange = document.body.createTextRange();
+			        preCaretTextRange.moveToElementText(element);
+			        preCaretTextRange.setEndPoint("EndToEnd", textRange);
+			        caretOffset = preCaretTextRange.text.length;
+			    }
+			    return caretOffset;
+			}
+
+			function del(){
+				var html = "标题";
+				alert('确定要删除它吗？', null, function(){
+				    $.post('/index.php?g=Wap&m=Forum&a=delTopics',{
+    				        "token" : "{pigcms:$_GET['token']}",
+    		        		"tid" : "{pigcms:$_GET['tid']}",
+            				"wecha_id" : "{pigcms:$_GET['wecha_id']}",
+					    },function(r){
+					        if(r) {
+								
+						        alert('删除成功!',2000);
+						        history.go(-1);
+					        } else {
+					        	alert('未知错误!',2000);
+					        }
+					    });
+				}, function(){});
+			}
+
+			var form_emotion = (function(){
+				var fe = function(){
+					this.values = ["/::)", "/::~", "/::B", "/::|", "/:8-)", "/::<", "/::$", "/::X", "/::Z", "/::'(", "/::-|", "/::@", "/::P", "/::D", "/::O", "/::(", "/::+", "/:–b", "/::Q", "/::T", "/:,@P", "/:,@-D", "/::d", "/:,@o", "/::g", "/:|-)", "/::!", "/::L", "/::>", "/::,@", "/:,@f", "/::-S", "/:?", "/:,@x", "/:,@@", "/::8", "/:,@!", "/:!!!", "/:xx", "/:bye", "/:wipe", "/:dig", "/:handclap", "/:&-(", "/:B-)", "/:<@", "/:@>", "/::-O", "/:>-|", "/:P-(", "/::'|", "/:X-)", "/::*", "/:@x", "/:8*", "/:pd", "/:<W>", "/:beer", "/:basketb", "/:oo", "/:coffee", "/:eat", "/:pig", "/:rose", "/:fade", "/:showlove", "/:heart", "/:break", "/:cake", "/:li", "/:bome", "/:kn", "/:footb", "/:ladybug", "/:shit", "/:moon", "/:sun", "/:gift", "/:hug", "/:strong", "/:weak", "/:share", "/:v", "/:@)", "/:jj", "/:@@", "/:bad", "/:lvu", "/:no", "/:ok", "/:love", "/:<L>", "/:jump", "/:shake", "/:<O>", "/:circle", "/:kotow", "/:turn", "/:skip", "[挥手]", "/:#-0", "[街舞]", "/:kiss", "/:<&", "/:&>"].slice(0, -7);
+					//console.log(this.values);
+					this.spearate= 20
+				}
+
+				fe.prototype = {
+					rend: function(){
+						var that = this;
+						var TPL = '{seprateDiv}<dd><span data-key="{k}_{page}_{v}" style="background-position:{xPos}px 0;"></span></dd>{delHTML}';
+						var res = iTemplate.makeList(TPL, that.values, function(k,v){
+							return {
+								k: k,
+								v: v,
+								page: Math.floor(k/that.spearate),
+								xPos: -24*k,
+								seprateDiv: (0 == k%that.spearate && 0!=k && k!=that.values.length)?"</div><div>":"",
+								delHTML: (19==k%that.spearate||k==(that.values.length-1) )?'<dd><span data-key="-1_-1_/:del" class="del"></span></dd>':''
+							}
+						});
+						
+						$("#list_emotion").html('<div>'+res+'</div>');
+						var nav_span = new Array(Math.ceil(that.values.length/that.spearate));
+						$("#nav_emotion").html('<span class="on">'+nav_span.join("</span><span>")+'</span>');
+						that.bind();
+
+						 window.swiper = new Swipe(document.getElementById('page_emotion'), {
+			                speed:500,
+			              
+			                callback: function(){
+			                	
+			                	$("#nav_emotion span").removeClass("on").eq(this.index).addClass("on");
+			                }
+			            });
+						return that;
+					},
+					bind: function(){
+						$("#list_emotion").on("click", function(evt){						
+							if("SPAN" == evt.target.tagName){
+								var val = evt.target.getAttribute("data-key").split('_');
+								myInput.listen(this, {
+									keyCode: -10,
+									srcElement: document.getElementById("form_article"),
+									value:val[2],
+									imgUrl: '{pigcms::STATICS}/forum/images/'+ val[0]+".gif"
+								});
+								this.focus();
+							}
+						});
+					}
+
+				}
+
+				return new fe();
+			})();
+			
+		</script>
+	</head>
+	<body onselectstart="return true;" ondragstart="return false;" class="discuss_comment">
+		<div id="container" class="container">
+			<header></header>
+			<div class="body">
+				<form action="{pigcms::U('Forum/myContentUpdate')}" id="form_1" method="post" enctype="multipart/form-data" >
+				
+					<section class="form_comment">
+						<header>
+							<ul class="tbox">
+								<li>
+									<label class="title">编辑</label>
+								</li>
+								<li class="align_right">
+									<a href="javascript:del();" class="cancel del">删帖</a>
+								</li>
+							</ul>
+						</header>
+						<input id="form_title" class="form_title" type="text" name="title" maxlength="50" placeholder="标题" value="{pigcms:$data.title}" />
+						<article id="form_article" contenteditable="true" onpaste="myInput.listen(this, event);" onkeydown="myInput.listen(this, event);" oninput="myInput.listen(this, event);" placeholder="说点什么..." maxlength="10" >{pigcms:$data.content|htmlspecialchars_decode}</article>
+						<input id="form_article_hidden" name="form_article" type="hidden" value="0">
+						<input name="tid" type="hidden" value="{pigcms:$_GET['tid']|intval}">
+						<input name="token" type="hidden" value="{pigcms:$_GET['token']}">
+						<input name="wecha_id" type="hidden" value="{pigcms:$_GET['wecha_id']}">
+						<footer>
+							<div class="align_right">
+								<label id="form_count">500 字</label>
+							</div>
+						</footer>
+					</section>
+					<section class="form_pic_emotion">
+						<div>
+							<nav>
+								<ul id="nav_nav">
+									<li>
+										<a href="javascript:;" onclick="switchPage(this, 0);" class="on"><span class="icons icons_pic">&nbsp;</span></a>
+									</li>
+									<li>
+										<a href="javascript:;" onclick="switchPage(this, 1);"><span class="icons icons_emotion">&nbsp;</span></a>	
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<div>
+							<ul class="page_pic_emotion clear" id="nav_page">
+								<li class="page_pic on" id="page_pic">
+									<dl id="upImgDt">
+
+										
+										
+<script>
+	
+	function upl(){
+		var num=1;
+		var no1 = $("#portrait1_src").attr('src');
+		var no2 = $("#portrait2_src").attr('src');
+		var no3 = $("#portrait3_src").attr('src');
+		var no4 = $("#portrait4_src").attr('src');
+		var no5 = $("#portrait5_src").attr('src');
+		var no6 = $("#portrait6_src").attr('src');
+		var no7 = $("#portrait7_src").attr('src');
+
+		if(no1 != ''){
+			num++;
+		}
+		
+		if(no2 != ''){
+			num++;
+		}
+		
+		if(no3 != ''){
+			num++;
+		}
+
+		if(no4 != ''){
+			num++;
+		}
+		
+		if(no5 != ''){
+			num++;
+		}
+
+		if(no6 != ''){
+			num++;
+		}
+		
+		if(no7 != ''){
+			$('#after7').after('<dd style="display:none" id="imgdd8" type="image"><img src="" class="portrait_src" id="portrait8_src" /><input class="portrait" type="hidden" value="" id="portrait8" name="pics8" size="80" /></dd><dt><label> </label></dt>');
+			$('.a_upload').remove();
+			num++;
+		}
+		upyunWapPicUpload('portrait'+num,1024,768,'{pigcms:$Think.get.token}');
+	}
+	setInterval(ddshow,1000);
+	function ddshow(){
+		var no1 = $("#portrait1_src").attr('src');
+		var no2 = $("#portrait2_src").attr('src');
+		var no3 = $("#portrait3_src").attr('src');
+		var no4 = $("#portrait4_src").attr('src');
+		var no5 = $("#portrait5_src").attr('src');
+		var no6 = $("#portrait6_src").attr('src');
+		var no7 = $("#portrait7_src").attr('src');
+		var no8 = $("#portrait8_src").attr('src');
+		if(no1 != ''){
+			$('#imgdd1').show();
+		}
+		
+		if(no2 != ''){
+			$('#imgdd2').show();
+		}
+		
+		if(no3 != ''){
+			$('#imgdd3').show();
+		}
+
+		if(no4 != ''){
+			$('#imgdd4').show();
+		}
+		
+		if(no5 != ''){
+			$('#imgdd5').show();
+		}
+
+		if(no6 != ''){
+			$('#imgdd6').show();
+		}
+		
+		if(no7 != ''){
+			$('#imgdd7').show();
+		}
+		
+		if(no8 != ''){
+
+			$('#imgdd8').show();
+		}
+
+	}
+</script>
+
+<style>
+
+
+.upImgClass{
+	display:block;
+	}
+		.portrait_src {
+		
+		height:55px;
+		width:55px;
+		margin:0 5px;
+		border:0px;		
+		}
+									
+</style>
+
+					
+							
+					<if condition="$data['photos'] neq ''">
+							<for start="0" end="7">
+							<!-- image{pigcms:$i+1} -->
+							<dd style="display:none" id="imgdd{pigcms:$i+1}" type="image">
+								<img src="{pigcms:$data['photoArr'][$i]}" class="portrait_src" id="portrait{pigcms:$i+1}_src" />
+								<input class="portrait" type="hidden" value="{pigcms:$data['photoArr'][$i]}" id="portrait{pigcms:$i+1}" name="pics{pigcms:$i+1}" size="80" />
+							</dd>
+							<dt <if condition="$i eq 6"> id="after7"</if>><label> </label></dt>						
+						</for>					
+					</if>
+						
+							
+					<if condition="count($data['photoArr']) eq 8">
+							<!-- image8 -->
+							<dd id="imgdd8" type="image">
+								<img src="{pigcms:$data['photoArr'][7]}" class="portrait_src" id="portrait8_src" />
+								<input class="portrait" type="hidden" value="{pigcms:$data['photoArr'][7]}" id="portrait8" name="pics8" size="80" />
+							</dd>
+							<dt><label> </label></dt>
+					
+					</if>
+					
+					
+					
+								<dd>
+									<a href="###" onclick="upl()" class="a_upload" style="color:red"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" /></a>
+									
+								</dd>
+										<dt>
+											<label>最多可上传8张图片</label>
+										</dt>
+									</dl>
+								</li>
+								<li class="page_emotion box_swipe" id="page_emotion">
+									<dl id="list_emotion" class="list_emotion pt_10">
+										<div>
+											
+										</div>
+									</dl>
+									<dt>
+										<ol id="nav_emotion" class="nav_emotion">
+											<span class="on"></span>
+											<span></span>
+										</ol>
+									</dt>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+				</form>
+			</div>
+			<footer>
+				<section class="nav_footer">
+					<ul class="box">
+						<li>
+							<a href="javascript:history.go(-1);" class="on" style="width:100px;">
+								<span class="icons_back2">&nbsp;</span>
+								<label class="pre">取  消</label>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:submit();" class="on" style="width:100px;">
+								<span class="icons_publish">&nbsp;</span>
+								<label class="pre">确  认</label>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</footer>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Forum",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url')}{pigcms::U('Forum/index',array('token'=>$_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url')}{pigcms::U('Forum/index',array('token'=>$_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url')}{pigcms::U('Forum/index',array('token'=>$_GET['token']))}",
+            "tTitle": "",
+            "tContent": ""
+        };
+</script>
+{pigcms:$shareScript}
+</body>
+
+
+
+</html>

@@ -1,0 +1,163 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>编辑微调研活动开始内容</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div> 
+<div class="msgWrap bgfc"> 
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%"><TBODY>
+
+  	<input type="hidden" name="researchid" value="{pigcms:$research['id']}"/>
+	<input type="hidden" id="statdate"  name="statdate" value="{pigcms:$research['starttime']|date='Y-m-d',###}" />
+	<input type="hidden" id="enddate"  name="enddate" value="{pigcms:$research['endtime']|date='Y-m-d',###}" />
+	<input type="hidden" class="px" id="canrqnums" name="canrqnums" value="1"/>
+	<input type="hidden"class="px" id="daynums" name="daynums"  value="1"/>
+	<input type="hidden" class="px" id="keyword" value="{pigcms:$research['keyword']}" name="keyword" style="width:400px" ><br />
+	<input type="hidden" class="px" id="title" value="{pigcms:$research['title']}" name="title" style="width:400px" />
+	<input type="hidden" class="px" id="info" value="{pigcms:$research['description']}" name="info" style="width:400px" />
+
+<TR>
+  <TR>
+  	<th valign="top"><span class="red">*</span>兑奖信息：</th>
+  	<td>
+		<input type="text" class="px" id="txt" value="<if condition="$vo['txt'] eq ''">兑奖请联系我们，电话138********<else/>{pigcms:$vo.txt}</if>" name="txt" style="width:400px" />
+  		<br />请不要多于100字! 这个设定但用户输入兑奖时候的显示信息!
+	</td>
+  </TR>
+ <TR>
+  	<th valign="top"><span class="red">*</span>中奖提示：</th>
+  	<td><textarea class="px"   name="sttxt" style="width:400px"  >{pigcms:$vo.sttxt}</textarea>
+  		 </td>
+</TR>
+</TBODY>
+</TABLE>
+  </div> 
+  
+<!--活动结束-->
+<div class="cLineB">
+          	<h4>活动结束内容</h4></div> 
+<div class="msgWrap bgfc">
+ 
+  	<table class="userinfoArea" style=" margin: 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  		<tbody>
+  			<tr>
+  				<th valign="top"><span class="red">*</span>活动结束公告主题：</th>
+  				<td><input type="text" class="px" id="endtite" value="<if condition="$vo['endtite'] eq ''">微调研活动已经结束了<else/>{pigcms:$vo.endtite}</if>" name="endtite" style="width:400px" />
+  					<br />
+  					请不要多于50字! </td>
+  				</tr>
+  			<tr>
+  				<th valign="top">活动结束说明：</th>
+  				<td valign="top"><textarea  class="px" id="endinfo" name="endinfo"  style="width:400px; height:125px" ><if condition="$vo['endinfo'] eq ''">亲，活动已经结束，请继续关注我们的后续活动哦。<else/>{pigcms:$vo.endinfo}</if></textarea><br />换行请输入
+ &lt;br&gt;
+  				  </td>
+  				</tr>
+  			</tbody>
+  		</table>
+  </div> 
+  
+  
+<!--奖项设置-->
+<div class="cLineB">
+          	<h4>奖项设置</h4></div> 
+<div class="msgWrap bgfc">
+
+<TABLE class="userinfoArea" style=" margin: 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<TBODY>
+<TR>
+<th valign="top"><span class="red">*</span>一等奖奖品设置：</th>
+<td><input type="text" class="px" id="fist"   name="fist" value="{pigcms:$vo.fist}"  style="width:250px"/>
+请不要多于50字! </td>
+  <TD rowspan="9" valign="top">&nbsp;</TD>
+</TR>
+<TR>
+<th valign="top"><span class="red">*</span>一等奖奖品数量：</th>
+<td><input type="text" class="px" id="fistnums" name="fistnums"      value="{pigcms:$vo.fistnums}" style="width:60px" />
+  <span class="red">如果是100%中奖,请把一等奖的奖品数量[ 1000就代表前1000人都中奖 ]填写多点</span></td>
+                                      </TR>
+<TR>
+<th valign="top">二等奖奖品设置：</th>
+<td><input type="text" class="px" id="second" name="second"     value="{pigcms:$vo.second}"  style="width:250px"/>
+请不要多于50字! </td>
+                                          </TR>
+<TR>
+<th valign="top">二等奖奖品数量：</th>
+<td><input type="text" class="px" id="secondnums" name="secondnums"   value="{pigcms:$vo.secondnums}" style="width:60px" />
+</td>
+                                          </TR>
+<TR>
+<th valign="top">三等奖奖品设置：</th>
+<td><input type="text" class="px" id="third" name="third"   value="{pigcms:$vo.third}" style="width:250px" />
+请不要多于50字! </td>
+                                        
+                                          </TR>
+<TR>
+<th valign="top">三等奖奖品数量：</th>
+<td><input type="text" class="px" id="thirdnums" name="thirdnums"     value="{pigcms:$vo.thirdnums}" style="width:60px" />
+</td>
+                                       
+                                          </TR>
+  
+  </tbody>
+ <tbody>
+<TR>
+<th valign="top"><span class="red">*</span>预计活动的人数：</th>
+<td><input type="text" class="px" id="allpeople" name="allpeople"   value="{pigcms:$vo.allpeople}" style="width:150px"/>  预估活动人数直接影响抽奖概率：中奖概率 = 奖品总数/预估活动人数  如果要确保任何时候都100%中奖建议设置为1人参加!<span class='red'>如果要确保任何时候都100%中奖建议设置为1人参加!并且奖项只设置一等奖.</span></td>
+</TR>                        
+<tr style="display:none">
+<th valign="top">SN码生成设置：</th>
+<td>
+    <input class="radio" type="radio" checked name="snimport" value="0">自动生成  
+    <input class="radio" type="radio" name="snimport" value="1">手动生成(SN码管理)
+</td> 
+</tr>
+<tr>
+<th valign="top"><span class="red">*</span>兑奖密码：</th>
+<td><input class="px" id="parssword" name="parssword" value="{pigcms:$vo.parssword}" style="width:150px" type="text">
+消费确认密码长度小于15位</td>
+                                        </tr>
+                                                                       <!-- <tr>
+<th valign="top">SN码重命名为：</th>
+<td><input class="px" id="renamesn" name="renamesn" value="<if condition="$vo.renamesn">{pigcms:$vo.renamesn}<else/>SN码</if>" style="width:150px" type="text"> 例如：CND码,充值密码,SN码 这个主意用于修改SN码的名称，不懂请别修改</td>
+                                        </tr>
+                                         <tr>
+<th valign="top">手机号重命名：</th>
+<td><input class="px" id="renametel" name="renametel" value="<if condition="$vo.renametel">{pigcms:$vo.renametel}<else/>手机号</if>" style="width:150px" type="text"> 例如：QQ号,微信号,手机号等其他联系方式，不懂请别修改</td> 
+                                        </tr> -->
+<TR>
+	<th valign="top">抽奖页面是否显示奖品数量：</th>
+	<td><input class="radio" type="radio" name="displayjpnums" value="1"  <if condition="$vo['displayjpnums'] eq 1" >checked</if> >显示  <input class="radio" type="radio" name="displayjpnums" value="0"  <if condition="$vo['displayjpnums'] eq 0" >checked</if>>不显</td> 
+</TR> 
+<TR>
+	<th valign="top">注册后才能参与：</th>
+	<td><input class="radio" type="radio" name="needreg" value="1"  <if condition="$vo['needreg'] eq 1" >checked</if> > 需要先注册  <input class="radio" type="radio" name="needreg" value="0"  <if condition="$vo['needreg'] eq 0" >checked</if>> 不需要先注册</td> 
+</TR> 
+<TR>
+<th>&nbsp;</th>
+<td><button type="submit" class="btnGreen" >保存</button>　<a href=""  class="btnGray vm">取消</a>　<span class="red">请确认功能管理已开启大转盘功能</span></td>
+</TBODY>
+</TABLE>
+  </div> 
+ </div>
+</form>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <script type="text/javascript">
+	//onFocus事件就是当光标落在文本框中时发生的事件。
+	//onBlur事件是光标失去焦点时发生的事件。
+	function onfocus(obj){
+		obj.html = '';
+	}
+	function onblur(obj,str){
+		obj.html = str;
+	}
+  </script>
+<!--底部-->
+</div>
+<include file="Public:footer"/> 

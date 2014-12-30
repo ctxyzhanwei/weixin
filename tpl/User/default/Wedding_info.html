@@ -1,0 +1,123 @@
+<include file="Public:head"/>
+<style>
+.msgWrap .control-group {
+margin-bottom: 20px;
+}
+.msgWrap .control-label {
+text-align: left;
+width: 140px;
+font-weight: bold;
+padding-top: 5px;
+float: left;
+display: block;
+margin-bottom: 5px;
+}
+.msgWrap .controls {
+margin-left: 160px;
+}
+.msgWrap .form-actions {
+padding: 19px 20px 20px 160px;
+margin-top: 20px;
+}
+.span4, .span1, .option, .valid, .input-large{
+	background: url({pigcms::RES}/images/px.png) repeat-x scroll 0 0 #FFFFFF;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    border-style: solid;
+    border-width: 1px;
+	border-radius: 2px 2px 2px 2px;
+	padding:5px;
+	width: 210px;
+}
+#tags {
+	MARGIN: 15px 0 0 0; WIDTH: 990px; PADDING-TOP: 0px; HEIGHT: 40px;BACKGROUND: url({pigcms::RES}/images/tagbg.gif) repeat-x left bottom;
+}
+#tags LI {
+	BACKGROUND: url({pigcms::RES}/images/tagleft.gif) no-repeat left bottom; FLOAT: left; MARGIN-RIGHT: 3px; LIST-STYLE-TYPE: none; HEIGHT: 40px
+}
+#tags LI A {
+	PADDING:0 20px; BACKGROUND: url({pigcms::RES}/images/tagright.gif) no-repeat right bottom; FLOAT: left; COLOR: #999; LINE-HEIGHT: 40px; HEIGHT: 40px; TEXT-DECORATION: none; font-size:16px;
+}
+#tags LI.emptyTag {
+	BACKGROUND: none transparent scroll repeat 0% 0%; WIDTH: 4px
+}
+#tags LI.selectTag {
+	BACKGROUND-POSITION: left top; MARGIN-BOTTOM: -2px; POSITION: relative; HEIGHT: 40px
+}
+#tags LI.selectTag A {
+	BACKGROUND-POSITION: right top; COLOR: #000; LINE-HEIGHT: 40px; HEIGHT: 40px
+}
+.cateradio {
+padding-top: 20px;
+}
+.msgWrap fieldset{
+background-color: #FFFFFF;
+}
+</style>
+<div class="content">
+
+<div class="cLineB">
+  <h4>微喜帖信息列表</h4>
+  <a href="index.php?ac=WeddingInvitation-List&amp;id=9878" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+ <div class="msgWrap form">
+ <ul id="tags">
+			
+              <li <if condition="$type eq 1">class="selectTag" </if>><a href="{pigcms::U('Wedding/info',array('id'=>strip_tags($_GET['id']),'type'=>1))}">赴宴名单</a> </li>
+			
+              <li <if condition="$type eq 2">class="selectTag" </if>><a href="{pigcms::U('Wedding/info',array('id'=>strip_tags($_GET['id']),'type'=>2))}">收到祝福</a> </li>
+			  
+              <div class="clr"></div>
+          </ul>
+ 
+<div id="tagContent">
+<div class="tagContent selectTag" id="tagContent0" style="display: block;">
+<fieldset>
+            <ul class="cateradio">
+                <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+				 <thead>
+					<tr>
+						<th> 选择</th>
+						<th>姓名</th>
+						<th>电话</th>
+						<th><if condition="$type eq 1">赴宴人数<else/>祝福内容 </if></th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				   <tbody>
+			  <volist name="wedding" id="wedding">
+                <tr>
+                  <td>{pigcms:$i}</td>
+                  <td>{pigcms:$wedding.name}</td>
+                  <td>{pigcms:$wedding.phone}</td>
+                  <td><if condition="$type eq 1">{pigcms:$wedding.num}<else/>{pigcms:$wedding.info} </if></td>
+                
+                  <td class="norightborder">
+					<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('User/Wedding/infodel',array('id'=>$wedding['id']))}');">删除</a>
+				   </td>
+                </tr>
+      			</volist>
+                 <tr>
+
+                </tr>
+              </tbody>
+				
+			</table>
+           </form> 
+           
+          </div>
+            </ul>
+</fieldset>
+</div>
+</div>		 
+
+  
+
+        <div class="clr"></div>
+          </div>
+  
+        </div>
+<include file="Public:footer"/>

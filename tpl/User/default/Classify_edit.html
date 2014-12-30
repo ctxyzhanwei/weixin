@@ -1,0 +1,135 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+          <div class="cLineB"><h4>编辑分类</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action="{pigcms::U('Classify/upsave')}" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+  <if condition="$fid neq 0">
+  <TR>
+  <TH valign="top"><label for="keyword">上级分类名称：</label></TH>
+  <TD>{pigcms:$thisClassify.name}<input type="hidden" name="fid" value="{pigcms:$fid}" /></TD>
+  <TD>&nbsp;</TD>
+</TR>
+</if>
+<TR>
+  <TH valign="top"><label for="keyword">分类名称：</label></TH>
+  <TD><input type="text" class="px" id="keyword" value="{pigcms:$info.name}" name="name" style="width:500px" ><br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+                            </THEAD>
+							
+							
+							
+					
+							
+  <TBODY><input type="hidden" name="id" value="{pigcms:$info.id}"/>
+<TR>
+  <TH valign="top"><label for="keyword">分类描述：</label></TH>
+  <TD><input type="text" class="px" id="keyword" value="{pigcms:$info.info}" name="info" style="width:500px" ><br />
+                  30个字简短分类描述，可为空   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">分类图片：</label></TH>
+  <TD><input type="text" class="px" id="img" value="{pigcms:$info.img}" name="img" style="width:500px" >  <script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script><a href="###" onclick="chooseFile('img','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img')">预览</a></TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="url">外链网站或活动 ：</label></TH>
+  <TD><input type="text" class="px" id="url" value="{pigcms:$info.url}" name="url" style="width:300px" > <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('url',0)" class="a_choose">从功能库添加</a></if><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">排序：</label></TH>
+  <TD><input type="text" class="px" id="keyword" value="{pigcms:$info.sorts}" name="sorts" style="width:500px" ><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">是否显示：</label></TH>
+  <TD><input type="radio" class="px" id="keyword" value="1" name="status" <eq name="info.status" value="1"> checked</eq> />是<br />
+  <input type="radio" class="px" id="keyword" value="0" name="status"  <eq name="info.status" value="0"> checked</eq> />否
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+
+  
+<TR>
+  <TH valign="top"><label for="keyword">分类页模板：</label></TH>
+  <TD>
+	<input type="text" id="selecttpl" class="px" value="已选择模板{pigcms:$info.tpid}" disabled size="40"  />
+	<a class="a_upload" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+	<a class="a_upload" onclick="viewTpl()">预览</a>
+	<script>
+		function viewTpl(){
+			var tid = $('#tpid').val();
+			chooseTpl(tid,'',2);
+		}
+	</script>
+	<input type="hidden" class="px" id="tpid" value="{pigcms:$info.tpid}" name="tpid" style="width:250px">
+	
+  </TD>
+  <TD>
+	&nbsp;
+  </TD>
+</TR>
+
+
+<tr>
+  <TH valign="top"><label for="keyword">内容页模板：</label></TH>
+  <TD>
+
+	<input type="text" id="selectconttpl" class="px" value="已选择模板{pigcms:$info.conttpid}" disabled size="40"  />
+	<a class="a_upload" onclick="chooseTpl('conttpid','selectconttpl',3)">选择模板</a>
+	<a class="a_upload" onclick="viewTpl2()">预览</a>
+	<input type="hidden" class="px" value="{pigcms:$info.conttpid}" id="conttpid" name="conttpid" style="width:250px">
+	<script>
+		function viewTpl2(){
+			var tid = $('#conttpid').val();
+			chooseTpl(tid,'',4);
+		}
+	</script>
+  </TD>
+  <TD>
+	&nbsp;
+  </TD>
+</tr>
+<tr>
+	<td colspan="3" align="center">
+	
+
+	</td>
+</tr>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

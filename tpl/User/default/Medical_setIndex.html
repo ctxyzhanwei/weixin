@@ -1,0 +1,352 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<script src="{pigcms::RES}/js/select/js/jquery.js"></script>
+<script src="{pigcms::RES}/js/select/js/comm.js"></script>
+<script src="{pigcms::RES}/js/select/js/linkagesel-min.js"></script>
+
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+</script>
+
+<style>
+
+  .maroon{ color: red;
+  }
+</style>
+<div class="content">
+<div class="cLineB">
+  <h4>微医疗首页回复配置</h4><!--a href="javascript:history.go(-1);return false;" class="right btnGrayS vm" style="margin-top:-27px">返回</a-->
+ </div>
+ <!--tab start-->
+
+<!--tab end-->
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+      <form class="form" method="post" action="" id="formID" target="_top" enctype="multipart/form-data">
+
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120">触发关键词：</th>
+                    <td> <input type="text" name="keyword" id="keyword"  class="px" data-validation-engine="validate[required,minSize[2],maxSize[20]]" data-errormessage-value-missing="必填项"  value="{pigcms:$medicalSet['keyword']|default='微医疗'}"/>
+                    <span class="maroon">*</span>
+                    <span class="help-inline">如：医疗 或者 微医疗</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">图文标题：</th>
+                    <td>
+                         <input type="text" name="title" id="title" placeholder="某某医院，情人节来就送微创手术礼包" value="{pigcms:$medicalSet['title']}" class="px" data-validation-engine="validate[required,minSize[2],maxSize[50]]" data-errormessage-value-missing="必填项" />
+                         <span class="maroon">* 图文封面标题</span>
+                     </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">回复图片：</th>
+                    <td>
+                     <p>
+                         <img class="thumb_img" id="head_url_src" src="{pigcms:$medicalSet['head_url']|default='http://placehold.it/350x150&text=请上传图片'}" style="max-height:100px;">
+                         <input type="input" class="px" id="head_url" value="{pigcms:$medicalSet['head_url']}" name="head_url" >
+
+                         <span class="help-inline">
+                              <script src="{pigcms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('head_url',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('head_url')">预览</a>
+                              <span class="maroon">图片大小不超过300K (仅图文回复显示)</span>
+                         </span>
+                     </p>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">图文介绍：</th>
+                    <td>
+                    <textarea style="border: 1px solid #D8D7D7;" name="info" id="info" cols="80" placeholder="某某医院，情人节来就送微创手术礼包"  rows="10" data-validation-engine="validate[required,minSize[2]]" data-errormessage-value-missing="必填项" >{pigcms:$medicalSet['info']}</textarea>
+                        <span class="maroon">* 仅仅在图文回复里显示(100字以内)</span>
+                     </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">首页幻灯片</th>
+                    <td>
+                        <select id="album_id" name="album_id" class="input-medium valid" medicalSet>
+                            <option value="0">请选择相册 [幻灯片]</option>
+                                <volist name="photo" id="vo">
+                                    <option value="{pigcms:$vo['id']}" <if condition="$vo['id'] eq $medicalSet['album_id']">selected="selected"</if>>{pigcms:$vo['title']}</option>
+                                </volist>
+                          </select>
+                    <span class="maroon">如选择：微医疗首页 ［建议最多5张，3张效果更好］</span>
+                     ，如果没有请去：<a href="{pigcms::U('Photo/add',array('token'=>$token,'poid'=>$medicalSet['album_id']))}" class="btn">添加幻灯片</a>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">医院视频:</th>
+                    <td>
+                        <input type="text" name="video" placeholder="此处可以填写医院的宣传视频" id="video" class="span4" style="width:480px" value="{pigcms:$medicalSet['video']}" >(只有默认模板会显示视频) 没有则留空.<p>
+       支持优酷视频地址如：http://v.youku.com/v_show/id_XNDA1ODEyNjE2.html <br>
+       腾讯fash视频地址：如http://static.video.qq.com/TPout.swf?vid=v0119s27wd5&amp;auto=0 <br>
+       也支持mp4和ogg 格式地址 http://www.w3school.com.cn/example/html5/mov_bbb.mp4 </p>
+                    </td>
+                </tr>
+                <tr>
+        <th width="120">首页模板：</th>
+                  <TD>
+    <input type="text" id="selecttpl" class="px" value="已选择模板 {pigcms:$medicalSet['tpid']}" disabled size="40"  />
+    <a class="a_upload" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+    <a class="a_upload" onclick="viewTpl()">预览</a> <font color="red">[请注意,并不是所有模板都支持,如果发现所选模板显示不正确,请另换一个]</font>
+    <script>
+        function viewTpl(){
+            var tid = $('#tpid').val();
+            chooseTpl(tid,'',2);
+        }
+    </script>
+    <input type="hidden" class="px" id="tpid" value="{pigcms:$medicalSet['tpid']}" name="tpid" style="width:250px">
+  </TD>
+
+                </tr>
+                <tr>
+                    <th width="120">菜单列表名称：</th>
+                    <td>
+                     医院简介：<input type="text" name="menu1" class="px" value="{pigcms:$medicalSet['menu1']|default='医院简介'}"><br>
+ <input type="input" class="px"  value="{pigcms:$medicalSet['picurl1']}" name="picurl1" id="img" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png"> <a href="###" onclick="chooseFile('img','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     热点聚焦：<input type="text" name="menu2" value="{pigcms:$medicalSet['menu2']|default='热点聚焦'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl2']}" name="picurl2" id="img2" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img2','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img2',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img2')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img2\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     医院专家：<input type="text" name="menu3" value="{pigcms:$medicalSet['menu3']|default='医院专家'}"class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl3']}" name="picurl3" id="img3" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img3','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img3',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img3')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img3\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     尖端设备：<input type="text" name="menu4" value="{pigcms:$medicalSet['menu4']|default='尖端设备'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl4']}" name="picurl4" id="img4" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img4','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img4',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img4')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img4\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     康复案例：<input type="text" name="menu5" value="{pigcms:$medicalSet['menu5']|default='康复案例'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl5']}" name="picurl5" id="img5" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img5','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img5',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img5')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img5\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     先进技术：<input type="text" name="menu6" value="{pigcms:$medicalSet['menu6']|default='先进技术'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl6']}" name="picurl6" id="img6" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img6','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img6',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img6')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img6\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     研发药物：<input type="text" name="menu7" value="{pigcms:$medicalSet['menu7']|default='研发药物'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl7']}" name="picurl7" id="img7" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img7','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img7',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img7')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img7\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     就医指南：<input type="text" name="menu8" value="{pigcms:$medicalSet['menu8']|default='就医指南'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl8']}" name="picurl8" id="img8" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img8','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img8',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img8')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img8\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     症状自查：<input type="text" name="menu9" value="{pigcms:$medicalSet['menu9']|default='症状自查'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl9']}" name="picurl9" id="img9" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img9','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img9',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img9')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img9\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                     官方活动：<input type="text" name="menu10" value="{pigcms:$medicalSet['menu10']|default='官方活动'}" class="px"><br>
+<input type="input" class="px"  value="{pigcms:$medicalSet['picurl10']}" name="picurl10" id="img10" style="width:400px" data-validation-engine="validate[required,custom[url]]" data-errormessage-value-missing="必须选择(上传)图片!!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.yourdomain.com/images/demo.png">  <a href="###" onclick="chooseFile('img10','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img10',236,236,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img10')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）236 × 236</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+    echo '<img onclick="document.getElementById(\'img10\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">{pigcms:$medicalSet['menu2']|default='热点聚焦'}：</th>
+                    <td>
+                          <select id="hotfocus_id" name="hotfocus_id" class="input-medium" >
+                                          <option value="0">请选择热点聚焦</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['hotfocus_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">{pigcms:$medicalSet['menu3']|default='医院专家'}：</th>
+                    <td>
+                          <select id="experts_id" name="experts_id" class="input-medium" >
+                                          <option value="0">请选择医院专家</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['experts_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+               <tr>
+                    <th width="120">{pigcms:$medicalSet['menu4']|default='尖端设备'}：</th>
+                    <td>
+                          <select id="ceem_id" name="ceem_id" class="input-medium" >
+                                          <option value="0">请选择尖端设备</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['ceem_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+                 <tr>
+                    <th width="120">{pigcms:$medicalSet['menu5']|default='康复案例'}：</th>
+                    <td>
+                          <select id="Rcase_id" name="Rcase_id" class="input-medium" >
+                                          <option value="0">请选择康复案例</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['Rcase_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+                 <tr>
+                    <th width="120">{pigcms:$medicalSet['menu6']|default='先进技术'}：</th>
+                    <td>
+                          <select id="technology_id" name="technology_id" class="input-medium" >
+                                          <option value="0">请选择先进技术</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['technology_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+                 <tr>
+                    <th width="120">{pigcms:$medicalSet['menu7']|default='研发药物'}：</th>
+                    <td>
+                          <select id="drug_id" name="drug_id" class="input-medium" >
+                                          <option value="0">请选择研发药物</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['drug_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+                 <tr>
+                    <th width="120">{pigcms:$medicalSet['menu9']|default='症状自查'}：</th>
+                    <td>
+                          <select id="symptoms_id" name="symptoms_id" class="input-medium" >
+                                          <option value="0">请选择症状分类</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['symptoms_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">{pigcms:$medicalSet['menu10']|default='官方活动'}：</th>
+                    <td>
+                          <select id="evants_id" name="evants_id" class="input-medium" >
+                                          <option value="0">请选择官方活动</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $medicalSet['evants_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                     </td>
+                </tr>
+
+                  <tr>
+                    <td>
+                    <if condition="$medicalSet['id'] neq ''">
+                    <input type="hidden" name="id" value="{pigcms:$medicalSet['id']}" />
+                    </if>
+                      <input type="hidden" name="token" value="{Pigcms:$token}" />
+                        <button type="submit" name="button" class="btnGreen">保存</button>
+                        <a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div>
+
+        </div>
+<include file="Public:footer"/>

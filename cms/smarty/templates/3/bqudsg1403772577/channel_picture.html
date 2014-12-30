@@ -1,0 +1,28 @@
+{include file=$header}
+<div class="clear"></div>    <div class="viewtitle">{$channel.name}</div>
+    <div data-role="content" class="content">
+      <div class="maintop"></div>
+
+      <div class="proul">
+        <ul class="ui-grid-a">
+        {if $contents}
+			{foreach from=$contents item=a}
+        		<li class="ui-block-{cycle values="a,b"}" style="width:45%">
+				<div><a href="{$a.link}"  data-ajax="false"><img src="{$a.thumb}" alt="{$a.title}" />
+					<p>{$a.title}</p>
+					</a></div>
+			</li>
+             {/foreach}
+			 {/if}
+			 			
+			 		         </ul>
+      </div>
+      <div class="clear"></div>
+              <div class="pages ui-grid-b">  
+              <div class="ui-block-a"><span class="left ui-bar-h" id="dis"><img src="smarty/templates/tpls/{$site.template}/left.png"  alt="上一页"/></span></div>
+    <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+    <div class="ui-block-c"><a href="{$nextPageLink}"  title="下一页" data-ajax="false" class="right ui-bar-h"><img src="smarty/templates/tpls/{$site.template}/right.png"  alt="下一页"/></a></div>
+</div>
+          </div>
+    <div class="clear"></div>
+{include file=$footer}

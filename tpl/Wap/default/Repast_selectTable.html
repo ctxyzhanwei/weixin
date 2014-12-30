@@ -1,0 +1,211 @@
+<include file="Repast:header"/>
+<link rel="stylesheet" type="text/css" href="../tpl/static/repast/css/jquery-ui.css" media="all" />
+<script type="text/javascript" src="../tpl/static/repast/js/jquery-ui.js"></script>
+<script type="text/javascript" src="../tpl/static/repast/js/jquery-ui-timepicker-addon.js"></script>
+<script src="../tpl/static/repast/js/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></script>
+<body id="page_intelOrder" class="myOrderCon">
+<div style="float:none;width:100%;" class="headselect">
+	<a class="link_tel icon-phone">请填写您的用餐信息</a>
+</div>
+<section id="container">
+    <article>
+        <form id="form_dish" action="{pigcms::U('Repast/saveUser', array('token' => $token, 'wecha_id' => $wecha_id, 'cid' => $cid))}" method="post" target="hide">
+            <table class="table_book">
+                <tbody>
+                <input type="hidden" name="takeaway" value="{pigcms:$takeaway}"/>
+                <input type="hidden" name="tel_auth_code_ajax" id="tel_auth_code_ajax" value="" />
+                <input type="hidden" name="phone_authorize" id="phone_authorize" value="<?php echo $phone_authorize;?>" />
+                <if condition="$takeaway neq 2">
+                <tr>
+                    <td width="80px" style="width:80px;">手机号码：</td>
+                    <td colspan="2"><input type="tel" id="tel" name="tel" value="{pigcms:$fans['tel']}" maxlength="11" placeholder="(必填*)请输入您的手机号码" style="width:200px;">
+                    
+                    
+                    </td> 
+                </tr>
+                <?php if ($phone_authorize == 1) {?>                
+                <tr>
+                    <td width="80px" style="width:80px;">手机验证码：</td>
+                    <td colspan="2"><input type="text" size="6" id="tel_auth_code" name="tel_auth_code" value="" maxlength="6" placeholder="(必填*)请输入您的手机验证码" style="width:50px;">
+                    <input type="button" value="取验证码" name="bt_tel_code" id="bt_tel_code" onClick="get_tel_auth_code()" />&nbsp;&nbsp;<span style="color:#F00" id="bt_tel_code_msg"></span>
+                    </td>
+                </tr>  
+                <?php }?>                              
+                <tr>
+                    <td style="width:80px;">用户姓名：</td>
+                    <td style="width:50%;">
+                        <input type="text" name="guest_name" id="guest_name" value="{pigcms:$fans['truename']}" placeholder="(必填*)请输入您的真是姓名" maxlength="10" style="width:100px;">
+                    </td>
+                    <td>
+                        <!-- <div class="group_checkbox" style="width:70px;display:inline;">
+                            <input type="checkbox" value="1" name="sex" checked="checked">
+                        </div> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:80px;">就餐时间：</td>
+                    <td colspan="2">
+                    	<select name="redate" id="redate">
+                    		<volist name="dates" id="d">
+                    		<option value="{pigcms:$d['k']}">{pigcms:$d['v']}</option>
+                    		</volist>
+                    	</select>
+                    	<select  name="rehour" id="rehour">
+                    		<volist name="hours" id="h">
+                    		<option value="{pigcms:$h['k']}">{pigcms:$h['v']}</option>
+                    		</volist>
+                    	</select>
+                    	<select  name="resecond" id="resecond">
+                    		<volist name="seconds" id="s">
+                    		<option value="{pigcms:$s['k']}">{pigcms:$s['v']}</option>
+                    		</volist>
+                    	</select>
+                        
+                    </td>
+                </tr>
+                </if>
+                <if condition="$takeaway eq 1">
+                <tr id="dishaddress">
+                    <td style="width:80px;">送餐地址：</td>
+                    <td>
+                        <input type="text" name="address" id="address" value="{pigcms:$fans['address']}" placeholder="(必填*)送餐地址" style="width:200px;">
+                    </td>
+                </tr>
+                <else/>
+                <tr>
+                    <td style="width:80px;">就餐桌号：</td>
+                    <td colspan="2">
+                    <select name="table" id="selecttable">
+                    <option value="0">选择餐桌</option>
+                    <volist name="tables" id="table">
+                    	<if condition="$table['isbox'] eq 1">
+                    	<option value="{pigcms:$table['id']}">包厢：{pigcms:$table['name']} ({pigcms:$table['num']}座)</option>
+                    	<else />
+                    	<option value="{pigcms:$table['id']}">大厅：{pigcms:$table['name']} ({pigcms:$table['num']}座)</option>
+                    	</if>
+                    </volist>
+                    </select>
+                    </td>
+                </tr>
+                </if>
+                <if condition="$takeaway neq 2">
+                <tr>
+                    <td style="width:80px;">预定人数：</td>
+                    <td colspan="2">
+                        <input type="number" name="nums" id="nums" value="1" min="1" maxlength="3" style="width:100px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:80px;vertical-align:top;line-height:25px;">备注说明：</td>
+                    <td colspan="2">
+                        <textarea name="remark" style="height:60px;" maxlength="100"></textarea>
+                    </td>
+                </tr>
+                </if>
+            </tbody></table>
+            <footer>
+                <input type="button" value="确定点菜" class="btn_2" id="submit_form">
+            </footer>
+        </form>
+    </article>
+</section>
+<include file="Repast:footer"/>
+<script>
+$(document).ready(function(){
+    var min_height = $(window).height() - $("#footer_menu").height() - $(".headselect").height() - 60;
+    $("#container").css({"min-height":min_height});
+    
+	$("#redate, #rehour, #resecond").change(function(){
+		$.ajax({
+            'url': "{pigcms::U('Repast/getTable', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}",
+            'data': {'redate':$('#redate').val(), 'rehour':$('#rehour').val(), 'resecond':$('#resecond').val()},
+            'type': 'post',
+            dataType:'JSON',
+            'success': function(msgObj) {
+            	var html = '';
+            	$.each(msgObj, function(index, obj){
+            		if (obj.isbox == 1) {
+            			html += '<option value="' + obj.id + '">包厢：' + obj.name + '(' + obj.num + '座)</option>';
+            		} else {
+            			html += '<option value="' + obj.id + '">大厅：' + obj.name + '(' + obj.num + '座)</option>';
+            		}
+            	});
+            	$('#selecttable').html(html);
+            }
+        });
+    });
+});
+//$("#time_day").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+var takeaway = '{pigcms:$takeaway}';
+$(function() {		   
+	$('#bt_tel_code').click(function() {
+		//tel_auth_code  get_tel_auth_code
+		if (null == $('#tel').val().match(/^1\d{10,13}$/g)) {
+			alert("请输入正确的手机号");return false;
+		}	
+		$('#bt_tel_code').attr("disabled","disabled");
+		$('#bt_tel_code_msg').html('发送中...');
+        $.ajax({
+            'url': "{pigcms::U('Repast/get_sms_auth_code', array('token' => $token, 'wecha_id' => $wecha_id, 'cid' => $cid))}",
+            'data': $('#form_dish').serialize(),
+            'type': 'post',
+            dataType:'JSON',
+            'success': function(msgObj) {
+                if(msgObj.success == '1'){
+					$("#tel_auth_code_ajax").val(msgObj.msg);
+                }else{
+                    alert(msgObj.msg);return false;
+                }
+            }
+        });						
+	});
+    $('#submit_form').click(function() {
+    	if (takeaway != 2) {
+	        if (null == $('#tel').val().match(/^1\d{10,13}$/g)) {
+	            alert("请输入正确的手机号");return false;
+	        }
+            <?php if ($phone_authorize == 1) {?> 
+	        if($("#tel_auth_code").val() == ''){
+	            alert("请输入短信验证码");return false;
+	        }
+            <?php }?>
+	        if($("#guest_name").val() == ''){
+	            alert("请输入用户姓名");return false;
+	        }
+	       
+	        if (null == $('#nums').val().match(/^[0-9]*[1-9][0-9]*$/)) {
+	            alert("请输入正确的预定人数");return false;
+	        }
+    	}
+        $.ajax({
+            'url': $('#form_dish').attr('action'),
+            'data': $('#form_dish').serialize(),
+            'type': 'post',
+            dataType:'JSON',
+            'success': function(msgObj) {
+                if(msgObj.success == '1'){
+                    window.location = "{pigcms::U('Repast/dish', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}";
+                }else{
+                    alert(msgObj.msg);return false;
+                }
+
+            }
+        });
+    });
+});
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Repast/selectTable',array('token' => $token, 'cid' => $cid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Repast/selectTable',array('token' => $token, 'cid' => $cid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Repast/selectTable',array('token' => $token, 'cid' => $cid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

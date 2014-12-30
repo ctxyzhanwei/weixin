@@ -1,0 +1,20 @@
+{if !$ismap}<div class="body_footer" style="position:fixed;"><ul>
+  <li><a title="返回首页" href="{$homeurl}"><dl>
+        <dt><img alt="返回首页" src="smarty/templates/tpls/{$site.template}/icon_1.png"></dt>
+        <dd>返回首页</dd>
+      </dl></a></li>
+  <li><a title="地图" href="?token={$token}&m=site&c=home&a=map" rel="external"><dl>
+        <dt><img alt="地图" src="smarty/templates/tpls/{$site.template}/icon_3.png"></dt>
+        <dd>网站地图</dd>
+      </dl></a></li>
+  <li><a title="热线电话" href="tel:{$company.tel}"><dl>
+        <dt><img alt="热线电话" src="smarty/templates/tpls/{$site.template}/icon_4.png"></dt>
+        <dd>热线电话</dd>
+      </dl></a></li>
+  <li><a title="发短信" href="sms:{$company.mp}" data-ajax="false"><dl>
+        <dt><img alt="发短信" src="smarty/templates/tpls/{$site.template}/icon_5.png"></dt>
+        <dd>发短信</dd>
+      </dl></a></li>
+</ul></div></div></div></div></body><script type="text/javascript">
+       {literal} window.onload = function () { initUserStyleData();   modifyAllImage(); }{/literal}
+      </script></html>{/if}

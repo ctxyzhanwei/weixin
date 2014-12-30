@@ -1,0 +1,28 @@
+  .member-list{width:100%;max-height:1200px;overflow: auto;}
+  .member-list .tooltips:hover span{
+    width:130px;
+  }
+
+   .handle .search{float: right;padding:0 5px;}
+   .handle .search .px,.handle .set .refresh {padding:2px 5px;height:20px;}
+   .handle .search .sub,.handle .bt{
+    border: 1px solid #ccc; 
+    padding:2px 5px;
+    margin-left: 5px;
+    border-radius: 3px;
+    box-shadow: 0 1px #cccccc;
+    color: #000;
+    cursor: pointer;
+  }
+  .handle .checked{float:left;width:120px;}
+  .handle .checked img{float:right;margin-top: 5px;}
+  .handle .set{float:right;margin:0 20px 0 10px;}
+  .handle .set .refresh{width:40px;height:20px;}
+  .handle .down{float: right;}
+  .handle .down .flashTime{color:#e64346;font-weight: bold; font-size: 14px;}
+  #msg .con{width:100%;max-height:80px;overflow:auto;}
+  .pic{color:#636b89;}
+  .pic img{width:80px;height:50px;}
+  #msg .dui{background: url('../images/dui.gif') no-repeat 0 0 transparent;height:25px;width:25px;display:block;  cursor: pointer;}
+  #msg .cuo{background: url('../images/cuo.gif') no-repeat 0 0 transparent;height:25px;width:25px;display:block;  cursor: pointer;}
+

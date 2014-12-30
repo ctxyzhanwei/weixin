@@ -1,0 +1,120 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+
+<script>
+    window.onload=function(){
+        document.forms[0].reset();
+        placeFo();
+    }
+    function placeFo(){
+        document.forms[0].elements[0].focus();
+    }
+</script>
+<script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+<div class="content">
+
+          <div class="cLineB">
+              <h4 class="left">当前位置：微学校 >> 学员管理</h4><a href="{pigcms::U('School/student_add',array('token'=>$token,'type'=>'semester'))}" class="right btnGreen vm" style="margin-top:-2px">新增学员</a>
+              <div class="clr"></div>
+          </div>
+          <div class="cLineD">
+          <div class="left">
+    <form method="post" id="formID" action="{pigcms::U('School/search',array('token'=>$token))}">
+        <input type="hidden" name="searchkey[key]" value="students">
+        姓名:<input size="20" value=""  placeholder="请输入学员姓名"  name="searchkey[name]" class="px">&nbsp;&nbsp;&nbsp;手机号:<input size="20" value="" name="searchkey[phone]"placeholder="请输入学员电话" class="px">&nbsp;&nbsp;&nbsp;
+        <button type="submit" name="appidsubmit"  value="true" class="btnGreen vm" ><strong>查询</strong></button>
+    </form>    
+            </div>
+            <div class="right">
+              <a href="###" onclick="$('#import').css('display','')" class="btnGrayS vm">导入数据</a>&nbsp;&nbsp;
+              <a href="{pigcms::U('School/exExcel',array('token'=>$token,'type'=>'students'))}" class="btnGrayS vm">导出数据</a>&nbsp;&nbsp;
+              <a href="/tpl/User/default/common/images/studentsdemo.xls" class="btnGrayS vm">下载导入模板</a>
+            </div>
+            <div  class="right" id="import" style="display:none;">
+              <form enctype="multipart/form-data" action="?g=User&m=Upyun&a=localUploadSchoolExcel" id="thumbForm" method="POST" style="font-size:14px;padding:10px 20px 10px 0px;">
+                <div>
+                  注意：不支持xlsx格式&nbsp;&nbsp;&nbsp;&nbsp;
+                选择本地文件：<input type="file" style="width:250px;border:1px solid #ddd" name="photo"></input> 
+                 <input id="submitbtn" name="doSubmit" type="submit" class="btnGreen" value="上传" onclick="this.value='上传中...'"></input> 
+                  <a href="###" onclick="$('#import').css('display','none')" class="btnGrayS vm">取消导入</a>
+                </div>
+                <input type="hidden" value="students" name="type" />
+              </form>
+            </div>
+
+ </div>
+          <div class="msgWrap">
+           <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">注意:地址只显示街道地址,上面查询支持模糊查询.</div>
+
+
+          <!-- <input name="delall"  type="hidden" value="del" />
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" /> -->
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                <th>学号</th>
+                <TH>姓名</TH>
+                <TH>年龄</TH>
+                <TH>性别</TH>
+                <TH>出生</TH>
+                <TH>家庭住址</TH>
+                <TH>手机</TH>
+                <TH>固话</TH>
+                <TH>班级</TH>
+                <TH>报名时间</TH>
+                <TH>生效时间</TH>
+                <TH>终止时间</TH>
+              <TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+<volist id="list" name="students">
+                <TR>
+                  <td>{pigcms:$list['id']}</td>
+                  <TD>{pigcms:$list['s_name']}</TD>
+                  <TD>{pigcms:$list['age']}</TD>
+                  <TD><if condition="$list['sex'] eq 1">男</if><if condition="$list['sex'] eq 2">女</if></TD>
+                  <TD>{pigcms:$list['birthdate']}</TD>
+                  <TD>{pigcms:$list['area_addr']}</TD>
+                  <TD>{pigcms:$list['mobile']}</TD>
+                  <TD>{pigcms:$list['homephone']}</TD>
+                  <TD>{pigcms:$list['bj_nmae']}</TD>
+                  <TD>{pigcms:$list['createdate']|date="Y-m-d",###}</TD>
+                  <TD><if condition="$list['seffectivetime'] neq '0000-00-00'">{pigcms:$list['seffectivetime']}<else/>---</if></TD>
+                 <TD><if condition="$list['stheendtime'] neq '0000-00-00'">{pigcms:$list['stheendtime']}<else/>---</if></TD>
+                 <TD>
+<a href="{pigcms::U('School/student_add',array('token'=>$token,'id'=>$list['id'],'type'=>'edit'))}"><font color="red">编辑</font></a>
+<a class="btn" href="{pigcms::U('School/del_item',array('token'=>$vo['token'],'id'=>$list['id'],'deltype'=>'students'))}" onclick="return(confirm('确定要删除吗？'))"  title="删除"><font color="#CCC7C7">删除</font></a>
+<a href="{pigcms::U('School/student_score',array('token'=>$token,'id'=>$list['id']))}">录成绩</a>
+                 </TD>
+                </TR>
+</volist>
+              </TBODY>
+            </TABLE>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+  </script>
+  <!--底部-->
+    </div>
+
+<include file="Public:footer"/>

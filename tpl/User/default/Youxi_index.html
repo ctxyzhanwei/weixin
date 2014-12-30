@@ -1,0 +1,45 @@
+<include file="Public:head"/>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+
+<div class="cLineB">
+微信小游戏
+ </div>
+
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+
+网址:
+{pigcms::C('site_url')}/youxi/index.html<br>
+<input type="button" name="Submit" onClick='copyToClipBoard()' value="复制网址，设置到微信图文回复网址或者自定义菜单">
+<script language="javascript">
+   function copyToClipBoard(){
+    var clipBoardContent="";
+      clipBoardContent+="{pigcms::C('site_url')}/youxi/index.html";
+    window.clipboardData.setData("Text",clipBoardContent);
+    alert("复制成功，设置到微信图文回复网址或者自定义菜单");
+}
+</script>
+
+
+
+
+</div>
+</div>
+
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

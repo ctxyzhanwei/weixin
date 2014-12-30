@@ -1,0 +1,83 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>活动设置</h4>
+    <a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<TBODY>
+<TR>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <TD>
+	<input type="input" class="px" id="title" value="{pigcms:$set.title}" name="title" style="width:400px" />
+  </TD>
+  <TD rowspan="5" valign="top">
+	  <div style="margin-left:20px">
+		<img id="pic1_src" src="<if condition="$set['pic'] eq ''">{pigcms:$f_siteUrl}/tpl/static/Punish/images/default.png<else/>{pigcms:$set.pic}</if>" style="max-width:373px;max-height:200px;" >
+		<br />
+		<input class="px"  name="pic" value="<if condition="$set['pic'] eq ''">{pigcms:$f_siteUrl}/tpl/static/Punish/images/default.png<else/>{pigcms:$set.pic}</if>" id="pic1" style="width:363px;"  />
+		<br />
+		  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic1',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a>&nbsp;消息回复图片
+	  </div>
+  </TD>
+</TR>
+<TR>
+  <th valign="top"><span class="red">*</span>关键词：</th>
+  <TD>
+	<input type="input" class="px" id="keyword" value="{pigcms:$set.keyword}"  name="keyword" style="width:400px" ><br />
+  	用户输入此关键词将会触发此活动。
+  </TD>
+</TR>  
+<TR>
+  <th valign="top"><span class="red">*</span>活动主题：</th>
+  <TD>
+	<input type="input" class="px" id="name" value="<if condition="$set.name eq ''">惩罚台<else/>{pigcms:$set.name}</if>"  name="name" style="width:400px" ><br />
+  	<span class="red">活动转盘中间的主题文字,请不要超过4个字</span>
+  </TD>
+</TR>  
+<TR>
+	<th valign="top">活动说明：</th>
+	<td>
+		<textarea  class="px" id="info" name="info"  style="width:400px; height:125px" >{pigcms:$set.info}</textarea>
+ 	</td>
+</TR>
+
+<tr>
+	<th>是否开启</th>
+	<td>
+		<input type="radio" name="is_open" value="1" <if condition="$set.is_open neq '0'">checked</if>>开启
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="is_open" value="0"  <if condition="$set.is_open eq '0'">checked</if>>关闭
+	</td>
+</tr>
+
+<TR>
+<th>&nbsp;</th>
+<td>
+	<input type="hidden" class="px" value="{pigcms:$set.id}" name="id" style="width:400px" >
+	<button type="submit" class="btnGreen" >保存</button>　
+	<a href=""  class="btnGray vm">取消</a>　
+</td>
+<TR>
+
+</TBODY>
+</TABLE>
+  </div>
+  
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

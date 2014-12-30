@@ -1,0 +1,110 @@
+<div class="Panel Bottom" style="bottom: 0px;">
+    <div class="helperpanel pulse">
+        搜索关注<span class="mp_account">{pigcms:$info.wxuser}</span><br>发送<span class="activity_key">{pigcms:$info.keyword}</span>即可参与
+    </div>
+    <div class="navbar">
+        <!--
+    <if condition="$sceneid gt '0'">    
+        <a class="navbaritem fullscreen" href="{pigcms::U('Scene/index',array('token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">管理中心</div>
+        </a>
+    </if>-->
+        <a class="navbaritem fullscreen" id="fullscreen" href="javascript:void(0);">
+            <div class="icon"></div>
+            <div class="label">全屏</div>
+        </a>
+    <if condition="$info['open_vote'] eq '1'">
+        <a class="navbaritem vote <if condition="ACTION_NAME eq 'vote'">hover</if>" href="{pigcms::U('Scene/vote',array('sceneid'=>$sceneid,'token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">投票</div>
+        </a>
+    </if>
+     <if condition="$info['open_zzle'] eq '1'">
+        <a class='navbaritem pairup <if condition="ACTION_NAME eq 'supperzzle'">hover</if>' href="{pigcms::U('Scene/supperzzle',array('sceneid'=>$sceneid,'token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">对对碰</div>
+        </a>
+    </if>   
+    <if condition="$info['open_lottery'] eq '1'">
+        <a class="navbaritem lottery <if condition="ACTION_NAME eq 'lottery'">hover</if>" href="{pigcms::U('Scene/lottery',array('sceneid'=>$sceneid,'token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">抽奖</div>
+        </a>  
+    </if>   
+    <if condition="$info['open_shake'] neq 0 or ($info['shake_id'] neq 0)">
+        <a class="navbaritem rocker <if condition="ACTION_NAME eq 'shake'">hover</if>" href="{pigcms::U('Scene/shake',array('id'=>$info['id'],'sceneid'=>$sceneid,'token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">摇一摇</div>
+        </a>
+    </if>
+    <if condition="$info['open_wall'] neq 0 or ($info['wall_id'] neq 0)">
+        <a class="navbaritem wall_pic <if condition="ACTION_NAME eq 'wall_pic'">hover</if>" href="{pigcms::U('Scene/wall_pic',array('id'=>$info['id'],'sceneid'=>$sceneid,'token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">图片</div>
+        </a>
+        <a class="navbaritem wall <if condition="ACTION_NAME eq 'wall'">hover</if>" href="{pigcms::U('Scene/wall',array('id'=>$info['id'],'sceneid'=>$sceneid,'token'=>$_SESSION['token']))}">
+            <div class="icon"></div>
+            <div class="label">微信上墙</div>
+        </a>
+    </if>
+    </div>    
+</div>
+<div id="leafContainer"></div>
+    <div style="display: none;" class="bigmpcodebar">
+        <div class="closebutton"></div>
+        <div class="label">微信扫一扫，发送<span class="activity_key">{pigcms:$info.keyword}</span>即可参与</div>
+        <img src="{pigcms:$info.qrcode}">
+    </div>
+<script>
+
+$('.mp_account_codeimage').click(function(){
+    $('.bigmpcodebar').css('display','block');
+});
+
+$('.closebutton').click(function(){
+    $('.bigmpcodebar').css('display','none');
+});
+
+$('#fullscreen').click(function(){
+    
+    if($('#fullscreen').hasClass('in')){
+        exitFullscreen();
+        $('#fullscreen').removeClass("in"); 
+    }else{   
+        fullscreen();
+        $('#fullscreen').addClass("in"); 
+    }
+    
+});
+
+function fullscreen(){
+    elem=document.body;
+    if(elem.webkitRequestFullScreen){
+        elem.webkitRequestFullScreen();   
+    }else if(elem.mozRequestFullScreen){
+        elem.mozRequestFullScreen();
+    }else if(elem.requestFullScreen){
+        elem.requestFullscreen();
+    }else{
+        //浏览器不支持全屏API或已被禁用
+    }
+}
+
+function exitFullscreen(){
+    var elem=document;
+    if(elem.webkitCancelFullScreen){
+        elem.webkitCancelFullScreen();    
+    }else if(elem.mozCancelFullScreen){
+        elem.mozCancelFullScreen();
+    }else if(elem.cancelFullScreen){
+        elem.cancelFullScreen();
+    }else if(elem.exitFullscreen){
+        elem.exitFullscreen();
+    }else{
+        //浏览器不支持全屏API或已被禁用
+    }
+}
+</script>
+</body>
+</html>

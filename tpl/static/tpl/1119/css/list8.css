@@ -1,0 +1,34 @@
+body{ background: #e7e7e7;}
+.list{margin: 10px 2%; width: 96%;}
+.list li{list-style: none; overflow: hidden; border-radius: 5px; background: #fff; margin: 0 0 10px 0;}
+.list a{
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: block;
+    color: #999;
+}
+.list a:active,
+.list a.active{ background-color: #f5f5f5;}
+.list img{ max-width: 100%;}
+.list .hd > *{ display: block; line-height: 20px;}
+.list .hd b{ font-size: 16px; padding: 5px 0; font-weight: 200;}
+.list .hd span{ font-size: 12px; color: #999;}
+.list .hd{ padding:0 0 10px 0;}
+.list .bd{border-bottom:1px solid #ddd;padding:0 0 10px 0;}
+.list .ft{
+    padding:10px 0 0 0;
+    background: url(../images/arrow.png) no-repeat right center;
+    background-size: auto 10px;
+    background-origin:content-box;
+    color: #333;
+}
+.btn-up-1{ background: #999;}
+.btn-up-1 .fa{ background: #fff; color: #999;}
+.navPop-1 .navPop-btn{ background: #999;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #999;}
+.navPop-wrap>div a{
+    background: #999;
+    color: #fff;
+}

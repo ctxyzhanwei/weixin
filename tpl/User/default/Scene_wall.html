@@ -1,0 +1,53 @@
+<include file="Scene:header"/>
+<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/screen_wall.css">
+
+<body class="FUN WALL" style="background-image:url({pigcms:$info.background});" onload="screen_init();">
+<div class="Panel Top" style="top: 0px;">
+    <if condition="$info['logo'] neq ''">
+        <img class="activity_logo" src="{pigcms:$info.logo}">
+    </if>
+    <div class="top_title" style="font-size: 30px">
+        <div>欢迎您参加-{pigcms:$info.title}</div>    
+    </div>
+    <if condition="$info.qrcode neq ''">
+        <img class="mp_account_codeimage" src="{pigcms:$info.qrcode}">
+    </if>
+</div>
+
+<div id="Msg" class="Panel MsgList" style="display: block; opacity: 1;"> 
+    <volist  name="message" id="item" key="key">
+            <div class="MsgItem" msg_id="{pigcms:$item.id}">
+                <div class="head" style="background-image: url({pigcms:$item.portrait});"></div>
+                <div class="nickname">
+                    {pigcms:$item.nickname}
+                </div>
+                <div class="msgword">
+                    {pigcms:$item.content}
+                </div>
+            </div>
+    </volist>
+</div>
+<div id="MsgBox" class="Panel MsgList" style="display: none; opacity: 1;">
+    <volist  name="temp" id="item" key="key">
+            <div class="MsgItem" msg_id="{pigcms:$item.id}">
+                <div class="head" style="background-image: url({pigcms:$item.portrait});"></div>
+                <div class="nickname">
+                    {pigcms:$item.nickname}
+                </div>
+                <div class="msgword">
+                    {pigcms:$item.content}
+                </div>
+            </div>
+    </volist>
+</div>
+
+<script>
+var status      = 1;    //请求状态
+var load_time   = 2000; //请求间隔
+var sceneid     = '{pigcms:$sceneid}';
+var is_pic      = 0;
+var url         = '/index.php?g=User&m=Scene&a=ajaxWall&token={pigcms:$token}&id={pigcms:$info.id}';
+</script>
+<input type="hidden" name="ajax_time" style="width:100px;" value="<?php echo time();?>" id="ajax_time" />
+<script type="text/javascript" src="/tpl/static/wall/js/scene_wall.js" charset="utf-8"></script>
+<include file="Scene:footer"/>

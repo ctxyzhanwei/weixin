@@ -1,0 +1,179 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+function chg_catid(catid) {
+	document.getElementById('cid').value = catid;
+}
+</script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">添加餐厅</h4>
+<div class="searchbar right">
+</div>
+<div class="clr"></div>
+</div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">此处只显示总店信息，连锁店订单及菜品请进入相应平台进行管理，连锁店登录账号密码及登录地址请在LBS里设置查看</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="current tabli" id="tab0"><a href="{pigcms::U('Repast/company_index', array('token' => $token,'cid' => $cid))}">餐厅管理</a></li>
+<li class="tabli" id="tab1"><a href="{pigcms::U('Repast/index', array('token' => $token,'cid' => $cid))}">餐台管理</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Repast/detail', array('token' => $token,'cid' => $cid))}">餐台预定情况</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Repast/sort', array('token' => $token,'cid' => $cid))}">分类管理</a></li>
+<li class="tabli" id="tab3"><a href="{pigcms::U('Repast/dish', array('token' => $token,'cid' => $cid))}">菜品管理</a></li>
+<li class="tabli" id="tab4"><a href="{pigcms::U('Repast/orders', array('token' => $token,'cid' => $cid))}">订单管理</a></li>
+<if condition="$ischild neq 1" >
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set', array('token'=>$token,'infotype'=>'Dining'))}">订餐回复配置</a></li>
+</if>
+</ul>
+</div>
+<!--tab end-->
+<form method="post" action="" id="formID">
+<input type="hidden" name="id" value="{pigcms:$company.id}" />
+<input type="hidden" name="cid" id="cid" value="{pigcms:$cid}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+      <tr> 
+        <th><span class="red">*</span>店铺选择：</th> 
+        <td>  <select name="catid" style="width:400px; height:26px" onchange="chg_catid(this.value)" >
+        <option  value="0" <if condition="$company['catid'] eq 0">selected</if>>请选择</option>
+         <volist name="Companys" id="t">
+        <option  value="{pigcms:$t.id}" <if condition="$company['catid'] eq $t['id']">selected</if>>{pigcms:$t.name}</option>
+        </volist>
+        </select> </td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>是否支持外卖：</th> 
+        <td>
+        <select name="istakeaway">
+        <option value="0"  <if condition="0 eq $company['istakeaway']">selected</if> >不支持</option>
+        <option value="1"  <if condition="1 eq $company['istakeaway']">selected</if> >支持</option>
+        </select>
+        </td> 
+       </tr>
+       <tr> 
+        <th>外卖费：</th>
+        <td><input type="text" name="price" value="{pigcms:$company.price}" class="px" id="pic" style="width:80px;" /> 元</td> 
+       </tr>
+       <tr> 
+        <th>是否在线支付：</th>
+        <td>
+	        <select name="payonline">
+	        <option value="0"  <if condition="0 eq $company['payonline']">selected</if> >不要</option>
+	        <option value="1"  <if condition="1 eq $company['payonline']">selected</if> >需要</option>
+	        </select>
+        </td> 
+       </tr>
+	   <tr> 
+        <th><span class="red"></span>店铺类型：</th> 
+        <td><input type="text" id="category" name="category" value="{pigcms:$company.category}" placeholder="如：小吃、快餐 " class="px require" style="width:400px;" /></td> 
+       </tr>
+
+	   <!-- 
+       <tr> 
+        <th><span class="red"></span>店铺公告：</th> 
+        <td><input type="text" id="bulletin" name="bulletin" value="{pigcms:$company.bulletin}" placeholder="如：店铺最新优惠：买10元送1元 " class="px require" style="width:400px;" />如：店铺最新优惠：买10元送1元</td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>店铺状态：</th> 
+        <td>
+        <select name="status" style="width:400px; height:26px" >
+        <option value="0" <if condition="$company.status eq 0">selected</if>>营业中</option>
+        <option value="1" <if condition="$company.status eq 1"> selected</if>>未营业</option></select> 
+        </td> 
+       </tr> 
+         
+       <tr> 
+        <th><span class="red"></span>营业时间：</th> 
+        <td><input type="text" id="time" name="time" value="{pigcms:$company.time}" placeholder="如：8：00~22：00 " class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>起送价格：</th> 
+        <td><input type="text" id="money" name="money" value="{pigcms:$company.money}" placeholder="请填写数字，如50，仅保留小数点后2位 " class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>服务半径：</th> 
+        <td><input type="text" id="radius" name="radius" value="{pigcms:$company.radius}" placeholder="如：3公里   "  class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>配送区域：</th> 
+        <td><input type="text" id="scope" name="scope" value="{pigcms:$company.scope}" placeholder="如：置地大道等   "   class="px require" style="width:400px;" /></td> 
+       </tr> 
+	   -->
+       <tr> 
+        <th><span class="red"></span>短信通知：</th> 
+        <td>开启&nbsp;<input type="radio" name="phone_status" <if condition="$company.phone_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="phone_status" <if condition="$company.phone_status eq 0">checked</if> id="statu-0" value="0"> <span class="red"> &nbsp;&nbsp;&nbsp;&nbsp;通知的手机号为LBS中设置的手机号码！</span></td> 
+       </tr> 
+       <tr> 
+       <tr> 
+        <th><span class="red"></span>订单短信验证：</th> 
+        <td>开启&nbsp;<input type="radio" name="phone_authorize" <if condition="$company.phone_authorize eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="phone_authorize" <if condition="$company.phone_authorize eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr> 
+       <tr>       
+        <th><span class="red"></span>邮件通知：</th> 
+        <td><input type="text" id="email" name="email" value="{pigcms:$company.email}" placeholder="如：714696206@qq.com   "   class="px require" style="width:400px;" />&nbsp;&nbsp;开启&nbsp;<input type="radio" name="email_status" <if condition="$company.email_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="email_status" <if condition="$company.email_status eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>无线打印：</th> 
+		<td>
+		开启&nbsp;<input type="radio" name="print_status" <if condition="$company.print_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="print_status" <if condition="$company.print_status eq 0">checked</if> id="statu-0" value="0">&nbsp;&nbsp;
+        重复打印份数<input type="text" name="print_total" class="px" style="width:40px;" value="{pigcms:$company.print_total}" />
+		</td>
+		<tr><th><span class="red"></span>商户代码：</th>
+		<td><input type="text" class="px" name="memberCode" value="{pigcms:$company.memberCode}" tabindex="1" size="35"> <span class="red">&nbsp;&nbsp;&nbsp;登录飞印后在"API集成"-&gt;"获取API集成信息"获取</span></td>
+		</tr>
+		<tr><th><span class="red"></span>API 密钥：</th>
+		<td><input type="text" class="px" name="feiyin_key" value="{pigcms:$company.feiyin_key}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;获取方法同上</span></td>
+		</tr>
+		<tr><th><span class="red"></span>设备编码：</th>
+
+		<td><input type="text" class="px" name="deviceNo" value="{pigcms:$company.deviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;通过打印机后面的激活按键获取，为16位数字，例如"4600365507768327"</span></td>
+		</tr>
+       </tr> 
+       
+       
+              
+       <tr>
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="submit" class="btnGreen" id="save">保存</button></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+</form>
+<div class="cLine">
+<div class="clr"></div>
+</div>
+</div>
+
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+function change(obj) {
+	location.href = "{pigcms::U('Repast/orders',array('token' => $token, 'cid' => $cid))}&status=" + $(obj).val();
+}
+</script>
+<include file="Public:footer"/>

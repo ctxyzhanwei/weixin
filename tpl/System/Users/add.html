@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{pigcms::RES}/images/main.css" type="text/css" rel="stylesheet">
+<script src="{pigcms::STATICS}/jquery-1.4.2.min.js" type="text/javascript"></script>
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+</head>
+<body class="warp">
+<div id="artlist" class="addn">
+<gt name="info.id" value="0">
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+			<form action="{pigcms::U('Users/edit')}" method="post" name="form" id="myform">
+			<input type="hidden" name="id" value="{pigcms:$info.id}">
+		<else />
+			<form action="{pigcms::U('Users/add')}" method="post" name="form" id="myform">
+		</gt>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" id="addn">
+
+				 <tr>
+					<th colspan="4">{pigcms:$title}</th>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>客户名称：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="username" class="ipt" size="45" value="{pigcms:$info.username}" <eq name="info.username" value="admin">readonly="readonly"</eq>>
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>手机号：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="mp" class="ipt" size="45" value="{pigcms:$info.mp}" />
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>邮箱：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="email" class="ipt" size="45" value="{pigcms:$info.email}" />
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>密　　码：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="password" name="password" class="ipt" size="45" value="">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>确认密码：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="password" name="repassword" class="ipt" size="45"/>
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>分配套餐：</strong></td>
+					<td colspan="3" class="lt">
+						<select name="gid" style="width:136px">
+							<volist name="role" id="vo">
+								<option value="{pigcms:$vo.id}" <eq name="vo.id" value="$info.gid">selected=""</eq> >{pigcms:$vo.name}</option>
+							</volist>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>所属行业：</strong></td>
+					<td>
+                            <select name="business">
+                                <volist name="business" id="business">
+                                    <option value="{pigcms:$business.key}" <if condition="$business['key'] eq $info['business']">selected</if>>{pigcms:$business.val}</option>
+                                </volist>
+                            </select>
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>客户状态：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="radio" class="radio" class="ipt" value="1" name="status" id="status1" <if condition="($info.status eq 1) OR ($info['status'] eq '') ">checked=""</if> >
+							启用
+							<input type="radio" class="radio" class="ipt"  value="0" name="status" id="status2" <eq name="info.status" value="0">checked=""</eq> >
+							关闭
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>公众号已创建数：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="wechat_card_num" class="ipt" size="45" value="{pigcms:$info.wechat_card_num}">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>会员卡数量：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="card_num" class="ipt" size="45" value="{pigcms:$info.card_num}">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>活动创建数：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="activitynum" class="ipt" size="45" value="{pigcms:$info.activitynum}">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>资金余额：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="moneybalance" class="ipt" size="45" value="{pigcms:$info.moneybalance}">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>已充值总数：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="spend" class="ipt" size="45" value="{pigcms:$info.spend}">
+					</td>
+				</tr>				
+				<tr>				
+					<td height="48" align="right"><strong>附件大小：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="attachmentsize" class="ipt" size="45" value="<?php echo $info['attachmentsize'];?>"> <?php echo $info['attachmentsize']/(1024*1024);?> M
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>短信数：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="smscount" class="ipt" size="45" value="<?php echo $info['smscount'];?>">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>到期时间：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="viptime" onClick="WdatePicker()" class="ipt" size="45" value="{pigcms:$info.viptime|date="Y-m-d",###}">
+					</td>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>备注说明：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" name="remark" class="ipt" size="45" value="{pigcms:$info.remark}"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td height="48" align="right"><strong>邀请列表：</strong></td>
+					<td colspan="3" class="lt">
+					<a href="?g=System&m=Users&a=index&inviter={pigcms:$info.id}">点击查看邀请列表（共{pigcms:$inviteCount}人）</a>
+					</td>
+				</tr>
+	<tr>
+		<td colspan="4">
+			<gt name="info.id" value="0">
+				<input class="bginput" type="submit" name="dosubmit" value="修 改" >
+				<else />
+				<input class="bginput" type="submit" name="dosubmit" value="添 加"></gt>
+			&nbsp;
+			<input class="bginput" type="button" onclick="javascript:history.back(-1);" value="返 回" ></td>
+	</tr>
+</table>
+</form>
+<br />
+<br />
+<br />
+
+</div>
+</body>
+</html>

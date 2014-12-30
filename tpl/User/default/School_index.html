@@ -1,0 +1,147 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+
+<div class="content">
+
+<div class="cLineB">
+  <h4>您的位置: 分类管理 >
+  <if condition="$type eq 'semester'">
+   学期管理|== <a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a>
+  <elseif condition="$type eq 'theclass'"/>
+   班级管理 |== <a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a>
+  <elseif condition="$type eq 'score'"/>
+  成绩管理|== <a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a>
+  <elseif condition="$type eq 'subject'"/>
+  科目管理|== <a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a>
+  <elseif condition="$type eq 'timeframe'"/>
+  时段管理|== <a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a>
+  <elseif condition="$type eq 'week'"/>
+  星期管理|== <a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'semester'))}">学期管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token ,'type'=>'theclass'))}">班级管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'score'))}">成绩管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'subject'))}">科目管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'timeframe'))}">时段管理</a>||<a href="{pigcms::U('School/index',array('token'=>$token,'type'=>'week'))}">星期管理</a>
+  </if>
+   </h4>  <a href="javascript:window.location.reload();" class="right btnGrayS vm" style="margin-top:-27px">刷新</a>
+ </div>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+<div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+    <if condition="$type eq 'semester'">
+   填写学期,如 2014第一学期,2014第二学期,2015第一学期....<br/>
+   <strong><font color='red'>特别提醒: 当你删除该学期项的时候,该学期项下相关的所有数据都会被删除,请谨慎操作!以免丢失数据!</font></strong>
+  <elseif condition="$type eq 'theclass'"/>
+   填写班级,如 一年级,二年级,三年级....
+  <elseif condition="$type eq 'score'"/>
+   填写成绩分类,如 第一期,第二期,第三期....
+  <elseif condition="$type eq 'subject'"/>
+   填写科目,如 语文,数学,英语....
+  <elseif condition="$type eq 'timeframe'"/>
+   填写时段,如 09:00-09:45 , 10:00-10:45 , 11:00-11:45....
+  <elseif condition="$type eq 'week'"/>
+   填写班级,如 星期一,星期二,星期三....
+  </if>
+    </p>
+    </div>
+</div>
+
+<div class="msgWrap bgfc" style="margin-top:-10px;">
+      <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+        <div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+	<th>序列号</th>
+    <th width="260">名称</th>
+    <th width="50">排序</th>
+    <th class="norightborder">操作</th>
+</tr>
+</thead>
+<if condition="$semester neq ''">
+<volist name="semester" id="ivo" key="key">
+<tbody class="item{pigcms:$ivo.sid}">
+<tr>
+	<td width="20">{pigcms:$ivo.sid}</td>
+    <input type="hidden" name="add[sid][]"   value="{pigcms:$ivo.sid}" style="width:20px;">
+    <td width="120"><input type="text" name="add[sname][]" value="{pigcms:$ivo.sname}" class="px" style="width:120px;"></td>
+    <td width="20"><input type="text" name="add[ssort][]" value="{pigcms:$ivo.ssort}" style="width:20px;" class="px"></td>
+    <td width="50" class="norightborder"><a href="javascript:void(0);" class="del"  sid="{pigcms:$ivo.sid}">删除</a></td>
+</tr>
+ </tbody>
+</volist>
+ </if>
+</table>
+<table  border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+    	<td>        
+    		<button type="submit" name="button" class="btnGreen">保存</button>
+       		<a href="{pigcms::U('Vote/index')}" class="btnGray vm">取消</a>
+        </td>
+    	<td></td>
+    	<td><a href="javascript:;" id="add" class="btnGreen right">添加</a></td>
+    </tr>
+</table>
+<script>
+
+$(function(){
+	$('#add').click(function(){
+		  var str 	= "";
+		  	  str  += '<tbody class="item"><tr><input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:20px;">';
+		  	  str  += '<td></td><td width="120"><input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">';
+		  	  str  += '</td><td><input type="text" name="add[ssort][]" id="addssort_1" value="1" style="width:20px;" class="px"></td>';
+	  		  str  += '<td width="50" class="norightborder"><a href="javascript:void(0);" sid="0" class="del">删除</a></td></tr></tbody>';
+	  	 $('.ListProduct').append(str);
+	 });
+
+	$(".ListProduct").on('click','.del',function(data){
+		var sid = $(this).attr('sid');
+		if(sid == 0){
+			$(this).parents('.item').remove();
+		}else{
+			if(confirm('确定要删除吗？')){
+				var obj = {sid:sid}
+				$.post("{pigcms::U('School/del_item',array('deltype'=>$type))}", obj,function(data) {
+				if(data.errno==1)
+					$('.del').parents('.item'+sid).remove();
+				},"json");
+			}
+		}
+		
+		
+	});
+});  	
+
+</script>
+</div>
+</div>
+    </form>
+  </div>
+
+        </div>
+
+<include file="Public:footer"/>

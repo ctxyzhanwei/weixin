@@ -1,0 +1,102 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+
+<script src="{pigcms::RES}/js/select/js/jquery.js"></script>
+<script src="{pigcms::RES}/js/select/js/comm.js"></script>
+<script src="{pigcms::RES}/js/select/js/linkagesel-min.js"></script>
+
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+
+<div class="content">
+
+<div class="cLineB">
+  <h4>汽车文章类型管理</h4> 最新车讯，最新优惠，尊享二手车都读取于 <a href="{pigcms::U('Classify/index',array('token'=>$token))}" class="btn"> <strong><font color='red'>分类管理</strong></font></a>,如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>分类管理</strong></font></a>添加</span>,然后再［<a href="{pigcms::U('Img/add',array('token'=>$token))}"><strong><font color='red'>图文回复</strong></font></a>］添加您想添加的内容 <span class="help-inline"> <span class="maroon">的［<a href="{pigcms::U('Img/index',array('token'=>$token))}"><strong><font color='red'>新增图文自定义回复</strong></font></a>］！</span> <!--a href="javascript:history.go(-1);return false;" class="right btnGrayS vm" style="margin-top:-27px">返回</a-->
+ </div>
+ <!--tab start-->
+
+<!--tab end-->
+    <div class="msgWrap bgfc">
+      <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120">最新车讯：</th>
+                    <td>
+                    <select class="input-medium valid" name="news_id">
+                          <volist  name="classify" id="vo">
+                              <option value="{pigcms:$vo['id']}" <if condition="$carnews['news_id'] eq $vo['id']">selected='selected' </if>>{pigcms:$vo['name']}</option>
+                              </volist>
+                    </select>
+                     <span class="maroon">店铺产品最新行情</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">最新优惠：</th>
+                    <td>
+
+                          <select class="input-medium valid" name="pre_id">
+                          <volist  name="classify" id="vo">
+                              <option value="{pigcms:$vo['id']}"<if condition="$carnews['pre_id'] eq $vo['id']">selected='selected' </if>>{pigcms:$vo['name']}</option>
+                              </volist>
+                          </select>
+                         <span class="maroon">如店铺或者产品最新打折优惠或促销</span>
+                     </td>
+                </tr>
+                <tr>
+                    <th width="120">尊享二手车</th>
+                    <td>
+                    <select class="input-medium valid" name="usedcar_id">
+                          <volist  name="classify" id="vo">
+                              <option value="{pigcms:$vo['id']}"<if condition="$carnews['usedcar_id'] eq $vo['id']">selected='selected' </if>>{pigcms:$vo['name']}</option>
+                              </volist>
+                          </select>
+                           <span class="maroon">如店铺收藏的二手车</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>品牌相册：</th>
+                    <td>
+                         <select id="album_id" name="album_id" class="input-medium valid" schoolSet>
+                            <option value="0">请选择相册</option>
+                                <volist name="photo" id="vo">
+                                    <option value="{pigcms:$vo['id']}" <if condition="$vo['id'] eq $carnews['album_id']">selected="selected"</if>>{pigcms:$vo['title']}</option>
+                                </volist>
+                          </select>
+                    <span class="maroon">如选择：兰博基尼欣赏</span>
+                     ，如果没有请去：<a href="{pigcms::U('Photo/add',array('token'=>$token,'poid'=>$carnews['album_id']))}" class="btn">添加相册</a></td>
+                    </td>
+                </tr>
+                <tr>
+                    <th>店铺LBS：</th>
+                    <td>
+                         <select id="company_id" name="company_id" class="input-medium valid" schoolSet>
+                            <option value="0">请选择店铺LBS</option>
+                                <volist name="company" id="vo">
+                                    <option value="{pigcms:$vo['id']}" <if condition="$vo['id'] eq $carnews['company_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                </volist>
+                          </select>
+                    <span class="maroon"></span>
+                     ，如果没有请去：<a href="{pigcms::U('Company/index',array('token'=>$token,'poid'=>$carnews['company_id']))}" class="btn">添加LBS</a></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <if condition="$carnews['id'] neq ''">
+                    <input type="hidden" name="id" value="{pigcms:$carnews['id']}" />
+                    </if>
+                      <input type="hidden" name="token" value="{Pigcms:$token}" />
+                        <button type="submit" name="button" class="btnGreen">保存</button>
+                        <a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div>
+
+        </div>
+<include file="Public:footer"/>

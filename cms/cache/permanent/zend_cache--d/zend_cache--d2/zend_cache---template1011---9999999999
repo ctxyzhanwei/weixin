@@ -1,0 +1,25 @@
+                       443285718O:8:"stdClass":10:{s:2:"id";s:4:"1011";s:4:"name";s:12:"图片列表";s:4:"path";s:58:"@/smarty/templates/2/sihetx1399802872/channel_picture.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"0";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"22";s:4:"time";s:10:"1399806715";s:4:"code";s:834:"{include file=$header}
+<div class="sub">
+	<ul class="productul">
+				{if $contents}
+			{foreach from=$contents item=a key=k}
+			{if $k<3}
+                    <li style="width:32%">
+					<div>
+					<a href="{$a.link}" title="{$a.title}"><img src="{$a.thumb}"/></a>
+          <p><a href="{$a.link}" title="{$a.title}">{$a.title}</a></p>
+          </div></li>
+          {/if}
+		  {/foreach}
+		  {/if}
+			</ul>
+	<div class="clear"></div>
+	<div class="pages">
+	
+		<a href="{$previousPageLink}" class="{if $previousPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="上一页">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a href="{$nextPageLink}" class="{if $nextPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="下一页">&gt;</a>
+	</div></div>
+{include file=$footer}
+
+";}

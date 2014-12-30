@@ -1,0 +1,243 @@
+<include file="Repast:header"/>
+<style>
+.btn_common{
+    font-size:12px;
+    padding: 5px 8px;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #2ec366;
+    color: #fff;
+}
+.dish_item textarea{
+    padding: 8px;
+    background: #eaeaea;
+    border-radius: 12px;
+    border: 1px solid #dedede;
+    outline: none;
+    resize: none;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-shadow: none;
+    display:none;
+}
+.dish_item{
+    height:45px!important;
+}
+.dish_item.on{
+    height:97px!important;
+} 
+.dish_item.on textarea{
+    margin-top:3px;
+    display:block;
+}
+</style>
+<body id="page_intelOrder" class="myOrderCon">
+<div class="container">
+<header style="padding-top:20px;">
+    <span class="pCount" style="">已点<l style="color:red" id="countnums" nums="{pigcms:$totalNum}">{pigcms:$totalNum}</l>个菜</span>
+    <if condition="$userInfo['takeaway'] eq 1">
+    <label><i>送餐费：</i><b class="duiqi">{pigcms:$userInfo['price']}</b><b class="duiqi">元</b></label>
+    </if>
+    <label><i>共计：</i><b class="duiqi" id="total" price="{pigcms:$totalPrice}">{pigcms:$totalPrice}</b><b class="duiqi">元</b>&nbsp;&nbsp;</label>   
+</header>
+<section style="margin-bottom:10px;">
+    <article>
+        <h2>我的菜单
+            <button class="btn_add emptyIt" id="clearBtn" onclick="clearAll();">清空</button>
+            <button class="btn_add" onclick="location.href = '{pigcms::U('Repast/dish', array('token'=>$token, 'wecha_id'=>$wecha_id, 'cid'=>$cid))}'">+加菜</button>
+        </h2>
+        <ul id="myorder" class="myorder">
+	        <volist name="my_dish" id="dish">
+	        <li class="dish_item">                    
+		        <span class="dishName">{pigcms:$dish['name']}</span>                    
+		        <i>{pigcms:$dish['price']}元/{pigcms:$dish['unit']}</i>                    
+		        <!-- <span class="btn_common" onclick="slideOn(this, event);">添加备注</span>    -->                 
+		        <div><textarea name="description" class="des" did="{pigcms:$dish['id']}" id="des_{pigcms:$dish['id']}">{pigcms:$dish['des']}</textarea></div>                    
+		        <section class="bbox" dishname="{pigcms:$dish['name']}" onclick="changeCount(this, event, '{pigcms:$dish['price']}', '{pigcms:$dish['id']}');">                        
+		        <input class="btn-reduce" type="button" value="-">                        
+		        <input class="numBox" name="numBox" type="text" value="{pigcms:$dish['nums']}" price="{pigcms:$dish['price']}" did="{pigcms:$dish['id']}" readonly="readonly">                        
+		        <input type="button" class="btn-plus" value="+">              
+		        </section>                    
+	        </li>
+	        </volist>
+        </ul>
+    </article>
+</section>
+<section style="margin-bottom:80px;">
+    <article>
+        <form id="form_dish" action="{pigcms::U('Repast/saveMyOrder', array('token'=>$token, 'wecha_id'=>$wecha_id, 'cid'=>$cid))}" method="post">
+
+            <table class="table_book">
+                <tbody>
+                <if condition="$userInfo['takeaway'] neq 2">
+                <tr>
+                    <td width="80px" style="width:80px;">手机号码：</td>
+                    <td colspan="2">{pigcms:$userInfo['tel']}</td>
+                </tr>
+                <tr>
+                    <td style="width:80px;">用户姓名：</td>
+                    <td style="width:50%;">{pigcms:$userInfo['name']}
+                    </td>
+                    <td>
+                        <div class="group_checkbox" style="width:70px;display:none;">
+                            <input type="checkbox" value="1" name="sex" checked="checked">
+                        </div>
+                    </td>
+                </tr>
+                </if>
+                <if condition="$userInfo['takeaway'] eq 1">
+                <tr id="dishaddress">
+                    <td style="width:80px;">送餐地址：</td>
+                    <td>{pigcms:$userInfo['address']}</td>
+                </tr>
+                <else/>
+                <tr>
+                    <td style="width:80px;">就餐桌号：</td>
+                    <td colspan="2">{pigcms:$tableName}</td>
+                </tr>
+                </if>
+                <if condition="$userInfo['takeaway'] neq 2">
+                <tr>
+                    <td style="width:80px;">就餐时间：</td>
+                    <td colspan="2">{pigcms:$userInfo.reservetime|date="Y-m-d H:i:s",###}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:80px;">预定人数：</td>
+                    <td colspan="2">{pigcms:$userInfo.nums}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:80px;vertical-align:top;line-height:25px;">备注说明：</td>
+                    <td colspan="2">{pigcms:$userInfo.des}
+                    </td>
+                </tr>
+				</if>
+                <tr>
+                    <td style="width:80px;">支付方式：</td>
+                    <td colspan="2">
+						<div><input name="paymode" value="1" type="radio" id="paymod_1" checked><label for="paymod_1">在线支付</label></div>　
+						<if condition="$fans['balance'] gt 0 AND $company['payonline'] eq 1">
+						<div><input name="paymode" value="4" type="radio" id="paymod_4"><label for="paymod_4">会员卡支付</label></div>
+						</if>
+                    </td>
+                </tr>
+				
+            </tbody></table>
+            <footer>
+                <input type="button" value="确认预定" class="btn_2" id="submit_form" style="display:block">
+            </footer>
+        </form>
+    </article>
+</section>
+</div>
+<script>
+function changeCount(thi, evt, price, id) {
+    if ("button" == evt.target.type) {
+        var counter = thi.querySelectorAll("input[name='numBox']")[0];
+        var val = parseInt(counter.value);
+        var countnums = parseInt($("#countnums").attr("nums"));
+        var totalPrice = $("#total").attr("price");
+        if ("btn-reduce" == evt.target.className) {
+            val--;
+        } else {
+            val++;
+        }
+        counter.value = Math.max(0, val);
+        if(val >= 0){
+            if ("btn-reduce" == evt.target.className) {
+                var num = countnums - 1;
+                var tnum = -1;
+                var pr =  parseFloat(totalPrice) - parseInt(price);
+            } else {
+                var tnum = 1;
+                var num = countnums + 1;
+                var pr = parseFloat(totalPrice) + parseInt(price);
+            }
+            $("#countnums").html(num);
+            $("#countnums").attr("nums",num);
+            $("#total").html(pr);
+            $("#total").attr("price", pr);
+        }
+        editOrder(id, tnum, $('#des_' + id).val());
+    }
+}
+
+function editOrder(id, num, des){
+    $.ajax({
+        'url':"{pigcms::U('Repast/editOrder', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}",
+        'data':{'id':id, 'num':num, 'des':des},
+        'type':'POST',
+        'async':'false',
+        'success':function(db){}
+    });
+}
+
+$(document).ready(function(){
+    var min_height = $(document).height() - 80;
+    $(".container").css("height", min_height + 'px');
+    $('.des').blur(function(){
+		var id = parseInt($(this).attr('did'));
+		var des = $(this).val();
+		editOrder(id, 0, des);
+    });
+    $('#submit_form').click(function() {
+		$("#form_dish").submit();
+		return false;
+		
+		
+        $.ajax({
+            'url': $('#form_dish').attr('action'),
+            'type': 'post',
+            dataType:'JSON',
+            'success': function(response) {
+                if (response.success == '1') {
+        			if (response.isopen == 1) {
+        				location.href = "{pigcms::U('Alipay/pay',array('token'=>$token,'wecha_id'=>$wecha_id,'success'=>1,'from'=> 'Repast'))}" + '&orderName=' + response.orderName + '&single_orderid=' + response.orderid + '&price=' + response.price;
+                	} else {
+                		window.location = "{pigcms::U('Repast/myOrder', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}";
+                	}
+                } else {
+                	 MDialog.alert(response.msg, '', null, '确定');
+                    return false;
+                }
+
+            }
+        });
+    });
+});
+function clearAll() {
+    MDialog.confirm('', '是否清空菜单？', null,
+            '确定', function() {
+                $.ajax({
+                    'url': "{pigcms::U('Repast/clearMyMenu', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid))}",
+                    'success': function(db) {
+                        $('#myorder').empty();
+                        $('#total').text('0');
+                    }
+                });
+            }, null, '取消', null, null, null, true, true);
+}
+
+function slideOn(thi, evt) {
+    var li = $(thi).closest("li");
+    li["toggleClass"]("on");
+}
+</script>
+<include file="Repast:footer"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Repast/mymenu',array('token' => $token, 'cid' => $cid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Repast/mymenu',array('token' => $token, 'cid' => $cid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Repast/mymenu',array('token' => $token, 'cid' => $cid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

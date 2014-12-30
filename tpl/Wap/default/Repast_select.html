@@ -1,0 +1,53 @@
+<include file="Repast:header"/>
+<title>请选择您的用餐方式</title>
+</head>
+<body id="page_intelOrder" class="myOrderCon">
+		<div  style="float:none;width:100%;" class="headselect">
+			<a class="link_tel icon-phone">请选择您的用餐方式</a>
+		</div>
+		<section style="border: 0px">
+		<ul class="list_ul">
+			<li>
+				<a href="{pigcms::U('Repast/selectTable', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid, 'takeaway' => 2))}">
+					<figure>
+						<div style="background-image:url(../tpl/static/repast/images/1.jpg);">&nbsp;</div>
+						<figcaption style="height:33px; overflow:hidden;">现场点餐</figcaption>
+					</figure>
+				</a>
+			</li>
+			<li>
+				<a href="{pigcms::U('Repast/selectTable', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid, 'takeaway' => 0))}">
+					<figure>
+						<div style="background-image:url(../tpl/static/repast/images/dincan.jpg);">&nbsp;</div>
+						<figcaption style="height:33px; overflow:hidden;">在线预订</figcaption>
+					</figure>
+				</a>
+			</li>
+			<if condition="$istakeaway eq 1">
+			<li>
+				<a href="{pigcms::U('Repast/selectTable', array('token'=>$token, 'wecha_id' => $wecha_id, 'cid' => $cid, 'takeaway' => 1))}">
+				<figure>
+					<div style="background-image:url(../tpl/static/repast/images/waimai.jpg);">&nbsp;</div>
+					<figcaption style="height:33px; overflow:hidden;">外卖</figcaption>
+				</figure>
+				</a>
+			</li>
+			</if>
+		</ul>
+		</section>
+	<include file="Repast:footer"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Repast/select',array('token' => $token, 'cid' => $cid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Repast/select',array('token' => $token, 'cid' => $cid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Repast/select',array('token' => $token, 'cid' => $cid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

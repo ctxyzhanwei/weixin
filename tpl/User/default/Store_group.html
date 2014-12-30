@@ -1,0 +1,87 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">分类管理</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$isgroup neq 1 OR $ischild neq 1">
+<li class="tabli" id="tab2"><a href="{pigcms::U('Store/index',array('token'=>$token))}">商品分类管理</a></li>
+<if condition="empty($catid) neq true">
+<li class="tabli" id="tab0"><a href="{pigcms::U('Store/product',array('token'=>$token))}">商品管理</a></li>
+</if>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+<if condition="$ischild eq 0">
+<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Shop'))}">商城回复配置</a></li>
+</if>
+<li class="current tabli" id="tab5"><a href="{pigcms::U('Store/group',array('token'=>$token))}">商品分组</a></li>
+<li class="tabli" id="tab7"><a href="{pigcms::U('Store/productgroup',array('token'=>$token))}">分组商品展现</a></li>
+<else />
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/flash',array('token'=>$token))}">商城背景与轮播图</a></li>
+	<li class="tabli" id="tab8"><a href="{pigcms::U('Store/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> 
+<a href="{pigcms::U('Store/groupAdd', array('token' => $token, 'cid' => $cid, 'parentid' => $parentid))}" title="新增分组" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">新增分类</a>
+</div>
+<if condition="$parentid gt 0">
+<div class="pageNavigator right">
+<a href="{pigcms::U('Store/index',array('token'=>$token, 'cid' => $cid, 'parentid' => $parentCat['parentid']))}" class="btnGrayS vm bigbtn">返回上级分类</a>
+</div>
+<else />
+<div class="pageNavigator right"> 
+<a href="{pigcms::U('Store/setting', array('token' => $token, 'cid' => $cid))}" title="商城设置" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">商城设置</a>
+</div>
+</if>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select">名称</th>
+<th width="200">分组名称</th>
+<th width="200">创建时间</th>
+<th width="300" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td><input type="checkbox" name="del_id[]" value="285" class="checkitem"></td>
+<td>{pigcms:$hostlist.name}</td>
+<td>{pigcms:$hostlist.time|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder">
+	<a href="{pigcms::U('Store/groupAdd',array('token' => $token, 'id' => $hostlist['id']))}">修改</a>
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Store/groupDel',array('id' => $hostlist['id'], 'token' => $token))}');">删除</a>
+	<span>&nbsp;|&nbsp;<a href="{pigcms::U('Store/groupSet',array('token' => $token, 'gid' => $hostlist['id']))}" style="color:#f00">分配给分店</a></span>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

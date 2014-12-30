@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="common:public" />
+<div class="cr"></div>
+<div id="artlist">
+	 <div class="ksearch">
+		<form action="" method="post">
+			<div class="fl">
+				<b class="kserico">快速搜索：</b>搜索类型：
+				<select name="type">
+					<option value="1">公众号名称</option>
+					<option value="2">公众号ID</option>
+					<option value="3">公众号邮箱</option>
+					<option value="4">订单号</option>
+				</select>
+				<input name="name" class="ipt" type="text" value=""/> 
+			</div>
+			<div class="fl">
+				<b>排序方式：</b>
+				<select name="order">
+					<option value="0">时间（倒序）</option>
+					<option value="1">时间（顺序）</option>
+				</select>
+			</div>
+			<div class="fl">
+				<b>状态：</b>
+				<select name="paid">
+					<option value="0">全部</option>
+					<option value="1">未对帐</option>
+					<option value="2">已对帐</option>
+				</select>
+			</div>
+			<input type="submit" class="ksub" value=""/>
+		</form>
+    </div>
+</div>
+<form action="{pigcms::U('Platform/paid_all')}" method="post">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+		<tr>
+			
+			<td width="80">选中</td>
+			<td width="150">订单来源标识</td>
+			<td width="150">订单号</td>
+			<td width="150">订单金额</td>
+			<td width="150">公众号</td>
+			<td width="150">公众号邮箱</td>
+			<td width="150">所属用户</td>
+			<td width="150">产生时间</td>
+			<td width="150">状态</td>
+		</tr>
+		<volist name="platform_list" id="vo">
+			<tr>
+				<td align='center'><input type="checkbox" name="platform_id[]" value="{pigcms:$vo.platform_id}"/></td>
+				<td align='center'>{pigcms:$vo.from}</td>
+				<td align='center'>{pigcms:$vo.orderid}</td>
+				<td align='center' style="color:blue;">{pigcms:$vo.price}</td>
+				<td align='center'>{pigcms:$vo.wxname}</td>
+				<td align='center'>{pigcms:$vo.qq}</td>
+				<td align='center'><a href="{pigcms::U('Users/edit',array('id'=>$vo['uid']))}" target="_blank" style="color:blue;">{pigcms:$vo.username}</a></td>
+				<td align='center'>{pigcms:$vo.time|date='Y-m-d H:i:s',###}</td>
+				<td align='center'><if condition="$vo['paid'] eq 1">已对帐<else/>未处理【<a url="{pigcms::U('Platform/paid',array('paid'=>1,'platform_id'=>$vo['platform_id']))}" class="paid_btn" style="cursor:pointer;color:blue;">变更</a>】</if></td>
+
+			</tr>
+		</volist>
+		<tr bgcolor="#FFFFFF">
+			<td align='center'>选中所有&nbsp;<input type="checkbox" id="checkAll" value="1" style="vertical-align:middle;"/></td>
+			<td align='center'><input type="submit" id="paid_all" value="一键处理所有选中"/></td>
+			<td colspan="8"><div class="listpage">{pigcms:$page}</div></td>
+		</tr>
+		<tr bgcolor="#FFFFFF"> 
+			<td colspan="9"><div class="listpage" style="text-align:left;padding-left:20px;">此页总计：总金额 (<font color="blue">{pigcms::floatval($platform_count['all'])}元</font>) ，已对帐 (<font color="blue">{pigcms::floatval($platform_count['ok'])}元</font>) ，未处理 (<font color="red">{pigcms::floatval($platform_count['none'])}元</font>)</div></td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$('.paid_btn').click(function(){
+			var paid_btn = $(this);
+			var go_url = paid_btn.attr('url');
+			if(confirm('此过程不可逆，是否确定？')){
+				$.getJSON(go_url,function(result){
+					if(result.status == 1){
+						paid_btn.closest('td').html('已对帐');
+					}else{
+						alert(result.info);
+					}
+				});
+			}
+			return false;
+		});
+		$('#checkAll').click(function(){
+			if($(this).attr('checked')){
+				$(':checkbox').attr('checked','true');
+			}else{
+				$(':checkbox').removeAttr('checked');
+			}
+		});
+	});
+</script>
+</body>
+</html>

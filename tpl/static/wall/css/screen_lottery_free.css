@@ -1,0 +1,281 @@
+body{background-image: url("../images/default_bg.jpg")}
+.Panel.Lottery {
+	position: absolute;
+	top: 17%;
+	height: 72%;
+	opacity: 0;
+	width: 90%;
+	left: 50%;
+	margin-left: -45%;
+	display: none
+}
+.lottery-left {
+	width: 60%;
+	height: 100%;
+	position: relative;
+	float: left;
+	margin-right: 2%;
+	background-color: rgba(255,255,255,0.2);
+	border: 1px solid rgba(255,255,255,0.4)
+}
+.lottery-right {
+	width: 36%;
+	height: 98%;
+	position: relative;
+	float: left;
+	background-color: rgba(255,255,255,0.2);
+	border: 1px solid rgba(255,255,255,0.4);
+	padding: 3px;
+	overflow: auto
+}
+.lottery-title {
+	width: 100%;
+	height: 60px;
+	position: relative;
+	color: #fff;
+	font-size: 35px;
+	line-height: 60px;
+	font-family: Arial,Helvetica,sans-serif;
+	border-bottom: 1px solid rgba(255,255,255,0.4);
+	background: url("../images/lot-title.png") 10px center no-repeat
+}
+.lottery-title .title-label {
+	margin-left: 50px
+}
+.lottery-title .usercount-label {
+	position: absolute;
+	right: 10px;
+	text-align: right
+}
+.lottery-bottom {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	border-top: 1px solid rgba(255,255,255,0.4)
+}
+.lottery-bottom .round-num {
+	font-size: 15px;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #fff;
+	margin-left: 10px;
+	line-height: 60px
+}
+.select-panel div {
+	display: inline-block;
+	text-align: center
+}
+.select-button {
+	width: 28px;
+	height: 28px;
+	border: 1px solid #fff;
+	line-height: 28px;
+	font-size: 22px;
+	cursor: pointer
+}
+.select-value {
+	width: 80px;
+	height: 28px
+}
+.lottery-bottom .button-happy {
+	position: absolute;
+	right: 10px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	line-height: 40px;
+	padding-left: 40px;
+	width: 80px;
+	font-size: 20px;
+	color: #fff;
+	border: 1px solid #fff;
+	background: url("../images/lot-happy.png") 15px center no-repeat;
+	cursor: pointer;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px
+}
+.lottery-bottom .button-showresult {
+	position: absolute;
+	right: 230px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	line-height: 40px;
+	width: 80px;
+	font-size: 20px;
+	padding: 0 10px;
+	color: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px
+}
+.lottery-bottom .button-reload {
+	position: absolute;
+	right: 120px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	line-height: 40px;
+	width: 80px;
+	font-size: 20px;
+	padding: 0 10px;
+	color: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px
+}
+.lottery-bottom .button-save {
+	position: absolute;
+	right: 10px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	line-height: 40px;
+	width: 80px;
+	font-size: 20px;
+	padding: 0 10px;
+	color: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px
+}
+.lottery-bottom .button-reset {
+	position: absolute;
+	right: 340px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	line-height: 40px;
+	width: 80px;
+	font-size: 20px;
+	padding: 0 10px;
+	color: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px
+}
+.lottery-run {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	margin: -150px auto auto -150px
+}
+.user {
+	z-index: 100;
+	background: url("../images/lot_nouser.jpg") center center no-repeat;
+	background-size: contain
+}
+.user .nick-name {
+	display: none
+}
+.lottery-run .user {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	background: url("../images/lot_nouser.jpg") center center no-repeat;
+	background-size: contain;
+	margin: 15px auto;
+	overflow: visible;
+	border: 1px solid #fff;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	box-shadow: 5px 5px 3px rgba(125,125,125,0.4)
+}
+.lottery-run .user .nick-name {
+	position: absolute;
+	width: 200%;
+	height: 30px;
+	line-height: 20px;
+	left: -50%;
+	bottom: -34px;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	display: block
+}
+.result-line {
+	position: relative;
+	width: 100%;
+	height: 70px;
+	margin: 3px auto;
+	background: #fff;
+	overflow: hidden;
+	display: none
+}
+.result-line: first-child {
+	margin-top: 0
+}
+.result-line: last-child {
+	margin-bottom: 0
+}
+.result-line .result-num,.result-line .user,.result-line .user .nick-name {
+	display: inline-block
+}
+.result-line .result-num {
+	width: 30px;
+	height: 30px;
+	background: silver;
+	color: #fff;
+	position: relative;
+	top: 20px;
+	text-align: center;
+	margin-left: 10px;
+	font-size: 16px;
+	line-height: 30px
+}
+.result-line .user {
+	position: absolute;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	background: url("../images/lot_nouser.jpg") center center no-repeat;
+	background-size: contain;
+	top: 5px;
+	left: 50px;
+	border: 1px solid silver
+}
+.result-line .user .nick-name {
+	position: absolute;
+	height: 60px;
+	width: 500%;
+	top: 0;
+	left: 70px;
+	overflow: visible;
+	font-size: 20px;
+	line-height: 60px;
+	text-align: left;
+	display: block
+}
+.lottery-run .control {
+	display: none;
+	position: absolute;
+	left: 50%;
+	margin-left: -60px;
+	bottom: 10px;
+	width: 100px;
+	height: 18px;
+	text-align: center;
+	padding: 10px;
+	background-color: #ffa342;
+	background: -moz-linear-gradient(top,#faeded,#ffa342),url("../images/lot-happy.png") 15px center no-repeat;
+	background: -ms-linear-gradient(top,#faeded,#ffa342),url("../images/lot-happy.png") 15px center no-repeat;
+	background: -webkit-gradient(linear,0 0,0 100%,from(#faeded),to(#ffa342)),url("../images/lot-happy.png") 15px center no-repeat;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	font-weight: bolder;
+	cursor: pointer;
+	color: #000
+}

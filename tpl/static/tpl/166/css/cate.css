@@ -1,0 +1,49 @@
+html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin:0; padding:0; }
+img { border:0; }
+ol, ul { list-style: none outside none; margin:0; padding: 0; }
+a { color:#000000; text-decoration: none; }
+.clr { display:block; clear:both; height:0; overflow:hidden; }
+.copyright { padding:8px; text-align:center; font-size:14px; color:#666; }
+.copyright a { color:#666 }
+h2 { font-size:16px; }
+body { background-color:#eee; font-size:14px; min-width:320px }
+body .mainmenu { margin-right: 8px; }
+body .mainmenu:after { clear: both; content: " "; display: block; }
+body .mainmenu li { overflow:hidden; float:left; width:50%; text-align: right; }
+body .mainmenu li a { border-radius:5px; display:block; color:#FFF; line-height:60px; height:60px; position:relative; margin: 8px 0 0 8px; }
+body .mainmenu li a img { width:40px; height:40px; position: absolute; bottom: 10px; right: 8px; }
+body .mainmenu li a span { margin: 0 53px 0 10px; }
+body .mainmenu li:nth-child(4n+1) {
+text-align: left;
+}
+ body .mainmenu li:nth-child(4n+1) a {
+height:120px;
+}
+ body .mainmenu li:nth-child(4n+2) a {
+margin-bottom: 60px;
+}
+body .mainmenu li:nth-child(4n+3) a {
+text-align: right;
+}
+body .mainmenu li:nth-child(4n+4) a {
+height: 120px;
+}
+body .mainmenu li:nth-child(4n+4) {
+text-align: left;
+margin-top: -60px;
+}
+
+
+body .mainmenu li:nth-child(8n+1) a{background-color:#36A1DB}
+body .mainmenu li:nth-child(8n+2) a{background-color:#678ce1}
+body .mainmenu li:nth-child(8n+3) a{background-color:#8c67df}
+body .mainmenu li:nth-child(8n+4) a{background-color:#84d018}
+body .mainmenu li:nth-child(8n+5) a{background-color:#14c760}
+body .mainmenu li:nth-child(8n+6) a{background-color:#f3b613}
+body .mainmenu li:nth-child(8n+7) a{background-color:#ff8a4a}
+body .mainmenu li:nth-child(8n+8) a{background-color:#fc5366}
+
+
+
+body { background-color:#222; }

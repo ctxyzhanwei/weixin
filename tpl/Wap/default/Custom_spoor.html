@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>提交记录</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{pigcms::RES}/card/style/style.css" rel="stylesheet" type="text/css">
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/card/js/accordian.pack.js" type="text/javascript"></script>
+</head>
+<body id="cardnews" onLoad="new Accordian(&#39;basic-accordian&#39;,5,&#39;header_highlight&#39;);" class="mode_webapp">
+<div id="basic-accordian">
+<ul class="round">
+	<li class="">
+		<span>		
+			<a href="{pigcms::U('Custom/index',array('token'=>$token,wecha_id=>$wecha_id,'id'=>$set_id))}" style="float:right;color:#666666;">
+				返回
+			</a>
+			历史提交记录
+		</span>
+	</li>
+</ul>
+
+<volist name="list" id="item" key="key">
+<div id="test{pigcms:$item.info_id}-header" class="accordion_headings  <if condition="$key eq 1">header_highlight</if>">
+<div class="tab">
+<span class="title">
+	{pigcms:$item.add_time|date='Y-m-d H:i',###}
+	<p></p>
+</span>
+</div>
+<div id="test{pigcms:$item.info_id}-content">
+<div class="accordion_child">
+<div id="queren{pigcms:$item.id}">
+		<volist name="item['sub_info']" id="info">
+			<p>		
+				{pigcms:$info.name}:
+				{pigcms:$info.value}	
+			</p>	
+		</volist>	
+</div> 
+</div>
+</div>
+</div>
+</volist>
+</div>
+</body>
+</html>

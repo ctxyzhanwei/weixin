@@ -1,0 +1,66 @@
+﻿
+.i-cont {
+    color: #FFF;
+    position: relative;
+    width: 77px;
+    padding: 5px;
+}
+
+    .i-cont .sel-icon {
+        color: #FFF;
+    }
+
+    .i-cont i {
+        font-size: 30px;
+    }
+
+.icons-cont {
+    position: absolute;
+    top: -110px;
+    left: 80px;
+    border: 1px solid #AAA;
+    padding: 5px;
+    background-color: #FFF;
+    z-index: 10001;
+    padding: 5px;
+    width: 470px;
+    display: none;
+}
+
+    .icons-cont ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .icons-cont li {
+        float: left;
+        margin: 0px 1px 1px 0px;
+        height: 35px;
+        padding: 3px;
+        border: 1px solid #FFF;
+        cursor: pointer;
+        width: 30px;
+    }
+
+        .icons-cont li i {
+            font-size: 30px;
+        }
+
+        .icons-cont li:hover {
+            border: 1px solid #5b98a5;
+        }
+
+img {
+    max-width: none;
+}
+
+#l-map {
+    width: 605px;
+    height: 320px;
+    margin-top: 10px;
+}
+
+.margin-top {
+    margin-top: 20px;
+}

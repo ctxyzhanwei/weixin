@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/estate/css/back.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/estate/js/share.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/estate/js/common.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/estate/js/picroll.js"></script>
+<title>户型图 {pigcms:$estatindex['title']}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+    .btn_zoom_in,.btn_zoom_out,.btn_down {bottom: 100px;}
+    .btn_down{left: 20px;}
+    .btn_zoom_in,.btn_zoom_out{right:20px;}
+    .zoomDiv{
+        width:100%;
+        height:100%;
+        display:none;
+        z-index:299;
+        overflow:scroll;
+        text-align:center;
+        background: rgba(0,0,0,0.7) url("../images/load.gif") no-repeat center center;
+        background-size:30px 30px;
+    }
+    .type_up .btn_more{top:45px;}
+    .type_full .type_up .btn_more{top:22px;}
+    .type_full .type_info .type_num{display:none;}
+</style>
+</head>
+
+<body onselectstart="return true;" ondragstart="return false;">
+
+<div id="zoomDiv" class="zoomDiv">
+    <img id="zoomImg" width="200%" height="200%" src="{pigcms::STATICS}/estate/images/inc.gif">
+</div>
+<div id="detailContainer" class="type_show" style="overflow: hidden;">
+    <div class="picwrap" id="picTank"></div>
+    <div class="type_info" id="picDetail" onclick="Picroll.switchDetail();"></div>
+    <a href="javascript:void(0);" class="btn_show_close"><span>关闭</span></a>
+</div>
+<a href="javascript:void(0);" class="btn_down" style="display: block;"><span>下载</span></a>
+<a href="javascript:void(0);" class="btn_zoom_out" style="display: block;"><span>放大</span></a>
+<div class="pop_tips" id="popTips" style="display:none;">
+    <div class="oval"></div>
+    <div class="pop_show">
+        <h4 id="tipsTitle">温馨提示</h4>
+        <div class="pop_info" id="tipsMsg">
+            <p></p>
+        </div>
+        <div class="pop_btns">
+            <a href="javascript:void(0);" id="tipsOK">确定</a>
+            <a href="javascript:void(0);" style="display:none;" id="tipsCancel">取消</a>
+        </div>
+    </div>
+</div>
+<a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+
+<script type="text/template" id="template">
+    <p class="type_num" id="typeNum">1/<%=data.total%> <%=data.name%></p>
+    <a href="javascript:void(0);" class="type_up">
+        <strong><%=data.name%></strong>
+        <span><%=data.desc%></span>
+        <em><%=data.rooms%> <%=data.area%></em>
+        <span class="btn_more">详情</span>
+    </a>
+    <div class="type_detail">
+        <p>楼层：<%=data.floor%></p><%
+        if(data.dtitle.length>0){%>
+            <%for(var i=0,il=data.dtitle.length;i<il;i++){ %>
+                <p><%=data.dtitle[i]%></p>
+            <% } %><%
+        }else /*if data.dtitle.length>0 else */ { %>
+            <%if(data.area){%><p>建筑面积：<%=data.area%></p><%} /*end of if(data.area)*/ %>
+            <%if(data.inner){%><p>套内面积：<%=data.inner%></p><%} /*end of if(data.inner)*/%>
+        <%} /*end of if data.dtitle.length>0 */ %>
+        <ul>
+            <%for(var i=0,il=data.dlist.length;i<il;i++){%>
+                <li><%=data.dlist[i]%></li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script>
+    var PID     = {pigcms:$estatindex.id};
+    var HID     = {pigcms:$house_info.id};
+    var TOKEN   = '{pigcms:$token}';
+    var WECHATID = '{pigcms:$wecha_id}';
+</script>
+</body>
+</html>

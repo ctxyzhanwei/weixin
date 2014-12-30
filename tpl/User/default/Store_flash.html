@@ -1,0 +1,93 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">背景图与轮播图管理</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$isgroup neq 1 OR $ischild neq 1">
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/index',array('token'=>$token))}">商品分类管理</a></li>
+	<if condition="empty($catid) neq true">
+	<li class="tabli" id="tab0"><a href="{pigcms::U('Store/product',array('token'=>$token))}">商品管理</a></li>
+	</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+	<if condition="$ischild eq 0">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Shop'))}">商城回复配置</a></li>
+	</if>
+	<if condition="$isgroup eq 1">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Store/group',array('token'=>$token))}">商品分组</a></li>
+	<li class="tabli" id="tab7"><a href="{pigcms::U('Store/productgroup',array('token'=>$token))}">分组商品展现</a></li>
+	</if>
+<else />
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+</if>
+	<li class="current tabli" id="tab2"><a href="{pigcms::U('Store/flash',array('token'=>$token))}">商城背景与轮播图</a></li>
+	<li class="tabli" id="tab8"><a href="{pigcms::U('Store/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> 
+<a href="{pigcms::U('Store/flashadd', array('token' => $token, 'cid' => $cid, 'type' => 0))}" title="添加背景图" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">添加背景图</a>
+</div>
+<div class="pageNavigator right"> 
+<a href="{pigcms::U('Store/flashadd', array('token' => $token, 'cid' => $cid, 'type' => 1))}" title="添加幻灯片" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">添加幻灯片</a>
+</div>
+<div class="clr"></div>
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+	<tr>
+	<th style=" width:120px;">描述</th>
+	<th style=" width:120px;">类型</th>
+	<th>图片</th>
+	<th>外链地址</th>
+	<th style=" width:170px;" class="norightborder">操作</th>
+	</tr>
+</thead>
+<volist name="flash" id="vo">
+<tr>
+<td>{pigcms:$vo.info}</td>
+<td><if condition="$vo['type'] eq 0">背景图<else />幻灯片</if></td>
+<td><div class="cateimg"><img src="{pigcms:$vo.img}" class="cateimg_small"  /><img src="{pigcms:$vo.img}" class="cateimg_big"  /></div></td>
+<td>{pigcms:$vo.url|htmlspecialchars_decode}</td>
+<td class="norightborder">
+	<!-- <a href="{pigcms::U('Wap/Index/flash',array('token'=>$_SESSION['token'],'tip'=>$tip))}">查看</a> -->
+	<a href="{pigcms::U('Store/flashadd',array('id'=>$vo['id'],'type'=>$vo['type']))}">编辑</a>
+	<a href="javascript:drop_confirm('您确定要删除吗?', \'{pigcms::U('Store/flashdel',array('id'=>$vo['id']))}\');">删除</a>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

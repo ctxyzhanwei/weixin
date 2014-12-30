@@ -1,0 +1,91 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB">
+<h4 class="left"></h4>
+<div class="searchbar right">
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<div class="cLineB">
+  <h4>邀请函活动安排 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th width="120">具体时间：</th>
+					<td><input type="input" class="px" style="width:550px;" id="statdate" value="" onClick="WdatePicker()" name="time" /></td>
+				</tr>
+				<tr>
+					<th width="120">具体时分：</th>
+					<td><input type="text" name="ytime" value="" class="px" style="width:172px;">到<input type="text" name="xtime" value="" class="px" style="width:172px;">(时分，例:5:30到6:40,注:英文冒号)</td>
+				</tr>
+				<tr>
+					<th width="120">人物　　：</th>
+					<td><input type="text" name="guest" value="{pigcms:$Invite.guest}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">电话　　：</th>
+					<td><input type="text" name="call" value="{pigcms:$Invite.call}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">地址　　：</th>
+					<td><input type="text" name="site" value="{pigcms:$Invite.site}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">内容　　：</th>
+					<td><textarea style="width:550px;height:75px" name="content" id="content" class="px"></textarea></td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" class="btnGreen">添加</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+  <div class="tab_th">
+	<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align:center;">
+<thead>
+<tr><th>时间(月日)</th><th>时间(时分)</th><th>人物</th><th>电话</th><th>地址</th><th>内容</th><th>操作</th></tr>
+</thead>
+<tbody>
+<tr></tr>
+		<volist name="list" id="Invite">
+		<tr><td>{pigcms:$Invite.time|date="Y-m-d",###}</td><td>{pigcms:$Invite.ytime|date="H:i",###}-{pigcms:$Invite.xtime|date="H:i",###}</td><td>{pigcms:$Invite.guest}</td><td>{pigcms:$Invite.call}</td><td>{pigcms:$Invite.site}</td><td>{pigcms:$Invite.content}</td><td><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Invite/meetdel',array('token'=>$_GET['token'],'id'=>$Invite['id']))}');"><font color="red" size="2"><b>删除</b></font></a></td></tr>
+		</volist>
+</tbody>
+</table>
+   </div>
+<if condition="session('isQcloud') neq true">
+
+	<include file="Public:footer"/>
+	
+</if>

@@ -1,0 +1,108 @@
+
+<if condition="$type eq 'fitness'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">预约健身房: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">预约健身项目:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所需学时: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">达到效果:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq ''">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'gover'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">服务窗口: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">服务类型:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">工作时间: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">办公范围:<strong>{pigcms:$oput['datatype']}</strong></p>
+<elseif condition="$type eq 'food'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属门店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">食品名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">产品口味: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">产品重量:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'travel'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属景区: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">景点名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">景点等级: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">景点特色:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'flower'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">特色鲜花:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐类型: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">花语:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'property'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属小区: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">业主服务:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">简要描述: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">服务描述:<strong>{pigcms:$oput['datatype']}</strong></p>
+<elseif condition="$type eq 'ktv'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属KTV: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">KTV包厢:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">简要描述: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">包厢描述:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'bar'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属酒吧: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">特色酒水:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">酒水重量: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">简要描述:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'fitment'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">简要描述:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'wedding'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">服务范围:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'affections'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">食品/用具名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">重量/属性/用途: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">简要描述:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'housekeeper'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">工时/价格: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">服务范围:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'lease'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">工时/价格: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">服务范围:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+<elseif condition="$type eq 'beauty'"/>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">所属分店: <strong>{pigcms:$oput['title']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">套餐名称:  <strong>{pigcms:$oput['name']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">产品名称: <strong>{pigcms:$oput['learntime']}</strong></p>
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">产品功效:<strong>{pigcms:$oput['datatype']}</strong></p>
+<if condition="$oput['oneprice'] neq '0.00'">
+    <p style="border: solid 1px rgb(201, 197, 197);margin: 5px;padding:4px;">价 格: <strong>{pigcms:$oput['oneprice']} RMB</strong></p>
+</if>
+</if>

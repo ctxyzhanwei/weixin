@@ -1,0 +1,29 @@
+{include file=$header}
+			<!--内页内容-->
+<div class="content_box">
+	<!--内页标题-->
+	<div class="title">
+		<p class="tit_name">
+			产品展示</p>
+	</div>
+	<!--内页标题结束-->
+	<div class="product_box">
+	{if $contents}
+			{foreach from=$contents item=a}
+			<!--图片列表-->
+			<dl class="pro_con">
+				<dt class="pro_picture"><a href="{$a.link}" title="{$a.title}">
+					<img src="{$a.thumb}" alt="{$a.title}" width="100%"></a></dt>
+				<dd class="pro_name">
+					<a href="{$a.link}" title="">{$a.title}</a></dd>
+			</dl>
+			 {/foreach}
+			 {/if}
+	</div>
+	<div class="menu_box" style="text-align:right">
+			 {if $previousPageLink!='javascript:void(0)'} <a href="{$previousPageLink}" style="float:right" title="">下一页</a>{/if}
+			 {if $nextPageLink!='javascript:void(0)'} <a href="{$nextPageLink}" style="float:right" title="">上一页</a>{/if}
+		</div>
+</div>
+<!--内容结束-->
+{include file=$footer}

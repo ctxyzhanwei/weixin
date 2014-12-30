@@ -1,0 +1,228 @@
+body{
+    background: url(bg.png) 0 0 repeat;
+}
+
+.tigerslot{
+    padding: 0;
+    background: url(bg.png) 0 0 repeat;
+    min-height: 775px;
+}
+
+h1.ui-title{
+    font-size: 12px!important;
+    margin: 10px 5% 10px!important;
+}
+
+.machine{
+    width: 316px;
+    height: 234px;
+    background: url(tigerslot.png) 0 0 no-repeat;
+    margin: 3px auto 60px auto;
+    position: relative;
+    overflow: visible;
+}
+
+.machine .gamebutton{
+    position: absolute;
+    bottom: -50px;
+    width: 122px;height: 94px;
+    left: 50%;margin-left: -61px;
+    background: url(tigerslot.png) -63px -253px no-repeat;
+    z-index: 200;
+}
+
+.machine .gamebutton.stop{
+    background: url(tigerslot.png) -185px -255px no-repeat;
+}
+.machine .gamebutton.disabled{
+    opacity: 0.4;
+}
+.tigerslot .strip{
+    position: absolute;
+    width: 63px;height: 100px;
+}
+
+.tigerslot .strip.left{
+    top: 84px;left: 50px;
+}
+.tigerslot .strip.middle{
+    top: 84px;left: 126px;
+}
+.tigerslot .strip.right{
+    top: 84px;left: 202px;
+}
+
+.tigerslot .box{
+    position: absolute;
+    width: 50px;height: 100%;
+    top: 0;left: 50%;margin-left: -25px;
+    overflow: hidden;
+    z-index: 100;
+    background: url(item.png) 0 25px repeat-y;
+}
+
+.tigerslot .cover{
+    position: absolute;
+    left: 0;top: 0;
+    width: 100%;height: 100%;
+    z-index: 100;
+    margin: 0;
+    background: url(tigerslot.png) 0 -253px no-repeat;
+}
+
+.tigerslot .part{
+    margin: 10px 10px 3px 10px;
+    border: 2px solid #306931;
+    min-height: 100px;
+    border-radius: 8px;
+    background-color: #FFF9B3;
+    position:relative;
+}
+.tigerslot .part .title{
+    margin: 3px;
+    width: 113px;height: 18px;
+    background: url(tigerslot.png) 0 -356px no-repeat;
+    padding: 3px 3px 3px 6px;
+    font-size: 14px;
+    line-height: 18px;
+    text-shadow: none;
+    color: #FFFFFF;
+}
+.tigerslot .part .content{
+    font-size: 12px;
+    text-shadow: none;
+    padding: 8px;
+}
+.tigerslot .part .content ul{
+    padding: 0;
+    margin: 0;
+}
+.tigerslot .part .content ul li{
+    margin: 1px;
+    list-style: none;
+}
+.tigerslot .part .content ol{
+    padding-left: 30px;
+    margin: 0;
+}
+.tigerslot .part .content ol li{
+    margin: 0 0 15px 0;
+}
+
+.tigerslot .part .content .prize{
+    margin: 1px;
+}
+
+.tigerslot .part .content .code{
+    color: #FF0000;
+}
+
+.tigerslot .part .content .getprize{
+    margin-left: 15px;
+    text-decoration: underline;
+    color: #0000FF;
+}
+.tigerslot .part .content .hadgetprize{
+    display: none;
+    margin-left: 15px;
+    color: #5ab500;
+}
+.tigerslot .part .content .hasGetPrize .getprize{
+    display: none;
+}
+.tigerslot .part .content .hasGetPrize .hadgetprize{
+    display: inline;
+}
+
+.tigerslot .light{
+    position: absolute;
+    width: 24px;height: 24px;
+    background: url(tigerslot.png) -131px -354px no-repeat; 
+}
+.tigerslot .light.on{
+    background: url(tigerslot.png) -155px -354px no-repeat; 
+}
+.tigerslot .light.l0{
+    left: 65px;top: 0;
+}
+.tigerslot .light.l1{
+    left: 110px;top: 0;
+}
+.tigerslot .light.l2{
+    left: 154px;top: 0;
+}
+.tigerslot .light.l3{
+    left: 196px;top: 0;
+}
+.tigerslot .light.l4{
+    left: 240px;top: 0;
+}
+.tigerslot .light.l5{
+    left: 278px;top: 14px;
+}
+.tigerslot .light.l6{
+    left: 288px;top: 48px;
+}
+.tigerslot .light.l7{
+    left: 293px;top: 84px;
+}
+.tigerslot .light.l8{
+    left: 293px;top: 124px;
+}
+.tigerslot .light.l9{
+    left: 289px;top: 162px;
+}
+.tigerslot .light.l10{
+    left: 280px;top: 194px;
+}
+.tigerslot .light.l11{
+    left: 254px;top: 212px;
+}
+.tigerslot .light.l12{
+    left: 220px;top: 212px;
+}
+.tigerslot .light.l13{
+    left: 80px;top: 212px;
+}
+.tigerslot .light.l14{
+    left: 40px;top:212px;
+}
+.tigerslot .light.l15{
+    left: 11px;top: 194px;
+}
+.tigerslot .light.l16{
+    left: 4px;top: 162px;
+}
+.tigerslot .light.l17{
+    left: 0;top: 124px;
+}
+.tigerslot .light.l18{
+    left: 0;top: 84px;
+}
+.tigerslot .light.l19{
+    left: 5px;top: 48px;
+}
+.tigerslot .light.l20{
+    left: 17px;top: 14px;
+}
+#rest_chance, #prizetype, #sncode{
+	color:#FF0000;
+}
+.scroll-reward-info {
+    height: 15px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.scroll-reward-info ul {
+	margin-top:0;
+	list-style-type: none;
+}
+.scroll-reward-info li {
+    height: 15px;
+    list-style-type: none;
+}
+.tigerslot .end-banner {
+    background-size: 100% auto;
+    height: 220px;	
+}

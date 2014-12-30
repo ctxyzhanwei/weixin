@@ -1,0 +1,56 @@
+<p><br/><br/><br/><br/></p>
+<script type="text/javascript">
+window.shareData = {
+            "moduleName":"Estate",
+            "moduleID":"0",
+            "imgUrl": "",
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Estate/index',array('token'=>$token))}",
+            "tTitle": "{pigcms:$estatindex['title']}",
+            "tContent": " {pigcms:$estatindex['project_brief']|html_entity_decode|trim|strip_tags}"
+        };
+</script>
+{pigcms:$shareScript}
+<link rel="stylesheet" href="{pigcms::RES}/css/136/idangerous.swiper.css">
+<link href="{pigcms::RES}/css/allcss/cate36_0.css" rel="stylesheet" type="text/css" />
+ <div class="device">
+    <a class="arrow-left" href="#"></a> 
+    <a class="arrow-right" href="#"></a>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+                
+        <volist name="info" id="vo" key="key">   
+        <if condition="$key%4 eq 1">  
+            <div class="swiper-slide" id="{pigcms:$key}">
+                <div class="content-slide">
+        </if>       
+                <a href="{pigcms:$vo.url|htmlspecialchars_decode}">
+                    <p class="ico"><img src="{pigcms:$vo.img}" /></p>
+                    <p class="title">{pigcms:$vo.name}</p>
+                </a>  
+        <if condition="$key%4 eq 0">                          
+                </div>
+            </div>
+        </if>   
+        </volist>          
+      </div>
+    </div>
+  </div>
+  <div class="pagination"></div>
+</div>
+<script src="{pigcms::RES}/css/136/idangerous.swiper-2.1.min.js" type="text/javascript"></script>
+  <script>
+  var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    loop:true,
+    grabCursor: true,
+    paginationClickable: true
+  })
+  $('.arrow-left').on('click', function(e){
+    e.preventDefault()
+    mySwiper.swipePrev()
+  })
+  $('.arrow-right').on('click', function(e){
+    e.preventDefault()
+    mySwiper.swipeNext()
+  })
+  </script>

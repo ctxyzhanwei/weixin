@@ -1,0 +1,44 @@
+<include file="Hotels:header"/>
+<body>
+	<div class="html">
+		<div class="main">
+			<header>
+				<h1>在线预订客房</h1>
+			</header>
+			<div class="contxt cont-artical">
+				<volist name="company" id="com"> 
+				<div class="box-cont box-list-hotel">
+					<div class="list-li" onclick="javascript:window.location.href='{pigcms::U('Hotels/selectdate',array('token' => $_GET['token'], 'wecha_id' => $wecha_id, 'cid' => $com['id']))}'">
+					<div class="hd"><img src="{pigcms:$com['logourl']}"></div>
+					<div class="bd">
+					<b>{pigcms:$com['name']}</b>
+					<p>
+					<span class="tleft">{pigcms:$com['address']}</span>
+					<span><em>￥{pigcms:$com['price']}</em>起</span>
+					</p>
+					<!-- <p><span>3条评论</span></p> -->
+					</div>
+					<div class="ft"><span class="arrow arr-small"></span></div>
+					</div>
+				</div>
+				</volist>
+				<div class="tcenter"></div>
+				<div class="tcenter"><div class="isloading loading" style="display: none">加载中...</div></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/index',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/index',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/index',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

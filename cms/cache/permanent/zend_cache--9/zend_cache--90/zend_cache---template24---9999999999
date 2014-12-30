@@ -1,0 +1,35 @@
+                      1697600526O:8:"stdClass":10:{s:2:"id";s:2:"24";s:4:"name";s:12:"图片列表";s:4:"path";s:57:"@/smarty/templates/1/gh_aab60b4c5a39/channel_picture.html";s:13:"generate_path";s:46:"?m=site&c=home&a=channel&channelid={channelID}";s:4:"type";s:1:"2";s:9:"isdefault";s:1:"0";s:10:"createhtml";s:1:"0";s:4:"site";s:1:"1";s:4:"time";s:10:"1387374017";s:4:"code";s:1232:"{include file=$header}
+    <p class="bordertop"></p>    <div class="subcon">
+		    	<div class="clickbtn" style="display:none">
+            <div class="classbtn"><p>点击展示分类</p></div>
+            <div class="classbtn2"><p>点击关闭分类</p></div>
+        </div>
+        <ul class="subnav2">
+			            <li><p><a href="@" title=""></a></p></li>
+                        <div class="clear"></div>
+        </ul>
+				        <ul class="product">
+			            
+                    {if $contents}
+			{foreach from=$contents item=c}
+		        <li><div>
+            <a href="{$c.link}" title="{$c.title}"><img src="{$c.thumb}" alt="{$c.title}"></a>
+            <p><a href="{$c.link}" title="{$c.title}" class="prodtitle">{$c.title}</a></p></div>
+        </li>
+		     {/foreach}
+			 {/if}
+                    </ul>
+        <div class="clear"></div>
+			 {if $currentPage&&$totalPage}
+    <div class="pages">
+			<a class="pre-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="next-left" href="{$nextPageLink}">&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	{/if} </div>
+    <p class="borderbottom"></p>
+</div>
+{include file=$footer}
+
+";}

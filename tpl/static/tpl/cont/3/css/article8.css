@@ -1,0 +1,19 @@
+body{ background: #000;}
+.article{ margin: 10px 2%; width: 96%; padding: 10px; word-spacing:normal; word-break:normal; word-break:break-all; color: #fff;}
+.article .hd,
+.article .bd{ padding: 5px; line-height: 20px;}
+.article .hd{ padding: 10px 5px 10px 5px; border-bottom: 1px solid #dcdcdc;}
+.article .hd h1{ font-size:18px; font-weight: normal;}
+.article .hd small{font-size: 12px; color: #8c8c8c;}
+.article .bd{}
+.article img{ max-width: 100%;}
+.article .bd ul,
+.article .bd ol{-webkit-padding-start:20px;}
+.btn-up-1{ background: #4a5068;}
+.btn-up-1 .fa{ background: #fff; color: #4a5068;}
+.navPop-1 .navPop-btn{ background: #4a5068;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #4a5068;}
+.navPop-wrap>div a{
+    background: #4a5068;
+    color: #fff;
+}

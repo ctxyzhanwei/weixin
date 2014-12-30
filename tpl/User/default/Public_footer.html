@@ -1,0 +1,218 @@
+</div>
+</div>
+</div>
+
+<style>
+.IndexFoot {
+	BACKGROUND-COLOR: #333; WIDTH: 100%; HEIGHT: 39px
+}
+.foot{ width:988px; margin:0px auto; font-size:12px; line-height:39px;}
+.foot .foot_page{ float:left; width:600px;color:white;}
+.foot .foot_page a{ color:white; text-decoration:none;}
+#copyright{ float:right; width:380px; text-align:right; font-size:12px; color:#FFF;}
+</style>
+<div class="IndexFoot" style="height:120px;clear:both">
+<div class="foot" style="padding-top:20px;">
+<div class="foot_page" >
+<a href="{pigcms:$f_siteUrl}">{pigcms:$f_siteName},微信公众平台营销</a><br/>
+帮助您快速搭建属于自己的营销平台,构建自己的客户群体。
+</div>
+<div id="copyright" style="color:white;">
+	{pigcms:$f_siteName}(c)版权所有 <a href="http://www.miibeian.gov.cn" target="_blank" style="color:white">{pigcms::C('ipc')}</a><br/>
+	技术支持：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={pigcms:$f_qq}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{pigcms:$f_qq}:51" alt="联系我吧" title="联系我吧"/></a>
+
+</div>
+    </div>
+</div>
+
+<div style="display:none">
+{pigcms:$alert}
+{pigcms::base64_decode(C('countsz'))}
+</div>
+</body>
+
+<php>
+    if(MODULE_NAME == 'Function' && ACTION_NAME == 'welcome'){
+</php>
+<script src="{pigcms:$staticPath}/tpl/static/myChart/js/echarts-plain.js"></script>
+
+<script type="text/javascript">
+
+
+    var myChart = echarts.init(document.getElementById('main')); 
+   
+
+    var option = {
+        title : {
+            text: '<if condition="$charts.ifnull eq 1">本月关注和文本请求数据统计示例图(您暂时没有数据)<else />本月关注和文本请求数据统计</if>',
+            x:'left'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['文本请求数','关注数'],
+            x: 'right'
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: false},
+                dataView : {show: false, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: false} ,
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : [{pigcms:$charts.xAxis}]
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'文本请求数',
+                type:'line',
+                tiled: '总量',
+                data: [{pigcms:$charts.text}]
+            },    
+            {
+                "name":'关注数',
+                "type":'line',
+                "tiled": '总量',
+                data:[{pigcms:$charts.follow}]
+            }
+       
+
+        ]
+
+    };                   
+
+    myChart.setOption(option); 
+
+
+    var myChart2 = echarts.init(document.getElementById('pieMain')); 
+               
+    var option2 = {
+        title : {
+            text: '<if condition="$pie.ifnull eq 1">7日内粉丝行为分析示例图(您暂时没有数据)<else />7日内粉丝行为分析</if>',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'粉丝行为统计',
+                type:'pie',
+                radius : ['50%', '70%'],
+                itemStyle : {
+                    normal : {
+                        label : {
+                            show : false
+                        },
+                        labelLine : {
+                            show : false
+                        }
+                    },
+                    emphasis : {
+                        label : {
+                            show : true,
+                            position : 'center',
+                            textStyle : {
+                                fontSize : '18',
+                                fontWeight : 'bold'
+                            }
+                        }
+                    }
+                },
+                data:[ 
+                    {pigcms:$pie.series}
+                
+                ]
+            }
+        ]
+    };
+     myChart2.setOption(option2,true); 
+
+
+    var myChart3 = echarts.init(document.getElementById('pieMain2')); 
+    var option3 = {
+        title : {
+            text: '<if condition="$sex_series.ifnull eq 1">会员性别统计示例图(您暂时没有数据)<else />会员性别统计</if>',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'会员性别统计',
+                type:'pie',
+                radius : ['50%', '70%'],
+                itemStyle : {
+                    normal : {
+                        label : {
+                            show : false
+                        },
+                        labelLine : {
+                            show : false
+                        }
+                    },
+                    emphasis : {
+                        label : {
+                            show : true,
+                            position : 'center',
+                            textStyle : {
+                                fontSize : '18',
+                                fontWeight : 'bold'
+                            }
+                        }
+                    }
+                },
+                data:[
+                  {pigcms:$sex_series['series']}
+                ]
+            }
+        ]
+    };                     
+
+  myChart3.setOption(option3,true); 
+
+
+
+    </script>
+<php>
+}
+</php>
+</html>

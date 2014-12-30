@@ -1,0 +1,11 @@
+<div class="msgWrap form">
+<ul id="tags" style="width:100%">
+ <volist id="list" name="cats" key="k">
+		<li <pigcmsif where="$catid eq $k">class="selectTag"</pigcmsif>>
+				<a href="?g=User&m=Game&a=gameLibrary&catid={pigcms:$k}">{pigcms:$list.name}</a> 
+			</li>
+			</volist>
+		
+						<div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+		</ul>
+</div>

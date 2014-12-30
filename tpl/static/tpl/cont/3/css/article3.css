@@ -1,0 +1,19 @@
+body{ background: #d2d1cd;}
+.article{ padding: 0 5px;}
+.article .hd,
+.article .bd{ padding: 10px; line-height: 20px;}
+.article .hd{ padding: 18px 5px 10px 5px; border-bottom: 1px dashed #333; color: #444;}
+.article .hd h1{ font-size:18px; font-weight: normal;}
+.article .hd small{font-size: 12px; color: #e8645a;}
+.article .bd{color: #666}
+.article img{ max-width: 100%; border-radius: 5px; box-shadow: 0 0 5px #ccc;}
+.article .bd ul,
+.article .bd ol{-webkit-padding-start:20px;}
+.btn-up-1{ background: #e8645a;}
+.btn-up-1 .fa{ background: #fff; color: #e8645a;}
+.navPop-1 .navPop-btn{ background: #e8645a;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #e8645a;}
+.navPop-wrap>div a{
+    background: #e8645a;
+    color: #fff;
+}

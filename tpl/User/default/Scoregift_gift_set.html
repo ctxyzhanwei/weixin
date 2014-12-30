@@ -1,0 +1,40 @@
+<include file="Public:head"/>
+<div class="content" style="" >
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+ <div class="cLineB"> 
+    <h4><if condition="$isUpdate eq 1">设置<else/>添加</if>推荐奖品</h4>
+    <a href="{pigcms::U('Scoregift/lists',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+  <include file="Scoregift:menu"/>
+  
+<form class="form" method="post" id="form" action="" enctype="multipart/form-data"> 
+<if condition="$isUpdate eq 1">
+<input type="hidden" name="id" value="{pigcms:$set.id}" />
+</if>
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+	   <tr> 
+        <th ><span class="red">*</span>奖品名称：</th> 
+        <td><input  type="text" id="name" name="name" value="{pigcms:$set.name}" class="px require" style="width:400px;" /></td> 
+       </tr> 
+        <th >奖品消耗积分：</th> 
+        <td><input  type="text" id="score" name="score" value="{pigcms:$set.score}" class="px require" style="width:400px;" />（只识别大于零的整数）</td> 
+       </tr> 
+		<tr> 
+        <th>奖品状态：</th> 
+        <td><input type="radio" class="px" id="status" value="1" name="status" <neq name="set.status" value="0"> checked </neq> /> 启用  
+			<input type="radio" class="px" id="status" value="0" name="status"  <eq name="set.status" value="0"> checked </eq> /> 关闭
+			</td> 
+       </tr> 
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Scoregift/lists',array('token'=>$token))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div> 
+  <include file="Public:footer" />

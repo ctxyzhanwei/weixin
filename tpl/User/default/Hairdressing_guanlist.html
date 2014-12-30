@@ -1,0 +1,97 @@
+<include file="Public:head"/>
+<include file="Hairdressing:menu"/>
+<script src="./tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="./tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+<div class="content">
+  <div class="cLineB">
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置美容服务相关内容。注意：美容介绍和表单设置，第一次使用，请点击添加美容介绍和添加表单设置，并点击保存</font> <br />
+  需要客户从手机端下单后,才可以显示预约信息.
+   </strong>
+
+    </p>
+    </div>
+</div>
+  </div>
+
+  <div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+              <th style=" width:80px;">姓名</th>
+              <th style=" width:30px;">性别</th>
+              <th style=" width:30px;">年龄</th>
+              <th style=" width:100px;">预约日期</th>
+              <th style=" width:180px;">套餐选择</th>
+              <th style=" width:50px;">人数</th>
+              <th style=" width:140px;">备注</th>
+              <th style=" width:100px;">联系方式</th>
+              <th style=" width:60px;">订单状态</th>
+              <th style=" width:120px;">操作</th>
+            </tr>
+          </thead>
+<volist name="books" id="vo">
+            <tr>
+              <td>{pigcms:$vo['truename']}</td>
+              <td><if condition="$vo['sex'] eq 1">男<else/>女</if></td>
+              <td>{pigcms:$vo['age']}</td>
+              <td>{pigcms:$vo['dateline']}</td>
+              <td>{pigcms:$vo['choose']}</td>
+              <td>{pigcms:$vo['number']}</td>
+              <td>{pigcms:$vo['info']}</td>
+              <td>{pigcms:$vo['tel']}</td>
+              <td><if condition="$vo.remate eq 0">待回复<elseif condition="$vo.remate eq 1"/>确认<elseif condition="$vo.remate eq 2"/>拒绝</if></td>
+
+              <td class="norightborder">
+              <a href="###" onclick="showIntroDetail({pigcms:$vo.id})">订单操作</a>
+              <a href="{pigcms::U('Hairdressing/guanlist_del',array('token'=>$token,'id'=>$vo['id'],'type'=>$vo['type']))}" onclick="return(confirm('确定要删除吗？'))" >删除</a> </td>
+            </tr>
+</volist>
+        </table>
+ <script>
+            function showIntroDetail(id){
+                art.dialog.open('{pigcms::U('Hairdressing/guanlist_edit',array('token'=>$token))}&id='+id,{lock:false,title:'预约订单详情',width:700,height:420,yesText:'关闭',background: '#000',opacity: 0.87});
+            }
+        </script>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages">{pigcms:$page}</div>
+    </div>
+  </div>
+
+</div>
+
+<include file="Public:footer"/>

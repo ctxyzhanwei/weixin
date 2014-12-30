@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+		<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+		<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/forum/css/main.css" ></link>
+		<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/forum/css/dialog.css" ></link>
+		<script src="{pigcms::STATICS}/forum/js/jquery_min.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/main.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/helper_min.js" ></script>
+		<script src="{pigcms::STATICS}/forum/js/dialog_min.js" ></script>
+
+	</head>
+	<body onselectstart="return true;" ondragstart="return false;" class="discuss_my discuss_my_tiezi">
+		<div id="container" class="container" <if condition="$bgurl neq NULL">style="background:url('{pigcms:$bgurl}') repeat-y center 0"</if>>
+			<header>
+				<div class="header_1">
+					<ul class="tbox">
+						<li>
+													<span id="upload_header" class="head_img">
+								<img src="{pigcms:$fans.portrait}" onerror="this.src='{pigcms::STATICS}/forum/images/face.png';" />
+							</span>
+												</li>
+						<li>
+							<h5 id="nickName"><label>{pigcms:$uname}</label><!--<a href="javascript:void(0);" class="icons icons_edit">&nbsp;</a>--></h5>
+							<p>
+							<!--	
+								<a href="#" class="label"><span class="icons icons_vip_0">&nbsp;</span>非会员</a>
+							-->
+							</p>
+						</li>
+					</ul>
+				</div>
+				<div class="header_2">
+					<nav>
+						<ul class="box">
+							<li>
+								<a href="{pigcms::U('Forum/myContent',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}" class="on">
+									<label>帖子</label>
+									<span>{pigcms::count($list)}</span>
+								</a>
+							</li>
+							<li>
+								<a href="{pigcms::U('Forum/myLike',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}">
+									<label>喜欢</label>
+									<span>{pigcms:$mylikenum}</span>
+								</a>
+							</li>
+							<li>
+								<a href="{pigcms::U('Forum/myMessage',array('wecha_id'=>$_GET['wecha_id'],'token'=>$_GET['token']))}">
+									<label>消息</label>
+									<span>{pigcms:$mymessagenum}</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+			<div class="body">
+				<div class="list_article">
+					<article>
+						<a style="color:#5d5d5d" href="{pigcms::U('Userinfo/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'redirect'=>'Forum/myContent|wecha_id:'.$_GET['wecha_id']))}"><div style="margin:10px;text-align:center;">修改个人资料</div></a>
+					</article>
+				</div>
+			
+				<div class="list_article">
+				<volist id="list" name="list">
+					<article>
+						<header>
+							<div class="article_state">
+								<if condition="$list['status'] eq -1"><span class="state1" style="background:red">暂未审核</span><else /><span class="state1">审核通过</span></if>
+							</div>
+							<ul class="tbox">
+								<li></li>
+								<li>
+									<h5>{pigcms:$list.title}</h5>
+									<p>{pigcms::date('Y-m-d H:i:s',$list['createtime'])}</p>
+								</li>
+								<li>
+									<a href="/index.php?g=Wap&m=Forum&a=myContentEdit&tid={pigcms:$list.id}&wecha_id={pigcms:$_GET['wecha_id']}&token={pigcms:$_GET['token']}" class="icons icons_edit">&nbsp;</a>
+								</li>
+	
+							</ul>
+						</header>
+						<section>
+											<php>
+												if(!empty($list['photos'])){
+													
+													$count = count(explode(',',$list['photos']));
+													echo '<figure data-count="'.$count.'张图片">
+													<div>';
+													$photos = explode(',',$list['photos']);
+													
+													for($i=0;$i<count($photos);$i++){
+														echo '<img src="'.$photos[$i].'" data-src="'.$photos[$i].'" data-gid="g7" onload="preViewImg(this, event);"/>';
+														}
+													
+												
+													echo '</div></figure>';
+												}
+											</php>
+											<div style="clear:both"></div>	
+							<div>
+								<div>{pigcms::htmlspecialchars_decode($list['content'],ENT_QUOTES)}</div>
+							</div>
+							<a href="/index.php?g=Wap&m=Forum&a=comment&tid={pigcms:$list.id}&wecha_id={pigcms:$_GET['wecha_id']}&token={pigcms:$_GET['token']}">查看全文</a>
+						</section>
+						<footer>
+							<ul class="box">
+								<li>
+									<a class="a_collect"><span class="icons icons_collect" >&nbsp;</span><label><if condition="$list['likeid'] neq NULL">{pigcms::count(explode(',',$list['likeid']))}<else />0</if></label></a>
+								</li>
+								<li>
+									<a class="a_comment"><span class="icons icons_comment" >&nbsp;</span><label>{pigcms:$list.cnum}</label></a>
+								</li>
+								<li>
+									<a class="a_like"><span class="icons icons_like">&nbsp;</span><label><if condition="$list['favourid'] neq NULL">{pigcms::count(explode(',',$list['favourid']))}<else />0</if></label></a>
+								</li>
+							</ul>
+						</footer>
+					</article>
+				</volist>
+					
+				</div>
+			</div>
+			<footer>
+				<section class="nav_footer">
+					<ul class="box">
+						<li>
+							<a href="/index.php?g=Wap&m=Forum&a=index&wecha_id={pigcms:$_GET['wecha_id']}&token={pigcms:$_GET['token']}">
+								<span class="icons_home">&nbsp;</span>
+								<label>首页</label>
+							</a>
+						</li>
+						<li>
+												    <a href="/index.php?g=Wap&m=Forum&a=add&wecha_id={pigcms:$_GET['wecha_id']}&token={pigcms:$_GET['token']}" class="nav_add">
+														<span class="icons_home_edit">&nbsp;</span>
+							</a>
+						</li>
+						<li>
+							<a href="/index.php?g=Wap&m=Forum&a=myMessage&wecha_id={pigcms:$_GET['wecha_id']}&token={pigcms:$_GET['token']}" class="on">
+														    <span class="icons_my" data-tip="{pigcms:$messageNum}">&nbsp;</span>
+															<label>我的</label>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</footer>
+		</div>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Forum",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url')}{pigcms::U('Forum/index',array('token'=>$_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url')}{pigcms::U('Forum/index',array('token'=>$_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url')}{pigcms::U('Forum/index',array('token'=>$_GET['token']))}",
+            "tTitle": "{pigcms:$uname}",
+            "tContent": "{pigcms:$uname}"
+        };
+</script>
+{pigcms:$shareScript}
+	</body>
+
+</html>

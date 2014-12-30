@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>一战到底</title>
+<link type="text/css" rel="stylesheet" href="./tpl/static/problem/css/war.css">
+</head>
+<body>
+<div class="wrapper">
+    <img class="bg" src="./tpl/static/problem/image/bg_userinfo.png">
+  	<div style="font-size: 26px;padding-top: 30px;padding-left: 23%;">一战到底排名</div>
+    <div class="desc-cont1">
+    <table>
+		<tbody>
+			<tr>
+				<td width="160">用户</td>
+				<td width="80">分数</td>
+				<td width="80">排名</td>
+			</tr>
+			<volist name="rank" id="rank" key="key">
+			<tr>
+				<td>{pigcms:$rank.user_name}</td>
+				<td>{pigcms:$rank.score_count}</td>
+				<td>第{pigcms:$key}名</td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	</div>
+</div>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Problem",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$pro_info['logo_pic']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Problem/index',array('token' => $_GET['token'],'id'=>$pro_info['id']))}",
+            "tTitle": "{pigcms:$pro_info.title}",
+            "tContent": "{pigcms:$pro_info.explain}"
+        };
+</script>
+{pigcms:$shareScript}
+</body></html>

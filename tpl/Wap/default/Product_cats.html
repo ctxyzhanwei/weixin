@@ -1,0 +1,27 @@
+<include file="Product:header"/>
+<!--主体-->
+<section class="c_list">
+	<h1><if condition="$parentid neq 0">{pigcms:$thisCat.name}</if>全部分类：</h1>
+	<volist name="cats" id="hostlist"> 
+			<dl>
+		<dt>
+			<a href="<if condition="$hostlist['parentid'] eq 0">{pigcms::U('Product/products',array('token'=>$_GET['token'],'catid'=>$hostlist['id'],'wecha_id'=>$wecha_id,'dining'=>$isDining))}<else/>{pigcms::U('Product/products',array('token'=>$_GET['token'],'catid'=>$hostlist['id'],'wecha_id'=>$wecha_id))}</if>">
+				{pigcms:$hostlist.name}
+				<i></i>
+			</a>
+		</dt>
+	</dl>
+	</volist> 
+		</section>
+		
+		
+		<div class="copyright">
+<if condition="$iscopyright eq 1">
+{pigcms:$homeInfo.copyright}
+<else/>
+{pigcms:$siteCopyright}
+</if>
+</div>
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+</body>
+</html>

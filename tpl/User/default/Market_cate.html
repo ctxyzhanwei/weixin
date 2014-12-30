@@ -1,0 +1,90 @@
+<include file="Public:head"/>
+<!-- <script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script> -->
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+
+
+<div class="content">
+<include file="Market:menu"/>
+  
+  <div class="cLineB">
+    <h4>商圈分类管理</h4>
+     <a href="{pigcms::U('Market/cate_set',array('token'=>$token))}"  class="right  btnGrayS vm bigbtn" style="margin-top:-30px">
+      <img class="vm" src="./tpl/User/default/common/images/icons/add.png">
+      添加分类
+     </a>
+</div>
+
+<div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr> <th style=" width:120px;">分类名称</th>
+<th style=" width:120px;">分类简介</th>
+<th style=" width:40px;">是否显示</th>
+<th style=" width:40px;">排序</th>
+<th style=" width:50px;">操作</th>
+</tr>
+</thead>
+<volist name="cate" id="item">
+          <tbody>
+            <tr>
+              <td>
+                <div class="cateimg" style="padding:0 5px;"><img src="{pigcms:$item.cate_pic}" class="cateimg_small"></div>
+                {pigcms:$item.cate_name}
+              </td>
+              <td>{pigcms:$item.cate_intro}</td>
+              <td>
+                <if condition="$item.is_show eq '1'">
+                  显示
+                <else />
+                  隐藏
+                </if>
+              </td>
+              <td>{pigcms:$item.sort}</td>
+              <td class="norightborder">
+              <a href="{pigcms::U('Market/cate_set',array('cate_id'=>$item['cate_id']))}" >编辑</a> &nbsp;|&nbsp;
+              <a href="{pigcms::U('Market/cate_del',array('cate_id'=>$item['cate_id']))}" onclick="return(confirm('确定要删除吗？'))" >删除</a> 
+              </td>
+            </tr>
+          </tbody>
+</volist>
+            </table>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages"> {pigcms:$page}</div>
+    </div>
+  </div>
+</div>
+
+<include file="Public:footer"/>

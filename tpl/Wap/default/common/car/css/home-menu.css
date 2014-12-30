@@ -1,0 +1,110 @@
+.nav_8{
+	height:50px;
+	text-align:center;
+}
+.footer_bar .nav_8{height:0;}
+.nav_8 ul{
+	height:50px;
+	position:fixed;
+	z-index:200;
+	bottom:0;
+	left:0;
+	width:100%;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#353535), to(#2d2d2d));
+}
+.nav_8 li>a{
+	color:#8c8f94;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border-bottom:0;
+	display:block;
+	height:100%;
+	padding:5px 0;
+	text-align:center;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.nav_8 li>a.on, .nav_8 li>a.active{
+	color:#fff;
+	background:-webkit-gradient(radial, 50% 110%, 10, 50% 110%, 30, from(rgba(255,255,255,0.2)), to(transparent));
+}
+.nav_8 li>a>*{
+	pointer-events:none;
+}
+.nav_8 li>a>p{
+	width:25px;
+	height:25px;
+	margin:auto;
+	background:url(../../img/template/lib/nav_8_icon.png) no-repeat -13px -13px;
+	-webkit-background-size:100px auto;
+	/*background-color:red;*/
+}
+.nav_8 li>a>p[class*="icon"]{
+	display: block;
+	background: none;
+	font-size: 19px;
+	line-height: 25px;
+}
+.nav_8 li>a>p.voice{
+	background-position:-13px -63px;
+}
+.nav_8 li>a>p.addr{
+	background-position:-13px -113px;
+}
+.nav_8 li>a>p.tip{
+	background-position:-13px -163px;
+}
+.nav_8 li>a>p.back{
+	background-position:-13px -213px;
+}
+.nav_8 li>a>p.back2{
+	background-position:-13px -263px;
+}
+.nav_8 li>a>p.share{
+	background-position:-13px -313px;
+}
+.nav_8 li>a>p.home{
+	background-position:-13px -363px;
+}
+
+.nav_8 li>a.on>p, .nav_8 li>a.active>p{
+	background-position-x:-63px;
+}
+.toshare{
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    background:rgba(0,0,0,0.5);
+    display:none;
+}
+.toshare.on{
+    display:block;
+}
+.toshare table{
+    float:right;
+    margin-right:10px;
+    width:235px;
+    text-align:center;
+}
+.toshare table img{
+}
+.toshare tr:nth-of-type(2){
+    text-align:center;
+    border:2px dashed #fff;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    display:block;
+    color:#fff;
+    line-height:30px;
+}
+.toshare td{
+    width:116px;
+    text-align:center;
+}
+.toshare tr:nth-of-type(2) img{
+    width:66px!important;
+    height:66px!important;
+    margin:5px;
+}

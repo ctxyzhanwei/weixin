@@ -1,0 +1,52 @@
+<include file="Frame:header"/>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/lang/cn.js"> </script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/formcheck.js"> </script>
+<link rel="stylesheet" href="tpl/Agent/Common/js/formCheck/theme/grey/formcheck.css" type="text/css" media="screen" />
+<link href="tpl/Agent/Common/style/calendar.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/calendar.js"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/plugins/iframeTools.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function(){
+	new FormCheck('myform');
+});
+</script>
+
+<div class="columntitle">修改资料</div>
+   <form method="post" action="?g=Agent&m=Site&a=regConfig" id="myform">
+            <table class="addTable">
+         <tr>
+        
+         <tr>
+          <th>需要审核</th>
+          <td><label><input type="radio" name="needcheckuser" value="0" <php>if($thisAgent['needcheckuser']==0)echo checked;</php> /> 注册时无需要审核</label> <label><input type="radio" name="needcheckuser" value="1" <php>if($thisAgent['needcheckuser']==1)echo checked;</php> /> 注册时需要审核</label> </td>
+        </tr>
+         <tr style="margin-top:10px;">
+          <th>注册填写手机号</th>
+          <td><label><input type="radio" name="regneedmp" value="1" <php>if($thisAgent['regneedmp']==1)echo checked;</php> /> 需要填写手机号</label> <label><input type="radio" name="regneedmp" value="0" <php>if($thisAgent['regneedmp']==0)echo checked;</php> /> 不需要填写手机号</label> </td>
+        </tr>
+         <tr style="margin-top:10px;">
+          <th>注册后等级</th>
+          <td><select name="reggid">
+      <pigcmslist array="groups" foreach="g">
+      <option value="{pigcms:$g.id}" <if condition="$thisAgent['reggid'] eq $g['id']">selected</if>>{pigcms:$g.name}</option>
+      </pigcmslist>
+      </select>
+      <span>&nbsp;&nbsp; <span class="tdtip">仅注册不需要审核的时候有效</span> </td>
+        </tr>
+         <tr style="margin-top:10px;">
+          <th>注册后免费天数</th>
+          <td><input type="text" name="regvaliddays" style="width:100px;" class="validate['required','digit'] colorblur" value="{pigcms:$thisAgent.regvaliddays}" /></td>
+        </tr>
+      
+          <tr>
+            <td class="addName"></td>
+            <td>
+   
+            <input type="submit" name="doSubmit" value="提交" class="button"/></td>
+          </tr>
+         
+        </table>
+        <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="referer" />
+</form>
+<include file="Frame:footer"/>

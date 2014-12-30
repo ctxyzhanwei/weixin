@@ -1,0 +1,181 @@
+<include file="Dining:header"/>
+<body>
+	
+<div data-role="page" data-add-back-btn="true" id="shoporder-page">
+	<script type="text/javascript">
+		var curTypeId = 0;
+		var curFoodId = 0;
+			curTypeId = 3;
+		
+		var myScroll;
+		var myScroll2;
+		var myScroll3;
+
+	
+		function loaded() {
+			myScroll = new IScroll("#wrapper", {
+				click: true,
+			});
+			
+			myScroll2 = new IScroll('#wrapper2', {
+				eventPassthrough: false,
+				preventDefault: false,
+				useTransition: false,
+			});
+			
+			//初始化页面
+			foodtypeClick(2,'/index.php?g=Wap&m=Dining&a=Ajax&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&cid=2');
+			initCarInfo('/index.php?g=Wap&m=Dining&a=carInfo');
+		}
+
+		function loaded2() {
+			myScroll3 = new IScroll("#wrapper3", {
+				click: true,
+			});
+			
+			
+		}
+
+		function scale(padding, border) {
+		    var srcWidth = $( window ).width() - 50,
+		        srcHeight = $( window ).height() - 100,
+		        ifrPadding = 2 * padding,
+		        ifrBorder = 2 * border,
+		       	w, h;
+		   
+			    w = srcWidth;
+			    h = srcHeight;
+
+			    return {
+			        'width': w - ( ifrPadding + ifrBorder ),
+			        'height': h - ( ifrPadding + ifrBorder )
+			    };
+		}
+
+		$('#shoporder-page').on("pageshow",function(){
+			//弹窗相关
+			$("#popupFoodinfo").on({
+		        popupbeforeposition: function() {
+		            var size = scale( 15, 1 ),
+		                w = size.width;
+		                h = size.height;
+
+		            $("#wrapper3").css("width", w);
+		            $("#wrapper3").css("height", h);
+		        },
+		        popupafteropen: function() {
+		        	hideLoader();
+
+		        	//初始化滚动条相关的东西
+					setTimeout(function () { loaded2(); }, 200);
+		        },
+		        popupafterclose: function() {
+		        	 $("#wrapper3").css("width", 0);
+			         $("#wrapper3").css("height", 0);
+		        },
+		    });
+
+			//初始化滚动条相关的东西
+			setTimeout(function () { loaded(); }, 200);
+
+			document.getElementById('shoporder-page').addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		})
+		
+		function showfoodinfo(food_id)
+		{
+			showLoader();
+			
+			function OnFoodinfoSuccess(data, status)
+			{
+				document.getElementById('foodinfo-content').innerHTML = data;
+				$('#popupFoodinfo').popup('open');
+
+				myScroll3.refresh();
+			}
+
+			function OnFoodinfoFailed(data, status) 
+			{
+				hideLoader();
+			}
+
+			$.ajax({
+		        type: "GET",
+		        url: "/index.php?g=Wap&m=Dining&a=showDetail&id="+food_id,
+		        dataType : "html",  
+		        cache : false,
+		        success: OnFoodinfoSuccess,
+		        error: OnFoodinfoFailed,
+		    });
+		}
+
+		function closefoodinfo()
+		{
+			$('#popupFoodinfo').popup('close');
+		}		
+	</script>
+		
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-id="shop_header">
+		<h1>{pigcms:$title}</h1>
+	</div>
+	
+	<div data-role="content" id="order-layout">
+		<div class="order-info" id="order-info">			
+						<div id="order_totalnum_layout">
+				<p id="order_totalnum_text">已选 <span id="order_totalnum"></span></p>
+			</div>
+			
+			<p id="order_totalprice_text">￥<span id="order_totalprice"></span></p>		
+		</div>
+		
+		<div class="order-content">
+			<div id="typelist">
+				<div id="wrapper">
+					<div id="scroller">
+						<ul>
+                            <volist name="cats" id="hostlist"> 
+							<li id="foodtype_{pigcms:$hostlist.id}" class="" onClick="foodtypeClick({pigcms:$hostlist.id}, '/index.php?g=Wap&m=Dining&a=Ajax&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&cid={pigcms:$hostlist.id}')"><span>{pigcms:$hostlist.name}</span></li>
+							</volist> 
+							<div style="height: 10px;"></div>					
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="foodlist">
+				<div id="wrapper2">
+					<div id="scroller2">
+                        <div>	
+							<div style="height: 10px;"></div>
+						</div>
+                        
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="sorryx" style="z-index: 10000; text-align:center; position:fixed; top:150px; width:100%; color:#fff; display:none" class="cart-attention">
+			<p id="attention-content" class="cart-attentiontext"></p>
+		</div>
+	</div>
+	
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-id="shop_footer">
+		<div data-role="navbar">
+			<ul>
+           		<li><a  href="/index.php?g=Wap&m=Dining&a=index&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="home">首页</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=lists&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="search" class="ui-btn-active ui-state-persist">选购</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=order&dining=1&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="grid" >下单</a></li>
+				<li><a  href="/index.php?g=Wap&m=Dining&a=myOrders&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}" data-icon="info">个人中心</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div data-role="popup" id="popupFoodinfo" data-overlay-theme="a" data-theme="d" data-tolerance="15, 15" class="ui-content">
+		<button onClick="closefoodinfo()" data-theme="a" data-inline="true" data-mini="true" data-icon="delete" data-iconpos="notext" class="ui-btn-right">关闭</button>
+	    <div id="wrapper3">
+	    	<div id="foodinfo-content">
+	    	</div>
+	    </div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+          <div class="cLineB"><h4>群发信息</h4></div>
+
+<include file="Share:header"/>
+
+          <div class="ftip" style="margin:25px auto 5px auto;">下面为{pigcms:$days}日内分享数据统计</div>
+          
+           <div id="chartdiv1" align="center"></div>
+         <script type="text/javascript">
+					var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Pie3D.swf", "ChartId", "600", "500", "0", "1");
+					//chart.setTransparent("false");
+					chart.setDataXML('{pigcms:$xml}');
+					//chart.setDataURL("data.html");
+					chart.render("chartdiv1");
+					</script>
+					
+					
+					
+					<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="90%">
+              <thead>
+                <tr>
+					<th style="width:600px;">&nbsp;模块</th>
+					<th>次数</th>
+					
+                </tr>
+              </thead>
+              <tbody>
+			  <pigcmslist array="list" foreach="list">
+                <tr>
+                  <td>&nbsp;{pigcms:$list.moduleName}</td>
+                  <td>{pigcms:$list.count}</td>
+
+                </tr>
+      			</pigcmslist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+          
+        </div>
+<include file="Public:footer"/>

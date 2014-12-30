@@ -1,0 +1,16 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+	<h1><p>{$content.title}</p></h1>
+	<div class="view" id="content">　{$content.content}</div>
+    <p class="hr"></p>
+     {if $previousContent}
+	<a href="{$previousContent->link}"  title="上一条：{$previousContent->title}" class="prevpage">上一条：<span>{$previousContent->title}</span></a> {/if}    {if $nextContent}<a href="javascript:if(confirm(%27{$nextContent->link}  \n\nThis file was not retrieved by Teleport Pro, because it is linked too far away from its Starting Address. If you increase the in-domain depth setting for the Starting Address, this file will be queued for retrieval.  \n\nDo you want to open it from the server?%27))window.location=%27{$nextContent->link}" tppabs="{$nextContent->link}" title="下一条：“{$nextContent->title}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>{/if}    <a href="{$channel.link}"  title="返回列表" class="backlist">返回列表</a>
+<div class="clear"></div>
+{/if}
+{include file=$footer}

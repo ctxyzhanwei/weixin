@@ -1,0 +1,98 @@
+{include file=$header}
+<div class="top">
+	<div class="big-pic big-pic3">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                    </div>
+    </div>
+</div>
+	<div class="logobox">
+    	<center>
+        	<a href="{$homeUrl}" title="{$site.name}" class="logo"><img src="{$site.logourl}" class="logo" alt="{$site.name}"></a>
+        </center>
+    </div>
+</div>
+
+<div class="indexicon">
+	<div class="iconleft"></div>
+    <div class="iconright">
+    	<p><a href="index.html" tppabs="{$homeUrl}" title="首页" class="iconhome"></a></p>
+        <p><a href="javascript:void(0);" title="搜索" class="iconsearch"></a></p>
+        <p><a href="javascript:void(0);" title="导航" class="iconnav"></a></p>
+    </div>
+    <ul class="pics">
+    	<li>
+		{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<1}
+		<a href="{$a.link}" title=""><img src="{$a.thumb}" alt="" class="ad{$k+1}"></a>
+		{/if}
+		{/foreach}
+		{/if}
+		</li>
+        <li>
+        {if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<3&&$k>0}
+		<a href="{$a.link}" title=""><img src="{$a.thumb}" alt="" class="ad{$k+1}"></a>
+		{/if}
+		{/foreach}
+		{/if}
+        </li>
+        <li>
+		{if $pictureContents}
+		{foreach from=$pictureContents item=a key=k}
+			{if $k<4&&$k>2}
+		<a href="{$a.link}" title=""><img src="{$a.thumb}" alt="" class="ad{$k+1}"></a>
+		{/if}
+		{/foreach}
+		{/if}
+		</li>
+        <li>
+		{if $pictureContents}
+		{foreach from=$pictureContents item=a key=k}
+			{if $k<6&&$k>3}
+		<a href="{$a.link}" title=""><img src="{$a.thumb}" alt="" class="ad{$k+1}"></a>
+		{/if}
+		{/foreach}
+		{/if}
+        	<div class="clear"></div>
+        </li>
+    </ul>
+   	<div class="search">
+    	<div>
+             <form method="post" action="?m=site&c=home&a=search&token={$token}">
+                <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+                <input type="submit" class="button" value="">
+            </form>
+        </div>
+    </div>
+    <div class="nav" id="nav">
+    	<ul>
+        	
+			{if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+        </ul>
+        <a href="#" class="backtop"><img src="smarty/templates/tpls/lvsecanyin/backtop.png" tppabs="3g/images/backtop.png" alt="返回顶部"></a>
+    </div>
+</div>
+{include file=$footer}

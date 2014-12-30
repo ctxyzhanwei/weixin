@@ -1,0 +1,24 @@
+{include file=$header}
+<div class="sub">
+	<ul class="productul">
+				{if $contents}
+			{foreach from=$contents item=a key=k}
+			{if $k<3}
+                    <li style="width:32%">
+					<div>
+					<a href="{$a.link}" title="{$a.title}"><img src="{$a.thumb}"/></a>
+          <p><a href="{$a.link}" title="{$a.title}">{$a.title}</a></p>
+          </div></li>
+          {/if}
+		  {/foreach}
+		  {/if}
+			</ul>
+	<div class="clear"></div>
+	<div class="pages">
+	
+		<a href="{$previousPageLink}" class="{if $previousPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="上一页">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a href="{$nextPageLink}" class="{if $nextPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="下一页">&gt;</a>
+	</div></div>
+{include file=$footer}
+

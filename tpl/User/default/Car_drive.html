@@ -1,0 +1,70 @@
+<include file="Public:head"/>
+<include file="Car:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">预约管理</h4>
+              <div class="clr"></div>
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>功能勾选，设置好信息后，输入关键词即可看到效果。<a class="btn" href="javascript:location.reload()">刷新</a></p>
+    </div>
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+                <a href="{pigcms::U('Reservation/add',array('token'=>$token,'addtype'=>'drive','car'=>'car'))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">新增预约
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                   <th>预约名称</th>
+                   <th>关键字</th>
+                   <th>预约电话</th>
+                   <th>限定量</th>
+                   <th>总订单限制</th>
+                   <th>开始时间/结束时间</th>
+                   <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              <volist name="drive" id="vo">
+              <tr>
+                  <td>{pigcms:$vo['title']}</td>
+                  <td>{pigcms:$vo['keyword']}</td>
+                  <td>{pigcms:$vo['tel']}</td>
+                  <td><if condition="$vo['type'] eq 1">时间限制<elseif condition="$vo['type'] eq 2"/>限定每日量<else/>限定全部总量</if></td>
+                  <td>{pigcms:$vo['allnums']}</td>
+                  <td>{pigcms:$vo['date']}</td>
+                  <td > 
+                    <a href="{pigcms::U('Reservation/index',array('token'=>$vo['token'],'id'=>$vo['id'],'addtype'=>'drive','car'=>'car'))}" class="btn" title="订单管理">管理</a>
+                    <!--a class="btn" href="{pigcms::U('Reservation/edit',array('token'=>$vo['token'],'id'=>$vo['id'],'addtype'=>'drive'))}" title="编辑">编辑</a> 
+                    <a class="btn" href="{pigcms::U('Reservation/del',array('token'=>$vo['token'],'id'=>$vo['id'],'addtype'=>'drive'))}"  onclick="return(confirm('确定要删除吗？'))" title="删除">删除</a-->
+                  </td>
+                </tr>
+                </volist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

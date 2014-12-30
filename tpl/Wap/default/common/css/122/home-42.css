@@ -1,0 +1,71 @@
+.body{
+	max-width:640px;
+	margin:auto;
+	min-height:100%;
+	background-color:#e1e0de;
+	position:relative;
+}
+
+.body{
+	display:block;
+	background:rgba(0, 0, 0, 0.5);
+}
+
+
+.list_ul{
+	margin: 10px;
+	width:280px;
+	margin:auto;
+	padding-top:30px;
+}
+
+.list_ul li{
+	
+}
+
+.list_ul li a{
+	display:block;
+	height:85px;
+	margin:5px;
+	-webkit-box-sizing:border-box;
+	background:rgba(144, 156, 159, 0.6);
+	overflow:hidden;
+	font-size:20px;
+	color:#fff;
+	position:relative;
+}
+.list_ul li a label{
+	margin:8px;
+	display:inline-block;
+}
+.list_ul li a small{
+	display:block;
+	font-size:17px;
+}
+
+.list_ul li a span[class*="icon"]{
+	position:absolute;
+	right:8px;
+	bottom:8px;
+}
+
+.list_ul li a .imgBox{
+	width:150px;
+	height:100%;
+	overflow:hidden;
+}
+.list_ul li a .imgBox img{
+	width:100%;
+	min-height:100%;
+}
+
+
+/*******************************/
+.list_ul li:nth-of-type(3n+1) a{background:#d47314;}
+.list_ul li:nth-of-type(3n+1) a:nth-of-type(2){background:#50ad38;}
+
+.list_ul li:nth-of-type(3n+2) a{background:#dc3999;}
+.list_ul li:nth-of-type(3n+2) a:nth-of-type(2){background:#50ad38;}
+
+.list_ul li:nth-of-type(3n) a{background:#1f76ae;}
+.list_ul li:nth-of-type(3n) a:nth-of-type(2){background:#543ea5;}

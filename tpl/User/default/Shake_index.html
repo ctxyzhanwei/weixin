@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<div class="content" >  
+<div class="cLineB">
+  <h4>摇一摇<span class="FAQ"></span></h4>
+ </div>
+<div class="cLineC" style="line-height: 32px;">
+ <a href="{pigcms::U('Shake/add')}" class="btnGrayS vm bigbtn" >添加活动</a>　 
+</div>
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：如需实现抽奖、对对碰功能请使用现场活动功能
+</div>
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">活动名称</th>
+<th style=" width:100px;">状态</th>             
+<th style=" width:150px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="info" id="actinfo">
+<tr>
+<td>{pigcms:$actinfo.title}</td>
+<td><if condition="$actinfo['isopen'] eq 0"> 
+    <span style="color:red">关闭中</span>
+    <else /><span style="color:green">开启中</span>
+    </if></td>
+<td class="norightborder">
+    <if condition="$actinfo['isopen'] eq 0"> 
+    <else />
+    <a target="_blank" href="{pigcms::U('Scene/shake',array('id'=>$actinfo['id'],'token'=>$_SESSION['token']))}">大屏幕</a> 
+    |
+    <!--<a href="javascript:void(0);" onclick="showShake({pigcms:$actinfo.id})">参与粉丝</a>-->
+    <a href="{pigcms::U('Shake/show_fens',array('id'=>$actinfo['id'],'token'=>$_SESSION['token']))}">参与粉丝</a>
+    |
+    </if>
+    <a href="{pigcms::U('Shake/edit',array('id'=>$actinfo['id'],'token'=>$_SESSION['token']))}" >编辑</a>  
+    |
+    <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Shake/del',array('token'=>$token,'id'=>$actinfo['id']))}');">删除</a>
+</td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="cLine">
+  <div class="pageNavigator right">
+    <div class="pages">{pigcms:$page}</div>
+  </div>
+  <div class="clr"></div>
+</div>
+
+          </div>
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>

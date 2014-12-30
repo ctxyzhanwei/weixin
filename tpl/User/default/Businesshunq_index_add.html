@@ -1,0 +1,205 @@
+<include file="Public:head"/>
+<include file="Businesshunq:wedding_menu"/>
+<script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+  <script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#business_desc', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+ <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+
+
+<div class="content">
+  <div class="cLineB">
+    <h4>设置婚庆公司相关内容</h4>
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>设置婚庆公司相关内容,注意：第一次使用，请点击添加婚庆公司等相关设置，并点击保存 </font></strong>
+    </p>
+    </div>
+   </div>
+</div>
+
+
+  <div class="msgWrap">
+    <form class="form" method="post" action="" id="formID" target="_top" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+        <if condition="$busines['bid'] neq ''">
+            <input type="hidden" class="px" id="bid" value="{pigcms:$busines['bid']}" name="bid" >
+            <input type="hidden" class="px" id="status" value="edit" name="status" >
+        </if>
+            <input type="hidden" class="px" id="type" value="{pigcms:$type}" name="type" >
+
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">婚庆公司名称：</label></th>
+            <td><input type="input" class="px" id="mtitle" value="{pigcms:$busines['mtitle']}" name="mtitle" style="width:200px" data-validation-engine="validate[required,minSize[2],maxSize[25]]" data-errormessage-value-missing="必填项">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+            <tr>
+            <th valign="top"><label for="keyword">触发关键词：</label></th>
+            <td><input type="input" class="px" id="keyword" value="{pigcms:$busines['keyword']}" name="keyword" style="width:200px" data-validation-engine="validate[required,minSize[1],maxSize[10]]" data-errormessage-value-missing="必填项">
+              请输入关键词,10个字以内 </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">图文消息标题：</label></th>
+            <td><input type="input" class="px" id="title" value="{pigcms:$busines['title']}" name="title" style="width:200px" data-validation-engine="validate[required,minSize[2],maxSize[20]]" data-errormessage-value-missing="必填项">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <th valign="top"><label for="keyword">图文消息封面：</label></th>
+            <td><img class="thumb_img" id="picurl_src" src="{pigcms:$busines['picurl']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="picurl" value="{pigcms:$busines['picurl']}" name="picurl" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传回复图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<script src="{pigcms::STATICS}/upyun.js"></script>
+<a href="###" onclick="upyunPicUpload('picurl',468,180,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl')">预览</a> [468*180] </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">LOGO ：</label></th>
+            <td><img class="thumb_img" id="blogo_src" src="{pigcms:$busines['blogo']}" style="max-height:100px;max-width: 150px;"><input type="input" class="px" id="blogo" value="{pigcms:$busines['blogo']}" name="blogo" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传LOGO图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<a href="###" onclick="upyunPicUpload('blogo',230,62,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('blogo')">预览</a> [230*62] [必须是PNG格式]</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">相册名称：</label></th>
+            <td><select name="album_id" id="album_id"  data-validation-engine="validate[required]" data-errormessage-value-missing="必填项">
+                <option value="">请选择展示相册</option>
+                <volist name="photo" id="vo">
+                <option value="{pigcms:$vo.id}" <if condition="$vo.id eq $busines['album_id']">selected="selected"</if>>{pigcms:$vo.title}</option>
+                </volist>
+            </select></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">简介头部图片：</label></th>
+            <td><img class="thumb_img" id="toppicurl_src" src="{pigcms:$busines['toppicurl']}" style="max-height:100px;max-width: 150px;">
+            <input type="input" class="px" id="toppicurl" value="{pigcms:$busines['toppicurl']}" name="toppicurl" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<a href="###" onclick="upyunPicUpload('toppicurl',700,420,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('toppicurl')">预览</a> [700*420]</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">婚庆公司头部图片：</label></th>
+            <td><img class="thumb_img" id="roompicurl_src" src="{pigcms:$busines['roompicurl']}" style="max-height:100px;">
+            <input type="input" class="px" id="roompicurl" value="{pigcms:$busines['roompicurl']}" name="roompicurl" data-validation-engine="validate[required,custom[url]]"
+                    data-errormessage-value-missing="必须上传图片!"  data-errormessage-custom-error="如果是手动填写,正确的网址,如: http://www.baidu.com/images/demo.png">
+<a href="###" onclick="upyunPicUpload('roompicurl',700,420,'{pigcms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('roompicurl')">预览</a> </td>
+            <td></td>
+          </tr>
+<script>
+function setlatlng(longitude,latitude){
+  art.dialog.data('longitude', longitude);
+  art.dialog.data('latitude', latitude);
+  art.dialog.open('{pigcms::U('Map/setLatLng',array('token'=>$token,'id'=>$id))}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+          <tr>
+            <th valign="top"><label for="keyword">地址</label></th>
+            <td><input type="input" class="px" id="address" value="{pigcms:$busines['address']}" name="address" style="width:500px" data-validation-engine="validate[required,minSize[5],maxSize[80]]" data-errormessage-value-missing="必填项">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">经纬地址</label></th>
+            <td><div class="control-group">
+              <label class="control-label" for="suggestId"></label>
+              <div class="controls">
+         经度 <input type="text" id="longitude"  name="longitude" size="14" class="px" value="{pigcms:$busines['longitude']}" data-validation-engine="validate[required]" data-errormessage-value-missing="必选项"/> 纬度 <input type="text"  name="latitude" size="14" id="latitude" class="px" value="{pigcms:$busines['latitude']}" /> <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a>
+         </div>
+
+              </div></div>
+            </td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">排序：</label></th>
+            <td><input type="input" class="px" id="sort" value="{pigcms:$busines['sort']|default=1}" name="sort"  data-validation-engine="validate[required,custom[integer],min[1]]" data-errormessage-value-missing="必填项">
+              数字越大,越在前面显示.
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">婚庆公司简介：</label></th>
+            <td>
+<textarea class="px" id="business_desc" name="business_desc" style="width: 605px; height: 350px;" >{pigcms:$busines['business_desc']}</textarea>
+            </td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <th></th>
+            <td><button type="submit" name="button" class="btnGreen left">保存</button>
+              <div class="clr"></div></td>
+          </tr>
+        </tbody>
+      </table>
+</form>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

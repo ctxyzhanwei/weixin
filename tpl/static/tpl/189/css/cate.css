@@ -1,0 +1,51 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background-color:#38383a; font-size:14px; }
+body  .mainmenu {overflow:hidden; margin:auto; clear:both }
+body  .mainmenu li {   margin-top:2%; margin-left:2%; width:96%; border:1px solid  #000; overflow:hidden; position:relative; background-color: #000;   }
+body  .mainmenu li a { display:block; height:100%;  color:#FFF;  }
+body  .mainmenu li a img { width:68%;  float:left;}
+body  .mainmenu li a p{  width:32%; padding: 0;  height:100%;  position:absolute; right:0px; color:#FFF}
+body  .mainmenu li a p b{ display:block; font-size:16px; padding: 0 5px;font-weight:normal; margin-top:10px; line-height:30px; text-align:left; text-overflow:ellipsis; white-space: nowrap; overflow:hidden}
+body  .mainmenu li a p span { display:block; padding: 0 5px; text-align:right; line-height:20px; font-size:12px; text-align:left ; text-overflow:ellipsis; white-space: nowrap; overflow:hidden }
+body  .mainmenu li a p em{ display:block; width:20px; height:20px; margin:5px;background:url(../images/PIX2.png) no-repeat; background-size: 100%; }
+body .imgmenu{ margin-top:2%;  font-size:14px;}
+body .imgmenu a{ float:left; margin-left:2%; width:30.66%; background-color:rgba(255,255,255,0.3);text-align:center;color:#FFF; font-size:13px;padding:10px 0;}
+body .imgmenu a p{  margin:3px 0 0 0; padding: 0;}
+body .imgmenu a img{ vertical-align:middle; display:inline-block;  width:25px; height:25px; margin-right:3px;}
+
+body  .mainmenu li:nth-child(2n+2) a img{ float:right}
+body  .mainmenu li:nth-child(2n+1) a p{ background-color:#0099ff}
+body  .mainmenu li:nth-child(2n+2) a p{ background-color:#f6ad10; position:absolute; left:0px;}
+body  .mainmenu li:nth-child(2n+2) a p b,body  .mainmenu li:nth-child(2n+2) a p span{ text-align:right;}
+body  .mainmenu li:nth-child(2n+2) a p em{ position:absolute; right:5px; bottom:10px; background: url(../images/PIX.png) no-repeat;background-size: 100%;}

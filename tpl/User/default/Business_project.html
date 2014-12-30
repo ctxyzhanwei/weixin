@@ -1,0 +1,103 @@
+<include file="Public:head"/>
+<include file="Business:public_menu"/>
+<!-- <script src="{pigcms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms::STATICS}/artDialog/plugins/iframeTools.js"></script> -->
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+
+
+<include file="Business:tips"/>
+
+  <div class="cLineC" style="line-height: 32px;"> <a href="{pigcms::U('Business/project_add',array('token'=>$token,'type'=>$type))}" class="btnGrayS vm bigbtn">添加
+  <if condition="$type eq 'fitness'">
+健身项目
+      <elseif condition="$type eq 'gover'"/>
+服务类型
+      <elseif condition="$type eq 'food'"/>
+食品分类
+      <elseif condition="$type eq 'travel'"/>
+景 点
+      <elseif condition="$type eq 'flower'"/>
+特色香花
+      <elseif condition="$type eq 'property'"/>
+业主服务
+      <elseif condition="$type eq 'ktv'"/>
+KTV包厢
+      <elseif condition="$type eq 'bar'"/>
+酒水特色
+      <elseif condition="$type eq 'fitment'"/>
+装修套餐
+      <elseif condition="$type eq 'wedding'"/>
+服务项目
+      <elseif condition="$type eq 'affections'"/>
+食品/用具
+      <elseif condition="$type eq 'housekeeper'"/>
+服务项目
+      <elseif condition="$type eq 'lease'"/>
+租赁类型
+      <elseif condition="$type eq 'beauty'"/>
+美容套餐
+  </if>
+</a>　 </div>
+  <div class="msgWrap form">
+    <div class="bdrcontent">
+      <div id="div_ptype">
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<include file="Business:th"/>
+          <tbody>
+              <volist name="busines_second" id="vo">
+                <tr>
+                    <td>{pigcms:$vo.name}</td>
+                    <td>{pigcms:$vo.0}</td>
+                    <td>{pigcms:$vo.learntime}</td>
+                    <td>{pigcms:$vo.datatype}</td>
+<if condition="$type eq 'gover' OR  $type eq 'property'">
+<else/>
+<td>{pigcms:$vo.oneprice}</td>
+</if>
+                    <td><div class="cateimg"><img src="{pigcms:$vo.picurl}" class="cateimg_small"></div></td>
+                    <td>
+              <a href="{pigcms::U('Business/project_add',array('sid'=>$vo['sid'],'type'=>$vo['type']))}" class="btnGreen">编辑</a>
+              <a href="{pigcms::U('Business/project_del',array('sid'=>$vo['sid'],'type'=>$vo['type']))}" onclick="return(confirm('确定要删除吗？'))" class="btnGreen">删除</a>
+                    </td>
+                </tr>
+              </volist>
+          </tbody>
+         </table>
+      </div>
+    </div>
+    <div class="footactions" style="padding-left:10px">
+      <div class="pages"></div>
+    </div>
+  </div>
+
+</div>
+
+<include file="Public:footer"/>

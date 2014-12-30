@@ -1,0 +1,27 @@
+<include file="Product:header"/>
+<div class="main">
+	<div class="p_content">
+		<h1>{pigcms:$product.name}</h1>
+		<div class="p_con">
+			<img src="{pigcms:$product.logourl}" alt="{pigcms:$product.name}"/>
+            <br />
+{pigcms:$product.intro}</div>
+		<div class="p_mod p_seller_info p_tips ts2">
+			<a href="{pigcms::U('Product/product',array('token'=>$_GET['token'],'id'=>$product['id'],'wecha_id'=>$_GET['wecha_id']))}">
+				查看商品详情
+				<span class="gt"></span>
+			</a>
+		</div>
+	</div>
+	<div class="p_buy clearfix fixed_b">
+		<span class="p_price">
+			￥{pigcms:$product.price}
+		</span>
+		<a href="{pigcms::U('Product/product',array('token'=>$_GET['token'],'id'=>$product['id'],'wecha_id'=>$_GET['wecha_id']))}" class="p_btn_buy">
+			<span class="ts1">去购买</span>
+		</a>
+	</div>
+</div>
+
+</body>
+</html>

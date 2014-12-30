@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>抽奖 - 微现场</title>
+	<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/winner_list.css">
+	<script type="text/javascript" src="jquery-2.0.3.min.js" charset="utf-8"></script>
+<style>
+	.member-list span{width:190px;font-weight: bold;}
+	.member-list li{margin-right:44px;}
+	.member-avatar{width:190px}
+	.member-avatar img {width:190px;}
+	.member-list p{text-align: left;margin:0;height: 30px;line-height: 30px;overflow: hidden;}
+</style>
+</head>
+<body style="width:1200px;height:auto;">
+<h1>奖品清单</h1>
+	<div class="member-list" style="height: 403px;">
+		<ul class="clearfix">
+			<volist id="prize_info" name="prize_info">
+				<li>
+					<span>{pigcms:$prize_info.name}</span>
+					<div class="member-avatar" style="background: #fff;"><img src="{pigcms:$prize_info.pic}"></div>
+					<p>奖品名称:{pigcms:$prize_info.pname}</p>
+					<p>奖励名额：{pigcms:$prize_info.num}</p>
+				</li>	
+			</volist>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,570 @@
+﻿<!DOCTYPE html>
+ <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title></title>
+<meta id="viewport" name="viewport" content="width=640, initial-scale=0.5, maximum-scale=2.0, minimum-scale=0.5, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta name="MobileOptimized" content="640">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="tpl/Wap/default/common/greetiong_card/css/main.css" type="text/css">
+<script async="" src="tpl/Wap/default/common/greetiong_card/js/analytics.js"></script><script type="text/javascript" src="tpl/Wap/default/common/greetiong_card/js/viewport.js"></script>
+<script type="text/javascript" src="tpl/Wap/default/common/greetiong_card/js/jquery-1.9.1-min.js"></script>
+<script>
+		 
+		var deerSprite;
+		var newyearCar1Sprite;
+		var newyearCar2Sprite;
+		var newyearCar3Sprite;
+		var title1Sprite;
+		var title2Sprite;
+		var title3Sprite;
+		var openGiftSprite;
+		var flowerSprite;
+		function animation1()
+		{
+			$('.pop1').fadeIn(1000);
+			setTimeout(function(){$('.pop1').fadeOut(1000);$('.pop2').fadeIn(1000);},3000);
+			var duration1 = 15000;
+			var duration2 = 15000;
+			deerSprite = new createDeerSprite();
+			newyearCar1Sprite = new createCarSprite(1,{isVibrate:true});
+			$('.bg').animate({'left':'0px'},duration1,function(){});
+			$('.deer_group').animate({'left':'-640px'},duration2,function(){clearInterval(newyearCar1Sprite.timeID1);clearInterval(deerSprite.timeID1);newyearCar1Sprite.carRotate=0;newyearCar1Sprite.el.css('-webkit-transform','rotate('+newyearCar1Sprite.carRotate+'deg)');openGiftSprite = new createOpenGiftSprite();});
+			title1Sprite = new createTitleSprite(1,{isVibrate:true});
+			new createStarSprite(1,{'top':'10px','left':'0px','scale':0.2,'rotate':'0deg'});
+			new createStarSprite(2,{'top':'20px','left':'60px','scale':0.25,'rotate':'10deg'});
+			new createStarSprite(3,{'top':'320px','left':'120px','scale':0.2,'rotate':'20deg'});
+			new createStarSprite(4,{'top':'250px','left':'260px','scale':0.25,'rotate':'30deg'});
+			new createStarSprite(5,{'top':'20px','left':'480px','scale':0.3,'rotate':'40deg'});
+			new createStarSprite(6,{'top':'320px','left':'410px','scale':0.25,'rotate':'50deg'});
+			new createStarSprite(7,{'top':'390px','left':'500px','scale':0.4,'rotate':'60deg'});
+			new createStarSprite(8,{'top':'80px','left':'520px','scale':0.35,'rotate':'70deg'});
+			new createStarSprite(9,{'top':'420px','left':'30px','scale':0.4,'rotate':'80deg'});
+		}
+		
+		function animation2()
+		{
+			flowerSprite = new createFlowersSprite(10);
+			title2Sprite = new createTitleSprite(2,{isVibrate:false});
+			var titleStep = 0;
+			$('#title2').animate({'opacity':1,'top':'30px'},{'step':function(now,fx){if(fx.prop=='opacity'){titleStep++;}if(titleStep%2==0 && fx.prop=='opacity'){$(this).css('-webkit-transform','scale('+now+')');}},'duration':3000});
+			setTimeout(function(){animation3();},3000);
+		}
+		
+		function animation3()
+		{
+			clearInterval(flowerSprite.timeID1);
+			clearInterval(title2Sprite.timeID1);
+			setTimeout(function(){$('.animation2').fadeOut();$('.animation3').fadeIn();},1500);
+			title3Sprite = new createTitleSprite(3,{isVibrate:true});
+			$('.goto_flower').click(function(){
+				//location.href='http://sun-air.net/wechat/event_20131230_2.html';
+			});
+			$('.share_help_entry').click(function(){
+				$('.card_help').fadeIn(500);
+			});
+			$('.card_help').click(function(){
+				$('.card_help').fadeOut(500);
+			});
+		}
+		
+		function createDeerSprite()
+		{
+			this.duration1 = 100;
+			this.el = $('.deer');
+			this.timeID1 = setInterval(function(){deerSprite.el.toggleClass('deer_frame2');},this.duration1);
+		}
+		
+		function createCarSprite(id,option)
+		{
+			this.duration1 = 100;
+			this.el = $('#newyearcar'+id);
+			if(option.isVibrate)
+			{
+				this.carRotate = 0;
+				this.perCarRotate = 0.1;
+				this.carMinRotate = -1;
+				this.carMaxRotate = 1;
+				var carSprite = this;
+				this.timeID1 = setInterval(function()
+				{
+					if(carSprite.carMinRotate<carSprite.carRotate && carSprite.carRotate<carSprite.carMaxRotate)
+					{
+						carSprite.carRotate = carSprite.carRotate+carSprite.perCarRotate;
+					}else if(carSprite.carRotate>=carSprite.carMaxRotate)
+					{
+						carSprite.perCarRotate = -0.1;
+						carSprite.carRotate = carSprite.carRotate+carSprite.perCarRotate;
+					}else if(carSprite.carRotate<=carSprite.carMinRotate)
+					{
+						carSprite.perCarRotate = 0.1;
+						carSprite.carRotate = carSprite.carRotate+carSprite.perCarRotate;
+					}
+					carSprite.el.css('-webkit-transform','rotate('+carSprite.carRotate+'deg)');
+				},this.duration1);
+			}
+		}
+		
+		function createTitleSprite(id,option)
+		{
+			this.duration1 = 100;
+			this.el = $('#title'+id);
+			this.rotate = 0;
+			this.perRotate = 0.1;
+			this.minRotate = -1;
+			this.maxRotate = 1;
+			titleSprite = this;
+			if(option.isVibrate)
+			{
+				this.timeID1 = setInterval(function()
+				{
+					if(titleSprite.minRotate<titleSprite.rotate && titleSprite.rotate<titleSprite.maxRotate)
+					{
+						titleSprite.rotate = titleSprite.rotate+titleSprite.perRotate;
+					}else if(titleSprite.rotate>=titleSprite.maxRotate)
+					{
+						titleSprite.perRotate = -0.1;
+						titleSprite.rotate = titleSprite.rotate+titleSprite.perRotate;
+					}else if(titleSprite.rotate<=titleSprite.minRotate)
+					{
+						titleSprite.perRotate = 0.1;
+						titleSprite.rotate = titleSprite.rotate+titleSprite.perRotate;
+					}
+					titleSprite.el.css('-webkit-transform','rotate('+titleSprite.rotate+'deg)');
+				},this.duration1);
+			}
+		}
+		
+		function createOpenGiftSprite()
+		{
+			this.el = $('.opengift');
+			this.el.show();
+			this.minWidth = 134;
+			this.maxWidth = 168;
+			this.currentWidth = this.minWidth;
+			this.changePosition = 0;
+			this.perChangePosition = 2;
+			var openGiftSprite = this;
+			this.timeID1 = setInterval(function()
+			{
+				if(openGiftSprite.currentWidth>openGiftSprite.maxWidth || openGiftSprite.currentWidth<openGiftSprite.minWidth)
+				{
+					openGiftSprite.perChangePosition = -openGiftSprite.perChangePosition;
+				}
+				openGiftSprite.currentWidth = openGiftSprite.currentWidth+openGiftSprite.perChangePosition;
+				openGiftSprite.changePosition = openGiftSprite.changePosition+openGiftSprite.perChangePosition;
+				openGiftSprite.el.css('top',parseInt(openGiftSprite.el.css('top'),10)-openGiftSprite.perChangePosition/2+'px');
+				openGiftSprite.el.css('left',parseInt(openGiftSprite.el.css('left'),10)-openGiftSprite.perChangePosition/2+'px');
+				openGiftSprite.el.css('width',openGiftSprite.currentWidth+'px');
+				openGiftSprite.el.css('height',openGiftSprite.currentWidth+'px');
+			},100);	
+		}
+		
+		function createStarSprite(id,option)
+		{
+			this.el = $('#star'+id);
+			this.minWidth = 115;
+			this.maxWidth = 115;
+			this.initScale = option.scale ? option.scale : 1;
+			this.minScale = option.minScale ? option.minScale : option.scale/1.2;
+			this.maxScale = option.maxScale ? option.maxScale : option.scale*1.2;
+			this.initRotate = option.rotate ? option.rotate : '0deg';
+			this.perChangeScale = (this.initScale-this.minScale)/5;
+			this.el.css('-webkit-transform','scale('+this.initScale+') rotate('+this.initRotate+')');
+			this.currentScale = this.initScale;
+			this.el.css('top',option.top);
+			this.el.css('left',option.left);
+			var starSprite = this;
+			this.timeID1 = setInterval(function(){
+				if(starSprite.currentScale>starSprite.maxScale || starSprite.currentScale<starSprite.minScale)
+				{
+					starSprite.perChangeScale = -starSprite.perChangeScale;
+				}
+				starSprite.currentScale = starSprite.currentScale+starSprite.perChangeScale;
+				starSprite.el.css('-webkit-transform','scale('+starSprite.currentScale+') rotate('+starSprite.initRotate+')');
+				starSprite.el.css('transform','scale('+starSprite.currentScale+') rotate('+starSprite.initRotate+')');
+			},100);
+		}
+		
+		function createFlowersSprite(number)
+		{
+			this.flowerResArr = new Array();
+			this.flowerResArr[0] = ['flower_1.png','flower_4.png','flower_6.png','flower_7.png','flower_8.png','flower_10.png','flower_11.png','flower_12.png','flower_14.png'];
+			this.flowerResArr[1] = ['flower_2.png','flower_3.png','flower_4.png','flower_5.png','flower_7.png','flower_8.png','flower_9.png','flower_10.png','flower_12.png','flower_13.png'];
+			this.flowerCountsPerTime = number;
+			this.flowerArr = new Array();
+			this.middlePosition = 220;
+			this.topWidth = 350;
+			this.leftWidth = this.middlePosition;
+			this.createFlowerAnimation = function(){
+				for(i=0;i<this.flowerCountsPerTime;i++)
+				{
+					this.flowerArr[i]= document.createElement('img');
+					this.flowerArr[i].style.position = 'absolute';
+					
+					//alert(i%2);
+					if(i%2==0)
+					{
+						this.leftWidth = this.middlePosition-i*6;
+					}else{
+						this.leftWidth = this.middlePosition+i*6;
+					}
+					if(this.leftWidth<=this.middlePosition)
+					{
+						this.flowerArr[i].src = 'tpl/Wap/default/common/greetiong_card/images/'+this.flowerResArr[0][(parseInt(Math.random()*9)%9)];
+					}else{
+						this.flowerArr[i].src = 'tpl/Wap/default/common/greetiong_card/images/'+this.flowerResArr[1][(parseInt(Math.random()*10)%10)];
+					}
+					this.flowerArr[i].style.top = this.topWidth+'px';
+					this.flowerArr[i].style.left = this.leftWidth+'px';
+					$('.animation2 .flower').append(this.flowerArr[i]);
+					$(this.flowerArr[i]).animate({'top':'-300px','left':this.leftWidth<=this.middlePosition ? this.leftWidth-80-(i*65)+'px' : this.leftWidth+80+(i*65)+'px'},2000,'swing',function(){$(this).remove();});
+				}
+			};
+			flowerSprite = this;
+			this.timeID1 = setInterval(function(){flowerSprite.createFlowerAnimation(number);},200);
+		}
+		
+		$(document).ready(function(){
+			$('.start').click(function(){
+				animation1();
+				$(this).hide();
+				//$('#audio1')[0].play();
+			});
+			$('.opengift').click(function(){
+				clearInterval(title1Sprite.timeID1);
+				clearInterval(openGiftSprite.timeID1);
+				$('.animation1').hide();
+				$('.animation2').show();
+				animation2();
+			});
+		});
+		
+		
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="bg"></div>
+		<div class="animation1">
+			<div class="start"></div>
+			<div id="star1" class="star"></div>
+			<div id="star2" class="star"></div>
+			<div id="star3" class="star"></div>
+			<div id="star4" class="star"></div>
+			<div id="star5" class="star"></div>
+			<div id="star6" class="star"></div>
+			<div id="star7" class="star"></div>
+			<div id="star8" class="star"></div>
+			<div id="star9" class="star"></div>
+			<h3 id="title1" class="title"></h3>
+			<div class="deer_group">
+				<div class="pop1"></div>
+				<div class="pop2"><div class="content_border"><img src="tpl/Wap/default/common/greetiong_card/images/desc_1.png" class="content_1">{pigcms:$greeting_card['name']}</div><img src="tpl/Wap/default/common/greetiong_card/images/desc_2.png" class="content_3"></div>
+				<div class="deer"></div>
+				<div id="newyearcar1" class="newyearcar"></div>
+				<div class="opengift"></div>
+			</div>
+		</div>
+		<div class="animation2">
+			<h3 id="title2" class="title"></h3>
+			<div class="flower"></div>
+			<div id="newyearcar2" class="newyearcar"></div>
+		</div>
+		<div class="animation3">
+			<h3 id="title3" class="title"></h3>
+			 			<div class="share_help_entry"></div>
+		 
+           
+
+ <div id="sharemcover" onClick="document.getElementById('sharemcover').style.display='';" style=" display:none"><img src="tpl/Wap/default/common/greetiong_card/images/MgnnofmleM.png"></div>
+ <div class="cardWrap">
+    
+<style>
+.btn_music {
+display: inline-block;
+width: 35px;
+height: 35px;
+background: url('tpl/Wap/default/common/greetiong_card/images/img/play.png') no-repeat center center;
+background-size: 100% auto;
+position: absolute;
+z-index: 100;
+left: 15px;
+top: 30px;
+}
+.btn_music.on {
+    background-image: url("tpl/Wap/default/common/greetiong_card/images/img/stop.png");
+}
+
+.copyright {
+padding: 8px 0 8px 0;
+position: fixed;
+z-index: 9999;
+font-size: 18px;
+bottom: 0;
+width: 100%;
+color: #477585;
+text-align: center;
+display: block;
+}
+ 
+ </style>
+
+<div class="messageBox">
+            <div class="user">
+                       <div class="message">{pigcms:$greeting_card['info']}</div>
+                 
+                <div class="name">{pigcms:$greeting_card['name']}</div>
+                <div class="time"><php>echo date('Y年m月d日',time());</php></div>
+            </div>
+            
+               <div  class="dh" id="dh" style="display:none">
+            <select class="selectstyle fl"
+  id="bjdh" onChange="doit()" name="bjdh"   > 
+                    <option    value="0">请选择动画</option>
+                     <option    value="1">下落的枫叶</option>
+                     <option    value="2">飘雪</option>
+                     <option    value="4">飘玫瑰</option>
+                      <option   selected   value="5">驯鹿</option>
+ 
+                    </select>
+                     <select class="selectstyle fr"
+  id="bjid" onChange="doit()" name="bjid"   > 
+                    
+                   <option     selected   value="439">新年贺卡</option><option   selected   value="439">新年贺卡</option> 
+                    </select>
+                    </div>
+    </div>
+    
+</div>
+            
+            <div class="share_help_entry"></div>
+			<div class="card_help"></div>
+			<div id="newyearcar3" class="newyearcar"></div>
+		</div>
+	</div>
+		
+	<div id="preload" style="display:none" >
+		<img src="tpl/Wap/default/common/greetiong_card/images/reindeer_2.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_1.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_2.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_3.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_4.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_5.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_6.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_7.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_8.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_9.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_10.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_11.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_12.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_13.png">
+		<img src="tpl/Wap/default/common/greetiong_card/images/flower_14.png">
+	</div>
+ 
+
+
+
+<script type="text/javascript">
+
+function doit(){
+	 window.location = "{pigcms::C('site_url')}/index.php?g=Wap&m=Greeting_card&a=index&name="+encodeURIComponent($.trim($(".name").html()))+"&type="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html()));
+}
+function changeText(cont1,cont2,speed){
+	var Otext=cont1.text();
+	var Ocontent=Otext.split("");
+	var i=0;
+	function show(){
+		if(i<Ocontent.length)
+		{		
+			cont2.append(Ocontent[i]);
+			i=i+1;
+		} 
+		 
+	};
+		var Otimer=setInterval(show,speed);	
+};
+ 	
+
+$(document).ready(function(){
+
+	$(".name").click(function(){
+		
+	 
+		
+		$(".dh").show();
+			if($(this).find(".sort_input").attr("type") == "text"){return false;}
+			var name = $.trim($(this).html());
+			var m = $.trim($(this).text());
+			$(this).html("<input type=text value=\""+name+"\" class=\"sort_input\">");
+			$(this).find(".sort_input").focus();
+			$(this).find(".sort_input").bind("blur", function(){
+				var n = $.trim($(this).val());
+				if(n != m && n != ""){
+					//window.location = "sort.php?val="+encodeURIComponent(n);
+					//发送信息
+					$(this).parent().html(n);
+				}else{
+					$(this).parent().html(name);
+				}
+			});
+	});
+	$(".message").click(function(){
+		 
+		$(".dh").show();
+			if($(this).find(".sort_textarea").attr("name") == "textarea"){return false;}
+			var message = $.trim($(this).html());
+			var mm = $.trim($(this).text());
+			$(this).html("<textarea name=\"textarea\" class=\"sort_textarea\">"+message+"</textarea>");
+			$(this).find(".sort_textarea").focus();
+			//$(this).find(".sort_textarea").select() ;
+			$(this).find(".sort_textarea").bind("blur", function(){
+				 
+				var nn = $.trim($(this).val());
+				if(nn != mm && nn != ""){
+					//window.location = "sort.php?val="+encodeURIComponent(n);
+					//发送信息
+					$(this).parent().html(nn);
+				}else{
+					$(this).parent().html(message);
+				}
+			});
+	});
+	
+	/*changeText($(".message"),$(".message2"),150);
+	clearInterval(Otimer);*/
+});
+
+ 
+   document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": "{pigcms::C('site_url')}/tpl/Wap/default/common/greetiong_card/images/srkl009.jpg",
+                "img_width": "640",
+                "img_height": "640",
+                "link": "{pigcms::C('site_url')}/index.php?g=Wap&m=Greeting_card&a=index&name="+encodeURIComponent($.trim($(".name").html()))+"&type="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html())),
+                "desc":  $(".message").html(),
+                "title": "新年贺卡"
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": "{pigcms::C('site_url')}/tpl/Wap/default/common/greetiong_card/images/srkl009.jpg",
+                "img_width": "640",
+                "img_height": "640",
+                 "link": "{pigcms::C('site_url')}/index.php?g=Wap&m=Greeting_card&a=index&name="+encodeURIComponent($.trim($(".name").html()))+"&type="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html())),
+                "desc":  $(".message").html(),
+                "title": "新年贺卡"
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": $(".message").html(),
+                "url": "{pigcms::C('site_url')}/index.php?g=Wap&m=Greeting_card&a=index&name="+encodeURIComponent($.trim($(".name").html()))+"&type="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html()))
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+		
+		const NUMBER_OF_LEAVES = 30;
+ 
+function init()
+{
+    
+    var container = document.getElementById('leafContainer');
+   
+    for (var i = 0; i < NUMBER_OF_LEAVES; i++) 
+    {
+        container.appendChild(createALeaf());
+    }
+}
+
+ function randomInteger(low, high)
+{
+    return low + Math.floor(Math.random() * (high - low));
+}
+
+ 
+function randomFloat(low, high)
+{
+    return low + Math.random() * (high - low);
+}
+
+ 
+function pixelValue(value)
+{
+    return value + 'px';
+}
+ 
+function durationValue(value)
+{
+    return value + 's';
+}
+ 
+function createALeaf()
+{
+    
+    var leafDiv = document.createElement('div');
+    var image = document.createElement('img');
+    
+    image.src = 'tpl/Wap/default/common/greetiong_card/images/{pigcms:$greeting_card.type}' + randomInteger(1, 5) + '.png';
+    
+   
+   // image.src = '../index/images/dhimg/realLeaf' + randomInteger(1, 5) + '.png';
+    
+    leafDiv.style.top = "-100px";
+
+  
+    leafDiv.style.left = pixelValue(randomInteger(0, 500));
+    
+   
+    var spinAnimationName = (Math.random() < 0.5) ? 'clockwiseSpin' : 'counterclockwiseSpinAndFlip';
+    
+    
+    leafDiv.style.webkitAnimationName = 'fade, drop';
+    image.style.webkitAnimationName = spinAnimationName;
+    
+   
+    var fadeAndDropDuration = durationValue(randomFloat(5, 11));
+   
+    var spinDuration = durationValue(randomFloat(4, 8));
+     
+    leafDiv.style.webkitAnimationDuration = fadeAndDropDuration + ', ' + fadeAndDropDuration;
+
+    var leafDelay = durationValue(randomFloat(0, 5));
+    leafDiv.style.webkitAnimationDelay = leafDelay + ', ' + leafDelay;
+
+    image.style.webkitAnimationDuration = spinDuration;
+
+ 
+    leafDiv.appendChild(image);
+ 
+    return leafDiv;
+}
+ 
+window.addEventListener('load', init, false);
+
+</script>
+ 
+
+ 
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+</script>
+ <div class="copyright"> © 2013-2014 {pigcms:$greeting_card['copy']}</div>
+</body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://wxsyb.bama555.com/activity/free_vote/result_list/?id=23839&rotate_id=58 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>投票 - {pigcms:$info.title}</title>
+	<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/winner_list.css">
+</head>
+<body style="width:1200px;min-height:550px;">
+<h1>投票结果</h1>
+<div class="member-list" style="height: 316px;">
+	<ul class="clearfix">
+		<if condition="$vote eq ''">
+			<li><h3>暂无投票结果</h3></li>
+		<else/>
+		<volist id="vote" name="vote" key="key">
+			<li>
+				<span>第{pigcms:$key}名</span>
+				<div class="member-avatar" style="background: #fff;"><img src="{pigcms:$vote.startpicurl}"></div>
+				<span>{pigcms:$vote.item}({pigcms:$vote.vcount}票)</span>
+			</li>
+		</volist>
+		</if>
+	</ul>
+</div>
+
+</body></html>

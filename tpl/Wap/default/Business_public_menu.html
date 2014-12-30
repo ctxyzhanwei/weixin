@@ -1,0 +1,55 @@
+   <script type="text/javascript">
+window.shareData = {
+            "moduleName":"Business",
+            "moduleID":"0",
+            "imgUrl": "{pigcms:$busines['picurl']}",
+            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Business/index',array('token'=>$token,'type'=>$busines['type'],'bid'=>$busines['bid']))}",
+            "tTitle": "{pigcms:$busines['title']}",
+            "tContent": "{pigcms:$busines['business_desc']|html_entity_decode|strip_tags|mb_substr=0,89,'utf-8'}..."
+        };
+</script>
+{pigcms:$shareScript}
+
+    <div id="ui-header" >
+        <div class="fixed">
+            <a class="ui-title" id="popmenu">选择分类</a> <a class="ui-btn-left_pre" href="{pigcms::U('Business/index',array('token'=>$token,'type'=>$busines['type'],'bid'=>$busines['bid'],'wecha_id'=>$wecha_id))}">
+            </a><a class="ui-btn-right" href=""></a>
+        </div>
+    </div>
+    <div id="overlay"></div>
+<div id="win" >
+<ul class="dropdown">
+
+<if condition="$busines['type'] eq 'fitness'">
+                    <include file="Business:fitness_menu"/>
+                    <elseif condition="$busines['type'] eq 'gover'"/>
+                        <include file="Business:gover_menu"/>
+                    <elseif condition="$busines['type'] eq 'food'"/>
+                        <include file="Business:food_menu"/>
+                    <elseif condition="$busines['type'] eq 'travel'"/>
+                        <include file="Business:travel_menu"/>
+                    <elseif condition="$busines['type'] eq 'flower'"/>
+                        <include file="Business:flower_menu"/>
+                    <elseif condition="$busines['type'] eq 'property'"/>
+                        <include file="Business:property_menu"/>
+                    <elseif condition="$busines['type'] eq 'ktv'"/>
+                        <include file="Business:ktv_menu"/>
+                    <elseif condition="$busines['type'] eq 'bar'"/>
+                        <include file="Business:bar_menu"/>
+                    <elseif condition="$busines['type'] eq 'fitment'"/>
+                        <include file="Business:fitment_menu"/>
+                    <elseif condition="$busines['type'] eq 'wedding'"/>
+                        <include file="Business:wedding_menu"/>
+                    <elseif condition="$busines['type'] eq 'affections'"/>
+                        <include file="Business:affections_menu"/>
+                    <elseif condition="$busines['type'] eq 'housekeeper'"/>
+                        <include file="Business:housekeeper_menu"/>
+                    <elseif condition="$busines['type'] eq 'lease'"/>
+                        <include file="Business:lease_menu"/>
+                    <elseif condition="$busines['type'] eq 'beauty'"/>
+                        <include file="Business:beauty_menu"/>
+                    </if>
+
+<div class="clr"></div>
+ </ul>
+</div>

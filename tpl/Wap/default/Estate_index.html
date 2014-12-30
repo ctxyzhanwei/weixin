@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+ <link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/waphome.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/reset.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/common.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/wap/index.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/swipe.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/zepto.js"></script>
+
+<title>{pigcms:$estatindex['title']}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="wrapper" id="container">
+
+<if condition="$estatindex['banner'] neq ''">
+<div class="act_top" id="actTop" style="">
+    <div class="act_top_show">
+        <img src="{pigcms:$estatindex['banner']}" width="100%" >
+    </div>
+</div>
+</if>
+<div class="box box_up">
+     <h3>楼盘简介</h3>
+        <div class="box_time">
+            {pigcms:$estatindex['estate_desc']|html_entity_decode|trim}
+        </div>
+        <a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>
+        </div>
+
+        <div class="box">
+        <h3>地图</h3>
+        <div class="box_map">
+        <div class="map_area">
+          <a  href="http://chabus.duapp.com/mapapi.php?lng={pigcms:$estatindex['lng']}&lat={pigcms:$estatindex['lat']}&title=预约&info=温馨提示：楼盘大概位置"><img  src="http://api.map.baidu.com/staticimage?width=600&height=235&center={pigcms:$estatindex['address']}&markers={pigcms:$estatindex['address']}|{pigcms:$estatindex['lng']},{pigcms:$estatindex['lat']}&zoom=10&markerStyles=s,A,0xff0000"  height="90" style="max-height: 100px;width: 100%"/></a>
+        </div>
+         <p>{pigcms:$estatindex['place']}</p> </div>
+        </div>
+
+        <div class="box" <if condition="$estatindex['video'] neq ''"> style="display: block;"<else/> style="display: none;" </if>>
+          <h3>视频欣赏</h3>
+           <div class="box_type" style="text-align:center;" id="">
+<div class="video-box tpl-video"  id="content" style="display:block;">{pigcms:$estatindex['video']}</div>
+<script src="tpl/Wap/default/common/wedding/js/play.js" type="text/javascript"></script>
+           </div><p>&nbsp;</p>
+           </div>
+
+        <div class="box box_up" style="display:">
+        <h3>项目简介</h3>
+         <div class="box_info">{pigcms:$estatindex['project_brief']|html_entity_decode|trim} </div>
+         <a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>更多</span></a>
+          </div>
+
+        <div class="box" style="display:">    
+          <h3>交通配套</h3>
+          <div class="box_info">
+           {pigcms:$estatindex['traffic_desc']|html_entity_decode|trim}
+            </div> <a href="javascript:void(0);" onclick="Index.switchIndex(this);return false;" class="btn_more"><span>收起</span></a>   </div> </div>
+                <p>&nbsp;</p>
+<include file="Estate:menu"/>
+<div mark="stat_code" style="width:0px; height:0px; display:none;"> </div>
+</body>
+</html>

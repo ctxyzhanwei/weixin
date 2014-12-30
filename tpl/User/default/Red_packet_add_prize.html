@@ -1,0 +1,81 @@
+<include file="Public:head"/>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ 
+ 
+<form class="form" method="post"  action=""  enctype="multipart/form-data" >
+        <div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>红包设置</h4>
+    <a href="{pigcms::U('Red_packet/prize_list',array('token'=>$this->token,'id'=>$packet_id))}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+<div class="msgWrap bgfc">
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%"><TBODY>
+
+<tr>
+  <th><span class="red">*</span>红包类型：</th>
+  <td>
+    <input type="radio" name="type" class="type" value="1" <if condition="$info.type neq '2'">checked</if>>虚拟红包&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="type" class="type" value="2" <if condition="$info.type eq '2'">checked</if>>实物礼品&nbsp;&nbsp;&nbsp;  
+  </td>
+</tr>
+
+<TR>
+  <th valign="top"><span class="red">*</span>红包名称：</th>
+  <TD>
+  <input type="input" class="px" id="name" value="{pigcms:$info.name}" name="name" style="width:320px" />
+  </TD>
+</TR>
+
+<tr>
+  <th><span class="red">*</span>红包价值：</th>
+  <td>
+      <input class="px"  name="worth" value="{pigcms:$info.worth}" id="pic1" style="width:100px;"  />&nbsp;&nbsp;（请设置红包/礼品的价值）
+  </td>
+</tr>
+
+<tr>
+  <th><span class="red">*</span>红包数量：</th>
+  <td>
+    <input type="text" class="px" name="num" value="{pigcms:$info.num}" style="width:100px;">&nbsp;&nbsp;（请设置红包/礼品的数量）
+  </td>
+</tr>
+
+<tr>
+  <th><span class="red">*</span>中奖几率：</th>
+  <td>
+    <input type="text" class="px" name="odds" value="{pigcms:$info.odds}" style="width:100px;">（请设置抽中几率，设置的数越小中奖几率越低，实际中奖几率根据（当前中奖几率/所有奖品中奖几率总和）<br />
+    例如：所有奖品的中奖几率相加等于1000，其中一个奖项的中奖几率是1，那么中奖的几率就是1/1000
+    如果不想被抽中请设置为0）
+  </td>
+</tr>
+
+<tr>
+  <th>是否启用</th>
+  <td>
+    <input type="radio" name="is_open" class="is_show" value="1" <if condition="$info.is_open neq '0'">checked</if>>开启&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="is_open" class="is_show" value="0" <if condition="$info.is_open eq '0'">checked</if>>关闭&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（只有开启的红包才能被抽中）
+  </td>
+</tr>
+
+<TR>
+<th>&nbsp;
+  <input type="hidden" name="id" value="{pigcms:$info.id}">
+  <input type="hidden" name="packet_id" value="{pigcms:$packet_id}">
+</th>
+<td><button class="btnGreen" id="sub">保存</button>　<a href=""  class="btnGray vm">取消</a>　<span class="red"></span></td>
+</TR>
+</TBODY>
+</TABLE>
+</div>
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

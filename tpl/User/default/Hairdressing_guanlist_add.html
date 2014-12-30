@@ -1,0 +1,138 @@
+<include file="Public:head"/>
+<include file="Hairdressing:menu"/>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+<div class="content">
+  <div class="cLineB">
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置美容服务相关内容。注意：美容介绍和表单设置，第一次使用，请点击添加美容介绍和添加表单设置，并点击保存</font></strong>
+
+    </p>
+    </div>
+</div>
+  </div>
+
+    <div class="msgWrap">
+    <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <input type="hidden" class="px" id="id" value="" name="id" style="width:500px">
+            <input type="hidden" class="px" id="token" value="xsdyme1396150564" name="token" style="width:500px">
+          </tr><tr>
+            <th valign="top"><label for="keyword">姓名</label></th>
+            <td><input type="input" class="px" id="name" value="" name="name" style="width:300px">
+              填写关键词20个字以内<br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">性别</label></th>
+            <td><input type="input" class="px" id="sex" value="" name="sex" style="width:300px">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">年龄</label></th>
+            <td><input type="input" class="px" id="age" value="" name="age" style="width:500px">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">预约日期</label></th>
+            <td><input type="input" class="px" id="scheduled_date" value="" name="scheduled_date" style="width:120px" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true});">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">套餐选择</label></th>
+            <td><select name="departments" id="departments" style="width:200px">
+                <option value="">请选择套餐</option>
+                <option value="fdas">fdas</option>              </select>
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">人数</label></th>
+            <td><input type="input" class="px" id="expert" value="" name="expert" style="width:200px">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">备注</label></th>
+            <td><input type="input" class="px" id="disease" value="" name="disease" style="width:200px">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">联系方式</label></th>
+            <td><input type="input" class="px" id="phone" value="" name="phone" style="width:200px">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">地址</label></th>
+            <td><input type="input" class="px" id="address" value="" name="address" style="width:200px">
+              <br>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="keyword">是否处理</label></th>
+            <td><select name="process" id="process" style="width:200px">
+                <option value="未处理">未处理</option>
+                <option value="已处理">已处理</option>
+              </select>
+              <br>
+            </td>
+            <td></td>
+          </tr>
+        <input type="hidden" class="px" id="hid" value="" name="hid" style="width:500px">
+        <tr>
+          <th></th>
+          <td><button type="submit" name="button" class="btnGreen left">保存</button>
+            <div class="clr"></div></td>
+        </tr>
+        </tbody>
+
+      </table>
+    <input type="hidden" name="__hash__" value="c3673869a8612afbd4506f8ab2ea93fc_6670a381cd8b669e76a040d676a6956b"></form>
+
+</div>
+
+<include file="Public:footer"/>

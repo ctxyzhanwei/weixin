@@ -1,0 +1,121 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB">
+<h4 class="left"></h4>
+<div class="searchbar right">
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<div class="cLineB">
+  <h4>邀请函回复配置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+         
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+		
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词　　　:</th>
+				  <td>
+					<span class="red"><input type="text" name="keyword" value="{pigcms:$Invite.keyword}" class="px" style="width:550px;">当用户输入该关键词时，将会触发此回复。<br>多个关键词间用空格。</span></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>回复标题　　:</th>
+					<td><input type="text" name="title" value="{pigcms:$Invite.title}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th><span class="red">*</span>回复图片　　:</th>
+					<td><input type="text" name="replypic" value="{pigcms:$Invite.replypic|default=$staticPath.'/tpl/static/attachment/focus/wedding/10.jpg'}" class="px" style="width:550px;" id="pic" onblur="document.getElementById('pic_src').src=document.getElementById('pic').value;document.getElementById('zpic2').src=document.getElementById('pic').value;" onchange="document.getElementById('pic_src').src=document.getElementById('pic').value;document.getElementById('zpic2').src=document.getElementById('pic').value;">
+                    <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>内容介绍　　:</th>
+					<td><textarea style="width:550px;height:75px" name="content" id="info" class="px">{pigcms:$Invite.content}</textarea>最多填写120个字</td>
+				</tr>
+				<tr><td colspan="2"><div style="width:100%;border-bottom:1px solid lightgray;"></div></td></tr>
+				<tr><th colspan="2"><h4>活动配置信息</h4></th></tr>
+				<tr>
+					<th><span class="red">*</span>封面图片　　:</th>
+					<td><input type="text" name="cover" id="cover" value="{pigcms:$Invite.cover|default=$staticPath.'/tpl/static/attachment/background/wedding/1.jpg'}" class="px" style="width:550px;"><script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script> <a href="###" onclick="upyunPicUpload('cover',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('cover')">预览</a></td>
+				</tr>
+				<tr>
+					<th><span class="red">*</span>背景图片　　:</th>
+					<td><input type="text" name="inback" id="inback" value="{pigcms:$Invite.inback|default=$staticPath.'/tpl/static/attachment/background/wedding/8.jpg'}" class="px" style="width:550px;">   <script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script><a href="###" onclick="upyunPicUpload('inback',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('inback')">预览</a></td>
+				</tr>
+				<tr>
+					<th width="120">&nbsp&nbsp注意事项　　:</th>
+					<td><input type="text" name="warn" value="{pigcms:$Invite.warn}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>主办方电话　:</th>
+					<td><input type="text" name="photo" value="{pigcms:$Invite.photo}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">&nbsp&nbsp主办方邮箱　:</th>
+					<td><input type="text" name="email" value="{pigcms:$Invite.email}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>主办方地址　:</th>
+					<td><input type="text" name="site" value="{pigcms:$Invite.site}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>主办方邀请人:</th>
+					<td><input type="text" name="linkman" value="{pigcms:$Invite.linkman}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th><span class="red">*</span>活动介绍图片:</th>
+					<td><input type="text" name="meetpic" id="meetpic" value="{pigcms:$Invite.meetpic|default=$staticPath.'/tpl/static/attachment/background/wedding/14.jpg'}" class="px" style="width:550px;">   <script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script><a href="###" onclick="upyunPicUpload('meetpic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('meetpic')">预览</a></td>
+				</tr>
+				<tr>
+					<th>&nbsp&nbsp主办方二维码:</th>
+					<td><input type="text" name="twopic" id="twopic" value="{pigcms:$Invite.twopic}" class="px" style="width:550px;">   <script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script><a href="###" onclick="upyunPicUpload('twopic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('twopic')">预览</a></td>
+				</tr>
+				<tr>
+					<th width="120">&nbsp;&nbsp;活动网站链接:</th>
+					<td><input type="text" name="themeurl" value="{pigcms:$Invite.themeurl}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">&nbsp;&nbsp;活动网站名称:</th>
+					<td><input type="text" name="theme" value="{pigcms:$Invite.theme}" class="px" style="width:550px;"></td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+</div>
+<if condition="session('isQcloud') neq true">
+
+	<include file="Public:footer"/>
+	
+</if>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>手机预览</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+</head>
+<style>
+.phonecube {
+	overflow: hidden;
+}
+.phonemenucube {
+	height: 360px; overflow: hidden;background-color:rgb(249, 241, 212);
+}
+.phonehimg {
+	background: url("{pigcms::RES}/images/me.png") no-repeat; border: 1px solid rgb(219, 219, 219); width: 40px; height: 40px; overflow: hidden; margin-top: 10px; margin-left: 10px; float: left; _display: inline;
+}
+.phonetext {
+	background: url("{pigcms::RES}/images/talkbg.png") no-repeat; width: 190px; height: 260px; overflow: hidden; margin-top: 10px; margin-right: 10px; float: right;
+}
+.phonetextb {
+	background: rgb(255, 255, 255); width: 170px; height: 242px; overflow: hidden; margin-top: 10px; margin-left: 11px;
+}
+.phonetext_txt {
+	border: currentColor; width: 170px; height: 242px; overflow: hidden;
+}
+</style>
+<body style="overflow:hidden;">
+<div class="phonecube">
+<div class="phonemenucube">
+<div class="phonecube" style="display: block;">
+<div class="phonehimg"></div>
+<div class="phonetext">
+<div class="phonetextb">
+<textarea name="onebody" class="phonetext_txt" style="overflow:hidden;">{pigcms:$info.text}</textarea>
+</div>
+</div>
+</div></div></div>
+</body>
+</html>

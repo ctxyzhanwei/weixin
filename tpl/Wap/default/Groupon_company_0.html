@@ -1,0 +1,45 @@
+<include file="Groupon:header_0"/>
+    <div id="deal-bizinfo" class="box-style deal-bizinfo">
+        <h2><span class="icon-fonts">H</span>总店信息</h2>
+
+            <div class="biz-info">
+                <a href="{pigcms::U('Groupon/company',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$product['id']))}">
+                    <div class="biz-detail">
+                        <p class="title ell"> {pigcms:$thisCompany.name}</p>
+
+                        <p class="address ell">{pigcms:$thisCompany.address}</p>
+                    </div>
+                </a>
+
+                <div class="icon-fonts call">
+                    <a href="tel:{pigcms:$thisCompany.tel}">E</a>
+                </div>
+            </div>
+            <a class="more" href="{pigcms::U('Groupon/companyMap',array('token'=>$_GET['token'],'id'=>$_GET['id'],'companyid'=>$thisCompany['id'],'wecha_id'=>$_GET['wecha_id']))}">查看地图</a>
+            
+    </div>
+    
+    <pigcmsif where="$branchStoreCount gt 0">
+    <div id="deal-bizinfo" class="box-style deal-bizinfo">
+        <h2><span class="icon-fonts">H</span>分店信息</h2>
+        <pigcmslist array="branchStores" foreach="s">
+            <div class="biz-info">
+                <a href="{pigcms::U('Groupon/company',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$product['id']))}">
+                    <div class="biz-detail">
+                        <p class="title ell"> {pigcms:$s.name}</p>
+
+                        <p class="address ell">{pigcms:$s.address}</p>
+                    </div>
+                </a>
+
+                <div class="icon-fonts call">
+                    <a href="tel:{pigcms:$s.tel}">E</a>
+                </div>
+            </div>
+            
+            <a class="more" href="{pigcms::U('Groupon/companyMap',array('token'=>$_GET['token'],'id'=>$_GET['id'],'companyid'=>$s['id'],'wecha_id'=>$_GET['wecha_id']))}">查看地图</a><br>
+            </pigcmslist>
+            
+    </div>
+    </pigcmsif>
+<include file="Groupon:footer_0"/>

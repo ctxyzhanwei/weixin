@@ -1,0 +1,124 @@
+<include file="Scene:header"/>
+<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/screen_wall.css">
+<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/screen_wall_pic.css">
+<body class="FUN WALL" style="background-image:url({pigcms:$info.background});" onload="screen_init();">
+<div class="Panel Top" style="top: 0px;">
+    <if condition="$info['logo'] neq ''">
+        <img class="activity_logo" src="{pigcms:$info.logo}">
+    </if>
+    <div class="top_title" style="font-size: 30px">
+        <div>欢迎您参加-{pigcms:$info.title}</div>
+    </div>
+    <if condition="$info.qrcode neq ''">
+        <img class="mp_account_codeimage" src="{pigcms:$info.qrcode}">
+    </if>
+</div>
+<style>
+	#container,#container .wrapper,#container .flexslider,#container .flex-viewport,#container .slides{height:100%;width:100%;}
+	#container .slides li{min-height:100%;}
+	#container .slides li img{padding:5px;}
+	#container .main_body{ 
+		height:100%;
+		overflow: hidden;
+		position: absolute;
+	}
+	 
+</style>
+<div id="Msg" class="Panel MsgList" style="display: block; opacity: 1;"> 
+ <div class="fbody" id="container">
+  <div class="main_body">
+    <div class="box_wall box_photo relative">
+      <div class="wrapper clear">
+        <div class="flexslider">
+          
+        <div class="flex-viewport" style="overflow: hidden; position: relative;display:none;">
+            <ul class="slides">
+                <volist  name="message" id="item" key="key">
+                    <li class="<if condition="$key eq 1">flex-active-slide</if>" style="width: 1440px; float: left; display: block;"> <img src="{pigcms:$item.picture}" draggable="false"> </li>
+                </volist>     
+
+            </ul>
+        </div>
+        <ol class="flex-control-nav flex-control-paging">
+            <volist  name="message" id="item" key="key">
+                <li class="<if condition="$key eq 1">flex-active</if>">{pigcms:$key}</li>
+            </volist>  
+        </ol>
+
+        <ul class="flex-direction-nav">
+            <li><a class="flex-prev" href="###">Previous</a></li>
+            <li><a class="flex-next" href="###">Next</a></li>
+        </ul>
+        </div>
+      </div>
+       <div class="pmenu">
+        <ul class="op clear" id="controler">
+          <li><a href="javascript:;" class="prev">prev</a></li>
+          <li><a href="javascript:;" class="playAndStop on">play&amp;stop</a></li>
+          <li><a href="javascript:;" class="next">next</a></li>
+          <!--
+          <li><button class="quanpin" id="fullscreen">全屏</button> </li>
+          <li><div id="playbox" class="btn_music on" onclick="playbox.init(this).play();"><audio autoplay="autoplay" src="http://images20140326.qiniudn.com/to%20you.mp3" loop="" id="audio"></audio></div></li>   
+          -->  
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div style="clear:both;margin:5px 0;"></div>
+</div>
+    
+</div>
+<script>
+var status      = 1;    //请求状态
+var load_time   = 3000; //请求间隔
+var sceneid     = '{pigcms:$sceneid}';
+var is_pic      = 1;
+var url         = '/index.php?g=User&m=Scene&a=ajaxWallPic&token={pigcms:$token}&id={pigcms:$info.id}';
+</script>
+
+<script type="text/javascript" src="/tpl/static/wall/js/scene_wall.js" charset="utf-8"></script>
+<input type="hidden" name="ajax_time" style="width:100px;" value="<?php echo time();?>" id="ajax_time" />
+<script type="text/javascript" src="/tpl/static/wall/js/flexslider.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+$(function(){
+ $('.flexslider').flexslider({
+    slideshowSpeed:3000,
+    animation: "slide",
+    init: function(thi){
+        $("#controler a").click(function(a1, a2){
+            var auto = $(".playAndStop")[0].className;
+            auto = auto.indexOf("on")>-1;
+            switch(this.innerHTML){
+                case "prev":
+                    thi.flexslider("prev");
+                    if(auto){
+                        thi.play();
+                    }
+                break;
+                case "next":
+                    thi.flexslider("next");
+                    if(auto){
+                        thi.play();
+                    }
+                        
+                break;
+                default:
+                    if(this.className.indexOf("on") > -1){
+                        this.className = "playAndStop";
+                        thi.pause();
+                    }else{
+                        this.className = "playAndStop on";
+                        thi.play();
+                    }
+                break;
+
+            }
+        });
+    }
+ });
+});
+
+</script>
+
+<include file="Scene:footer"/>

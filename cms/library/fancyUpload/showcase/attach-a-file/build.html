@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Attach a File - Standalone Showcase from digitarald.de</title>
+
+	<meta name="author" content="Harald Kirschner, digitarald.de" />
+	<meta name="copyright" content="Copyright 2009 Harald Kirschner" />
+
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/print.css" type="text/css" media="print">
+	<!--[if IE]><link rel="stylesheet" href="http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<!--[if lte IE 7]>
+	<script type="text/javascript" src="http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js"></script>
+<![endif]-->
+
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.2/mootools.js"></script>
+
+	<script type="text/javascript" src="../../source/Fx.ProgressBar.js"></script>
+
+	<script type="text/javascript" src="../../source/Swiff.Uploader.js"></script>
+
+	<script type="text/javascript" src="../../source/FancyUpload3.Attach.js"></script>
+
+
+	<!-- See script.js -->
+	<script type="text/javascript">
+		//<![CDATA[
+
+		/**
+ * FancyUpload Showcase
+ *
+ * @license		MIT License
+ * @author		Harald Kirschner <mail [at] digitarald [dot] de>
+ * @copyright	Authors
+ */
+
+window.addEvent('domready', function() {
+
+	/**
+	 * Uploader instance
+	 */
+	var up = new FancyUpload3.Attach('demo-list', '#demo-attach, #demo-attach-2', {
+		path: '../../source/Swiff.Uploader.swf',
+		url: '../script.php',
+		fileSizeMax: 2 * 1024 * 1024,
+		
+		verbose: true,
+		
+		onSelectFail: function(files) {
+			files.each(function(file) {
+				new Element('li', {
+					'class': 'file-invalid',
+					events: {
+						click: function() {
+							this.destroy();
+						}
+					}
+				}).adopt(
+					new Element('span', {html: file.validationErrorMessage || file.validationError})
+				).inject(this.list, 'bottom');
+			}, this);	
+		},
+		
+		onFileSuccess: function(file) {
+			new Element('input', {type: 'checkbox', 'checked': true}).inject(file.ui.element, 'top');
+			file.ui.element.highlight('#e6efc2');
+		},
+		
+		onFileError: function(file) {
+			file.ui.cancel.set('html', 'Retry').removeEvents().addEvent('click', function() {
+				file.requeue();
+				return false;
+			});
+			
+			new Element('span', {
+				html: file.errorMessage,
+				'class': 'file-error'
+			}).inject(file.ui.cancel, 'after');
+		},
+		
+		onFileRequeue: function(file) {
+			file.ui.element.getElement('.file-error').destroy();
+			
+			file.ui.cancel.set('html', 'Cancel').removeEvents().addEvent('click', function() {
+				file.remove();
+				return false;
+			});
+			
+			this.start();
+		}
+		
+	});
+
+});
+
+		//]]>
+	</script>
+
+
+
+	<!-- See style.css -->
+	<style type="text/css">
+		a.hover {
+	color: red;
+}
+
+#demo-list {
+	padding: 0;
+	list-style: none;
+	margin: 0;
+}
+
+#demo-list .file-invalid {
+	cursor: pointer;
+	color: #514721;
+	padding-left: 48px;
+	line-height: 24px;
+	background: url(assets/error.png) no-repeat 24px 5px;
+	margin-bottom: 1px;
+}
+#demo-list .file-invalid span {
+	background-color: #fff6bf;
+	padding: 1px;
+}
+
+#demo-list .file {
+	line-height: 2em;
+	padding-left: 22px;
+	background: url(assets/attach.png) no-repeat 1px 50%;
+}
+
+#demo-list .file span,
+#demo-list .file a {
+	padding: 0 4px;
+}
+
+#demo-list .file .file-size {
+	color: #666;
+}
+
+#demo-list .file .file-error {
+	color: #8a1f11;
+}
+
+#demo-list .file .file-progress {
+	width: 125px;
+	height: 12px;
+	vertical-align: middle;
+	background-image: url(../../assets/progress-bar/progress.gif);
+}
+	</style>
+
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h1><a href="http://digitarald.de/project/fancyupload/">FancyUpload</a> Standalone Showcase from <a href="http://digitarald.de/">digitarald.de</a></h1>
+
+		<h2>Attach a File</h2>
+
+
+
+		<!-- See index.html -->
+		<div>
+			<a href="#" id="demo-attach">Attach a file</a>
+
+<ul id="demo-list"></ul>
+
+<a href="#" id="demo-attach-2" style="display: none;">Attach another file</a>		</div>
+
+
+	</div>
+
+	<div class="container quiet" style="line-height: 5em;">
+		© 2008-2009 by <a href="http://digitarald.de/">Harald Kirschner</a> and available under <a href="http://www.opensource.org/licenses/mit-license.php">The MIT License</a>
+	</div>
+
+</body>
+</html>

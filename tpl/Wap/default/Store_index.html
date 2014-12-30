@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" /><meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta name="format-detection" content="telephone=no"/>
+<title>{pigcms:$metaTitle}</title>
+<script src="../tpl/static/hotels/js/piwik.js"></script>
+<script src="../tpl/static/hotels/js/zepto.min.js"></script>
+<script src="../tpl/static/hotels/js/underscore-min.js"></script>
+<script src="../tpl/static/hotels/js/backbone-min.js"></script>
+<script src="../tpl/static/hotels/js/jquery.hammer.min.js"></script>
+<script src="../tpl/static/hotels/js/common.js"></script>
+<script src="../tpl/static/hotels/js/hotel.js"></script>
+<link rel="stylesheet" type="text/css" href="../tpl/static/hotels/css/common.css" media="all" />
+</head>
+<body>
+	<div class="html">
+		<div class="main">
+			<header style="border-bottom: 1px solid #732124;background: #9C1A24;">
+				<h1>商城浏览</h1>
+			</header>
+			<div class="contxt cont-artical">
+				<volist name="company" id="com"> 
+				<div class="box-cont box-list-hotel">
+					<div class="list-li" onclick="javascript:window.location.href='{pigcms::U('Store/cats',array('token' => $_GET['token'], 'wecha_id' => $wecha_id, 'cid' => $com['id'], 'twid' => $twid))}'">
+					<div class="hd"><img src="{pigcms:$com['logourl']}" height="193px"></div>
+					<div class="bd">
+					<b>{pigcms:$com['name']}</b>
+					<p>
+					<span class="tleft">{pigcms:$com['address']}</span>
+					</p>
+					</div>
+					<div class="ft"><span class="arrow arr-small"></span></div>
+					</div>
+				</div>
+				</volist>
+				<div class="tcenter"></div>
+				<div class="tcenter"><div class="isloading loading" style="display: none">加载中...</div></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/index',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/index',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/index',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

@@ -1,0 +1,39 @@
+/*网格布局*/
+
+.grid{*word-spacing:-1px;/* IE6、7 */}
+	.grid li{z-index:0;font-size:12px}
+	.grid li{*display:inline;*zoom:1;*float:left;}
+		.grid li.hover{cursor:pointer}
+	.grid li h3{font-size:20px;font-weight:normal;height:140px;line-height:28px}
+	.grid li h3 a{padding-top:15px;display:block;height:185px;z-index:100;position:absolute;width:188px;text-align:center;top:0;left:0}
+	.grid li h3 img{border-radius:43px;height:86px;width:86px}
+	.grid li h3 span{display:block;_padding-top:7px}
+	.grid li p{font-size:13px;text-align:center;color:#888;line-height:22px;z-index:10}
+#grid .mix{opacity:0;display:none}
+
+
+.g {
+width: 100%;
+margin: 0 auto;
+}
+.filterBox{height:54px;position:relative;line-height:26px;padding:20px 0;}
+	.filterBox h1{font-size:14px;line-height: 26px;font-weight:normal; margin:0;width: 80px;
+float: left;text-align: right;}
+	.filterBtn{margin-left:90px;height: 36px;}
+		.filterBtn li{float:left;text-align:center;cursor:pointer;border: 1px solid #fff;margin: 0 4px 4px 0; position:relative;}
+		.filterBtn li p{padding: 0 10px; display: block;line-height: 26px;background:#fff}
+		.filterBtn li:hover{border: 2px solid #c30008;margin: -1px 3px 3px -1px;}
+		.filterBtn .active{border: 2px solid #c30008;margin: -1px 3px 3px -1px; color: #c30008;}
+		.filterBtn .active i{ background: url(../images/pok.png) no-repeat; position:absolute; bottom:0; right:0;width:13px; height:13px; display: block;}
+
+
+.p-black{  background-color: #000; color: #fff;}
+.p-white{  background-color: #fff; color: #000;}
+.p-yellow{  background-color: #ffcc00; color: #fff;}
+.p-orange{  background-color: #ff9900; color: #fff;}
+.p-red{  background-color: #cc0000; color: #fff;}
+.p-green{  background-color: #2ebb1e; color: #fff;}
+.p-blue{  background-color: #0081fa; color: #fff;}
+.p-purple{  background-color: #9008de; color: #fff;}
+.p-brown{  background-color: #a6522c; color: #fff;}
+.p-pink{  background-color: #ff9da1; color: #fff;}

@@ -1,0 +1,69 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>{Pigcms:$infoType.name}回复配置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+      
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<span class="red">{Pigcms:$infoType.keyword} —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$set.title}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{pigcms:$set.info}</textarea><br/>最多填写120个字</td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" value="{pigcms:$set.picurl}" id="pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>   &nbsp; 大小为720x400</td>
+				</tr>
+				<tr>
+					<th>第三方接口：</th>
+					<td><input name="apiurl" value="{pigcms:$set.apiurl}" class="px" style="width:550px;" type="text"><br> 只适用于引用第三方3G网站的链接</td>
+				</tr>
+				<if condition="$set and ($infoType.type eq 'Dining')">
+				<tr style="display:none">
+					<th>订购方式开关：</th>
+					<td><label><input type="checkbox" name="diningyuding" value="1" <if condition="$set.diningyuding eq 1">checked</if> /> 开启预定</label> <label><input type="checkbox" name="diningwaimai" value="1" <if condition="$set.diningwaimai eq 1">checked</if> /> 开启外卖</label></td>
+				</tr>
+				<tr style="display:none">
+					<th>订购时限：</th>
+					<td><input type="text" id="yudingdays" name="yudingdays" value="{pigcms:$config.yudingdays}" class="px" style="width:100px;" /> 天（可以订购多少天）</td> 
+				</tr>
+				</if>
+                <if condition="$set and ($infoType.type eq 'Hotels')">
+				 <tr> 
+					<th><span class="red"></span>订单短信验证：</th> 
+					<td>开启&nbsp;<input type="radio" name="phone_authorize" value="1" <if condition="$set.phone_authorize eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+					关闭&nbsp;<input type="radio" name="phone_authorize" value="0" <if condition="$set.phone_authorize eq 0">checked</if> id="statu-0" value="0"></td> 
+				 </tr> 
+				</if>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="keyword" value="{Pigcms:$infoType.keyword}" />
+					<input type="hidden" name="infotype" value="{Pigcms:$infoType.type}" />
+					<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

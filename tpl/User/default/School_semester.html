@@ -1,0 +1,210 @@
+<include file="Public:head"/>
+<include file="School:class"/>
+
+<div class="content">
+
+<div class="cLineB">
+  <h4>您的位置: 分类管理 > 学期分类管理</h4>  <a href="javascript:window.location.reload();" class="right btnGrayS vm" style="margin-top:-27px">刷新</a>
+ </div>
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+      <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+        <div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<script type="text/javascript">
+
+
+function addDeltbody(i) {
+
+    if (i != 1) {
+       document.getElementById("div_add_del_" + i).style.display = "none";
+       document.getElementById("add" + i).style.display = "";
+    }
+}
+function addTabody(i) {
+
+     document.getElementById('div_add_del_' + i).style.display = "";
+     document.getElementById('add' + i).style.display = "none";
+}
+
+function delrow(obj, tbody,objid) {
+
+  $$(tbody).removeChild(obj.parentNode.parentNode);
+
+   var obj = {id:objid}
+        $.post("/index.php?g=User&m=School&a=del_tab", obj,
+            function(data) {
+
+            },
+        "json");
+}
+
+
+
+  </script>
+<tbody>
+<tr>
+   
+    <td width="260">名称</td>
+    <td width="50">排序</td>
+    <td class="norightborder">操作</td>
+</tr>
+</tbody>
+
+<tbody id="div_add_del_1" name="div_add_del">
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:20px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+        <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(1)">删除</a>
+          <a href="javascript:;" id="add2" onclick="addTabody(2)">添加</a></td>
+    </tr>
+</tbody>
+
+<tbody id="div_add_del_2" name="div_add_del" style="display:none">
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:20px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+        <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(2)">删除</a>
+          <a href="javascript:;" id="add3" onclick="addTabody(3)">添加</a></td>
+    </tr>
+</tbody>
+
+<tbody id="div_add_del_3" name="div_add_del" style="display:none">
+    <tr>
+      <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+         
+        <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(3)">删除</a>
+          <a href="javascript:;" id="add4" onclick="addTabody(4)">添加</a></td>
+    </tr>
+</tbody>
+
+
+<tbody id="div_add_del_4" name="div_add_del" style="display:none">    
+    <tr>
+      <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" placeholder="请填写选项标题" value="" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+        <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(4)">删除</a>
+          <a href="javascript:;" id="add5" onclick="addTabody(5)">添加</a></td>
+    </tr>
+</tbody>
+
+
+<tbody id="div_add_del_5" name="div_add_del" style="display:none">    
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+        <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(5)">删除</a>
+          <a href="javascript:;" id="add6" onclick="addTabody(6)">添加</a></td>
+    </tr>
+</tbody>
+
+<tbody id="div_add_del_6" name="div_add_del" style="display:none">    
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+        <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(6)">删除</a>
+          <a href="javascript:;" id="add7" onclick="addTabody(7)">添加</a></td>
+    </tr>
+</tbody>
+
+<tbody id="div_add_del_7" name="div_add_del" style="display:none">    
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+         <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(7)">删除</a>
+          <a href="javascript:;" id="add8" onclick="addTabody(8)">添加</a></td>
+    </tr>
+</tbody>
+<tbody id="div_add_del_8" name="div_add_del" style="display:none">    
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+         <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(8)">删除</a>
+          <a href="javascript:;" id="add9" onclick="addTabody(9)">添加</a></td>
+    </tr>
+</tbody>
+<tbody id="div_add_del_9" name="div_add_del" style="display:none">    
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+         <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(9)">删除</a>
+          <a href="javascript:;" id="add10" onclick="addTabody(10)">添加</a></td>
+    </tr>
+</tbody>
+
+<tbody id="div_add_del_10" name="div_add_del" style="display:none">    
+    <tr>
+     <input type="hidden" name="add[sid][]" readonly="readonly" disabled="disabled" value="" style="width:50px;">
+        <td width="120">
+            <input type="text" name="add[sname][]" value="" placeholder="请填写选项标题" class="px" style="width:120px;">
+        </td>
+        <td>
+            <input type="text" name="add[ssort][]" value="" style="width:20px;" class="px">
+        </td>
+          <td width="50" class="norightborder"><a href="javascript:;" onclick="addDeltbody(10)">删除</a>
+          </td>
+    </tr>
+</tbody>
+<tbody>
+        <tr>
+            <td colspan="4" class="norightborder"> 
+                添加顶级分类
+        </td></tr>
+  </tbody>
+</table>
+   
+</div>
+</div>
+    </form>
+  </div> 
+
+        </div>
+
+<include file="Public:footer"/>

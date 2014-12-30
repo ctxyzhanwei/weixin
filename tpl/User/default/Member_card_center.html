@@ -1,0 +1,74 @@
+<include file="Public:head"/>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">会员中心</h4>
+<div class="searchbar right">
+</div>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<form method="post"  action="" id="info" >
+	会员卡类型
+	<select name="cardid">
+		<option value="">请选择..</option>
+		<volist name="cards" id="cards">
+			<option value="{pigcms:$cards.id}">{pigcms:$cards.cardname}</option>
+		</volist>
+	</select>
+	关键词：
+	<input type="text" class="px" name="number" value="" style="height:25px;" placeholder="请输入会员卡号">
+	<input type="submit" class="btnGrayS" value="搜索">
+</form>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post"  action="" id="info" >
+<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<THEAD>
+<tr>
+<th width="120">持卡人</th>
+<th width="120">会员卡号</th>
+<th width="150">会员卡类型</th>
+<th width="120">手机号</th>
+<th width="100">领卡时间</th>
+<th width="80">积分</th>
+<th width="80">消费</th>
+<th width="80">余额</th>
+<th width="80">操作</th>
+</tr>
+</THEAD>
+<TBODY>
+<TR></TR>
+<volist id="item" name="allCard">
+<TR>
+<TD>{pigcms:$item.username}</TD>
+<TD>{pigcms:$item.number}</TD>
+<TD>{pigcms:$item.card_name}</TD>
+<TD>{pigcms:$item.tel}</TD>
+<TD>{pigcms:$item.createtime|date='Y-m-d',###}</TD>
+<TD>{pigcms:$item.score}</TD>
+<TD>{pigcms:$item.expense}</TD>
+<TD>{pigcms:$item.balance}</TD>
+<TD><a href="{pigcms::U('Member_card/member',array('token'=>$this->token,id=>$item['cardid'],'itemid'=>$item['id']))}">消费记录</a></TD>
+</TR>
+</volist>
+</TBODY>
+</TABLE>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>  
+        <div class="clr"></div>
+		<include file="Public:footer"/>
+      </div>
+    </div>
+  </div> 

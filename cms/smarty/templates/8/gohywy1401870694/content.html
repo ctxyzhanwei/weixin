@@ -1,0 +1,34 @@
+{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<br><br>
+<div class="view">
+	<h1><p>{$content.title}</p></h1>
+	<div class="view" id="content">{$content.content}</div>
+    <div class="subborder"></div>
+     {if $previousContent}
+	<a href="{$previousContent->link}" title="上一条：{$previousContent->title}" class="prevpage">上一条：<span>{$previousContent->title}</span></a> {/if}    
+    {if $nextContent} 
+     <a href="{$nextContent->link}" tppabs="3g/html/news_view-7.html" title="下一条：{$nextContent->title}" class="nextpage">下一条：<span>{$nextContent->title}</span></a>	{/if}
+     
+     	<a href="{$channel.link}"  title="返回列表" class="backlist"><span>返回列表</span></a>
+</div>
+<!--contact end-->
+<div class="button">
+	<ul>
+    	<li><a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}"  class="tel" title="电话"></a></li>
+        <li class="middle_li"><a href="sms:{$company.mp}" class="talk" title="短信"></a></li>
+        <li><a href="?token={$token}&m=site&c=home&a=map"  title="地图" class="map"></a></li>
+    </ul>
+</div>
+<div class="clear"></div>
+<!--button end-->
+
+<!--bottom-->
+{/if}
+{include file=$footer}

@@ -1,0 +1,108 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<style type="text/css">
+.plug-menu {
+width:36px;
+height:36px;
+border-radius:36px;
+-moz-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+-webkit-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+background-color: FF0000;
+position:relative
+}
+.plug-menu span {
+display: block;
+width:28px;
+height:28px;
+background: url(tpl/User/default/common/images/photo/plugmenu.png) no-repeat;
+background-size: 28px 28px;
+text-indent: -999px;
+position:absolute;
+top:4px;
+left:4px;
+overflow: hidden;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/catemanu/style2.css" media="all">
+<script src="{pigcms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB"><h4>3G站点底部菜单设置</h4></div>
+          
+         <ul id="tags">
+              <li class="selectTag"><a href="{pigcms::U('Catemenu/index')}">底部菜单分类设置</a> </li>
+              <li><a href="{pigcms::U('Catemenu/styleSet')}">底部菜单风格选择</a> </li>
+              <li><a href="{pigcms::U('Home/plugmenu')}">菜单颜色与版权</a> </li>
+              <div class="clr"></div>
+          </ul>
+          <div class="cLineB" style="padding:0;margin:0"></div>
+
+<div class="ftip" style="margin:10px 0 0 0">一级主菜单最多4个，菜单风格1-8无子菜单，菜单风格9-16子菜单最多10个。</div>
+
+         <div class="cLineC" style="line-height: 32px;">
+ <a <?php if($fid==0){if($countMenu>=4){;?>
+     href="javascript:alert('主菜单最多4个');"
+     <?php }else{;?> 
+     href="{pigcms::U('Catemenu/add')}"
+      <?php }}else{if($countMenu>=10){;?>
+    href="javascript:alert('子菜单最多2个');"
+    <?php }else{;?>
+    href="{pigcms::U('Catemenu/add',array('fid'=>$fid))}"
+  <?php }};?>
+      class="btnGrayS vm bigbtn">添加<if condition="$fid neq 0">{pigcms:$thisCatemanu.name}子</if>菜单</a>　 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+                    <th style=" width:120px;">菜单名称</th>
+                   
+<th style=" width:70px;">显示顺序</th>
+<th><nobr>图标地址(透明png图标)</nobr></th>
+<th>外链地址 </th>
+<th style=" width:80px;"  >首页显示</th>
+                        <th style=" width:200px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="info" id="vo">
+<tr>
+<td>{pigcms:$vo.name}</td>
+
+<td>{pigcms:$vo.orderss}</td>
+<td><div class="cateimg"><img src="{pigcms:$vo.picurl}" class="cateimg_small"  /><img src="{pigcms:$vo.picurl}" class="cateimg_big"  /></div></td>
+<td>{pigcms:$vo.url}</td>
+<td><eq name="vo.status" value="1">显示<else/>不显示</eq></td>
+<td class="norightborder">
+
+    <?php if ($vo['fid']==0){?><a href="{pigcms::U('Catemenu/index',array('fid'=>$vo['id']))}">子菜单</a><?php }?>
+    <a href="<?php if ($vo['fid']==0){?>{pigcms::U('Catemenu/edit',array('id'=>$vo['id']))}<?php }else{?>{pigcms::U('Catemenu/edit',array('id'=>$vo['id'],'fid'=>$vo['fid']))}<?php }?>">编辑</a>
+    <a href="<?php if ($vo['fid']==0){?>{pigcms::U('Catemenu/del',array('id'=>$vo['id']))}<?php }else{?>{pigcms::U('Catemenu/del',array('id'=>$vo['id'],'fid'=>$vo['fid']))}<?php }?>">删除</a>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+    </div>
+
+
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

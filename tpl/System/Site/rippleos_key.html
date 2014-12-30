@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微WIFI</title>
+<link href="{pigcms::RES}/images/main.css" type="text/css" rel="stylesheet">
+<link href="{pigcms::RES}/images/jquery-1.7.2.min.js" type="text/css" rel="stylesheet">
+<link href="{pigcms::RES}/images/jquery.form.js" type="text/css" rel="stylesheet">
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+</head>
+<body class="warp">
+<style>
+.set_top{background:url('{pigcms::RES}/images/set_top.png');height:60px;}
+.set_top li{font-weight: bold;float:left;width:98px;line-height:60px;text-align: center;background:url('{pigcms::RES}/images/set_top_li.png');}
+#set_top_li_bg{background:url('{pigcms::RES}/images/set_top_li_hover.png');}
+</style>
+<include file="Site:public" />
+<div id="artlist">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="addn">
+ <form id="myform" action="{pigcms::U('Site/insert')}" method="post">
+  <tr> 
+      <td  height="48" align="right"><strong>开通说明：</strong></td>
+      <td><a href="http://b1.rippletek.com/wx_service_explain.pdf" target="_blank">  点击查看</a></td>
+    </tr>
+  <tr>
+	<tr> 
+      <td  height="48" align="right"><strong>设备绑定用户名：</strong></td>
+      <td><input type="text" name="rptk_bind_name" value="{pigcms::C('rptk_bind_name')}" class="ipt" size="20" /><span> 例:pigcms</span>
+    </tr>
+  <tr>
+      <td  height="48" align="right"><strong>设备绑定密码：</strong></td>
+      <td><input type="text" name="rptk_bind_key" value="{pigcms::C('rptk_bind_key')}" class="ipt" size="20" /><span> 例:12345678</span>
+    </tr>
+  <tr>
+      <td  height="48" align="right"><strong>节点API ID：</strong></td>
+      <td><input type="text" name="rptk_node_api_id" value="{pigcms::C('rptk_node_api_id')}" class="ipt" size="20" /><span> 例:eaf236a71e4d6fe7</span>
+  </tr>
+  <tr>
+      <td  height="48" align="right"><strong>节点API KEY：</strong></td>
+      <td><input type="text" name="rptk_node_api_key" value="{pigcms::C('rptk_node_api_key')}" class="ipt" size="40" /><span> 例:fe2ef0de7085baa062de9ce6783bbd5c</span>
+    </tr>
+  <tr>
+      <td  height="48" align="right"><strong>认证API ID：</strong></td>
+      <td><input type="text" name="rptk_wx_auth_api_id" value="{pigcms::C('rptk_wx_auth_api_id')}" class="ipt" size="20" /><span> 例:f47fd1180c60df70</span>
+    </tr> 
+  <tr>
+      <td  height="48" align="right"><strong>认证API KEY：</strong></td>
+      <td><input type="text" name="rptk_wx_auth_api_key" value="{pigcms::C('rptk_wx_auth_api_key')}" class="ipt" size="40" /><span>例:f67b30990a897fdf0e38431955801f13</span>
+    </tr>
+    <input type="hidden" name="files" value="rippleos_key.php" />
+    <tr> 
+      <td height="48" colspan="2">
+		  <div style="padding-left:100px;">
+			<input type="submit" value="保存设置" />
+		  </div>
+	  </td>
+    </tr>
+	</form>
+</table>
+</div>
+</body>
+</html>

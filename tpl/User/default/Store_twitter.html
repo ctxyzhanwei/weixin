@@ -1,0 +1,93 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">商城分佣管理</h4>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" class="txt left" placeholder="输入推广号" name="searchkey" value="{pigcms:$key}"/>
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<input type="submit" value="搜索" class="btnGrayS" />
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$isgroup neq 1 OR $ischild neq 1">
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/index',array('token'=>$token))}">商品分类管理</a></li>
+	<if condition="empty($catid) neq true">
+	<li class="tabli" id="tab0"><a href="{pigcms::U('Store/product',array('token'=>$token))}">商品管理</a></li>
+	</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+	<if condition="$ischild eq 0">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Shop'))}">商城回复配置</a></li>
+	</if>
+	<if condition="$isgroup eq 1">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Store/group',array('token'=>$token))}">商品分组</a></li>
+	<li class="tabli" id="tab7"><a href="{pigcms::U('Store/productgroup',array('token'=>$token))}">分组商品展现</a></li>
+	</if>
+<else />
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/flash',array('token'=>$token))}">商城背景与轮播图</a></li>
+	<li class="current tabli" id="tab2"><a href="{pigcms::U('Store/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+	<div class="pageNavigator left"> 
+		<a href="{pigcms::U('Store/twitterset', array('token' => $token, 'cid' => $cid))}" title="分佣设置" class="btnGrayS vm bigbtn">
+			<img src="{pigcms::RES}/images/product/add.png" class="vm" />分佣设置
+		</a>
+	</div>
+	<div class="pageNavigator right"> 
+		<a href="{pigcms::U('Store/removesearch', array('token' => $token, 'cid' => $cid))}" title="查看申请提现" class="btnGrayS vm bigbtn">
+			<img src="{pigcms::RES}/images/product/add.png" class="vm" />查看申请提现
+		</a>
+	</div>
+	<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="200">推广号</th>
+<th width="200">分佣总金额</th>
+<th width="200">已提现的金额</th>
+<th width="200" class="norightborder">详情</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td>{pigcms:$hostlist['twid']}</td>
+<td>{pigcms:$hostlist['total']}</td> 
+<td>{pigcms:$hostlist['remove']}</td> 
+<td class="norightborder">
+	<a href="{pigcms::U('Store/detail',array('token' => $token, 'twid' => $hostlist['twid'], 'cid' => $cid))}">佣金获取详情</a>
+	<span>&nbsp;&nbsp;　|　&nbsp;&nbsp;<a href="{pigcms::U('Store/remove',array('token' => $token, 'twid' => $hostlist['twid'], 'cid' => $cid))}">提现详情</a></span>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

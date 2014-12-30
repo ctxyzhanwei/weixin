@@ -1,0 +1,65 @@
+{include file=$header}
+<div class="big-pic big-pic{if $focusCount}{$focusCount}{/if}">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<5}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                </div>
+    </div>
+    </div>
+<div class="btnbox">
+	<img src="smarty/templates/tpls/{$site.template}/star.jpg"  alt="">
+    <img src="smarty/templates/tpls/{$site.template}/star.jpg"  alt="">
+    <img src="smarty/templates/tpls/{$site.template}/star.jpg"  alt="">
+    <img src="smarty/templates/tpls/{$site.template}/star.jpg"  alt="">
+    <img src="smarty/templates/tpls/{$site.template}/star.jpg"  alt="">
+    <a href="?token={$token}&m=site&c=home&a=map"  title="地图" class="mapbtn"><p>地图</p></a>
+    <a href="http://site.tg.qq.com/forwardToPhonePage?siteId=1&phone={$company.tel}" title="电话" class="telbtn"><p>电话</p></a>
+</div>
+<div class="clear"></div>
+<div class="picbox">
+    <ul class="rightpic" style="width:100%;float:none">
+	{if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+		    	<li><a href="{$a.link}"  title="{$a.title}">{$a.title}</a></li>
+				{/if}
+                {/foreach}
+			 {/if}
+            </ul>
+    <div class="clear"></div>
+</div>
+
+<p class="border"></p>
+<ul class="productbox">
+	{if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<3}
+		<li>
+    	<div>
+            <a href="{$a.link}"  ><img src="{$a.thumb}"  alt="{$a.title}"></a>
+            <p><a href="{$a.link}"   class="heighta">{$a.title}</a></p>
+            <div class="clear"></div>
+        </div>
+        <img src="smarty/templates/tpls/{$site.template}/boxshadow.jpg" tppabs="boxshadow.jpg" class="boxshadow" alt="盒子阴影">
+    </li>
+    {/if}
+		  {/foreach}
+		  {/if}
+    	
+    </ul>
+{include file=$footer}

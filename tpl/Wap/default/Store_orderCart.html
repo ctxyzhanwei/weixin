@@ -1,0 +1,199 @@
+<include file="Store:header"/>
+<form method="post" action="{pigcms::U('Store/ordersave',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" id="FromID">
+<div>
+	<div class="m-ck-module">
+	<h1>收货信息
+		<if condition="$addrSign neq ''">
+			<a id="editAddress" style="float:right;" href="javascript:getaddr();">使用微信收货地址</a>
+		</if>
+	</h1>
+	<ul>
+		<li class="addr-info">
+			<ul class="addr-addnew-form addr-edit-form" id="addr-edit-form" style="display: none1;">
+				<li>
+					<label>收货人姓名：</label>
+					<span>
+						<input name="orid" value="{pigcms:$orid}" type="hidden" />
+						<input name="truename" id="truename" value="{pigcms:$fans.truename}" type="text" placeholder="输入收货人姓名" />
+					</span>
+					<label>手机：</label>
+					<span>
+						<input name="tel" id="tel" value="{pigcms:$fans.tel}" type="text" placeholder="输入您的收货电话" />
+					</span>
+					<label>详细地址：</label>
+					<span>
+						<input name="address" id="address" value="{pigcms:$fans.address}" type="text" placeholder="输入您的收货地址" />
+					</span>
+				</li>
+			</ul>
+			<label>联系方式保存到用户库</label>
+			<ul class="rd">
+				<li>
+					<label><input type="checkbox" value="1" name="saveinfo" id="saveinfo" style="width: 16px;" checked="true"/></label>
+				</li>    
+			</ul>
+		</li>
+	</ul>
+	</div>
+	<div class="m-ck-module">
+		<h1>付款方式</h1>
+		<ul id="payment_mode" class="rd">
+			<li>
+				<label><input name="paymode" value="1" type="radio" checked>在线支付</label>
+				<if condition="$fans['balance'] gt 0">
+				<label><input name="paymode" value="4" type="radio">会员卡支付</label>
+				</if>
+			</li>    
+		</ul>
+	</div>
+	<!-- <div class="m-ck-module">
+		<h1>送货方式</h1>
+		<ul id="shipping" class="rd"><input id="delivery" type="hidden" name="delivery" value="">
+		<li shipping="15"><label><input name="dt_id" value="535" type="radio">普通快递<b class="c_red">0元</b></label></li></ul>
+	</div> -->
+<div class="m-ck-module">
+<h1>商品清单</h1>
+<ul>
+<ul class="m-cart-list">
+<volist name="products" id="p">
+	<if condition="empty($p['detail']) neq true">
+		<volist name="p['detail']" id="row">
+			<li>
+				<span class="pic"><img src="{pigcms:$p.logourl}" width="75" height="75"></span>
+				<span class="con">
+				<i class="t">{pigcms:$p.name}</i>
+				<i class="d"><if condition="empty($p['formatTitle']) neq true">{pigcms:$p.formatTitle}：{pigcms:$row.formatName}</if> <if condition="empty($p['colorTitle']) neq true">，{pigcms:$p.colorTitle}：{pigcms:$row.colorName}</if></i>
+				<p><label>数量：</label>{pigcms:$row.count}　<label>销售价：</label><span class="price">￥{pigcms:$row.price}</span></p>
+				</span>
+			</li>
+		</volist>
+	<else/>
+		<li>
+			<span class="pic"><img src="{pigcms:$p.logourl}" width="75" height="75"></span>
+			<span class="con">
+			<i class="t">{pigcms:$p.name}</i>
+			<p><label>数量：</label>{pigcms:$p.count}　<label>销售价：</label><span class="price">￥{pigcms:$p.price}</span></p>
+			</span>
+		</li>
+	</if>
+</volist>
+</ul>
+</ul>
+</div>
+<div class="m-cart-toal m-checkout-toal">
+<p id="price_total" class="check">商品总数：<b>{pigcms:$totalCount}</b>　件<br>
+商品原总价：<b>{pigcms:$totalFee}</b>　元<br>
+运费：<b>{pigcms:$mailprice}</b>　元<br>
+<!-- 优惠金额：0元<br> -->
+您共需支付：<b id="totalmoney"><php>{echo ($totalFee + $mailprice);}</php></b>　元</p>
+<if condition="($setting['score'] gt 0) AND ($fans['total_score'] gt 0)">
+<p class="check">您的可用积分：<b>{pigcms:$fans['total_score']}</b>　分<br/>
+使用积分兑换：<input type="text" name="score" style="border: 1px solid #cfcfcf;margin: 0 -1px;font-size: 16px;display: inline-block;text-align: center;height: 22px;width: 50px;border-radius: 0;background: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5),color-stop(0.3, #fff),to(#fff));-webkit-appearance: none;color: #999;" id="score"/>
+<span>(整数)</span>
+</p>
+</if>
+<div id="show_msg" class="tip_blue"></div>
+<p class="act"><a id="sub_order" href="javascript:;" class="checkout">确认，提交订单</a></p>
+</div>
+</form>
+</div>
+</form>
+
+
+<script language="javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+
+function getaddr(){
+	WeixinJSBridge.invoke('editAddress',{
+		"appId" : "{pigcms:$addrSign['appId']}",
+		"scope" : "jsapi_address",
+		"signType" : "sha1",
+		"addrSign" : "{pigcms:$addrSign['addrSign']}",
+		"timeStamp" : "{pigcms:$addrSign['timeStamp']}",
+		"nonceStr" : "{pigcms:$addrSign['nonceStr']}",
+	},function(res){
+	//若res 中所带的返回值不为空，则表示用户选择该返回值作为收货地址。否则若返回空，则表示用户取消了这一次编辑收货地址。
+		if(res.err_msg == 'edit_address:ok'){
+			//alert("收件人："+res.userName+"  联系电话："+res.telNumber+"  收货地址："+res.proviceFirstStageName+res.addressCitySecondStageName+res.addressCountiesThirdStageName+res.addressDetailInfo+"  邮编："+res.addressPostalCode);
+			$('#truename').val(res.userName);
+			$('#tel').val(res.telNumber);
+			$('#address').val(res.proviceFirstStageName+res.addressCitySecondStageName+res.addressCountiesThirdStageName+res.addressDetailInfo);
+		}else{
+			//alert(res.err_msg);
+		}
+	
+	});
+}
+
+</script>
+
+
+<script>
+var scale = "{pigcms:$setting['score']}";
+var totalscore = "{pigcms:$fans['total_score']}";
+$(document).ready(function(){
+	var total = $("#totalmoney").html();
+	$("#score").keyup(function(){
+		var num = parseInt($(this).val());
+		if (isNaN(num)) {
+			num = 0;
+		}
+		if (num > totalscore) {
+			$(this).val(totalscore);
+			return floatNotify.simple('您填写的积分超过了您的可用积分');
+			return false;
+		}
+		var t = total - num/scale;
+		if (t <= 0) {
+			var s = total * scale;
+			if (s < 1) {
+				s = 1;
+			}
+			$(this).val(s);
+			t = 0;
+		}
+		$("#totalmoney").html(t);
+	});
+	$("#sub_order").click(function(){
+		var userName=$('#truename').val();
+		if($.trim(userName) == ""){
+			return floatNotify.simple('请填写姓名');
+			return false;
+		}
+		var userPhone = $("#tel").val()
+		if ($.trim(userPhone) == "") {
+			return floatNotify.simple('请填写您的手机号码');
+			return false;
+		}
+		var patrn = /^1\d{10}$/;
+		if (!patrn.exec($.trim(userPhone))) {
+			return floatNotify.simple('手机号格式错误');
+			return false;
+		}
+		var address = $("#address").val()
+		if ($.trim(address) == "") {
+			return floatNotify.simple('请填写您的详细地址');
+			return false;
+		}
+		$("#FromID").submit();
+		return false;
+	});
+});
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{pigcms:$info['title']}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="Keywords" content="{pigcms:$readinfo['title']},{pigcms:$readinfo['keyword']}" />
+    <meta name="Description" content="{pigcms:$readinfo['title']} {pigcms:$readinfo['text']}" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+    <link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            //oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+</script>
+<style>
+TABLE.ListProduct {
+    BORDER-TOP: #d3d3d3 1px solid;
+    MARGIN-TOP: 5px;
+    WIDTH: 100%;
+    MARGIN-BOTTOM: 5px;_border-collapse: collapse;
+
+}
+TABLE.ListProduct THEAD TH {
+    BORDER-BOTTOM: #d3d3d3 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #f1f1f1; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; COLOR: #666; FONT-SIZE: 14px; BORDER-TOP: #e3e3e3 1px solid; FONT-WEIGHT: normal; BORDER-RIGHT: #ddd 1px solid; PADDING-TOP: 5px; color:#000000; font-weight:bold;text-align: center;
+}
+TABLE.ListProduct TBODY TD {
+    BORDER-BOTTOM: #eee 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BORDER-RIGHT: #eee 1px solid; PADDING-TOP: 10px;
+    font-size:12px;_empty-cells:show;word-break: break-all;text-align: center;
+}
+TABLE.ListProduct TBODY TR:nth-child(2n+1) {
+    background-color:#FCFCFC;
+}
+TABLE.ListProduct TBODY TR:hover {
+    background-color:#F1FCEA;
+}
+TABLE.ListProduct TBODY TD p{
+    PADDING: 0;font-size:12px;_empty-cells:show;word-break: break-all;
+}
+TABLE.ListProduct Tfoot TD {
+    BORDER-BOTTOM: #eee 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BORDER-RIGHT: #eee 1px solid; PADDING-TOP: 10px; background-color:#f9f9f9;
+    font-size:12px;_empty-cells:show;word-break: break-all;
+}
+TABLE.ListProduct THEAD TH.norightborder {
+    BORDER-RIGHT: 0;
+}
+TABLE.ListProduct TBODY TD.norightborder {
+    BORDER-RIGHT: 0;
+}
+TABLE.ListProduct .select{
+    width: 30px;
+}
+TABLE.ListProduct .keywords{width: 150px;
+}
+TABLE.ListProduct .answer{
+    width: 375px;
+}
+TABLE.ListProduct .answer_text{
+     width: 360px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis; height:16px
+}
+.answer_text img{
+     margin-right: 5px; float:left;
+}
+TABLE.ListProduct .category{
+    width: 70px;
+}
+TABLE.ListProduct .time{
+    width: 70px;
+}
+
+
+TABLE.ListProduct .edit{
+    width: 120px;
+}
+</style>
+<body id="news3">
+
+
+<include file="School:headermenu"/>
+
+    <div class="Listpage" >
+    <div class="top46" ></div>
+
+    <table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+       <tr>
+           <th>姓名</th>
+           <th>年级</th>
+           <th>科目</th>
+           <th>周天</th>
+           <th>时段</th>
+       </tr>
+<volist name="market" id="vo">
+        <tr>
+            <td>{pigcms:$vo['tname']}</td>
+            <td>{pigcms:$vo['bj_name']}</td>
+            <td>{pigcms:$vo['km_name']}</td>
+            <td>{pigcms:$vo['xq_name']}</td>
+            <td>{pigcms:$vo['sd_name']}</td>
+        </tr>
+    </volist>
+    </table>
+
+{pigcms:$page}
+   </div><!--End tabs container-->
+
+    <!-- </div> --><!--End tabs-->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/tabCj/tabulous.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/tabCj/js.js"></script>
+
+        <div class="page-content"></div>
+    </div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+    .footerpage {
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    border:0px solid #D1D1D1;
+    box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow:1 1px 1px 0 rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow:1 1px 1px 0 rgba(0, 0, 0, 0.25);
+    -webkit-border-radius:10px 10px 10px 10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    border-radius:5px 5px 10px 10px;
+    background-size:2px auto;
+    margin:10px;
+    padding:15px;
+    text-align:center;
+}
+</style>
+<div id="mess_share" >
+    <div class="footerpage" <if condition="$countshow lt 20"> style="display: none;"</if>> {pigcms:$page}</div>
+    <div class="clr"></div>
+    <a target="_self" href="#news3" class="footer"><span class="top">返回顶部</span></a>
+</div>
+
+    <div class="copyright">
+      <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span></div>
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+</div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+
+    <script type="text/javascript">
+        // function dourl(url) {
+        //     location.href = url;
+        // }
+    </script>
+
+   <!-- <script src="{pigcms::STATICS}/schools/js/zepto.min.js" type="text/javascript"></script>
+    <script src="{pigcms::STATICS}/schools/js/plugmenu.js" type="text/javascript"></script> -->
+
+
+</body>
+</html>

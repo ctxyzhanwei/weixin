@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+  <title>车型欣赏-{pigcms:$caralbum['title']}</title>
+
+  <link rel="stylesheet" href="{pigcms::RES}/car/gallery/css/demo-styles.css" />
+  <link rel="stylesheet" href="{pigcms::RES}/car/gallery/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/back.css" media="all">
+  <meta content="clickberry-extension-here">
+</head>
+
+<body>
+<!--h3>{pigcms:$caralbum['title']}</h3>
+<p>{pigcms:$caralbum['info']}</p-->
+<div class="demo-wrapper">
+  <div id="gallery-container">
+    <ul class="items--small">
+      <volist name="photolist" id="list">
+      <li class="item"><a href="#"><img src="{pigcms:$list['picurl']}" alt="" /></a></li>
+  
+      </volist>
+
+    </ul>
+    <ul class="items--big">
+ <volist name="photolist" id="list">
+     
+      <li class="item--big">
+        <a href="#">
+          <figure>
+            <img src="{pigcms:$list['picurl']}" alt="{pigcms:$list['title']}" />
+            <figcaption class="img-caption">
+              {pigcms:$list['title']} - {pigcms:$list['info']}
+            </figcaption>
+          </figure>
+          </a>
+      </li>
+</volist>
+    </ul>
+    <div class="controls">
+      <span class="control icon-arrow-left" data-direction="previous"></span> 
+      <span class="control icon-arrow-right" data-direction="next"></span> 
+      <span class="grid icon-grid"></span>
+      <span class="fs-toggle icon-fullscreen"></span>
+    </div>
+  </div>
+
+
+</div><!--end demo-wrapper-->
+
+  <script src="{pigcms::RES}/car/gallery/js/jquery-1.8.2.min.js"></script>
+  <script src="{pigcms::RES}/car/gallery/js/plugins.js"></script>
+  <script src="{pigcms::RES}/car/gallery/js/scripts.js"></script>
+  <script>
+    $(document).ready(function(){
+     $('#gallery-container').sGallery({
+        fullScreenEnabled: true
+      });
+    });
+  </script>
+<a href="javascript:history.go(-1);" class="back360" style="">&nbsp;</a>
+</body>
+</html>

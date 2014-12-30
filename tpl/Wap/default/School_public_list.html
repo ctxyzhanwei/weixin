@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{pigcms:$info['title']}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+    <link href="{pigcms::STATICS}/schools/css/listhome3_3.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block"
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none"
+        }
+    };
+</script>
+<style>
+
+</style>
+<body id="listhome3">
+    <div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display: none;">
+        <img src="{pigcms::STATICS}/schools/images/guide.png"></div>
+<include file="School:headermenu"/>
+
+
+<div class="Listpage">
+    <div class="top46">
+    </div>
+    <div id="todayList" >
+        <ul class="chatPanel">
+<volist name='infolist' id="vo">
+                <li class="media mediaFullText">
+                <if condition="$readtype eq 'school'">
+                <a href="{pigcms::U('School/readview',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id'],'readtype'=>'school'))}">
+                <elseif condition="$readtype eq 'course'"/>
+                <a href="{pigcms::U('School/readview',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id'],'readtype'=>'course'))}">
+                <elseif condition="$readtype eq 'assess'"/>
+                <a href="{pigcms::U('School/readview',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id'],'readtype'=>'assess'))}">
+                <else/>
+                <a href="{pigcms::U('School/readview',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$vo['id']))}">
+                </if>
+                    <div class="mediaPanel">
+                        <div class="mediaHead">
+                            <span class="title">{pigcms:$vo['title']}</span>
+                        <if condition="$vo['createtime'] neq ''">
+                            <span class="time">{pigcms:$vo['createtime']|date="Y-m-d",###}</span>
+                        </if>
+                            <div class="clr">
+                            </div>
+                        </div>
+                    <if condition="$vo['pic'] neq ''">
+                        <div class="mediaImg"><img src="{pigcms:$vo['pic']}"></div>
+                    </if>
+                        <div class="mediaContent mediaContentP">
+                            <p>
+                                {pigcms:$vo['text']}
+                                <if condition="$vo['typename'] neq ''">
+                                    授课老师:<strong>{pigcms:$vo['typename']}</strong>  预约上限:<strong>{pigcms:$vo['typename2']}</strong> 单位/人  科目: <strong>{pigcms:$vo['keyword']}</strong> 开课时间:<strong>{pigcms:$vo['typename3']}</strong>
+                                </if>
+                            </p>
+                        </div>
+                        <div class="mediaFooter">
+                            <span class="mesgIcon right"></span><span class="left" style="line-height: 50px;">查看全文</span>
+                            <div class="clr">
+                            </div>
+                        </div>
+                    </div>
+                </a></li>
+</volist>
+        </ul>
+    </div>
+</div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: 0}
+</style>
+<div class="pagination">
+<if condition="$count GT 5">
+{pigcms:$page}
+</if>
+
+    <script src="{pigcms::STATICS}/schools/js/zepto.min.js" type="text/javascript"></script>
+    <script src="{pigcms::STATICS}/schools/js/plugmenu.js" type="text/javascript"></script>
+    <div class="copyright">
+      <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span></div>
+
+
+</div>
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: 0}
+</style>
+    <div style="display: none">
+    </div>
+</body>
+</html>

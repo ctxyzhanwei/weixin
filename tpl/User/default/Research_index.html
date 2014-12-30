@@ -1,0 +1,66 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<link href="{pigcms::RES}/css/activity.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">微调研</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="current tabli" id="tab0"><a href="{pigcms::U('Research/index', array('token' => $token))}">调研列表</a></li>
+<li class="tabli" id="tab0"><a href="{pigcms::U('Research/saveInfo', array('token' => $token))}">调研操作</a></li>
+</ul>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Research/saveInfo', array('token' => $token))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加调研</a></div>
+<div class="clr"></div>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th width="100">调研标题</th>
+		<th width="100">关键词</th>
+		<th width="200">介绍</th>
+		<th width="120">开始时间</th>
+		<th width="120">过期时间</th>
+		<th width="70">参与人数</th>
+		<th width="200" class="norightborder">操作</th>
+	</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="tablelist"> 
+	<tr>
+		<td>{pigcms:$tablelist.title}</td>
+		<td>{pigcms:$tablelist.keyword}</td>
+		<td>{pigcms:$tablelist.description}</td>
+		<td>{pigcms:$tablelist.starttime|date="Y-m-d H:i:s",###}</td>
+		<td>{pigcms:$tablelist.endtime|date="Y-m-d H:i:s",###}</td>
+		<td>{pigcms:$tablelist.nums}</td>
+		<td class="norightborder">
+			<if condition="$tablelist['lid'] eq 0">
+			<a href="{pigcms::U('Research/add', array('researchid' => $tablelist['id'], 'token' => $token))}">奖项设置</a> 
+			<else />
+			<a href="{pigcms::U('Research/research', array('researchid' => $tablelist['id'], 'id' => $tablelist['lid'], 'token' => $token))}">奖项设置</a> 
+			</if>
+			
+			<a href="{pigcms::U('Research/saveInfo', array('rid' => $tablelist['id'], 'token' => $token))}">修改</a> 
+			<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Research/delResearch',array('rid' => $tablelist['id'], 'token' => $token))}');">删除</a>
+			<a href="{pigcms::U('Research/count',array('rid' => $tablelist['id'], 'token' => $token))}">活动统计</a>
+		</td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,542 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+}
+
+input, textarea {
+    -webkit-appearance: none;
+}
+
+a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input {
+    border: none;
+    background-color: transparent;
+}
+
+.ads {
+    position: relative;
+    display: none;
+}
+
+.ads.show {
+    display: block;
+}
+
+.ads img {
+    width: 100%;
+    margin-bottom: -4px;
+}
+
+.btn-close-ad {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background-image: url("../../img/magpiebridge/btn_close.png");
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#start-page{
+    position: relative;
+    overflow: hidden;
+}
+#start-page-main {
+    width: 100%;
+    min-height: 100%;
+    background-size: 476px 755px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: #2F1B58;
+}
+#btn-start {
+    width: 160px;/*200 180*/
+    height: 40px;
+    position: absolute;
+    top: 190px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-size: 100% 100%;
+    background:url(../images/start_btn.png) no-repeat;
+    -webkit-transform: translate3d(-58px, 0, 0) scale(1);
+    -webkit-transform-origin: center;
+}
+
+#btn-start.anim {
+    -webkit-animation: btnstartanim 1.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes btnstartanim {
+    0% {
+        -webkit-transform: translate3d(-58px, 0, 0) scale(1);
+    }
+    50% {
+        -webkit-transform: translate3d(-58px, 0, 0) scale(1.2);
+    }
+    100% {
+        -webkit-transform: translate3d(-58px, 0, 0) scale(1);
+    }
+}
+/* 
+#btn-prize {
+    width: 37px;
+    height: 41px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-image: url("../../img/magpiebridge/btn_prize.png");
+} */
+#btn-prize.anim{
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-name: btnprizeanim;
+    -webkit-animation-duration: 200ms;
+    -webkit-transform-origin: bottom center;
+}
+@-webkit-keyframes btnprizeanim{
+    25%{-webkit-transform: rotate(-6deg);}
+    50%{-webkit-transform: rotate(0deg);}
+    75%{-webkit-transform: rotate(6deg);}
+    100%{-webkit-transform: rotate(0deg);}
+}
+.panel-container {
+    width: 100%;
+    padding-top: 300px;
+}
+
+.panel-container .container-title {
+    text-align: center;
+    height:69px;
+    letter-spacing: 2px;
+}
+
+.panel-container .container-title li {
+    display: inline-block;
+    height: 100%;
+	position:relative;
+	z-index:888;
+}
+
+.panel-container .container-title li a {
+    display: inline-block;
+    height: 100%;
+    background-size: 100%;
+    width:173px;
+    background:url(../images/btn-rank.png) no-repeat;
+}
+
+.panel-container .container-title li a.btn-activity {
+    background:url(../images/btn-activity.png) no-repeat;	
+}
+
+.panel-container .container-title li a.btn-rank {
+    background-position: 0 0;
+}
+
+.panel-container .container-body {
+    position: relative;
+    height: 355px;
+	margin-top:-15px;
+}
+
+.panel-container .container-content {
+    border-radius: 12px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+.panel-container .container-content.container-rank {
+    background-image: -webkit-linear-gradient(270deg, #d7cee5 10%, transparent 20%), -webkit-linear-gradient(0deg, #f0e4f6 0%, #FFFFFF 50%, #f0e4f6 100%);
+    background-size: 100% 100px, 100% 100%;
+    background-repeat: no-repeat;;
+}
+
+.panel-container .container-content.container-acitivity {
+    display: none;
+    background-image: -webkit-linear-gradient(270deg, #d7cee5 10%, transparent 20%), -webkit-linear-gradient(0deg, #f0e4f6 0%, #FFFFFF 50%, #f0e4f6 100%);
+    background-size: 100% 100px, 100% 100%;
+    background-repeat: no-repeat;
+    font-size: 12px;
+    padding-top: 6px;
+    box-sizing: border-box;
+    color: rgb(212, 126, 93);
+}
+.panel-container .container-content.container-acitivity .container-activity-box{
+    background-image: -webkit-linear-gradient(0deg, #F7E39C 0%, #FFFFFF 50%, #F7E39C 100%);
+    height: 100%;
+    position: relative;
+    padding-top: 7px;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+/* .panel-container .container-content.container-acitivity .container-activity-content{
+    border-radius: 16px;
+    background-repeat: repeat-x;
+    background-size: 1px 45px;
+    background-image: url("../../img/magpiebridge/bg_th.png");
+    overflow: hidden;
+    height: 100%;
+} */
+.panel-container .container-content.container-acitivity .container-activity-content .text{
+    padding: 20px;
+    line-height: 19px;
+    word-break: break-word;
+}
+.panel-container .container-content.container-acitivity .container-activity-content img{
+    max-width: 100%;
+}
+.panel-container .container-content .icon-img-bg {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    margin-top: -3px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.panel-container .container-content .icon-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.panel-container .container-content table {
+    width: 100%;
+    border-spacing: 0;
+    color: #d47e5d;
+    text-align: center;
+    font-size: 12px;
+    white-space: nowrap;
+    background-image: -webkit-linear-gradient(0deg, #f0e4f6 0%, #f0e4f6 50%, #f0e4f6 100%);
+}
+
+.panel-container .container-content .table-title {
+    border-radius: 12px 12px 0 0;
+    padding-top: 7px;
+    margin-top: 6px;
+}
+
+.panel-container .container-content .table-title th:first-child {
+    border-radius: 16px 0 0 0;
+}
+
+.panel-container .container-content .table-title th:last-child {
+    border-radius: 0 16px 0 0;
+}
+.panel-container .container-content .table-bottom {
+    border-radius: 0 0 12px 12px;
+    line-height: 40px;
+    font-size: 12px;
+}
+.panel-container .container-content .table-scroll{
+    height: 228px;
+    overflow: hidden;
+}
+.panel-container .container-content .table-bottom{
+  background-image:  -webkit-linear-gradient(0deg, #d7cee5 0%, #ecd8f6 50%, #d7cee5 100%);
+}
+.panel-container .container-content .table-bottom td:last-child{
+    white-space: nowrap;
+}
+/* .panel-container .container-content .table-title th {
+    height: 45px;
+    line-height: 45px;
+    background-repeat: repeat-x;
+    background-size: 1px 45px;
+    background-image: url("../../img/magpiebridge/bg_th.png");
+} */
+
+/* .panel-container .container-content .table-body tr {
+    height: 45px;
+    line-height: 45px;
+    background-repeat: repeat-x;
+    background-size: 1px 49px;
+    background-image: url("../../img/magpiebridge/bg_tr.png");
+} */
+
+.panel-container .container-content th {
+    height: 16px;
+}
+
+.panel-container .container-content .icon {
+    width: 58px;
+    height: 30px;
+    display: inline-block;
+    /*background-size: 93px 16px;*/
+    background:url(../images/start_page_title.png);
+}
+
+.panel-container .container-content .icon.icon-head {
+    background-position: 0px 0;
+}
+
+.panel-container .container-content .icon.icon-nick {
+    background-position:0 -30px;
+}
+
+.panel-container .container-content .icon.icon-time {
+    background-position:0 -60px;
+}
+/* .panel-container .container-content .icon2 {
+    width: 60px;
+    height: 15px;
+    display: inline-block;
+    margin-top: 15px;
+    background-size: 180px 15px;
+    background-image: url("../../img/magpiebridge/start_page_title2.png");
+}
+ */
+.panel-container .container-content .icon2.icon-desc {
+    background-position: 0 0;
+}
+
+.panel-container .container-content .icon2.icon-rule {
+    background-position: -60px 0;
+}
+
+.panel-container .container-content .icon2.icon-time {
+    background-position: -120px 0;
+}
+.panel-container .container-content .icon_rank {
+    width: 39px;
+    height: 39px;
+    display: inline-block;
+    /*background-size: 105px 33px;*/
+    vertical-align: middle;
+    margin-top: -6px;
+    background:url(../images/num_03.gif) no-repeat;;
+}
+.panel-container .container-content b{
+    font-weight: bold;
+    color: #d75827;
+    margin-right: 6px;
+}
+.panel-container .container-content .icon_rank.rank1 {
+    background-position: 0px 0;
+}
+
+.panel-container .container-content .icon_rank.rank2 {
+    background-position: 0 -39px;
+}
+
+.panel-container .container-content .icon_rank.rank3 {
+    background-position: 0 -78px;
+}
+
+.company-rights {
+    color: #7854c2;
+    font-size: 10px;
+    text-align: center;
+    line-height: 45px;
+    width: 100%;
+}
+
+.register-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 25px;
+    background-color: #fba778;
+    border-radius: 12px;
+    height: 306px;
+    display: none;
+}
+#panel-without-times{
+    height: 220px;
+}
+#panel-without-times .register-main{
+    height: 214px;
+}
+.register-panel.show {
+    display: block;
+}
+
+.register-panel-layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+.register-panel-layer.show {
+    display: block;
+}
+
+.register-panel .register-main {
+    border-radius: 12px;
+    margin-top: 6px;
+    height: 300px;
+    position: relative;
+    background-image: -webkit-linear-gradient(0deg, #F7E39C 0%, #FFFFFF 50%, #F7E39C 100%);
+}
+
+/* .register-panel .register-content {
+    width: 100%;
+    min-height: 45px;
+    line-height: 45px;
+    border-radius: 20px 20px 0 0;
+    background-repeat: repeat-x;
+    background-size: 1px 45px;
+    background-image: url("../../img/magpiebridge/bg_th.png");
+    position: absolute;
+    top: 6px;
+    left: 0;
+    text-align: center;
+}
+ */
+.register-panel .icon-player {
+    width: 82px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-size: 100% 100%;
+    background-image: url("../../img/magpiebridge/icon_player.png");
+}
+
+.register-panel .icon-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.register-panel  .icon-img-bg {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    margin-top: 50px;
+    display: inline-block;
+}
+.register-panel .icon-edit {
+    width: 25px;
+height: 24px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-size: 25px 24px;
+    background-position: right bottom;
+    background-image: url("../../img/magpiebridge/icon_edit.png");
+    -webkit-transform: translate3d(30px, 2px, 0);
+    background-repeat: no-repeat;
+}
+
+.register-panel input[type="text"],
+.register-panel input[type="tel"] {
+    border: 1px solid #F5DBA2;
+    background-color: #fefbf1;
+    border-radius: 2px;
+    margin: 0 auto 6px;
+    width: 195px;
+    height: 32px;
+    line-height: normal;
+    text-align: center;
+    display: block;
+    font-size: 15px;
+    color: #d1865c;
+}
+
+.register-panel input::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.register-panel .input-file {
+    opacity: 0;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+}
+
+.register-panel .btn-layout {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-panel .btn-start,
+.register-panel .btn-cancel {
+    display: inline-block;
+    width: 91px;
+    height: 40px;
+    background-size: 300% 100%;
+    background-image: url("../../img/magpiebridge/start_page_btn.png");
+}
+
+.register-panel .btn-start {
+    background-position: -182px 0;
+}
+ .register-panel .btn-cancel {
+    background-position: -91px 0;
+}
+.register-panel .icon-without-times{
+    width: 199px;
+    height: 78px;
+    position: absolute;
+    top: -37px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-size: 100% 100%;
+    background-image: url(../../img/magpiebridge/result_page_prize_no.png);
+    -webkit-transform: translate(10px, 0px);
+}
+.register-panel .btn-know {
+    display: inline-block;
+    width: 156px;
+    height: 41px;
+    background-size: 156px 41px;
+    background-image: url("../../img/magpiebridge/btn_know.png");
+}
+.register-panel .btn-know {
+    background-position: 0 0;
+}
+.register-panel .result-page-prize{
+    color: #d1865c;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    margin-top: 50px;
+}
+.register-panel .plus{
+    font-size: 15px;
+    color: #d1865c;
+    line-height: 20px;
+    margin-top: 12px;
+    padding-bottom: 8px;
+}
+.register-panel .color_warn{
+    color: #fd615f;
+    font-weight: bold;
+    text-decoration: none;
+}

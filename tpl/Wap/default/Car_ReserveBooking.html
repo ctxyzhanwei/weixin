@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/datepicker.css" media="all" />
+<script type="text/javascript" src="{pigcms::RES}/car/js/jQuery.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/Tabs/css/easy-responsive-tabs.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/car/Tabs/js/easyResponsiveTabs.js"></script>
+
+<title>预约列表</title>
+
+        <style>
+            img{width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+    <body onselectstart="return true;" ondragstart="return false;">
+        <div id="bookBody" class="body">
+            <header>
+                <ul>
+                    <li><img src="{pigcms:$reser['headpic']}" style="width:100%;" /></li>
+                </ul>
+            </header>
+<if condition="$books eq ''">
+
+<li><a href="javascript:;">
+            </a><div class="text"><a href="javascript:;">
+               您还没有预约。
+                </div>
+
+</li>
+</if>
+
+            <section>
+                <div class="p_10">
+                    <form id="form1" action="#" method="post" >
+  <div id="horizontalTab">
+            <ul class="resp-tabs-list">
+
+            <volist name='books' id='vo'>
+                <li>{pigcms:$vo['dateline']}订单详情  <a href="javascript:;" style="background-color:#ccc;float:right;margin-right:0px;color:#000;line-height:20px;border-radius:8px;margin-top:3px;padding:0 5px;"> <if condition="$vo['remate'] eq 0"><em class="no">等待客服回电</em><elseif condition="$vo['remate'] eq 1" /><em class="no"><font color="green">客服已回复</font></em><elseif condition="$vo['remate'] eq 2" /><em class="no"><font color="red">您的请求被拒绝</font></em></if></a></li>
+             </volist>
+            </ul>
+            <div class="resp-tabs-container">
+             <volist name='books' id='vo'>
+                <div>
+                     <dl class="list_book">
+
+                            <dt class="ofh">
+                                <label style="width:150px;">&nbsp;</label>
+                            </dt>
+                            <dd class="tbox">
+                                <div><label>联系人:</label></div>
+                                <div><label>{pigcms:$vo['truename']}</label></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>联系电话：</label></div>
+                                <div><a href="tel:{pigcms:$vo['tel']}" style="color:#000;">{pigcms:$vo['tel']}</a></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>品牌/车系：</label></div>
+                                <div><label>{pigcms:$vo['housetype']}</label></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>车型：</label></div>
+                                <div><label>{pigcms:$vo['choose']}</label></div>
+                            </dd>
+                            <if condition="$vo['type'] eq 'maintain'">
+                                <dd class="tbox">
+                                <div><label>车牌：</label></div>
+                                <div><label>{pigcms:$vo['carnum']}</label></div>
+                                </dd>
+                                <dd class="tbox">
+                                    <div><label>公里：</label></div>
+                                    <div><label>{pigcms:$vo['km']}</label></div>
+                                </dd>
+                            </if>
+
+                            <dd class="tbox">
+                                <div><label>预约日期：</label></div>
+                                <div><label>{pigcms:$vo['dateline']} {pigcms:$vo['timepart']}</label></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>提交时间：</label></div>
+                                <div><label>{pigcms:$vo['booktime']|date='Y年m月d日',###}</label></div>
+                            </dd>
+                            <div>
+                                <li class="box group_btn">
+                                    <div>
+
+                                    </div>
+                                    <div><a href="{pigcms::U('Car/delOrder',array('token'=>$vo['token'],'wecha_id'=>$vo['wecha_id'],'id'=>$vo['id'],'addtype'=>$vo['type']))}" onclick="return(confirm('您确定要删除吗?'));return false;" id="showcard2" class="gray">删除订单</a></div>
+                                </li>
+                            </div>
+                        </dl>
+                </div>
+                </volist>
+            </div>
+        </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'accordion', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true,   // 100% fit in a container
+            closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#tabInfo');
+                var $name = $('span', $info);
+
+                $name.text($tab.text());
+
+                $info.show();
+            }
+        });
+    });
+</script>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+    </body>             <div mark="stat_code" style="width:0px; height:0px; display:none;">
+                    </div>
+    </body>
+</html>

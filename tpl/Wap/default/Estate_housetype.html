@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/wap/style.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::STATICS}/wap/estate/house.js"></script>
+
+<title>楼盘户型 {pigcms:$estatindex['title']}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="wrapper" id="container">
+    <!-- start -->
+    <div class="act_top" id="actTop">
+        <div class="act_top_show">
+            <img src="{pigcms:$es_data['house_banner']}" id="bannerPic">
+        </div>
+    </div>
+    <div id="roomDetails">      
+        <div class="box box_up box_up3" id="box0">    
+            <h3>{pigcms:$es_data['title']}</h3>    
+            <div class="box_type" style=" height:auto;">     
+                <ul class="house_type">
+                <if condition="$housetype neq ''">    
+                <volist name='housetype' id='vo' key="key">           
+                    <li id="boxLi{pigcms:$vo.id}" <if condition="$key eq 1">class="current"</if>>     
+                        <a href="javascript:void(0);" onclick="List.toggleList({pigcms:$vo.id},0);">         
+                            <strong>{pigcms:$vo['name']}</strong>         
+                            <span>{pigcms:$es_data['title']}</span>         
+                            <em>{pigcms:$vo['fang']}房{pigcms:$vo['ting']}厅  {pigcms:$vo['area']}</em>        
+                        </a>        
+                        <div class="house_photo house_arrow" style="display: <if condition="$key eq 1">-webkit-box<else/>none</if>;">         
+                            <a href="{pigcms::U('Estate/house_pic',array('token'=>$token,'id'=>$vo['panorama_id'],'wecha_id'=>$wecha_id,'id'=>$es_data['id'],'hid'=>$vo['id']))}"  class="ico_type">户型图</a>
+                            <if condition="$vo['panorama_id'] neq 0">
+                                <a href="{pigcms::U('Panorama/item',array('token'=>$token,'id'=>$vo['panorama_id'],'wecha_id'=>$wecha_id,'sgssz'=>'mp.weixin.qq.com'))}"  class="ico_360">全景图</a>
+                            </if>       
+                        </div>        
+                    </li>
+                </volist>
+                <else />
+                <li style="padding:5px 10px;text-align:center;">没有相关户型信息</li>
+                </if>
+                </ul>
+                <div style="padding:5px 10px;margin:0 auto;border-top: 1px solid #e2e1e0;">{pigcms:$page}</div>    
+            </div>       
+        </div>     
+    </div>
+    <p>&nbsp;</p>
+    <!-- end -->
+</div>
+
+<div class="pop_tips" id="popTips" style="display:none;">
+    <div class="oval"></div>
+    <div class="pop_show">
+        <h4 id="tipsTitle">温馨提示</h4>
+        <div class="pop_info" id="tipsMsg">
+            <p></p>
+        </div>
+        <div class="pop_btns">
+            <a href="javascript:void(0);" id="tipsOK">确定</a>
+            <a href="javascript:void(0);" style="display:none;" id="tipsCancel">取消</a>
+        </div>
+    </div>
+</div>
+
+<include file="Estate:menu"/>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+<div class="tab">
+	<ul>
+	<li class="tabli" id="tab0"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Scoregift'))}">关键字触发</a></li>
+	<li class="<if condition='ACTION_NAME eq lists OR ACTION_NAME eq gift_set'>current </if> tabli" id="tab0"><a href="{pigcms::U('Scoregift/lists',array('token'=>$token))}">礼品列表</a></li>
+	<li class="<if condition='ACTION_NAME eq exchange_user'>current </if> tabli" id="tab0"><a href="{pigcms::U('Scoregift/exchange_user',array('token'=>$token))}">奖品兑换</a></li>
+	<li class="<if condition='ACTION_NAME eq logs'>current </if> tabli" id="tab0"><a href="{pigcms::U('Scoregift/logs',array('token'=>$token))}">奖品兑换记录</a></li>
+	</ul>
+</div>

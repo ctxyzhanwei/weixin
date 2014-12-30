@@ -1,0 +1,34 @@
+<include file="Store:header"/>
+<link href="tpl/static/store/css/eve.css" rel="stylesheet"/>
+<link href="tpl/static/store/css/other.css" rel="stylesheet"/>
+
+<div id="login" class="body account">
+    <div class="wrapper">
+        <div id="login-panel" class="panel" data-tab="normal">
+            <div id="normal-panel" class="active-panel normal-panel">
+                <form id="normal-login-form" action="{pigcms::U('Store/login',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" autocomplete="off" method="post">
+                    <p><input id="username" class="input-common" type="text" placeholder="账号" name="username" value="" ></p>
+                    <p><input id="password" class="input-common" type="password" placeholder="请输入您的密码" name="password" ></p>
+					<button type="submit" class="btn-large btn-large mj-submit mj-submit">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="sub-action"><a href="{pigcms::U('Store/register', array('token' => $token, 'wecha_id' => $wecha_id, 'twid' => $twid))}">还没有账号，现在注册</a> <!-- <a href="">找回密码</a> --></p>
+<div id="meituan_check" style="margin:0 0 55px 0"><br><br><br></div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

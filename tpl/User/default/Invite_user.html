@@ -1,0 +1,83 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+<div class="cLineB">
+<h4 class="left"></h4>
+<div class="searchbar right">
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<div class="cLineB">
+  <h4>邀请函主要人物 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th width="120">人名　　：</th>
+					<td><input type="text" name="username"class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th>头像　　：</th>
+					<td><input type="text" name="headpic" id="headpic" class="px" style="width:550px;">   <script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script><a href="###" onclick="upyunPicUpload('headpic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('headpic')">预览</a></td>
+				</tr>
+				<tr>
+					<th width="120">身份　　：</th>
+					<td><input type="text" name="position" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">介绍　　：</th>
+					<td><textarea style="width:550px;height:75px" name="synopsis" id="synopsis" class="px"></textarea><br/></td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+<div style="width:990px;height:auto;" class="tab_th">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align:center;">
+<thead>
+<tr><th>头像</th><th>人名</th><th>身份</th><th>介绍</th><th>操作</th></tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="Invite">
+		<tr><td><img src="{pigcms:$Invite.headpic}" style="width:50px;height:50px;"></td><td>{pigcms:$Invite.username}</td><td>{pigcms:$Invite.position}</td><td>{pigcms:$Invite.synopsis}</td><td><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Invite/userdel',array('token'=>$_GET['token'],'id'=>$Invite['id']))}');"><font color="red" size="2"><b>删除</b></font></a></td></tr>
+		</volist>
+</tbody>
+</table>
+</div>
+<if condition="session('isQcloud') neq true">
+
+	<include file="Public:footer"/>
+	
+</if>

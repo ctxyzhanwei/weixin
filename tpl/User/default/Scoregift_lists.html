@@ -1,0 +1,63 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content" style="" >
+
+<div class="cLineB">
+<h4 class="left">礼品管理</h4>
+<div class="clr"></div>
+</div>
+<include file="Scoregift:menu"/>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Scoregift/gift_set',array('token'=>$token,'acid'=>$acid))}" title="添加礼品" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加活动奖品</a></div>
+
+<div class="clr"></div>
+
+</div>
+
+<div class="msgWrap">
+
+<form method="post" action="" id="info">
+
+<input name="delall" type="hidden" value="">
+
+<input name="wxid" type="hidden" value="">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+<tr>
+
+<th width="100">奖品名称</th>
+<th width="100">需要积分</th>
+<th width="100">状态</th>
+<th width="250" class="norightborder">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody style="text-align:center;">
+<volist name="data" id="item"> 
+
+<tr>
+<td>{pigcms:$item.name}</td>
+<td>{pigcms:$item.score}</td>
+<td><if condition="$item.status eq 0"><span class="red">关闭</span><else/><span class="green">启用</span></if></td>
+<td class="norightborder"><a href="{pigcms::U('Scoregift/gift_set',array('id'=>$item['id'],'token'=>$token))}">修改</a>&nbsp;&nbsp; <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Scoregift/gift_del',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>
+
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

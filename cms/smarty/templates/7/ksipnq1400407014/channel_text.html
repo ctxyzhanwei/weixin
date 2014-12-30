@@ -1,0 +1,37 @@
+{include file=$header}
+<div class="sub">
+	<div class="subsearchbox">
+    	<div class="search">
+            <form id="search" name="search" method="post" action="?m=site&c=home&a=search&token={$token}">
+                <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+                <input type="submit" class="button" title="搜索" value="">
+            </form>
+        </div>
+        <div class="subnav"><p>全部分类</p></div>
+    </div>
+    <div class="clear"></div>
+	    <ul class="subnavbg">
+		{if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+            </ul>
+    	    <ul class="newsul">
+			{if $contents}
+			{foreach from=$contents item=c}
+		        <li><a href="{$c.link}" title="{$c.title}">{$c.title}</a></li>
+			{/foreach}
+			{/if}
+		    </ul>
+    <p class="clear"></p>
+	{if $currentPage&&$totalPage}
+    <div class="pages">
+			<a class="pre-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="next-left" href="{$nextPageLink}">&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	{/if}
+	</div>
+{include file=$footer}

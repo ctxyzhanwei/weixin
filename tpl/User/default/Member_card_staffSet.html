@@ -1,0 +1,67 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="./tpl/static/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="./tpl/static/kindeditor/plugins/code/prettify.css" />
+<script src="./tpl/static/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="./tpl/static/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="./tpl/static/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<div class="content">
+        <div class="cLineB">
+			<h4>设置职员</h4>
+			<a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+		</div>
+         
+          <form method="post" action="" enctype="multipart/form-data">
+           <input type="hidden" name="formhash" value="9865d2e0" />
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="keyword">姓名：</label></TH>
+  <TD width="320"><input type="input" class="px" id="name" value="{pigcms:$item.name}" name="name" style="width:300px" ></TD>
+  </TR>
+  </THEAD>
+  <TBODY>
+ 
+  <TR>
+  	<TH>用户名：</TH>
+  	<TD><input type="input" class="px" id="username" name="username"  value="{pigcms:$item.username}"  style="width:300px" /></TD>
+  <TR>
+  	<TH>密码：</TH>
+  	<TD><input type="password" class="px" id="password" name="password" value=""  style="width:300px" /> (修改时如果不想修改密码请留空)</TD>
+                                							 
+   
+  <TR>
+   <TR>
+  	<th>电话：</th>
+  	<td><input type="input" class="px" id="tel" value="{pigcms:$item.tel}"  name="tel" style="width:300px" /></td>
+  	</TR>
+  
+   <TR>
+                              
+  <th>所属店铺：</th>
+  	<td> <select name="companyid" class="pt">
+	  	<option value="0" <if condition="$item['companyid'] eq 0">selected</if>>请选择</option>
+       <volist id="company" name="companys">
+       <option value="{pigcms:$company.id}" <if condition="$item['companyid'] eq $company['id']">selected</if>>{pigcms:$company.name}</option>
+       </volist>                            
+  	 
+  	</select> <a href="/index.php?g=User&m=Company&a=index&token={pigcms:$token}">点击这里添加店铺</a>
+  	</td>
+  	<th>  </th>
+  	<td> </td>
+  	</TR>
+   <tr>
+  	<th></th>
+  	<td><button type="submit"  name="button"  class="btnGreen left" >保存</button></td>
+  	<td>&nbsp;</td>
+  	<td>&nbsp;</td>
+  	</tr>
+  
+  </TBODY>
+</TABLE>
+
+          </form>
+          
+        </div>
+<include file="Public:footer"/>

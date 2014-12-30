@@ -1,0 +1,48 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>分佣设置</h4> 
+    <a href="{pigcms::U('Store/twitter',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody>
+       <tr> 
+        <th>每次点击的价格：</th> 
+        <td><input type="text" name="clickprice" value="{pigcms:$set['clickprice']}" class="px" style="width:100px;" />（元）</td>
+       </tr>
+       <tr>
+        <th>每天点击次数上限：</th>
+        <td><input type="text" name="clickmax" value="{pigcms:$set['clickmax']}" class="px" style="width:100px;" />（一天内最多统计通过某个推广号带来的点击数，多出的部分就不在计算）</td> 
+       </tr>
+       <tr>
+        <th>每个注册账号的价格：</th>
+        <td><input type="text" name="registerprice" value="{pigcms:$set['registerprice']}" class="px" style="width:100px;" />（元）</td> 
+       </tr>
+       <tr>
+        <th>每天注册账号的上限：</th>
+        <td><input type="text" name="registermax" value="{pigcms:$set['registermax']}" class="px" style="width:100px;" />（一天内最多统计通过某个推广号注册成你商城的用户，多出的部分就不在计算）</td> 
+       </tr>
+       <tr>
+        <th>购商品总价的百分比：</th>
+        <td><input type="text" name="percent" value="{pigcms:$set['percent']}" class="px" style="width:100px;" />（只要填写数据，不要填写%。如商品总价1000，百分比0.1，那么推广号获得的分佣 = 1000 * 0.1% = 1元）</td> 
+       </tr>
+
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Store/twitter',array('token' => $token, 'cid' => $cid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div> 
+  <include file="Public:footer" />

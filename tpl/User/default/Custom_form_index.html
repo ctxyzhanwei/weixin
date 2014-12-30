@@ -1,0 +1,65 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4>表单输入项管理 </h4>
+<a href="{pigcms::U('Custom/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+<div class="searchbar right">
+
+</div>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Custom_form/set',array('token'=>$token,'set_id'=>$set_id))}" title="输入设置" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">输入设置</a></div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="150">显示名称</th>
+<th width="50">输入类型</th>
+<th width="50">效果预览</th>
+<th width="40">排序</th>
+<th width="40">是否显示</th>
+<th width="100" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{pigcms:$item.field_name}</td>
+<td>{pigcms:$item.field_type}</td>
+<td>{pigcms:$item.input}</td>
+<td>{pigcms:$item.sort}</td>
+<td>
+	<if condition="$item.is_show eq '1'">
+		显示
+	<else />
+		不显示
+	</if>
+</td>
+<td class="norightborder">
+	<a href="{pigcms::U('Custom_form/set',array('field_id'=>$item['field_id'],'token'=>$token,'set_id'=>$set_id))}">修改</a> |
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Custom_form/del',array('field_id'=>$item['field_id'],'token'=>$token))}');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

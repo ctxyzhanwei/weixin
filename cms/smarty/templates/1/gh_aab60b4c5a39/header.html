@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="{$metaKeywords}" />
+<meta name="description" content="{$metaDescription}"/>
+<LINK href="{$cssdir}/style.css?{$rand}" rel=stylesheet>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.6.4.min.js" tppabs="common/js/jquery-1.6.4.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js" tppabs="common/js/nav.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/search.js" tppabs="common/js/search.js"></script>
+<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/banner.js" tppabs="common/js/banner.js"></script>
+<title>{$metaTitle}</title>
+</head>
+<body>
+<center><a href="{$homeUrl}"><img src="{$site.logourl}" alt="{$site.name}" class="logo"></a></center>
+{if !$homepage&&!$ismap}
+<div class="sub">
+	<div class="subnav">
+    	<a href="javascript:void(0);" title="搜索" class="subsearch"><center><img src="smarty/templates/tpls/hongsecanting/subsearch.png" tppabs="/images/subsearch.png" alt="搜索"></center></a>
+        <a href="javascript:void(0);" title="导航" class="subnavbtn"><center><img src="smarty/templates/tpls/hongsecanting/nav.png" tppabs="/images/nav.png" alt="导航"></center></a>
+        <a href="{$homeUrl}" title="主页" class="subhome"><center><img src="smarty/templates/tpls/hongsecanting/subhome.png" tppabs="/images/subhome.png" alt="主页"></center></a>
+    </div>
+    <div class="subsearchbox">
+        <div>
+            <form method="post" action="?m=site&c=home&a=search&token={$token}">
+                <input type="text" class="text" name="SeaStr" id="SeaStr" placeholder="请输入搜索关键词"/>
+                <input type="submit" class="button" value="">
+            </form>
+        </div>
+    </div>
+    <div class="subnavbox">
+       {if $navChannels}
+{foreach from=$navChannels item=n}
+	<a href="{$n.link}" title="{$n.name}">{$n.name}<span></span></a>
+	{/foreach}
+	{/if}
+        <a href="javascript:void(0);" title="收起" class="navback"><center><img src="smarty/templates/tpls/hongsecanting/backtop.png" tppabs="/images/backtop.png" alt="收起"></center></a>
+    </div>
+{/if}

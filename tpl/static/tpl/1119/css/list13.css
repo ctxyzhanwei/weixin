@@ -1,0 +1,31 @@
+body{ background: #250848;}
+.list{border-radius: 5px; margin: 10px 2%; width: 96%; background:#51396d; text-align: center; overflow: hidden;}
+.list img{ max-width: 100%;display:block;}
+.list h1{height:30px; line-height: 30px; font-weight: 100; color: #fff; font-size: 14px;margin-top:-30px;overflow:hidden;background:rgba(0,0,0,0.7);position:relative;}
+.list .bd a{ padding:10px; width: 100%; display: block;}
+.list .hd{ height: 32px; line-height: 32px; border-bottom: 1px solid #1a1919;
+    background-color:#484848;
+    background-repeat:repeat-x;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#484848),to(#1b1b1b));
+    background:-webkit-linear-gradient(top,#1b1b1b,#484848);
+    background:-moz-linear-gradient(top,#1b1b1b,#484848);
+    background:-ms-linear-gradient(top,#1b1b1b,#484848);
+    background:-o-linear-gradient(top,#1b1b1b,#484848);
+}
+.list a{ color: #fff;}
+.list a:active,
+.list a.active{opacity:0.8;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity:0.8;}
+.list a p{min-height: 40px;}
+.list a .fa{ font-size: 50px; line-height: 60px; color: #fff; margin-bottom: 40px; height: 60px; display: block;}
+.ico-location{width:35px; height: 26px; background: url("../images/btn-location.png") no-repeat center center; background-size: auto 26px; margin: 0 10px;}
+.btn-up-1{ background: #250848;}
+.btn-up-1 .fa{ background: #fff; color: #250848;}
+.navPop-1 .navPop-btn{ background: #250848;}
+.navPop-1 .navPop-btn .fa{ background: #fff; color: #250848;}
+.navPop-wrap>div a{
+    background: #250848;
+    color: #fff;
+}

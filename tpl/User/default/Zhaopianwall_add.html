@@ -1,0 +1,119 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="./tpl/User/default/common/js/cart/jscolor.js" type="text/javascript"></script>
+<script type="text/javascript" src="/tpl/User/default/common/js/jQuery.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+ <form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+    <h4>编辑照片墙活动开始内容</h4>
+    <a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div> 
+<div class="msgWrap bgfc"> 
+<TABLE class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%"><TBODY>
+<TR>
+  <th valign="top"><span class="red">*</span>关键词：</th>
+  <TD>
+	<input type="input" class="px" id="keyword" value="<if condition="$vo['keyword'] eq ''">照片墙<else/>{pigcms:$vo.keyword}</if>" name="keyword" style="width:400px" ><br />
+  	<span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。
+  </TD>
+  <TD rowspan="7" valign="top">
+	  <div style="margin-left:20px">
+		<img id="starpicurl_src" src="<if condition="$vo['starpicurl'] eq ''">{pigcms::RES}/images/img/activity-zhaopianwall-start.jpg<else/>{pigcms:$vo.starpicurl}</if>" width="373px" >	
+		<br />
+		<input class="px" id="starpicurl" name="starpicurl" value="<if condition="$vo['starpicurl'] eq ''">{pigcms::$f_siteUrl}/tpl/User/default/common/images/img/activity-zhaopianwall-start.jpg<else/>{pigcms:$vo.starpicurl}</if>"    style="width:363px;">
+<br>
+ <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('starpicurl',1000,500,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('starpicurl')">预览</a>  
+		填写活动开始图片网址
+	  </div>
+  </TD>
+</TR>
+<TR>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <TD>
+	<input type="input" class="px" id="title" value="<if condition="$vo['title'] eq ''">照片墙活动开始了<else/>{pigcms:$vo.title}</if>" name="title" style="width:400px" />
+  	<br />
+  	请不要多于50字!
+  </TD>
+  </TR>
+ <TR>
+  	<th valign="top"><span class="red">*</span>操作提示：</th>
+  	<td><textarea class="px"   name="sttxt" style="width:400px"  ><if condition="$vo['sttxt'] eq ''">请在公众账号聊天界面 切换到文字模式点击+选取照片，点击发送<else/>{pigcms:$vo.sttxt}</if></textarea>
+  		 </td>
+</TR>
+<TR>
+	<th><span class="red">*</span>活动时间：</th>
+	<td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''">{pigcms:$vo.statdate|date="Y-m-d H:i:s",###}<else/><?php 
+	echo date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d"), date("Y")));?></if>" onClick="WdatePicker()" name="statdate" />                
+		到
+		<input type="input" class="px" id="enddate" value="<if condition="$vo['enddate'] neq ''">{pigcms:$vo.enddate|date="Y-m-d H:i:s",###}<else/><?php 
+	echo date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d")+3, date("Y")));?></if>" name="enddate" onClick="WdatePicker()"  /> 
+	</td>
+</TR>
+<TR>
+<th valign="top">活动说明：</th>
+<td><textarea  class="px" id="info" name="info"  style="width:400px; height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入照片墙页面，晒晒更健康哦！<else/>{pigcms:$vo.info}</if></textarea><br />换行请输入
+ &lt;br&gt;
+ </td>
+</TR>
+</TBODY>
+</TABLE>
+  </div> 
+  
+<!--活动结束-->
+<div class="cLineB">
+          	<h4>活动结束内容</h4></div> 
+<div class="msgWrap bgfc">
+ 
+  	<table class="userinfoArea" style=" margin: 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  		<tbody>
+  			<tr>
+  				<th valign="top"><span class="red">*</span>活动结束公告主题：</th>
+  				<td><input type="input" class="px" id="endtite" value="<if condition="$vo['endtite'] eq ''">照片墙活动已经结束了<else/>{pigcms:$vo.endtite}</if>" name="endtite" style="width:400px" />
+  					<br />
+  					请不要多于50字! </td>
+  				<td rowspan="4" valign="top"><div style="margin-left:20px"><img  id="endpicurl_src" src="<if condition="$vo['endpicurl'] eq ''">
+				{pigcms::$f_siteUrl}/tpl/User/default/common/images/img/activity-zhaopianwall-end.jpg<else/>{pigcms:$vo.endpicurl}</if>"  width="373px"/> <br />
+  					<input class="px" id="endpicurl"  name="endpicurl" value="<if condition="$vo['endpicurl'] eq ''">{pigcms::$f_siteUrl}/tpl/User/default/common/images/img/activity-zhaopianwall-end.jpg<else/>{pigcms:$vo.endpicurl}</if>"    style="width:363px;" >
+<br>  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('endpicurl',1000,500,'{pigcms:$token}')" class="a_upload">上传</a><a href="###" onclick="viewImg('endpicurl')">预览</a>  
+  					填写活动结束图片网址 </div></td>
+  				</tr>
+  			<tr>
+  				<th valign="top">活动结束说明：</th>
+  				<td valign="top"><textarea  class="px" id="endinfo" name="endinfo"  style="width:400px; height:125px" ><if condition="$vo['endinfo'] eq ''">亲，活动已经结束，请继续关注我们的后续活动哦。<else/>{pigcms:$vo.endinfo}</if></textarea><br />换行请输入
+ &lt;br&gt;
+  				  </td>
+  				</tr>
+  				<TR>
+	<th valign="top">照片是否需要审核：</th>
+	<td><input class="radio" type="radio" name="ischeck" value="1"  <if condition="$vo['ischeck'] eq 1" >checked</if> >是  <input class="radio" type="radio" name="ischeck" value="0"  <if condition="$vo['ischeck'] eq 0" >checked</if>>否</td> 
+   </TR> 
+  				<TR>
+<th>&nbsp;</th>
+<td><button type="submit" class="btnGreen" >保存</button>　<a href=""  class="btnGray vm">取消</a>　<span class="red">请确认功能管理已开启照片墙功能</span></td>
+</TR>
+  			</tbody>
+  		</table>
+  </div> 
+  
+ </div>
+</form>
+        <div class="clr"></div>
+      
+    
+  <script type="text/javascript">
+	//onFocus事件就是当光标落在文本框中时发生的事件。
+	//onBlur事件是光标失去焦点时发生的事件。
+	function onfocus(obj){
+		obj.html = '';
+	}
+	function onblur(obj,str){
+		obj.html = str;
+	}
+  </script>
+<!--底部-->
+</div>
+<include file="Public:footer"/> 

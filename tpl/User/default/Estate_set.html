@@ -1,0 +1,325 @@
+<include file="Public:head"/>
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="/tpl/static/upyun.js?2013"></script>
+<script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#estate_desc', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+editor = K.create('#project_brief', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+editor = K.create('#traffic_desc', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+
+<script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+<div class="content">
+
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="cLineB">
+  <h4 class="left"><if condition="$es_data['id'] neq ''">编辑<else/>添加</if>楼盘</h4>
+  <a href="{pigcms::U('Estate/index',array('token'=>$token))}"  class="right  btnGreen">
+    返回
+  </a>
+ </div>
+  <div class="msgWrap bgfc">
+  <form action="" method="post" id="formID" class="form-horizontal form-validate" novalidate="novalidate">
+  <input type="hidden" name="token" value="{pigcms:$token}" />
+<if condition="$es_data['id'] neq ''">
+<input type="hidden" name="id" value="{pigcms:$es_data['id']}" />
+</if>
+  <div class="control-group">
+    <label for="title" class="control-label">图文消息标题：</label>
+    <div class="controls">
+      <input type="text" name="title" id="title" maxlength="10" class="span4" value="{pigcms:$es_data['title']}" schoolSet><span class="maroon">*</span><span class="help-inline">触发关键词后返回图文消息标题</span>
+    </div>
+  </div>
+  <div class="control-group">
+    <label for="keyword" class="control-label">触发关键词：</label>
+    <div class="controls">
+      <input type="text" name="keyword" id="keyword" class="span4" schoolSet value="{pigcms:$es_data['keyword']}"><span class="maroon">*</span><span class="help-inline">只能设置一个关键字</span>
+    </div>
+  </div>
+
+    <div class="control-group">
+    <label for="keyword" class="control-label">首页模板：</label>
+    <div class="controls">
+      <TR>
+
+  <TD>
+    <input type="text" id="selecttpl" class="px" value="已选择模板 {pigcms:$es_data['tpid']|default=36}" disabled size="40"  />
+    <a class="a_upload" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+    <a class="a_upload" onclick="viewTpl()">预览</a> <font color="red">[请注意,并不是所有模板都支持,如果发现所选模板显示不正确,请另换一个]</font>
+    <script>
+        function viewTpl(){
+            var tid = $('#tpid').val();
+            chooseTpl(tid,'',2);
+        }
+    </script>
+    <input type="hidden" class="px" id="tpid" value="{pigcms:$es_data['tpid']|default=36}" name="tpid" style="width:250px">
+  </TD>
+</TR>
+    </div>
+  </div>
+<div class="control-group">
+  <label for="keyword" class="control-label">首页幻灯片：</label>
+  <div class="controls">
+    <table class="quanjing" border="0" cellspacing="0" cellpadding="0" width="750">
+        <tr id="slide">
+          <td>
+              <img id="slide1_src"  style="width:145px;" src="{pigcms:$es_data['slide1']}">  
+          </td>
+          <td>
+              <img id="slide2_src"  style="width:145px;" src="{pigcms:$es_data['slide2']}">
+          </td>
+          <td>
+              <img id="slide3_src"  style="width:145px;" src="{pigcms:$es_data['slide3']}">
+          </td>
+          <td>
+              <img id="slide4_src"  style="width:145px;" src="{pigcms:$es_data['slide4']}">
+          </td>
+          <td>
+              <img id="slide5_src"  style="width:145px;" src="{pigcms:$es_data['slide5']}">
+          </td>
+        </tr>       
+        <tr>
+          <td>
+            <input type="input" class="px" id="slide1" value="{pigcms:$es_data['slide1']}" name="slide1" placeholder="幻灯片" style="width:133px">       
+          </td>
+          <td>
+            <input type="input" class="px" id="slide2" value="{pigcms:$es_data['slide2']}" name="slide2" placeholder="幻灯片" style="width:133px">            
+          </td>
+          <td>
+            <input type="input" class="px" id="slide3" value="{pigcms:$es_data['slide3']}" name="slide3" placeholder="幻灯片" style="width:133px">           
+          </td>
+          <td>
+            <input type="input" class="px" id="slide4" value="{pigcms:$es_data['slide4']}" name="slide4" placeholder="幻灯片" style="width:133px">       
+          </td>
+          <td>
+            <input type="input" class="px" id="slide5" value="{pigcms:$es_data['slide5']}" name="slide5" placeholder="幻灯片" style="width:133px">               
+          </td>
+        </tr>
+       <tr>
+          <td>
+            <a href="javascript:void(0);" onclick="upyunPicUpload('slide1',480,720,'{pigcms:$token}')" class="a_upload">上传</a>
+            <a href="javascript:void(0);" onclick="viewImg('slide1')">预览</a>[480*720]         
+          </td>
+          <td>
+            <a href="javascript:void(0);" onclick="upyunPicUpload('slide2',480,720,'{pigcms:$token}')" class="a_upload">上传</a>
+            <a href="javascript:void(0);" onclick="viewImg('slide2')">预览</a>[480*720]
+          </td>
+          <td>
+            <a href="javascript:void(0);" onclick="upyunPicUpload('slide3',480,720,'{pigcms:$token}')" class="a_upload">上传</a>
+            <a href="javascript:void(0);" onclick="viewImg('slide3')">预览</a>[480*720]
+          </td>
+          <td>
+            <a href="javascript:void(0);" onclick="upyunPicUpload('slide4',480,720,'{pigcms:$token}')" class="a_upload">上传</a>
+            <a href="javascript:void(0);" onclick="viewImg('slide4')">预览</a>[480*720]
+          </td>
+          <td>
+            <a href="javascript:void(0);" onclick="upyunPicUpload('slide5',480,720,'{pigcms:$token}')" class="a_upload">上传</a>
+            <a href="javascript:void(0);" onclick="viewImg('slide5')">预览</a>[480*720]
+          </td>
+        </tr>        
+    </table>
+  </div>
+</div>
+
+
+<div class="control-group">
+    <label for="coverurl" class="control-label">图文消息封面：</label>
+    <div class="controls">
+<if condition="$es_data['cover'] neq ''">
+      <img class="thumb_img" id="cover_src" src="{pigcms:$es_data['cover']|default=''}" style="max-height:100px;">
+</if>
+      <input type="input" class="px" id="cover" value="{pigcms:$es_data['cover']|default=''}" name="cover" >
+
+          <span class="help-inline">
+               <!--script src="{pigcms::STATICS}/upyun.js"></script--><a href="###" onclick="upyunPicUpload('cover',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('cover')">预览</a>
+              <span class="help-inline">建议尺寸：宽720像素，高400像素</span>
+          </span>
+       </div>
+  </div>
+  <div class="control-group">
+         <label class="control-label">楼盘头部图片：</label>
+                                    <div class="controls">
+                                    <if condition="$es_data['banner'] neq ''">
+                    <img class="thumb_img" id="banner_src" src="{pigcms:$es_data['banner']|default=''}" style="max-height:100px;">
+</if>
+                                            <input type="text" id="banner" name="banner" class="px" value="{pigcms:$es_data['banner']|default=''}">
+                                            <span class="help-inline">
+                                            <a href="###" onclick="upyunPicUpload('banner',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('banner')">预览</a>
+                                            <span class="help-inline">建议尺寸：宽720像素，高350像素</span>
+                                        </span>
+                                    </div>
+                                </div>
+  <div class="control-group">
+    <div class="control-group">
+                                    <label class="control-label">户型头部图片：</label>
+                                    <div class="controls">
+<if condition="$es_data['house_banner']">
+    <img class="thumb_img" id="house_banner_src" src="{pigcms:$es_data['house_banner']|default=''}" style="max-height:100px;">
+</if>
+
+                                        <input type="text" name="house_banner" id="house_banner" class="px" value="{pigcms:$es_data['house_banner']|default=''}">
+                                        <span class="help-inline">
+                                             <script src="{pigcms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('house_banner',720,400,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('house_banner')">预览</a>
+                                            <span class="help-inline">建议尺寸：宽720像素，高350像素</span>
+                                        </span>
+                                    </div>
+                                </div>
+  </div>
+
+  <div class="control-group">
+                                    <label for="album_title" class="control-label">全景相册名称：</label>
+                                    <div class="controls">
+                                    <select id="panorama_id" name="panorama_id" class="input-medium" schoolSet>
+                                          <option value="0">请选择360全景相册</option>
+                                            <volist name="panorama" id="vo">
+                                               <option value="{pigcms:$vo['pid']}" <if condition="$vo['pid'] eq $es_data['panorama_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到 <a href="{pigcms::U('Panorama/add',array('token'=>$token))}" class="btn"><strong><font color='red'>360°全景</strong></font></a>添加</span>
+
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">楼盘新闻：</label>
+                                    <div class="controls">
+                                     <select id="classify_id" name="classify_id" class="input-medium" schoolSet>
+                                          <option value="0">请选择3G楼盘新闻</option>
+                                            <volist name="classify" id="vo">
+                                               <option value="{pigcms:$vo['cid']}" <if condition="$vo['cid'] eq $es_data['classify_id']">selected="selected"</if>>{pigcms:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Classify/add',array('token'=>$token))}" class="btn"> <strong><font color='red'>文章分类管理</strong></font></a>添加</span> <span class="maroon">注意：只能添加［图文回复］的［新增图文自定义回复］！</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">预约版面：</label>
+                                    <div class="controls">
+                                     <select id="res_id" name="res_id" class="input-medium" schoolSet>
+                                          <option value="0">请选择预约版面</option>
+                                            <volist name="reslist" id="vo">
+                                               <option value="{pigcms:$vo['rid']}" <if condition="$vo['rid'] eq $es_data['res_id']">selected="selected"</if>>{pigcms:$vo['title']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请先到<a href="{pigcms::U('Estate/reservation',array('token'=>$token))}" class="btn"><strong><font color='red'>预约管理</strong></font></a>添加</span>
+                                    </div>
+                                </div>
+  <div class="control-group">
+    <label for="video" class="control-label">楼盘视频：</label>
+    <div class="controls">
+       <input type="text" name="video" id="video" class="span4" style="width:480px" value="{pigcms:$es_data['video']}"><p>
+       支持优酷视频地址如：http://v.youku.com/v_show/id_XNDA1ODEyNjE2.html <br>
+       腾讯fash视频地址：如http://static.video.qq.com/TPout.swf?vid=v0119s27wd5&amp;auto=0 <br>
+       也支持mp4和ogg 格式地址 http://www.w3school.com.cn/example/html5/mov_bbb.mp4 </p>
+    </div>
+  </div>
+
+<script>
+function setlatlng(longitude,latitude){
+  art.dialog.data('longitude', longitude);
+  art.dialog.data('latitude', latitude);
+  // 此时 iframeA.html 页面可以使用 art.dialog.data('test') 获取到数据，如：
+  // document.getElementById('aInput').value = art.dialog.data('test');
+  art.dialog.open('{pigcms::U('Map/setLatLng',array('token'=>$token,'id'=>$id))}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+
+  $(function(){
+    var slide = $('#slide img');
+        slide.each(function(){
+          if($(this).attr("src") == ''){
+            $(this).css('display','none');
+          }
+        });
+  });
+
+</script>
+<div class="control-group">
+    <label for="place" class="control-label">楼盘地址：</label>
+    <div class="controls">
+      <div class="input-prepend">
+         <input type="text" id="suggestId" class="span4 px"  name="place" value="{pigcms:$es_data['place']}" class="input-xlarge" schoolSet> <span class="maroon">*</span>
+      </div>
+    </div>
+  </div>
+    <div class="control-group">
+    <label for="suggestId" class="control-label">地图标识：</label>
+         <div class="controls">
+         经度 <input type="text" id="longitude"  name="lng" size="14" class="px" value="{pigcms:$es_data['lng']}" /> 纬度 <input type="text"  name="lat" size="14" id="latitude" class="px" value="{pigcms:$es_data['lat']}" /> <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a>
+         </div>
+    </div>
+<div class="control-group">
+         <label for="estate_desc" class="control-label">楼盘简介：</label>
+         <div class="controls">
+             <textarea class="px" id="estate_desc" name="estate_desc" style="width: 605px; height: 150px;">{pigcms:$es_data['estate_desc']}</textarea>
+
+         </div>
+     </div>
+     <div class="control-group">
+         <label for="project_brief" class="control-label">项目简介：</label>
+         <div class="controls">
+             <textarea class="px" id="project_brief" name="project_brief" style="width: 605px; height: 150px; ">{pigcms:$es_data['project_brief']}</textarea>
+         </div>
+     </div>
+     <div class="control-group">
+        <label for="traffic_desc" class="control-label">交通配套：</label>
+        <div class="controls">
+            <textarea class="px" id="traffic_desc" name="traffic_desc" style="width: 605px; height: 150px; ">{pigcms:$es_data['traffic_desc']}</textarea>
+        </div>
+    </div>
+ <if condition="$es_data['id'] neq ''">
+<input type="hidden" name="id" value="{pigcms:$es_data['id']}" />
+</if>
+   <div class="form-actions">
+      <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>　<button type="button" class="btnGray vm">取消</button>
+    </div>
+</form>
+  </div>
+
+
+        </div>
+
+<include file="Public:footer"/>

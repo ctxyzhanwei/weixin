@@ -1,0 +1,14 @@
+<link type="text/css" rel="stylesheet" href="{pigcms::RES}/css/cymain.css">
+<style>
+.cLine{overflow:visible;}
+</style>
+<div class="tab">
+	<ul>
+		<li class="tabli <if condition="$type eq 1">current</if>"><a href="{pigcms::U('Member_card/members', array('token' => $token,'id'=>$thisCard['id'],'type' => 1))}">会员管理</a></li>
+		<li class="tabli <if condition="$type eq 2">current</if>"><a href="{pigcms::U('Member_card/coupon', array('token' => $token,'id'=>$thisCard['id'],'type' => 2))}">优惠劵活动</a></li>
+		<li class="tabli <if condition="$type eq 3">current</if>"><a href="{pigcms::U('Member_card/integral', array('token' => $token,'id'=>$thisCard['id'],'type' => 3))}">礼品卷活动</a></li>
+		<li class="tabli <if condition="$type eq 4">current</if>"><a href="{pigcms::U('Member_card/privilege', array('token' => $token,'id'=>$thisCard['id'],'type' => 4))}">特权管理</a></li>
+		<li class="tabli <if condition="$type eq 5">current</if>"><a href="{pigcms::U('Member_card/staff', array('token' => $token,'id'=>$thisCard['id'],'type' => 5))}">店员管理</a></li>
+		<li class="tabli <if condition="$type eq 6">current</if>"><a href="{pigcms::U('Member_card/gifts', array('token' => $token,'id'=>$thisCard['id'],'type' => 6))}">开卡赠送</a></li>
+	</ul>
+</div>

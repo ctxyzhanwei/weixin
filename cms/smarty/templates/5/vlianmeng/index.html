@@ -1,0 +1,64 @@
+{include file=$header}
+<div class="banner">
+	<!---->
+	<div class="big-pic big-pic3">
+    <div class="big-pic-in">
+        <div class="pic-list" >
+        	     {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<3}
+                                <a href="{$a.link}"><p><img src="{$a.thumb}" width="100%"></p></a>
+								{/if}
+			{/foreach}
+			{/if}
+                    </div>
+        <div class="slide-dot">
+			       {if $channel_focus_contents}
+			{foreach from=$channel_focus_contents item=a key=k}
+			{if $k<3}
+			 <span{if $k==0} class="slide-dot-cur"{/if}></span>
+                    {/if}
+			{/foreach}
+			{/if}
+                    </div>
+    </div>
+</div>
+	<!---->
+		<ul class="ban_class">
+		{if $navChannels}
+{foreach from=$navChannels item=a key=k}
+			{if $k<6}
+				<li><a href="{$a.link}" title="{$a.name}">{$a.name}</a></li>
+				{/if}
+				{/foreach}
+				{/if}
+			</ul>
+	</div>
+<p class="title">{$pictureChannel.name}</p>
+<ul class="caseul">
+		 {if $pictureContents}
+			{foreach from=$pictureContents item=a key=k}
+			{if $k<6}
+		<li>
+		<div>
+			<center><a href="{$a.link}"><img src="{$a.thumb}" style="max-width:90px" height="64" alt="{$a.title}"></a></center>
+			<p><a href="{$a.link}">{$a.title}</a></p>
+		</div>
+	</li>
+	 {/if}
+		  {/foreach}
+		  {/if}
+	</ul>
+<div class="clear"></div>
+<div class="backtop2"><p><a href="#" title="返回顶部">返回顶部</a><span>|</span><a href="{$textChannel.link}" title="{$textChannel.name}">{$textChannel.name}</a></p></div>
+<div class="copyright">
+ {if $textContents}
+			{foreach from=$textContents item=a key=k}
+			{if $k<5}
+	<p><a href="{$a.link}" title="{$a.title}">{$a.title}</a></p>
+	{/if}
+	{/foreach}
+	{/if}
+	
+</div>
+{include file=$footer}

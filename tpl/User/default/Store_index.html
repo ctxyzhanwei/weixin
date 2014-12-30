@@ -1,0 +1,100 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">分类管理</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<if condition="$isgroup neq 1 OR $ischild neq 1">
+	<li class="current tabli" id="tab2"><a href="{pigcms::U('Store/index',array('token'=>$token))}">商品分类管理</a></li>
+	<if condition="empty($catid) neq true">
+	<li class="tabli" id="tab0"><a href="{pigcms::U('Store/product',array('token'=>$token))}">商品管理</a></li>
+	</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+	<if condition="$ischild eq 0">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Shop'))}">商城回复配置</a></li>
+	</if>
+	<if condition="$isgroup eq 1">
+	<li class="tabli" id="tab5"><a href="{pigcms::U('Store/group',array('token'=>$token))}">商品分组</a></li>
+	<li class="tabli" id="tab7"><a href="{pigcms::U('Store/productgroup',array('token'=>$token))}">分组商品展现</a></li>
+	</if>
+<else />
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/orders',array('token'=>$token))}">订单管理</a></li>
+</if>
+	<li class="tabli" id="tab2"><a href="{pigcms::U('Store/flash',array('token'=>$token))}">商城背景与轮播图</a></li>
+	<li class="tabli" id="tab8"><a href="{pigcms::U('Store/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> 
+<a href="{pigcms::U('Store/catAdd', array('token' => $token, 'cid' => $cid, 'parentid' => $parentid))}" title="新增分类" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">新增分类</a>
+</div>
+<if condition="$parentid gt 0">
+<div class="pageNavigator right">
+<a href="{pigcms::U('Store/index',array('token'=>$token, 'cid' => $cid, 'parentid' => $parentCat['parentid']))}" class="btnGrayS vm bigbtn">返回上级分类</a>
+</div>
+<else />
+<div class="pageNavigator right"> 
+<a href="{pigcms::U('Store/setting', array('token' => $token, 'cid' => $cid))}" title="商城设置" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" class="vm">商城设置</a>
+</div>
+</if>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select">名称</th>
+<th width="140">分类名称</th>
+<th width="150">规格</th>
+<th width="150">产品外观</th>
+<th width="120">创建时间</th>
+<th width="300" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td><input type="checkbox" name="del_id[]" value="285" class="checkitem"></td>
+<td>{pigcms:$hostlist.name}</td>
+<td>{pigcms:$hostlist.norms}<if condition="empty($hostlist['norms']) neq true"><span>&nbsp;&nbsp;<a href="{pigcms::U('Store/norms', array('catid'=>$hostlist['id'],'token'=>$token, 'type' => 0))}">规格的管理</a></span></if></td> 
+<td>{pigcms:$hostlist.color}<if condition="empty($hostlist['color']) neq true"><span>&nbsp;&nbsp;<a href="{pigcms::U('Store/norms', array('catid'=>$hostlist['id'],'token'=>$token, 'type' => 1))}">外观的管理</a></span></if></td> 
+<td>{pigcms:$hostlist.time|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder">
+	<a href="{pigcms::U('Store/catSet',array('token' => $token, 'id' => $hostlist['id'], 'cid' => $cid))}">修改</a>
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Store/catDel',array('id'=>$hostlist['id'],'token'=>$token, 'cid' => $cid))}');">删除</a>
+	<!-- <span>&nbsp;|&nbsp;<a href="{pigcms::U('Store/norms', array('catid'=>$hostlist['id'],'token'=>$token))}">增加规格</a></span> -->
+	<span>&nbsp;|&nbsp;<a href="{pigcms::U('Store/attributes',array('catid'=>$hostlist['id'],'token'=>$token))}">分类属性管理</a></span>
+	<if condition="$hostlist['isfinal'] neq 1">
+	<span>&nbsp;|&nbsp;<a href="{pigcms::U('Store/index',array('parentid' => $hostlist['id'],'level' => $hostlist['level'],'token'=>$token))}" style="color:#f00">子分类列表</a></span>
+	</if>
+	<if condition="$hostlist['isfinal'] neq 2">
+	<span>&nbsp;|&nbsp;<a href="{pigcms::U('Store/product',array('catid' => $hostlist['id'],'token'=>$token))}" style="color:#f00">商品管理</a></span>
+	</if>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

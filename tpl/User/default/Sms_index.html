@@ -1,0 +1,137 @@
+<include file="Public:top"/>
+<div id="wp" class="wp"><link href="./tpl/User/default/common/css/style.css" rel="stylesheet" type="text/css">
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>短信管理（剩余{pigcms:$smscount}条）</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>
+    
+				<li > <a href="index.php?g=User&amp;m=Sms&amp;a=index">短信记录</a></li>
+				<li > <a href="index.php?g=User&amp;m=Sms&amp;a=expense">消费记录</a></li>
+				<li class=" subCatalogList "><a href="index.php?g=User&amp;m=Sms&amp;a=buy">购买短信</a> </li>
+            </ul>
+          </div>
+        </div>
+<script src="./tpl/static/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+<div class="content">
+<style>
+.usercontent ul li{
+float:none;
+line-height:50px;
+padding-left:10px;
+}
+input{border: 1px solid #DDDDDD;height:30px;width:200px;margin-left:10px;}
+.new-btn-login{
+    background-color: transparent;
+    background-image: url("{pigcms::RES}/images/img/new-btn-fixed.png");
+    border: medium none;
+	border:1px solid red;
+	
+}
+.new-btn-login{
+    background-position: 0 -198px;
+    width: 82px;
+	color: #FFFFFF;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px 3px;
+	
+}
+.new-btn-login:hover{
+	background-position: 0 -167px;
+	width: 82px;
+	color: #FFFFFF;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px 3px;
+}
+.bottonbox{
+border: 1px solid #D74C00;
+padding: 1px;
+display: inline-block;
+}
+</style>
+<script>
+
+$(function(){
+	var price=new Array();
+	<volist id="p" name="group">
+	price[{pigcms:$p.id}]={pigcms:$p.price};
+	</volist>
+	$('#group').change(function(){
+		$('#price').val(price[$('#group').val()]*$('#num').val());
+		$('#needprice').val(price[$('#group').val()]*$('#num').val());
+	});
+	$('#num').change(function(){
+
+		$('#price').val(price[$('#group').val()]*$('#num').val());
+		$('#needprice').val(price[$('#group').val()]*$('#num').val());
+	});
+});
+function checkcz(){
+	if($('#group').val()==0){
+		alert('请选择级别');
+		return false;
+	}
+	return true;
+}
+</script>
+<div class="usercontent">
+ <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                <TH style="width:90px">Status</TH>
+<TH class="keywords">Token</TH>
+<TH class="answer">内容</TH>
+                    <TH  class="category" >手机号</TH>
+<TH class="time">时间</TH>
+                     
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR>
+				</TR>
+				<volist name="list" id="vo">
+				<tr>
+				 <td><pigcmsif where="$vo['status'] eq '0'">成功<else/>不成功({pigcms:$vo.status})</pigcmsif></td>
+                  <td>{pigcms:$vo.token}</td>
+                  <td><div class="answer_text">{pigcms:$vo.text}</div></td>
+                  <td>{pigcms:$vo.mp}</td>
+                    <td><php>echo date('Y-m-d',$vo['time']);</php></td>
+                </tr>
+				</volist>
+                             
+              </TBODY>
+            </TABLE>
+        <div class="clr"></div>
+      </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+              <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+
+
+
+<include file="Public:footer"/>

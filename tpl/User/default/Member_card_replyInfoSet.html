@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>{Pigcms:$infoType.name}回复配置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+      
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<span class="red">会员卡 —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>会员回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$set.title}" class="px" style="width:550px;"><br>会员回复会员卡的时候出现的图文标题</td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>非会员回复标题：</th>
+					<td><input type="text" name="title1" value="{pigcms:$set2.title}" class="px" style="width:550px;"><br>非会员回复会员卡的时候出现的图文标题</td>
+				</tr>
+				<tr>
+					<th width="120">会员内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{pigcms:$set.info}</textarea><br/>最多填写120个字<br>会员回复会员卡的时候出现的图文回复介绍</td>
+				</tr>
+				<tr>
+					<th width="120">非会员内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info1" id="info" class="px">{pigcms:$set2.info}</textarea><br/>最多填写120个字<br>非会员回复会员卡的时候出现的图文回复介绍</td>
+				</tr>
+				<tr>
+					<th>会员回复图片：</th>
+					<td><input type="text" name="picurl" value="{pigcms:$set.picurl}" id="pic" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>   &nbsp; 大小为720x400<br>会员回复会员卡的时候出现的图文图片地址</td>
+				</tr>
+				<tr>
+					<th>非会员回复图片：</th>
+					<td><input type="text" name="picurl1" value="{pigcms:$set2.picurl}" id="pic1" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic1',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a>   &nbsp; 大小为720x400<br>非会员回复会员卡的时候出现的图文图片地址</td>
+				</tr>
+				<tr>
+					<th>第三方接口：</th>
+					<td><input name="apiurl" value="{pigcms:$set.apiurl}" class="px" style="width:550px;" type="text">   &nbsp; {wechat_id}表示用户参数</td>
+				</tr>
+				
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="keyword" value="{Pigcms:$infoType.keyword}" />
+					<input type="hidden" name="infotype" value="{Pigcms:$infoType.type}" />
+					<input type="hidden" name="token" value="{Pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

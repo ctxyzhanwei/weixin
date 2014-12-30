@@ -1,0 +1,39 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+          <div class="cLineB"><h4>网页授权获取用户基本信息</h4></div>
+<include file="Auth:header"/>
+ <div class="ftip" style="margin:25px auto 5px auto;">网页授权获取用户基本信息功能只有认证服务号才能使用</div>
+ 
+ <div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+
+<TR>
+  <TH valign="top" align="right" style="text-align:right">开启该功能：</TH>
+  <TD><label for="radio3"><input id="radio3" class="radio" type="radio" name="oauth" value="1"  <eq name="info.oauth" value="1">checked="checked"</eq> /> 开启</label>&nbsp;&nbsp;<label for="radio4"><input class="radio" id="radio4" type="radio" name="oauth" value="0" <eq name="info.oauth" value="0">checked="checked"</eq> /> 关闭</label></TD>
+</TR>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+  
+ 
+          
+        </div>
+<include file="Public:footer"/>

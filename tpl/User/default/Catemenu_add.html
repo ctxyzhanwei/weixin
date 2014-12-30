@@ -1,0 +1,84 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+          <div class="cLineB"><h4>添加底部菜单</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action="{pigcms::U('Catemenu/insert')}" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+  <if condition="$fid neq 0">
+  <TR>
+  <TH valign="top"><label for="keyword">上级菜单名称：</label></TH>
+  <TD>{pigcms:$thisCatemenu.name}<input type="hidden" name="fid" value="{pigcms:$fid}" /></TD>
+  <TD>&nbsp;</TD>
+</TR>
+</if>
+<TR>
+  <TH valign="top"><label for="keyword">菜单名称：</label></TH>
+  <TD><input type="text" class="px" id="keyword" value="" name="name" style="width:500px" ><br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+                            </THEAD>
+  <TBODY>
+
+<TR>
+  <TH valign="top"><label for="keyword">图标地址：</label></TH>
+  <TD><input type="text" class="px" id="img" value="" name="picurl" id="img" style="width:500px" >  <script src="/tpl/static/upyun.js?2013"></script><a href="###" onclick="chooseFile('img','icon')" class="a_upload">选择</a> <a href="###" onclick="upyunPicUpload('img',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('img')">预览</a>
+  <br/>
+  <div style="margin:10px 0">您可以点击下面这些图片作为图标（直接点击即可）</div>
+  <div style="background:#eee;width:570px;margin:10px 0;text-align:center">
+  <?php
+  for ($i=1;$i<20;$i++){
+  	echo '<img onclick="document.getElementById(\'img\').value=this.src" style="width:30px;cursor:pointer;" src="tpl/User/default/common/images/photo/plugmenu'.$i.'.png" />';
+  }
+  ?>
+  </div>
+  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">外链地址 ：</label></TH>
+  <TD><input type="text" class="px" id="url" value="" name="url" style="width:500px" >   <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('url',0)" class="a_choose">从功能库添加</a></if><br />
+  <span style="color:red">如需实现一键拨号，请填写：“tel:您的电话号码”，比如：tel:13888888888</span>
+  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<input type="hidden" value="{pigcms:$token}" name="token">
+<TR>
+  <TH valign="top"><label for="keyword">排序：</label></TH>
+  <TD><input type="text" class="px" id="keyword" value="0" name="orderss" style="width:500px" ><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">是否显示：</label></TH>
+  <TD><input type="radio" class="px" id="keyword" value="1" name="status" checked />是<br />
+  <input type="radio" class="px" id="keyword" value="0" name="status" />否
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+    <div class="clr"></div>
+    </TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+    </div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

@@ -1,0 +1,56 @@
+a{
+    text-decoration: none;
+}
+.footer_menu_1{
+
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+width: 82px;
+height: 40px;
+background-image: url(../img/socialIcons/zixun.png);
+background-repeat:no-repeat;
+z-index: 11;
+position: relative;
+padding-left: 52px;
+line-height: 40px;
+float:left;
+}
+    .footer_menu_2{
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+width: 130px;
+height: 40px;
+background-image: url(../img/socialIcons/tel.png);
+background-repeat:no-repeat;
+z-index: 11;
+position: relative;
+padding-left: 52px;
+float:left;
+line-height: 40px;
+font-weight: bold;
+}
+    .footer_menu_3{
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+width: 82px;
+height: 40px;
+background-image: url(../img/socialIcons/down.png);
+background-repeat:no-repeat;
+z-index: 11;
+position: relative;
+padding-left: 52px;
+line-height: 40px;
+float:left;
+}

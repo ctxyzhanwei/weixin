@@ -1,0 +1,111 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+
+<script>
+    window.onload=function(){
+        document.forms[0].reset();
+        placeFo();
+    }
+    function placeFo(){
+        document.forms[0].elements[0].focus();
+    }
+</script>
+<div class="content">
+
+          <div class="cLineB">
+              <h4 class="left">当前位置：微学校 >> 成绩管理</h4>
+              <div class="clr"></div>
+          </div>
+          <div class="cLineD">
+            <div class="right">
+              <a href="###" onclick="$('#import').css('display','')" class="btnGrayS vm">导入数据</a>&nbsp;&nbsp;
+              <a href="{pigcms::U('School/exExcel',array('token'=>$token,'type'=>'score'))}" class="btnGrayS vm">导出数据</a>&nbsp;&nbsp;
+              <a href="/tpl/User/default/common/images/scoredemo.xls" class="btnGrayS vm">下载导入模板</a>
+            </div>
+
+            <div  class="left" id="import" style="display:none;">
+              <form enctype="multipart/form-data" action="?g=User&m=Upyun&a=localUploadSchoolExcel" id="thumbForm" method="POST" style="font-size:14px;">
+                <div>
+                  注意：不支持xlsx格式&nbsp;&nbsp;&nbsp;&nbsp;
+                选择本地文件：<input type="file" style="width:250px;border:1px solid #ddd" name="photo"></input> 
+                 <input id="submitbtn" name="doSubmit" type="submit" class="btnGreen" value="上传" onclick="this.value='上传中...'"></input> 
+                  <a href="###" onclick="$('#import').css('display','none')" class="btnGrayS vm">取消导入</a>
+                </div>
+                <input type="hidden" value="score" name="type" />
+              </form>
+            </div>
+    <!-- <form method="post" action="{pigcms::U('School/search',array('token'=>$token))}">
+     <input type="hidden" name="searchkey[key]" value="scoresearch">
+        姓名:<input size="20" value=""  placeholder="请输入学员姓名"  name="searchkey[name]" class="px">&nbsp;&nbsp;&nbsp;班级:<input size="20" value="" placeholder="请输入班级名称" name="searchkey[bjname]" class="px">&nbsp;&nbsp;&nbsp;科目:<input size="20" value="" name="searchkey[kmname]" placeholder="请输入科目名称" class="px">&nbsp;&nbsp;&nbsp;期号:<input size="20" value="" name="searchkey[qhname]" placeholder="请输入期号名称"  class="px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询</strong></button>
+    </form> -->
+ </div>
+          <div class="msgWrap">
+          <!--  <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">注意:支持模糊查询</div> -->
+
+
+          <!-- <input name="delall"  type="hidden" value="del" />
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" /> -->
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                <TH>姓名</TH>
+                <TH>年龄</TH>
+                <TH>性别</TH>
+                <TH>班级</TH>
+                <TH>科目</TH>
+                <TH>分数</TH>
+
+                <TH>期号</TH>
+                <TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+<volist id="list" name="market">
+                <TR>
+                  <TD>{pigcms:$list['s_name']}</TD>
+                  <TD>{pigcms:$list['age']}</TD>
+                  <TD><if condition="$list['sex'] eq 1">男</if><if condition="$list['sex'] eq 2">女</if></TD>
+                  <TD>{pigcms:$list['bj_name']}</TD>
+                  <TD>{pigcms:$list['km_name']}</TD>
+                  <TD>{pigcms:$list['my_score']} 分</TD>
+
+                  <TD>{pigcms:$list['qh_name']}</TD>
+                 <TD>
+                 <a href="{pigcms::U('School/student_score',array('token'=>$token,'scid'=>$list['id'],'id'=>$list['sid'],'type'=>'edit'))}"><font color="red">编辑</font></a> &nbsp;&nbsp;
+<a class="btn" href="{pigcms::U('School/del_item',array('token'=>$token,'id'=>$list['id'],'deltype'=>'scoresearch'))}" onclick="return(confirm('确定要删除吗？'))"  title="删除"><font color="#CCC7C7">删除</font></a>
+</TD>
+                </TR>
+</volist>
+              </TBODY>
+            </TABLE>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+// function checkAll(form, name) {
+// for(var i = 0; i < form.elements.length; i++) {
+// var e = form.elements[i];
+// if(e.name.match(name)) {
+// e.checked = form.elements['chkall'].checked;
+// }
+// }
+// }
+  </script>
+  <!--底部-->
+    </div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,50 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+  <h4>{pigcms:$infoType.name}添加奖励 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+      
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th width="120"><span class="red">*</span>连续签到次数</th>
+					<td><input type="text" name="stair" value="{pigcms:$set.stair}" class="px" style="width:200px;"><br>
+						用户连续签到次数
+					</td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>奖励积分：</th>
+					<td><input type="text" name="integral" value="{pigcms:$set.integral}" class="px" style="width:200px;"><br>
+						奖励积分
+					</td>
+				</tr>
+				<tr>
+					<th width="120">是否启用：</th>
+					<td>
+						<input type="radio" name="use" value="1"  <pigcmsif where="$set.use eq '1'">checked</pigcmsif> />启用
+						<input type="radio" name="use" value="0"  <pigcmsif where="$set.use eq '0'">checked</pigcmsif> />关闭
+					</td>
+				</tr>
+
+				
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="conf_id" value="{pigcms:$set.conf_id}" />
+					<input type="hidden" name="token" value="{pigcms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

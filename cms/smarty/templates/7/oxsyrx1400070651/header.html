@@ -1,0 +1,53 @@
+<!doctype html>
+    <html><head><META http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>{$metaTitle}</title>
+<meta name="keywords" content="{$metaKeywords}" />
+<meta name="description" content="{$metaDescription}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	<link type="text/css" rel="stylesheet" href="{$cssdir}/style.css?{$rand}">
+	<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/html5.js"></script>
+	<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/json.js"></script>
+	<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/globalOp.js"></script>
+	
+	<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/WapCircleImg.js"></script>
+	<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="smarty/templates/tpls/{$site.template}/jquery.mobile-1.3.1.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="smarty/templates/tpls/{$site.template}/nav.js"></script>
+</head><body>
+	
+	{if !$ismap}
+	<div id="doc" class="doc"><div class="container"><div class="box_main">
+	<header class="top">
+	<div class="logo" style="height:65px; overflow:hidden"><a title="{$site.name}" href="{$homeurl}" data-ajax="false"><img max-height="60" alt="{$site.name}" src="{$site.logourl}"></a>
+	<div class="clear"></div>
+	</div>
+	
+	<div name="栏目导航" class="navigation" id="divNav"><nav class="menu" id="navbgColor" config-style-data="{literal}{&quot;IsDefault&quot;:&quot;1&quot;,&quot;BgColor&quot;:&quot;#ddd&quot;,&quot;BgImg&quot;:null,&quot;TextColor&quot;:&quot;#ddd&quot;,&quot;HoverBgColor&quot;:&quot;#ddd&quot;,&quot;HoverBgImage&quot;:null,&quot;HoverTextColor&quot;:&quot;#ddd&quot;}{/literal}" style="">
+	<ul class="navBody" id="menu">
+	 {if $navChannels}
+{foreach from=$navChannels item=n key=k}
+{if $k<4}
+      <li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	  {/if}
+      {/foreach}
+	{/if}
+      <li><a href="javascript:void(0)" data-ajax="false" class="navbtn"><img style="margin-top:12px;height:15px;" src="smarty/templates/tpls/{$site.template}/nav.png" alt="导航"></a></li>
+    </ul></nav></div>
+	<!--xiala nav start-->
+	<ul class="navbg">
+ {if $navChannels}
+{foreach from=$navChannels item=n}
+	<li><a href="{$n.link}" title="{$n.name}">{$n.name}</a></li>
+	{/foreach}
+	{/if}
+</ul>
+	<!--xiala nav end-->
+	<input type="hidden" id="txt_NavHoverBgColor"><input type="hidden" id="txt_NavHoverBgImage"><input type="hidden" id="txt_NavHoverTextColor"><input type="hidden" id="txt_NavTextColor"><script type="text/javascript">
+      setCustomNavStyle('navbgColor')
+    </script></header>
+	{else}
+	<div class="logo" style="height:80px; overflow:hidden"><a title="{$site.name}" href="{$homeurl}" data-ajax="false"><img max-width="100%" alt="{$site.name}" src="{$site.logourl}"></a>
+	<div class="clear"></div>
+	</div>
+	{/if}

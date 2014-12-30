@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<style>
+    #myClas ul li {
+    margin-left: 5px;
+    }
+
+    .tooltips span {
+display: none;
+}
+    .tooltips:hover span {
+        text-align:left;
+        display: block;
+        position: absolute;
+        margin:0 auto;
+        width: 310px;
+        border: 1px solid #CCC;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #333;
+    }
+</style>
+
+<div class="msgWrap form">
+<ul id="tags" style="margin:0;">
+<li class="<if condition="(ACTION_NAME EQ 'tenant')">selectTag</if> " id="tab0"><a href="{pigcms::U('Market/tenant',array('token'=>$token,'type'=>'market'))}">商家管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'cate'">selectTag</if> " id="tab2"><a href="{pigcms::U('Market/cate',array('token'=>$token,'type'=>'market'))}">商户分类</a></li>
+<li class="<if condition="ACTION_NAME EQ 'park'">selectTag</if> " id="tab2"><a href="{pigcms::U('Market/park',array('token'=>$token,'type'=>'market'))}">停车场管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'area'">selectTag</if> " id="tab2"><a href="{pigcms::U('Market/area',array('token'=>$token,'type'=>'market'))}">区域管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'index'">selectTag</if> " id="tab2"><a href="{pigcms::U('Market/index',array('token'=>$token,'type'=>'market'))}">商圈设置</a></li>
+<li class="<if condition="ACTION_NAME EQ 'wap_nav'">selectTag</if> " id="tab2"><a href="{pigcms::U('Market/wap_nav',array('token'=>$token,'type'=>'market'))}">商圈首页板块设置</a></li>
+</ul>
+</div>

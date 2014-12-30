@@ -1,0 +1,48 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<link href="{pigcms::RES}/css/activity.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">微调研</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="current tabli" id="tab0"><a href="{pigcms::U('Research/index', array('token' => $token))}">调研列表</a></li>
+<li class="tabli" id="tab0"><a href="{pigcms::U('Research/saveInfo', array('token' => $token))}">调研操作</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th width="100">问题</th>
+		<th width="200">选项</th>
+		<th width="120">选择次数</th>
+	</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="tablelist"> 
+	<volist name="tablelist['answer']" id="answer" key="k">
+	<tr>
+		<if condition="$k eq 1">
+		<td rowspan="{pigcms:$tablelist['rowspan']}">{pigcms:$tablelist['name']}</td>
+		</if>
+		<td>{pigcms:$answer['name']}</td>
+		<td>{pigcms:$answer['nums']}</td>
+	</tr>
+	</volist>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<include file="Public:footer"/>

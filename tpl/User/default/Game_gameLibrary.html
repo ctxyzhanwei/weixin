@@ -1,0 +1,48 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+<include file="Game:tab"/>
+        
+
+
+          <div class="ftip" style="margin:25px auto 5px auto;">微游戏是我们与第三方游戏平台合作功能，将会不断推出热门微信游戏</div>
+ 
+         <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:120px;">Logo</th>
+<th style=" width:100px;">名称</th>
+<th style=" width:190px;">介绍</th>              
+<th style=" width:50px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="games" id="item">
+<tr>
+<td><img src="{pigcms:$item.logo}" width="60" /></td>
+<td>{pigcms:$item.title}</td>
+<td>{pigcms:$item.intro}</td>
+<td class="norightborder">
+<a href="{pigcms::U('Game/gameSet',array('gameid'=>$item['id']))}" >使用此游戏</a>
+</td>
+</volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+          
+        </div>
+<include file="Public:footer"/>

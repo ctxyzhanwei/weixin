@@ -1,0 +1,68 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">户型管理</h4>
+              <a href="{pigcms::U('Estate/index',array('token'=>$token))}"  class="right  btnGreen">
+                返回
+              </a>
+          </div>
+          
+        <div class="cLine">
+            <div class="alert">
+            <p><span class="bold">使用方法：</span>如果您的整体楼盘项目由多个子楼盘项目组成，请在此添加，如果没有可以不添加。</p>
+            </div>
+        </div>
+        
+          <div class="cLine">
+            <div class="pageNavigator left">
+                <a href="{pigcms::U('Estate/housetype_add',array('token'=>$token,'pid'=>$pid))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">添加户型
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                                               
+                  <th class="span3">户型名称</th>
+                  <th class="span3">所属子楼盘</th>
+                  <th class="span1">显示顺序</th>
+                  <th class="span3">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <if condition="$housetype eq ''">
+                  <tr>
+                    <td colspan="6" style="text-align:center; height:30px;"><strong>没有任何户型信息.</strong></td>
+                  </tr>
+                <else/>
+                  <volist name="housetype" id="list">
+                    <tr>
+                      <td style="text-align:center; ;">{pigcms:$list['name']}</td>
+                      <td style="text-align:center; ;"><span class="label"> {pigcms:$list['title']|default="独立户型"}</span></td>
+                      <td style="text-align:center; ">{pigcms:$list['sort']}</td>
+                      <td style="text-align:center; ">
+                      <a href="{pigcms::U('Estate/housetype_add',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" class="btn">编辑</a>
+                      <a href="{pigcms::U('Estate/housetype_del',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" onclick="return(confirm('确定要删除吗？'))" class="btn">删除</a></a>
+                      </td>
+                    </tr>
+                  </volist>
+                </if>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

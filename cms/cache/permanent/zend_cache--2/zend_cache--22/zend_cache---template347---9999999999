@@ -1,0 +1,20 @@
+                      1933652532O:8:"stdClass":10:{s:2:"id";s:3:"347";s:4:"name";s:6:"内容";s:4:"path";s:49:"@/smarty/templates/6/93eb60aa9774617/content.html";s:13:"generate_path";s:46:"?m=site&c=home&a=content&contentid={contentID}";s:4:"type";s:1:"3";s:9:"isdefault";s:1:"1";s:10:"createhtml";s:1:"0";s:4:"site";s:2:"36";s:4:"time";s:10:"1403539150";s:4:"code";s:474:"{include file=$header}
+{literal}
+<style>
+#content img{max-width:92%;}
+</style>
+{/literal}{if $ismap}
+{$mapstr}
+{else}
+<div class="clear"></div>
+<div class="sub" style="margin-top:20px;">
+<div class="clear"></div>
+    <h1>{$content.title}</h1>
+    <div class="view" id="content">{$content.content}</div>
+    <a href="{$channel.link}" title="返回列表" class="backlist">返回列表</a>
+    <div class="clear"></div>
+</div>
+{/if}
+{include file=$footer}
+
+";}

@@ -1,0 +1,111 @@
+<include file="Hotels:header"/>
+<body>
+	<div class="html">
+		<div class="main">
+			<header>
+				<a class="ico-hd arr-hd" href="javascript:history.go(-1);"></a>
+				<h1>填写订单</h1>
+				<a href="{pigcms::U('Hotels/my',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="ico-hd ico-order">我的订单</a>
+			</header>
+<div class="contxt cont-artical">
+	<form action="{pigcms::U('Hotels/saveorder',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}" class="new_hotel_order" data-validate="true" id="new_hotel_order" method="post" novalidate="novalidate">
+	<div style="margin:0;padding:0;display:inline">
+	<input name="token" type="hidden" value="{pigcms:$token}"></div>
+	<input name="wecha_id" type="hidden" value="{pigcms:$wecha_id}">
+	<input name="sid" type="hidden" value="{pigcms:$sort['id']}">
+	<input name="cid" type="hidden" value="{pigcms:$cid}">
+	<input name="startdate" type="hidden" value="{pigcms:$startdate}">
+	<input name="enddate" type="hidden" value="{pigcms:$enddate}">
+	<div class="box-cont box-order-info">
+		<div class="hd box-txt">
+			<b>在线预订客房 {pigcms:$commpany['name']}</b>
+			<p><span>入住日期</span><b>{pigcms:$sday}</b></p>
+			<p><span>离店日期</span><b>{pigcms:$eday} </b><i> {pigcms:$days} 晚</i></p>
+		</div>
+		<div class="bd">
+			<p class="table"><span class="td">总价<em id="total_price">￥{pigcms:$total}</em></span></p>
+		</div>
+	</div>
+	<div class="box-cont box-form box-form-order">
+		<div class="hd">
+			<b>{pigcms:$sort['name']}</b>
+			<p class="box-op">				
+				<a class="op-minus" id="input-minus" data-min="1">-</a>
+				<input class="input-number" data-max="10" data-min="1" id="input-number" name="nums" size="30" type="text" value="1">
+				<a class="op-add" id="input-add" data-max="10">+</a>
+			</p>
+		</div>
+		<p><label>入住人姓名：</label><input id="hotel_order_name" name="name" placeholder="请输入您的姓名" size="30" type="text" value="{pigcms:$fans.truename}"></p>
+		<p><label>联系人手机：</label><input id="hotel_order_mobile" name="tel" placeholder="请输入您的电话号码" size="30" type="text" value="{pigcms:$fans.tel}"></p>
+	</div>
+	<div class="box-cont box-txt">
+		<p><span>支付方式：</span>
+			<b><input name="paymode" value="1" type="radio" id="paymod_1" checked><label for="paymod_1">在线支付</label></b>　
+			<!-- <b><input name="paymode" value="3" type="radio" id="paymod_3" checked><label for="paymod_3">门店支付</label></b>　 -->
+			<if condition="$fans['balance'] gt 0">
+			<b><input name="paymode" value="4" type="radio" id="paymod_4"><label for="paymod_4">会员卡支付</label></b>　
+			</if>
+		</p>
+		<p><span>房间预留至：</span><b>18:00</b></p>
+		<p class="hide"><span>请在此时间之前取消订单：</span><b>19:00</b></p>
+	</div>
+	<div class="tcenter"><a class="btn btn-big submit form-submit" onclick="javascript:bookRoom();">提交订单</a></div>
+</form>
+<script type="text/javascript">
+var price = "{pigcms:$sort['price']}";
+var days = '{pigcms:$days}';
+function bookRoom(){
+    $hotel_order_name = $('#hotel_order_name');
+    $hotel_order_mobile = $('#hotel_order_mobile');
+    if(!$hotel_order_name || $hotel_order_name.val()==""){
+      alert('姓名不能为空');
+      $hotel_order_name.focus();
+    }else if(!test_mobile_number($hotel_order_mobile.val()) || $hotel_order_mobile.val()==""){
+      alert('手机号码格式不正确');
+      $hotel_order_mobile.focus();
+    }else{
+      $("form").submit();
+    }
+}
+
+  // 手机号码正则表达式
+function test_mobile_number(mobile_number) {
+    if (mobile_number == undefined) {
+      return false;
+    }
+    var mobile_reg = /^\d{11}$/;
+    if (mobile_reg.test(mobile_number)){
+      return true;
+    };
+    return false;
+}
+
+function sum_price(qty){
+    var total_price = qty * price * days;
+    $('#total_price').text('￥ '+total_price);
+}
+
+</script>
+
+		</div>
+	</div>
+
+
+
+
+</body>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{pigcms:$company[0]['id']}",
+            "imgUrl": "{pigcms:$company[0]['logourl']}", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Hotels/order',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Hotels/order',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Hotels/order',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

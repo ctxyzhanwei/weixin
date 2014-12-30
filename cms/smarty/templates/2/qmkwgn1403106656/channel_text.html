@@ -1,0 +1,41 @@
+{include file=$header}
+<div data-role="content" id="main">
+
+</div>
+    <div class="producttit">
+      <div class="title"><span class="fl">{$channel.name}</span></div>
+    </div>
+	{if $subChannels}
+	 <div class="view_menu"><span>展开分类</span></div>
+  <div class="view_menumain">
+  {foreach from=$subChannels item=c}
+         <a href="{$c.link}" class="ui-bar-g" data-ajax="false">{$c.name}</a>
+         {/foreach}
+      </div>
+	{/if}
+	
+	
+    <div class="padding20">
+      <div class="news_i">
+        <ul>
+                  {if $contents}
+			{foreach from=$contents item=c}
+			
+                  <li class="news_common" onClick="this.className='news_current'"><a href="{$c.link}"   data-ajax="false" title="{$c.title}">{$c.title}</a></li>
+                  
+		{/foreach}
+		
+		{/if}
+                </ul>
+				 
+        <div class="clear"></div>
+                  <div class="pages ui-grid-b">  
+                  <div class="ui-block-a"><div class="left" id="dis">上一页</div></div>
+    <div class="ui-block-b"><div class="page_change">{$currentPage}/{$totalPage}</div></div>
+    <div class="ui-block-c" style="margin-top:-23px;"><div class="right"><a href="{$nextPageLink}"  data-ajax="false">下一页</a></div></div>
+</div>
+                <div class="c"></div>
+      </div>
+    </div>
+  </div>
+ {include file=$footer}

@@ -1,0 +1,105 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">微调研活动信息 ({pigcms:$count}) 条<span class="FAQ">你本月有 {pigcms:$group.activitynum} 次机会可免收活动创建费，已经使用了 {pigcms:$activitynum} 次机会!</span></h4>
+              <div class="clr"></div>
+          </div>
+          <a href="{pigcms::U('Research/index', array('token' => $token))}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+          <div class="cLine">
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+<TH class="select">选择</TH>
+<TH>活动名称</TH>
+<TH>关键字</TH>
+<TH>参与人数</TH>
+<TH>开始时间/结束时间</TH>
+<TH>状态</TH>
+<TH>外链代码</TH>
+<TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                  <volist id="list" name="list">
+                <TR>
+                  <TD><input type="checkbox" name='del_id[]' value="842" class="checkitem"></TD>
+                  <TD>{pigcms:$list.title}</TD>
+                  <TD>{pigcms:$list.keyword}</TD> 
+				  <TD>{pigcms:$list.joinnum}</TD>                
+                  <TD>{pigcms:$list.statdate|date='Y-m-d',###}<br />{pigcms:$list.enddate|date='Y-m-d',###}</TD>
+                  <TD>
+				  <if condition="$list['status'] eq 0"><span class="red">未开始</span><else/><span class="green">已经开始</span></if>
+				  
+				 </TD>
+                  <TD>微调研 {pigcms:$list.id}</TD>
+                   <TD class="norightborder">
+				   <a href="index.php?g=User&m=Research&a=sn&id={pigcms:$list.id}&type=6">SN码管理</a> 
+				   <a href="index.php?g=User&m=Research&a=edit&id={pigcms:$list.id}&researchid={pigcms:$rid}">编辑</a>  
+				   <a href="index.php?g=User&m=Lottery&a=cheat&id={pigcms:$list.id}">作弊</a> 
+	
+				   <a href="
+				   <if condition="$list['status'] eq 1">				   
+				   javascript:drop_confirm('你确定要结束活动吗，结束后不可再开启本活动!', 'index.php?g=User&m=Research&a=endLottery&id={pigcms:$list.id}');<else/>index.php?g=User&m=Research&a=startLottery&id={pigcms:$list.id}   
+				   </if>">
+				   <if condition="$list['status'] eq 0">开始<else/>结束</if>				   
+				   </a>
+				  
+				   <a href="index.php?g=User&m=Research&a=del&id={pigcms:$list.id}&type=6">删除</a></TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+           </form> 
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script>
+          </div>
+            
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}</script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>

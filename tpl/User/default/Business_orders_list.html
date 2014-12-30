@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> 微信公众平台源码,微信机器人源码,微信自动回复源码 PigCms多用户微信营销系统</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/style_2_common.css?BPm" />
+<script src="./tpl/User/default/common/js/common.js" type="text/javascript"></script>
+<link href="./tpl/User/default/common/css/style.css" rel="stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script> -->
+  <script>
+ //    jQuery(document).ready(function(){
+ //      jQuery("#formID").validationEngine();
+ //    });
+</script>
+<style>
+    span{font-size: 14px;color:red;}
+</style>
+</head>
+<body id="nv_member">
+<div style="line-height:200%;padding:10px 20px;">
+<strong>
+<if condition="$type eq 'fitness'">
+预约房间
+<elseif condition="$type eq 'gover'"/>
+  服务窗口
+<elseif condition="$type eq 'food'"/>
+  所属分店
+<elseif condition="$type eq 'travel'"/>
+  所属景区
+<elseif condition="$type eq 'flower'"/>
+  所属分店
+<elseif condition="$type eq 'property'"/>
+    所属小区
+<elseif condition="$type eq 'ktv'"/>
+   所属分店
+<elseif condition="$type eq 'bar'"/>
+   所属分店
+<elseif condition="$type eq 'fitment'"/>
+   所属分店
+<elseif condition="$type eq 'wedding'"/>
+   所属分店
+<elseif condition="$type eq 'affections'"/>
+    所属分店
+<elseif condition="$type eq 'housekeeper'"/>
+  所属分店
+<elseif condition="$type eq 'lease'"/>
+   所属分店
+<elseif condition="$type eq 'beauty'"/>
+  所属分店
+</if>
+：
+</strong> <span>{pigcms:$userinfo['productName']}</span> <br />
+<strong>
+<if condition="$type eq 'fitness'">
+  健身项目
+<elseif condition="$type eq 'gover'"/>
+  服务项目
+<elseif condition="$type eq 'food'"/>
+    食品列表
+<elseif condition="$type eq 'travel'"/>
+  景区景点
+<elseif condition="$type eq 'flower'"/>
+   特色香花
+<elseif condition="$type eq 'property'"/>
+    业主服务
+<elseif condition="$type eq 'ktv'"/>
+   KTV包厢
+<elseif condition="$type eq 'bar'"/>
+   特色酒水
+<elseif condition="$type eq 'fitment'"/>
+    成功案例
+<elseif condition="$type eq 'wedding'"/>
+   服务项目
+<elseif condition="$type eq 'affections'"/>
+    宠物用品
+<elseif condition="$type eq 'housekeeper'"/>
+   服务项目
+<elseif condition="$type eq 'lease'"/>
+   租赁项目
+<elseif condition="$type eq 'beauty'"/>
+   套餐名称
+</if>
+</strong> <span>{pigcms:$userinfo['orderName']}</span> <br />
+<strong>预 约人：</strong><span>{pigcms:$userinfo['truename']}</span><br />
+<strong>电  话：</strong><span>{pigcms:$userinfo['tel']}</span><br />
+<if condition="($type eq 'gover') OR ($type eq 'property')"> <else/>
+<strong>价 格：</strong><span>{pigcms:$userinfo['payprice']} RMB</span><br />
+<strong>是否付款：</strong> <span><if condition="$userinfo['paid'] eq 1">已付款<else/>未付款</if></span><br />
+</if>
+<strong>备注：</strong><span>{pigcms:$userinfo['info']}</span><br />
+<strong>下单时间：</strong><span>{pigcms:$userinfo['booktime']|date="Y年m月d日  H:i:s",###}点</span><br />
+<!-- <strong>运单号：</strong>{pigcms:$userinfo['shiporder']}<br> -->
+<if condition="$ok eq 1">
+<strong><font  color='red'>修改成功</font> </strong>
+
+<elseif condition="$ok eq 2"/>
+<strong><font  color='red'>修改失败</font> </strong>
+</if>
+</div>
+
+<form class="form" id="formID" method="post" id="form" action="">
+    <div class="msgWrap bgfc">
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+       <tr>
+        <th><span class="red">*</span>订单状态：</th>
+        <td>
+        <select id="remate" name="remate" class="input-medium" style="width:80px">
+             <option value="0" <if condition="$userinfo['remate'] eq 0">selected="selected"</if>>待处理</option>
+             <if condition="($type eq 'gover') OR ($type eq 'property')">
+<option value="1" <if condition="$userinfo['remate'] eq 1">selected="selected"</if>>已经确认</option>
+              <else/>
+             <option value="1" <if condition="$userinfo['remate'] eq 1">selected="selected"</if>>确认付款</option>
+           </if>
+             <option value="2" <if condition="$userinfo['remate'] eq 2">selected="selected"</if>>拒绝</option>
+        </select>
+
+        </td>
+       </tr>
+       <tr>
+        <th><span class="red">*</span>订单备注：</th>
+        <td>
+        <textarea class="px" id="kfinfo" name="kfinfo"  style="width:400px; height:100px">{pigcms:$userinfo['kfinfo']}</textarea>
+        </td>
+       </tr>
+       <!-- <tr>
+        <th><span class="red">*</span>运单号：</th>
+        <td>
+        <input type="text" class="px" id="shiporder" style="width:400px;" name="shiporder" value="{pigcms:$userinfo['shiporder']}">
+        </td>
+       </tr> -->
+       <tr>
+       <th>&nbsp;</th>
+       <td>
+      <input type="hidden" name="id" value="{pigcms:$userinfo['id']}" />
+      <input type="hidden" name="wecha_id" value="{pigcms:$userinfo['wecha_id']}" />
+      <input type="hidden" name="type" value="{pigcms:$userinfo['type']}" />
+       <button type="submit" name="button" class="btnGreen">保存</button> </td>
+       </tr>
+      </tbody>
+     </table>
+     </div>
+
+   <input type="hidden" name="__hash__" value="c4777985610b4681565177b37676d9e2_ae444f64eff33253236e8ce4fe4073f1" /></form>
+
+</body>
+</html>

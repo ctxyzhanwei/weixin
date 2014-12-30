@@ -1,0 +1,26 @@
+{include file=$header}
+
+<div class="sub">
+		<ul class="newsul">
+        {if $contents}
+			{foreach from=$contents item=c}
+		        <li><a href="{$c.link}"  title="{$c.title}"><span>{$c.title}</span></a></li>
+                {/foreach}
+			 {/if}
+               
+            </ul>
+					<div class="pages">
+						<a href="{$previousPageLink}" title="上一页" class="no_prev">上一页</a>
+						<a href="#" title="分页列表" class="page" style="readonly"><span>{$currentPage}/{$totalPage}</span></a>
+						<a href="{$nextPageLink}"  title="下一页" class="next">下一页</a>
+					</div>
+		<!--<ul class="topages">
+									<li class="nowpage"><a href="javascript:void(0);" title="第1页">第1页</a></li>
+												<li><a href="news.php-&pageno=2.htm" tppabs="http://900029.3g/news.php?&pageno=2" title="第2页">第2页</a></li>
+								</ul>-->
+		<a class="bg" id="bg" href="#foot"></a>
+			</div>
+
+
+{include file=$footer}
+

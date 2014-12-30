@@ -1,0 +1,66 @@
+/*
+* Demo Styles
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:400,100,300);
+
+body {
+  background-color: #111;
+  font: normal 100%/1.5 "Lato", sans-serif;
+  color: white;
+  text-align: center
+}
+
+.demo-wrapper {
+  padding: 1em
+}
+
+header {
+  font-size: 20px;
+  padding: 1em 1.5em;
+  line-height: .5em;
+  background-color: #454683;
+  color: white
+}
+
+a {
+  text-decoration: none;
+  color: inherit
+}
+
+a.button {
+  background-color: #F02968;
+  padding: 5px 15px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 1.5em;
+  margin-right: 1em
+}
+
+.infobar {
+  font-size: 20px;
+  padding: 1em
+}
+
+.infobar p {
+  text-align: center;
+  margin-top: 1em
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em
+}
+
+.credit,
+.tips {
+  text-align: center
+}
+
+.credit {
+  margin-top: 1em
+}
+
+.credit a {
+  text-decoration: underline
+}

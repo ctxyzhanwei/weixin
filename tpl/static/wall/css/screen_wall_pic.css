@@ -1,0 +1,129 @@
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+:-webkit-full-screen {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;	
+}
+
+li{
+	list-style:none;
+}
+a{
+	color:#000;
+	text-decoration: none;
+}
+body{
+	font-size:12px;
+	min-height:100%;
+}
+body.main{
+	background-color:#667b9a;
+	background-position: center 0;
+}
+
+.main_section{
+	height:100%;
+}
+.relative {height: 100%}
+
+/********************/
+
+
+iframe{
+	width:910px;
+	height:530px;
+	border:0;
+	outline: none;
+}
+
+.fbody{
+	width:100%;
+	max-height:100%;
+	overflow: hidden;
+	/*background:rgba(0,0,0,0.3);*/
+}
+
+
+
+/*********************************************/
+.box_photo .op{
+	margin: 0 auto; width:400px;
+display: -moz-box;  display: box;
+text-align: center;
+}
+
+.box_photo .wrapper{
+	margin: 0 auto;
+}
+
+
+.box_photo .op li{
+	display: block;
+	float: left;
+	width: 130px;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+}
+.box_photo .op a{
+	color:rgba(0,0,0,0);
+	color:transparent;
+	line-height:70px;
+	display:block;
+	width:80px;
+	height:80px;
+	margin-left:20px;
+	background:url(../images/icons2.png) no-repeat 0px -80px;
+}
+.box_photo .op a.prev{
+	background-position: 0px -157px;
+}
+.box_photo .op a.playAndStop.on{
+	background-position: 0px 0px;
+}
+.box_photo .op a.next{
+	background-position: 0px -237px;
+}
+
+.flexslider ol, .flexslider .flex-direction-nav{
+	display: none;
+}
+.flexslider img{
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	margin: auto;
+}
+/**/
+img {
+border: 0;
+}
+.btn_music {
+	cursor:pointer;
+color: transparent;
+display: block;
+width: 80px;
+height: 80px;
+background: url(../images/icons2.png) no-repeat 0px -400px;
+}
+.btn_music.on {
+
+background-position: 0px -320px;
+}
+.quanpin{
+	cursor:pointer;
+color: transparent;
+display: block;
+width: 80px;
+height: 80px;
+background: url(../images/icons2.png) no-repeat 0px -480px;
+border:0; outline:none
+}
+.pmenu{position: absolute;
+bottom: 25px;
+width: 100%;
+text-align: center;
+z-index: 100;}

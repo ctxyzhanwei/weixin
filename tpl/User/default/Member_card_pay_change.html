@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>会员充值</title>
+<script src="/tpl/static/jquery.min.js"></script>
+<style>
+	body{width:545px;height:330px;font-size:12px;}
+	.content{margin:0 auto;width:100%;height:100%;}
+	.content .table{border:0;width:100%;}
+	.content .table tr{height:40px;line-height:40px;}
+	.content .table th,.content .table td{padding:5px 15px;}
+	.content .sub{border: 1px solid #999;color: #000000;padding:5px 15px;background:#d1d1d1;}
+	.content .sub:hover{background:#e1e1e1;}
+	.content .text,.content .select{height:20px;line-height:20px;position:relative;}
+	.content .text{width:100px;}
+	.content .select{padding:5px;height:30px;line-height:30px;width:110px;}
+</style>
+</head>
+<body>
+	<div class="content">
+		<table class="table">
+			<tr>
+				<th width="25%" align="left">充值金额</th>
+				<td align="left"> 
+					<input type="text" class="text"> 元
+				</td>
+			</tr>
+			<!--
+			<tr>
+				<th align="left">充值门店</th>
+				<td>
+					<select name="company" class="select">
+						<volist name="company" id="company">
+							<option value="{pigcms:$company.id}">{pigcms:$company.name}</option>
+						</volist>
+					</select>
+				</td>
+			</tr>-->
+			<tr>
+				<th  align="left">备注</th>
+				<td>
+					<textarea rows="4" cols="35" name=""></textarea>
+					<br>
+					最多不要超过100字
+				</td>
+			</tr>
+			
+			<tr>
+				<th></th>
+				<td><button class="sub">充值</button></td>
+			</tr>
+		</table>
+	</div>
+<script>
+
+$(function(){
+	$('.sub').click(function(){
+		alert(1);
+		
+	});
+	
+});
+</script>
+</body>
+</html>

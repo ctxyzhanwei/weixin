@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{pigcms:$info['title']}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="Keywords" content="{pigcms:$info['title']},{pigcms:$info['keyword']}" />
+    <meta name="Description" content="{pigcms:$info['title']} {pigcms:$info['text']}" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+    <link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+</script>
+<style>
+.sup {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.7em;
+    margin-left:2px;
+    font-size:0.5em;
+    color:#8A5B25;
+    font-weight:700;
+}
+</style>
+<body id="news3">
+
+<include file="School:headermenu"/>
+    <div class="Listpage" >
+    <div class="top46" ></div>
+    <div class="page-bizinfo" >
+        <div style="position: relative;" class="header">
+        <h1 id="activity-name">成绩查询<sup class="sup">[ 为了保护您孩子的隐私,每次查询都需要验证 ]</sup></h1>
+        </div>
+<link href="{pigcms::RES}/css/userinfo/fans.css" rel="stylesheet" type="text/css">
+
+<style>
+
+.footFix{width:100%;text-align:center;position:fixed;left:0;bottom:0;z-index:99;}
+#footReturn  a {
+display: block;
+line-height: 41px;
+color: #fff;
+text-shadow: 1px 1px #282828;
+font-size: 14px;
+font-weight: bold;
+}
+#footReturn {
+z-index: 89;
+display: inline-block;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+cursor: pointer;
+width: 100%;
+outline: 0 none;
+overflow: visible;
+Unknown property name.-moz-box-sizing: border-box;
+box-sizing: border-box;
+padding: 0;
+height: 41px;
+opacity: .95;
+border-top: 1px solid #181818;
+box-shadow: inset 0 1px 2px #b6b6b6;
+background-color: #515151;
+Invalid property value.background-image: -ms-linear-gradient(top,#838383,#202020);
+background-image: -webkit-linear-gradient(top,#838383,#202020);
+Invalid property value.background-image: -moz-linear-gradient(top,#838383,#202020);
+Invalid property value.background-image: -o-linear-gradient(top,#838383,#202020);
+background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#838383),to(#202020));
+Invalid property value.filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
+Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
+}
+</style>
+        <div class="cardexplain"><li class="nob"><div class="beizhu">尊敬的家长同志,请直接输入您孩子的姓名+您的当时预留的手机号码! </div></li>
+        <ul class="round">
+        <li>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang"><tbody><tr><th><font color="red">孩子姓名:</font>
+        </th><td><input type="text" class="px" id="s_name" name="s_name" onblur="check1(this)" onfocus="check2(this)"   placeholder="请输入您孩子的姓名"  value=""></td></tr></tbody></table></li>
+        <li style="color: darkgray;">如果不清清楚预留手机号,可以联系我们.</li>
+        <li><table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang"><tbody><tr><th><font color="red">手机号码</font></th><td>
+        <input onfocus="check2(this)" onblur="check3(this)" name="mobile" class="px" id="mobile" value="" type="text" placeholder="请输入您预留的电话" style="background-color: white; background-position: initial initial; background-repeat: initial initial;"></td></tr></tbody></table></li></ul>
+
+            <div class="footReturn"><a id="showcard" class="submit">提交信息</a><div class="window" id="windowcenter"><div id="title" class="wtitle"><span class="close" id="alertclose"></span></div><div class="content"><div id="txt"></div></div></div></div>
+<script type="text/javascript">
+
+$("#showcard").bind("click",
+function() {
+    var btn = $(this);
+    var s_name      = $("#s_name").val();
+    var mobile      = $("#mobile").val();
+    //var portrait       = $("#portrait").val();
+    if (mobile == '') {
+        alert("请认真输入手机号");
+        return
+    }
+
+    if (s_name == '') {
+        alert("请输入您孩子的姓名");
+        return
+    }
+
+    var submitData = {
+        s_name  : s_name,
+        mobile  : mobile,
+        token   : "{pigcms:$token}",
+        action: "qresults"
+    };
+    $.post("{pigcms::U('School/qresults',array('token'=>$token,'wecha_id'=>$wecha_id))}", submitData,
+    function(data) {
+        if(1==data.errno){
+            alert('正在为您查询,请稍等...');
+            location.href = data.url;
+        }else if(2 == data.errno){
+            alert('提交信息不对,请重新输入,或者联系我们');
+        }else{
+            alert('请联系我们.');
+        }
+    },
+    "json")
+});
+
+
+function check1(obj){
+    if(obj.value == ''){
+        alert("请输入您孩子的姓名.");
+        document.getElementById(obj.id).style.background="red";
+        return;
+    }
+}
+function check2(obj){
+    document.getElementById(obj.id).style.background="white";
+    document.getElementById(obj.id).style.color="black";
+    ///document.getElementById(obj.id).style.font="bolder";
+}
+function check3(obj){
+    if(obj.value == ''){
+        alert('手机号码必须填写');
+        document.getElementById(obj.id).style.background="red";
+        return;
+    }
+    reg=/^(13[0123456789]{1}\d{8}$|^15[1235689]{1}\d{8}$|^18[26789]{1}\d{8})|(0[0-9]{1,3}\-?[0-9]{7,8})$/;
+      if(!reg.test(obj.value)){
+            alert("错误,请输入11位的手机号！");
+            document.getElementById(obj.id).style.background="red";
+            return;
+     }
+}
+</script>
+</div>
+
+        <div class="page-content" id="page-content"></div>
+
+    </div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+
+
+    <div class="copyright">
+      <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span></div>
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+</div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+
+    <script type="text/javascript">
+        // function dourl(url) {
+        //     location.href = url;
+        // }
+    </script>
+
+</body>
+</html>

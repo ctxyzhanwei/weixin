@@ -1,0 +1,100 @@
+<include file="Public:head"/>
+<include file="School:menu"/>
+
+<script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+
+<style>
+.maroon{color: red;}
+</style>
+<div class="content">
+<div class="cLineB">
+  <h4>当前位置：微学校 >> <a href="{pigcms::U('School/students',array('token'=>$token))}">学员管理</a> >> 添加成绩</h4>
+ </div>
+
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+      <form  method="post" id="formID" action="" target="_top" enctype="multipart/form-data">
+
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+             <tr>
+                    <th width="120">学员姓名:</th>
+                    <td>
+                    <span class="btnGray vm"><strong>{pigcms:$student['s_name']}</strong></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">录入学期:</th>
+                    <td>
+
+                    <select name="xq_id" id="xq_id" disabled="disabled" data-validation-engine="validate[required]"   data-errormessage-value-missing="必须选择所属学期" >
+                    <option value="{pigcms:$student['xq_id']}" selected >{pigcms:$xq}</option>
+                    </select>
+                    <input type="text"  name="xq_id" hidden value="{pigcms:$student['xq_id']}">
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">录入期号:</th>
+                    <td>
+                     <select name="qh_id" id="qh_id" data-validation-engine="validate[required]"  data-errormessage-value-missing="必须选择所属期号">
+                    <option value="">请选择期号</option>
+                      <volist name="li_score" id="vo">
+                      <option value="{pigcms:$vo['sid']}" <if condition="$scores['qh_id'] eq $vo['sid']">selected="selected"</if> >{pigcms:$vo['sname']}</option>
+                      </volist>
+                    </select>
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">录入科目:</th>
+                    <td>
+                     <select name="km_id" id="km_id" data-validation-engine="validate[required]"  data-errormessage-value-missing="必须选择所属科目">
+                    <option value="">请选择科目</option>
+                      <volist name="li_subject" id="vo">
+                        <option value="{pigcms:$vo['sid']}" <if condition="$scores['km_id'] eq $vo['sid']">selected="selected"</if>>{pigcms:$vo['sname']}</option>
+                      </volist>
+                    </select>
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th width="120">录入成绩:</th>
+                    <td>
+                    <input type="text" name="my_score" value="{pigcms:$scores['my_score']}"  data-validation-engine="validate[required,custom[number],min[0],max[100]]" class="px" placeholder="请输入成绩">
+                    <span class="maroon">*</span>
+                    </td>
+                </tr>
+
+                <tr>
+                <th><input type="text" hidden name="sid" value="{pigcms:$student['sid']}"></th>
+                <if condition="$scores['id'] neq ''">
+                <input type="text" hidden name="id" value="{pigcms:$scores['id']}">
+                <input type="text" hidden name="istoken" value="{pigcms:$student['token']}">
+                </if>
+                    <td>
+                  <input   type="submit"  class="btnGreen" value="保存"/>
+                    </td>
+                     <th></th>
+                    <td>
+                     <a href="{pigcms::U('School/students',array('token'=>session('token')))}" class="btnGray vm">取消</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div>
+</div>
+
+<script src="{pigcms::RES}/js/select/js/comm.js"></script>
+<script src="{pigcms::RES}/js/select/js/linkagesel-min.js"></script>
+<script src="{pigcms::RES}/js/select/js/district-all.js"></script>
+<script src="{pigcms::RES}/js/select/js/district-level1.js"></script>
+
+<include file="Public:footer"/>

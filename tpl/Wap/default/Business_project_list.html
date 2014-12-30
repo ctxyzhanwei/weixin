@@ -1,0 +1,203 @@
+<style>
+  .alertBox {
+  border-radius: 6px;
+}
+.alertBoxContent {
+  border-left: 1px solid rgba(0, 0, 0, 0.18);
+  padding-left: 12px;
+  margin-bottom: 0px;
+}
+.alertBoxStop {
+  background-color: #D6D6D6;
+  margin:3px;
+}
+.highlight {
+  height: 18px;
+  line-height: 18px;
+  color: #000;
+  display: inline;
+  padding-left: 3px;
+}
+</style>
+
+<if condition="$type eq 'fitness'">
+      <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">健身学时 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">健身用途 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一 口  价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'gover'"/>
+   <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">工作时间：  &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">所属类型：  &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'food'"/>
+     <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">口味 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">重量 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'travel'"/>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">景点等级 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">景点特色 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'flower'"/>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">套餐 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">花语 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'property'"/>
+     <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">简要描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">服务描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+<!--     <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div> -->
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'ktv'"/>
+
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">简要描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">包厢描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'bar'"/>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">重量 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">简要描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'fitment'"/>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">套餐 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">简要描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'wedding'"/>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">套餐 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">简要描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'affections'"/>
+     <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">用途 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">简要描述 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'housekeeper'"/>
+     <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">时/价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">服务范围 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'lease'"/>
+   <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">套餐 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">服务范围 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要预约 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即预约</a></span></p>
+    </div>
+<elseif condition="$type eq 'beauty'"/>
+    <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">产品名称 : &nbsp;<span class="highlight ">{pigcms:$sec_item['learntime']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">产品功效 : &nbsp;<span class="highlight ">{pigcms:$sec_item['datatype']}</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">一口价 : &nbsp;<span class="highlight ">{pigcms:$sec_item['oneprice']} RMB</span></p>
+    </div>
+          <div class="alertBox alertBoxStop">
+        <p class="alertBoxContent">我要购买 : &nbsp;<span class="highlight "><a href="{pigcms::U('Business/goCart',array('token'=>$token,'wecha_id'=>$wecha_id,'type'=>$busines['type'],'bid'=>$busines['bid'],'sid'=>$sec_item['sid']))}" style="color:#22c">立即购买</a></span></p>
+    </div>
+</if>

@@ -1,0 +1,37 @@
+/**copyright*/
+#yl-copyright{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+    color: #999999;
+    height: 32px;
+    overflow: hidden;
+    width: 100%;
+}
+#yl-copyright img{
+	 height: 16px;
+    margin: 7px 8px;
+    width: 72px;
+}
+#yl-copyright span{
+    font-family: "\5FAE\8F6F\96C5\9ED1",Arial,Tahoma;
+    font-size: 0.6em;
+    padding-right: 10px;
+}
+
+#yl-copyright span b{
+    font-weight: bolder;
+}
+#yl-copyright dl dt{
+    
+    margin-left: 0px;
+    width: 30%;
+    display: inline-block;
+    float: left;
+}
+#yl-copyright dl dd{
+	display: inline-block;
+    float: right;
+    line-height: 28px;
+    text-align: right;
+    width: 70%;
+}
+/**copyright*/

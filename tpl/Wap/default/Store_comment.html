@@ -1,0 +1,93 @@
+<include file="Store:header"/>
+<style>
+.give_score {
+float: left;
+padding-top: 10px;
+}
+.give_score div {
+margin: 8px 0 20px;
+}
+.give_score div span{cursor:pointer;}
+.grade {
+display: inline-block;
+background: url(../images/grade.png) no-repeat;
+width: 14px;
+height: 14px;
+position: relative;
+top: 1px;
+}
+.grade_off {
+display: inline-block;
+background: url(../images/grade.png) no-repeat -30px 0;
+width: 14px;
+height: 14px;
+position: relative;
+top: 1px;
+}
+</style>
+<div class="m-cart-e">
+<form action="{pigcms::U('Store/commentsave',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid))}" id="commentsave" method="post">
+<div class="txt">
+
+<div class="give_score">
+	<div id="score">评分： 
+	<span class="grade pngFix"></span>
+	<span class="grade pngFix"></span>
+	<span class="grade pngFix"></span>
+	<span class="grade pngFix"></span>
+	<span class="grade pngFix"></span>
+	</div>
+</div>
+
+<input type="hidden" name="cartid" value="{pigcms:$cartid}" />
+<input type="hidden" name="pid" value="{pigcms:$pid}" />
+<input type="hidden" name="detailid" value="{pigcms:$detailid}" />
+<input type="hidden" name="score" id="store_score" value="5" />
+<textarea cols="40" id="content" name="content" placeholder="请在此输入您的评论" rows="7" style="width: 100%;line-height: 20px;"></textarea>
+</div>
+<a href="javascript:void(0);" class="gobuy">提交评论</a>
+</form>
+</div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".gobuy").click(function(){
+		var score = $(".score:checked").val();
+		if (score < 1) {
+			return floatNotify.simple('你还没有评分');
+			return false;
+		}
+		var content = $("#content").val();
+		if (content.length > 400) {
+			return floatNotify.simple('评论字数不可超过200个');
+			return false;
+		}
+		$("#commentsave").submit();
+	});
+
+	$('.give_score div').mouseout(function(){
+		$(this).find('span').removeClass('grade_off').addClass('grade').eq(parseInt($('#store_score').val()-1)).nextAll('span').removeClass('grade').addClass('grade_off');
+	});
+	$('.give_score span').mouseover(function(){
+		$(this).closest('div').find('span').removeClass('grade_off').addClass('grade');
+		$(this).nextAll('span').removeClass('grade').addClass('grade_off');
+	}).click(function(){
+		var score_div = $(this).closest('div');
+		score_div.find('span').removeClass('grade_off').addClass('grade');
+		$(this).nextAll('span').removeClass('grade').addClass('grade_off');
+		$('#store_score').val(score_div.find('span').index($(this))+1);
+	});
+});
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/cart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/cart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/cart',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

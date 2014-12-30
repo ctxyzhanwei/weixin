@@ -1,0 +1,50 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background-color:#fff; font-size:14px; }
+body .mainmenu {overflow:hidden; margin:auto;}
+body .mainmenu li{  background-color:# FFF; overflow:hidden }
+body .mainmenu li a{ display:block;  color:#FFF; position:relative ; overflow: hidden; }
+body .mainmenu li a img{ width:50%; min-height:150px;float: left;}
+body .mainmenu li a p{ width:50%; text-align:center; position:relative;margin-top:36px;float: right;}
+body .mainmenu li a p b{ display:block; line-height:30px; font-size:16px}
+body .mainmenu li a p font{ display:block; line-height:24px; font-size:12px;   padding:0px 10px 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;color: rgba(255, 255, 255, 0.48);}
+body .mainmenu li a p span{ display:block; margin:3px auto 0; border:1px solid #FFF; -webkit-transform: rotate(45deg) ; width:10px; height:10px; border-left:none; border-bottom:none  }
+body .mainmenu li a p:after{ content:" "; display:block; width:0px; height:0px; border:6px; border-style:solid; position:absolute; top:50%; margin-top:-3px;}
+
+body .mainmenu li:nth-child(2n+2) a { background-color:#000 }
+body .mainmenu li:nth-child(2n+1) a { background-color:#5f497a }
+body .mainmenu li:nth-child(2n+2) a img{ float:right;}
+body .mainmenu li:nth-child(2n+2) a p{ float:left;}
+body .mainmenu li:nth-child(2n+2) a p:after{ right:-12px; border-color:rgba(0,0,0,0) rgba(0,0,0,0)  rgba(0,0,0,0)  #000 }
+body .mainmenu li:nth-child(2n+1) a p:after{ left:-12px; border-color:rgba(255,255,255,0) #5f497a rgba(0,0,0,0) rgba(0,0,0,0) }
+body .mainmenu li:nth-child(2n+1) a span{ border:1px solid #FFF; border-right:none; border-top:none}

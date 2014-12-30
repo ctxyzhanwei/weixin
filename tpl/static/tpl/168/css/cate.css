@@ -1,0 +1,63 @@
+html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin:0; padding:0; }
+img { border:0; }
+ol, ul { list-style: none outside none; margin:0; padding: 0; }
+a { color:#000000; text-decoration: none; }
+.clr { display:block; clear:both; height:0; overflow:hidden; }
+.copyright { padding:8px; text-align:center; font-size:14px; color:#333; }
+.copyright a { color:#333; }
+h2 { font-size:16px; }
+body { background-color:#151515; font-size:14px; min-width:320px }
+body .mainmenu { margin-right: 4px; }
+body .mainmenu:after { clear: both; content: " "; display: block; }
+body .mainmenu li { overflow:hidden; float:left; width:25%; }
+body .mainmenu li a { border-radius:3px; display:block; color:#FFF; margin:4px 0 0 4px; text-align: center; padding:5px; background-color:#0076D3;height:60px;overflow:hidden; }
+body .mainmenu li a img { width:40px; height:40px; }
+body  .mainmenu li:nth-child(7n+1) a  p:last-child{ display:none;}
+body .mainmenu li:nth-child(7n+1) {
+width:50%;
+}
+ body .mainmenu li:nth-child(7n+1) a {
+height:134px;
+}
+ body .mainmenu li:nth-child(7n+1) a img {
+width: 80px;
+height: 80px;
+margin-top: 20px;
+}
+body .mainmenu li:nth-child(7n+6) {width:50%;}
+body .mainmenu li:nth-child(7n+6) a { height:auto;padding:0px;}
+body .mainmenu li:nth-child(7n+6) a img{ width:100%; height:auto;}
+body .mainmenu li:nth-child(7n+6) a p { display:none;}
+
+body .mainmenu li:nth-child(7n+7) {width:50%;}
+body .mainmenu li:nth-child(7n+7) a { height:auto;padding:0px;}
+body .mainmenu li:nth-child(7n+7) a img{ width:100%; height:auto;}
+body .mainmenu li:nth-child(7n+7) a p { display:none;}
+
+
+
+
+
+body  .mainmenu { margin:8px; }
+body  .mainmenu li { float:left;  width:25%;    overflow:hidden }
+
+body  .mainmenu li a { display:block; background-color:#00ccff;  color:#FFF; margin:0px 0px 4px 4px;  text-align:center; padding:5px 0px 0px; border-radius:5px ;overflow:hidden; position:relative}
+
+body  .mainmenu li a img {  width:35px; height:35px;   }
+body  .mainmenu li a p:first-of-type { display:block;  margin:auto; text-align:center;  line-height:25px; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+body  .mainmenu li a p:last-child { display: none;  margin:auto; text-align:center; height:32px; line-height:14px; overflow:hidden;overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+body .bottom { clear:both;  text-align:center; color:#FFF; padding:10px }
+body  .mainmenu li:nth-child(7n+1){ width:50%}
+body  .mainmenu li:nth-child(7n+1) a{ background-color:#fc5f56; height:134px; margin:0px 4px 4px 0px; padding:0px;}
+body  .mainmenu li:nth-child(7n+1) a p:first-of-type{ position:absolute; left:10px; top:10px; text-align:left; font-size:18px;}
+body  .mainmenu li:nth-child(7n+1) a  p:last-child{ display:block; position:absolute; left:10px; top:35px; text-align:left; font-size:12px;width: 80%;}
+body  .mainmenu li:nth-child(7n+1) a img{ position:absolute; right:10px; bottom:10px;width:55px; height:55px;}
+body  .mainmenu li:nth-child(7n+6) a .p1,body  .mainmenu li:nth-child(7n+6) a .p2,body  .mainmenu li:nth-child(7n+7) a .p1,body  .mainmenu li:nth-child(7n+7) a .p2{ display:none}
+body  .mainmenu li:nth-child(7n+6){ width:50%; }
+body  .mainmenu li:nth-child(7n+6) a p,body .mainmenu li:nth-child(7n+7) a p{display:none} 
+body  .mainmenu li:nth-child(7n+6) a{ margin:4px 4px 8px 0px; padding:0 }
+body  .mainmenu li:nth-child(7n+6) a img{ width:100%; height:auto}
+body  .mainmenu li:nth-child(7n+7){ width:50%; }
+body  .mainmenu li:nth-child(7n+7) a{ margin:4px 0px 8px 4px;padding:0 }
+body  .mainmenu li:nth-child(7n+7) a img{ width:100%; height:auto}

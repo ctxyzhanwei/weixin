@@ -1,0 +1,166 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+ <link rel="stylesheet" href="{pigcms::RES}/css/diymen/tipswindown.css" type="text/css" media="all" />
+<script type="text/javascript" src="{pigcms::RES}/css/diymen/tipswindown.js"></script> 
+
+<script type="text/javascript">
+ $(document).ready(function() {
+	
+	$("#iframe1").click(function(){
+		tipsWindown("添加菜单","iframe:{pigcms::U('Diymen/class_add')}","760","450","true","","true","leotheme");
+	});
+ });
+ </script>
+<div class="content">
+
+<div class="cLineB">
+  <h4><span class=""><h1>注意：1级菜单最多只能开启3个，2级子菜单最多开启5个!</h1></span></h4>
+			  <button style="margin-top:-27px" class="ajax right btnGreen cboxElement" id="iframe1" title="添加主菜单">添加菜单</button>
+ </div>
+ <div class="ftip" style="margin:10px auto">通过认证的订阅号或者服务号才能使用自定义菜单</div>
+ <div class="cLineD">
+ 	<form enctype="multipart/form-data" action="" method="post"> 
+    AppId:<input type="text" size="20" tabindex="1" class="px" value="{pigcms:$diymen.appid}" id="appid" name="appid">　 
+	AppSecret: <input type="text" size="20" tabindex="1" class="px" value="{pigcms:$diymen.appsecret}" id="appsecret" name="appsecret">
+	<button class=" btnGrayS vm" value="true" name="appidsubmit" type="submit"><strong>保存</strong></button>
+	
+</form>
+         </div>
+         
+ <div class="msgWrap form">
+       <form enctype="multipart/form-data" action="" method="post"><input type="hidden" value="" name="anchor">
+       
+		  
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="ListProduct"> 
+<thead>
+<tr>
+	<th style=" width:60px;">显示顺序</th>
+	<th style=" width:220px;">主菜单名称</th>
+	<th style=" width:170px;">菜单类型</th>
+	<th>类型数值</th>
+	<th class="norightborder" style=" width:160px;">操作</th>
+</tr>
+</thead>
+   <tbody>
+  	<volist id="class" name="class">
+	<tr class="hover">
+        <td class="td25">
+			<span>{pigcms:$class.sort}</span>
+		</td>
+        <td>
+          <div>
+			<span>{pigcms:$class.title}</span>
+          </div>
+        </td>
+        <td>
+        	<span>
+        		
+	        	    <if condition="$class.keyword neq ''">
+		        		顶级菜单-【关键词回复菜单】
+		        	<elseif condition="$class.url neq ''"/>
+		        		顶级菜单-【url外链菜单】
+		        	<elseif condition="$class.wxsys neq ''"/>
+		        		顶级菜单-【微信扩展菜单】
+		        	<else/>
+		        		父级菜单
+		        	</if>
+        	</span>
+        </td>
+        <td>
+        	<span>
+			 		<if condition="$class.keyword neq ''">
+		        		{pigcms:$class.keyword}
+		        	<elseif condition="$class.url neq ''"/>
+		        		{pigcms:$class.url}
+		        	<elseif condition="$class.wxsys neq ''"/>
+		        		{pigcms:$class.wxsys}
+		        	<else/>
+		        		无
+		        	</if>
+        	</span>
+        
+        </td>
+        <td>
+			<a class="ajax btnGreen  cboxElement" href='javascript:tipsWindown("修改菜单","iframe:{pigcms::U('Diymen/class_edit',array('id'=>$class['id']))}","760","480","true","","true","leotheme");' title="修改主菜单">修改</a>
+			<a class=" btnGreen " href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Diymen/class_del',array('id'=>$class['id']))}');">删除</a>
+		</td>				
+      </tr>
+	  <volist id="class1" name="class['class']">
+	  <tr class="td29">
+			<td class="td25" colspan="1">
+				<span>{pigcms:$class1.sort}</span>
+			</td>
+			<td colspan="1">
+			  <div class="board">
+				<span>{pigcms:$class1.title}</span>
+			  </div>
+			</td>
+			
+			<td colspan="1">
+				<span>
+					<if condition="$class1.keyword neq ''">
+		        		关键词回复菜单
+		        	<elseif condition="$class1.url neq ''"/>
+		        		url外链菜单
+		        	<!--<elseif condition="$class1.wxsys neq ''"/>
+		        		微信扩展菜单
+		        	</if>
+				--></span>
+			</td>
+			 <td>
+			 	<span>
+			 	
+			 		<if condition="$class1.keyword neq ''">
+		        		{pigcms:$class1.keyword}
+		        	<elseif condition="$class1.url neq ''"/>
+		        		{pigcms:$class1.url}
+		        	<elseif condition="$class1.wxsys neq ''"/>
+		        		{pigcms:$class1.wxsys}
+		        	</if>
+			 	
+			 	</span>
+			 
+			 </td>
+			<td colspan="1">
+			<a class="ajax btnGreen cboxElement" href='javascript:tipsWindown("修改菜单","iframe:{pigcms:$f_siteUrl}{pigcms::U('Diymen/class_edit',array('id'=>$class1['id']))}","760","480","true","","true","leotheme");' title="修改主菜单">修改</a>
+			<a class=" btnGreen " href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Diymen/class_del',array('id'=>$class1['id']))}');">删除</a></td>				
+	 </tr>	
+	</volist>
+	</volist>
+	<tr class="hover">
+        <td class="td25" colspan="5">
+		<if condition="$class neq false">
+		<a class="btnGreen " onclick="drop_confirm('自定义菜单最多勾选3个，每个菜单的子菜单最多5个，请确认!', '{pigcms::U('Diymen/class_send')}');" title="">生成自定义菜单</a>
+		</if>
+		<span style="float:left;" id="cdul">
+		<style>
+			#cdul{
+				float:left;
+				color:red;
+			}
+		</style>
+		注：<br>
+		(使用前提是已经拥有了自定义菜单的用户才能够使用，)<br>
+		第一步:必须先填写【AppId】【 AppSecret】！<br>
+		第二步:添加菜单，<br>
+		第三步:点击生成!<br>
+		注意：1级菜单最多只能开启3个，2级子菜单最多开启5个<br>
+		官方说明：修改后，需要重新关注，或者最迟隔天才会看到修改后的效果！<br>
+		</span>
+		</td>				
+      </tr>
+	      	  
+    </tbody>
+</table>
+</form>
+       <p>
+
+       </p>
+       <div class="clear"></div>
+      </div>
+  </div>
+         </div>
+        </dd>
+</dl>
+<include file="Public:footer"/>  
+ 

@@ -1,0 +1,41 @@
+<include file="Store:header"/>
+<ul class="m-uc-i-li">
+<li>
+<p class="u-info">
+<if condition="empty($fans['username']) neq true">
+<i class="u">{pigcms:$fans['username']}</i>
+<a href="{pigcms::U('Store/logout',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}" class="q">退出</a>
+<br>
+</if>
+我的推广号：<i>{pigcms:$mytwid}</i><br>
+我的推广佣金：<i>{pigcms:$total}元</i><if condition="$total gt 0"><a href="{pigcms::U('Store/setremove',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}" class="q">[申请提现]</a></if><br>
+历史提现金额：<i>{pigcms:$count['remove']}元</i><br>
+</p>
+</li>
+<li class="msg-tip">
+</li>
+</ul>
+<ul class="m-uc-i-li haveafter">
+<li><a href="{pigcms::U('Store/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}">我的订单</a></li>
+<li><a href="{pigcms::U('Store/remove',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}">提现记录</a></li>
+<li><a href="{pigcms::U('Store/detail',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}">佣金获取记录</a></li>
+<!-- <li><a href="http://m.s.cn/touch/member/coupon/">我的优惠券</a></li>
+<li><a href="http://m.s.cn/touch/member/order_return/">退换货服务</a></li>
+<li><a href="http://m.s.cn/touch/member/coupon_exchange/">积分兑换</a></li> -->
+</ul>
+
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

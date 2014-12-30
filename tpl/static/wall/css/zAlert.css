@@ -1,0 +1,82 @@
+#zAlert{
+	position: relative;
+}
+#zAlertMask{
+	position: fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.7;
+	filter:alpha(opacity=70);
+	z-index: 0;
+	display: none;
+}
+#zAlertWrap{
+	position: fixed;
+	z-index: 100;
+	box-shadow: 0px 0px 3px #ccc;
+	background: #fff;
+	color:#333;
+	overflow: hidden;
+	font:13px Verdana,Arial,sans-serif,"Times New Roman",宋体;
+}
+#zAlertWrap .zAlertTit{
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	padding:0 10px;
+	background: #c52e3e;
+	color:#fff;
+	box-sizing: content-box;
+	position: relative;
+}
+#zAlertWrap .zAlertTit a.Closed{
+	width:30px;
+	height: 30px;
+	position: absolute;
+	right:0;
+	top:0;
+	text-align: center;
+	color:#fff;
+	text-decoration: none;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+	overflow: hidden;
+	display: none;
+}
+#zAlertWrap .zAlertTit a.Closed:hover{
+	opacity: 0.9;
+	filter:alpha(opacity=90);
+}
+#zAlertWrap .zAlertCon{
+	padding:20px 10px;
+	box-sizing: content-box;
+}
+#zAlertWrap .zAlertBtn{
+	height: 24px;
+	overflow: hidden;
+	padding:5px 10px;
+	background: #eee;
+	box-sizing: content-box;
+}
+#zAlertWrap .zAlertBtn a.zBtn{
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	padding:0 10px;
+	border:1px solid #ddd;
+	border-radius: 3px;
+	overflow: hidden;
+	background: #fff;
+	float: right;
+	margin-left:5px;
+	text-decoration: none;
+	color:#333;
+}
+#zAlertWrap .zAlertBtn a.zBtn:hover{
+	background: #c52e3e;
+	color:#fff;
+}

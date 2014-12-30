@@ -1,0 +1,73 @@
+<include file="Public:head"/>
+<include file="Businessfitness:fitness_menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+
+<script src="./tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="./tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">订单管理</h4>
+
+          </div>
+
+          <div class="cLine">
+    <div class="alert">
+    <p>（ 订单总数：<span class="redamount">{pigcms:$count}</span>　　付款成功：<span class="redamount">{pigcms:$ok_count}</span>　　付款失败(或者未付款)：<span class="redamount">{pigcms:$lose_count}</span>　　等待受理订单：<span class="redamount">{pigcms:$call_count}</span>） </p>
+    </div>
+</div>
+
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                    <tr>
+                    <!-- <th width="20">序号</th> -->
+                    <th width="60">真实姓名</th>
+                    <th class="85">电话</th>
+                    <th class="85">预约项目</th>
+                    <th width="160">下单时间</th>
+                    <th class="60">付款状态</th>
+                    <th class="60">处理状态</th>
+                    <th width="150" class="norightborder">操作</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <tr></tr>
+                <volist name="books" id="o">
+                    <tr>
+                        <!-- <td>{pigcms:$o.id}</td> -->
+                        <td>{pigcms:$o['truename']}</td>
+                        <td>{pigcms:$o['tel']}</td>
+                        <td>{pigcms:$o['orderName']} </td>
+                        <td>{pigcms:$o['booktime']|date='Y-m-d H:i:s',###}</td>
+                        <td><if condition="$o['paid'] eq 0">未付款<elseif condition="$o['paid'] eq 1"/>已付款</if></td>
+                        <td>
+                        <if condition="$o['remate'] eq 0">待处理<elseif condition="$o['remate'] eq 1"/>确认付款<elseif condition="$o['remate'] eq 2"/>拒绝</if></td>
+
+
+
+                        <td class="norightborder"><a href="###" onclick="showIntroDetail({pigcms:$o['id']})" class="btnGreen">详细</a>
+                        <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Businessfitness/order_del',array('token'=>$o['token'],'id'=>$o['id'],'type'=>$o['type']))}');"  class="btnGreen">删除</a></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <input type="hidden" name="token" value="{pigcms:$_GET['token']}" />
+           </form>
+          </div>
+           <script>
+            function showIntroDetail(id){
+                art.dialog.open('{pigcms::U('Business/orders_list',array('token'=>$token,'type'=>$type))}&id='+id,{lock:false,title:'订单详情',width:700,height:420,yesText:'关闭',background: '#000',opacity: 0.87});
+            }
+        </script>
+
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

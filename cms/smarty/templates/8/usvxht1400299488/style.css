@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* Style Reset */
+body,p,h1,ul,li{margin:0; padding:0;}
+ul, ol, li, dl, dt, dd {list-style:none;}
+a{text-decoration:none;outline:0px;}
+fieldset, img { border: 0; }
+.clear { clear:both; }
+/* top */
+body{background:url(../../tpls/tianlan/bg.jpg)/*tpa=3g/images/bg.jpg*/ repeat 0 0;}
+.topbg{width:100%;background:url(../../tpls/tianlan/topbg.jpg)/*tpa=3g/images/topbg.jpg*/ repeat 0 0;border-bottom:1px solid #4596b3;}
+.logo{width:55.15625%;margin:0 auto;padding:20px 0 26px;display:block;position:relative;}
+.logo img{max-width:100%;}
+.searchbtn{width:41px;height:39px;position:absolute;left:3.75%;top:16px;}
+.navbtn{width:61px;height:39px;position:absolute;right:3.75%;top:16px;}
+/* navbg */
+.navbg{width:207px;border:1px solid #0f60a2;background:#1a6db1;position:absolute;right:0;display:none;z-index:999;}
+.navbg li{width:100%;height:46px;border-bottom:1px solid #095da2;}
+.navbg li a{width:100%;display:block;height:45px;border-bottom:1px solid #247ac1;font:16px/45px 宋体;color:#fff;text-indent:23px;background:url(../../tpls/tianlan/navicos.jpg)/*tpa=3g/images/navicos.jpg*/ 155px center no-repeat;}
+/* search */
+.searchbox{width:74.6875%;height:40px;border:1px solid #6b97bc;border-radius:42px;background:#eaeaea;background-image:-moz-linear-gradient(center top , #e2e2e2, #f3f3f3);background-image: -moz-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e2e2e2), to(#f3f3f3));background-image: -webkit-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: -o-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: linear-gradient(top, #e2e2e2, #f3f3f3);margin:4px 0 0;left:1.5625%;overflow:hidden;position:absolute;z-index:999;display:none;}
+.text{border-radius:42px;background:#eaeaea;background-image:-moz-linear-gradient(center top , #e2e2e2, #f3f3f3);background-image: -moz-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e2e2e2), to(#f3f3f3));background-image: -webkit-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: -o-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: linear-gradient(top, #e2e2e2, #f3f3f3);width:70%;height:34px;font:16px/40px 微软雅黑;color:#707070;text-indent:1em
+;border:0;margin:0;}
+.button{width:20%;background:url(../../tpls/tianlan/searchico.png)/*tpa=3g/images/searchico.png*/ center center no-repeat;height:40px;border:0;float:right;}
+/* banner */
+.big-pic{width:100%; position:relative;border-bottom:5px solid #a8a8a8;}
+.big-pic-in{position:relative;width:100%;height:auto;overflow:hidden;margin:0 auto;}
+.pic-list{position:relative;height:auto;-webkit-transform:translate3d(0,0,0); z-index:0;}
+.big-pic img{float:left;height:auto; width:100%;display:block;}
+.big-pic2 .pic-list{width:200%;}
+.big-pic2 .pic-list img{width:50%;/*50%*/}
+.big-pic3 .pic-list{width:300%;}
+.big-pic3 .pic-list img{width:33.333334%;/*33.33%*/}
+.big-pic4 .pic-list{width:400%;}
+.big-pic4 .pic-list img{width:25%;/*25%*/}
+.slide-dot{width:95%; overflow:hidden; position:absolute;left:0; bottom:0; height:26px;text-align:right;padding:0 5% 0 0;}
+.slide-dot span{display:inline-block;width:12px;height:12px;border-radius:12px;vertical-align:top; z-index:10; background:#f0f0f0; margin:8px 5px 0 5px;}
+.slide-dot .slide-dot-cur{z-index:10;vertical-align:top; background:#48a6db;width:14px;height:14px;border-radius:14px;margin-top:7px;}
+.transition {-moz-transition: -moz-transform 0.3s ease-out; -webkit-transition: -webkit-transform 0.3s ease-out; -o-transition: -o-transform 0.3s ease-out; transition: transform 0.3s ease-out;}
+/* productbox */
+.productbox{width:100%;margin:1% 0;}
+.productbox li{width:33.333%;float:left;}
+.productbox li div{display:block;width:90.61%;margin:0 4.695%;}
+.productbox li img{display:block;width:100%;}
+.productbox li p.protitle{width:100%;height:26px;font:16px/26px 微软雅黑;color:#fff;text-align:center;margin:0;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.productbox li p{width:90%;margin:0 5%;font:12px/20px 宋体;color:#fff;height:40px;overflow:hidden;}
+/* casebox */
+.casebox{width:96.875%;margin:2% 1.5625% 0;background:#cfd0d1;}
+.casebox img{float:left;display:block;width:31.2903%;}
+.caseright{width:68%;float:right;}
+.caseright li{width:100%;height:43px;border-bottom:1px solid #e2e3e3;}
+.caseright li p{width:100%;height:42px;border-bottom:1px solid #bbb;background:url(../../tpls/tianlan/icons.png)/*tpa=3g/images/icons.png*/ 92.87% center no-repeat;}
+.caseright a{display:block;width:80%;height:100%;font:14px/42px 宋体;color:#325065;text-indent:12px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+/* footnav */
+.footnav{width:58.4375%;height:31px;margin:14px auto 0;}
+.footnav li{width:18%;height:29px;border:1px solid #d5d5d5;background:#ebebeb;float:left;margin-right:1%;}
+.footnav li a{display:block;width:100%;height:100%;box-shadow:0 0 2px #fff inset;font:14px/29px 宋体;color:#686868;text-align:center;}
+.support{width:100%;height:44px;text-align:center;font:14px/44px 微软雅黑;color:#325065;margin-bottom:1%;}
+.support a{margin:0 3px;color:#325065;}
+.footnav li:hover{border:1px solid #1f5c8b;background:#2d6b9a;}
+.footnav li:hover a{color:#fff;box-shadow:0 0 2px #468abe;}
+.footbg{width:100%;height:57px;border-top:4px solid #a8a8a8;background:#1f1f1f;}
+.footbg li{width:24%;float:left;height:57px;}
+.footbg li a{display:block;width:100%;hegiht:100%;font:14px/57px 微软雅黑;color:#fff;text-indent:51.875%;}
+.sms{border-right:1px solid #000;background:url(../../tpls/tianlan/sms.jpg)/*tpa=3g/images/sms.jpg*/ 27.5% center no-repeat;}
+.tel{border-right:1px solid #000;border-left:1px solid #292929;background:url(../../tpls/tianlan/tel.jpg)/*tpa=3g/images/tel.jpg*/ 27.5% center no-repeat;}
+.map{border-right:1px solid #000;border-left:1px solid #292929;background:url(../../tpls/tianlan/map.jpg)/*tpa=3g/images/map.jpg*/ 27.5% center no-repeat;}
+.share{border-left:1px solid #292929;background:url(../../tpls/tianlan/share.jpg)/*tpa=3g/images/share.jpg*/ 27.5% center no-repeat;}
+/* subsearchbox */
+.subsearchbox{width:100%;height:51px;}
+.search{width:74.6875%;height:40px;border:1px solid #6b97bc;border-radius:42px;background:#eaeaea;background-image:-moz-linear-gradient(center top , #e2e2e2, #f3f3f3);background-image: -moz-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e2e2e2), to(#f3f3f3));background-image: -webkit-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: -o-linear-gradient(top, #e2e2e2, #f3f3f3);background-image: linear-gradient(top, #e2e2e2, #f3f3f3);margin:4px 0 0;left:1.5625%;overflow:hidden;float:left;}
+.subnav{float:right;width:20.625%;height:42px;margin:4px 1.5625% 0 0;background:#2275bd;background-image:-moz-linear-gradient(center top , #1a64a6, #2275bd ,#1a64a6);background-image: -moz-linear-gradient(top, #1a64a6, #2275bd ,#1a64a6);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1a64a6), to(#2275bd),(#1a64a6));background-image: -webkit-linear-gradient(top, #1a64a6, #2275bd ,#1a64a6);background-image: -o-linear-gradient(top, #1a64a6, #2275bd ,#1a64a6);background-image: linear-gradient(top, #1a64a6, #2275bd ,#1a64a6);border-radius:42px;border:1px solid #3a8cd2;}
+.subnav p{width:100%;height:100%;background:url(../../tpls/tianlan/subnav.png)/*tpa=3g/images/subnav.png*/ 13.6363% center no-repeat;font:14px/42px 宋体;color:#c7efff;text-indent:34.8484%;}
+.subnavbg{width:96.5625%;margin:0 1.71875%;background:#1a6db1;border:1px solid #2485d6;position:absolute;z-index:999;display:none;}
+.subnavbg li{width:100%;height:51px;border-bottom:1px solid #115590;}
+.subnavbg li a{display:block;width:100%;height:50px;border-bottom:1px solid #156fbe;background:url(../../tpls/tianlan/navicos.jpg)/*tpa=3g/images/navicos.jpg*/ 89.158% center no-repeat;text-indent:8.0906%;color:#ddf5ff;font:14px/50px 宋体;}
+/* productul */
+.productul{width:100%;padding-top:2%;}
+.productul li{width:50%;float:left;}
+.productul li img{width:92.8125%;margin:0 3.59375%;}
+.prodtitle{display:block;width:100%;height:30px;font:14px/30px 宋体;color:#6f6f6f;text-align:center;}
+/* pages */
+.pages{width:170px;margin:10px auto;}
+.pre-left{display:block; width:51px; height:32px; border:1px solid #666; border-radius:3px; float:left; color:#666; text-align:center; font:700 20px/32px 宋体;}
+.next-left{display:block; width:51px; height:32px; border:1px solid #335166; border-radius:3px; float:left; color:#335065; text-align:center; font:700 20px/32px 宋体;}
+.pages span{display:block; width:64px; height:30px; text-align:center; font:500 16px/30px 宋体; color:#333333; float:left;}
+/* newsul */
+.newsul{width:96.5625%;margin:15px auto 10px;border:1px solid #d4d4d4;border-bottom:0;}
+.newsul li{width:100%;height:44px;border-top:1px solid #fff;border-bottom:1px solid #d4d4d4;background-image:-moz-linear-gradient(center top , #ebe6e1, #faf9f8);background-image: -moz-linear-gradient(top, #ebe6e1, #faf9f8);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ebe6e1), to(#faf9f8));background-image: -webkit-linear-gradient(top, #ebe6e1, #faf9f8);background-image: -o-linear-gradient(top, #ebe6e1, #faf9f8);background-image: linear-gradient(top, #ebe6e1, #faf9f8);}
+.newsul li p{width:100%;height:44px; background:url(../../tpls/tianlan/icons.png)/*tpa=3g/images/icons.png*/ 94% center no-repeat;}
+.newsul li p a{display:block;width:86%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font:14px/44px 宋体; color:#6d6d6d;}
+/* view */
+h1{font:700 18px/30px 宋体; color:#325065; text-align:center;border-bottom:1px dashed #999;width:90%;margin:10px 5%;}
+h1 p{width:90%;font:700 18px/30px 宋体;color:#0c0c0c;text-align:center;margin:0 5%;}
+.view{font:14px/180% 宋体; color:#325065;width:90%;margin:0 5%;padding:8px 0;}
+.view p{font:14px/180% 宋体; color:#325065;width:100%;}
+.backlist{display:block;width:74px;height:32px;border:1px solid #005ca9;background:#2d6b9a;margin:15px auto;color:#fff;font:14px/32px 宋体;text-align:center;box-shadow:0 0 1px #4484b4 inset;}
+.prevpage,.nextpage{display:block;width:90%;margin:0 5% 8px 5%;height:20px;font:12px/20px 宋体;color:#325065;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+center img{max-width:90%;margin:0 auto;}
+.hr{width:90%;height:0;border-top:1px dashed #999;margin:6px 5%;}
+@media all and (min-width:640px){
+body{width:640px;margin:0 auto;position:relative;}
+}
+@media all and (max-width:640px){
+.navbtn{right:1%;}
+.caseright{height:111px;overflow:hidden;}
+.caseright li{height:36px;}
+.caseright li p{height:35px;}
+.footbg li{background-size:30%;}
+.search{width:66.6875%;}
+.subnav{width:28.625%;}
+.footnav{width:80%;}
+}

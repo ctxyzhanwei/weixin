@@ -1,0 +1,54 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <script src="/tpl/static/upyun.js"></script>
+<div class="content" >  
+<div class="cLineB">
+  <h4>奖品设置</h4>
+  <a href="javascript:window.history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+
+ 
+<div class="msgWrap form">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">奖项名称：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="name" style="width:400px"  value="{pigcms:$info.name}" >    </TD>
+</TR>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">奖品名称：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="pname" style="width:400px"  value="{pigcms:$info.pname}" >    </TD>
+</TR>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">奖品数量：</label></TH>
+  <TD><input type="input" class="px" id="keyword"  name="num" style="width:400px"  value="{pigcms:$info.num}" >    </TD>
+</TR>
+
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="text">奖品图片：</label></TH>
+  <TD>
+    <input type="input" class="px" id="pic" value="{pigcms:$info.pic}" name="pic" style="width:300px">  
+    <a href="###" onclick="upyunPicUpload('pic',400,400,'{pigcms:$token}')" class="a_upload">上传</a>
+    <a href="###" onclick="viewImg('logo')" class="a_upload">预览</a>[400*400]
+  </TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="text">顺序：</label></TH>
+  <TD><input type="input" class="px" id="sort" value="<if condition="$info.sort gt 0">{pigcms:$info.sort}<else/>50</if>" name="sort" >  </TD>
+</TR>
+<TR>
+  <TH></TH>
+  <TD>
+    <input type="hidden" value="{pigcms:$info.id}" name="id" />
+    <input type="hidden" value="{pigcms:$wid}" name="wid" />
+    <button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+    </TD>
+  </TR>
+</TABLE>
+</div>
+</form>
+</div>
+
+<include file="Public:footer"/>

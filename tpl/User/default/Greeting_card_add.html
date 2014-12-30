@@ -1,0 +1,114 @@
+<include file="Public:head"/>
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <script src="/tpl/static/upyun.js"></script>
+<div class="content">
+          <div class="cLineB"><h4>编辑贺卡</h4><a href="{pigcms::U('User/Greeting_card/index')}" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>
+          <form method="post" action="" enctype="multipart/form-data">
+          <div class="msgWrap form">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tbody>
+               <tr style="display:">
+                  <th>
+                    <label for="title">触发关键词：</label></th>
+                  <td><input type="input" class="px" id="keyword" value="{pigcms:$greeting_card['keyword']}" required="" name="keyword" style="width:380px;"> </td>
+                </tr>
+                <tr>
+                  <th>标题名字
+                    <label for="title">：</label></th>
+                  <td><input type="input" class="px" id="name" required="" value="{pigcms:$greeting_card['title']}" name="title" style="width:380px;"> </td>
+                </tr>
+                <tr style="display:">
+					  <th width="120"><label for="picurl">回复时封面图片：</label></th>
+					  <td><if condition="$greeting_card['picurl'] eq ''"><else/><img id="suicaipic1" src="{pigcms:$greeting_card['picurl']}" width="200"/><br></if>
+					  <input class="px" name="picurl" value="{pigcms:$greeting_card['picurl']}" id="suicai1" style="width:280px;">
+					  <span class="help-inline">
+						<a href="javascript:void(0)" onclick="upyunPicUpload('suicai1',700,420,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+						<a href="###" onclick="viewImg('suicai1')" class="btnGrayS vm">预览</a>
+					  </span>
+					  </td>
+                </tr>
+                <tr>
+                  <th width="120"><label for="bjurl">背景图片：</label></th>
+                  <td><if condition="$greeting_card['bakcground_url'] eq ''"><else/><img id="suicaipic2" src="{pigcms:$greeting_card['bakcground_url']}" width="200"><br></if>
+                  <input class="px" name="bakcground_url" value="{pigcms:$greeting_card['bakcground_url']}" id="suicai2" style="width:280px;">  
+				  <span class="help-inline">
+					<a href="javascript:void(0)" onclick="upyunPicUpload('suicai2',640,1366,'{pigcms:$token}')" class="btnGrayS vm">上传</a>
+					<a href="###" onclick="viewImg('suicai2')" class="btnGrayS vm">预览</a>
+				 </span>只改变选中模版的背景图!
+</td>
+                </tr>
+                <tr>
+    <th>背景音乐:</th>
+     <td>
+	 
+	 <input class="px" name="mp3" value="{pigcms:$greeting_card['mp3']}" id="suicai3" style="width:300px" onchange="document.getElementById('plmp3').src=this.value"> 
+	 <a href="###" onclick="upyunPicUpload('suicai3',0,0,'{pigcms:$token}')" class="a_upload">上传</a>&nbsp;<a href="###" onclick="chooseFile('suicai3','music')" class="a_upload">选择</a><br />
+	 
+	 <audio id="plmp3" src="" preload="none"></audio><font color="#FF0000"></font></td>
+    </tr>
+    <tr>
+	 <th>选择背景动画：</th>
+	  <td>
+		<select name="type"> 
+			<option value="" <if condition="$greeting_card['type'] eq ''">selected</if>>请选择</option>
+			 <option value="1" <if condition="$greeting_card['type'] eq 1">selected</if>>下落的枫叶</option>
+			 <option value="2" <if condition="$greeting_card['type'] eq 2">selected</if>>飘雪</option>
+			 <option style="display:none" value="3" <if condition="$greeting_card['type'] eq 3">selected</if>>驱驴</option>
+			 <option value="4" <if condition="$greeting_card['type'] eq 4">selected</if>>飘玫瑰</option>
+			</select> 
+		</td>
+	</tr>
+  <tr></tr>
+  <tr>
+                  <th valign="top">
+					<label for="text">默认文字：</label>
+				  </th>
+                  <td><textarea class="px" id="Hfcontent" name="info" style="width:280px;  height:40px">{pigcms:$greeting_card['info']}</textarea><font color="#FF0000"></font>
+                    尽量控制在60字左右，生日卡，就写生日祝语。 圣诞卡就圣诞祝语...</td>
+                </tr> 
+				<tr>
+                  <th valign="top">
+					<label for="text">版权信息：</label>
+				  </th>
+                  <td><textarea class="px" id="Hfcontent" name="copy" style="width:280px;  height:40px">{pigcms:$greeting_card['copy']}</textarea><font color="#FF0000"></font>
+                    尽量控制在10字左右，</td>
+                </tr>
+                                                   
+                 <tr style="display:none">
+                  <th valign="top"><label for="text">转发时提醒文字：</label></th>
+                  <td><input class="px" name="zfname" value="{pigcms:$greeting_card['zfname']}" id="zfname" style="width:100px;"> 
+                    </td>
+                </tr>
+               <tr style="display:none">
+				   <th>是否显示转发数：</th>
+				   <td>
+						<select name="status"> 
+							<option value="0">不显示</option>
+							<option value="1">显示</option>
+						</select> 
+				    </td>
+				</tr>
+                <tr>
+                  <th> 
+					<label for="title">默认名字：</label>
+				   </th>
+                  <td><input class="px" name="name" value="{pigcms:$greeting_card['name']}" id="suicai2" style="width:100px;"><font color="#FF0000"></font></td>
+                </tr>
+                <tr> 
+                  <th></th>
+                  <td>
+					<button type="submit" name="button" class="btnGreen">保存</button>　
+					<a href="" class="btnGray vm">取消</a>
+				  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          </form>
+          
+        </div>
+        </div>	
+<include file="Public:footer"/>

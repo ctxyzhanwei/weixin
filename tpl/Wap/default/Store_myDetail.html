@@ -1,0 +1,156 @@
+<include file="Store:header"/>
+<ul class="m-uc-order-p-liv m-cart-list">
+<volist name="products" id="p">
+	<if condition="empty($p['detail']) neq true">
+		<volist name="p['detail']" id="row">
+			<li>
+				<span class="pic"><img src="{pigcms:$p.logourl}" width="75" height="75"></span>
+				<span class="con">
+				<i class="t">{pigcms:$p.name}</i>
+				<i class="d"><if condition="empty($p['formatTitle']) neq true">{pigcms:$p.formatTitle}：{pigcms:$row.formatName}</if> <if condition="empty($p['colorTitle']) neq true">，{pigcms:$p.colorTitle}：{pigcms:$row.colorName}</if></i>
+				<p><label>数量：</label>{pigcms:$row.count}　<label>小计：</label><span class="price">￥{pigcms:$row['price'] * $row['count']}</span></p>
+				<if condition="$row['comment'] eq 1">
+				<a href="{pigcms::U('Store/comment',array('token'=>$token,'detailid'=>$row['id'],'wecha_id'=>$wecha_id,'pid'=>$p['id'], 'cartid' => $cartid, 'twid' => $twid))}" style="font-size: 1.4rem;color: #fff;bottom: -1px;right: -1px;background: #ff8a00;border: 1px solid #f26100;padding: 2px 14px;line-height: 24px;border-radius: 4px 0 4px 0;">评论</a>
+				</if>
+				</span>
+			</li>
+		</volist>
+	<else/>
+		<li>
+			<span class="pic"><img src="{pigcms:$p.logourl}" width="75" height="75"></span>
+			<span class="con">
+			<i class="t">{pigcms:$p.name}</i>
+			<p><label>数量：</label>{pigcms:$p.count}　<label>小计：</label><span class="price">￥{pigcms:$p['price'] * $p['count']}</span></p>
+			<if condition="$p['comment'] eq 1">
+			<a href="{pigcms::U('Store/comment',array('token'=>$token,'wecha_id'=>$wecha_id,'pid'=>$p['id'], 'cartid' => $cartid, 'twid' => $twid))}" style="font-size: 1.4rem;color: #fff;bottom: -1px;right: -1px;background: #ff8a00;border: 1px solid #f26100;padding: 2px 14px;line-height: 24px;border-radius: 4px 0 4px 0;">评论</a>
+			</if>
+			</span>
+		</li>
+	</if>
+</volist>
+</ul>
+<ul class="m-uc-order-v-infobox">
+<li><span class="tit">订单状态</span>
+<php>if($cartData['sent']){echo '<b class="orderStatus">已发货</b>';}else{echo '<b class="orderStatus">待发货</b>';}</php>
+</li>
+<li>
+<p>订单号：{pigcms:$cartData.orderid}</p>
+<p>下单时间：{pigcms:$cartData.time|date="Y-m-d H:i:s",###}</p>
+<p>订单金额：<b>{pigcms:$totalFee}元</b></p>
+</li>
+<if condition="($cartData['paid'] eq 0) AND ($cartData['sent'] eq 0)">
+<li class="act">
+<div class="btn-gray">取消订单
+<select name="cancel_reason" onchange="cancleorder($(this))" class="cel-opt">
+<option value="下单重复">下单重复</option>
+<option value="支付问题">支付问题</option>
+<option value="快递不到">快递不到</option>
+<option value="更改支付方式或商品">更改支付方式或商品</option>
+<option value="测试订单">测试订单</option>
+<option value="包含缺货商品">包含缺货商品</option>
+<option value="价格原因">价格原因</option>
+<option value="其它原因">其它原因</option>
+</select>
+</div>
+</li>
+</if>
+</ul>
+<!-- <ul class="m-uc-order-v-infobox">
+<li><span class="tit">物流信息</span></li>
+<li id="shipping_wlgs">
+<p>物流公司：<php>if($cartData['logistics']){echo $cartData['logistics'] . ';  订单号：' . $cartData['logisticsid'];}else{echo '普通快递';}</php></p>
+</li>
+</ul> -->
+<ul class="m-uc-order-v-infobox">
+<li><span class="tit">收货人信息</span></li>
+<li>
+<p>　收货人：{pigcms:$cartData.truename}</p>
+<p>收货地址：{pigcms:$cartData.address}</p>
+<p>手机/固话：{pigcms:$cartData.tel}</p>
+</li>
+</ul>
+<ul class="m-uc-order-v-infobox">
+<li><span class="tit">支付与配送</span></li>
+<li id="shipping_zfhps">
+<if condition="empty($cartData['paytype']) neq true">
+	<if condition="$cartData['paytype'] eq 'alipay'"><span style="color:green">支付宝</span>
+	<elseif condition="$cartData['paytype'] eq 'weixin'" /><span style="color:green">微信支付</span>
+	<elseif condition="$cartData['paytype'] eq 'tenpay'" /><span style="color:green">财付通[wap手机]</span>
+	<elseif condition="$cartData['paytype'] eq 'tenpayComputer'" /><span style="color:green">财付通[即时到帐]</span>
+	<elseif condition="$cartData['paytype'] eq 'yeepay'" /><span style="color:green">易宝支付</span>
+	<elseif condition="$cartData['paytype'] eq 'allinpay'" /><span style="color:green">通联支付</span>
+	<elseif condition="$cartData['paytype'] eq 'daofu'" /><span style="color:green">货到付款</span>
+	<elseif condition="$cartData['paytype'] eq 'dianfu'" /><span style="color:green">到店付款</span>
+	<elseif condition="$cartData['paytype'] eq 'chinabank'" /><span style="color:green">网银在线</span></if>
+	
+<else />
+
+	<if condition="$cartData['paymode'] eq 1">
+	<p>支付方式： 微信支付</p>
+	<elseif condition="$cartData['paymode'] eq 2" />
+	<p>支付方式： 财付通支付</p>
+	<elseif condition="$cartData['paymode'] eq 3" />
+	<p>支付方式： 货到付款</p>
+	<elseif condition="$cartData['paymode'] eq 4" />
+	<p>支付方式： 会员卡支付</p>
+	<elseif condition="$cartData['paymode'] eq 5" />
+	<p>支付方式： 积分兑换</p>
+	<else />
+	<p>支付方式： 其他方式支付</p>
+	</if>
+</if>
+<if condition="$cartData['sent'] eq 1">
+<p>快递公司：{pigcms:$cartData.logistics}</p>
+<p>快递单号：{pigcms:$cartData.logisticsid}</p>
+</if>
+<p>商品金额：{pigcms:$totalFee}元</p>
+<p>　　运费：{pigcms:$mailprice}元　</p>
+<p>应付金额：<php>{echo $cartData['price'];}</php>元</p>
+<p>兑换积分：<php>{echo $cartData['score'];}</php>分</p>
+</li>
+</ul>
+</div>
+<script type="text/javascript">
+function cancleorder(obj){
+    confirm =floatNotify.confirm("确定要删除此订单吗？", "",
+        function(t, n) {
+            if(n==true){
+                var _reson=obj.val();
+                var _order_id=$("#order_id").val();
+                $.ajax({
+                	type:"POST",
+                	url: "{pigcms::U('Store/cancelCart',array('token' => $token, 'cartid' => $cartid, 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid))}",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.error_code == false){
+                            floatNotify.simple('订单取消成功');
+                            setTimeout("location.href='{pigcms::U('Store/my',array('token' => $token, 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid))}'",1200);  
+                        }else{
+                           return floatNotify.simple(data.msg);  
+                        }
+                    },
+                    error:function(){
+                       return floatNotify.simple("提交失败");
+                    }
+                });
+            }
+    	this.hide();
+      }),
+    confirm.show();
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Store/myDetail',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Store/myDetail',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Store/myDetail',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

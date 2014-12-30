@@ -1,0 +1,106 @@
+<include file="Public:head"/>
+<include file="Yml:menu"/>
+<style>
+.msgWrap .control-group {
+margin-bottom: 20px;
+}
+.msgWrap .control-label {
+text-align: left;
+width: 140px;
+font-weight: bold;
+padding-top: 5px;
+float: left;
+display: block;
+margin-bottom: 5px;
+}
+.msgWrap .controls {
+margin-left: 160px;
+}
+.msgWrap .form-actions {
+padding: 19px 20px 20px 160px;
+margin-top: 20px;
+}
+.span4, .span1, .option, .valid, .input-large{
+	background: url(../images/px.png) repeat-x scroll 0 0 #FFFFFF;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    border-style: solid;
+    border-width: 1px;
+	border-radius: 2px 2px 2px 2px;
+	padding:5px;
+	width: 210px;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+</style>
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">印美丽设备管理</h4>
+              <div class="clr"></div>
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>请先更新username和secret。</p>
+    </div>
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+			<form method="post" action="">
+			<label for="username" class="control-label">username：</label><input type="text" name="username" value="{pigcms:$yml.username}" id="username" class="px" style="width:200px;">&nbsp;<label for="secret" class="control-label">secret：</label><input type="text" name="secret" value="{pigcms:$yml.secret}" id="secret" class="px" style="width:200px;">&nbsp;<button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>
+			</form>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th>设备编号</th>
+					<th>设备激活时间</th>
+					<th>授权有效时间</th>
+					<th>上次访问时间</th>
+					<th>备注</th>
+					<th class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <volist name="list" id="info">
+                <tr>
+                  <td>{pigcms:$info.client_num}</td>
+                  <td>{pigcms:$info.create_time}</td>
+                  <td>{pigcms:$info.expire_time}</td>
+                  <td>{pigcms:$info.update_time}</td>
+                  <td>{pigcms:$info.remark}</td>
+                  <td class="norightborder">
+						<a href="{pigcms::U('User/Yml/config',array('mid'=>$info['mid']))}">配置</a>　
+				   </td>
+                </tr>
+      			</volist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+<include file="Public:footer"/>

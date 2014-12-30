@@ -1,0 +1,119 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">微信红包</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"><a href="{pigcms::U('Red_packet/set',array('token'=>$this->token))}" title="添加活动" class="btnGrayS vm bigbtn">添加活动</a> </div>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+	<th width="100">活动名称</th>
+	<th width="70">关键词</th>
+	<th width="50">红包类型</th>
+	<th width="100">红包属性</th>
+	<th width="75">领取人数</th>
+ 	<th width="75">领取次数</th>
+ 	<th width="135">活动时间</th>
+ 	<th width="50">是否开启</th>
+	<th width="110"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<pigcmslist array="list" foreach="list">
+<tr>
+	<td>{pigcms:$list.title}</td>
+	<td>{pigcms:$list.keyword}</td>
+	<td>
+		<if condition="$list.packet_type eq '1'">
+		手气红包
+		<else />
+		普通红包
+		</if>
+	</td>
+	<td>
+		发放个数：{pigcms:$list.item_num}<br/>
+		<if condition="$list.packet_type eq '1'">
+		　总金额：{pigcms:$list.item_sum}<br />
+		面额上限：{pigcms:$list.item_max}
+		<else />
+		单个面额：{pigcms:$list.item_unit}
+		</if>
+	</td>
+	<td>
+		可领：{pigcms:$list.people}人<br />
+		<if condition="$list.people gt 0">
+			已领：{pigcms:$list.pcount}人
+		</if>
+	</td>
+	<td>
+		{pigcms:$list.get_number}/人<br />
+	</td>
+	<td>{pigcms:$list.start_time|date="Y-m-d",###} 至  {pigcms:$list.end_time|date="Y-m-d",###}</td>
+	<td>
+		<if condition="$list.is_open eq '1'">
+			已开启
+		<else/>
+			未开启
+		</if>
+	</td>
+	<td class="norightborder" align="center">
+		<a href="{pigcms::U('Red_packet/prize_log',array('token'=>$token,'id'=>$list['id']))}">领取记录</a>
+		|
+		<a href="{pigcms::U('Red_packet/exchange',array('token'=>$token,'id'=>$list['id']))}">兑换记录</a><br />
+		<!--
+		<a href="{pigcms::U('Red_packet/prize_list',array('token'=>$token,'id'=>$list['id']))}">红包管理</a>
+		|
+		-->
+		<a href="{pigcms::U('Red_packet/set',array('token'=>$this->token,'id'=>$list['id']))}">修改</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Red_packet/del',array('token'=>$this->token,'id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+
+</pigcmslist>
+</tbody>
+</table>
+</form>
+<script>
+
+function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script> 
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages"></div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,35 @@
+{include file=$header}<p class="title">{$channel.name}</p>
+<div class="sub">
+ {if $subChannels}
+	<div class="clickbtn">
+		<div class="classbtn"><p>打开分类</p></div>
+		<div class="classbtn2"><p>关闭分类</p></div>
+	</div>
+		<ul class="subnav">
+		{foreach from=$subChannels item=sc}
+          <li><a href="{$sc.link}" tppabs="/3g/product.php?tid=3" class="ui-bar-g" data-ajax="false">{$sc.name}</a></li>
+          {/foreach}
+				<div class="clear"></div>
+	</ul>
+	{/if}
+		<div class="clear"></div>
+		<ul class="product">
+				{if $contents}
+			{foreach from=$contents item=a}
+		        			<li class="ui-block-b">
+				<div><a href="{$a.link}" data-ajax="false"><img width="200" height="160" src="{$a.thumb}" alt="{$a.title}" /></a>
+					<p><a href="{$a.link}" data-ajax="false">{$a.title}</a></p>
+					</div>
+			</li>
+		     {/foreach}
+			 {/if}
+			
+			</ul>
+	<div class="clear"></div>
+			<div class="pages">
+		
+				<a href="{$previousPageLink}" class="{if $previousPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="上一页">&lt;</a>
+				<span>{$currentPage}/{$totalPage}</span>
+				<a href="{$nextPageLink}" class="{if $nextPageLink=='javascript:void(0)'}next-left{else}pre-left{/if}" title="下一页">&gt;</a>
+				</div>	</div>
+{include file=$footer}

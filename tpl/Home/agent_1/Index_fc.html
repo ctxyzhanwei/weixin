@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>{pigcms:$fun.title}-功能介绍－{pigcms::C('site_title')}</title>
+<meta name="keywords" content="PIGCMS 微信帮手 微信公众账号 微信公众平台 微信公众账号开发 微信二次开发 微信接口开发 微信托管服务 微信营销 微信公众平台接口开发"/>
+<meta name="description" content="微信公众平台接口开发、托管、营销活动、二次开发"/>
+<include file="Public:header"/>
+<style type="text/css">
+.main{
+padding: 10px 0 0 10px;;
+border: 1px solid #c7cdd6;
+background: #f5f6f7;
+box-shadow: 0px 1px 3px #ccc;
+}
+<!--
+#table {width:100%;background:#ffffff; overflow:auto;}
+.menubg{
+/*background: url({pigcms::RES}/images/img/current-.gif) repeat-y 170px top;*/
+overflow-x: hidden;
+overflow-y: auto;
+border-top:1px solid #EEEEEE;
+border-left:1px solid #EEEEEE;
+}
+.menu0 div{
+line-height:20px;
+display:block;
+float:left;
+padding:2px 0px;
+width:155px;
+text-align: left;
+text-indent: 10px;
+cursor:pointer;
+color:  #000000;
+border-right: 1px solid #EEEEEE;
+border-bottom: 1px solid #EEEEEE;
+font-size:12px;position: relative;
+}
+.menu0 div.hover{
+color: #FFFFFF;
+text-shadow: 0 1px 1px #467809;
+
+background-color:#08a006;
+/*background:#fff url({pigcms::RES}/images/img/current.gif) no-repeat right center;*/
+}
+.menu0 div span{
+ background: url({pigcms::RES}/images/img/icon_new.gif) no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    display: block;
+    height: 11px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 23px;
+    z-index: 10;
+right: 5px;
+    top: 6px;
+}
+#main0 div{margin:15px 10px;
+display: none;text-decoration: none; word-wrap: break-word;
+}
+#main0 div.block{margin:15px;
+
+display: block;text-decoration: none;word-wrap: break-word;
+}
+h3{ font-size: 16px; color:#08a006}
+.marginb{ margin-bottom:15px;display: block;}
+#mediaplayer {
+
+    background-color: #000000;
+    color: #FFFFFF;
+    height: 615px;
+    position: relative;
+    width: 820px;
+	top:0;
+	right:0;
+}
+.section { border:0; margin:0; padding:0}
+.section p{padding-top:0;margin-top:0; font-size:14px;/*text-indent: 2em;*/}
+.normalContent {
+    padding: 20px;
+}
+-->
+</style>
+<script>
+function setTab(m,n){
+var tli=document.getElementById("menu"+m).getElementsByTagName("div");
+var mli=document.getElementById("main"+m).getElementsByTagName("div");
+for(i=0;i<tli.length;i++){
+   tli[i].className=i==n?"hover":"";
+   mli[i].style.display=i==n?"block":"none";
+}
+}
+</script>
+
+<div class="main" style="margin-top:20px;">
+
+<div class="qtcontent">
+        <div class="intro">
+            <div class="normalTitle"><h2>{pigcms::C('site_name')}功能简介</h2></div>
+            <div class="normalContent">
+<div class="section">
+                    <div id="table" style="overflow:hidden;width:100%">
+                    <div class="menubg">
+                        <div class="menu0" id="menu0">
+                        <pigcmslist array="funs" foreach="f">
+                            <div class="<pigcmsif where="$f['id'] eq $fun['id']">hover</pigcmsif>" onclick="location.href='{pigcms::U('Index/fc',array('id'=>$f['id']))}'">{pigcms:$i}.{pigcms:$f.title}<pigcmsif where="$f['isnew'] eq '1'"><span class="new"></span></pigcmsif></div>
+                            </pigcmslist>
+
+                        </div>
+                    </div>
+                    <div class="main" style="border:none">
+                            <div style="width:95%;line-height:190%">
+                                <span class="marginb">
+                                <h3>{pigcms:$fun.title}</h3>
+
+                                </span>
+                                <?php echo html_entity_decode($fun['content']);?>
+                            </div>
+
+                    </div>
+                    </div>
+                	<p class="clr"></p>
+            	</div>
+
+
+        	</div>
+    	</div>
+    </div>
+<!--底部-->	</div>
+<!--底部-->	</div>
+</div>
+<script type="text/javascript">try{Dd('webpage_7').className='left_menu_on';}catch(e){}</script>
+<include file="Public:footer"/>

@@ -1,0 +1,56 @@
+<include file="Public:head"/> 
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">公众小秘书管理</h4>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="{pigcms:$key}">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+            <a href="{pigcms::U('Paper/add',array('token'=>$token))}" title="添加秘密小纸条" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加秘密小纸条</a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                  <TR>
+<TH class="select">编号</TH>
+<TH>标题名称</TH>
+<TH>关键字</TH>
+<TH style=" width:200px;" class="norightborder">操作</TH>
+                  </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+				<volist name="list" id="item"> 
+				</TD>
+                  <TD>{pigcms:$i}</TD>
+                  <TD>{pigcms:$item.title}</TD>
+                  <TD>{pigcms:$item.keyword}</TD>
+                  <TD class="norightborder">
+				  <a href="{pigcms::U('Paper/set',array('id'=>$item['id'],'token'=>$token))}"class="button icon edit">修改</a>
+				  <a href="javascript:drop_confirm('您确定要删除吗?','{pigcms::U('Paper/del',array('id'=>$vo['id']))}');"class="button danger icon remove">删除</a>
+				   </TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+           </form> 
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

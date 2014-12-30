@@ -1,0 +1,117 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+/*cate5*/
+#cate5{ background-color:#F0EFEF;margin: 0 auto;overflow-x: hidden;}
+#cate5 .mainmenu {
+	display: block;
+    margin:3px auto 4px;
+    width: 100%;
+}
+#cate5 .mainmenu li {
+	width:50%;
+	float:left;
+	display: block;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+}
+#cate5 .menubtn {
+	display: block;
+	text-decoration:none;
+	color:#000;
+	background-color: #ffffff;
+	padding:8px 10px;
+	box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+#cate5 .mainmenu li:nth-child(odd) .menubtn{
+	margin: 2px 2px 1px 5px;
+}
+#cate5 .mainmenu li:nth-child(even) .menubtn{
+	margin: 2px 5px 1px 2px;
+}
+
+#cate5 .menubtn .menumesg {
+	padding:0px;
+}
+#cate5 .menubtn .menuimg {
+	margin:0 auto;
+	height:100px;
+	padding: 6px;
+    width: 100px;
+	display:block;
+	overflow:hidden;
+	-webkit-border-radius:100px;
+	-moz-border-radius:100px;
+	border-radius:100px;
+	box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.11) inset;
+	-moz-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.11) inset;
+	-webkit-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.11) inset;
+	
+}
+#cate5 .menubtn .menuimg2 {
+	height:100px;
+	width:100px;
+	display:block;
+	overflow:hidden;
+	-webkit-border-radius:100px;
+	-moz-border-radius:100px;
+	border-radius:100px;
+}
+
+#cate5 .mainmenu li div img {
+	border:0;
+	height:100px;
+	width:100px;
+}
+#cate5 .mainmenu li .menutitle {
+	padding:6px 0 3px;
+	text-decoration: none;
+	color:#000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align:center;
+}
+#cate5 .mainmenu li .menutext {
+	color: #bbbbbb;
+    display: none;
+    font-size: 12px;
+	line-height: 16px;
+    height: 32px;
+    overflow: hidden;
+	text-align:center;
+}

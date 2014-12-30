@@ -1,0 +1,68 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">房友印象管理</h4>
+              <a href="{pigcms::U('Estate/index',array('token'=>$token))}"  class="right  btnGreen">
+                返回
+              </a>
+          </div>
+
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span><span style="color:red;">（注：系统默认为至少添加6项房友印象）</span></p>
+    </div>
+</div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+                <a href="{pigcms::U('Estate/impress_add',array('token'=>$token,'pid'=>$pid))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">添加印象
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                                        <tr>
+                                            <th class="span3">印象标题</th>
+                                            <th class="span3">印象数</th>
+                                            <th class="span1">是否显示</th>
+                                            <th class="span1">显示顺序</th>
+                                            <th class="span2">操作</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                        <if condition="$impress eq ''">
+                                        <tr>
+                                        <td colspan="5" style="text-align:center; height:30px;"><strong>请加添房友印象信息.</strong></td>
+                                        </tr>
+                                    <else/>
+                                    <volist name="impress" id="list">
+                                        <tr>
+                                        <td style="text-align:center; ;">{pigcms:$list['title']}</td>
+                                        <td style="text-align:center; ;"><span class="label"> {pigcms:$list['comment']}</span></td>
+                                        <td style="text-align:center; "><span class="label"><if condition="$list['is_show'] eq 1">显示<else/>不显示</if></span></td>
+                                        <td style="text-align:center; ">{pigcms:$list['sort']}</td>
+                                        <td style="text-align:center; ">
+                                        <a href="{pigcms::U('Estate/impress_add',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" class="btn">编辑</a>
+                                        <a href="{pigcms::U('Estate/impress_del',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" onclick="return(confirm('确定要删除吗？'))" class="btn">删除</a></a>
+</td>
+                                        </tr>
+                                    </volist>
+                                    </if>
+                                            </tbody>
+            </table>
+           </form>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

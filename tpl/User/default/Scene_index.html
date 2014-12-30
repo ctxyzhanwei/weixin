@@ -1,0 +1,99 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" >  
+<div class="cLineB">
+  <h4>微现场管理<span class="FAQ"></span></h4>
+ </div>
+<div class="cLineC" style="line-height: 32px;">
+ <a href="{pigcms::U('Scene/set')}" class="btnGrayS vm bigbtn" >添加现场活动</a>　   
+</div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：现场活动是综合类微现场应用，包含摇一摇、微信墙、对对碰、抽奖和投票功能
+</div>
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+  <th style=" width:110px;">现场名称</th>
+  <th style=" width:60px;">关键词</th>
+  <th style=" width:100px;">活动简介</th>
+  <th style=" width:60px;">状态</th>             
+  <th style=" width:250px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="scene_list" id="list">
+<tr>
+  <td>
+    <a href="{pigcms::U('Scene/wall',array('sceneid'=>$list['id'],'id'=>$list['wall_id'],'token'=>$_SESSION['token']))}">
+      {pigcms:$list.title}
+    </a>  
+  </td>
+  <td>{pigcms:$list.keyword}</td>
+  <td>{pigcms:$list.intro}</td>
+  <td><if condition="$list['is_open'] eq 0"> 
+      <span style="color:red">关闭中</span>
+      <else /><span style="color:green">开启中</span>
+      </if></td>
+  <td class="norightborder">
+      <a target="_blank" href="{pigcms::U('Scene/wall',array('sceneid'=>$list['id'],'id'=>$list['wall_id'],'token'=>$_SESSION['token']))}">大屏幕</a>
+        |
+      <if condition="$list['shake_id'] neq ''">
+        <a href="{pigcms::U('Scene/show_fans',array('id'=>$list['id'],'token'=>$_SESSION['token']))}">参与粉丝</a>
+        |
+      </if>
+      <if condition="$list.wall_id gt 0">
+        <a href="{pigcms::U('Wall/check_msg',array('token'=>$token,'id'=>$list['wall_id'],'sceneid'=>$list['id']))}">微信墙消息</a>
+        |
+      </if>
+      <if condition="$list['open_lottery'] eq '1'">
+        <a href="{pigcms::U('Scene/prize',array('id'=>$list['id'],'token'=>$_SESSION['token']))}">抽奖设置</a>
+        |
+      </if>
+      <if condition="$list['open_vote'] eq '1'">
+        <a href="{pigcms::U('Vote/index',array('type'=>'scene','id'=>$list['vote_id'],'token'=>$_SESSION['token']))}">查看投票</a>
+      </if>
+      <!--
+      <if condition="$list['open_zzle'] eq '1'">
+        |
+        <a href="javascript:supperzzle_log({pigcms:$list['id']});">对对碰结果</a>
+      </if>-->
+        |  
+        <a href="{pigcms::U('Scene/set',array('id'=>$list['id'],'token'=>$_SESSION['token']))}" >编辑</a>  
+        |
+        <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Scene/del',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+  </td>
+  </volist>
+</tr>
+
+</table>
+
+</div>
+</div>
+<div class="cLine">
+  <div class="pageNavigator right">
+    <div class="pages">{pigcms:$page}</div>
+  </div>
+  <div class="clr"></div>
+</div>
+          </div>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+    </div>
+<script>
+/*
+function supperzzle_log(sceneid){
+    art.dialog.open('{pigcms::U('Scene/supperzzle_log',array('token'=>$token))}&id='+sceneid,{lock:false,title:'信息详情',width:1100,height:600,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+*/
+
+function showFans(sceneid){
+    art.dialog.open('{pigcms::U('Scene/show_fans',array('token'=>$token))}&sceneid='+sceneid,{lock:false,title:'信息详情',width:1100,height:600,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<include file="Public:footer"/>

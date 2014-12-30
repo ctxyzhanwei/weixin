@@ -1,0 +1,44 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    background-color:rgba(8, 177, 45, 0.4);
+    position:relative;
+}
+
+
+.list_ul{
+    margin: 10px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.list_ul a{
+    color:#666;
+    display:block;
+    margin:5px;
+}
+.list_ul div{
+    border:2px solid #fff;
+    display:inline-block;
+    border-radius:65px;
+    width:65px;
+    height:65px;
+    overflow:hidden;
+    -webkit-box-shadow:0 0 2px rgba(0,0,0,0.3);
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.list_ul figcaption{
+    line-height: 30px;
+}
+.list_ul li{
+    display:inline-block;
+    width:25%;
+    float:left;
+    text-align:center;
+    -webkit-box-sizing:border-box;
+}
+.copyright{
+    color:#fff;
+}

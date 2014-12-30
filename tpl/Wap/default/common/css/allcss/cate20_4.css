@@ -1,0 +1,103 @@
+.body{
+    max-width:640px;
+    margin:auto;
+    min-height:100%;
+    background-color:#e1e0de;
+    position:relative;
+}
+
+.body{
+    display:block;
+    /*background:#e9e9e9;*/
+    background-color:rgba(255, 152, 0, 0.5);
+}
+
+/******************************/
+.list_nav ul{
+    height:90px;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f1f0ef) );
+    border-bottom:1px solid #ccc;
+}
+.list_nav ul li:not(:last-of-type){
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(transparent), color-stop(.5, #d4cec1)) no-repeat right center;
+    -webkit-background-size:1px 90%;
+}
+.list_nav ul a{
+    color:#75674a;
+    text-align:center;
+    line-height:10px;
+    display:bock;
+}
+
+.list_nav ul a div:first-of-type{
+    color:rgba(251, 75, 75, 0.5);
+    text-shadow: 0 1px 1px #fff,0 0 0 #888;
+    font-size:45px;
+    height:70px;
+    line-height:70px;
+}
+
+/********************************/
+.list_ul{
+    margin:10px;
+}
+.list_ul li{
+    border:1px solid #ccc;
+    border-radius:5px;
+    background:#fff;
+    min-height:50px;
+    margin:10px 0;
+    padding:5px;
+    -webkit-box-sizing:border-box;
+}
+
+.list_ul li>div:first-of-type{
+    height:100px;
+    overflow:hidden;
+}
+.list_ul li>div:first-of-type img{
+    width:120px;
+}
+
+.list_ul dl{
+    margin-left:5px;
+    overflow:hidden;
+}
+.list_ul dl dd{
+    display:inline-block;
+    width:33.3%;
+    float:left;
+}
+.list_ul dl dd a{
+    display:block;
+    line-height:25px;
+    border:1px solid #ccc;
+    width:50px; 
+    margin:5px auto 0;
+    border-radius: 3px;
+    text-align:center;
+    color:#75674a;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f1f1f0) );
+}
+
+.list_ul dl dt label{
+    text-align:left;
+    overflow:hidden;
+    display:block;
+    width:90%;
+    height:30px;
+    margin:5px auto;
+    line-height:20px;
+    /*background:red;*/
+    font-size:17px;
+    font-weight:bolder;
+    color:#fff;
+    text-indent:5px;
+    border:1px solid red;
+    border-width:4px 4px 4px 20px;
+    -webkit-box-sizing:border-box;
+    -webkit-border-image:url(./v46_3.png) 4 5 4 53;
+}
+.copyright{
+    color:#fff;
+}

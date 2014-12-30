@@ -1,0 +1,119 @@
+<include file="Public:head"/>
+<style>
+.msgWrap .control-group {
+margin-bottom: 20px;
+}
+.msgWrap .control-label {
+text-align: left;
+width: 140px;
+font-weight: bold;
+padding-top: 5px;
+float: left;
+display: block;
+margin-bottom: 5px;
+}
+.msgWrap .controls {
+margin-left: 160px;
+}
+.msgWrap .form-actions {
+padding: 19px 20px 20px 160px;
+margin-top: 20px;
+}
+.span4, .span1, .option, .valid, .input-large{
+	background: url(../images/px.png) repeat-x scroll 0 0 #FFFFFF;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    border-style: solid;
+    border-width: 1px;
+	border-radius: 2px 2px 2px 2px;
+	padding:5px;
+	width: 210px;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+</style>
+<div class="content">
+          <div class="cLineB">
+              <h4 class="left">喜帖管理</h4>
+              <div class="clr"></div>
+          </div>
+          
+          <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>功能勾选，设置好信息后，输入关键词即可看到效果。</p>
+    </div>
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left">
+				<a href="{pigcms::U('User/Wedding/add')}" class="btnGrayS vm bigbtn">
+					<img src="tpl/User/default/common/images/text.png" class="vm">新增喜帖
+				</a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th class="select">编号</th>
+					<th>喜帖标题</th>
+					<th>关键词</th>
+					<th>新郎/新娘名字</th>
+					<th>密码</th>
+					<th>相册</th>
+					<th class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <pigcmslist array="wedding" foreach="wedding">
+                <tr>
+                  <td>{pigcms:$i}</td>
+                  <td>{pigcms:$wedding.title}</td>
+                  <td>{pigcms:$wedding.keyword}</td>
+                  <td>{pigcms:$wedding.man}/{pigcms:$wedding.woman}</td>
+                  <td>{pigcms:$wedding.password}</td>
+                  <td><a class="green" href="{pigcms::U('Photo/list_add',array('id'=>$wedding['id']))}">喜帖图片</a> </td>
+                  <td class="norightborder">
+						<a href="{pigcms::U('Wedding/info',array('id'=>$wedding['id']))}">查看名单</a>　
+						<a href="{pigcms::U('User/Wedding/edit',array('id'=>$wedding['id']))}">编辑喜帖</a>　
+						<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('User/Wedding/del',array('id'=>$wedding['id']))}');">删除</a>
+				   </td>
+                </tr>
+      			</pigcmslist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>	
+<include file="Public:footer"/>

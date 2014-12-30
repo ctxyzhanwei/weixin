@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://wxsyb.bama555.com/activity/free_vote/result_list/?id=23839&rotate_id=58 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>配对结果</title>
+	<link rel="stylesheet" type="text/css" href="/tpl/static/wall/css/result_list.css">
+</head>
+<body style="width:1200px;height:min-height:550px;">
+<h1>配对结果</h1>
+	<ul class="rotate-tab clearfix">
+		<volist id="count" name="count" key="key">
+			<li class="<if condition="$count['id'] eq $info['id']">active</if>">
+				<a href="{pigcms::U('Scene/supperzzle_log',array('id'=>$sceneid,'sid'=>$count['id']))}">第{pigcms:$key}轮</a>
+			</li>
+		</volist>
+		<span class="clear"></span>
+	</ul>
+<div class="member-list" style="height: 316px;">
+	<ul class="clearfix">
+		<ul class="clearfix">
+			<if condition="$info.n_name neq ''">
+				<li>
+		            <div class="nan">
+		                <img src="{pigcms:$info.n_head}" alt="">
+		                <p>{pigcms:$info.n_name}</p>
+		            </div>
+		            <div class="nv">
+		                <img src="{pigcms:$info.v_head}" alt="">
+		                <p>{pigcms:$info.v_name}</p>
+		            </div>
+		        </li>
+	        <else />
+	        	<b>暂无配对结果</b>
+	    	</if>
+		</ul>
+	</ul>
+</div>
+</body></html>

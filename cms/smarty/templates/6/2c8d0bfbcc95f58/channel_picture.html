@@ -1,0 +1,22 @@
+{include file=$header}
+<ul class="pro-ul">
+{if $contents}
+			{foreach from=$contents item=c}
+		 <li>
+            <center><a href="{$c.link}" title="{$c.title}"><img src="{$c.thumb}" alt="{$c.title}"></a>
+            <p>{$c.title}</p></center>
+        </li>
+		     {/foreach}
+			 {/if}
+            </ul>
+	<div class="clear"></div>
+   {if $currentPage&&$totalPage}
+    <div class="pages">
+			<a class="pre-left" href="{$previousPageLink}">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="pre-left" href="{$nextPageLink}">&gt;</a>
+	        <div class="clear"></div>
+		
+    </div>
+	{/if}
+{include file=$footer}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{pigcms:$info['title']}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="Keywords" content="{pigcms:$readinfo['title']},{pigcms:$readinfo['keyword']}" />
+    <meta name="Description" content="{pigcms:$readinfo['title']} {pigcms:$readinfo['text']}" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{pigcms::STATICS}/schools/css/plugmenu.css">
+    <link href="{pigcms::STATICS}/schools/css/news3_3.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script type="text/javascript">
+    window.onload = function () {
+        var oWin = document.getElementById("win");
+        var oLay = document.getElementById("overlay");
+        var oBtn = document.getElementById("popmenu");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function () {
+            oLay.style.display = "block";
+            oWin.style.display = "block";
+            //oWin.style.zIndex = 99999;
+        };
+        oLay.onclick = function () {
+            oLay.style.display = "none";
+            oWin.style.display = "none";
+        }
+    };
+</script>
+
+
+<body id="news3">
+<!--分享-->
+    <div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display: none;">
+        <img src="{pigcms::STATICS}/schools/images/guide.png"></div>
+
+<include file="School:headermenu"/>
+
+    <div class="Listpage" >
+    <div class="top46" ></div>
+    <div class="page-bizinfo" >
+        <div style="position: relative;" class="header">
+            <h1 id="activity-name">{pigcms:$readinfo['title']}</h1>
+<if condition="$readinfo['createtime'] neq ''">
+            <span id="post-date">{pigcms:$readinfo['createtime']|date="Y-m-d",###}</span>&#12288;
+</if>
+            <!-- <span class="commentNum">浏览次数:{pigcms:$readinfo['click']}</span> -->
+        </div>
+        <div id="content" class="text">
+        <if condition="$readinfo['pic'] neq ''">
+                <div class="showpic"><img alt="" src="{pigcms:$readinfo['pic']}"> </div>
+        </if>
+            <p> {pigcms:$readinfo['info']|html_entity_decode} </p>
+        </div>
+
+        <div class="page-content"></div>
+
+    </div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+<div id="mess_share" >
+    <div id="share_1">
+        <button class="button2" onclick="document.getElementById('mcover').style.display='block';">
+            <img src="{pigcms::STATICS}/schools/images/icon_msg.png">&nbsp;发送给朋友</button>
+    </div>
+    <div id="share_2">
+        <button class="button2" onclick="document.getElementById('mcover').style.display='block';">
+            <img src="{pigcms::STATICS}/schools/images/icon_timeline.png">&nbsp;分享到朋友圈</button>
+    </div>
+    <div class="clr"></div>
+
+ <div class="clr"></div>
+    <a target="_self" href="#news3" class="footer"><span class="top">返回顶部</span></a>
+</div>
+
+    <div class="copyright">
+      <span class="copyright">
+    <if condition="$iscopyright eq 1">
+    {pigcms:$homeInfo.copyright}
+    <else/>
+    {pigcms:$siteCopyright}
+    </if>
+    </span></div>
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+</div>
+<script>
+   $('#plug-wrap').removeClass();
+</script>
+<style>
+    #plug-wrap{z-index: -1}
+</style>
+
+</body>
+</html>

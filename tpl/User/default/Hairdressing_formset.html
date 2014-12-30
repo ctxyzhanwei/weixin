@@ -1,0 +1,176 @@
+<include file="Public:head"/>
+<include file="Hairdressing:menu"/>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+<div class="content">
+  <div class="cLineB">
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置美容服务相关内容。注意：美容介绍和表单设置，第一次使用，请点击添加美容介绍和添加表单设置，并点击保存<br />
+  只能选择是否显示来收集你想得到用户的信息即可.默认全部显示.
+   </font></strong>
+
+    </p>
+    </div>
+</div>
+  </div>
+<form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+    <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+          <th style=" width:250px;">字段类型</th>
+          <th style=" width:250px;">字段名称</th>
+          <th style=" width:250px;">初始内容</th>
+          <th style=" width:220px;">操作</th>
+        </tr>
+      </thead>
+<if condition="$shows['id'] neq ''">
+      <input type="hidden" class="px" id="id" value="{pigcms:$shows['id']}" name="id" >
+</if>
+      <input type="hidden" class="px" id="type" value="meirong" name="type">
+      <tbody><tr>
+        <td>单行文字</td>
+        <td><input type="input" class="px" disabled="disabled" value="姓名" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="请输入你的名字" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show1" id="show1" style="width:100px">
+          <option value="2" <if condition="$shows['show1'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show1'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>性别选择</td>
+        <td><input type="input" class="px" disabled="disabled" value="性别" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="性别" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show2" id="show2" style="width:100px">
+
+            <option value="2"<if condition="$shows['show2'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show2'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>单行文字</td>
+        <td><input type="input" class="px" disabled="disabled" value="年龄" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="请输入你的年龄" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show3" id="show3" style="width:100px">
+
+            <option value="2"<if condition="$shows['show3'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show3'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>单行文字</td>
+        <td><input type="input" class="px" disabled="disabled" value="联系电话" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="请输入你的电话" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show4" id="show4" style="width:100px">
+
+            <option value="2"<if condition="$shows['show4'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show4'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>时间选择</td>
+        <td><input type="input" class="px" disabled="disabled" value="预定日期" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="请输入你的预定日期" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show5" id="show5" style="width:100px">
+
+            <option value="2"<if condition="$shows['show5'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show5'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>多行文字</td>
+        <td><input type="input" class="px" disabled="disabled" value="联系地址" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="请输入你的联系地址" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show6" id="show6" style="width:100px">
+
+           <option value="2"<if condition="$shows['show6'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show6'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>套餐选择</td>
+        <td><input type="input" class="px" disabled="disabled" value="预约套餐" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="预约套餐" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show7" id="show7" style="width:100px">
+
+            <option value="2"<if condition="$shows['show7'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show7'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>人数</td>
+        <td><input type="input" class="px" disabled="disabled" value="人数" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="人数" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show8" id="show8" style="width:100px">
+
+            <option value="2"<if condition="$shows['show8'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show8'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <td>备注</td>
+        <td><input type="input" class="px" disabled="disabled" value="备注" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td><input type="input" class="px" disabled="disabled" value="备注" style="width:230px;background-color: rgb(167, 165, 162)"></td>
+        <td>
+          <select name="show9" id="show9" style="width:100px">
+
+            <option value="2"<if condition="$shows['show9'] eq 2"> selected="selected"</if>>不显示</option>
+            <option value="1"<if condition="$shows['show9'] eq 1"> selected="selected"</if>>显示</option>
+          </select>
+          <label for="keyword">是否显示</label></td>
+      </tr>
+      <tr>
+        <th></th>
+        <th><br>
+          <button type="submit" name="button" class="btnGreen left">保存</button>
+          <div class="clr"></div></th>
+      </tr>
+    </tbody></table>
+ </form>
+
+</div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,70 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">团购管理 ({pigcms:$page}) </h4>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="">
+<input type="hidden" name="ac" value="hotels-list">
+<input type="hidden" name="id" value="9878">
+<input type="hidden" name="wxid" value="gh_423dwjkewad">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{pigcms::U('Groupon/add',array('token'=>$token))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加团购</a></div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select">选择</th>
+<th width="160">商品名称</th>
+<th width="100">原价 / 现价(元)</th>
+<th width="170">关键词</th>
+<th width="150">创建时间 / 截止日期</th>
+<th width="90" align="center" style="text-align:center">出售数量</th>
+ 
+<th width="200" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td><input type="checkbox" name="del_id[{pigcms:$i}]" value="285" class="checkitem"></td>
+<td>{pigcms:$hostlist.name}</td>
+<td><span style="text-decoration:line-through">{pigcms:$hostlist.oprice}</span> / {pigcms:$hostlist.price}</td>
+<td>{pigcms:$hostlist.keyword}</td>
+<td>{pigcms:$hostlist.time|date="Y-m-d",###} / {pigcms:$hostlist.endtime|date="Y-m-d",###}</td> 
+<td align="center">{pigcms:$hostlist.salecount}</td>
+<td class="norightborder"><a href="{pigcms::U('Groupon/set',array('id'=>$hostlist['id'],'token'=>$token))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Groupon/del',array('id'=>$hostlist['id'],'token'=>$token))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

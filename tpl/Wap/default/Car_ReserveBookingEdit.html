@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/css/datepicker_car.css" media="all" />
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="./tpl/User/default/common/js/select/js/comm.js"></script>
+<script src="./tpl/User/default/common/js/select/js/linkagesel-min.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/jquery_ui.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/category.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/car/js/bootstrap-datepicker.js"></script>
+<title><if condition="$reser['mid'] neq ''">编辑我的</if>{pigcms:$reser['title']}</title>
+
+
+
+        <style>
+            img{width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+                <style>
+            #bookBody .pb_5{
+                padding-bottom:10px!important;
+            }
+        </style>
+
+<script>
+            $().ready(function(){
+                var nowTemp = new Date();
+                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                var ndate = $('#dateline').datepicker({
+                        format:"yyyy-mm-dd",
+                        onRender: function(date) {
+                           return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                        }
+                }).on("changeDate", function(date){
+                        ndate.datepicker('hide');
+                });
+            });
+
+function submit(){
+        var form = document.getElementById("form1");
+        var obj = {truename:'',tel:'',dateline:'',wecha_id:'',mid:'',booktype:'',timepart:'',info:'',housetype:'',carnum:'',km:''};
+
+                if('undefined' !== typeof(form.truename)){
+                    obj.truename = form.truename.value;
+                    if(obj.truename != null && obj.truename.length<=0){
+                        alert("请输入您的真实姓名");return;
+                    }
+                }
+                if('undefined' !== typeof(form.tel)){
+                    obj.tel = form.tel.value;
+                    if(obj.tel != null && obj.tel.length<=7){
+                        alert("请输入正确的电话号码");return;
+                    }
+                }
+                if('undefined' !== typeof(form.dateline)){
+                    obj.dateline = form.dateline.value;
+                    if(obj.dateline != null && obj.dateline.length<=7){
+                        alert("请输入预约日期");return;
+                    }
+                }
+                if('undefined' !== typeof(form.wecha_id)){
+                    obj.wecha_id = form.wecha_id.value;
+                }
+
+                if('undefined' !== typeof(form.mid)){
+                    obj.mid = form.mid.value;
+                }
+
+                //if('undefined' !== typeof(form.booktype)){
+                    obj.booktype = form.booktype.value;
+                //}
+                //if('undefined' !== typeof(form.timepart)){
+                    obj.timepart = form.timepart.value;
+                //}
+                if('undefined' !== typeof(form.carnum)){
+                    obj.carnum = form.carnum.value;
+                }
+                if('undefined' !== typeof(form.km)){
+                        obj.km = form.km.value;
+                 }
+                //if('undefined' !== typeof(form.info)){
+                    obj.info = form.info.value;
+                //}
+
+                if('undefined' !== typeof(form.housetype)){
+                    obj.housetype = form.housetype.value;
+                }
+
+             var obj = {
+                wecha_id:  form.wecha_id.value,
+                truename:  form.truename.value,
+                tel:       form.tel.value,
+                dateline:  form.dateline.value,
+                timepart:  form.timepart.value,
+                info:      form.info.value,
+                booktype:  form.booktype.value,
+                housetype: form.housetype.value,
+                mid:       form.mid.value,
+                carnum:    form.carnum.value,
+                km:        form.km.value,
+             }
+
+        $.post("{pigcms::U('Car/func_post',array('token'=>$token,'wecha_id'=>$wecha_id))}", obj,
+            function(data) {
+                if (0 == data.errno) {
+                    alert(data.msg);
+                    var count = $(".ok").text();
+                    count = 1+ parseInt(count);
+                    $(".ok").text(count);
+                    setTimeout(function(){
+                        jumpurl(data.url);
+                    },1500);
+                    return;
+                } else {
+                    alert("失败了。。");
+                    alert(data.msg);
+                }
+            },
+        "json");
+
+    }
+
+function jumpurl(url){
+    window.location.href = url;
+}
+        </script>
+    <body onselectstart="return true;" ondragstart="return false;">
+            <div id="bookBody" class="body">
+            <header>
+                <ul>
+                    <li><img src="{pigcms:$reser['headpic']}" style="width:100%;" /></li>
+                </ul>
+            </header>
+            <section>
+                <div class="pt_5 pb_5 pl_10 pr_10">
+                    <dl class="list_book list_book_my">
+                        <dd class="tbox">
+                            <div><label>我的订单</label></div>
+                            <div class="align_right"><a href="{pigcms::U('Car/ReserveBooking',array('token'=>$token,'wecha_id'=>$wecha_id,'addtype'=>$reser['addtype']))}" ><span id="ok" class="ok">{pigcms:$count}</span></a></div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="pb_5 pl_10 pr_10">
+                    <dl class="list_book list_book_des">
+                        <dd>
+                            <div><label>订单说明</label></div>
+                            <div style="word-break:break-all;word-wrap:nowrap;white-space:normal;padding: 15px 0;">{pigcms:$reser['info']}</div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="pb_5 pl_10 pr_10">
+                    <dl class="list_book list_book_contact">
+                        <dd>
+                            <div>
+                                <a href="http://chabus.duapp.com/mapapi.php?lng={pigcms:$reser['lng']}&lat={pigcms:$reser['lat']}&title={pigcms:$reser['title']}&info=温馨提示：{pigcms:$reser['address']}">
+                                    <span>地址：{pigcms:$reser['address']}</span>
+                                </a></div>
+                            <div style="padding-top: 3px;"><a href="tel:{pigcms:$reser['tel']}"><span>预约电话： {pigcms:$reser['tel']}</span></a></div>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="pb_5 pl_10 pr_10" <if condition="$reser['truename'] neq ''"> style="display:none;"</if>>
+                    <dl class="list_book list_book_my">
+                        <dd class="round roundyellow">
+                            <div >
+                                <a href="{pigcms::U('Userinfo/index',array('token'=>$token,'wecha_id'=>$wecha_id))}"><span>请完善个人资料再填表单</span></a>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="pb_5 pl_10 pr_10">
+<form id="form1" action="javascript:submit();" method="post" >
+                        <input type="hidden" name="wecha_id" id="wecha_id" value="{pigcms:$wecha_id}" />
+                        <!--input type="hidden" name="rid" id="rid" value="{pigcms:$reser['id']}" /-->
+                        <input type="hidden" name="booktype" id="addtype" value="{pigcms:$reser['addtype']}" />
+                        <input type="hidden" name="token" id="token" value="{pigcms:$token}" />
+                        <input type="hidden" name="mid" id="mid" value="{pigcms:$reser['mid']}" />
+                        <!--input type="hidden" name="autoid" id="autoid" value="255" /-->
+                        <dl class="list_book">
+                            <dt><label>请认真填写表单</label></dt>
+                            <dd class="tbox">
+                                <div><label>联系人:</label></div>
+                                <div><input type="text" name="truename" id="truename" placeholder="请输入您的真实姓名" value="{pigcms:$reser['truename']}"/></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>联系电话：</label></div>
+                                <div><input type="tel" name="tel" id="tel" placeholder="请输入您的电话" value="{pigcms:$reser['user_tel']}"/></div>
+                            </dd>
+
+                            <dd class="tbox">
+                                <div><label>车系/车型</label></div>
+                                <div>
+                                 <select name="field1" id="field1" class="input-medium" data-rule-required="true"></select>
+                                 <input type="hidden" name="housetype" id="housetype" value="" />
+                                </div>
+                            </dd>
+
+<script>
+    var opts = {
+            select: '#field1',
+            url: "{pigcms::U('Car/get_car_brand',array('token'=>$token))}",
+            head: '请选择',
+            autoLink:true,
+            autoBind:true,
+            level:2,
+            autoHide:false,
+            hideWidth:false,
+            minWidth:160,
+            maxWidth:498,
+            selClass:"input-medium"
+
+    };
+
+    var linkageSel = new LinkageSel(opts);
+    linkageSel.onChange(function(){
+        var input = $("#housetype"),
+        d = this.getSelectedDataArr('name'),
+        //s_id = linkageSel.getSelectedData('s_id'),
+        arr = [];
+        for (var i = 0, len = d.length; i < len; i++) {
+            arr.push(d[i]);
+        }
+        input.val(arr.join('/'));
+        //$("#s_id").val(s_id);
+
+    });
+
+</script>
+
+                             <if condition="$addtype eq 'maintain'">
+                            <dd class="tbox">
+                                <div><label>车牌</label></div>
+                                <div>
+                                   <input type="text" name="carnum" id="carnum" value="{pigcms:$reser['carnum']}" placeholder="如：京M 88888"/>
+                                </div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>公里数</label></div>
+                                <div>
+                                  <input type="number" name="km" id="km"  value="{pigcms:$reser['km']}" placeholder="请输入您的公里数"  />
+                                </div>
+                            </dd>
+                             <else/>
+                             <input type="hidden" name="carnum" id="carnum" value="w" placeholder="如：京M 88888"/>
+                             <input type="hidden" name="km" id="km"  value="0" placeholder="请输入您的公里数"  />
+                            </if>
+                            <dd class="tbox">
+                                <div><label>预约日期：</label></div>
+                                <div><input type="text" name="dateline" id="dateline" readonly="readonly" placeholder="" value="{pigcms:$reser['dateline']}" /></div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>预约时间：</label></div>
+                                <div>
+                                    <select name="timepart">
+                                    <option value="0:00-1:00">0:00-1:00</option><option value="1:00-2:00">1:00-2:00</option><option value="2:00-3:00">2:00-3:00</option><option value="3:00-4:00">3:00-4:00</option><option value="4:00-5:00">4:00-5:00</option><option value="5:00-6:00">5:00-6:00</option><option value="6:00-7:00">6:00-7:00</option><option value="7:00-8:00">7:00-8:00</option><option value="8:00-9:00">8:00-9:00</option><option value="9:00-10:00">9:00-10:00</option><option value="10:00-11:00">10:00-11:00</option><option value="11:00-12:00">11:00-12:00</option><option value="12:00-13:00">12:00-13:00</option><option value="13:00-14:00">13:00-14:00</option><option value="14:00-15:00">14:00-15:00</option><option value="15:00-16:00">15:00-16:00</option><option value="16:00-17:00" selected>16:00-17:00</option><option value="17:00-18:00">17:00-18:00</option><option value="18:00-19:00">18:00-19:00</option><option value="19:00-20:00">19:00-20:00</option><option value="20:00-21:00">20:00-21:00</option><option value="21:00-22:00">21:00-22:00</option><option value="22:00-23:00">22:00-23:00</option><option value="23:00-24:00">23:00-24:00</option></select>
+                                </div>
+                            </dd>
+                            <dd class="tbox">
+                                <div><label>备注：</label></div>
+                                <div><textarea name="info" placeholder="请输入备注信息" style="height:80px;">{pigcms:$reser['user_info']}</textarea></div>
+                            </dd>
+                        </dl>
+                        <div style="margin:10px;text-align: center;">
+                            <input type="submit" value="提交订单" class="btn_submit"  style="margin:10px auto;text-align: center;cursor:pointer">
+                        </div>
+</form>
+                </div>
+            </section>
+            <include file="Car:menu"/>
+        </div>
+
+    </body>             <div mark="stat_code" style="width:0px; height:0px; display:none;">
+                    </div>
+    </body>
+</html>

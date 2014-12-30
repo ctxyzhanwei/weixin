@@ -1,0 +1,82 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" >  
+<div class="cLineB">
+  <h4>粉丝列表<span class="FAQ"></span></h4>
+  <a class="right btnGrayS vm" style="margin-top:-27px" href="javascript:window.history.go(-1);">返回</a>
+</div>
+<div class="cLine">
+<div class="pageNavigator">
+<span class="right">
+  <form method="post" action="">
+    关键词：
+    <input class="px" type="text" value="" name="keyword">
+    <input class="btnGrayS" type="submit" value="搜索">
+  </form>
+</span>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+  <th style=" width:100px;">粉丝信息</th>
+  <th style=" width:80px;">真实名字</th>
+  <th style=" width:80px;">联系方式</th>
+  <th style=" width:80px;">已发信息</th>  
+  <th style=" width:100px;">操作
+  <span class="tooltips">
+  <img align="absmiddle" src="./tpl/User/default/common/images/price_help.png">
+    <span>
+      <p>
+        删除操作将删除粉丝的所有活动信息<br />请谨慎操作！
+      </p>
+    </span>
+  </span>
+  </th>                  
+</tr>
+</thead>
+<volist name="list" id="list">
+<tr>
+  <td>
+   	<img src="{pigcms:$list.portrait}" alt="{pigcms:$list.nickname}" style="width:50px;height:50px;float:left;margin-right:10px;">
+   	{pigcms:$list.nickname}
+  </td>
+  <td>{pigcms:$list.truename}</td>
+  <td>{pigcms:$list.phone}</td>
+  <td>{pigcms:$list.count}条</td>
+  <td>
+  	<a href="{pigcms::U('Wall/check_msg',array('token'=>$token,'id'=>$pid,'uid'=>$list['id']))}">查看信息</a>
+  	|
+  	<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Wall/del_fens',array('token'=>$token,'id'=>$list['id'],'pid'=>$pid))}');">删除</a>
+  </td>
+</tr>
+</volist>
+
+</table>
+</div>
+</div>
+<div class="cLine">
+  <div class="pageNavigator right">
+    <div class="pages">{pigcms:$page}</div>
+  </div>
+  <div class="clr"></div>
+</div>
+          </div>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+ </div>
+<script>
+	function showShakeRank(id,pid){
+    art.dialog.open('{pigcms::U('Shake/show_rank',array('token'=>$token))}&id='+id+'&pid='+pid,{lock:false,title:'信息详情',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+	}
+</script>
+ <include file="Public:footer"/>

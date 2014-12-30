@@ -1,0 +1,86 @@
+<include file="Public:head"/>
+<include file="Hairdressing:menu"/>
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+  <script>
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+</script>
+<div class="content">
+  <div class="cLineB">
+    <div class="cLine">
+    <div class="alert">
+    <p><span class="bold">使用方法：</span>
+   <strong><font color='red'>请设置美容服务套餐设置，并点击保存</font></strong>
+
+    </p>
+    </div>
+</div>
+  </div>
+
+   <div class="msgWrap">
+    <form class="form" method="post" action="" id="formID" target="_top" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+<if condition="$items['iid'] neq ''">
+        <input type="hidden"  id="iid" value="{pigcms:$items['iid']}" name="iid">
+        <input type="hidden"  id="type" value="edit" name="type">
+</if>
+        <tr>
+          <th valign="top"><label for="cname">套餐名称</label></th>
+          <td>
+              <input type="input" class="px" id="cname" value="{pigcms:$items['cname']}" name="cname" class="px" data-validation-engine="validate[required,minSize[1],maxSize[15]]" data-errormessage-value-missing="必填项">
+            填写关键词15个字以内
+          </td>
+          <td></td>
+        </tr>
+        <!--  <tr>
+          <th valign="top"><label for="info_intro">套餐短介绍</label></th>
+          <td><textarea style="border: 1px solid #D8D7D7;" name="info_intro" id="info_intro" cols="80" placeholder="填写套餐短介绍" data-validation-engine="validate[required,minSize[5],maxSize[50]]"
+                    data-errormessage-value-missing="必填项目!"  rows="10">{pigcms:$items['info_intro']}</textarea>
+            <span class="maroon">* (50字以内)</span>
+          </td>
+          <td></td>
+        </tr> -->
+        <tr>
+          <th></th>
+          <td><button type="submit" name="button" class="btnGreen left">保存</button>
+            <div class="clr"></div></td>
+        </tr>
+        </tbody>
+
+      </table>
+    </form>
+  </div>
+
+
+</div>
+
+<include file="Public:footer"/>

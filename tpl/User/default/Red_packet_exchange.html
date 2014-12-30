@@ -1,0 +1,101 @@
+<include file="Public:head"/>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">红包兑换记录</h4>
+<a href="javascript:history.go(-1);" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="searchbar right">
+<form method="post" action="">
+
+<select name="type">
+	<option value="">请选择兑换方式</option>
+	<option value="1">线下兑换</option>
+	<option value="3">手机充值</option>
+	<option value="2">转入会员卡</option>
+</select>
+<select name="status">
+	<option value="">请选择兑换状态</option>
+	<option value="0">未兑奖</option>
+	<option value="1">已兑奖</option>
+</select>
+<input type="text" id="msgSearchInput" class="txt" placeholder="请输入微信昵称" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>   
+	<th width="50">兑换人</th>
+	<th width="50">兑换时间</th>                              
+	<th width="80">兑换金额</th>
+	<th width="50">兑换方式</th>
+	<!--<th width="80">兑奖码</th>-->
+ 	<th width="50">兑换状态</th>
+	<th width="80"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<pigcmslist array="list" foreach="list">
+<tr>
+	<td>{pigcms:$list.wxname}</td>
+	<td>{pigcms:$list.time|date="Y-m-d H:i:s",###}</td>
+	<td>{pigcms:$list.price}</td>
+	<td>
+		<if condition="$list.type eq 1">
+			线下兑换
+		<elseif  condition="$list.type eq 2"/>
+			转入会员卡
+		<elseif   condition="$list.type eq 3"/>
+			手机充值
+		</if>
+	</td>
+	<!--<td>{pigcms:$list.code}</td>-->
+	<td>
+		<if condition="$list.status eq 1">
+			已兑换
+		<else/>
+			未兑换
+		</if>
+	</td>
+	<td class="norightborder">
+		<a href="{pigcms::U('Red_packet/prize_log',array('token'=>$token,'id'=>$list['packet_id'],'log_id'=>$list['log_id']))}">查看红包</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Red_packet/change_del',array('token'=>$token,'id'=>$list['id'],'packet_id'=>$packet_id))}');">删除</a>
+	    
+	    <if condition="$list.type eq 3 and $list.status eq 0">
+			|		
+			<a href="javascript:void(0);"  onclick="show_forms({pigcms:$list.id})" style="color:#31a8e7;">充值确认</a>
+		</if>
+    </td>
+</tr>
+
+</pigcmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+
+<script>
+function show_forms(id){
+    art.dialog.open('{pigcms::U('Red_packet/show_forms',array('token'=>$token,'packet_id'=>$packet_id))}&id='+id,{lock:false,title:'手机充值兑奖',width:500,height:300,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,94 @@
+.swiff-uploader-box a {
+	display: none !important;
+}
+
+/* .hover simulates the flash interactions */
+a:hover, a.hover {
+	color: red;
+}
+
+#demo-status {
+	padding: 10px 5px;
+	width: 220px;
+	border: 1px solid #eee;
+}
+
+#demo-status .progress {
+	background: url(../../library/fancyUpload/assets/progress-bar/progress.gif) no-repeat;
+	background-position: +50% 0;
+	margin-right: 0.5em;
+	vertical-align: middle;
+}
+
+#demo-status .progress-text {
+	font-size: 0.9em;
+	font-weight: normal;
+}
+
+#demo-list {
+	list-style: none;
+	width: 250px;
+	margin: 0;
+	padding:0;
+}
+
+#demo-list li.validation-error {
+	padding-left: 4px;
+	display: block;
+	clear: left;
+	line-height: 40px;
+	color: #8a1f11;
+	cursor: pointer;
+	border-bottom: 1px solid #fbc2c4;
+	background: #fbe3e4 url(../../library/fancyUpload/assets/failed.png) no-repeat 4px 4px;
+}
+
+#demo-list li.file {
+	border-bottom: 1px solid #eee;
+	background: url(../../library/fancyUpload/assets/file.png) no-repeat 4px 4px;
+	overflow: auto;
+}
+#demo-list li.file.file-uploading {
+	background-image: url(../library/fancyUpload/assets/uploading.png);
+	background-color: #D9DDE9;
+}
+#demo-list li.file.file-success {
+}
+#demo-list li.file.file-failed {
+	background-image: url(../../library/fancyUpload/assets/failed.png);
+}
+
+#demo-list li.file .file-name {
+   display:none;
+	font-size: 12px;
+	margin-left: 44px;
+	display: block;
+	clear: left;
+	line-height: 40px;
+	height: 40px;
+	overflow:hidden;
+	font-weight: normal;
+}
+#demo-list li.file .file-size {
+	font-size: 0.9em;
+	line-height: 18px;
+	float: right;
+	margin-top: 2px;
+	margin-right: 6px;
+}
+#demo-list li.file .file-info {
+	display: block;
+	margin-left: 4px;
+	font-size: 0.9em;
+	line-height: 20px;
+	clear
+}
+#demo-list li.file .file-remove {
+	clear: right;
+	float: right;
+	line-height: 18px;
+	margin-right: 6px;
+}
+#multiUpload{background:#fff; position: fixed;_position: absolute;z-index: 100; right:10px; top:40px; width:260px; display:none;}
+#multiUpload #oper{background:#ddd;padding:5px 10px;}
+#multiUploadDiv{border:4px solid #ddd;overflow-y: scroll; height:460px;}

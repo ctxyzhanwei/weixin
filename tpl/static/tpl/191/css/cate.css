@@ -1,0 +1,68 @@
+html, body {
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+img {
+	border:0;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:0;
+	overflow:hidden;
+}
+.copyright{padding:8px;text-align:center;font-size:14px;color:#666;}
+.copyright a{color:#666;}
+
+body { background-color:#FFF; font-size:12px; }
+
+body  .mainmenu {  overflow:hidden; margin:4px 2px 0px 2px; }
+body  .mainmenu li { float:left;  width:50%; overflow:hidden;    }
+body  .mainmenu li a { display:block;   color:#FFF; margin:0px 2px 4px 2px;border-radius:0px 0px 10px 0px;  box-shadow:inset 0px 7px 0px rgba(0,0,0,0.4); overflow:hidden;position:relative; }
+body  .mainmenu li a img {  width:35px; height:35px; position:absolute; right:10px; bottom:10px;     }
+
+
+body  .mainmenu li a  span { position:absolute; top:10px; left:10px; display:block;   line-height:24px; font-size:16px;text-overflow:ellipsis; overflow:hidden; white-space:nowrap }
+body  .mainmenu li a  p{ display:block; position:absolute; top:35px; left:10px; display:block; line-height:18px;margin-right: 45px;height: 32px;
+overflow: hidden;}
+
+
+body  .mainmenu li:nth-child(6n+1){  width:100%;  }
+body  .mainmenu li:nth-child(6n+1) a  p{  margin-right: 65px;  }
+body  .mainmenu li:nth-child(6n+1) a{  background-color:#009; height:100px;}
+body  .mainmenu li:nth-child(6n+1) a img{ width:55px; height:55px;}
+body  .mainmenu li:nth-child(6n+2),body  .mainmenu li:nth-child(6n+4),body  .mainmenu li:nth-child(6n+6) {float:left;}
+body  .mainmenu li:nth-child(6n+3),body  .mainmenu li:nth-child(6n+5) { float:right;  }
+
+body  .mainmenu li:nth-child(6n+2) a{  background-color:#2caec4; height:77.36px;}
+
+body  .mainmenu li:nth-child(6n+3) a{height:120px; background-color:#8782a0}
+
+body  .mainmenu li:nth-child(6n+4) a{  background-color:#fdd100; height:77.36px;}
+body  .mainmenu li:nth-child(6n+4) a font{ color:#582430}
+
+body  .mainmenu li:nth-child(6n+5) a i,body  .mainmenu li:nth-child(6n+3) i{ visibility:visible}
+body  .mainmenu li:nth-child(6n+5) a{height:120px; background-color:#2bafc4}
+
+body  .mainmenu li:nth-child(6n+6) a{  background-color:#8c87a7; height:77.36px;}
+
+
+
+
+body .bottom { clear:both;  text-align:center; color:#FFF; background-color:rgba(0,0,0,0.5) ;line-height:45px; }

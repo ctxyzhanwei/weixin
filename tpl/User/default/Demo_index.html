@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>手机预览</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+</head>
+<style>
+* {
+	margin: 0px; padding: 0px; border: currentColor;
+}
+.samsung-render {
+	background: url("{pigcms::RES}/images/img/samsung-render.jpg") no-repeat; padding: 146px 0px 0px 24px; width: 368px; height: 480px;
+position:relative;
+}
+
+
+</style>
+<body style="overflow:hidden;">
+<div class="samsung-render" style="margin-top:0px;">
+<div style="color:#fff;TEXT-ALIGN:center;width:80px;float:left; position:absolute; left:25px; top:110px; z-index:200"><strong><a href="javascript:history.go(-1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></strong></div>
+<div style="color:#fff;TEXT-ALIGN:center;width:300px;float:left; position:absolute; left:10px; top:-35px; z-index:100; position:relative"><strong>{pigcms:$wecha.wxname}</strong></div>
+<iframe style="position:absolute; left:25px; top:145px;" src="<php>
+@$url=$_GET['url'];
+$url=str_replace(array('&amp;'),array('&'),$url);
+if(strpos($url,'?') === FALSE)
+{
+	$url=$url ."?show=1";
+}
+else
+{
+	$url=$url ."&show=1";
+}
+echo $url;
+</php>" id="myiframe" width="320" height="406" frameborder="0" style="overflow-x:hidden;" scrolling="auto"></iframe>
+</div>
+<div style="font-size:12px;"><center>建议使用IE11或者狐浏览器，仅供预览参照，实际以手机为准。</center></div>
+</body>
+</html>

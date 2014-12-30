@@ -1,0 +1,98 @@
+<include file="Repast:header"/>
+<body id="page_intelOrder" class="myOrderCon">
+
+<div style="float:none;width:100%;" class="headselect">
+	<a class="link_tel icon-phone">我的订单</a>
+</div>
+<div class="container">
+<br/>
+<header id="container">
+	<div>
+	    <select class="select_orderType" onchange="orderList(this);">
+	        <option value="0" <php>if ($status == 0) {echo "selected";}</php> >全部就餐状态</option>
+	        <option value="1" <php>if ($status == 1) {echo "selected";}</php> >未付款，未就餐</option>
+	        <option value="3" <php>if ($status == 3) {echo "selected";}</php> >已付款，未就餐</option>
+	        <option value="4" <php>if ($status == 4) {echo "selected";}</php> >已付款，已就餐</option>
+	    </select>
+	</div>
+	<div style="padding:10px 0;">
+		<ul class="list_order" id='list'>
+			<volist name="orderList" id="order">
+			<li>
+				<label style="float:none;" onclick="this.classList.toggle('on');">订餐人：{pigcms:$order.name}&nbsp;预约时间：{pigcms:$order.reservetime|date="Y-m-d H:i:s",###} </label>
+				<ol>
+					<!-- <p>就餐地址： 上海市宝山区 </p> 
+					<p>付款方式：线下支付</p> -->
+					<table>
+						<if condition="empty($order['info']) eq true">
+							<thead>
+								<tr>
+								    <td colspan="3" style="font-size:16px;">我预定了餐桌还没有点菜，已交订金：<span class="red h5">{pigcms:$order['price']}元</span></td>
+								</tr>
+							</thead>
+						<else />
+						<thead>
+							<tr>
+							    <td colspan="3" style="font-size:16px;">我的菜单</td>
+							</tr>
+							<tr>
+							    <td style="width:33%">菜名</td>
+								<td style="width:33%">单价</td>
+							    <td>数量</td>
+							</tr>
+						</thead>
+						<tbody>
+						<volist name="order['info']['list']" id="row">
+						<tr>
+							<td>{pigcms:$row.name}</td>
+							<td>{pigcms:$row.price}元</td>
+							<td>{pigcms:$row.num}份</td>
+						</tr>
+						</volist>
+						</tbody>
+ 						<tfoot>
+						<tr>
+							<td colspan="3" style="text-align:right;">
+								<if condition="$order['info']['takeAwayPrice'] gt 0">
+								<label>送餐费：<span class="red h5">{pigcms:$order['info']['takeAwayPrice']}元</span></label>
+								</if>
+								<label>总金额：<span class="red h5">{pigcms:$order.price}元</span>&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+						</tfoot>
+						</if>
+					</table>
+				</ol>
+			</li>
+			</volist>
+		</ul>
+	</div>
+</header>
+</div>
+<include file="Repast:footer"/>
+
+<script>
+$(document).ready(function(){
+    var min_height = $(document).height() - 80;
+    $("#container").css({"min-height":min_height});
+});
+
+function orderList(obj) {
+	location.href = "{pigcms::U('Repast/myOrder', array('token'=>$token, 'wecha_id'=>$wecha_id, 'cid'=>$cid))}&status=" + $(obj).val();
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{pigcms::C('site_url') .  U('Repast/myOrder',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{pigcms::C('site_url') .  U('Repast/myOrder',array('token' => $_GET['token']))}",
+            "weiboLink": "{pigcms::C('site_url') .  U('Repast/myOrder',array('token' => $_GET['token']))}",
+            "tTitle": "{pigcms:$metaTitle}",
+            "tContent": "{pigcms:$metaTitle}"
+        };
+</script>
+{pigcms:$shareScript}
+</html>

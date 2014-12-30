@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>登陆 - {pigcms::C('site_name')}</title>
+<meta name="keywords" content="微信帮手 微信公众账号 微信公众平台 微信公众账号开发 微信二次开发 微信接口开发 微信托管服务 微信营销 微信公众平台接口开发"/>
+<meta name="description" content="微信公众平台接口开发、托管、营销活动、二次开发"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="{pigcms::RES}/css/bootstrap_140705.css" onerror="_cdnFallback(this)">
+<link rel="stylesheet" href="{pigcms::RES}/css/app_account_e67a02ec35.css" onerror="_cdnFallback(this)">
+</head>
+<body class="theme theme--blue" style="">
+<div class="js-notifications notifications"></div>
+<div class="container">
+<div class="content" role="main">
+<div class="app">
+<div class="app-init-container"><div><div class="container">
+<div class="header">
+<div class="header-side"><a href="{pigcms::U('Index/reg')}">免费注册，快速接入</a></div>
+<div class="header-logo"></div>
+<div class="header-title">登录</div>
+</div>
+<div class="main main-login clearfix">
+<form action="{pigcms::U('Users/checklogin')}" method="post" class="form-horizontal">
+<fieldset>
+<div class="control-group">
+<label class="control-label">用户名：</label>
+<div class="controls">
+<input tabindex="1" type="text" placeholder="" name="username" value="">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label">登录密码：</label>
+<div class="controls">
+<input tabindex="2" type="password" placeholder="" name="password" value="">
+</div>
+</div>
+<div class="control-group">
+<div class="controls">
+<label class="auto-login">
+<input type="checkbox" name="memberPass" tabindex="-1" checked="">
+三天内自动登录
+</label>
+<a class="lost-pw" href="http://koudaitong.com/v2/account/retrieve" target="_blank" tabindex="-1">忘记密码?</a>
+</div>
+</div>
+<div class="control-group">
+<div class="controls">
+<button type="submit" tabindex="5" class="btn btn-large btn-primary login-btn" data-loading-text="正在登录...">登录</button>
+</div>
+</div>
+</fieldset>
+</form>
+<div class="side-wrap">
+<div class="login-qrcode"></div>
+<h4 class="side-desc">关注微5214官方微信</h4>
+<p class="side-info">了解最新产品动态/资讯</p>
+</div>
+</div>
+<div class="footer"><p class="copyright">© <a href="http://www.51sywx.com/">51sywx.com</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--[if lte IE 9]>
+<link rel="stylesheet" href="http://static.koudaitong.com/v2/vendor/kill-ie-6.css">
+<script src="http://kdt-static.qiniudn.com/v2/" onerror="_cdnFallback(this)"></script>
+<script src="http://kdt-static.qiniudn.com/v2/" onerror="_cdnFallback(this)"></script>
+<![endif]-->
+</body>
+</html>

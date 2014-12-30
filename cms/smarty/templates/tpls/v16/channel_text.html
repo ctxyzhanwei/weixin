@@ -1,0 +1,16 @@
+{include file=$header}
+    <ul class="newsul">
+    {if $contents}
+			{foreach from=$contents item=c}
+		        <li><p><a href="{$c.link}"  title="{$c.title}">{$c.title}</a></p></li>
+                {/foreach}
+			 {/if}
+		        
+		    </ul>
+    <div class="pages">
+    			<a class="next-left" href="javascript:void(0)">&lt;</a>
+		<span>{$currentPage}/{$totalPage}</span>
+		<a class="pre-left" href="{$nextPageLink}" >&gt;</a>
+	        <div class="clear"></div>
+    </div>
+	{include file=$footer}

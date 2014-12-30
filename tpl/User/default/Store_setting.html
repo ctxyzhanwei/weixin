@@ -1,0 +1,158 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+ <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>商城设置</h4> 
+    <a href="{pigcms::U('Store/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action=""> 
+    <input type="hidden" name="id" value="{pigcms:$setting.id}" /> 
+    <input type="hidden" name="token" value="{pigcms:$token}" /> 
+    <input type="hidden" name="cid" value="{pigcms:$cid}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody>
+       <tr>
+        <th>免邮设置(满 )：</th> 
+        <td><input type="text" name="price" value="{pigcms:$setting.price}" class="px"/>  元免邮</td> 
+       </tr>
+       
+       <tr>
+        <th>积分兑换：</th> 
+        <td><input type="text" name="score" value="{pigcms:$setting.score}" class="px"/>积分=1元 (注：写0表示积分不可兑换)</td> 
+       </tr>
+       
+       <tr>
+        <th>是否支持货到付款：</th> 
+        <td>
+	        <input type="radio" name="paymode" value="0" id="paymode_0" <if condition="$setting['paymode'] eq 0">checked</if> /><label for="paymode_0">不支持</label>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="radio" name="paymode" value="1" id="paymode_1" <if condition="$setting['paymode'] eq 1">checked</if> /><label for="paymode_1">支持</label>
+        </td> 
+       </tr>
+	   
+	    <tr>       
+        <th><span class="red"></span>邮件通知：</th> 
+        <td><input type="text" id="email" name="email" value="{pigcms:$setting.email}" placeholder="如：{pigcms::C('site_email')}" class="px" style="width:250px;" />&nbsp;&nbsp;
+	        开启&nbsp;<input type="radio" name="email_status" <if condition="$setting.email_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+	        关闭&nbsp;<input type="radio" name="email_status" <if condition="$setting.email_status eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr>
+	   	   
+       <if condition="$showgroup eq 1">
+       <tr>
+        <th>是否支持分组：</th> 
+        <td>
+	        <input type="radio" name="isgroup" value="0" id="isgroup_0" <if condition="$setting['isgroup'] eq 0">checked</if> /><label for="isgroup_0">不支持</label>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="radio" name="isgroup" value="1" id="isgroup_1" <if condition="$setting['isgroup'] eq 1">checked</if> /><label for="isgroup_1">支持</label>
+        </td> 
+       </tr>
+  	   </if>
+		<TR>
+		  <TH valign="top"><label for="keyword">首页模板：</label></TH>
+		  <TD>
+			<input type="text" id="selecttpl" class="px" value="<if condition="$setting['tpid'] gt 0"> 已选择模板{pigcms:$setting['tpid']}<else />点击右侧按钮选择</if>" disabled size="40"  />
+			<a class="a_upload" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+			<a class="a_upload" onclick="viewTpl()">预览</a>
+			<a class="a_upload" onclick="deletetpl()">恢复默认模板</a>
+			<script>
+				function viewTpl(){
+					var tid = $('#tpid').val();
+					chooseTpl(tid,'',2);
+				}
+			</script>
+			<input type="hidden" class="px" id="tpid" value="<if condition="$setting['tpid'] gt 0"> {pigcms:$setting['tpid']}<else />1</if>" name="tpid" style="width:250px">
+		  </TD>
+		  <TD>
+			&nbsp;
+		  </TD>
+		</TR>
+  
+		<TR>
+		  <TH valign="top"><label for="keyword">底部导航：</label></TH>
+		  <TD>
+			
+			
+			<input type="text" id="showfooter" class="px" value="已选择样式 {pigcms:$setting['footerid']}" disabled size="40"  />
+			<a class="a_upload" onclick="chooseMenu('footerid', 'showfooter')">选择样式 </a>
+			<a class="a_upload" onclick="viewMenu()">预览</a>
+			<script>
+				function viewMenu(){
+					var tid = $('#footerid').val();
+					chooseMenu(tid,'',2);
+				}
+			</script>
+			<input type="hidden" class="px" id="footerid" value="{pigcms:$setting['footerid']}" name="footerid" style="width:250px">
+		  </TD>
+		  <TD>
+			&nbsp;
+		  </TD>
+		</TR>
+       
+       <tr>
+        <th>顶部导航背景色：</th> 
+        <td id="header">
+        <input type="hidden" name="headerid" value="{pigcms:$setting['headerid']}" id="headerid"/>
+		<div style="background:#D80000;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 1">border:dotted 2px;</if>" id="1"></div>
+		<div style="background:#DF0300;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 2">border:dotted 2px;</if>" id="2"></div>
+		<div style="background:#E70303;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 3">border:dotted 2px;</if>" id="3"></div>
+		<div style="background:#EE5C5C;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 4">border:dotted 2px;</if>" id="4"></div>
+		<div style="background:#FF8BB7;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 5">border:dotted 2px;</if>" id="5"></div>
+		<div style="background:#D66AD6;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 6">border:dotted 2px;</if>" id="6"></div>
+		<div style="background:#9962CF;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 7">border:dotted 2px;</if>" id="7"></div>
+		<div style="background:#6161CF;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 8">border:dotted 2px;</if>" id="8"></div>
+		<div style="background:#318FEC;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 9">border:dotted 2px;</if>" id="9"></div>
+		<div style="background:#5DD1F8;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 10">border:dotted 2px;</if>" id="10"></div>
+		<div style="background:#83F1F1;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 11">border:dotted 2px;</if>" id="11"></div>
+		<div style="background:#A8F56B;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 12">border:dotted 2px;</if>" id="12"></div>
+		<div style="background:#92D60B;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 13">border:dotted 2px;</if>" id="13"></div>
+		<div style="background:#64BD0C;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 14">border:dotted 2px;</if>" id="14"></div>
+		<div style="background:#A0A002;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 15">border:dotted 2px;</if>" id="15"></div>
+		
+		<div style="background:#D3D303;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 16">border:dotted 2px;</if>" id="16"></div>
+		<div style="background:#EEEE4D;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 17">border:dotted 2px;</if>" id="17"></div>
+		<div style="background:#FCFC00;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 18">border:dotted 2px;</if>" id="18"></div>
+		<div style="background:#FFEC61;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 19">border:dotted 2px;</if>" id="19"></div>
+		<div style="background:#FFE000;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 20">border:dotted 2px;</if>" id="20"></div>
+		<div style="background:#FFC200;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 21">border:dotted 2px;</if>" id="21"></div>
+		<div style="background:#FD9D67;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 22">border:dotted 2px;</if>" id="22"></div>
+		<div style="background:#DA9E62;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 23">border:dotted 2px;</if>" id="23"></div>
+		<div style="background:#B88B61;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 24">border:dotted 2px;</if>" id="24"></div>
+		<div style="background:#AC5600;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 25">border:dotted 2px;</if>" id="25"></div>
+		<div style="background:#3A3A3D;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 26">border:dotted 2px;</if>" id="26"></div>
+		<div style="background:#697077;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 27">border:dotted 2px;</if>" id="27"></div>
+		<div style="background:#A0A0A0;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 28">border:dotted 2px;</if>" id="28"></div>
+		<div style="background:#CFCDCD;width:20px;height:20px;float:left;margin-left:2px; <if condition="$setting['headerid'] eq 29">border:dotted 2px;</if>" id="29"></div>
+		<!-- <div style="background:#fff,#f9f9f9);width:20px;height:20px;float:left;margin-left:2px;border:dotted 2px;">白</div> -->
+        </td> 
+       </tr>
+       
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{pigcms::U('Store/index',array('token' => $token))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+	  $("#header div").click(function(){
+		 $(this).css("border", "dotted 2px").siblings().css("border", "");
+		 $("#headerid").val($(this).attr("id"));
+	  });
+  });
+  function deletetpl()
+  {
+	 $("#tpid, #headerid").val(0);
+	 $("#selecttpl").val('默认模板');
+  }
+</script>
+  <include file="Public:footer" />

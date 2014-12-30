@@ -1,0 +1,205 @@
+body{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	overflow-x: hidden;
+	background-color: #2A2172;
+}
+.container{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	min-height: 510px;
+}
+.shadow-cloud{
+	width: 320px;
+	height: 233px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -160px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-image: url(../img/cloud_star.png);
+}
+.shadow-prize{
+	width: 343px;
+	height: 343px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -172px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 343px 343px;
+	background-image: url(../img/shadow_prize.png);
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-name: animshadow;
+	-webkit-animation-duration: 7s;
+}
+@-webkit-keyframes animshadow{
+	0%{-webkit-transform: rotate(0);}
+	100%{-webkit-transform: rotate(360deg);}
+}
+.prize-title{
+	font-size: 23px;
+	color: #fff;
+	height: 105px;
+	text-align: center;
+	display: -webkit-box;
+	-webkit-box-align: center;
+}
+.prize-img{
+	padding: 0 32px;
+	box-sizing:border-box;
+	width: 100%;
+	max-width: 100%;
+}
+.prize-ps{
+	margin-top: 35px;
+	margin-bottom: 15px;
+	padding: 0 32px;
+	font-size: 13px;
+	line-height: 28px;
+	color: #fff;
+}
+.prize-ps dt{
+	float: left;
+	width: 28%;
+}
+.prize-ps dd{
+}
+.btn-layout{
+	text-align: center;
+}
+.btn-layout [class^='btn-']{
+	margin: 0 3px;
+}
+.btn-exchange,
+.btn-again2{
+	border: none;
+	display: inline-block;
+	width: 134px;
+	height: 54px;
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.btn-exchange{
+	background-image: url(../img/btn_exchange.png);
+}
+.btn-again2{
+	background-image: url(../img/btn_again2.png);
+}
+.btn-use{
+	border: none;
+	display: inline-block;
+	width: 134px;
+	height: 54px;
+	position: relative;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.btn-use{
+	background-image: url(../img/btn_use.png);
+}
+.copyright{
+	text-align: center;
+	color: #5E43B6;
+	height: 20px;
+	display: block;
+}
+.panel-box{
+	position: fixed;
+	display: none;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.72);
+}
+.panel-box.show{
+	display: block;
+}
+.panel-box .panel-content{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-size: 18px;
+	color: #717171;
+	margin: auto 20px;
+	height: 325px;
+	border-radius: 8px;
+	background-color: #f5f0eb;
+	padding: 30px 15px;
+	box-sizing:border-box;
+}
+.panel-box .panel-close{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: -12px;
+	right: -12px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-image: url(../img/btn_close.png);
+}
+.panel-box .icon-prize-useless{
+	display: inline-block;
+	width: 90px;
+	height: 90px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-image: url(../img/icon_prize_useless.png);
+}
+.common-hr{
+	border: none;
+	border-bottom: 1px solid #D8D8D8;
+}
+.panel-box .common-hr{
+	margin: 15px 0;
+}
+.panel-box label{
+	float: left;
+	width: 28%;
+	color: #000;
+	font-size: 15px;
+	margin: 20px 0 40px;
+}
+.panel-box form{
+	text-align: left;
+}
+.panel-box input[type='text']{
+	border: none;
+	border-bottom: 1px solid #000;
+	background-color: transparent;
+	color: #000;
+	font-size: 15px;
+	width: 72%;
+	margin: 20px 0 40px;
+}
+.panel-box .btn-reset{
+	border: none;	
+  	border-radius: 5px;
+  	background: #AEABC3;
+  	color: #fff;
+  	width: 115px;
+  	height: 36px;
+  	display: inline-block;
+}
+.panel-box .btn-confirm{
+	border: none;	
+  	border-radius: 5px;
+  	background: #8571fe;
+  	color: #fff;
+  	width: 115px;
+  	height: 36px;
+  	display: inline-block;
+}

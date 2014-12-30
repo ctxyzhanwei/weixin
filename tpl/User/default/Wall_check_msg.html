@@ -1,0 +1,212 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link type="text/css" rel="stylesheet" href="/tpl/static/wall/css/check_msg.css">
+<div class="content" >  
+<div class="cLineB">
+  <h4><if condition="$sceneid eq 1">微现场<else/>微信墙</if>信息审核</h4>
+  <a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div> 
+<div class="msgWrap">
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：如果已开启审核，可以点击审核图标进行信息审核操作，审核通过大屏幕才会显示信息。列表信息自动刷新，刷新时间可在下方设置(刷新间隔不能使0或者负数)</div>
+<div class="cLineC" style="line-height: 32px;">
+<div class="handle">
+
+<form action="" method="post">
+  <div class="checked">
+    审核模式： <img src="/tpl/static/wall/images/<if condition="$ck_msg eq '1'">open.png<else/>close.png</if>" alt="">
+  </div>
+
+  <div class="search">
+    状态：
+    <select name="status" id="">
+      <option value="">请选择...</option>
+      <option value="1">未审核</option>
+      <option value="2">已审核</option> 
+    </select>
+    <input type="text" name="keyword" id="keyword" class="px"><button class="sub" onclick="$(this).submit()">搜索</button>
+  </div>
+</form>
+  <div class="set">
+    刷新间隔：<input type="text" name="refresh" id="refresh" class="px refresh" value="10"><button class="bt">设置</button>
+  </div>
+  <div class="down">
+    刷新倒计时：<span class="flashTime">10</span>
+  </div>
+</div>
+</div>
+
+<div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype" class="member-list">
+  <table class="ListProduct" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+      <tr>
+        <th style=" width:120px;" align="center">信息内容</th>
+        <th style=" width:80px;" align="center">发送人</th>
+        <th style=" width:40px;" align="center">发送时间</th>
+        <th style=" width:30px;" align="center">
+          是否审核
+          <span class="tooltips">
+            <img align="absmiddle" src="./tpl/User/default/common/images/price_help.png">
+            <span>
+              <p>点击图标可以修改信息<br />审核状态</p>
+            </span>
+          </span>
+        </th>
+        <th style=" width:30px;" align="center">操作</th>
+      </tr>
+    </thead>
+    <tbody id="msg">
+      <if condition="$list">
+      <volist name="list" id="info"> 
+        <tr id="item{pigcms:$info.id}">
+          <td align="left">
+            <div class="con">
+              <if condition="$info.picture eq ''">
+                {pigcms:$info.content}
+              <else />
+                <a href="{pigcms:$info.picture}" target="_blank" class="pic">
+                  <img src="{pigcms:$info.picture}" alt="">
+                </a>
+              </if>
+            </div>
+          </td>
+          <td align="center">{pigcms:$info.username}</td>
+          <td align="center">{pigcms:$info.time|date="Y-m-d H:i:s",###}</td>
+          <td align="center">
+              <if condition="$info.is_check eq '1'">
+                <i class="dui"  onclick="is_check(this,{pigcms:$info.id})"></i>
+              <else />
+                <i class="cuo"  onclick="is_check(this,{pigcms:$info.id})"></i>
+              </if>  
+          </td>
+          <td align="center"><a href="javascript:void(0);" onclick="del_msg({pigcms:$info.id})">删除</a></td>
+        </tr>
+      </volist>
+      <else />
+      <tr>
+        <td colspan="5" align="center" height="50px">暂时没有数据</td>
+      </tr>
+      </if>
+    </tbody>
+  </table>
+</div>
+</div>
+<input type="hidden" name="loadtime" id="loadtime" value="{pigcms:$now}">
+<script>
+
+  var refresh   = $('#refresh').val()*1000;
+  var id        = {pigcms:$id};
+  var uid        = {pigcms:$uid};
+  var sceneid   = {pigcms:$sceneid};
+  var autoLoad  = '';
+  var keyword   = '';
+  var status   = '';
+  var downTime = '';
+$(function(){ 
+  $('.flashTime').html($('#refresh').val());
+  
+  $('.bt').click( function() {
+      $('.flashTime').html($('#refresh').val());
+      refresh   = $('#refresh').val()*1000;
+      window.clearInterval(autoLoad);
+      window.clearInterval(downTime);
+      overTime();
+      laodMsg(refresh);
+  }); 
+
+  overTime();
+  laodMsg(refresh);
+});
+
+function overTime(){
+   var time   = $('.flashTime').html()*1-1;
+    downTime  = setInterval(function(){
+        $('.flashTime').html(time);  
+
+        if(time<=0){   
+          time = $('#refresh').val();
+        }
+        time--;
+      },1000);
+
+}
+
+function laodMsg(times){
+  if(times>0){
+    autoLoad = setInterval('getMsg()',times);
+  }
+}
+
+function getMsg(){
+  var loadtime  = $('#loadtime').val();
+  $.getJSON('{pigcms::U('Wall/laodMsg',array('token'=>$_SESSION['token']))}', {'loadtime':loadtime,'id':id,'sceneid':sceneid,'uid':uid}, function(data){
+       if(data.err == 0){  
+            var html = '';
+            if(data.res.length >0){
+                for (var i = data.res.length - 1; i >= 0; i--) {         
+                  html +=  '<tr id="item'+data.res[i].id+'"><td align="left"><div class="con">';
+                  if(data.res[i].picture == ''){
+                    html += data.res[i].content;
+                  }else{
+                    html += '<a href="'+data.res[i].picture+'" target="_blank" class="pic"><img src="'+data.res[i].picture+'" alt=""></a></div></td>';
+                  }    
+                  html+= '<td align="center">'+data.res[i].username+'</td>';
+                  html+= '<td align="center">'+data.res[i].time+'</td><td align="center">';
+                  if(data.res[i].is_check == 1){
+                    html+= '<i class="dui"  onclick="is_check(this,'+data.res[i].id+')"></i>';
+                  }else{
+                    html+= '<i class="cuo"  onclick="is_check(this,'+data.res[i].id+')"></i></td>';
+                  }
+                  html+= '<td align="center"><a href="javascript:void(0);" onclick="del_msg('+data.res[i].id+')">删除</a></td></tr>';  
+                };
+                $('#loadtime').val(data.loadtime);
+                var div  = $('#msg');
+                div.prepend(html);
+                status = 1;
+            }
+        }
+    });  
+}
+
+
+function del_msg(mid){
+    if(confirm('您确定要删除这条信息么?')){
+      $.getJSON('{pigcms::U('Wall/del_msg',array('token'=>$_SESSION['token']))}', {'wallid':{pigcms:$id},'sceneid':sceneid,'mid':mid}, function(data){
+        if(data){
+          $('#msg').children('#item'+mid).remove();
+        }
+      }); 
+    } 
+}
+
+
+function is_check(obj,mid){
+  var ic = obj.className;
+  var checked = '';
+    if(ic == 'dui'){
+      checked = 0;
+    }else if(ic == 'cuo'){
+      checked = 1;
+    }
+
+    $.post('{pigcms::U('Wall/is_check',array('token'=>$_SESSION['token']))}', {'wallid':{pigcms:$id},'sceneid':sceneid,'mid':mid,'checked':checked}, function(data){
+      var data = eval("("+data+")");
+      if(data.err == 1){
+        alert(data.info);
+      }else if(data.err == 0){
+        if(checked == 1){
+          obj.className = 'dui';
+        }else{
+          obj.className = 'cuo';
+        }
+        
+      }
+    });  
+}
+</script>
+</div>
+<include file="Public:footer"/>
+
+
